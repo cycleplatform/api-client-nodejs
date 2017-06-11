@@ -24,7 +24,7 @@ const AccountSchema = {
     properties: {
         id: { type: "string" },
         name: { $ref: "#/definitions/name" },
-        email: {$ref: "#/definitions/email"},
+        email: { $ref: "#/definitions/email" },
         temp: { type: "boolean" },
     },
 };
@@ -40,6 +40,44 @@ export function testAccount() {
             assert.isTrue(resp.ok);
             assert.isObject(resp.value.data);
             assert.jsonSchema(resp.value.data, AccountSchema);
+        });
+
+        it("should update account info", async () => {
+            const originalResp = await Account.getSingle(AccessToken, {}, { url: process.env.API_URL });
+            if (!originalResp.ok) {
+                throw new Error(originalResp.error.title);
+            }
+            if (!originalResp.value.data) {
+                throw new Error("data field is null");
+            }
+
+            const update = {
+                name: {
+                    first: "Mike",
+                    last: "Wizowsky",
+                },
+            };
+
+            const resp = await Account.update(update, AccessToken, {}, { url: process.env.API_URL });
+            if (!resp.ok) {
+                throw new Error(resp.error.title);
+            }
+
+            assert.isTrue(resp.ok);
+            assert.isObject(resp.value.data);
+            assert.jsonSchema(resp.value.data, AccountSchema);
+            assert.deepPropertyVal(resp.value.data, "name.first", "Mike");
+            assert.deepPropertyVal(resp.value.data, "name.last", "Wizowsky");
+
+            const revertUpdate = { name: originalResp.value.data.name };
+
+            const revertResp = await Account.update(revertUpdate, AccessToken, {}, { url: process.env.API_URL });
+            if (!revertResp.ok) {
+                throw new Error(revertResp.error.title);
+            }
+
+            assert.deepPropertyVal(resp.value.data, "name.first", revertUpdate.name.first);
+            assert.deepPropertyVal(resp.value.data, "name.last", revertUpdate.name.last);
         });
     });
 }

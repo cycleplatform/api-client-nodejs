@@ -1,5 +1,5 @@
 import { Token } from "../../auth";
-import { getRequest, makeUrl, postRequest } from "../../common/Api";
+import { getRequest, makeUrl, patchRequest } from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { CollectionDoc, Resource, Settings, SingleDoc, Time } from "../../common/Structs";
 
@@ -36,5 +36,5 @@ export async function getSingle(token: Token, query?: QueryParams, settings?: Se
 }
 
 export async function update(update: UpdateParams, token: Token, query?: QueryParams, settings?: Settings) {
-    return postRequest<Single>(`${makeUrl(settings)}/account`, update, query, token);
+    return patchRequest<Single>(`${makeUrl(settings)}/account`, update, query, token);
 }
