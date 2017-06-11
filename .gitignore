@@ -39,6 +39,7 @@ node_modules
 tmp
 .build
 build
+dist
 *-dist
 npm-debug*
 #public

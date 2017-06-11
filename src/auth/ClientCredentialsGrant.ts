@@ -9,7 +9,7 @@ export interface ClientCredsAuth {
     scope?: string;
 }
 
-export async function passwordGrant(options: ClientCredsAuth, settings?: Settings): Promise<ApiResult<Token>> {
+export async function clientCredentialsGrant(options: ClientCredsAuth, settings?: Settings): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
 
     const queryParams = Object.keys(options)

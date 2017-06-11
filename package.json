@@ -1,10 +1,11 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Cycle FaaS NodeJS API Client",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "typings": "dist/typings/index.d.ts",
     "scripts": {
-        "prepublish": "tsc",
+        "prepublish": "rm -rf ./dist && tsc",
         "pretest": "cd test && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },

@@ -1,5 +1,5 @@
 import { Token } from "../../auth";
-import { getRequest, makeUrl, patchRequest } from "../../common/Api";
+import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { CollectionDoc, Resource, Settings, SingleDoc, Time } from "../../common/Structs";
 
@@ -32,9 +32,9 @@ export interface UpdateParams {
 }
 
 export async function getSingle(token: Token, query?: QueryParams, settings?: Settings) {
-    return getRequest<Single>(`${makeUrl(settings)}/account`, query, token);
+    return API.getRequest<Single>(`${API.makeUrl(settings)}/account`, query, token);
 }
 
 export async function update(update: UpdateParams, token: Token, query?: QueryParams, settings?: Settings) {
-    return patchRequest<Single>(`${makeUrl(settings)}/account`, update, query, token);
+    return API.patchRequest<Single>(`${API.makeUrl(settings)}/account`, update, query, token);
 }

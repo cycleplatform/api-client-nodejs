@@ -3,7 +3,9 @@
         "module": "es6",
         "strict": true,
         "target": "es6",
-        "outDir": "build",
+        "outDir": "dist",
+        "declaration": true,
+        "declarationDir": "dist/typings",
         "noImplicitReturns": true,
         "sourceMap": true,
         "pretty": true,
@@ -24,6 +26,7 @@
     },
     "exclude": [
         "node_modules",
-        "fuse.ts"
+        "fuse.ts",
+        "test"
     ]
 }
