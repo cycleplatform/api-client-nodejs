@@ -10,10 +10,12 @@
     },
     "devDependencies": {
         "@types/chai": "^3.4.35",
+        "@types/chai-json-schema": "^1.4.3",
         "@types/dotenv": "^4.0.0",
         "@types/mocha": "^2.2.29",
         "@types/node": "^7.0.12",
         "chai": "^3.5.0",
+        "chai-json-schema": "^1.4.0",
         "dotenv": "^4.0.0",
         "mocha": "^3.0.0",
         "ts-node": "^3.0.6",
