@@ -4,6 +4,7 @@ export interface OAuthToken {
     expires_in: number;
     created: number;
     refresh_token: string;
+    scope: string;
 }
 
 export class Token implements OAuthToken {
@@ -16,6 +17,7 @@ export class Token implements OAuthToken {
     public created: number;
     // tslint:disable-next-line:variable-name
     public refresh_token: string;
+    public scope: string;
 
     constructor(token: OAuthToken) {
         this.access_token = token.access_token;
@@ -23,6 +25,7 @@ export class Token implements OAuthToken {
         this.expires_in = token.expires_in;
         this.created = token.created;
         this.refresh_token = token.refresh_token;
+        this.scope = token.scope;
 
         if (this.created === undefined) {
             this.created = Math.floor(Date.now() / 1000);

@@ -10,6 +10,7 @@
 *.zip
 *.tgz
 *.iml
+*.env
 *~
 
 # OS/Editor Files/Folders

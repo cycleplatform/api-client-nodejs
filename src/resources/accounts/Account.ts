@@ -1,7 +1,7 @@
 import { Token } from "../../auth";
 import { getRequest, makeUrl, postRequest } from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
-import { CollectionDoc, Resource, Settings, SingleDoc } from "../../common/Structs";
+import { CollectionDoc, Resource, Settings, SingleDoc, Time } from "../../common/Structs";
 
 export interface Collection extends CollectionDoc {
     data: Account[];
@@ -12,10 +12,16 @@ export interface Single extends SingleDoc {
 }
 
 export interface Account extends Resource {
+    email: {
+        address: string;
+        verified: boolean;
+        added: Time;
+    };
     name: {
         first: string;
         last: string;
     };
+    temp: boolean;
 }
 
 export interface UpdateParams {

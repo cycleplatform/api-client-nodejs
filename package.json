@@ -6,25 +6,28 @@
     "scripts": {
         "prepublish": "tsc",
         "pretest": "cd test && tsc",
-        "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/**/*.ts"
+        "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },
     "devDependencies": {
         "@types/chai": "^3.4.35",
+        "@types/dotenv": "^4.0.0",
         "@types/mocha": "^2.2.29",
         "@types/node": "^7.0.12",
         "chai": "^3.5.0",
         "dotenv": "^4.0.0",
         "mocha": "^3.0.0",
-        "tslint": "^5.2.0",
-        "typescript": "^2.3.2",
-        "@types/dotenv": "^4.0.0",
         "ts-node": "^3.0.6",
-        "tslint-react": "^3.0.0"
+        "tslint": "^5.2.0",
+        "tslint-react": "^3.0.0",
+        "typescript": "^2.3.2"
     },
     "repository": {
         "type": "git",
         "url": "http://amattoni@gitlab.petrichor.io/cycle-faas/node-api-client.git"
     },
     "author": "Petrichor, Inc.",
-    "license": "Apache-2.0"
+    "license": "Apache-2.0",
+    "dependencies": {
+        "isomorphic-fetch": "^2.2.1"
+    }
 }

@@ -4,7 +4,7 @@ import { Settings } from "../common/Structs";
 import { Token } from "./Token";
 
 export interface PasswordAuth {
-    username: string;
+    email: string;
     password: string;
     // Required only if hitting auth server directly
     client_id?: string;
@@ -23,7 +23,7 @@ export async function passwordGrant(options: PasswordAuth, settings?: Settings):
             method: "POST",
             body: `grant_type=password&${queryParams}`,
             headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "Content-type": "application/x-www-form-urlencoded",
                 "Accept": "application/json",
             },
         });
