@@ -86,7 +86,7 @@ export async function postRequest<T>(
         },
     });
     const req = new Request(
-        `${target}/?${formatParams(query)}`,
+        `${target}?${formatParams(query)}`,
         {
             ...ApiRequestInit,
             ...{

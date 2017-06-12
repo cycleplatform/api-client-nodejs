@@ -1,6 +1,6 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "1.0.4-dev.1",
+    "version": "1.0.4-dev.2",
     "description": "Cycle FaaS NodeJS API Client",
     "main": "dist/index.js",
     "typings": "dist/typings/index.d.ts",
