@@ -68,7 +68,7 @@ export async function getRequest<T>(
     query: QueryParams = {},
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
-    const req = new Request(`${target}/?${formatParams(query)}`, ApiRequestInit);
+    const req = new Request(`${target}?${formatParams(query)}`, ApiRequestInit);
     return await makeRequest<T>(req, token);
 }
 
@@ -78,6 +78,13 @@ export async function postRequest<T>(
     query: QueryParams = {},
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
+    console.log({
+        ...ApiRequestInit,
+        ...{
+            method: "POST",
+            body: JSON.stringify(doc),
+        },
+    });
     const req = new Request(
         `${target}/?${formatParams(query)}`,
         {
@@ -99,7 +106,7 @@ export async function patchRequest<T>(
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
     const req = new Request(
-        `${target}/?${formatParams(query)}`,
+        `${target}?${formatParams(query)}`,
         {
             ...ApiRequestInit,
             ...{
@@ -118,7 +125,7 @@ export async function removeRequest<T>(
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
     const req = new Request(
-        `${target}/?${formatParams(query)}`,
+        `${target}?${formatParams(query)}`,
         {
             ...ApiRequestInit,
             ...{
