@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "es6",
+        "module": "commonjs",
         "strict": true,
         "target": "es6",
         "outDir": "dist",
