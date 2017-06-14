@@ -2,6 +2,7 @@ import "isomorphic-fetch";
 import * as Auth from "./auth";
 import * as API from "./common/Api";
 import { QueryParams } from "./common/QueryParams";
+import * as Structs from "./common/structs";
 import * as Account from "./resources/accounts";
 
 export {
@@ -9,4 +10,5 @@ export {
     Auth,
     Account,
     QueryParams,
+    Structs,
 };

@@ -3,13 +3,8 @@ import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { CollectionDoc, Resource, Settings, SingleDoc, Time } from "../../common/Structs";
 
-export interface Collection extends CollectionDoc {
-    data: Account[];
-}
-
-export interface Single extends SingleDoc {
-    data: Account | null;
-}
+export type Collection = CollectionDoc<Account>;
+export type Single = SingleDoc<Account>;
 
 export interface Account extends Resource {
     email: {
@@ -32,7 +27,7 @@ export interface UpdateParams {
 }
 
 export async function getSingle(token: Token, query?: QueryParams, settings?: Settings) {
-    return API.getRequest<Single>(`${API.makeUrl(settings)}/account`, query, token);
+    return API.getRequest<Collection>(`${API.makeUrl(settings)}/account`, query, token);
 }
 
 export async function update(update: UpdateParams, token: Token, query?: QueryParams, settings?: Settings) {

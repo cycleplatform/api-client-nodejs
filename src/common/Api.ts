@@ -78,13 +78,6 @@ export async function postRequest<T>(
     query: QueryParams = {},
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
-    console.log({
-        ...ApiRequestInit,
-        ...{
-            method: "POST",
-            body: JSON.stringify(doc),
-        },
-    });
     const req = new Request(
         `${target}?${formatParams(query)}`,
         {
@@ -119,7 +112,7 @@ export async function patchRequest<T>(
     return await makeRequest<T>(req, token);
 }
 
-export async function removeRequest<T>(
+export async function deleteRequest<T>(
     target: string,
     query: QueryParams = {},
     token: OAuthToken,
@@ -129,7 +122,7 @@ export async function removeRequest<T>(
         {
             ...ApiRequestInit,
             ...{
-                method: "PATCH",
+                method: "DELETE",
             },
         },
     );
