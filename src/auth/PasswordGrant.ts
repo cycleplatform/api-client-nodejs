@@ -53,6 +53,7 @@ export async function passwordGrant(
         return {
             ok: false,
             error: {
+                code: "0.network_error",
                 detail: e.message,
                 title: "Unable to reach authentication server",
             },
