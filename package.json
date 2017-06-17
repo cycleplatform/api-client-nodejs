@@ -28,6 +28,7 @@
         "husky": "^0.13.4",
         "lint-staged": "^3.6.1",
         "mocha": "^3.0.0",
+        "prettier": "^1.4.4",
         "ts-node": "^3.0.6",
         "tslint": "^5.2.0",
         "tslint-react": "^3.0.0",
