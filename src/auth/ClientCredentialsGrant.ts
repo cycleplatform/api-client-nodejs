@@ -9,11 +9,14 @@ export interface ClientCredsAuth {
     scope?: string;
 }
 
-export async function clientCredentialsGrant(options: ClientCredsAuth, settings?: Settings): Promise<ApiResult<Token>> {
+export async function clientCredentialsGrant(
+    options: ClientCredsAuth,
+    settings?: Settings,
+): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
 
     const queryParams = Object.keys(options)
-        .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
         .join("&");
 
     try {
@@ -21,8 +24,9 @@ export async function clientCredentialsGrant(options: ClientCredsAuth, settings?
             method: "POST",
             body: `grant_type=client_credentials&${queryParams}`,
             headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "Accept": "application/json",
+                "Content-type":
+                    "application/x-www-form-urlencoded; charset=UTF-8",
+                Accept: "application/json",
             },
         });
         if (!resp.ok) {

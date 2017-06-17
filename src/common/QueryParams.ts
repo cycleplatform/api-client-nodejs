@@ -27,7 +27,9 @@ export function formatParams(q: QueryParams | undefined) {
         } else {
             let isEmpty = true;
             for (const p in cur) {
-                if (!cur.hasOwnProperty(p)) { continue; }
+                if (!cur.hasOwnProperty(p)) {
+                    continue;
+                }
                 isEmpty = false;
                 recurse(cur[p], prop ? prop + "[" + p + "]" : p);
             }
@@ -39,6 +41,6 @@ export function formatParams(q: QueryParams | undefined) {
     recurse(q, "");
 
     return Object.keys(result)
-        .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(result[k]))
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(result[k]))
         .join("&");
 }

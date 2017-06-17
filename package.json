@@ -5,9 +5,16 @@
     "main": "dist/index.js",
     "typings": "dist/typings/index.d.ts",
     "scripts": {
+        "precommit": "lint-staged",
         "prepublish": "rm -rf ./dist && tsc",
         "pretest": "cd test && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "prettier --write --parser typescript --tab-width 4 --trailing-comma all",
+            "git add"
+        ]
     },
     "devDependencies": {
         "@types/chai": "^3.4.35",
@@ -18,6 +25,8 @@
         "chai": "^3.5.0",
         "chai-json-schema": "^1.4.0",
         "dotenv": "^4.0.0",
+        "husky": "^0.13.4",
+        "lint-staged": "^3.6.1",
         "mocha": "^3.0.0",
         "ts-node": "^3.0.6",
         "tslint": "^5.2.0",

@@ -11,11 +11,14 @@ export interface PasswordAuth {
     client_secret?: string;
 }
 
-export async function passwordGrant(options: PasswordAuth, settings?: Settings): Promise<ApiResult<Token>> {
+export async function passwordGrant(
+    options: PasswordAuth,
+    settings?: Settings,
+): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
 
     const queryParams = Object.keys(options)
-        .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
         .join("&");
 
     try {
@@ -24,7 +27,7 @@ export async function passwordGrant(options: PasswordAuth, settings?: Settings):
             body: `grant_type=password&${queryParams}`,
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
-                "Accept": "application/json",
+                Accept: "application/json",
             },
         });
         if (!resp.ok) {

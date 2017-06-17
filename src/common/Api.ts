@@ -25,12 +25,18 @@ export function makeUrl(settings?: Settings) {
     return `https://api.cycle.io/v1`;
 }
 
-async function makeRequest<T>(req: Request, token: OAuthToken, headers?: Headers): Promise<ApiResult<T>> {
+async function makeRequest<T>(
+    req: Request,
+    token: OAuthToken,
+    headers?: Headers,
+): Promise<ApiResult<T>> {
     req.headers.append("Authorization", `Bearer ${token.access_token}`);
 
     if (headers) {
         for (const p in headers) {
-            if (!headers.hasOwnProperty(p)) { continue; }
+            if (!headers.hasOwnProperty(p)) {
+                continue;
+            }
             req.headers.append(p, headers[p]);
         }
     }
@@ -56,7 +62,8 @@ async function makeRequest<T>(req: Request, token: OAuthToken, headers?: Headers
             error: {
                 status: 0,
                 title: "Unable to reach server",
-                detail: "There was an error attempting to fetch data from server.",
+                detail:
+                    "There was an error attempting to fetch data from server.",
                 code: "0.network_error",
             },
         };
@@ -78,16 +85,13 @@ export async function postRequest<T>(
     query: QueryParams = {},
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
-    const req = new Request(
-        `${target}?${formatParams(query)}`,
-        {
-            ...ApiRequestInit,
-            ...{
-                method: "POST",
-                body: JSON.stringify(doc),
-            },
+    const req = new Request(`${target}?${formatParams(query)}`, {
+        ...ApiRequestInit,
+        ...{
+            method: "POST",
+            body: JSON.stringify(doc),
         },
-    );
+    });
 
     return await makeRequest<T>(req, token);
 }
@@ -98,16 +102,13 @@ export async function patchRequest<T>(
     query: QueryParams = {},
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
-    const req = new Request(
-        `${target}?${formatParams(query)}`,
-        {
-            ...ApiRequestInit,
-            ...{
-                method: "PATCH",
-                body: JSON.stringify(doc),
-            },
+    const req = new Request(`${target}?${formatParams(query)}`, {
+        ...ApiRequestInit,
+        ...{
+            method: "PATCH",
+            body: JSON.stringify(doc),
         },
-    );
+    });
 
     return await makeRequest<T>(req, token);
 }
@@ -117,15 +118,12 @@ export async function deleteRequest<T>(
     query: QueryParams = {},
     token: OAuthToken,
 ): Promise<ApiResult<T>> {
-    const req = new Request(
-        `${target}?${formatParams(query)}`,
-        {
-            ...ApiRequestInit,
-            ...{
-                method: "DELETE",
-            },
+    const req = new Request(`${target}?${formatParams(query)}`, {
+        ...ApiRequestInit,
+        ...{
+            method: "DELETE",
         },
-    );
+    });
 
     return await makeRequest<T>(req, token);
 }
