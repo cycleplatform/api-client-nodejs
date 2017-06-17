@@ -3,17 +3,12 @@ import { OAuthError } from "../common/Error";
 import { Settings } from "../common/Structs";
 import { Token } from "./Token";
 
-export interface PasswordAuth {
-    email: string;
-    password: string;
-    totp_passcode: string;
-    // Required only if hitting auth server directly
-    client_id?: string;
-    client_secret?: string;
+export interface RefreshParams {
+    token: Token;
 }
 
-export async function passwordGrant(
-    options: PasswordAuth,
+export async function refreshGrant(
+    options: RefreshParams,
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
@@ -25,7 +20,7 @@ export async function passwordGrant(
     try {
         const resp = await fetch(url, {
             method: "POST",
-            body: `grant_type=password&${queryParams}`,
+            body: `grant_type=refresh_token&${queryParams}`,
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
                 Accept: "application/json",

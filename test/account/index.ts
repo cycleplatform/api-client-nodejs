@@ -32,7 +32,11 @@ const AccountSchema = {
 export function testAccount() {
     describe("Account", () => {
         it("should fetch user account", async () => {
-            const resp = await Account.getSingle(AccessToken, {}, { url: process.env.API_URL });
+            const resp = await Account.getSingle(
+                AccessToken,
+                {},
+                { url: process.env.API_URL },
+            );
             if (!resp.ok) {
                 throw new Error(resp.error.title);
             }
@@ -43,7 +47,11 @@ export function testAccount() {
         });
 
         it("should update account info", async () => {
-            const originalResp = await Account.getSingle(AccessToken, {}, { url: process.env.API_URL });
+            const originalResp = await Account.getSingle(
+                AccessToken,
+                {},
+                { url: process.env.API_URL },
+            );
             if (!originalResp.ok) {
                 throw new Error(originalResp.error.title);
             }
@@ -58,7 +66,12 @@ export function testAccount() {
                 },
             };
 
-            const resp = await Account.update(update, AccessToken, {}, { url: process.env.API_URL });
+            const resp = await Account.update(
+                AccessToken,
+                update,
+                {},
+                { url: process.env.API_URL },
+            );
             if (!resp.ok) {
                 throw new Error(resp.error.title);
             }
@@ -71,13 +84,26 @@ export function testAccount() {
 
             const revertUpdate = { name: originalResp.value.data.name };
 
-            const revertResp = await Account.update(revertUpdate, AccessToken, {}, { url: process.env.API_URL });
+            const revertResp = await Account.update(
+                AccessToken,
+                revertUpdate,
+                {},
+                { url: process.env.API_URL },
+            );
             if (!revertResp.ok) {
                 throw new Error(revertResp.error.title);
             }
 
-            assert.deepPropertyVal(resp.value.data, "name.first", revertUpdate.name.first);
-            assert.deepPropertyVal(resp.value.data, "name.last", revertUpdate.name.last);
+            assert.deepPropertyVal(
+                resp.value.data,
+                "name.first",
+                revertUpdate.name.first,
+            );
+            assert.deepPropertyVal(
+                resp.value.data,
+                "name.last",
+                revertUpdate.name.last,
+            );
         });
     });
 }

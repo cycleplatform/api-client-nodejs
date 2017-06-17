@@ -37,7 +37,7 @@ export async function getSingle(
     query?: QueryParams,
     settings?: Settings,
 ) {
-    return API.getRequest<Collection>(
+    return API.getRequest<Single>(
         `${API.makeUrl(settings)}/account`,
         query,
         token,
