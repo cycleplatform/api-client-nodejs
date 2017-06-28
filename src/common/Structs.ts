@@ -48,11 +48,11 @@ export interface TopLevel {
     includes?: Includes;
 }
 
-export interface CollectionDoc<T extends Resource> extends TopLevel {
+export interface CollectionDoc<T extends Resource | string> extends TopLevel {
     data: T[];
 }
 
-export interface SingleDoc<T extends Resource> extends TopLevel {
+export interface SingleDoc<T extends Resource | string> extends TopLevel {
     data: T | null;
 }
 

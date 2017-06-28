@@ -1,6 +1,7 @@
 import { Token } from "../../auth";
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
+import { links } from "../../common/Links";
 import {
     CollectionDoc,
     Resource,
@@ -32,26 +33,35 @@ export interface UpdateParams {
     };
 }
 
-export async function getSingle(
-    token: Token,
-    query?: QueryParams,
-    settings?: Settings,
-) {
+export async function getSingle({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Single>(
-        `${API.makeUrl(settings)}/account`,
+        links.account(settings).single(),
         query,
         token,
     );
 }
 
-export async function update(
-    token: Token,
-    update: UpdateParams,
-    query?: QueryParams,
-    settings?: Settings,
-) {
+export async function update({
+    token,
+    update,
+    query,
+    settings,
+}: {
+    token: Token;
+    update: UpdateParams;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.patchRequest<Single>(
-        `${API.makeUrl(settings)}/account`,
+        links.account(settings).single(),
         update,
         query,
         token,

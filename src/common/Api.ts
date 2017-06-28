@@ -27,10 +27,12 @@ export function makeUrl(settings?: Settings) {
 
 async function makeRequest<T>(
     req: Request,
-    token: OAuthToken,
+    token?: OAuthToken,
     headers?: Headers,
 ): Promise<ApiResult<T>> {
-    req.headers.append("Authorization", `Bearer ${token.access_token}`);
+    if (token) {
+        req.headers.append("Authorization", `Bearer ${token.access_token}`);
+    }
 
     if (headers) {
         for (const p in headers) {
@@ -73,7 +75,7 @@ async function makeRequest<T>(
 export async function getRequest<T>(
     target: string,
     query: QueryParams = {},
-    token: OAuthToken,
+    token?: OAuthToken,
 ): Promise<ApiResult<T>> {
     const req = new Request(`${target}?${formatParams(query)}`, ApiRequestInit);
     return await makeRequest<T>(req, token);
@@ -83,7 +85,7 @@ export async function postRequest<T>(
     target: string,
     doc: object,
     query: QueryParams = {},
-    token: OAuthToken,
+    token?: OAuthToken,
 ): Promise<ApiResult<T>> {
     const req = new Request(`${target}?${formatParams(query)}`, {
         ...ApiRequestInit,
@@ -100,7 +102,7 @@ export async function patchRequest<T>(
     target: string,
     doc: object,
     query: QueryParams = {},
-    token: OAuthToken,
+    token?: OAuthToken,
 ): Promise<ApiResult<T>> {
     const req = new Request(`${target}?${formatParams(query)}`, {
         ...ApiRequestInit,
@@ -116,7 +118,7 @@ export async function patchRequest<T>(
 export async function deleteRequest<T>(
     target: string,
     query: QueryParams = {},
-    token: OAuthToken,
+    token?: OAuthToken,
 ): Promise<ApiResult<T>> {
     const req = new Request(`${target}?${formatParams(query)}`, {
         ...ApiRequestInit,
