@@ -44,7 +44,9 @@ async function makeRequest<T>(
     }
 
     try {
+        console.log(req.url);
         const resp = await fetch(req);
+        console.log(resp.ok);
         if (!resp.ok) {
             const error = await resp.json();
             return {

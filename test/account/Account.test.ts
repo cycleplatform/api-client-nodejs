@@ -37,6 +37,7 @@ export function testAccount() {
                 query: {},
                 settings: { url: process.env.API_URL },
             });
+
             if (!resp.ok) {
                 throw new Error(resp.error.title);
             }
@@ -49,7 +50,6 @@ export function testAccount() {
         it("should update account info", async () => {
             const originalResp = await Account.getSingle({
                 token: AccessToken,
-                query: {},
                 settings: { url: process.env.API_URL },
             });
             if (!originalResp.ok) {

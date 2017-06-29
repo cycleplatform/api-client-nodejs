@@ -26,6 +26,10 @@
   version "7.0.29"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.29.tgz#ccfcec5b7135c7caf6c4ffb8c7f33102340d99df"
 
+"@types/speakeasy@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/speakeasy/-/speakeasy-2.0.1.tgz#f1ccedc1c9f8af1cd2414dad1408d1b4383fc878"
+
 "@types/tv4@*":
   version "1.2.28"
   resolved "https://registry.yarnpkg.com/@types/tv4/-/tv4-1.2.28.tgz#0bbda35bf4a85d9e5be56a00519981cb9e408cd5"
@@ -71,6 +75,10 @@ babel-code-frame@^6.22.0:
 balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
+
+base32.js@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/base32.js/-/base32.js-0.0.1.tgz#d045736a57b1f6c139f0c7df42518a84e91bb2ba"
 
 brace-expansion@^1.1.7:
   version "1.1.7"
@@ -724,6 +732,12 @@ source-map-support@^0.4.0:
 source-map@^0.5.6:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
+
+speakeasy@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/speakeasy/-/speakeasy-2.0.0.tgz#85c91a071b09a5cb8642590d983566165f57613a"
+  dependencies:
+    base32.js "0.0.1"
 
 sprintf-js@~1.0.2:
   version "1.0.3"

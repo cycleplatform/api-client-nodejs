@@ -5,6 +5,9 @@ import { Token } from "./Token";
 
 export interface RefreshParams {
     token: Token;
+    // Not required if running in browser/through thin client
+    client_id?: string;
+    client_secret?: string;
 }
 
 export async function refreshGrant(
@@ -13,8 +16,10 @@ export async function refreshGrant(
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
 
-    const queryParams = Object.keys(options)
-        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
+    const params = { ...options, refresh_token: options.token.refresh_token };
+    delete params.token;
+    const queryParams = Object.keys(params)
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
         .join("&");
 
     try {

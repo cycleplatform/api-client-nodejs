@@ -1,9 +1,15 @@
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
-import { CollectionDoc, Settings } from "../../common/Structs";
+import { CollectionDoc, Settings, Resource } from "../../common/Structs";
 import { links } from "../../common/Links";
 
-export type Collection = CollectionDoc<ProviderName>;
+export type Collection = CollectionDoc<Provider>;
+
+export interface Provider extends Resource {
+    id: string;
+    name: ProviderName;
+    website: string;
+}
 
 export type ProviderName = "packet";
 

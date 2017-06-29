@@ -15,26 +15,26 @@ export type Collection = CollectionDoc<Server>;
 export type Single = SingleDoc<Server>;
 
 export interface Server extends Resource {
-    slug: string;
     name: string;
     description: string;
 
     specs: {
-        cpu: ServerCPU[];
-        memory: ServerMemory;
-        drives: ServerDrive[];
-        nics: ServerNIC[];
+        cpu: Array<GenericSpecs<ServerCPU>>;
+        memory: Array<GenericSpecs<ServerMemory>>;
+        drives: Array<GenericSpecs<ServerDrive>>;
+        nics: Array<GenericSpecs<ServerNIC>>;
         features: ServerFeatures;
     };
 
     provider: {
         id: string;
         name: ProviderName;
+        slug: string;
     };
 
     pricing: {
-        monthly: Mills;
-        yearly: Mills;
+        infrastructure: Mills;
+        licensing: Mills;
     };
 
     containers: {
@@ -43,24 +43,45 @@ export interface Server extends Resource {
     };
 }
 
-export interface ServerCPU {
+export interface GenericSpecs<T> {
     count: number;
-    type: string;
+    specs: T;
+}
+
+export interface ServerCPU {
+    model: string;
+    frequency: {
+        speed: number;
+        unit: string;
+    };
 }
 
 export interface ServerMemory {
-    total: string;
+    storage: {
+        size: number;
+        unit: string;
+    };
+    type: string;
 }
 
 export interface ServerDrive {
-    count: number;
-    size: string;
+    storage: {
+        size: number;
+        unit: string;
+    };
     type: string;
+    raid?: {
+        level: number;
+    };
 }
 
 export interface ServerNIC {
-    count: number;
+    bandwidth: {
+        size: number;
+        unit: string;
+    };
     type: string;
+    bonded: boolean;
 }
 
 export interface ServerFeatures {
@@ -73,11 +94,11 @@ export async function getCollection({
     query,
     settings,
 }: {
-    provider: ProviderName;
+    provider: string;
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>(
+    return API.getRequest<Collection>(
         links.infrastructure(settings).providers().servers(provider),
         query,
     );

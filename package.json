@@ -1,13 +1,12 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Cycle FaaS NodeJS API Client",
     "main": "dist/index.js",
     "typings": "dist/typings/index.d.ts",
     "scripts": {
         "precommit": "lint-staged",
         "prepublish": "rm -rf ./dist && tsc",
-        "pretest": "cd test && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },
     "lint-staged": {
@@ -22,6 +21,7 @@
         "@types/dotenv": "^4.0.0",
         "@types/mocha": "^2.2.29",
         "@types/node": "^7.0.12",
+        "@types/speakeasy": "^2.0.1",
         "chai": "^3.5.0",
         "chai-json-schema": "^1.4.0",
         "dotenv": "^4.0.0",
@@ -29,6 +29,7 @@
         "lint-staged": "^3.6.1",
         "mocha": "^3.0.0",
         "prettier": "^1.4.4",
+        "speakeasy": "^2.0.0",
         "ts-node": "^3.0.6",
         "tslint": "^5.4.3",
         "tslint-config-prettier": "^1.1.0",

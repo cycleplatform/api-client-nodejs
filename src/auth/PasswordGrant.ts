@@ -7,9 +7,10 @@ export interface PasswordAuth {
     email: string;
     password: string;
     totp_passcode: string;
-    // Required only if hitting auth server directly
+    // Not required if running in browser/through thin client
     client_id?: string;
     client_secret?: string;
+    scope?: string;
 }
 
 export async function passwordGrant(

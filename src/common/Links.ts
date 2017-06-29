@@ -7,9 +7,11 @@ export const links = {
     }),
     infrastructure: (settings?: Settings) => ({
         providers: () => ({
-            list: () => `${makeUrl(settings)}/providers/`,
-            servers: (name: string) =>
-                `${makeUrl(settings)}/providers/${name}/servers`,
+            list: () => `${makeUrl(settings)}/infrastructure/providers`,
+            servers: (provider: string) =>
+                `${makeUrl(
+                    settings,
+                )}/infrastructure/providers/${provider}/servers`,
         }),
     }),
 };
