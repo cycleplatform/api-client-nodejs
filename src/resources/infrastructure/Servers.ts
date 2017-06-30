@@ -50,6 +50,7 @@ export interface GenericSpecs<T> {
 
 export interface ServerCPU {
     model: string;
+    cores: number;
     frequency: {
         speed: number;
         unit: string;
