@@ -19,7 +19,7 @@ export interface Server extends Resource {
     description: string;
 
     specs: {
-        cpu: Array<GenericSpecs<ServerCPU>>;
+        cpus: Array<GenericSpecs<ServerCPU>>;
         memory: Array<GenericSpecs<ServerMemory>>;
         drives: Array<GenericSpecs<ServerDrive>>;
         nics: Array<GenericSpecs<ServerNIC>>;
