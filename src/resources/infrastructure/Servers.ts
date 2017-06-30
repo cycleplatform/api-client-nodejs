@@ -77,7 +77,7 @@ export interface ServerDrive {
 
 export interface ServerNIC {
     bandwidth: {
-        size: number;
+        speed: number;
         unit: string;
     };
     type: string;
