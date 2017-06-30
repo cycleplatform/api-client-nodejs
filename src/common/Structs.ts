@@ -37,7 +37,6 @@ export type Mills = number;
 /**
  * Field is measured in days
  */
-
 export type Days = number;
 
 /**
@@ -65,20 +64,46 @@ export interface Meta {
     [key: string]: any;
 }
 
-/**
- * includes: {
- *  environments: {
- *      5cdfwe8h3oih: Environment,
- *      5cdfwe8h3oih: Environment
- *  }
- * }
- */
 export interface Includes {
     [key: string]: {
         [key: string]: Resource | { [key: string]: Resource };
     };
 }
 
+/**
+ * Standard API call settings object.
+ */
 export interface Settings {
+    /**
+     * Overrides base url, so it can be pointed to a thin client
+     * for authentication from browser
+     */
     url?: string;
+}
+
+export interface StandardEvents {
+    created: Time;
+    updated: Time;
+    deleted: Time;
+}
+
+export type CommonStates = "new" | "live" | "deleted";
+
+export interface ResourceState<T extends string = ""> {
+    current: CommonStates & T;
+    changed: Time;
+    job: JobInfo;
+    error?: ResourceError;
+}
+
+export interface ResourceError {
+    message: string;
+    time: Time;
+    block: boolean;
+}
+
+export interface JobInfo {
+    id: string;
+    queued: Time;
+    queue: string;
 }

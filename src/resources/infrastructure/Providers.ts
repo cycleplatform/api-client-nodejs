@@ -21,7 +21,7 @@ export async function getCollection({
     settings?: Settings;
 }) {
     return API.getRequest<Collection>(
-        links.infrastructure(settings).providers().list(),
+        links.infrastructure(settings).providers().collection(),
         query,
     );
 }

@@ -5,13 +5,18 @@ export const links = {
     account: (settings?: Settings) => ({
         single: () => `${makeUrl(settings)}/account`,
     }),
+
     infrastructure: (settings?: Settings) => ({
         providers: () => ({
-            list: () => `${makeUrl(settings)}/infrastructure/providers`,
+            collection: () => `${makeUrl(settings)}/infrastructure/providers`,
             servers: (provider: string) =>
                 `${makeUrl(
                     settings,
                 )}/infrastructure/providers/${provider}/servers`,
         }),
+    }),
+
+    projects: (settings?: Settings) => ({
+        collection: () => `${makeUrl(settings)}/projects`,
     }),
 };
