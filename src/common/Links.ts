@@ -1,19 +1,27 @@
 import { makeUrl } from "./Api";
-import { Settings } from "./Structs";
+import { Settings, ResourceId } from "./Structs";
 
 export const links = {
     account: (settings?: Settings) => ({
         single: () => `${makeUrl(settings)}/account`,
     }),
 
+    billing: (settings?: Settings) => ({
+        orders: () => ({
+            collection: () => `${makeUrl(settings)}/orders`,
+            single: (id: ResourceId) => `${makeUrl(settings)}/orders/${id}`,
+        }),
+        methods: () => ({}),
+    }),
+
     infrastructure: (settings?: Settings) => ({
         providers: () => ({
             collection: () => `${makeUrl(settings)}/infrastructure/providers`,
-            servers: (provider: string) =>
+            servers: (provider: ResourceId) =>
                 `${makeUrl(
                     settings,
                 )}/infrastructure/providers/${provider}/servers`,
-            datacenters: (provider: string) =>
+            datacenters: (provider: ResourceId) =>
                 `${makeUrl(
                     settings,
                 )}/infrastructure/providers/${provider}/datacenters`,

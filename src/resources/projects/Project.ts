@@ -2,7 +2,7 @@ import { Token } from "../../auth";
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
-import { BillingProfile } from "../billing";
+import { Profile } from "../billing";
 import {
     CollectionDoc,
     Resource,
@@ -18,7 +18,7 @@ export type Single = SingleDoc<Project>;
 export interface Project extends Resource {
     name: string;
     events: StandardEvents;
-    billing: BillingProfile;
+    billing: Profile;
     state: ResourceState;
 }
 

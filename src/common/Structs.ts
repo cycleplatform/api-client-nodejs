@@ -85,6 +85,10 @@ export interface Settings {
     project?: ResourceId;
 }
 
+export interface ProjectRequiredSettings extends Settings {
+    project: ResourceId;
+}
+
 export interface StandardEvents {
     created: Time;
     updated: Time;
@@ -110,4 +114,10 @@ export interface JobInfo {
     id: string;
     queued: Time;
     queue: string;
+}
+
+export type ScopeType = "account" | "project";
+export interface Scope {
+    type: ScopeType;
+    id: ResourceId;
 }

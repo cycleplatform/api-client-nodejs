@@ -7,11 +7,13 @@ import * as Structs from "./common/structs";
 import * as Account from "./resources/accounts";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Projects from "./resources/projects";
+import * as Billing from "./resources/billing";
 
 export {
     API,
     Auth,
     Account,
+    Billing,
     QueryParams,
     Structs,
     Error,

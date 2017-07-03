@@ -32,10 +32,7 @@ export interface Server extends Resource {
         slug: string;
     };
 
-    pricing: {
-        infrastructure: Mills;
-        licensing: Mills;
-    };
+    pricing: ServerPricing;
 
     containers: {
         min: number;
@@ -88,6 +85,11 @@ export interface ServerNIC {
 export interface ServerFeatures {
     raid: boolean;
     txt: boolean;
+}
+
+export interface ServerPricing {
+    infrastructure: Mills;
+    licensing: Mills;
 }
 
 export async function getCollection({
