@@ -76,9 +76,13 @@ export interface Includes {
 export interface Settings {
     /**
      * Overrides base url, so it can be pointed to a thin client
-     * for authentication from browser
      */
     url?: string;
+
+    /**
+     * Sets the project scope
+     */
+    project?: ResourceId;
 }
 
 export interface StandardEvents {

@@ -6,6 +6,7 @@ import { passwordGrant } from "./auth/PasswordGrant.test";
 import { refreshGrant } from "./auth/RefreshGrant.test";
 import { testProviders } from "./infrastructure/Providers.test";
 import { testServers } from "./infrastructure/Servers.test";
+import { testDataCenters } from "./infrastructure/DataCenters.test";
 import { testProjects } from "./projects/Projects.test";
 
 chai.use(jsonSchema);
@@ -17,4 +18,5 @@ refreshGrant();
 testAccount();
 testProviders();
 testServers();
+testDataCenters();
 testProjects();

@@ -13,6 +13,10 @@ export const links = {
                 `${makeUrl(
                     settings,
                 )}/infrastructure/providers/${provider}/servers`,
+            datacenters: (provider: string) =>
+                `${makeUrl(
+                    settings,
+                )}/infrastructure/providers/${provider}/datacenters`,
         }),
     }),
 
