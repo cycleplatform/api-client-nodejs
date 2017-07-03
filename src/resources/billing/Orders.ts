@@ -39,7 +39,7 @@ export interface Order extends Resource {
 }
 
 export interface OrderBuilder {
-    servers: { id: ResourceId; count: number };
+    servers: Array<{ id: ResourceId; count: number }>;
     public_ips: number;
     support_plan: ResourceId;
     auto_renew: boolean;
