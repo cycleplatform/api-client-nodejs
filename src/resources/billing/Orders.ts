@@ -39,11 +39,17 @@ export interface Order extends Resource {
 }
 
 export interface OrderBuilder {
-    servers: Array<{ id: ResourceId; count: number }>;
+    servers: ServerOrder[];
     public_ips: number;
     support_plan: ResourceId;
     auto_renew: boolean;
     term_length: TermLength;
+}
+
+export interface ServerOrder {
+    id: ResourceId;
+    count: number;
+    datacenter: ResourceId;
 }
 
 export async function getSingle({
