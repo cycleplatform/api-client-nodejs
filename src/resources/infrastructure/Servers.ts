@@ -101,8 +101,9 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>(
-        links.infrastructure(settings).providers().servers(provider),
+    return API.getRequest<Collection>({
+        target: links.infrastructure().providers().servers(provider),
         query,
-    );
+        settings,
+    });
 }

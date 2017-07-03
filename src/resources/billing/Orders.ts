@@ -57,11 +57,12 @@ export async function getSingle({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.getRequest<Single>(
-        links.billing(settings).orders().single(id),
+    return API.getRequest<Single>({
+        target: links.billing().orders().single(id),
         query,
         token,
-    );
+        settings,
+    });
 }
 
 export async function create({
@@ -75,10 +76,11 @@ export async function create({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.postRequest<Single>(
-        links.billing(settings).orders().collection(),
+    return API.postRequest<Single>({
+        target: links.billing().orders().collection(),
         value,
         query,
         token,
-    );
+        settings,
+    });
 }

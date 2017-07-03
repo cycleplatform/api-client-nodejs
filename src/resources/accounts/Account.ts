@@ -42,28 +42,30 @@ export async function getSingle({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>(
-        links.account(settings).single(),
+    return API.getRequest<Single>({
+        target: links.account().single(),
         query,
         token,
-    );
+        settings,
+    });
 }
 
 export async function update({
     token,
-    update,
+    value,
     query,
     settings,
 }: {
     token: Token;
-    update: UpdateParams;
+    value: UpdateParams;
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.patchRequest<Single>(
-        links.account(settings).single(),
-        update,
+    return API.patchRequest<Single>({
+        target: links.account().single(),
+        value,
         query,
         token,
-    );
+        settings,
+    });
 }

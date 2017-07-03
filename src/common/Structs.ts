@@ -89,6 +89,9 @@ export interface ProjectRequiredSettings extends Settings {
     project: ResourceId;
 }
 
+/**
+ * Resource Events
+ */
 export interface StandardEvents {
     created: Time;
     updated: Time;

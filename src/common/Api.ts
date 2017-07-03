@@ -28,19 +28,14 @@ export function makeUrl(settings?: Settings) {
 async function makeRequest<T>(
     req: Request,
     token?: OAuthToken,
-    headers?: Headers,
+    settings?: Settings,
 ): Promise<ApiResult<T>> {
     if (token) {
         req.headers.append("Authorization", `Bearer ${token.access_token}`);
     }
 
-    if (headers) {
-        for (const p in headers) {
-            if (!headers.hasOwnProperty(p)) {
-                continue;
-            }
-            req.headers.append(p, headers[p]);
-        }
+    if (settings && settings.project) {
+        req.headers.append("X-Project-Id", settings.project);
     }
 
     try {
@@ -72,60 +67,100 @@ async function makeRequest<T>(
     }
 }
 
-export async function getRequest<T>(
-    target: string,
-    query: QueryParams = {},
-    token?: OAuthToken,
-): Promise<ApiResult<T>> {
-    const req = new Request(`${target}?${formatParams(query)}`, ApiRequestInit);
-    return await makeRequest<T>(req, token);
+export async function getRequest<T>({
+    target,
+    query = {},
+    token,
+    settings,
+}: {
+    target: string;
+    query?: QueryParams;
+    token?: OAuthToken;
+    settings?: Settings;
+}): Promise<ApiResult<T>> {
+    const req = new Request(
+        `${makeUrl(settings)}${target}?${formatParams(query)}`,
+        ApiRequestInit,
+    );
+    return await makeRequest<T>(req, token, settings);
 }
 
-export async function postRequest<T>(
-    target: string,
-    doc: object,
-    query: QueryParams = {},
-    token?: OAuthToken,
-): Promise<ApiResult<T>> {
-    const req = new Request(`${target}?${formatParams(query)}`, {
-        ...ApiRequestInit,
-        ...{
-            method: "POST",
-            body: JSON.stringify(doc),
+export async function postRequest<T>({
+    target,
+    value,
+    query = {},
+    token,
+    settings,
+}: {
+    target: string;
+    value: object;
+    query?: QueryParams;
+    token?: OAuthToken;
+    settings?: Settings;
+}): Promise<ApiResult<T>> {
+    const req = new Request(
+        `${makeUrl(settings)}${target}?${formatParams(query)}`,
+        {
+            ...ApiRequestInit,
+            ...{
+                method: "POST",
+                body: JSON.stringify(value),
+            },
         },
-    });
+    );
 
-    return await makeRequest<T>(req, token);
+    return await makeRequest<T>(req, token, settings);
 }
 
-export async function patchRequest<T>(
-    target: string,
-    doc: object,
-    query: QueryParams = {},
-    token?: OAuthToken,
-): Promise<ApiResult<T>> {
-    const req = new Request(`${target}?${formatParams(query)}`, {
-        ...ApiRequestInit,
-        ...{
-            method: "PATCH",
-            body: JSON.stringify(doc),
+export async function patchRequest<T>({
+    target,
+    value,
+    query = {},
+    token,
+    settings,
+}: {
+    target: string;
+    value: object;
+    query?: QueryParams;
+    token?: OAuthToken;
+    settings?: Settings;
+}): Promise<ApiResult<T>> {
+    const req = new Request(
+        `${makeUrl(settings)}${target}?${formatParams(query)}`,
+        {
+            ...ApiRequestInit,
+            ...{
+                method: "PATCH",
+                body: JSON.stringify(value),
+            },
         },
-    });
+    );
 
-    return await makeRequest<T>(req, token);
+    console.log(JSON.stringify(value));
+
+    return await makeRequest<T>(req, token, settings);
 }
 
-export async function deleteRequest<T>(
-    target: string,
-    query: QueryParams = {},
-    token?: OAuthToken,
-): Promise<ApiResult<T>> {
-    const req = new Request(`${target}?${formatParams(query)}`, {
-        ...ApiRequestInit,
-        ...{
-            method: "DELETE",
+export async function deleteRequest<T>({
+    target,
+    query = {},
+    token,
+    settings,
+}: {
+    target: string;
+    query?: QueryParams;
+    token?: OAuthToken;
+    settings?: Settings;
+}): Promise<ApiResult<T>> {
+    const req = new Request(
+        `${makeUrl(settings)}${target}?${formatParams(query)}`,
+        {
+            ...ApiRequestInit,
+            ...{
+                method: "DELETE",
+            },
         },
-    });
+    );
 
-    return await makeRequest<T>(req, token);
+    return await makeRequest<T>(req, token, settings);
 }

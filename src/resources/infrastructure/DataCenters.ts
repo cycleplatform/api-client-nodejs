@@ -38,8 +38,9 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>(
-        links.infrastructure(settings).providers().datacenters(provider),
+    return API.getRequest<Collection>({
+        target: links.infrastructure().providers().datacenters(provider),
         query,
-    );
+        settings,
+    });
 }

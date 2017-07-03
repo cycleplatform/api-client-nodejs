@@ -1,34 +1,29 @@
-import { makeUrl } from "./Api";
-import { Settings, ResourceId } from "./Structs";
+import { ResourceId } from "./Structs";
 
 export const links = {
-    account: (settings?: Settings) => ({
-        single: () => `${makeUrl(settings)}/account`,
+    account: () => ({
+        single: () => `/account`,
     }),
 
-    billing: (settings?: Settings) => ({
+    billing: () => ({
         orders: () => ({
-            collection: () => `${makeUrl(settings)}/orders`,
-            single: (id: ResourceId) => `${makeUrl(settings)}/orders/${id}`,
+            collection: () => `/orders`,
+            single: (id: ResourceId) => `/orders/${id}`,
         }),
         methods: () => ({}),
     }),
 
-    infrastructure: (settings?: Settings) => ({
+    infrastructure: () => ({
         providers: () => ({
-            collection: () => `${makeUrl(settings)}/infrastructure/providers`,
+            collection: () => `/infrastructure/providers`,
             servers: (provider: ResourceId) =>
-                `${makeUrl(
-                    settings,
-                )}/infrastructure/providers/${provider}/servers`,
+                `/infrastructure/providers/${provider}/servers`,
             datacenters: (provider: ResourceId) =>
-                `${makeUrl(
-                    settings,
-                )}/infrastructure/providers/${provider}/datacenters`,
+                `/infrastructure/providers/${provider}/datacenters`,
         }),
     }),
 
-    projects: (settings?: Settings) => ({
-        collection: () => `${makeUrl(settings)}/projects`,
+    projects: () => ({
+        collection: () => `/projects`,
     }),
 };

@@ -16,7 +16,7 @@ export function testUpdateAccount() {
             throw new Error("data field is null");
         }
 
-        const update = {
+        const value = {
             name: {
                 first: "Mike",
                 last: "Wizowsky",
@@ -26,7 +26,7 @@ export function testUpdateAccount() {
         const resp = await Account.update({
             token: AccessToken,
             query: {},
-            update,
+            value,
             settings: { url: process.env.API_URL },
         });
         if (!resp.ok) {
@@ -44,7 +44,7 @@ export function testUpdateAccount() {
         const revertResp = await Account.update({
             token: AccessToken,
             query: {},
-            update,
+            value: revertUpdate,
             settings: { url: process.env.API_URL },
         });
         if (!revertResp.ok) {

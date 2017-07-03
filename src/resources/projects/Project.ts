@@ -35,11 +35,12 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>(
-        links.projects(settings).collection(),
+    return API.getRequest<Collection>({
+        target: links.projects().collection(),
         query,
         token,
-    );
+        settings,
+    });
 }
 
 export async function create({
@@ -53,10 +54,11 @@ export async function create({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<Single>(
-        links.projects(settings).collection(),
+    return API.postRequest<Single>({
+        target: links.projects().collection(),
         value,
         query,
         token,
-    );
+        settings,
+    });
 }
