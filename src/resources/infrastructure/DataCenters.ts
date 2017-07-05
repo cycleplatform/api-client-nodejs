@@ -1,11 +1,7 @@
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
 import {
     CollectionDoc,
     Resource,
     ResourceId,
-    Settings,
     SingleDoc,
 } from "../../common/Structs";
 
@@ -27,20 +23,4 @@ export interface DataCenter extends Resource {
     };
 
     features: string[];
-}
-
-export async function getCollection({
-    provider,
-    query,
-    settings,
-}: {
-    provider: string;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.getRequest<Collection>({
-        target: links.infrastructure().providers().datacenters(provider),
-        query,
-        settings,
-    });
 }

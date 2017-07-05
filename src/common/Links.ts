@@ -28,6 +28,6 @@ export const links = {
     }),
 
     support: () => ({
-        plans: () => `/plans`,
+        plans: () => `/support/plans`,
     }),
 };
