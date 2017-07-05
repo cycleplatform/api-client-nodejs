@@ -1,12 +1,12 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "0.3.8",
+    "version": "0.3.9",
     "description": "Cycle FaaS NodeJS API Client",
     "main": "dist/index.js",
     "typings": "dist/typings/index.d.ts",
     "scripts": {
         "precommit": "lint-staged",
-        "prepublish": "rm -rf ./dist && tsc",
+        "prepare": "rm -rf ./dist && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },
     "lint-staged": {

@@ -92,18 +92,20 @@ export async function create({
 }
 
 export async function update({
+    id,
     value,
     token,
     query,
     settings,
 }: {
+    id: ResourceId;
     value: Partial<OrderBuilder>;
     token: Token;
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
     return API.patchRequest<Single>({
-        target: links.billing().orders().collection(),
+        target: links.billing().orders().single(id),
         value,
         query,
         token,
