@@ -26,4 +26,8 @@ export const links = {
     projects: () => ({
         collection: () => `/projects`,
     }),
+
+    support: () => ({
+        plans: () => `/plans`,
+    }),
 };

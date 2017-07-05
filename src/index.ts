@@ -8,6 +8,7 @@ import * as Account from "./resources/accounts";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Projects from "./resources/projects";
 import * as Billing from "./resources/billing";
+import * as Support from "./resources/support";
 
 export {
     API,
@@ -19,4 +20,5 @@ export {
     Error,
     Infrastructure,
     Projects,
+    Support,
 };
