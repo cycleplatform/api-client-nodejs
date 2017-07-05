@@ -90,3 +90,23 @@ export async function create({
         settings,
     });
 }
+
+export async function update({
+    value,
+    token,
+    query,
+    settings,
+}: {
+    value: Partial<OrderBuilder>;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return API.patchRequest<Single>({
+        target: links.billing().orders().collection(),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
