@@ -7,11 +7,13 @@ import {
     Settings,
     SingleDoc,
     Mills,
+    ResourceId,
+    Includes,
 } from "../../common/Structs";
-
+import { DataCenter } from "./DataCenters";
 import { ProviderName } from "./Providers";
 
-export type Collection = CollectionDoc<Server>;
+export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
 
 export interface Server extends Resource {
@@ -38,6 +40,12 @@ export interface Server extends Resource {
         min: number;
         max: number;
     };
+
+    datacenters: ResourceId[];
+}
+
+export interface ServerIncludes extends Includes {
+    datacenters: { [key: string]: DataCenter };
 }
 
 export interface GenericSpecs<T> {

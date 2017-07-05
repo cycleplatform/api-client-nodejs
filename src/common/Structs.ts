@@ -42,16 +42,24 @@ export type Days = number;
 /**
  * Common fields that can be in any response
  */
-export interface TopLevel {
-    meta?: Meta;
-    includes?: Includes;
+export interface TopLevel<T extends Meta = {}, K extends Includes = {}> {
+    meta?: T;
+    includes?: K;
 }
 
-export interface CollectionDoc<T extends Resource> extends TopLevel {
+export interface CollectionDoc<
+    T extends Resource,
+    K extends Meta = {},
+    P extends Includes = {}
+> extends TopLevel<K, P> {
     data: T[];
 }
 
-export interface SingleDoc<T extends Resource | string> extends TopLevel {
+export interface SingleDoc<
+    T extends Resource | string,
+    K extends Meta = {},
+    P extends Includes = {}
+> extends TopLevel<K, P> {
     data: T | null;
 }
 
@@ -66,7 +74,7 @@ export interface Meta {
 
 export interface Includes {
     [key: string]: {
-        [key: string]: Resource | { [key: string]: Resource };
+        [key: string]: Resource;
     };
 }
 
