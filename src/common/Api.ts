@@ -136,8 +136,6 @@ export async function patchRequest<T>({
         },
     );
 
-    console.log(JSON.stringify(value));
-
     return await makeRequest<T>(req, token, settings);
 }
 

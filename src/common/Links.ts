@@ -10,7 +10,9 @@ export const links = {
             collection: () => `/orders`,
             single: (id: ResourceId) => `/orders/${id}`,
         }),
-        methods: () => ({}),
+        methods: () => ({
+            collection: () => `/billing/methods`,
+        }),
     }),
 
     infrastructure: () => ({
