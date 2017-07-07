@@ -132,3 +132,8 @@ export interface Scope {
     type: ScopeType;
     id: ResourceId;
 }
+
+export interface Action<T extends string, K = {}> {
+    name: T;
+    contents?: K;
+}

@@ -10,6 +10,7 @@
         "jsx-no-lambda": true,
         "ordered-imports": [
             false
-        ]
+        ],
+        "no-bitwise": false
     }
 }
