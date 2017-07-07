@@ -31,7 +31,6 @@ export type MethodState = "live" | "deleting" | "deleted";
 
 export interface Address {
     country: string;
-    state: string;
     zip: string;
 }
 
