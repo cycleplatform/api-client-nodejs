@@ -12,8 +12,8 @@ import {
     ResourceState,
     ResourceId,
     ProjectRequiredSettings,
+    Time,
 } from "../../common/Structs";
-import { Time } from "../../../dist/typings/common/Structs";
 
 export enum Role {
     OWNER = 1 << 0,
