@@ -6,15 +6,8 @@ import * as Structs from "../../common/Structs";
 import * as Members from "./Members";
 import { Action } from "../../common/Structs";
 
-export interface Invitation {
-    sender: Structs.ResourceId;
-    recipient: Structs.ResourceId;
-    role: Members.Role;
-    events: Structs.StandardEvents;
-}
-
 export interface CreateParams {
-    recipient: Structs.ResourceId;
+    recipient: string; // Email
     role: Members.Role;
 }
 

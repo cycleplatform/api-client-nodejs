@@ -27,6 +27,7 @@ export const links = {
 
     projects: () => ({
         collection: () => `/projects`,
+        single: (id: ResourceId) => `/projects/${id}`,
         invites: () => ({
             collection: () => `/projects/invites`,
             tasks: (id: ResourceId) => `/projects/invites/${id}/tasks`,

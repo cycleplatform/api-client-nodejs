@@ -10,6 +10,7 @@ import {
     SingleDoc,
     StandardEvents,
     ResourceState,
+    ResourceId,
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Project>;
@@ -56,6 +57,28 @@ export async function create({
 }) {
     return API.postRequest<Single>({
         target: links.projects().collection(),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function update({
+    id,
+    value,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    value: Partial<CreateParams>;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.patchRequest<Single>({
+        target: links.projects().single(id),
         value,
         query,
         token,
