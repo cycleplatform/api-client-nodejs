@@ -38,7 +38,9 @@ export const links = {
         }),
     }),
 
-    support: () => ({
-        plans: () => `/support/plans`,
+    plans: () => ({
+        support: () => `/support/plans`,
+        ips: () => `/support/ips`,
+        bandwidth: () => `/support/ips`,
     }),
 };

@@ -8,17 +8,17 @@ import * as Account from "./resources/accounts";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Projects from "./resources/projects";
 import * as Billing from "./resources/billing";
-import * as Support from "./resources/support";
+import * as Plans from "./resources/plans";
 
 export {
     API,
     Auth,
     Account,
     Billing,
-    QueryParams,
-    Structs,
     Error,
     Infrastructure,
+    Plans,
     Projects,
-    Support,
+    QueryParams,
+    Structs,
 };

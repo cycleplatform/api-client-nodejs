@@ -9,10 +9,10 @@ import {
     Mills,
 } from "../../common/Structs";
 
-export type Collection = CollectionDoc<Plan>;
-export type Single = SingleDoc<Plan>;
+export type Collection = CollectionDoc<Support>;
+export type Single = SingleDoc<Support>;
 
-export interface Plan extends Resource {
+export interface Support extends Resource {
     name: string;
     price: Mills;
     description: string;
@@ -26,7 +26,7 @@ export async function getCollection({
     settings?: Settings;
 }) {
     return API.getRequest<Collection>({
-        target: links.support().plans(),
+        target: links.plans().support(),
         query,
         settings,
     });
