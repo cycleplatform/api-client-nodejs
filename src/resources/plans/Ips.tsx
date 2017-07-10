@@ -9,10 +9,10 @@ import {
     Mills,
 } from "../../common/Structs";
 
-export type Collection = CollectionDoc<Ips>;
-export type Single = SingleDoc<Ips>;
+export type Collection = CollectionDoc<IpsPlan>;
+export type Single = SingleDoc<IpsPlan>;
 
-export interface Ips extends Resource {
+export interface IpsPlan extends Resource {
     quantity: number;
     price: Mills;
 }

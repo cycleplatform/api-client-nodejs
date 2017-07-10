@@ -9,10 +9,10 @@ import {
     Mills,
 } from "../../common/Structs";
 
-export type Collection = CollectionDoc<Support>;
-export type Single = SingleDoc<Support>;
+export type Collection = CollectionDoc<SupportPlan>;
+export type Single = SingleDoc<SupportPlan>;
 
-export interface Support extends Resource {
+export interface SupportPlan extends Resource {
     name: string;
     price: Mills;
     description: string;

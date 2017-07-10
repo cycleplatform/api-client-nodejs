@@ -9,10 +9,10 @@ import {
     Mills,
 } from "../../common/Structs";
 
-export type Collection = CollectionDoc<Bandwidth>;
-export type Single = SingleDoc<Bandwidth>;
+export type Collection = CollectionDoc<BandwidthPlan>;
+export type Single = SingleDoc<BandwidthPlan>;
 
-export interface Bandwidth extends Resource {
+export interface BandwidthPlan extends Resource {
     quantity: number;
     unit: string;
     price: BandwidthPricing;
