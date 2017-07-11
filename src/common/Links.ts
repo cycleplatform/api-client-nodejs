@@ -41,6 +41,6 @@ export const links = {
     plans: () => ({
         support: () => `/plans/support`,
         ips: () => `/plans/ips`,
-        bandwidth: () => `/plans/ips`,
+        bandwidth: () => `/plans/bandwidth`,
     }),
 };
