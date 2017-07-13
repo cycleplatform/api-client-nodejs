@@ -40,7 +40,6 @@ export interface Order extends Resource {
 
 export interface OrderBuilder {
     servers: ServerOrder[];
-    public_ips: number;
     support_plan: ResourceId;
     bandwidth_plan: ResourceId;
     ips_plan: ResourceId;
