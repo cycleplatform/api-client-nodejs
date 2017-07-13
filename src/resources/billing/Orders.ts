@@ -42,6 +42,8 @@ export interface OrderBuilder {
     servers: ServerOrder[];
     public_ips: number;
     support_plan: ResourceId;
+    bandwidth_plan: ResourceId;
+    ips_plan: ResourceId;
     auto_renew: boolean;
     term_length: TermLength;
 }
