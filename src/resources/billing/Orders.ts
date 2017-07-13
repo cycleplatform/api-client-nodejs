@@ -39,12 +39,12 @@ export interface Order extends Resource {
 }
 
 export interface OrderBuilder {
-    servers: ServerOrder[];
-    support_plan: ResourceId;
-    bandwidth_plan: ResourceId;
-    ips_plan: ResourceId;
-    auto_renew: boolean;
-    term_length: TermLength;
+    servers?: ServerOrder[];
+    support_plan?: ResourceId;
+    bandwidth_plan?: ResourceId;
+    ips_plan?: ResourceId;
+    auto_renew?: boolean;
+    term_length?: TermLength;
 }
 
 export interface ServerOrder {
