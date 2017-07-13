@@ -16,10 +16,10 @@ import {
 } from "../../common/Structs";
 
 export enum Role {
-    OWNER = 1 << 0,
-    ADMIN,
-    DEVELOPER,
-    ANALYST,
+    OWNER,
+    ADMIN = 1 << 1,
+    DEVELOPER = 1 << 2,
+    ANALYST = 1 << 3,
     DEFAULT = 0,
 }
 
