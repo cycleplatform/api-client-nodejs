@@ -41,7 +41,7 @@ export async function create({
     token: Token;
     value: CreateParams;
     query?: QueryParams;
-    settings?: Structs.ProjectRequiredSettings;
+    settings?: Structs.Settings;
 }) {
     return API.postRequest<Members.Single>({
         target: links.projects().invites(project).collection(),
@@ -66,7 +66,7 @@ export async function task({
     token: Token;
     value: Action<InviteAction>;
     query?: QueryParams;
-    settings?: Structs.ProjectRequiredSettings;
+    settings?: Structs.Settings;
 }) {
     return API.postRequest<Members.Single>({
         target: links.projects().invites(project).tasks(id),
