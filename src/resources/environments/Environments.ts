@@ -70,7 +70,7 @@ export async function create({
     settings?: Settings;
 }) {
     return API.postRequest<Single>({
-        target: links.projects().collection(),
+        target: links.environments().collection(),
         value,
         query,
         token,
