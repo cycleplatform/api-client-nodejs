@@ -16,7 +16,7 @@ export const links = {
     }),
 
     environments: () => ({
-        collection: () => `/environments/collection`,
+        collection: () => `/environments`,
     }),
 
     infrastructure: () => ({
