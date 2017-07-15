@@ -28,8 +28,8 @@ export const links = {
     projects: () => ({
         collection: () => `/projects`,
         single: (id: ResourceId) => `/projects/${id}`,
-        invites: () => ({
-            collection: () => `/projects/invites`,
+        invites: (project: ResourceId) => ({
+            collection: () => `/projects/${project}/invites`,
             tasks: (id: ResourceId) => `/projects/invites/${id}/tasks`,
         }),
         members: () => ({
