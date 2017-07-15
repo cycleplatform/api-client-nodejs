@@ -9,12 +9,14 @@ import * as Infrastructure from "./resources/infrastructure";
 import * as Projects from "./resources/projects";
 import * as Billing from "./resources/billing";
 import * as Plans from "./resources/plans";
+import * as Environments from "./resources/environments";
 
 export {
     API,
     Auth,
     Account,
     Billing,
+    Environments,
     Error,
     Infrastructure,
     Plans,

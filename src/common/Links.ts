@@ -15,6 +15,10 @@ export const links = {
         }),
     }),
 
+    environments: () => ({
+        collection: () => `/environments/collection`,
+    }),
+
     infrastructure: () => ({
         providers: () => ({
             collection: () => `/infrastructure/providers`,
