@@ -36,7 +36,7 @@ export interface Server extends Resource {
 
     pricing: ServerPricing;
 
-    containers: {
+    recommended_containers: {
         min: number;
         max: number;
     };

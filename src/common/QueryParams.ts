@@ -1,5 +1,3 @@
-import { ResourceId } from "./Structs";
-
 export interface QueryParams {
     include?: string[];
     meta?: string[];
@@ -9,8 +7,6 @@ export interface QueryParams {
         number: number;
         size: number;
     };
-    // Override team from settings
-    team?: ResourceId;
 }
 
 export function formatParams(q: QueryParams | undefined) {
