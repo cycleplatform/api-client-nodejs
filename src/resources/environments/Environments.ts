@@ -58,6 +58,25 @@ export async function getCollection({
     });
 }
 
+export async function getSingle({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.getRequest<Collection>({
+        target: links.environments().single(id),
+        query,
+        token,
+        settings,
+    });
+}
+
 export async function create({
     value,
     token,
