@@ -69,7 +69,7 @@ export async function getSingle({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return API.getRequest<Single>({
         target: links.environments().single(id),
         query,
         token,
