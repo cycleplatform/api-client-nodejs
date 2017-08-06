@@ -118,3 +118,22 @@ export async function update({
         settings,
     });
 }
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.deleteRequest<Single>({
+        target: links.projects().single(id),
+        query,
+        token,
+        settings,
+    });
+}
