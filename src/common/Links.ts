@@ -48,4 +48,9 @@ export const links = {
         ips: () => `/plans/ips`,
         bandwidth: () => `/plans/bandwidth`,
     }),
+
+    stacks: () => ({
+        collection: () => `/stacks`,
+        single: (id: ResourceId) => `/stacks/${id}`,
+    }),
 };

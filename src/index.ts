@@ -11,6 +11,7 @@ import * as Billing from "./resources/billing";
 import * as Plans from "./resources/plans";
 import * as Environments from "./resources/environments";
 import * as Containers from "./resources/containers";
+import * as Stacks from "./resources/stacks";
 
 export {
     API,
@@ -24,5 +25,6 @@ export {
     Plans,
     Projects,
     QueryParams,
+    Stacks,
     Structs,
 };
