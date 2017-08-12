@@ -111,7 +111,7 @@ export async function update({
     settings?: Settings;
 }) {
     return API.patchRequest<Single>({
-        target: links.projects().single(id),
+        target: links.environments().single(id),
         value,
         query,
         token,
@@ -131,7 +131,7 @@ export async function remove({
     settings?: Settings;
 }) {
     return API.deleteRequest<Single>({
-        target: links.projects().single(id),
+        target: links.environments().single(id),
         query,
         token,
         settings,

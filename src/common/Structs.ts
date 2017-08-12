@@ -109,7 +109,7 @@ export interface StandardEvents {
 export type CommonStates = "new" | "live" | "deleted";
 
 export interface ResourceState<T extends string = ""> {
-    current: CommonStates & T;
+    current: CommonStates | T;
     changed: Time;
     job: JobInfo;
     error?: ResourceError;
