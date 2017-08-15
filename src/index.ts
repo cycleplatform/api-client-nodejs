@@ -12,6 +12,7 @@ import * as Plans from "./resources/plans";
 import * as Environments from "./resources/environments";
 import * as Containers from "./resources/containers";
 import * as Stacks from "./resources/stacks";
+import * as Jobs from "./resources/jobs";
 
 export {
     API,
@@ -27,4 +28,5 @@ export {
     QueryParams,
     Stacks,
     Structs,
+    Jobs,
 };
