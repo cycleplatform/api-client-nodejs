@@ -31,6 +31,11 @@ export const links = {
         }),
     }),
 
+    jobs: () => ({
+        collection: () => `/jobs`,
+        single: (id: ResourceId) => `/jobs/${id}`,
+    }),
+
     projects: () => ({
         collection: () => `/projects`,
         single: (id: ResourceId) => `/projects/${id}`,
