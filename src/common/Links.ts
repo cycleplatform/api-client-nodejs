@@ -9,6 +9,7 @@ export const links = {
         orders: () => ({
             collection: () => `/orders`,
             single: (id: ResourceId) => `/orders/${id}`,
+            tasks: (id: ResourceId) => `/orders/${id}/tasks`,
         }),
         methods: () => ({
             collection: () => `/billing/methods`,

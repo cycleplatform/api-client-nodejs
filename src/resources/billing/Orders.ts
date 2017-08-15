@@ -7,6 +7,9 @@ import {
     Time,
     StandardEvents,
     ResourceId,
+    Task,
+    Settings,
+    CreatedTask,
 } from "../../common/Structs";
 import * as API from "../../common/Api";
 import { Term, TermLength } from "./Term";
@@ -107,6 +110,51 @@ export async function update({
 }) {
     return API.patchRequest<Single>({
         target: links.billing().orders().single(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function confirm({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "confirm",
+        },
+    });
+}
+
+export type OrderAction = "confirm";
+export async function task({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: Task<OrderAction>;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.postRequest<CreatedTask<OrderAction>>({
+        target: links.billing().orders().tasks(id),
         value,
         query,
         token,
