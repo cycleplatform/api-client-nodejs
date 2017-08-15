@@ -61,26 +61,6 @@ export async function getSingle({
     });
 }
 
-// export async function create({
-//     value,
-//     token,
-//     query,
-//     settings,
-// }: {
-//     value: CreateParams;
-//     token: Token;
-//     query?: QueryParams;
-//     settings?: Settings;
-// }) {
-//     return API.postRequest<Single>({
-//         target: links.environments().collection(),
-//         value,
-//         query,
-//         token,
-//         settings,
-//     });
-// }
-
 // export async function update({
 //     id,
 //     value,
