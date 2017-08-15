@@ -61,28 +61,6 @@ export async function getSingle({
     });
 }
 
-// export async function update({
-//     id,
-//     value,
-//     token,
-//     query,
-//     settings,
-// }: {
-//     id: ResourceId;
-//     value: Partial<CreateParams>;
-//     token: Token;
-//     query?: QueryParams;
-//     settings?: Settings;
-// }) {
-//     return API.patchRequest<Single>({
-//         target: links.projects().single(id),
-//         value,
-//         query,
-//         token,
-//         settings,
-//     });
-// }
-
 export async function remove({
     id,
     token,

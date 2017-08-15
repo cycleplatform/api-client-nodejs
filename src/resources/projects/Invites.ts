@@ -4,7 +4,7 @@ import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
 import * as Structs from "../../common/Structs";
 import * as Members from "./Members";
-import { Action } from "../../common/Structs";
+import { Task } from "../../common/Structs";
 
 export interface CreateParams {
     recipient: string; // Email
@@ -64,7 +64,7 @@ export async function task({
     id: Structs.ResourceId;
     project: Structs.ResourceId;
     token: Token;
-    value: Action<InviteAction>;
+    value: Task<InviteAction>;
     query?: QueryParams;
     settings?: Structs.Settings;
 }) {

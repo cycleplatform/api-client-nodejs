@@ -133,7 +133,13 @@ export interface Scope {
     id: ResourceId;
 }
 
-export interface Action<T extends string, K = {}> {
-    name: T;
+export interface Task<T extends string, K = {}> {
+    action: T;
     contents?: K;
+}
+
+export interface CreatedTask<T extends string, K = {}> {
+    action: T;
+    contents?: K;
+    job: ResourceId;
 }

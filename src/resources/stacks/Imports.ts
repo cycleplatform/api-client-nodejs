@@ -5,24 +5,24 @@ import { links } from "../../common/Links";
 import * as Structs from "../../common/Structs";
 import * as Stacks from "./Stacks";
 
-export interface RepoImportParams {
+export interface RepoCreateParams {
     url: string;
     private_key?: string;
 }
 
-export async function importRepo({
+export async function createFromRepo({
     value,
     token,
     query,
     settings,
 }: {
-    value: RepoImportParams;
+    value: RepoCreateParams;
     token: Token;
     query?: QueryParams;
     settings?: Structs.Settings;
 }) {
     return API.postRequest<Stacks.Single>({
-        target: links.stacks().importRepo(),
+        target: links.stacks().createFromRepo(),
         value,
         query,
         token,
@@ -30,23 +30,68 @@ export async function importRepo({
     });
 }
 
-export interface RawImportParams {
+export interface RawCreateParams {
     file: string;
 }
 
-export async function importRaw({
+export async function createFromRaw({
     value,
     token,
     query,
     settings,
 }: {
-    value: RawImportParams;
+    value: RawCreateParams;
     token: Token;
     query?: QueryParams;
     settings?: Structs.Settings;
 }) {
     return API.postRequest<Stacks.Single>({
-        target: links.stacks().importRaw(),
+        target: links.stacks().createFromRaw(),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function importStack({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: Structs.ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Structs.Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "import",
+        },
+    });
+}
+
+export type StackAction = "import";
+export async function task({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: Structs.ResourceId;
+    token: Token;
+    value: Structs.Task<StackAction>;
+    query?: QueryParams;
+    settings?: Structs.Settings;
+}) {
+    return API.postRequest<Structs.CreatedTask<StackAction>>({
+        target: links.stacks().tasks(id),
         value,
         query,
         token,
