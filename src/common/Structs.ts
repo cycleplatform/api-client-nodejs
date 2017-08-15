@@ -139,7 +139,9 @@ export interface Task<T extends string, K = {}> {
 }
 
 export interface CreatedTask<T extends string, K = {}> {
-    action: T;
-    contents?: K;
-    job: ResourceId;
+    data: {
+        action: T;
+        contents?: K;
+        job: ResourceId;
+    };
 }
