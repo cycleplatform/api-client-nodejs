@@ -16,6 +16,14 @@ import {
 export type Collection = CollectionDoc<Job>;
 export type Single = SingleDoc<Job>;
 
+export type JobState =
+    | "new"
+    | "queued"
+    | "error"
+    | "scheduled"
+    | "expired"
+    | "running"
+    | "completed";
 export interface Job extends Resource {
     queue: string;
     caption: string;
@@ -25,7 +33,7 @@ export interface Job extends Resource {
     tasks: JobTask[];
     creator?: string;
     project: string;
-    state: ResourceState;
+    state: ResourceState<JobState>;
 }
 
 export interface JobTask {

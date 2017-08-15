@@ -8,7 +8,6 @@ import {
     Settings,
     SingleDoc,
     StandardEvents,
-    CommonStates,
     ResourceState,
     ResourceId,
     ProjectRequiredSettings,
@@ -35,7 +34,7 @@ export interface Membership extends Resource {
     state: ResourceState<MembershipState>;
 }
 
-export type MembershipState = CommonStates | "deleting";
+export type MembershipState = "new" | "live" | "deleting" | "deleted";
 
 export interface MembershipEvents extends StandardEvents {
     accepted?: Time;
