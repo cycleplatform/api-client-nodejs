@@ -24,6 +24,7 @@ export type JobState =
     | "expired"
     | "running"
     | "completed";
+
 export interface Job extends Resource {
     queue: string;
     caption: string;
@@ -46,6 +47,9 @@ export interface JobTask {
     state: ResourceState;
     failable: boolean;
     contents: {};
+    error: {
+        message: string;
+    };
 }
 
 export interface TaskStep {
