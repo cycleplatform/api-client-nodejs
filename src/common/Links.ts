@@ -14,6 +14,10 @@ export const links = {
         methods: () => ({
             collection: () => `/billing/methods`,
         }),
+        invoices: () => ({
+            collection: () => `/billing/invoices`,
+            single: (id: ResourceId) => `/billing/invoices/${id}`,
+        }),
     }),
 
     environments: () => ({

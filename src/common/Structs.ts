@@ -101,9 +101,9 @@ export interface ProjectRequiredSettings extends Settings {
  * Resource Events
  */
 export interface StandardEvents {
-    created: Time;
-    updated: Time;
-    deleted: Time;
+    created?: Time;
+    updated?: Time;
+    deleted?: Time;
 }
 
 export interface ResourceState<T extends string = ""> {

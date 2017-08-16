@@ -13,8 +13,8 @@ import {
 } from "../../common/Structs";
 import * as API from "../../common/Api";
 import { Term, TermLength } from "./Term";
-import { Payment } from "./Payment";
-import { Credit } from "./Credit";
+import { Payment } from "./Payments";
+import { Credit } from "./Credits";
 import { LineItem } from "./LineItems";
 import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";

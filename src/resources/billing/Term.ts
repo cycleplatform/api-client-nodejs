@@ -6,4 +6,4 @@ export interface Term {
     length: TermLength;
 }
 
-export type TermLength = "monthly" | "yearly" | "bi_yearly";
+export type TermLength = "monthly" | "yearly";
