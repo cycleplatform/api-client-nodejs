@@ -47,7 +47,7 @@ export interface JobTask {
     state: ResourceState;
     failable: boolean;
     contents: {};
-    error: {
+    error?: {
         message: string;
     };
 }

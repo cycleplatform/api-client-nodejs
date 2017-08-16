@@ -16,12 +16,19 @@ import { StackContainer } from "./StackContainer";
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
 
+export type StackState =
+    | "new"
+    | "live"
+    | "building"
+    | "deploying"
+    | "deleting"
+    | "deleted";
 export interface Stack extends Resource {
     name: string;
     creator: string;
     project: string;
     containers: { [key: string]: StackContainer };
-    state: ResourceState<"building" | "deploying" | "deleting">;
+    state: ResourceState<StackState>;
     events: StandardEvents;
 }
 
