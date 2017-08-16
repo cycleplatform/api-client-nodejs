@@ -17,6 +17,14 @@ import { Volume } from "./Volumes";
 export type Collection = CollectionDoc<Container>;
 export type Single = SingleDoc<Container>;
 
+export type ContainerState =
+    | "new"
+    | "starting"
+    | "running"
+    | "stopping"
+    | "stopped"
+    | "deleting"
+    | "deleted";
 export interface Container extends Resource {
     name: string;
     creator: ResourceId;
@@ -27,9 +35,7 @@ export interface Container extends Resource {
     stats: Stats;
     volumes: Volume[];
     tags: string[];
-    state: ResourceState<
-        "starting" | "running" | "stopping" | "stopped" | "deleting"
-    >;
+    state: ResourceState<ContainerState>;
     events: StandardEvents & {
         started?: Time;
     };

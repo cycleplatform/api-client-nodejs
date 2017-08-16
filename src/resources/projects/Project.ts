@@ -16,11 +16,12 @@ import {
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
 
+export type ProjectState = "new" | "live" | "deleting" | "deleted";
 export interface Project extends Resource {
     name: string;
     events: StandardEvents;
     billing: Profile;
-    state: ResourceState;
+    state: ResourceState<ProjectState>;
 }
 
 export interface CreateParams {

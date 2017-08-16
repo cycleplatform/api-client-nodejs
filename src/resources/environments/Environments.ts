@@ -15,6 +15,12 @@ import {
 export type Collection = CollectionDoc<Environment>;
 export type Single = SingleDoc<Environment>;
 
+export type EnvironmentState =
+    | "new"
+    | "live"
+    | "cloning"
+    | "deleting"
+    | "deleted";
 export interface Environment extends Resource {
     name: string;
     about: {
@@ -22,7 +28,7 @@ export interface Environment extends Resource {
     };
     creator: string;
     project: string;
-    state: ResourceState<"cloning" | "deleting">;
+    state: ResourceState<EnvironmentState>;
     events: StandardEvents;
     services: {
         dns: EnvService;

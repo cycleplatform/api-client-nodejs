@@ -23,6 +23,7 @@ export type StackState =
     | "deploying"
     | "deleting"
     | "deleted";
+
 export interface Stack extends Resource {
     name: string;
     creator: string;
