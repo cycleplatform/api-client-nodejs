@@ -10,29 +10,74 @@ import {
     ResourceId,
     ResourceState,
     StandardEvents,
+    Time,
 } from "../../common/Structs";
+import { Volume } from "./Volume";
 
-export type Collection = CollectionDoc<Environment>;
-export type Single = SingleDoc<Environment>;
+export type Collection = CollectionDoc<Container>;
+export type Single = SingleDoc<Container>;
 
-export type EnvironmentState =
+export interface Container extends Resource {
+    name: string;
+    creator: ResourceId;
+    project: ResourceId;
+    environment: ResourceId;
+    image: ResourceId;
+    plan: ResourceId;
+    stats: Stats;
+    volumes: Volume[];
+    tags: string[];
+    state: ResourceState<ContainerState>;
+    events: StandardEvents & {
+        started?: Time;
+    };
+}
+
+export type ContainerState =
     | "new"
-    | "live"
-    | "cloning"
+    | "starting"
+    | "running"
+    | "stopping"
+    | "stopped"
     | "deleting"
     | "deleted";
-export interface Environment extends Resource {
-    name: string;
-    about: {
-        description: string;
-    };
-    creator: string;
-    project: string;
-    state: ResourceState<EnvironmentState>;
-    events: StandardEvents;
-    services: {
-        dns: EnvService;
-    };
+
+export interface Stats {
+    spawns: number;
+}
+
+export interface Config {
+    flags: Flags;
+    tls: TLS;
+    runtime: RuntimeConfig;
+    hostname: string;
+    service?: Service;
+}
+
+export interface Flags {
+    auto_restart: boolean;
+}
+
+export interface TLS {
+    enabled: boolean;
+    path: string;
+    domain: string;
+    created: Time;
+    certificate?: ResourceId;
+}
+
+export interface RuntimeConfig {
+    env_vars: { [key: string]: string };
+    command: RuntimeCommand;
+}
+
+export interface RuntimeCommand {
+    args: string[];
+    override: boolean;
+}
+
+export interface Service {
+    role: "" | "dns";
 }
 
 export interface CreateParams {
@@ -40,11 +85,6 @@ export interface CreateParams {
     about: {
         description: string;
     };
-}
-
-export interface EnvService {
-    container: string;
-    id: ResourceId;
 }
 
 export async function getCollection({
@@ -117,7 +157,7 @@ export async function update({
     settings?: Settings;
 }) {
     return API.patchRequest<Single>({
-        target: links.environments().single(id),
+        target: links.projects().single(id),
         value,
         query,
         token,
@@ -137,7 +177,7 @@ export async function remove({
     settings?: Settings;
 }) {
     return API.deleteRequest<Single>({
-        target: links.environments().single(id),
+        target: links.projects().single(id),
         query,
         token,
         settings,

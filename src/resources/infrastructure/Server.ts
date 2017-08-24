@@ -10,8 +10,8 @@ import {
     ResourceId,
     Includes,
 } from "../../common/Structs";
-import { DataCenter } from "./DataCenters";
-import { ProviderName } from "./Providers";
+import { DataCenter } from "./DataCenter";
+import { ProviderName } from "./Provider";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;

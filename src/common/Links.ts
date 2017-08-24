@@ -61,9 +61,11 @@ export const links = {
 
     stacks: () => ({
         collection: () => `/stacks`,
-        createFromRepo: () => `/stacks/repo`,
-        createFromRaw: () => `/stacks/raw`,
         single: (id: ResourceId) => `/stacks/${id}`,
         tasks: (id: ResourceId) => `/stacks/${id}/tasks`,
+        builds: (stack: ResourceId) => ({
+            collection: () => `/stacks/${stack}/builds`,
+            single: (id: ResourceId) => `/stacks/${stack}/builds/${id}`,
+        }),
     }),
 };

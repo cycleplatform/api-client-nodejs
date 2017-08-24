@@ -3,26 +3,26 @@ import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
 import * as Structs from "../../common/Structs";
-import * as Stacks from "./Stacks";
+import * as Stacks from "./Stack";
 
-export interface RepoCreateParams {
-    url: string;
-    private_key?: string;
+export interface StackCreateParams {
+    name: string;
+    source: Stacks.Source;
 }
 
-export async function createFromRepo({
+export async function create({
     value,
     token,
     query,
     settings,
 }: {
-    value: RepoCreateParams;
+    value: StackCreateParams;
     token: Token;
     query?: QueryParams;
     settings?: Structs.Settings;
 }) {
     return API.postRequest<Stacks.Single>({
-        target: links.stacks().createFromRepo(),
+        target: links.stacks().collection(),
         value,
         query,
         token,
@@ -30,31 +30,7 @@ export async function createFromRepo({
     });
 }
 
-export interface RawCreateParams {
-    file: string;
-}
-
-export async function createFromRaw({
-    value,
-    token,
-    query,
-    settings,
-}: {
-    value: RawCreateParams;
-    token: Token;
-    query?: QueryParams;
-    settings?: Structs.Settings;
-}) {
-    return API.postRequest<Stacks.Single>({
-        target: links.stacks().createFromRaw(),
-        value,
-        query,
-        token,
-        settings,
-    });
-}
-
-export async function importStack({
+export async function buildStack({
     id,
     token,
     query,
@@ -71,12 +47,12 @@ export async function importStack({
         query,
         settings,
         value: {
-            action: "import",
+            action: "build",
         },
     });
 }
 
-export type StackAction = "import";
+export type StackAction = "build";
 export async function task({
     id,
     token,

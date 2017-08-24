@@ -1,2 +1,2 @@
-export * from "./Containers";
-export * from "./Volumes";
+export * from "./Container";
+export * from "./Volume";

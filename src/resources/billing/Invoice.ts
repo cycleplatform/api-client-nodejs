@@ -12,9 +12,9 @@ import * as API from "../../common/Api";
 import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
-import { Payment } from "./Payments";
-import { Credit } from "./Credits";
-import { Service } from "./Services";
+import { Payment } from "./Payment";
+import { Credit } from "./Credit";
+import { Service } from "./Service";
 
 export type Collection = CollectionDoc<Invoice>;
 export type Single = SingleDoc<Invoice>;

@@ -1,5 +1,5 @@
 import { ResourceId } from "../../common/Structs";
-import { ServerPricing } from "../infrastructure/Servers";
+import { ServerPricing } from "../infrastructure/Server";
 
 export type BillingCategory = "infrastructure" | "support" | "ips";
 

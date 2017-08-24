@@ -13,9 +13,9 @@ import {
 } from "../../common/Structs";
 import * as API from "../../common/Api";
 import { Term, TermLength } from "./Term";
-import { Payment } from "./Payments";
-import { Credit } from "./Credits";
-import { LineItem } from "./LineItems";
+import { Payment } from "./Payment";
+import { Credit } from "./Credit";
+import { LineItem } from "./LineItem";
 import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";

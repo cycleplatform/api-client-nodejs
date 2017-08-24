@@ -11,10 +11,18 @@ import {
     ResourceState,
     StandardEvents,
 } from "../../common/Structs";
-import { StackContainer } from "./StackContainer";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
+
+export interface Stack extends Resource {
+    name: string;
+    creator: string;
+    project: string;
+    source: Source;
+    state: ResourceState<StackState>;
+    events: StandardEvents;
+}
 
 export type StackState =
     | "new"
@@ -24,13 +32,17 @@ export type StackState =
     | "deleting"
     | "deleted";
 
-export interface Stack extends Resource {
-    name: string;
-    creator: string;
-    project: string;
-    containers: { [key: string]: StackContainer };
-    state: ResourceState<StackState>;
-    events: StandardEvents;
+export interface Source {
+    repo?: Repo;
+    raw?: string;
+}
+
+export type RepoType = "http" | "ssh";
+
+export interface Repo {
+    url: string;
+    type: RepoType;
+    private_key?: string; // used for creating
 }
 
 export async function getCollection({
@@ -81,7 +93,7 @@ export async function remove({
     settings?: Settings;
 }) {
     return API.deleteRequest<Single>({
-        target: links.projects().single(id),
+        target: links.stacks().single(id),
         query,
         token,
         settings,

@@ -5,7 +5,7 @@ import {
     ResourceState,
 } from "../../common/Structs";
 import { Term } from "./Term";
-import { ServerPricing } from "../infrastructure/Servers";
+import { ServerPricing } from "../infrastructure/Server";
 import { BandwidthPricing } from "../plans/Bandwidth";
 
 export interface Service {

@@ -3,7 +3,7 @@ import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
 import * as Structs from "../../common/Structs";
-import * as Members from "./Members";
+import * as Members from "./Membership";
 import { Task } from "../../common/Structs";
 
 export interface CreateParams {
