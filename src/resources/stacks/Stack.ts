@@ -11,6 +11,7 @@ import {
     ResourceState,
     StandardEvents,
 } from "../../common/Structs";
+import { StackContainer } from "./StackContainer";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
@@ -43,6 +44,13 @@ export interface Repo {
     url: string;
     type?: RepoType;
     private_key?: string; // used for creating
+}
+
+export interface Spec {
+    name: string;
+    description: string;
+    containers: { [key: string]: StackContainer };
+    annotations: { [key: string]: string };
 }
 
 export async function getCollection({

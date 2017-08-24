@@ -11,8 +11,7 @@ import {
     ResourceState,
     StandardEvents,
 } from "../../common/Structs";
-import { StackContainer } from "./StackContainer";
-import { StackState } from "./Stack";
+import { StackState, Spec } from "./Stack";
 
 export type Collection = CollectionDoc<Build>;
 export type Single = SingleDoc<Build>;
@@ -20,7 +19,7 @@ export type Single = SingleDoc<Build>;
 export interface Build extends Resource {
     stack: ResourceId;
     creator: string;
-    containers: { [key: string]: StackContainer };
+    spec: Spec;
     events: StandardEvents;
     state: ResourceState<StackState>;
 }

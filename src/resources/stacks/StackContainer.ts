@@ -4,7 +4,9 @@ export interface StackContainer {
     image: StackImage;
     volumes: Volume[];
     tags: Tags;
-    hostname?: string;
+    environment_vars: { [key: string]: string };
+    required_secrets: string[];
+    hostname: string;
     instances: number;
     options: ContainerOptions;
 }
@@ -14,7 +16,7 @@ export interface Tags {
     allow: string[];
 }
 
-export type VolumeType = string;
+export type VolumeType = "local";
 
 export interface Volume {
     type: VolumeType;
@@ -25,7 +27,7 @@ export interface Volume {
 }
 
 export interface LocalVolume {
-    size_mb?: number;
+    size_mb: number;
 }
 
 export interface VolumeRemoteAccess {
@@ -35,14 +37,16 @@ export interface VolumeRemoteAccess {
 
 export interface ContainerOptions {
     on_deploy: OnDeployOptions;
-    monitor: MonitorOptions;
+    monitoring: MonitoringOptions;
+    networking: NetworkingOptions;
+    dns: DNSOptions;
 }
 
 export interface OnDeployOptions {
     start: boolean;
 }
 
-export interface MonitorOptions {
+export interface MonitoringOptions {
     auto_restart: boolean;
     notify: NotifyOptions;
 }
@@ -50,4 +54,12 @@ export interface MonitorOptions {
 export interface NotifyOptions {
     email: string;
     web_hook: string;
+}
+
+export interface NetworkingOptions {
+    public: boolean;
+}
+
+export interface DNSOptions {
+    domain: string;
 }
