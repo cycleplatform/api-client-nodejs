@@ -41,7 +41,7 @@ export type RepoType = "http" | "ssh";
 
 export interface Repo {
     url: string;
-    type: RepoType;
+    type?: RepoType;
     private_key?: string; // used for creating
 }
 
