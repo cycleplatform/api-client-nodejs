@@ -35,7 +35,7 @@ export type StackState =
 
 export interface Source {
     repo?: Repo;
-    raw?: string;
+    raw?: string | Spec; // string for creating. Spec on return
 }
 
 export type RepoType = "http" | "ssh";
