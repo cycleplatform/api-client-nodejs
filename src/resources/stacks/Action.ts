@@ -74,3 +74,44 @@ export async function task({
         settings,
     });
 }
+
+export async function update({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: Structs.ResourceId;
+    token: Token;
+    value: StackCreateParams;
+    query?: QueryParams;
+    settings?: Structs.Settings;
+}) {
+    return API.patchRequest<Stacks.Single>({
+        target: links.stacks().single(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: Structs.ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Structs.Settings;
+}) {
+    return API.deleteRequest<Stacks.Single>({
+        target: links.stacks().single(id),
+        query,
+        token,
+        settings,
+    });
+}
