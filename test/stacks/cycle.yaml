@@ -7,7 +7,8 @@ containers:
       target: "wordpress"
       preload: false
     tags:
-      - "frontend"
+      require: 
+        - "frontend"
     environment_vars: 
       WORDPRESS_DB_HOST: "database"
       WORDPRESS_DB_PASSWORD: "cycle"
@@ -26,7 +27,8 @@ containers:
       target: "mysql"
       preload: false
     tags:
-      - "database"
+      require: 
+        - "database"
     environment_vars: 
       MYSQL_ROOT_PASSWORD: "cycle"
     hostname: "database"

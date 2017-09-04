@@ -88,22 +88,3 @@ export async function getSingle({
         settings,
     });
 }
-
-export async function remove({
-    id,
-    token,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.deleteRequest<Single>({
-        target: links.stacks().single(id),
-        query,
-        token,
-        settings,
-    });
-}
