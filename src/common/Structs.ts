@@ -9,6 +9,11 @@ export type ResourceId = string;
 export type Time = string;
 
 /**
+ * Field is measured in bytes
+ */
+export type Bytes = number;
+
+/**
  * Field is measured in Megabytes
  */
 export type Megabytes = number;

@@ -13,6 +13,7 @@ import * as Environments from "./resources/environments";
 import * as Containers from "./resources/containers";
 import * as Stacks from "./resources/stacks";
 import * as Jobs from "./resources/jobs";
+import * as Images from "./resources/images";
 
 export {
     API,
@@ -22,6 +23,7 @@ export {
     Containers,
     Environments,
     Error,
+    Images,
     Infrastructure,
     Plans,
     Projects,
