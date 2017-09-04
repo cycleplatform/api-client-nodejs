@@ -25,6 +25,11 @@ export const links = {
         single: (id: ResourceId) => `/environments/${id}`,
     }),
 
+    images: () => ({
+        collection: () => `/images`,
+        single: (id: ResourceId) => `/images/${id}`,
+    }),
+
     infrastructure: () => ({
         providers: () => ({
             collection: () => `/infrastructure/providers`,
