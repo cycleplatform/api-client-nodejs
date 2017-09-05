@@ -28,7 +28,7 @@ export type JobState =
 export interface Job extends Resource {
     queue: string;
     caption: string;
-    events: {};
+    events: StandardEvents;
     schedule: Time;
     expires: Time;
     tasks: JobTask[];
