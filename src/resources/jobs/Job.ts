@@ -37,6 +37,8 @@ export interface Job extends Resource {
     state: ResourceState<JobState>;
 }
 
+export type TaskState = "pending" | "error" | "running" | "completed";
+
 export interface JobTask {
     id: string;
     caption: string;
@@ -44,7 +46,7 @@ export interface JobTask {
     action: string;
     events: StandardEvents;
     steps: TaskStep[];
-    state: ResourceState;
+    state: ResourceState<TaskState>;
     failable: boolean;
     contents: {};
     error?: {
