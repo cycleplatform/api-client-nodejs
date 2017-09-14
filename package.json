@@ -5,13 +5,13 @@
     "main": "dist/index.js",
     "typings": "dist/typings/index.d.ts",
     "scripts": {
-        "precommit": "lint-staged",
+        "precommit": "node ./node_modules/lint-staged/index.js",
         "prepare": "rm -rf ./dist && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },
     "lint-staged": {
         "*.{ts,tsx}": [
-            "prettier --write --parser typescript --tab-width 4 --trailing-comma all",
+            "node ./node_modules/prettier/index.js --write --parser typescript --tab-width 4 --trailing-comma all",
             "git add"
         ]
     },

@@ -54,6 +54,7 @@ export interface JobTask {
 
 export interface TaskStep {
     caption: string;
+    description: string;
     started: Time;
     completed: Time;
 }
