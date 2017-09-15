@@ -32,7 +32,7 @@ export interface Server {
     id: ResourceId;
     name: string;
     pricing: ServerPricing;
-    provider: ResourceId;
+    provider_id: ResourceId;
 }
 
 export interface SupportPlan {

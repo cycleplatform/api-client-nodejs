@@ -3,7 +3,7 @@ import {
     Resource,
     ResourceId,
     SingleDoc,
-} from "../../common/Structs";
+} from "../../../common/Structs";
 
 export type Collection = CollectionDoc<DataCenter>;
 export type Single = SingleDoc<DataCenter>;

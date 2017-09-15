@@ -19,11 +19,11 @@ export type Single = SingleDoc<Container>;
 
 export interface Container extends Resource {
     name: string;
-    creator: ResourceId;
-    project: ResourceId;
-    environment: ResourceId;
-    image: ResourceId;
-    plan: ResourceId;
+    creator_id: ResourceId;
+    project_id: ResourceId;
+    environment_id: ResourceId;
+    image_id: ResourceId;
+    plan_id: ResourceId;
     stats: Stats;
     volumes: Volume[];
     tags: string[];
@@ -63,7 +63,7 @@ export interface TLS {
     path: string;
     domain: string;
     created: Time;
-    certificate?: ResourceId;
+    certificate_id?: ResourceId;
 }
 
 export interface RuntimeConfig {

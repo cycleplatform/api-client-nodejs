@@ -43,9 +43,9 @@ export interface Order extends Resource {
 
 export interface OrderBuilder {
     servers?: ServerOrder[];
-    support_plan?: ResourceId;
-    bandwidth_plan?: ResourceId;
-    ips_plan?: ResourceId;
+    support_plan_id?: ResourceId;
+    bandwidth_plan_id?: ResourceId;
+    ips_plan_id?: ResourceId;
     auto_renew?: boolean;
     term_length?: TermLength;
 }
@@ -53,7 +53,7 @@ export interface OrderBuilder {
 export interface ServerOrder {
     id: ResourceId;
     count: number;
-    datacenter: ResourceId;
+    datacenter_id: ResourceId;
 }
 
 export async function getSingle({

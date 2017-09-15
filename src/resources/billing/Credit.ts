@@ -5,5 +5,4 @@ export interface Credit {
     time: Time;
     description: string;
     amount: number;
-    project_credit?: ResourceId;
 }

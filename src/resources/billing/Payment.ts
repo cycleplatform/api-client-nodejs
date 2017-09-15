@@ -9,7 +9,7 @@ export interface Payment {
     amount: number;
     amount_refunded: number;
     refunds: Refund[];
-    method: ResourceId;
+    method_id: ResourceId;
     result: PaymentResult;
     gateway: PaymentGateway;
 }

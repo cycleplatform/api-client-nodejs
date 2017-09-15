@@ -145,6 +145,6 @@ export interface CreatedTask<T extends string, K = {}> {
     data: {
         action: T;
         contents?: K;
-        job: ResourceId;
+        job_id: ResourceId;
     };
 }

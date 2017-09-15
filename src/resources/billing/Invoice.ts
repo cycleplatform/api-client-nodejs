@@ -20,7 +20,7 @@ export type Collection = CollectionDoc<Invoice>;
 export type Single = SingleDoc<Invoice>;
 
 export interface Invoice extends Resource {
-    project: ResourceId;
+    project_id: ResourceId;
     approved: boolean;
     services: Service[];
     payments: Payment[];
