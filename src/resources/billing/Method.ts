@@ -20,7 +20,7 @@ export interface Method extends Resource {
     name: string;
     primary: boolean;
     address: Address;
-    creator: ResourceId;
+    creator_id: ResourceId;
     owner: Scope;
     credit_card: CreditCard;
     state: ResourceState<MethodState>;

@@ -5,14 +5,14 @@ import {
     ResourceState,
 } from "../../common/Structs";
 import { Term } from "./Term";
-import { ServerPricing } from "../infrastructure/Server";
+import { Providers } from "../infrastructure";
 import { BandwidthPricing } from "../plans/Bandwidth";
 
 export interface Service {
     id: ResourceId;
-    project: ResourceId;
+    project_id: ResourceId;
     title: string;
-    order: ResourceId;
+    order_id: ResourceId;
     item: ServiceItem;
     events: StandardEvents & {
         billed?: Time;
@@ -34,16 +34,16 @@ export interface ServiceItem {
 }
 
 export interface Server {
-    plan: ResourceId;
-    pricing: ServerPricing;
-    datacenter: ResourceId;
-    provider: ResourceId;
+    plan_id: ResourceId;
+    pricing: Providers.Servers.ServerPricing;
+    datacenter_id: ResourceId;
+    provider_id: ResourceId;
     hostname: string;
-    server?: ResourceId;
+    server_id?: ResourceId;
 }
 
 export interface IPs {
-    plan: ResourceId;
+    plan_id: ResourceId;
     price: number;
     provider_network: {
         network_id: string;
@@ -51,12 +51,12 @@ export interface IPs {
 }
 
 export interface Bandwidth {
-    plan: ResourceId;
+    plan_id: ResourceId;
     pricing: BandwidthPricing;
 }
 
 export interface Support {
-    plan: ResourceId;
+    plan_id: ResourceId;
     name: string;
     price: number;
 }

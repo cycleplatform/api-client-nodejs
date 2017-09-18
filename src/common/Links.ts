@@ -31,6 +31,9 @@ export const links = {
     }),
 
     infrastructure: () => ({
+        servers: () => ({
+            collection: () => `/infrastructure/servers`,
+        }),
         providers: () => ({
             collection: () => `/infrastructure/providers`,
             servers: (provider: ResourceId) =>

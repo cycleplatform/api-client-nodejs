@@ -26,9 +26,8 @@ export type Collection = CollectionDoc<Membership>;
 export type Single = SingleDoc<Membership>;
 
 export interface Membership extends Resource {
-    account: ResourceId;
-    project: ResourceId;
-    invited_by?: ResourceId;
+    account_id: ResourceId;
+    project_id: ResourceId;
     role: Role;
     events: MembershipEvents;
     state: ResourceState<MembershipState>;

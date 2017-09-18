@@ -17,7 +17,7 @@ export type Collection = CollectionDoc<Build>;
 export type Single = SingleDoc<Build>;
 
 export interface Build extends Resource {
-    stack: ResourceId;
+    stack_id: ResourceId;
     creator: string;
     spec: Spec;
     events: StandardEvents;

@@ -1,7 +1,7 @@
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { CollectionDoc, Settings, Resource } from "../../common/Structs";
-import { links } from "../../common/Links";
+import * as API from "../../../common/Api";
+import { QueryParams } from "../../../common/QueryParams";
+import { CollectionDoc, Settings, Resource } from "../../../common/Structs";
+import { links } from "../../../common/Links";
 
 export type Collection = CollectionDoc<Provider>;
 

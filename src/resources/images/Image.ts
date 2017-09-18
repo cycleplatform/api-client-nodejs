@@ -19,7 +19,7 @@ export type Single = SingleDoc<Image>;
 
 export interface Image extends Resource {
     name: string;
-    stack: ResourceId;
+    stack_id: ResourceId;
     size: Bytes;
     about: {
         description: string;

@@ -1,5 +1,5 @@
 import { ResourceId } from "../../common/Structs";
-import { ServerPricing } from "../infrastructure/Server";
+import { Providers } from "../infrastructure";
 
 export type BillingCategory = "infrastructure" | "support" | "ips";
 
@@ -31,8 +31,8 @@ export type LineItem = ServerLineItem | SupportLineItem | IpLineItem;
 export interface Server {
     id: ResourceId;
     name: string;
-    pricing: ServerPricing;
-    provider: ResourceId;
+    pricing: Providers.Servers.ServerPricing;
+    provider_id: ResourceId;
 }
 
 export interface SupportPlan {
