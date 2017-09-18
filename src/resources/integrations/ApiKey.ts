@@ -40,3 +40,17 @@ export async function getCollection({
         settings,
     });
 }
+
+export async function getSingle({
+    query,
+    settings,
+}: {
+        query?: QueryParams;
+        settings?: Settings;
+    }) {
+    return API.getRequest<Collection>({
+        target: links.integrations().keys().collection(),
+        query,
+        settings,
+    });
+}
