@@ -1,4 +1,4 @@
 import * as Providers from "./provider";
-export * from "./Server";
+import * as Servers from "./Server";
 
-export { Providers };
+export { Providers, Servers };
