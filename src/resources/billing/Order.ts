@@ -3,12 +3,12 @@ import {
     Resource,
     ProjectRequiredSettings,
     SingleDoc,
-    Scope,
     Time,
     StandardEvents,
     ResourceId,
     Task,
     Settings,
+    UserScope,
     CreatedTask,
 } from "../../common/Structs";
 import * as API from "../../common/Api";
@@ -24,7 +24,7 @@ export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;
 
 export interface Order extends Resource {
-    owner: Scope;
+    owner: UserScope;
     term: Term;
     auto_renew: boolean;
     approved: boolean;

@@ -11,6 +11,7 @@ import {
     SingleDoc,
     Settings,
     ResourceId,
+    UserScope,
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Job>;
@@ -32,8 +33,8 @@ export interface Job extends Resource {
     schedule: Time;
     expires: Time;
     tasks: JobTask[];
-    creator?: string;
-    project: string;
+    owner: UserScope;
+    project_id: ResourceId;
     state: ResourceState<JobState>;
 }
 

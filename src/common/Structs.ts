@@ -130,12 +130,6 @@ export interface JobInfo {
     queue: string;
 }
 
-export type ScopeType = "account" | "project";
-export interface Scope {
-    type: ScopeType;
-    id: ResourceId;
-}
-
 export interface Task<T extends string, K = {}> {
     action: T;
     contents?: K;
@@ -147,4 +141,15 @@ export interface CreatedTask<T extends string, K = {}> {
         contents?: K;
         job_id: ResourceId;
     };
+}
+
+export type UserScopeType = 
+| "account"
+| "employee"
+| "api-key"
+| "visitor"
+
+export interface UserScope {
+    type: UserScopeType;
+    id: ResourceId;
 }

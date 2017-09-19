@@ -10,6 +10,7 @@ import {
     ResourceId,
     ResourceState,
     StandardEvents,
+    UserScope,
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Environment>;
@@ -20,8 +21,8 @@ export interface Environment extends Resource {
     about: {
         description: string;
     };
-    creator: string;
-    project: string;
+    owner: UserScope;
+    project_id: ResourceId;
     state: ResourceState<EnvironmentState>;
     events: StandardEvents;
     services: {

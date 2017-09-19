@@ -10,6 +10,7 @@ import {
     ResourceId,
     ResourceState,
     StandardEvents,
+    UserScope,
 } from "../../common/Structs";
 import { StackState, Spec } from "./Stack";
 
@@ -18,7 +19,7 @@ export type Single = SingleDoc<Build>;
 
 export interface Build extends Resource {
     stack_id: ResourceId;
-    creator: string;
+    owner: UserScope;
     spec: Spec;
     events: StandardEvents;
     state: ResourceState<StackState>;

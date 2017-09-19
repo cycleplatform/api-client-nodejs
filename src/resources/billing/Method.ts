@@ -2,11 +2,10 @@ import {
     CollectionDoc,
     Resource,
     SingleDoc,
-    Scope,
     StandardEvents,
-    ResourceId,
     ResourceState,
     ProjectRequiredSettings,
+    UserScope
 } from "../../common/Structs";
 import * as API from "../../common/Api";
 import { Token } from "../../auth";
@@ -20,8 +19,7 @@ export interface Method extends Resource {
     name: string;
     primary: boolean;
     address: Address;
-    creator_id: ResourceId;
-    owner: Scope;
+    owner: UserScope;
     credit_card: CreditCard;
     state: ResourceState<MethodState>;
     events: StandardEvents;

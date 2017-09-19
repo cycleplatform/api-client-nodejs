@@ -1,6 +1,6 @@
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
-import { CollectionDoc, Settings, Resource, ResourceId, StandardEvents, ResourceState } from "../../common/Structs";
+import { CollectionDoc, Settings, Resource, ResourceId, StandardEvents, ResourceState, UserScope } from "../../common/Structs";
 import { links } from "../../common/Links";
 
 export type Collection = CollectionDoc<ApiKey>;
@@ -9,7 +9,7 @@ export interface ApiKey extends Resource {
     name: string;
     secret: string;
     readonly: boolean;
-    creator_id: ResourceId;
+    owner: UserScope;
     project_id: ResourceId;
     state: ResourceState<ApiKeyState>;
     events: StandardEvents;

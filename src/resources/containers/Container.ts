@@ -11,6 +11,7 @@ import {
     ResourceState,
     StandardEvents,
     Time,
+    UserScope,
 } from "../../common/Structs";
 import { Volume } from "./Volume";
 
@@ -19,7 +20,7 @@ export type Single = SingleDoc<Container>;
 
 export interface Container extends Resource {
     name: string;
-    creator_id: ResourceId;
+    owner: UserScope;
     project_id: ResourceId;
     environment_id: ResourceId;
     image_id: ResourceId;

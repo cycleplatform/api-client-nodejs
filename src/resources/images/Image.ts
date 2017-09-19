@@ -11,6 +11,7 @@ import {
     ResourceState,
     StandardEvents,
     Bytes,
+    UserScope,
 } from "../../common/Structs";
 import { Config } from "./Config";
 
@@ -26,8 +27,8 @@ export interface Image extends Resource {
     };
     tags: string[];
     config: Config;
-    creator: string;
-    project: string;
+    owner: UserScope;
+    project: ResourceId;
     state: ResourceState<ImageState>;
     events: StandardEvents;
 }
