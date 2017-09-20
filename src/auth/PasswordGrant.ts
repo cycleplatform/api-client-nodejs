@@ -7,6 +7,7 @@ export interface PasswordAuth {
     email: string;
     password: string;
     totp_passcode: string;
+    remember_device?: boolean;
     // Not required if running in browser/through thin client
     client_id?: string;
     client_secret?: string;
