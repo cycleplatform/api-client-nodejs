@@ -1,4 +1,5 @@
 import * as API from "../../common/Api";
+import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
 import { CollectionDoc, Settings, Resource, ResourceId, ResourceState, StandardEvents } from "../../common/Structs";
 import { links } from "../../common/Links";
@@ -15,11 +16,11 @@ export interface Server extends Resource {
 }
 
 export type ServerState =
-| "new"
-| "live"
-| "updating"
-| "deleting"
-| "deleted";
+    | "new"
+    | "live"
+    | "updating"
+    | "deleting"
+    | "deleted";
 
 export interface ServerProvider {
     id: ResourceId;
@@ -27,13 +28,16 @@ export interface ServerProvider {
 }
 
 export async function getCollection({
+    token,
     query,
     settings,
 }: {
+        token: Token;
         query?: QueryParams;
         settings?: Settings;
     }) {
     return API.getRequest<Collection>({
+        token,
         target: links.infrastructure().servers().collection(),
         query,
         settings,

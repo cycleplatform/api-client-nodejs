@@ -1,4 +1,5 @@
 import * as API from "../../common/Api";
+import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
 import { CollectionDoc, Settings, Resource, ResourceId, StandardEvents, ResourceState, UserScope, SingleDoc } from "../../common/Structs";
 import { Capability } from "./Capability";
@@ -35,13 +36,16 @@ export interface CreateParams {
 }
 
 export async function getCollection({
+    token,
     query,
     settings,
 }: {
+        token: Token;
         query?: QueryParams;
         settings?: Settings;
     }) {
     return API.getRequest<Collection>({
+        token,
         target: links.integrations().keys().collection(),
         query,
         settings,
@@ -49,13 +53,16 @@ export async function getCollection({
 }
 
 export async function getSingle({
+    token,
     query,
     settings,
 }: {
+        token: Token,
         query?: QueryParams;
         settings?: Settings;
     }) {
     return API.getRequest<Single>({
+        token,
         target: links.integrations().keys().collection(),
         query,
         settings,
@@ -63,15 +70,18 @@ export async function getSingle({
 }
 
 export async function create({
+    token,
     value,
     query,
     settings,
 }: {
+        token: Token,
         value: CreateParams;
         query?: QueryParams;
         settings?: Settings;
     }) {
     return API.postRequest<Single>({
+        token,
         target: links.integrations().keys().collection(),
         value,
         query,
