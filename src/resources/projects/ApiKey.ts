@@ -46,7 +46,7 @@ export async function getCollection({
     }) {
     return API.getRequest<Collection>({
         token,
-        target: links.integrations().keys().collection(),
+        target: links.projects().keys().collection(),
         query,
         settings,
     });
@@ -63,7 +63,7 @@ export async function getSingle({
     }) {
     return API.getRequest<Single>({
         token,
-        target: links.integrations().keys().collection(),
+        target: links.projects().keys().collection(),
         query,
         settings,
     });
@@ -82,7 +82,7 @@ export async function create({
     }) {
     return API.postRequest<Single>({
         token,
-        target: links.integrations().keys().collection(),
+        target: links.projects().keys().collection(),
         value,
         query,
         settings,

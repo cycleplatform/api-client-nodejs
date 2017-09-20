@@ -43,13 +43,6 @@ export const links = {
         }),
     }),
 
-    integrations: () => ({
-        keys: () => ({
-            collection: () => `/integrations/keys`,
-            single: (id: ResourceId) => `/integrations/keys/${id}`,
-        })
-    }),
-
     jobs: () => ({
         collection: () => `/jobs`,
         single: (id: ResourceId) => `/jobs/${id}`,
@@ -66,6 +59,10 @@ export const links = {
             collection: () => `/projects/members`,
             memberships: () => `/projects/memberships`,
         }),
+        keys: () => ({
+            collection: () => `/integrations/keys`,
+            single: (id: ResourceId) => `/integrations/keys/${id}`,
+        })
     }),
 
     plans: () => ({
