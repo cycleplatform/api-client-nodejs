@@ -1,10 +1,11 @@
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
-import { CollectionDoc, Settings, Resource, ResourceId, StandardEvents, ResourceState, UserScope } from "../../common/Structs";
+import { CollectionDoc, Settings, Resource, ResourceId, StandardEvents, ResourceState, UserScope, SingleDoc } from "../../common/Structs";
 import { Capability } from "./Capability";
 import { links } from "../../common/Links";
 
 export type Collection = CollectionDoc<ApiKey>;
+export type Single = SingleDoc<ApiKey>;
 
 export interface ApiKey extends Resource {
     name: string;
@@ -54,7 +55,7 @@ export async function getSingle({
         query?: QueryParams;
         settings?: Settings;
     }) {
-    return API.getRequest<Collection>({
+    return API.getRequest<Single>({
         target: links.integrations().keys().collection(),
         query,
         settings,
@@ -70,7 +71,7 @@ export async function create({
         query?: QueryParams;
         settings?: Settings;
     }) {
-    return API.postRequest<Collection>({
+    return API.postRequest<Single>({
         target: links.integrations().keys().collection(),
         value,
         query,
