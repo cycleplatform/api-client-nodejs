@@ -60,8 +60,8 @@ export const links = {
             memberships: () => `/projects/memberships`,
         }),
         keys: () => ({
-            collection: () => `/integrations/keys`,
-            single: (id: ResourceId) => `/integrations/keys/${id}`,
+            collection: () => `/projects/current/api-keys`,
+            single: (id: ResourceId) => `/projects/current/api-keys/${id}`,
         })
     }),
 
