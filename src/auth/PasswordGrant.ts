@@ -28,6 +28,7 @@ export async function passwordGrant(
         const resp = await fetch(url, {
             method: "POST",
             body: `grant_type=password&${queryParams}`,
+            credentials: "include",
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
                 Accept: "application/json",
