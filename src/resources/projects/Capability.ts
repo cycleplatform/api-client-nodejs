@@ -4,7 +4,7 @@ export type Capability =
 | "projects-invites-send"
 | "projects-invites-manage"
 | "projects-members-manage"
-| "projects-members-vew"
+| "projects-members-view"
 
 | "billing-methods-manage"
 | "billing-invoices-view"
