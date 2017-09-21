@@ -10,7 +10,6 @@ import {
     SingleDoc,
     StandardEvents,
     ResourceState,
-    ResourceId,
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Project>;
@@ -73,7 +72,6 @@ export async function update({
     query,
     settings,
 }: {
-    id: ResourceId;
     value: Partial<UpdateParams>;
     token: Token;
     query?: QueryParams;
