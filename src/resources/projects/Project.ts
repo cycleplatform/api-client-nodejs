@@ -28,6 +28,8 @@ export interface CreateParams {
     name: string;
 }
 
+export type UpdateParams = Partial<CreateParams>;
+
 export async function getCollection({
     token,
     query,
@@ -73,7 +75,7 @@ export async function update({
     settings,
 }: {
     id: ResourceId;
-    value: Partial<CreateParams>;
+    value: Partial<UpdateParams>;
     token: Token;
     query?: QueryParams;
     settings?: Settings;

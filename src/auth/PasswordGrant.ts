@@ -28,7 +28,7 @@ export async function passwordGrant(
         const resp = await fetch(url, {
             method: "POST",
             body: `grant_type=password&${queryParams}`,
-            credentials: "include",
+            credentials: "include", // support registered device cookie
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
                 Accept: "application/json",
