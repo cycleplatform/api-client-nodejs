@@ -11,10 +11,7 @@ export type Single = SingleDoc<DataCenter>;
 export interface DataCenter extends Resource {
     name: string;
 
-    location: {
-        latitude: number;
-        longitude: number;
-    };
+    location: Location;
 
     provider: {
         id: ResourceId;
@@ -23,4 +20,12 @@ export interface DataCenter extends Resource {
     };
 
     features: string[];
+}
+
+export interface Location {
+    latitude: number;
+    longitude: number;
+    city: string;
+    state: string;
+    country: string;
 }

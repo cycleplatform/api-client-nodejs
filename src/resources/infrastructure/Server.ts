@@ -3,8 +3,10 @@ import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
 import { CollectionDoc, Settings, Resource, ResourceId, ResourceState, StandardEvents } from "../../common/Structs";
 import { links } from "../../common/Links";
+import { Stats } from "./stats";
+import { Location } from "./provider/DataCenter";
 
-export type Collection = CollectionDoc<Server>;
+export type Collection = CollectionDoc<Server, ServerMeta>;
 
 export interface Server extends Resource {
     hostname: string;
@@ -13,6 +15,11 @@ export interface Server extends Resource {
     node_id: ResourceId;
     state: ResourceState<ServerState>;
     events: StandardEvents;
+}
+
+export interface ServerMeta {
+    stats?: Stats;
+    location?: Location;
 }
 
 export type ServerState =

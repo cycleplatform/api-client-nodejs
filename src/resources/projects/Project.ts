@@ -68,7 +68,6 @@ export async function create({
 }
 
 export async function update({
-    id,
     value,
     token,
     query,
@@ -81,7 +80,7 @@ export async function update({
     settings?: Settings;
 }) {
     return API.patchRequest<Single>({
-        target: links.projects().single(id),
+        target: links.projects().single(),
         value,
         query,
         token,

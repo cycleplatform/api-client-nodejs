@@ -5,7 +5,6 @@ import { links } from "../../common/Links";
 import {
     CollectionDoc,
     Resource,
-    Settings,
     SingleDoc,
     StandardEvents,
     ResourceState,
@@ -56,26 +55,6 @@ export async function getCollection({
 }) {
     return API.getRequest<Collection>({
         target: links.projects().members().collection(),
-        query,
-        token,
-        settings,
-    });
-}
-
-/**
- * Projects you are a member of 
- */
-export async function getMemberships({
-    token,
-    query,
-    settings,
-}: {
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.getRequest<Collection>({
-        target: links.projects().members().memberships(),
         query,
         token,
         settings,

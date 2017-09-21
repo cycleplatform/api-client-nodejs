@@ -98,7 +98,7 @@ export async function getCollection({
     settings?: Settings;
 }) {
     return API.getRequest<Collection>({
-        target: links.environments().collection(),
+        target: links.containers().collection(),
         query,
         token,
         settings,
@@ -117,7 +117,7 @@ export async function getSingle({
     settings?: Settings;
 }) {
     return API.getRequest<Single>({
-        target: links.environments().single(id),
+        target: links.containers().single(id),
         query,
         token,
         settings,
@@ -136,7 +136,7 @@ export async function create({
     settings?: Settings;
 }) {
     return API.postRequest<Single>({
-        target: links.environments().collection(),
+        target: links.containers().collection(),
         value,
         query,
         token,
@@ -158,7 +158,7 @@ export async function update({
     settings?: Settings;
 }) {
     return API.patchRequest<Single>({
-        target: links.projects().single(id),
+        target: links.containers().single(id),
         value,
         query,
         token,
@@ -178,7 +178,7 @@ export async function remove({
     settings?: Settings;
 }) {
     return API.deleteRequest<Single>({
-        target: links.projects().single(id),
+        target: links.containers().single(id),
         query,
         token,
         settings,

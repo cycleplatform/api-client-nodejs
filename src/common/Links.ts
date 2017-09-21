@@ -3,6 +3,11 @@ import { ResourceId } from "./Structs";
 export const links = {
     account: () => ({
         single: () => `/account`,
+        invites: () => ({
+            collection: () => `/invites`,
+            tasks: (id: ResourceId) => `/invites/${id}`,
+        }),
+        memberships: () => `/account/memberships`,        
     }),
 
     billing: () => ({
@@ -18,6 +23,11 @@ export const links = {
             collection: () => `/billing/invoices`,
             single: (id: ResourceId) => `/billing/invoices/${id}`,
         }),
+    }),
+
+    containers: () => ({
+        collection: () => `/containers`,
+        single: (id: ResourceId) => `/containers/${id}`,
     }),
 
     environments: () => ({
@@ -50,14 +60,12 @@ export const links = {
 
     projects: () => ({
         collection: () => `/projects`,
-        single: (id: ResourceId) => `/projects/${id}`,
-        invites: (project: ResourceId) => ({
-            collection: () => `/projects/${project}/invites`,
-            tasks: (id: ResourceId) => `/projects/invites/${id}/tasks`,
+        single: () => `/projects/current`,
+        invites: () => ({
+            collection: () => `/projects/current/invites`,
         }),
         members: () => ({
-            collection: () => `/projects/members`,
-            memberships: () => `/projects/memberships`,
+            collection: () => `/projects/current/members`,
         }),
         keys: () => ({
             collection: () => `/projects/current/api-keys`,
