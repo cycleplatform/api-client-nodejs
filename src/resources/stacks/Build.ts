@@ -11,6 +11,8 @@ import {
     ResourceState,
     StandardEvents,
     UserScope,
+    Task,
+    CreatedTask,
 } from "../../common/Structs";
 import { StackState, Spec } from "./Stack";
 
@@ -85,3 +87,58 @@ export async function remove({
         settings,
     });
 }
+
+export type BuildAction = "deploy";
+export async function task<K = {}>({
+    id,
+    stackId,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    stackId: ResourceId;
+    token: Token;
+    value: Task<BuildAction, K>;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.postRequest<CreatedTask<BuildAction, K>>({
+        target: links.stacks().builds(stackId).tasks(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export interface DeployParams {
+    environment_id: ResourceId;
+}
+
+export async function deployStack({
+    id,
+    stackId,
+    value, 
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    stackId: ResourceId;    
+    value: DeployParams,
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task<DeployParams>({
+        id,
+        stackId,
+        token,
+        query,
+        settings,
+        value: {action: "deploy", contents: value},
+    });
+}
+

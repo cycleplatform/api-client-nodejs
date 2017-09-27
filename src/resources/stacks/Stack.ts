@@ -11,6 +11,8 @@ import {
     ResourceState,
     StandardEvents,
     UserScope,
+    Task,
+    CreatedTask,
 } from "../../common/Structs";
 import { StackContainer } from "./StackContainer";
 
@@ -89,3 +91,115 @@ export async function getSingle({
         settings,
     });
 }
+
+export interface StackCreateParams {
+    name: string;
+    source: Source;
+}
+
+export async function create({
+    value,
+    token,
+    query,
+    settings,
+}: {
+    value: StackCreateParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.postRequest<Single>({
+        target: links.stacks().collection(),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function update({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: StackCreateParams;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.patchRequest<Single>({
+        target: links.stacks().single(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export type StackAction = "build";
+export async function task<K = {}>({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: Task<StackAction, K>;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.postRequest<CreatedTask<StackAction, K>>({
+        target: links.stacks().tasks(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function buildStack({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "build",
+        },
+    });
+}
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.deleteRequest<Single>({
+        target: links.stacks().single(id),
+        query,
+        token,
+        settings,
+    });
+}
+
