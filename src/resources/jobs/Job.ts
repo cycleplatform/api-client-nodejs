@@ -45,7 +45,9 @@ export interface JobTask {
     caption: string;
     topic: string;
     action: string;
-    events: StandardEvents;
+    events: StandardEvents & {
+        queued: Time;
+    };
     steps: TaskStep[];
     state: ResourceState<TaskState>;
     failable: boolean;
