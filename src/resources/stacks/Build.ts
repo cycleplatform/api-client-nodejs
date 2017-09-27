@@ -117,7 +117,7 @@ export interface DeployParams {
     environment_id: ResourceId;
 }
 
-export async function deployStack({
+export async function deployBuild({
     id,
     stackId,
     value, 
