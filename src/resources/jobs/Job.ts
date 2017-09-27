@@ -29,7 +29,9 @@ export type JobState =
 export interface Job extends Resource {
     queue: string;
     caption: string;
-    events: StandardEvents;
+    events: StandardEvents & {
+        queued: Time;
+    };
     schedule: Time;
     expires: Time;
     tasks: JobTask[];
@@ -45,9 +47,7 @@ export interface JobTask {
     caption: string;
     topic: string;
     action: string;
-    events: StandardEvents & {
-        queued: Time;
-    };
+    events: StandardEvents;
     steps: TaskStep[];
     state: ResourceState<TaskState>;
     failable: boolean;
