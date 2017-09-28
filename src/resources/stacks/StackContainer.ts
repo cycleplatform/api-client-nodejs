@@ -1,14 +1,31 @@
 import { StackImage } from "./StackImage";
+import { Volume } from "./Volume";
 
 export interface StackContainer {
+    name: string;
     image: StackImage;
+    config: Config;
+}
+
+export interface Config {
+    instances?: number;
     volumes: Volume[];
     tags: Tags;
+    runtime: Runtime;
     environment_vars: { [key: string]: string };
     required_secrets: string[];
-    hostname: string;
-    instances: number;
-    options: ContainerOptions;
+    network: Network;
+    resources?: Resources;
+    options?: Options;
+}
+
+export interface Runtime {
+    command?: RuntimeCommand;
+}
+
+export interface RuntimeCommand {
+    path: string;
+    args: string;
 }
 
 export interface Tags {
@@ -16,52 +33,16 @@ export interface Tags {
     allow: string[];
 }
 
-export type VolumeType = "local";
-
-export interface Volume {
-    type: VolumeType;
-    read_only: boolean;
-    local?: LocalVolume;
-    destination: string;
-    remote_access: VolumeRemoteAccess;
-}
-
-export interface LocalVolume {
-    size_mb: number;
-}
-
-export interface VolumeRemoteAccess {
-    allow: boolean;
-    whitelist_ips: string[];
-}
-
-export interface ContainerOptions {
-    on_deploy: OnDeployOptions;
-    monitoring: MonitoringOptions;
-    networking: NetworkingOptions;
-    dns: DNSOptions;
-}
-
-export interface OnDeployOptions {
-    start: boolean;
-}
-
-export interface MonitoringOptions {
-    auto_restart: boolean;
-    notify: NotifyOptions;
-}
-
-export interface NotifyOptions {
-    email: string;
-    web_hook: string;
-}
-
-export interface NetworkingOptions {
+export interface Network {
     public: boolean;
+    hostname?: string;
+    ports?: string[];
+    dns: DNS;
 }
 
-export interface DNSOptions {
-    domain: string;
+export interface DNS {
+    domain?: string;
+    nameservers: string[];
 }
 
 export interface Resources {
@@ -78,4 +59,38 @@ export interface RAMResources {
     limit?: string;
     reserve?: string;
     swappiness?: number;
+}
+
+export interface Options {
+    events: Events;
+    monitor: Monitor;
+}
+
+export interface Events {
+    deploy: DeployEvents;
+    start: StartEvents;
+}
+
+export interface DeployEvents {
+    auto_start: boolean;
+    web_hooks: string[];
+}
+
+export interface StartEvents {
+    webhook: string[];
+}
+
+export interface StopEvents {
+    webhook: string[];
+}
+
+export interface Monitor {
+    auto_restart: boolean;
+    max_restarts?: number;
+    notify: Notify;
+}
+
+export interface Notify {
+    email: string;
+    web_hook: string;
 }

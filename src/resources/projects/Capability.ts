@@ -5,6 +5,7 @@ export type Capability =
 | "projects-invites-manage"
 | "projects-members-manage"
 | "projects-members-view"
+| "projects-pipeline-listen"
 
 | "billing-methods-manage"
 | "billing-invoices-view"
