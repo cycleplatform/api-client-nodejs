@@ -68,9 +68,9 @@ export interface SingleDoc<
     data: T | null;
 }
 
-export interface Resource {
+export interface Resource<T extends Meta={}> {
     id: ResourceId;
-    meta?: Meta;
+    meta?: T;
 }
 
 export interface Meta {

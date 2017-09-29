@@ -6,9 +6,9 @@ import { links } from "../../common/Links";
 import { Stats } from "./stats";
 import { Location } from "./provider/DataCenter";
 
-export type Collection = CollectionDoc<Server, ServerMeta>;
+export type Collection = CollectionDoc<Server>;
 
-export interface Server extends Resource {
+export interface Server extends Resource<ServerMeta> {
     hostname: string;
     project_id: ResourceId;
     provider: ServerProvider;
