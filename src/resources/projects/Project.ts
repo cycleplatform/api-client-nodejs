@@ -92,7 +92,6 @@ export async function remove({
     query,
     settings,
 }: {
-    value: Partial<UpdateParams>;
     token: Token;
     query?: QueryParams;
     settings: ProjectRequiredSettings;
