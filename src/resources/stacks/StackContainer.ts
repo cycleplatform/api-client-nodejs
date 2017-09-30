@@ -69,6 +69,7 @@ export interface Options {
 export interface Events {
     deploy: DeployEvents;
     start: StartEvents;
+    stop: StopEvents;
 }
 
 export interface DeployEvents {
