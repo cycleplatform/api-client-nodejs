@@ -2,7 +2,7 @@ export interface OAuthToken {
     access_token: string;
     token_type: string;
     expires_in: number;
-    created: number;
+    created?: number;
     refresh_token: string;
     scope: string;
 }
@@ -14,7 +14,7 @@ export class Token implements OAuthToken {
     public token_type: string;
     // tslint:disable-next-line:variable-name
     public expires_in: number;
-    public created: number;
+    public created?: number;
     // tslint:disable-next-line:variable-name
     public refresh_token: string;
     public scope: string;
