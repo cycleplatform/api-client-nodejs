@@ -6,11 +6,11 @@ import { getSchema } from "../tjs";
 
 export function testPasswordGrant() {
     let schema: any;
-
     describe("OAuth Password Grant", () => {
         before(() => {
             schema = getSchema("auth/Token.ts", "Token");        
-        })
+        });
+
         it("should fetch a token", async () => {
             const totpToken = totp({
                 secret: process.env.TOTP_SECRET,
