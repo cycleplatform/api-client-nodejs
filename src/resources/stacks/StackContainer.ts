@@ -78,11 +78,11 @@ export interface DeployEvents {
 }
 
 export interface StartEvents {
-    webhook: string[];
+    web_hooks: string[];
 }
 
 export interface StopEvents {
-    webhook: string[];
+    web_hooks: string[];
 }
 
 export interface Monitor {
