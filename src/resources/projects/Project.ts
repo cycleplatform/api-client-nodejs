@@ -10,6 +10,7 @@ import {
     SingleDoc,
     StandardEvents,
     ResourceState,
+    ProjectRequiredSettings,
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Project>;
@@ -80,6 +81,24 @@ export async function update({
     return API.patchRequest<Single>({
         target: links.projects().single(),
         value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function remove({
+    token,
+    query,
+    settings,
+}: {
+    value: Partial<UpdateParams>;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return API.deleteRequest<Single>({
+        target: links.projects().single(),
         query,
         token,
         settings,
