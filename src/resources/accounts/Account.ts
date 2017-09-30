@@ -23,7 +23,7 @@ export interface Account extends Resource {
         first: string;
         last: string;
     };
-    temp: boolean;
+    temp?: boolean;
 }
 
 export interface UpdateParams {
