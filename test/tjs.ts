@@ -6,10 +6,17 @@ import * as TJS from "typescript-json-schema";
 const settings: TJS.PartialArgs = {
     required: true,
     ignoreErrors: true,
+    aliasRef: true,
 };
 
 const compilerOptions: CompilerOptions = {
-    strictNullChecks: true
+    strictNullChecks: true,
+    "module": 1,
+    "strict": true,
+    "target": 4,
+    "experimentalDecorators": true,
+    "jsx": 2,
+    "moduleResolution": 2,
 }
 
 export function getSchema(file: string, interfaceName: string) {

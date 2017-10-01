@@ -3,23 +3,21 @@ import {
     Resource,
     ResourceId,
     SingleDoc,
+    Settings
 } from "../../../common/Structs";
+import { QueryParams } from "../../../common/QueryParams";
+import * as API from "../../../common/Api";
+import { links } from "../../../common/Links";
 
 export type Collection = CollectionDoc<DataCenter>;
 export type Single = SingleDoc<DataCenter>;
 
 export interface DataCenter extends Resource {
     name: string;
-
     location: Location;
-
-    provider: {
-        id: ResourceId;
-        datacenter: string;
-        code: string;
-    };
-
+    provider: DataCenterProvider;
     features: string[];
+    abbreviation: string;
 }
 
 export interface Location {
@@ -28,4 +26,26 @@ export interface Location {
     city: string;
     state: string;
     country: string;
+}
+
+export interface DataCenterProvider {
+    id: ResourceId;
+    datacenter_id: ResourceId;
+    code: string;
+}
+
+export async function getCollection({
+    provider,    
+    query,
+    settings,
+}: {
+    provider: ResourceId,
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.getRequest<Collection>({
+        target: links.infrastructure().providers().datacenters(provider),
+        query,
+        settings,
+    });
 }

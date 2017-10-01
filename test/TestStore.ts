@@ -5,6 +5,7 @@ interface TestStoreState {
     active: {
         project: string;
         environment: string;
+        provider: string;
     };
 }
 
@@ -21,6 +22,7 @@ export class TestStore {
         active: {
             project: "",
             environment: "",
+            provider: "59544adc9b150a87da042d4c" // packet
         }
     };
     
