@@ -2,7 +2,7 @@ import { OAuthToken } from "../auth";
 import { ApiRequestInit } from "./ApiRequestInit";
 import { ErrorResource } from "./Error";
 import { formatParams, QueryParams } from "./QueryParams";
-import { Settings } from "./Structs";
+import { Settings, CreatedTask } from "./Structs";
 
 export type ApiResult<T> = ResultSuccess<T> | ResultFail<ErrorResource>;
 
@@ -139,7 +139,7 @@ export async function patchRequest<T>({
     return await makeRequest<T>(req, token, settings);
 }
 
-export async function deleteRequest<T>({
+export async function deleteRequest<T = CreatedTask<"delete">>({
     target,
     query = {},
     token,

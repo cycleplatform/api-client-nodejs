@@ -3,19 +3,16 @@ import * as jsonSchema from "chai-json-schema";
 import { config } from "dotenv";
 import { testPasswordGrant } from "./auth/passwordGrant.test";
 import { testAccounts } from "./account";
-// import { refreshGrant } from "./auth/RefreshGrant.test";
-// import { testProviders } from "./infrastructure/Providers.test";
-// import { testServers } from "./infrastructure/Servers.test";
-// import { testProjects } from "./projects/Projects.test";
+import { testEnvironments } from "./environments";
+import { TestStore } from "./TestStore";
 
 chai.use(jsonSchema);
 
 config({ path: "./config.env" });
 
-testPasswordGrant();
-testAccounts();
-// refreshGrant();
-// testAccount();
-// testProviders();
-// testServers();
-// testProjects();
+const store = new TestStore();
+
+testPasswordGrant(store);
+testAccounts(store);
+testEnvironments(store);
+

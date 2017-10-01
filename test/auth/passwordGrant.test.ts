@@ -1,10 +1,10 @@
 import { assert } from "chai";
 import { Auth } from "../../src/";
-import { AccessToken } from "./token";
 import { totp } from "speakeasy";
 import { getSchema } from "../tjs";
+import { TestStore } from "../TestStore";
 
-export function testPasswordGrant() {
+export function testPasswordGrant(store: TestStore) {
     let schema: any;
     describe("OAuth Password Grant", () => {
         before(() => {
@@ -37,8 +37,8 @@ export function testPasswordGrant() {
             assert.isTrue(resp.ok);            
             assert.jsonSchema(resp.value, schema);
 
-            AccessToken.access_token = resp.value.access_token;
-            AccessToken.refresh_token = resp.value.refresh_token;
+            // use this token for subsequent requests
+            store.updateToken(resp.value);
         });
     });
 }

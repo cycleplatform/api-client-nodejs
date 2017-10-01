@@ -26,7 +26,7 @@ export interface Environment extends Resource {
     state: ResourceState<EnvironmentState>;
     events: StandardEvents;
     services: {
-        dns: EnvService;
+        dns: EnvService | null;
     };
 }
 
@@ -138,7 +138,7 @@ export async function remove({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.deleteRequest<Single>({
+    return API.deleteRequest({
         target: links.environments().single(id),
         query,
         token,

@@ -1,13 +1,13 @@
 import { testFetchUserAccount } from "./fetchAccount.test";
-// import { testUpdateAccount } from "./UpdateAccount.test";
+import { testUpdateAccount } from "./updateAccount.test";
 import { getSchema } from "../tjs";
-import { AccessToken } from "../auth/token";
+import { TestStore } from "../TestStore";
 
-export function testAccounts() {
+export function testAccounts(store: TestStore) {
     const schema = getSchema("resources/accounts/Account.ts", "Account");
 
     describe("Account", () => {
-        testFetchUserAccount(AccessToken, schema);
-        // testUpdateAccount();
+        testFetchUserAccount({store, schema});
+        testUpdateAccount({store, schema});
     });
 }

@@ -1,12 +1,20 @@
 import { assert } from "chai";
-import { Account, Auth } from "../../src/";
+import { Account } from "../../src/";
 import * as TJS from "typescript-json-schema";
+import { TestStore } from "../TestStore";
 
-export function testFetchUserAccount(token: Auth.Token, schema: TJS.Definition | null) {
+interface TestParams {
+    store: TestStore;
+    schema: TJS.Definition | null;
+}
+
+export function testFetchUserAccount({store, schema}: TestParams) {
     it("should fetch user account", async () => {
         if (!schema) { 
             throw new Error("Account schema not generated");
         }
+        const { token } = store.state;
+
         const resp = await Account.getSingle({
             token,
             query: {},
@@ -18,7 +26,6 @@ export function testFetchUserAccount(token: Auth.Token, schema: TJS.Definition |
         }
 
         assert.isTrue(resp.ok);
-        assert.isObject(resp.value.data);
         assert.jsonSchema(resp.value.data, schema);
     });
 }
