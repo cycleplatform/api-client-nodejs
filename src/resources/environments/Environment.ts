@@ -11,6 +11,7 @@ import {
     ResourceState,
     StandardEvents,
     UserScope,
+    CreatedTask
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Environment>;
@@ -138,7 +139,7 @@ export async function remove({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.deleteRequest({
+    return API.deleteRequest<CreatedTask<"delete">>({
         target: links.environments().single(id),
         query,
         token,
