@@ -23,6 +23,7 @@ export interface Server extends Resource<ServerMeta> {
     project_id: ResourceId;
     provider: ServerProvider;
     node_id: ResourceId;
+    tags: string[];
     state: ResourceState<ServerState>;
     events: StandardEvents;
 }
