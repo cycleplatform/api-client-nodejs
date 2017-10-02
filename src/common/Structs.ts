@@ -68,7 +68,7 @@ export interface SingleDoc<
     data: T | null;
 }
 
-export interface Resource<T extends Meta={}> {
+export interface Resource<T extends Meta = {}> {
     id: ResourceId;
     meta?: T;
 }
@@ -143,11 +143,7 @@ export interface CreatedTask<T extends string, K = {}> {
     };
 }
 
-export type UserScopeType = 
-| "account"
-| "employee"
-| "api-key"
-| "visitor"
+export type UserScopeType = "account" | "employee" | "api-key" | "visitor";
 
 export interface UserScope {
     type: UserScopeType;

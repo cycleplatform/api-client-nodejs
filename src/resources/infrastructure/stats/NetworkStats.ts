@@ -1,8 +1,8 @@
 export interface NetworkStats {
-    interfaces?: {[key: string]: NetworkInterface};
+    interfaces?: { [key: string]: NetworkInterface };
     primary_routes?: NetworkRoute[];
     primary_ip: string;
-    primary_mac_addr: string; 
+    primary_mac_addr: string;
 }
 
 export interface NetworkInterface {

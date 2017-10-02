@@ -5,7 +5,7 @@ import {
     StandardEvents,
     ResourceState,
     ProjectRequiredSettings,
-    UserScope
+    UserScope,
 } from "../../common/Structs";
 import * as API from "../../common/Api";
 import { Token } from "../../auth";

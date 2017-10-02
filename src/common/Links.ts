@@ -7,7 +7,7 @@ export const links = {
             collection: () => `/invites`,
             tasks: (id: ResourceId) => `/invites/${id}`,
         }),
-        memberships: () => `/account/memberships`,        
+        memberships: () => `/account/memberships`,
     }),
 
     billing: () => ({
@@ -43,6 +43,9 @@ export const links = {
     infrastructure: () => ({
         servers: () => ({
             collection: () => `/infrastructure/servers`,
+            server: (id: ResourceId) => `/infrastructure/servers/${id}`,
+            telemetry: (id: ResourceId) =>
+                `/infrastructure/servers/${id}/telemetry`,
         }),
         providers: () => ({
             collection: () => `/infrastructure/providers`,
@@ -70,7 +73,7 @@ export const links = {
         keys: () => ({
             collection: () => `/projects/current/api-keys`,
             single: (id: ResourceId) => `/projects/current/api-keys/${id}`,
-        })
+        }),
     }),
 
     plans: () => ({
@@ -86,7 +89,7 @@ export const links = {
         builds: (stack: ResourceId) => ({
             collection: () => `/stacks/${stack}/builds`,
             single: (id: ResourceId) => `/stacks/${stack}/builds/${id}`,
-            tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,            
+            tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,
         }),
     }),
 };

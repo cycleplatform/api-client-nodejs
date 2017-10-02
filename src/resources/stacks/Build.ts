@@ -120,14 +120,14 @@ export interface DeployParams {
 export async function deployBuild({
     id,
     stackId,
-    value, 
+    value,
     token,
     query,
     settings,
 }: {
     id: ResourceId;
-    stackId: ResourceId;    
-    value: DeployParams,
+    stackId: ResourceId;
+    value: DeployParams;
     token: Token;
     query?: QueryParams;
     settings?: Settings;
@@ -138,7 +138,6 @@ export async function deployBuild({
         token,
         query,
         settings,
-        value: {action: "deploy", contents: value},
+        value: { action: "deploy", contents: value },
     });
 }
-

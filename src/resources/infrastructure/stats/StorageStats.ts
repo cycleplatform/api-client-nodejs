@@ -1,5 +1,5 @@
 export interface StorageStats {
-    mounts: {[key: string]: MountedFS};
+    mounts: { [key: string]: MountedFS };
 }
 
 export interface MountedFS {

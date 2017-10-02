@@ -61,10 +61,10 @@ export async function getCollection({
     query,
     settings,
 }: {
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Collection>({
         target: links.stacks().collection(),
         query,
@@ -79,11 +79,11 @@ export async function getSingle({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Single>({
         target: links.stacks().single(id),
         query,
@@ -103,11 +103,11 @@ export async function create({
     query,
     settings,
 }: {
-        value: StackCreateParams;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    value: StackCreateParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.postRequest<Single>({
         target: links.stacks().collection(),
         value,
@@ -124,12 +124,12 @@ export async function update({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        value: StackCreateParams;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    value: StackCreateParams;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.patchRequest<Single>({
         target: links.stacks().single(id),
         value,
@@ -147,12 +147,12 @@ export async function task<K = {}>({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        value: Task<StackAction, K>;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    value: Task<StackAction, K>;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.postRequest<CreatedTask<StackAction, K>>({
         target: links.stacks().tasks(id),
         value,
@@ -168,11 +168,11 @@ export async function buildStack({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return task({
         id,
         token,
@@ -190,11 +190,11 @@ export async function remove({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.deleteRequest<Single>({
         target: links.stacks().single(id),
         query,
@@ -202,4 +202,3 @@ export async function remove({
         settings,
     });
 }
-

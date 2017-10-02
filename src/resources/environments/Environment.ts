@@ -11,7 +11,7 @@ import {
     ResourceState,
     StandardEvents,
     UserScope,
-    CreatedTask
+    CreatedTask,
 } from "../../common/Structs";
 
 export type Collection = CollectionDoc<Environment>;

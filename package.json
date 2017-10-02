@@ -1,6 +1,6 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "0.7.36",
+    "version": "0.7.37",
     "description": "Cycle CaaS NodeJS API Client",
     "main": "dist/index.js",
     "typings": "dist/typings/index.d.ts",
@@ -11,7 +11,7 @@
     },
     "lint-staged": {
         "*.{ts,tsx}": [
-            "node ./node_modules/prettier/index.js --write --parser typescript --tab-width 4 --trailing-comma all",
+            "prettier --write --parser typescript --tab-width 4 --trailing-comma all",
             "git add"
         ]
     },
