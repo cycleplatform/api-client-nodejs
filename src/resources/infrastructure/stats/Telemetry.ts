@@ -13,9 +13,9 @@ import { LoadStats } from "./LoadStats";
 import { RAMStats } from "./RAMStats";
 import { StorageStats } from "./StorageStats";
 
-export type Collection = CollectionDoc<Telemetry>;
+export type Collection = CollectionDoc<TelemetryPoint>;
 
-export interface Telemetry extends Resource {
+export interface TelemetryPoint extends Resource {
     time: Time;
     load: LoadStats;
     ram: RAMStats;
