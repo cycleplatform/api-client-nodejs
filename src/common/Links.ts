@@ -38,6 +38,7 @@ export const links = {
     images: () => ({
         collection: () => `/images`,
         single: (id: ResourceId) => `/images/${id}`,
+        build: () => `/images/build`,
     }),
 
     infrastructure: () => ({

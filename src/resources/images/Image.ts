@@ -14,6 +14,7 @@ import {
     UserScope,
 } from "../../common/Structs";
 import { Config } from "./Config";
+import { ImageSource } from "../stacks/StackImage";
 
 export type Collection = CollectionDoc<Image>;
 export type Single = SingleDoc<Image>;
@@ -43,11 +44,8 @@ export type ImageState =
     | "deleting"
     | "deleted";
 
-export interface CreateParams {
-    name: string;
-    about: {
-        description: string;
-    };
+export interface BuildParams {
+    source: ImageSource;
 }
 
 export interface EnvService {
@@ -91,41 +89,19 @@ export async function getSingle({
     });
 }
 
-export async function create({
+export async function build({
     value,
     token,
     query,
     settings,
 }: {
-    value: CreateParams;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.postRequest<Single>({
-        target: links.images().collection(),
-        value,
-        query,
-        token,
-        settings,
-    });
-}
-
-export async function update({
-    id,
-    value,
-    token,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    value: Partial<CreateParams>;
+    value: BuildParams;
     token: Token;
     query?: QueryParams;
     settings?: Settings;
 }) {
     return API.patchRequest<Single>({
-        target: links.images().single(id),
+        target: links.images().build(),
         value,
         query,
         token,
