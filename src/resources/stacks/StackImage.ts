@@ -1,5 +1,5 @@
 export interface StackImage {
-    name: string;    
+    name: string;
     source: ImageSource;
     preload: boolean;
 }
@@ -24,10 +24,7 @@ export interface LocalSource {
     path: string;
 }
 
-export type RepoProtocol = 
-| "http"
-| "https"
-| "ssh";
+export type RepoProtocol = "http" | "https" | "ssh";
 
 export interface RepoSource {
     path: string;

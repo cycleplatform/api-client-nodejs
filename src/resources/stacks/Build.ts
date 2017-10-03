@@ -39,7 +39,10 @@ export async function getCollection({
     settings?: Settings;
 }) {
     return API.getRequest<Collection>({
-        target: links.stacks().builds(stack).collection(),
+        target: links
+            .stacks()
+            .builds(stack)
+            .collection(),
         query,
         token,
         settings,
@@ -60,7 +63,10 @@ export async function getSingle({
     settings?: Settings;
 }) {
     return API.getRequest<Single>({
-        target: links.stacks().builds(stack).single(id),
+        target: links
+            .stacks()
+            .builds(stack)
+            .single(id),
         query,
         token,
         settings,
@@ -81,7 +87,10 @@ export async function remove({
     settings?: Settings;
 }) {
     return API.deleteRequest<Single>({
-        target: links.stacks().builds(stack).single(id),
+        target: links
+            .stacks()
+            .builds(stack)
+            .single(id),
         query,
         token,
         settings,
@@ -105,7 +114,10 @@ export async function task<K = {}>({
     settings?: Settings;
 }) {
     return API.postRequest<CreatedTask<BuildAction, K>>({
-        target: links.stacks().builds(stackId).tasks(id),
+        target: links
+            .stacks()
+            .builds(stackId)
+            .tasks(id),
         value,
         query,
         token,
@@ -120,14 +132,14 @@ export interface DeployParams {
 export async function deployBuild({
     id,
     stackId,
-    value, 
+    value,
     token,
     query,
     settings,
 }: {
     id: ResourceId;
-    stackId: ResourceId;    
-    value: DeployParams,
+    stackId: ResourceId;
+    value: DeployParams;
     token: Token;
     query?: QueryParams;
     settings?: Settings;
@@ -138,7 +150,6 @@ export async function deployBuild({
         token,
         query,
         settings,
-        value: {action: "deploy", contents: value},
+        value: { action: "deploy", contents: value },
     });
 }
-

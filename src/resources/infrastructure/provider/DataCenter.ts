@@ -3,7 +3,7 @@ import {
     Resource,
     ResourceId,
     SingleDoc,
-    Settings
+    Settings,
 } from "../../../common/Structs";
 import { QueryParams } from "../../../common/QueryParams";
 import * as API from "../../../common/Api";
@@ -35,16 +35,19 @@ export interface DataCenterProvider {
 }
 
 export async function getCollection({
-    provider,    
+    provider,
     query,
     settings,
 }: {
-    provider: ResourceId,
+    provider: ResourceId;
     query?: QueryParams;
     settings?: Settings;
 }) {
     return API.getRequest<Collection>({
-        target: links.infrastructure().providers().datacenters(provider),
+        target: links
+            .infrastructure()
+            .providers()
+            .datacenters(provider),
         query,
         settings,
     });

@@ -35,13 +35,13 @@ export interface Container extends Resource {
 }
 
 export type ContainerState =
-| "new"
-| "starting"
-| "running"
-| "stopping"
-| "stopped"
-| "deleting"
-| "deleted";
+    | "new"
+    | "starting"
+    | "running"
+    | "stopping"
+    | "stopped"
+    | "deleting"
+    | "deleted";
 
 export interface Stack {
     id: ResourceId;
@@ -65,10 +65,10 @@ export async function getCollection({
     query,
     settings,
 }: {
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Collection>({
         target: links.containers().collection(),
         query,
@@ -83,11 +83,11 @@ export async function getSingle({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Single>({
         target: links.containers().single(id),
         query,
@@ -102,11 +102,11 @@ export async function create({
     query,
     settings,
 }: {
-        value: CreateParams;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    value: CreateParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.postRequest<Single>({
         target: links.containers().collection(),
         value,
@@ -123,12 +123,12 @@ export async function update({
     query,
     settings,
 }: {
-        id: ResourceId;
-        value: Partial<CreateParams>;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    value: Partial<CreateParams>;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.patchRequest<Single>({
         target: links.containers().single(id),
         value,
@@ -144,11 +144,11 @@ export async function remove({
     query,
     settings,
 }: {
-        id: ResourceId;
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.deleteRequest<Single>({
         target: links.containers().single(id),
         query,

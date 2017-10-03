@@ -16,7 +16,10 @@ export async function getCollection({
     settings?: Structs.Settings;
 }) {
     return API.getRequest<Memberships.Collection>({
-        target: links.account().invites().collection(),
+        target: links
+            .account()
+            .invites()
+            .collection(),
         query,
         token,
         settings,
@@ -39,7 +42,10 @@ export async function task({
     settings?: Structs.Settings;
 }) {
     return API.postRequest<Memberships.Single>({
-        target: links.account().invites().tasks(id),
+        target: links
+            .account()
+            .invites()
+            .tasks(id),
         value,
         query,
         token,

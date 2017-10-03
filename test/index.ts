@@ -7,6 +7,8 @@ chai.use(jsonSchema);
 config({ path: "./config.env" });
 const store = new TestStore();
 
+// TESTS
+
 // import { testPasswordGrant } from "./auth/passwordGrant.test";
 // testPasswordGrant(store);
 

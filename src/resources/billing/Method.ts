@@ -5,7 +5,7 @@ import {
     StandardEvents,
     ResourceState,
     ProjectRequiredSettings,
-    UserScope
+    UserScope,
 } from "../../common/Structs";
 import * as API from "../../common/Api";
 import { Token } from "../../auth";
@@ -67,7 +67,10 @@ export async function getCollection({
     settings: ProjectRequiredSettings;
 }) {
     return API.getRequest<Collection>({
-        target: links.billing().methods().collection(),
+        target: links
+            .billing()
+            .methods()
+            .collection(),
         query,
         token,
         settings,
@@ -86,7 +89,10 @@ export async function create({
     settings: ProjectRequiredSettings;
 }) {
     return API.postRequest<Single>({
-        target: links.billing().methods().collection(),
+        target: links
+            .billing()
+            .methods()
+            .collection(),
         value,
         query,
         token,

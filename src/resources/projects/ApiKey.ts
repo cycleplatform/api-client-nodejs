@@ -1,7 +1,16 @@
 import * as API from "../../common/Api";
 import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
-import { CollectionDoc, Settings, Resource, ResourceId, StandardEvents, ResourceState, UserScope, SingleDoc } from "../../common/Structs";
+import {
+    CollectionDoc,
+    Settings,
+    Resource,
+    ResourceId,
+    StandardEvents,
+    ResourceState,
+    UserScope,
+    SingleDoc,
+} from "../../common/Structs";
 import { Capability } from "./Capability";
 import { links } from "../../common/Links";
 
@@ -19,10 +28,7 @@ export interface ApiKey extends Resource {
     events: StandardEvents;
 }
 
-export type ApiKeyState =
-    | "live"
-    | "deleting"
-    | "deleted";
+export type ApiKeyState = "live" | "deleting" | "deleted";
 
 export interface Whitelist {
     enable: boolean;
@@ -40,13 +46,16 @@ export async function getCollection({
     query,
     settings,
 }: {
-        token: Token;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Collection>({
         token,
-        target: links.projects().keys().collection(),
+        target: links
+            .projects()
+            .keys()
+            .collection(),
         query,
         settings,
     });
@@ -57,13 +66,16 @@ export async function getSingle({
     query,
     settings,
 }: {
-        token: Token,
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.getRequest<Single>({
         token,
-        target: links.projects().keys().collection(),
+        target: links
+            .projects()
+            .keys()
+            .collection(),
         query,
         settings,
     });
@@ -75,14 +87,17 @@ export async function create({
     query,
     settings,
 }: {
-        token: Token,
-        value: CreateParams;
-        query?: QueryParams;
-        settings?: Settings;
-    }) {
+    token: Token;
+    value: CreateParams;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
     return API.postRequest<Single>({
         token,
-        target: links.projects().keys().collection(),
+        target: links
+            .projects()
+            .keys()
+            .collection(),
         value,
         query,
         settings,

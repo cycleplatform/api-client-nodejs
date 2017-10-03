@@ -20,7 +20,10 @@ export async function getCollection({
     settings?: Structs.Settings;
 }) {
     return API.getRequest<Memberships.Collection>({
-        target: links.projects().invites().collection(),
+        target: links
+            .projects()
+            .invites()
+            .collection(),
         query,
         token,
         settings,
@@ -40,11 +43,13 @@ export async function create({
     settings?: Structs.Settings;
 }) {
     return API.postRequest<Memberships.Single>({
-        target: links.projects().invites().collection(),
+        target: links
+            .projects()
+            .invites()
+            .collection(),
         value,
         query,
         token,
         settings,
     });
 }
-
