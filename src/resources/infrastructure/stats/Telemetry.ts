@@ -3,31 +3,23 @@ import {
     ResourceId,
     CollectionDoc,
     Settings,
+    Time,
 } from "../../../common/Structs";
 import * as API from "../../../common/Api";
 import { QueryParams } from "../../../common/QueryParams";
 import { Token } from "../../../auth";
 import { links } from "../../../common/Links";
-import { CPUStats } from "./CPUStats";
 import { LoadStats } from "./LoadStats";
 import { RAMStats } from "./RAMStats";
 import { StorageStats } from "./StorageStats";
-import { UptimeStats } from "./UptimeStats";
 
-export type Collection = CollectionDoc<Checkin>;
+export type Collection = CollectionDoc<Telemetry>;
 
-export interface Checkin extends Resource {
-    cluster_id: ResourceId;
-    node_id: ResourceId;
-    stats: TelemetryStats;
-}
-
-export interface TelemetryStats {
-    cpu: CPUStats;
+export interface Telemetry extends Resource {
+    time: Time;
     load: LoadStats;
     ram: RAMStats;
-    storage: StorageStats;
-    uptime: UptimeStats;
+    storage_root: StorageStats;
 }
 
 export async function getCollection({
