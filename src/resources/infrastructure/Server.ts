@@ -8,11 +8,11 @@ import {
     ResourceId,
     ResourceState,
     StandardEvents,
+    Time,
 } from "../../common/Structs";
 import { links } from "../../common/Links";
-import { Stats } from "./stats";
+import { Stats, Telemetry } from "./stats";
 import { Location } from "./provider/DataCenter";
-import { Telemetry } from "./stats";
 
 export type Collection = CollectionDoc<Server>;
 
@@ -31,6 +31,7 @@ export interface Server extends Resource<ServerMeta> {
 export interface ServerMeta {
     stats?: Stats;
     location?: Location;
+    last_checkin?: Time;
 }
 
 export type ServerState = "new" | "live" | "updating" | "deleting" | "deleted";
