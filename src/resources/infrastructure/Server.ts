@@ -9,12 +9,13 @@ import {
     ResourceState,
     StandardEvents,
     Time,
+    Includes,
 } from "../../common/Structs";
 import { links } from "../../common/Links";
 import { Stats, Telemetry } from "./stats";
-import { Location } from "./provider/DataCenter";
+import { DataCenters, Servers, Provider } from "./provider";
 
-export type Collection = CollectionDoc<Server>;
+export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 
 export { Telemetry };
 
@@ -30,15 +31,25 @@ export interface Server extends Resource<ServerMeta> {
 
 export interface ServerMeta {
     stats?: Stats;
-    location?: Location;
+    location?: DataCenters.Location;
     last_checkin?: Time;
+}
+
+export interface ServerIncludes extends Includes {
+    providers: {
+        [key: string]: Provider;
+    };
+    plans: {
+        [key: string]: Servers.Server;
+    };
 }
 
 export type ServerState = "new" | "live" | "updating" | "deleting" | "deleted";
 
 export interface ServerProvider {
     id: ResourceId;
-    server_id: string;
+    plan_id: ResourceId;
+    datacenter_id: ResourceId;
 }
 
 export async function getCollection({
