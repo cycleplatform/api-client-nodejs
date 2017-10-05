@@ -73,7 +73,7 @@ export interface Events {
 }
 
 export interface DeployEvents {
-    auto_start: boolean;
+    auto_restart: boolean;
     web_hooks: string[];
 }
 
