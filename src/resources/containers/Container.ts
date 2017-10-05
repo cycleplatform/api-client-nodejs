@@ -19,7 +19,7 @@ import { Features } from "./Features";
 export type Collection = CollectionDoc<Container>;
 export type Single = SingleDoc<Container>;
 
-export interface Container extends Resource {
+export interface Container extends Resource<ContainerMeta> {
     name: string;
     owner: UserScope;
     project_id: ResourceId;
@@ -42,6 +42,10 @@ export type ContainerState =
     | "stopped"
     | "deleting"
     | "deleted";
+
+export interface ContainerMeta {
+    instances?: { [key: string]: number };
+}
 
 export interface Stack {
     id: ResourceId;
