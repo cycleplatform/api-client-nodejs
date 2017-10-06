@@ -127,6 +127,7 @@ export async function task<K = {}>({
 
 export interface DeployParams {
     environment_id: ResourceId;
+    update_configs: boolean;
 }
 
 export async function deployBuild({

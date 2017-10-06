@@ -14,10 +14,15 @@ export interface ImageSource {
 
 export interface DockerHubSource {
     target: string;
+    username?: string;
+    password?: string;
 }
 
 export interface DockerRegistrySource {
     target: string;
+    url: string;
+    username: string;
+    password: string;
 }
 
 export interface LocalSource {

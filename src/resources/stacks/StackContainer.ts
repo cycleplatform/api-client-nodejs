@@ -86,7 +86,6 @@ export interface StopEvents {
 }
 
 export interface Monitor {
-    auto_restart: boolean;
     max_restarts?: number;
     notify: Notify;
 }

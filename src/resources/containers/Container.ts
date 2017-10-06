@@ -2,7 +2,8 @@ import { Token } from "../../auth";
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
-import { Config } from "../stacks";
+import { Config, Builds, Stack } from "../stacks";
+import { Image } from "../images";
 import {
     CollectionDoc,
     Resource,
@@ -13,10 +14,11 @@ import {
     StandardEvents,
     Time,
     UserScope,
+    Includes,
 } from "../../common/Structs";
 import { Features } from "./Features";
 
-export type Collection = CollectionDoc<Container>;
+export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
 export type Single = SingleDoc<Container>;
 
 export interface Container extends Resource<ContainerMeta> {
@@ -31,6 +33,18 @@ export interface Container extends Resource<ContainerMeta> {
     state: ResourceState<ContainerState>;
     events: StandardEvents & {
         started?: Time;
+    };
+}
+
+export interface ContainerIncludes extends Includes {
+    images: {
+        [key: string]: Image;
+    };
+    stack_builds: {
+        [key: string]: Builds.Build;
+    };
+    stacks: {
+        [key: string]: Stack;
     };
 }
 
