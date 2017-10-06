@@ -73,7 +73,6 @@ export interface Events {
 }
 
 export interface DeployEvents {
-    auto_restart: boolean;
     web_hooks: string[];
 }
 
@@ -86,6 +85,7 @@ export interface StopEvents {
 }
 
 export interface Monitor {
+    auto_restart: boolean;
     max_restarts?: number;
     notify: Notify;
 }
