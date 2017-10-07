@@ -5,23 +5,26 @@ import * as TJS from "typescript-json-schema";
 
 const settings: TJS.PartialArgs = {
     required: true,
-    ignoreErrors: true,
+    // ignoreErrors: true,
     aliasRef: true,
 };
 
 const compilerOptions: CompilerOptions = {
     strictNullChecks: true,
-    "module": 1,
-    "strict": true,
-    "target": 4,
-    "experimentalDecorators": true,
-    "jsx": 2,
-    "moduleResolution": 2,
-}
+    suppressImplicitAnyIndexErrors: true,
+    module: 1,
+    strict: true,
+    target: 4,
+    experimentalDecorators: true,
+    jsx: 2,
+    moduleResolution: 2,
+};
 
 export function getSchema(file: string, interfaceName: string) {
-    const program = TJS.getProgramFromFiles([resolve(`./src/${file}`)], compilerOptions as any);
+    const program = TJS.getProgramFromFiles(
+        [resolve(`./src/${file}`)],
+        compilerOptions as any,
+    );
     const schema = TJS.generateSchema(program, interfaceName, settings);
     return schema;
 }
-

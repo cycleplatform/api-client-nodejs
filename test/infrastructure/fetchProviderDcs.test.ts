@@ -11,13 +11,18 @@ interface TestParams {
 export function testFetchProviderDcs({ store }: TestParams) {
     let schema: TJS.Definition | null;
     before(() => {
-        schema = getSchema("resources/infrastructure/provider/DataCenter.ts", "DataCenter");
-    })
+        schema = getSchema(
+            "resources/infrastructure/provider/DataCenter.ts",
+            "DataCenter",
+        );
+    });
 
     it("should fetch provider datacenters", async () => {
         if (!schema) {
             throw new Error("DC schema not generated");
         }
+
+        console.log(JSON.stringify(schema, null, 2));
 
         const { active: { provider } } = store.state;
 
