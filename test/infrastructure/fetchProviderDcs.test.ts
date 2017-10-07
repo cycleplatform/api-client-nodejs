@@ -22,8 +22,6 @@ export function testFetchProviderDcs({ store }: TestParams) {
             throw new Error("DC schema not generated");
         }
 
-        console.log(JSON.stringify(schema, null, 2));
-
         const { active: { provider } } = store.state;
 
         const resp = await Infrastructure.Providers.DataCenters.getCollection({
