@@ -12,6 +12,7 @@ import {
     StandardEvents,
     Bytes,
     UserScope,
+    CreatedTask,
 } from "../../common/Structs";
 import { Config } from "./Config";
 import { ImageSource } from "../stacks/StackImage";
@@ -100,7 +101,7 @@ export async function build({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<Single>({
+    return API.postRequest<CreatedTask<"image.import">>({
         target: links.images().build(),
         value,
         query,
