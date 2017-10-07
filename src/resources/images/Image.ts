@@ -100,7 +100,7 @@ export async function build({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.patchRequest<Single>({
+    return API.postRequest<Single>({
         target: links.images().build(),
         value,
         query,
