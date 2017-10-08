@@ -73,9 +73,10 @@ export interface Image {
 
 export interface CreateParams {
     name: string;
-    about: {
-        description: string;
-    };
+    environment_id: ResourceId;
+    image_id: ResourceId;
+    dns_record_id: ResourceId;
+    config?: Partial<Config>;
 }
 
 export async function getCollection({
