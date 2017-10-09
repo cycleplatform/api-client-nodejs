@@ -65,7 +65,7 @@ export interface SingleDoc<
     K extends Meta = {},
     P extends Includes = {}
 > extends TopLevel<K, P> {
-    data: T | null;
+    data: T;
 }
 
 export interface Resource<T extends Meta = {}> {
