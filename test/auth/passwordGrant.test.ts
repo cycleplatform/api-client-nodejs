@@ -8,7 +8,7 @@ export function testPasswordGrant(store: TestStore) {
     let schema: any;
     describe("OAuth Password Grant", () => {
         before(() => {
-            schema = getSchema("auth/Token.ts", "Token");    
+            schema = getSchema("auth/Token.ts", "Token");
         });
 
         it("should fetch a token", async () => {
@@ -21,8 +21,8 @@ export function testPasswordGrant(store: TestStore) {
 
             const resp = await Auth.passwordGrant(
                 {
-                    email: process.env.EMAIL,
-                    password: process.env.PASSWORD,
+                    email: process.env.EMAIL || "",
+                    password: process.env.PASSWORD || "",
                     client_id: process.env.CLIENT_ID,
                     client_secret: process.env.CLIENT_SECRET,
                     totp_passcode: totpToken,
@@ -34,7 +34,7 @@ export function testPasswordGrant(store: TestStore) {
                 throw new Error(resp.error.title);
             }
 
-            assert.isTrue(resp.ok);            
+            assert.isTrue(resp.ok);
             assert.jsonSchema(resp.value, schema);
 
             // use this token for subsequent requests
