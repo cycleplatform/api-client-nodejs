@@ -13,7 +13,7 @@ export function testFetchProviderDcs({ store }: TestParams) {
     before(() => {
         schema = getSchema(
             "resources/infrastructure/provider/DataCenter.ts",
-            "DataCenter",
+            "Collection",
         );
     });
 
@@ -35,8 +35,6 @@ export function testFetchProviderDcs({ store }: TestParams) {
         }
 
         assert.isTrue(resp.ok);
-        resp.value.data.forEach(dc => assert.jsonSchema(dc, schema));
-        // TODO change to collection schema validation once errors are resolved
-        // assert.jsonSchema(resp.value.data, schema);
+        assert.jsonSchema(resp.value, schema);
     });
 }
