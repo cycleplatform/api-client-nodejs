@@ -17,7 +17,7 @@ import {
 export type Collection = CollectionDoc<Environment>;
 export type Single = SingleDoc<Environment>;
 
-export interface Environment extends Resource {
+export interface Environment extends Resource<EnvironmentMeta> {
     name: string;
     about: {
         description: string;
@@ -37,6 +37,29 @@ export type EnvironmentState =
     | "cloning"
     | "deleting"
     | "deleted";
+
+export interface EnvironmentMeta {
+    counts: {
+        containers: {
+            new: number;
+            starting: number;
+            running: number;
+            stopping: number;
+            stopped: number;
+            deleting: number;
+            deleted: number;
+        };
+        instances: {
+            new: number;
+            starting: number;
+            running: number;
+            stopping: number;
+            stopped: number;
+            deleting: number;
+            deleted: number;
+        };
+    };
+}
 
 export interface CreateParams {
     name: string;
