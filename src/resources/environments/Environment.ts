@@ -39,7 +39,7 @@ export type EnvironmentState =
     | "deleted";
 
 export interface EnvironmentMeta {
-    counts: {
+    counts?: {
         containers: {
             new: number;
             starting: number;
