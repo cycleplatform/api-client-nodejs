@@ -42,7 +42,7 @@ export interface Network {
 
 export interface DNS {
     domain?: string;
-    nameservers: string[];
+    nameservers?: string[];
 }
 
 export interface Resources {
