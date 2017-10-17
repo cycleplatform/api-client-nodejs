@@ -65,6 +65,7 @@ export const links = {
     projects: () => ({
         collection: () => `/projects`,
         single: () => `/projects/current`,
+        capabilities: () => `/projects/capabilities`,
         invites: () => ({
             collection: () => `/projects/current/invites`,
         }),
