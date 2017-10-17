@@ -2,7 +2,7 @@ export interface QueryParams {
     include?: string[];
     meta?: string[];
     sort?: string[];
-    filter?: { [key: string]: string };
+    filter?: { [key: string]: string | string[] };
     page?: {
         number: number;
         size: number;
