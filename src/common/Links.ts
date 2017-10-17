@@ -62,6 +62,10 @@ export const links = {
         single: (id: ResourceId) => `/jobs/${id}`,
     }),
 
+    notifications: () => ({
+        collection: () => `/notifications`,
+    }),
+
     projects: () => ({
         collection: () => `/projects`,
         single: () => `/projects/current`,
