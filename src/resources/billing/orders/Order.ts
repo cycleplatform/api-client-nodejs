@@ -45,15 +45,17 @@ export interface Order extends Resource {
 }
 
 export interface CreateParams {
-    servers?: Array<{
-        id: ResourceId;
-        datacenter_id: ResourceId;
-        count: number;
-    }>;
+    servers?: OrderServer[];
     ip_plan_id?: ResourceId;
     bandwidth_plan_id?: ResourceId;
     support_plan_id?: ResourceId;
     term_length?: TermLength;
+}
+
+export interface OrderServer {
+    id: ResourceId;
+    datacenter_id: ResourceId;
+    count: number;
 }
 
 export interface Item {
