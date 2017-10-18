@@ -3,7 +3,7 @@ import { Time } from "../../common/Structs";
 export interface Term {
     start: Time;
     end: Time;
-    length: TermLength;
+    renew?: TermLength;
 }
 
 export type TermLength = "once" | "monthly" | "yearly";

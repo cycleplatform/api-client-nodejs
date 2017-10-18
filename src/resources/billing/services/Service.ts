@@ -4,6 +4,7 @@ import {
     StandardEvents,
     ResourceState,
     UserScope,
+    Mills,
 } from "../../../common/Structs";
 import { Term } from "../Term";
 import { Item } from "./Item";
@@ -39,5 +40,6 @@ export interface Summary {
     service_id: ResourceId;
     title: string;
     term: Term;
-    price: number;
+    price: Mills;
+    discount: Mills;
 }

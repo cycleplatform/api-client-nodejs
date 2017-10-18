@@ -6,15 +6,15 @@ import {
     Resource,
     Settings,
     SingleDoc,
-    Mills,
 } from "../../common/Structs";
+import { Amount } from "../billing";
 
 export type Collection = CollectionDoc<IpsPlan>;
 export type Single = SingleDoc<IpsPlan>;
 
 export interface IpsPlan extends Resource {
     quantity: number;
-    price: Mills;
+    price: Amount;
 }
 
 export async function getCollection({

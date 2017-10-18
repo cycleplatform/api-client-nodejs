@@ -6,15 +6,15 @@ import {
     Resource,
     Settings,
     SingleDoc,
-    Mills,
 } from "../../common/Structs";
+import { Amount } from "../billing";
 
 export type Collection = CollectionDoc<SupportPlan>;
 export type Single = SingleDoc<SupportPlan>;
 
 export interface SupportPlan extends Resource {
     name: string;
-    price: Mills;
+    price: Amount;
     description: string;
 }
 
