@@ -23,11 +23,11 @@ export async function clientCredentialsGrant(
         const resp = await fetch(url, {
             method: "POST",
             body: `grant_type=client_credentials&${queryParams}`,
-            headers: {
+            headers: new Headers({
                 "Content-type":
                     "application/x-www-form-urlencoded; charset=UTF-8",
                 Accept: "application/json",
-            },
+            }),
         });
         if (!resp.ok) {
             const err: OAuthError = await resp.json();

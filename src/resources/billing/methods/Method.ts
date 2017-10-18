@@ -6,11 +6,11 @@ import {
     ResourceState,
     ProjectRequiredSettings,
     UserScope,
-} from "../../common/Structs";
-import * as API from "../../common/Api";
-import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+} from "../../../common/Structs";
+import * as API from "../../../common/Api";
+import { Token } from "../../../auth";
+import { QueryParams } from "../../../common/QueryParams";
+import { links } from "../../../common/Links";
 
 export type Collection = CollectionDoc<Method>;
 export type Single = SingleDoc<Method>;

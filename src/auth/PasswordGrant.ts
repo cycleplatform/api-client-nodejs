@@ -29,10 +29,10 @@ export async function passwordGrant(
             method: "POST",
             body: `grant_type=password&${queryParams}`,
             credentials: "include", // support registered device cookie
-            headers: {
+            headers: new Headers({
                 "Content-type": "application/x-www-form-urlencoded",
                 Accept: "application/json",
-            },
+            }),
         });
         if (!resp.ok) {
             const err: OAuthError = await resp.json();

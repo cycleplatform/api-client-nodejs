@@ -8,6 +8,7 @@ import {
     SingleDoc,
     Mills,
 } from "../../common/Structs";
+import { Amount } from "../billing";
 
 export type Collection = CollectionDoc<BandwidthPlan>;
 export type Single = SingleDoc<BandwidthPlan>;
@@ -19,7 +20,7 @@ export interface BandwidthPlan extends Resource {
 }
 
 export interface BandwidthPricing {
-    fixed: Mills;
+    fixed: Amount;
     overage: {
         cost: Mills;
         per: string;

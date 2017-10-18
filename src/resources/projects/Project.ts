@@ -2,7 +2,6 @@ import { Token } from "../../auth";
 import * as API from "../../common/Api";
 import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
-import { Profile } from "../billing";
 import {
     CollectionDoc,
     Resource,
@@ -20,7 +19,9 @@ export type ProjectState = "new" | "live" | "deleting" | "deleted";
 export interface Project extends Resource {
     name: string;
     events: StandardEvents;
-    billing: Profile;
+    billing: {
+        disabled: boolean;
+    };
     state: ResourceState<ProjectState>;
 }
 

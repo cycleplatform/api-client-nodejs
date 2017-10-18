@@ -1,10 +1,9 @@
-import * as Orders from "./Order";
-import * as Methods from "./Method";
-import * as Invoices from "./Invoice";
-import * as Services from "./Service";
-export { Orders, Methods, Invoices, Services };
-export * from "./Profile";
-export * from "./LineItem";
+import * as Credits from "./credits";
+import * as Invoices from "./invoices";
+import * as Methods from "./methods";
+import * as Orders from "./orders";
+import * as Services from "./services";
+
+export { Credits, Invoices, Methods, Orders, Services };
+export * from "./Amount";
 export * from "./Term";
-export * from "./Payment";
-export * from "./Credit";

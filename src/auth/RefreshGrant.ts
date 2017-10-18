@@ -26,10 +26,10 @@ export async function refreshGrant(
         const resp = await fetch(url, {
             method: "POST",
             body: `grant_type=refresh_token&${queryParams}`,
-            headers: {
+            headers: new Headers({
                 "Content-type": "application/x-www-form-urlencoded",
                 Accept: "application/json",
-            },
+            }),
         });
         if (!resp.ok) {
             const err: OAuthError = await resp.json();

@@ -10,28 +10,30 @@ import {
     Settings,
     UserScope,
     CreatedTask,
-} from "../../common/Structs";
-import * as API from "../../common/Api";
-import { Term, TermLength } from "./Term";
-import { Payment } from "./Payment";
-import { Credit } from "./Credit";
-import { LineItem } from "./LineItem";
-import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+    Mills,
+    ResourceState,
+} from "../../../common/Structs";
+import * as API from "../../../common/Api";
+import { Term, TermLength } from "../Term";
+import { Token } from "../../../auth";
+import { QueryParams } from "../../../common/QueryParams";
+import { links } from "../../../common/Links";
+import { Item as ServiceItem } from "../services/Item";
+import { Amount } from "../Amount";
+import { Discount } from "../discounts";
 
 export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;
 
+export type BillingState = "new" | "live" | "expired" | "deleting" | "deleted";
+
 export interface Order extends Resource {
+    project_id: ResourceId;
     owner: UserScope;
     term: Term;
-    auto_renew: boolean;
     approved: boolean;
-    items: LineItem[];
-    charges: number;
-    payments: Payment[];
-    credits: Credit[];
+    items: Item[];
+    total_price: Mills;
     events: StandardEvents & {
         paid: Time;
         payment_attempt: Time;
@@ -39,21 +41,27 @@ export interface Order extends Resource {
         voided: Time;
         applied_late_fee: Time;
     };
+    state: ResourceState<BillingState>;
 }
 
-export interface OrderBuilder {
-    servers?: ServerOrder[];
-    support_plan_id?: ResourceId;
-    bandwidth_plan_id?: ResourceId;
-    ips_plan_id?: ResourceId;
-    auto_renew?: boolean;
-    term_length?: TermLength;
+export interface CreateParams {
+    servers: Array<{
+        id: ResourceId;
+        datacenter_id: ResourceId;
+        count: number;
+    }>;
+    ip_plan_id: ResourceId;
+    bandwidth_plan_id: ResourceId;
+    support_plan_id: ResourceId;
+    term_length: TermLength;
 }
 
-export interface ServerOrder {
+export interface Item {
     id: ResourceId;
-    count: number;
-    datacenter_id: ResourceId;
+    service: ServiceItem;
+    description: string;
+    price: Amount;
+    discount: Discount;
 }
 
 export async function getSingle({
@@ -68,7 +76,10 @@ export async function getSingle({
     settings: ProjectRequiredSettings;
 }) {
     return API.getRequest<Single>({
-        target: links.billing().orders().single(id),
+        target: links
+            .billing()
+            .orders()
+            .single(id),
         query,
         token,
         settings,
@@ -81,13 +92,16 @@ export async function create({
     query,
     settings,
 }: {
-    value: OrderBuilder;
+    value: CreateParams;
     token: Token;
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
     return API.postRequest<Single>({
-        target: links.billing().orders().collection(),
+        target: links
+            .billing()
+            .orders()
+            .collection(),
         value,
         query,
         token,
@@ -103,13 +117,16 @@ export async function update({
     settings,
 }: {
     id: ResourceId;
-    value: Partial<OrderBuilder>;
+    value: Partial<CreateParams>;
     token: Token;
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
     return API.patchRequest<Single>({
-        target: links.billing().orders().single(id),
+        target: links
+            .billing()
+            .orders()
+            .single(id),
         value,
         query,
         token,
@@ -154,7 +171,10 @@ export async function task({
     settings?: Settings;
 }) {
     return API.postRequest<CreatedTask<OrderAction>>({
-        target: links.billing().orders().tasks(id),
+        target: links
+            .billing()
+            .orders()
+            .tasks(id),
         value,
         query,
         token,

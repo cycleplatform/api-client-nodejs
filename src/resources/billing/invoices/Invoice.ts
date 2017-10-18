@@ -7,14 +7,15 @@ import {
     ResourceState,
     Time,
     ProjectRequiredSettings,
-} from "../../common/Structs";
-import * as API from "../../common/Api";
-import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+} from "../../../common/Structs";
+import * as API from "../../../common/Api";
+import { Token } from "../../../auth";
+import { QueryParams } from "../../../common/QueryParams";
+import { links } from "../../../common/Links";
 import { Payment } from "./Payment";
 import { Credit } from "./Credit";
-import { Service } from "./Service";
+import { LateFee } from "./LateFee";
+import { Summary as ServiceSummary } from "../services";
 
 export type Collection = CollectionDoc<Invoice>;
 export type Single = SingleDoc<Invoice>;
@@ -22,9 +23,10 @@ export type Single = SingleDoc<Invoice>;
 export interface Invoice extends Resource {
     project_id: ResourceId;
     approved: boolean;
-    services: Service[];
+    services: ServiceSummary[];
     payments: Payment[];
     credits: Credit[];
+    late_fees: LateFee[];
     charges: number;
     events: StandardEvents & {
         billed?: Time;
@@ -60,7 +62,10 @@ export async function getCollection({
     settings: ProjectRequiredSettings;
 }) {
     return API.getRequest<Collection>({
-        target: links.billing().invoices().collection(),
+        target: links
+            .billing()
+            .invoices()
+            .collection(),
         query,
         token,
         settings,

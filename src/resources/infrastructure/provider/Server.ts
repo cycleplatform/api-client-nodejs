@@ -6,12 +6,12 @@ import {
     Resource,
     Settings,
     SingleDoc,
-    Mills,
     ResourceId,
     Includes,
 } from "../../../common/Structs";
 import { DataCenter } from "./DataCenter";
 import { ProviderName } from "./Provider";
+import { Amount } from "../../billing";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
@@ -97,8 +97,8 @@ export interface ServerFeatures {
 }
 
 export interface ServerPricing {
-    infrastructure: Mills;
-    licensing: Mills;
+    infrastructure: Amount;
+    licensing: Amount;
 }
 
 export async function getCollection({
@@ -111,7 +111,10 @@ export async function getCollection({
     settings?: Settings;
 }) {
     return API.getRequest<Collection>({
-        target: links.infrastructure().providers().servers(provider),
+        target: links
+            .infrastructure()
+            .providers()
+            .servers(provider),
         query,
         settings,
     });
