@@ -20,7 +20,7 @@ import { QueryParams } from "../../../common/QueryParams";
 import { links } from "../../../common/Links";
 import { Item as ServiceItem } from "../services/Item";
 import { Amount } from "../Amount";
-import { Discount } from "../discounts";
+import { AssociatedDiscount } from "../discounts";
 
 export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;
@@ -45,15 +45,15 @@ export interface Order extends Resource {
 }
 
 export interface CreateParams {
-    servers: Array<{
+    servers?: Array<{
         id: ResourceId;
         datacenter_id: ResourceId;
         count: number;
     }>;
-    ip_plan_id: ResourceId;
-    bandwidth_plan_id: ResourceId;
-    support_plan_id: ResourceId;
-    term_length: TermLength;
+    ip_plan_id?: ResourceId;
+    bandwidth_plan_id?: ResourceId;
+    support_plan_id?: ResourceId;
+    term_length?: TermLength;
 }
 
 export interface Item {
@@ -61,7 +61,7 @@ export interface Item {
     service: ServiceItem;
     description: string;
     price: Amount;
-    discount: Discount;
+    discount: AssociatedDiscount;
 }
 
 export async function getSingle({
@@ -117,7 +117,7 @@ export async function update({
     settings,
 }: {
     id: ResourceId;
-    value: Partial<CreateParams>;
+    value: CreateParams;
     token: Token;
     query?: QueryParams;
     settings: ProjectRequiredSettings;

@@ -8,6 +8,7 @@ import {
 import { Term } from "../Term";
 import { Item } from "./Item";
 import { Amount } from "../Amount";
+import { AssociatedDiscount } from "../discounts";
 
 export interface Service {
     id: ResourceId;
@@ -23,6 +24,7 @@ export interface Service {
         credited?: Time;
         voided?: Time;
     };
+    discount: AssociatedDiscount;
     price: Amount;
     term: Term;
     state: ResourceState;
