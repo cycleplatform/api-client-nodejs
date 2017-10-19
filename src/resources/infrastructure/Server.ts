@@ -48,8 +48,7 @@ export type ServerState =
     | "new"
     | "live"
     | "provisioning"
-    | "shutting_down"
-    | "shut_down"
+    | "offline"
     | "deleting"
     | "deleted";
 
