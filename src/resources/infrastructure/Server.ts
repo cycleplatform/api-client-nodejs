@@ -44,7 +44,14 @@ export interface ServerIncludes extends Includes {
     };
 }
 
-export type ServerState = "new" | "live" | "updating" | "deleting" | "deleted";
+export type ServerState =
+    | "new"
+    | "live"
+    | "provisioning"
+    | "shutting_down"
+    | "shut_down"
+    | "deleting"
+    | "deleted";
 
 export interface ServerProvider {
     id: ResourceId;
