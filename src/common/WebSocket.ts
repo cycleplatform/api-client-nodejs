@@ -28,6 +28,7 @@ export async function connectToSocket<T>({
                         : JSON.parse(e.data);
                     onMessage(payload);
                 } catch (e) {
+                    // tslint:disable-next-line:no-console
                     console.warn("Unable to decode payload");
                 }
             };
