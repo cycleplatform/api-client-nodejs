@@ -1,6 +1,6 @@
-import * as API from "../../common/Api";
-import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
+import * as API from "../../../common/Api";
+import { Token } from "../../../auth";
+import { QueryParams } from "../../../common/QueryParams";
 import {
     CollectionDoc,
     SingleDoc,
@@ -11,10 +11,10 @@ import {
     StandardEvents,
     Time,
     Includes,
-} from "../../common/Structs";
-import { links } from "../../common/Links";
-import { Stats, Telemetry } from "./stats";
-import { DataCenters, Servers, Provider } from "./provider";
+} from "../../../common/Structs";
+import { links } from "../../../common/Links";
+import { Stats, Telemetry } from "../stats";
+import { DataCenters, Servers, Provider } from "../provider";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
