@@ -18,7 +18,7 @@ export async function connectToSocket<T>({
 }: SocketConnectParams<T>): Promise<ApiResult<WebSocket>> {
     try {
         const ws = new WebSocket(
-            `${makeUrl(settings)}${target}?token=${token}`,
+            `${makeUrl(settings, true)}${target}?token=${token}`,
         );
         if (onMessage) {
             ws.onmessage = e => {

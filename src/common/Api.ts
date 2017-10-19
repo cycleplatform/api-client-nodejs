@@ -16,13 +16,22 @@ export interface ResultFail<T> {
     error: T;
 }
 
-export function makeUrl(settings?: Settings) {
+export function makeUrl(settings?: Settings, websocket?: boolean) {
+    let secure = true;
+    if (typeof location !== "undefined") {
+        secure = location.protocol === "https:";
+    }
+
+    const prefix = websocket
+        ? `ws${secure ? "s" : undefined}://`
+        : `http${secure ? "s" : undefined}://`;
+
     if (settings && settings.url) {
-        return settings.url;
+        return `${prefix}${settings.url}`;
     }
 
     // Default URL returned. Version will be updated here if changed
-    return `https://api.cycle.io/v1`;
+    return `${prefix}api.cycle.io/v1`;
 }
 
 async function makeRequest<T>(
