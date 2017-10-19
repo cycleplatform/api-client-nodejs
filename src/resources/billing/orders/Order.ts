@@ -27,7 +27,7 @@ export type Single = SingleDoc<Order>;
 
 export type BillingState = "new" | "live" | "expired" | "deleting" | "deleted";
 
-export interface Order extends Resource {
+export interface Order extends Resource<OrderMeta> {
     project_id: ResourceId;
     owner: UserScope;
     term: Term;
@@ -50,6 +50,13 @@ export interface CreateParams {
     bandwidth_plan_id?: ResourceId;
     support_plan_id?: ResourceId;
     term_length?: TermLength;
+}
+
+export interface OrderMeta {
+    due?: {
+        term: Term;
+        amount: Mills;
+    };
 }
 
 export interface OrderServer {
