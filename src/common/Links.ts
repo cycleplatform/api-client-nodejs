@@ -44,7 +44,7 @@ export const links = {
     infrastructure: () => ({
         servers: () => ({
             collection: () => `/infrastructure/servers`,
-            server: (id: ResourceId) => `/infrastructure/servers/${id}`,
+            single: (id: ResourceId) => `/infrastructure/servers/${id}`,
             telemetry: (id: ResourceId) =>
                 `/infrastructure/servers/${id}/telemetry`,
         }),

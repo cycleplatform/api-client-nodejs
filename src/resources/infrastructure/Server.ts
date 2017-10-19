@@ -3,6 +3,7 @@ import { Token } from "../../auth";
 import { QueryParams } from "../../common/QueryParams";
 import {
     CollectionDoc,
+    SingleDoc,
     Settings,
     Resource,
     ResourceId,
@@ -16,6 +17,7 @@ import { Stats, Telemetry } from "./stats";
 import { DataCenters, Servers, Provider } from "./provider";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
+export type Single = SingleDoc<Server>;
 
 export { Telemetry };
 
@@ -73,6 +75,28 @@ export async function getCollection({
             .infrastructure()
             .servers()
             .collection(),
+        query,
+        settings,
+    });
+}
+
+export async function getSingle({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.getRequest<Single>({
+        token,
+        target: links
+            .infrastructure()
+            .servers()
+            .single(id),
         query,
         settings,
     });
