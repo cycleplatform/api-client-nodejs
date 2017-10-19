@@ -23,8 +23,8 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
     }
 
     const prefix = websocket
-        ? `ws${secure ? "s" : undefined}://`
-        : `http${secure ? "s" : undefined}://`;
+        ? `ws${secure ? "s" : ""}://`
+        : `http${secure ? "s" : ""}://`;
 
     if (settings && settings.url) {
         return `${prefix}${settings.url}`;
