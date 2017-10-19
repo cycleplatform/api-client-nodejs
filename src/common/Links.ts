@@ -8,6 +8,7 @@ export const links = {
             tasks: (id: ResourceId) => `/invites/${id}`,
         }),
         memberships: () => `/account/memberships`,
+        pipeline: () => `/account/pipeline`,
     }),
 
     billing: () => ({
@@ -81,6 +82,7 @@ export const links = {
             collection: () => `/projects/current/api-keys`,
             single: (id: ResourceId) => `/projects/current/api-keys/${id}`,
         }),
+        pipeline: () => `/projects/current/pipeline`,
     }),
 
     plans: () => ({

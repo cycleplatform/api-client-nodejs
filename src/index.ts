@@ -15,6 +15,7 @@ import * as Projects from "./resources/projects";
 import { QueryParams } from "./common/QueryParams";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/Structs";
+import * as SuggestionPipeline from "./pipeline";
 
 export {
     API,
@@ -33,4 +34,5 @@ export {
     QueryParams,
     Stacks,
     Structs,
+    SuggestionPipeline,
 };
