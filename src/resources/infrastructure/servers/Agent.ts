@@ -15,7 +15,9 @@ export interface AgentPipelineParams {
 }
 
 export interface AgentPipelineResponse {
-    data: string;
+    data: {
+        token: string;
+    };
 }
 
 export async function connectToAgentSocket(params: AgentPipelineParams) {
@@ -36,7 +38,7 @@ export async function connectToAgentSocket(params: AgentPipelineParams) {
 
     return connectToSocket({
         target,
-        token: secretResp.value.data,
+        token: secretResp.value.data.token,
         settings: params.settings,
         onMessage: params.onMessage,
         noJsonDecode: true,

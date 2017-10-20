@@ -38,7 +38,9 @@ export interface ProjectPipelineParams {
 }
 
 export interface ProjectSecretResponse {
-    data: string;
+    data: {
+        token: string;
+    };
 }
 
 export async function connectToProjectPipeline(params: ProjectPipelineParams) {
@@ -56,7 +58,7 @@ export async function connectToProjectPipeline(params: ProjectPipelineParams) {
 
     return connectToSocket<ProjectPipelineEvent>({
         target,
-        token: secretResp.value.data,
+        token: secretResp.value.data.token,
         settings: params.settings,
         onMessage: params.onMessage,
     });

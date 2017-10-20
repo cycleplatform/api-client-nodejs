@@ -16,7 +16,9 @@ export interface AccountPipelineParams {
 export type AccountPipelineEvent = PipelineEvent<AccountPipelineEventHeader>;
 
 export interface AccountSecretResponse {
-    data: string;
+    data: {
+        token: string;
+    };
 }
 
 export async function connectToAccountPipeline(params: AccountPipelineParams) {
@@ -34,7 +36,7 @@ export async function connectToAccountPipeline(params: AccountPipelineParams) {
 
     return connectToSocket<AccountPipelineEvent>({
         target,
-        token: secretResp.value.data,
+        token: secretResp.value.data.token,
         settings: params.settings,
         onMessage: params.onMessage,
     });
