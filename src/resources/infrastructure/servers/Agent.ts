@@ -15,10 +15,7 @@ export interface AgentPipelineParams {
 }
 
 export interface AgentPipelineResponse {
-    data: {
-        token: string;
-        project_id: ResourceId;
-    };
+    data: string;
 }
 
 export async function connectToAgentSocket(params: AgentPipelineParams) {
@@ -26,6 +23,7 @@ export async function connectToAgentSocket(params: AgentPipelineParams) {
         .infrastructure()
         .servers()
         .agent(params.id);
+
     const secretResp = await API.getRequest<AgentPipelineResponse>({
         target,
         token: params.token,
@@ -38,7 +36,7 @@ export async function connectToAgentSocket(params: AgentPipelineParams) {
 
     return connectToSocket({
         target,
-        token: secretResp.value.data.token,
+        token: secretResp.value.data,
         settings: params.settings,
         onMessage: params.onMessage,
         noJsonDecode: true,

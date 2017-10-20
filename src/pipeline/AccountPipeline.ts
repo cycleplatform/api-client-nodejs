@@ -1,6 +1,6 @@
 import * as API from "../common/Api";
 import { Token } from "../auth";
-import { ResourceId, ProjectRequiredSettings } from "../common/Structs";
+import { ProjectRequiredSettings } from "../common/Structs";
 import { links } from "../common/Links";
 import { connectToSocket } from "../common/WebSocket";
 import { PipelineEvent } from "./PipelineEvent";
@@ -16,10 +16,7 @@ export interface AccountPipelineParams {
 export type AccountPipelineEvent = PipelineEvent<AccountPipelineEventHeader>;
 
 export interface AccountSecretResponse {
-    data: {
-        token: string;
-        project_id: ResourceId;
-    };
+    data: string;
 }
 
 export async function connectToAccountPipeline(params: AccountPipelineParams) {
@@ -37,7 +34,7 @@ export async function connectToAccountPipeline(params: AccountPipelineParams) {
 
     return connectToSocket<AccountPipelineEvent>({
         target,
-        token: secretResp.value.data.token,
+        token: secretResp.value.data,
         settings: params.settings,
         onMessage: params.onMessage,
     });
