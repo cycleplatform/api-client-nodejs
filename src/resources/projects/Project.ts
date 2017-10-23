@@ -15,7 +15,13 @@ import {
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
 
-export type ProjectState = "new" | "live" | "deleting" | "deleted";
+export type ProjectState =
+    | "new"
+    | "configuring" // placing an order
+    | "provisioning" // order confirmed, invoice billed
+    | "live" // at least 1 server online
+    | "deleting"
+    | "deleted";
 export interface Project extends Resource {
     name: string;
     events: StandardEvents;

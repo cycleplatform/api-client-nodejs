@@ -26,10 +26,7 @@ export function testFetchNotifications({ store }: TestParams) {
 
         const resp = await Notifications.getCollection({
             token,
-            settings: {
-                url: process.env.API_URL || "",
-                project: process.env.PROJECT_ID || "",
-            },
+            settings: store.state.settings,
         });
 
         if (!resp.ok) {

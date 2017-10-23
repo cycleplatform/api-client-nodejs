@@ -52,6 +52,7 @@ export async function connectToProjectPipeline(params: ProjectPipelineParams) {
         settings: params.settings,
     });
 
+    console.log("secret", secretResp);
     if (!secretResp.ok) {
         return secretResp;
     }

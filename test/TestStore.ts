@@ -1,7 +1,9 @@
-import { Token } from "../src/auth/Token";
+import { Token } from "../src/auth";
+import { ProjectRequiredSettings } from "../src/common/Structs";
 
 interface TestStoreState {
     token: Token;
+    settings: ProjectRequiredSettings;
     active: {
         project: string;
         environment: string;
@@ -18,6 +20,11 @@ export class TestStore {
             scope: "",
             created: 0,
             token_type: "bearer",
+        },
+        settings: {
+            url: process.env.API_URL,
+            useHttp: process.env.USE_HTTP === "true" || false,
+            project: process.env.PROJECT_ID || "",
         },
         active: {
             project: "",

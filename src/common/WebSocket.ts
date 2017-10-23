@@ -17,6 +17,7 @@ export async function connectToSocket<T>({
     noJsonDecode,
 }: SocketConnectParams<T>): Promise<ApiResult<WebSocket>> {
     try {
+        console.log("WEBSOCKET DEF", typeof WebSocket);
         const ws = new WebSocket(
             `${makeUrl(settings, true)}${target}?token=${token}`,
         );

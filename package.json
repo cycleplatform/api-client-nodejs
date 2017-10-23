@@ -20,19 +20,19 @@
         "@types/chai-json-schema": "^1.4.3",
         "@types/dotenv": "^4.0.0",
         "@types/mocha": "^2.2.29",
-        "@types/node": "^8.0.34",
+        "@types/node": "^8.0.46",
         "@types/speakeasy": "^2.0.1",
         "chai": "^4.1.2",
         "chai-json-schema": "^1.4.0",
         "dotenv": "^4.0.0",
         "husky": "^0.14.3",
-        "lint-staged": "^4.2.3",
+        "lint-staged": "^4.3.0",
         "mocha": "^4.0.1",
         "prettier": "^1.7.4",
         "speakeasy": "^2.0.0",
         "ts-node": "^3.0.6",
-        "tslint": "^5.4.3",
-        "tslint-config-prettier": "^1.1.0",
+        "tslint": "^5.8.0",
+        "tslint-config-prettier": "^1.6.0",
         "typescript": "^2.6.0-rc",
         "typescript-json-schema": "^0.17.0"
     },
@@ -43,6 +43,8 @@
     "author": "Petrichor, Inc.",
     "license": "Apache-2.0",
     "dependencies": {
-        "isomorphic-fetch": "^2.2.1"
+        "@types/ws": "^3.2.0",
+        "isomorphic-fetch": "^2.2.1",
+        "ws": "^3.2.0"
     }
 }

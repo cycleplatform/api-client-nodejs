@@ -22,6 +22,10 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
         secure = location.protocol === "https:";
     }
 
+    if (settings && settings.useHttp) {
+        secure = false;
+    }
+
     const prefix = websocket
         ? `ws${secure ? "s" : ""}://`
         : `http${secure ? "s" : ""}://`;
@@ -91,7 +95,7 @@ export async function getRequest<T>({
         `${makeUrl(settings)}${target}?${formatParams(query)}`,
         ApiRequestInit,
     );
-    return await makeRequest<T>(req, token, settings);
+    return makeRequest<T>(req, token, settings);
 }
 
 export async function postRequest<T>({
@@ -118,7 +122,7 @@ export async function postRequest<T>({
         },
     );
 
-    return await makeRequest<T>(req, token, settings);
+    return makeRequest<T>(req, token, settings);
 }
 
 export async function patchRequest<T>({
@@ -145,7 +149,7 @@ export async function patchRequest<T>({
         },
     );
 
-    return await makeRequest<T>(req, token, settings);
+    return makeRequest<T>(req, token, settings);
 }
 
 export async function deleteRequest<T = CreatedTask<"delete">>({
@@ -169,5 +173,5 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
         },
     );
 
-    return await makeRequest<T>(req, token, settings);
+    return makeRequest<T>(req, token, settings);
 }

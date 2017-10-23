@@ -4,10 +4,15 @@
         "tslint-config-prettier"
     ],
     "rules": {
-        "interface-name": [false],
+        "interface-name": [
+            false
+        ],
         "object-literal-sort-keys": false,
-        "jsx-boolean-value": ["never"],
+        "jsx-boolean-value": [
+            "never"
+        ],
         "jsx-no-lambda": true,
+        "no-implicit-dependencies": false,
         "ordered-imports": [
             false
         ],

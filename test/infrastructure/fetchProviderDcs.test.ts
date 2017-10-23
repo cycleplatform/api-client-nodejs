@@ -27,7 +27,7 @@ export function testFetchProviderDcs({ store }: TestParams) {
         const resp = await Infrastructure.Providers.DataCenters.getCollection({
             provider,
             query: {},
-            settings: { url: process.env.API_URL },
+            settings: store.state.settings,
         });
 
         if (!resp.ok) {

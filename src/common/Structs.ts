@@ -96,6 +96,11 @@ export interface Settings {
      * Sets the project scope
      */
     project?: ResourceId;
+
+    /**
+     * allow force http
+     */
+    useHttp?: boolean;
 }
 
 export interface ProjectRequiredSettings extends Settings {

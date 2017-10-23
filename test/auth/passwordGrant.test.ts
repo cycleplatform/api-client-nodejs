@@ -27,7 +27,10 @@ export function testPasswordGrant(store: TestStore) {
                     client_secret: process.env.CLIENT_SECRET,
                     totp_passcode: totpToken,
                 },
-                { url: process.env.AUTH_URL },
+                {
+                    url: process.env.AUTH_URL,
+                    useHttp: store.state.settings.useHttp,
+                },
             );
 
             if (!resp.ok) {

@@ -2,8 +2,9 @@ import { assert } from "chai";
 import { Projects } from "../../src/";
 import * as TJS from "typescript-json-schema";
 import { getSchema } from "../tjs";
+import { TestStore } from "../TestStore";
 
-export function testFetchProjectCapabilities() {
+export function testFetchProjectCapabilities(store: TestStore) {
     let schema: TJS.Definition | null;
     before(() => {
         schema = getSchema("resources/projects/Capability.ts", "CapabilityDoc");
@@ -15,7 +16,7 @@ export function testFetchProjectCapabilities() {
         }
 
         const resp = await Projects.getCapabilities({
-            settings: { url: process.env.API_URL },
+            settings: store.state.settings,
         });
 
         if (!resp.ok) {

@@ -15,10 +15,7 @@ export function testDeleteEnvironment({ store, schema }: TestParams) {
             id: store.state.active.environment,
             token,
             query: {},
-            settings: {
-                url: process.env.API_URL,
-                project: process.env.PROJECT_ID,
-            },
+            settings: store.state.settings,
         });
 
         if (!resp.ok) {
@@ -28,7 +25,6 @@ export function testDeleteEnvironment({ store, schema }: TestParams) {
         if (!resp.value.data) {
             throw new Error("data field is empty");
         }
-
 
         assert.isTrue(resp.ok);
         assert.jsonSchema(resp.value.data, schema);
