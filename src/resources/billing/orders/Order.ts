@@ -25,7 +25,12 @@ import { AssociatedDiscount } from "../discounts";
 export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;
 
-export type BillingState = "new" | "live" | "expired" | "deleting" | "deleted";
+export type BillingState =
+    | "new"
+    | "processed"
+    | "expired"
+    | "deleting"
+    | "deleted";
 
 export interface Order extends Resource<OrderMeta> {
     project_id: ResourceId;

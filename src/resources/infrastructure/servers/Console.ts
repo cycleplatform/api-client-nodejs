@@ -4,7 +4,7 @@ import { ResourceId, ProjectRequiredSettings } from "../../../common/Structs";
 import { links } from "../../../common/Links";
 import { connectToSocket } from "../../../common/WebSocket";
 
-export interface AgentPipelineParams {
+export interface ConsolePipelineParams {
     id: ResourceId;
     token: Token;
     settings?: ProjectRequiredSettings;
@@ -14,19 +14,20 @@ export interface AgentPipelineParams {
     onMessage?: (v: string) => void;
 }
 
-export interface AgentPipelineResponse {
+export interface ConsolePipelineResponse {
     data: {
         token: string;
+        address: string;
     };
 }
 
-export async function connectToAgentSocket(params: AgentPipelineParams) {
+export async function connectToConsole(params: ConsolePipelineParams) {
     const target = links
         .infrastructure()
         .servers()
-        .agent(params.id);
+        .console(params.id);
 
-    const secretResp = await API.getRequest<AgentPipelineResponse>({
+    const secretResp = await API.getRequest<ConsolePipelineResponse>({
         target,
         token: params.token,
         settings: params.settings,
@@ -37,9 +38,11 @@ export async function connectToAgentSocket(params: AgentPipelineParams) {
     }
 
     return connectToSocket({
-        target,
+        target: "",
         token: secretResp.value.data.token,
-        settings: params.settings,
+        settings: {
+            url: `${secretResp.value.data.address}/v1/console`,
+        },
         onMessage: params.onMessage,
         noJsonDecode: true,
     });
