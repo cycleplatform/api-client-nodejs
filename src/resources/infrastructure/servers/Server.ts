@@ -11,6 +11,7 @@ import {
     StandardEvents,
     Time,
     Includes,
+    CreatedTask,
 } from "../../../common/Structs";
 import { links } from "../../../common/Links";
 import { Stats, Telemetry } from "../stats";
@@ -92,6 +93,28 @@ export async function getSingle({
     settings?: Settings;
 }) {
     return API.getRequest<Single>({
+        token,
+        target: links
+            .infrastructure()
+            .servers()
+            .single(id),
+        query,
+        settings,
+    });
+}
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.deleteRequest<CreatedTask<"delete">>({
         token,
         target: links
             .infrastructure()
