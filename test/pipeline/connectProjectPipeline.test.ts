@@ -17,5 +17,7 @@ export function connectProjectPipeline({ store }: TestParams) {
         if (!resp.ok) {
             throw new Error(resp.error.title);
         }
+
+        resp.value.onopen = () => resp.value.close();
     });
 }
