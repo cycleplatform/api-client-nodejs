@@ -29,6 +29,7 @@ export const links = {
     containers: () => ({
         collection: () => `/containers`,
         single: (id: ResourceId) => `/containers/${id}`,
+        tasks: (id: ResourceId) => `/containers/${id}/tasks`,
     }),
 
     environments: () => ({

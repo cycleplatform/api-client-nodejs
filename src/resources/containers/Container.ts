@@ -15,6 +15,8 @@ import {
     Time,
     UserScope,
     Includes,
+    Task,
+    CreatedTask,
 } from "../../common/Structs";
 import { Features } from "./Features";
 
@@ -157,6 +159,73 @@ export async function update({
     });
 }
 
+export async function start({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "start",
+        },
+    });
+}
+
+export async function stop({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "stop",
+        },
+    });
+}
+
+export type ContainerAction = "start" | "stop";
+export async function task<K = {}>({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: Task<ContainerAction, K>;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return API.postRequest<CreatedTask<ContainerAction, K>>({
+        target: links.containers().tasks(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
 export async function remove({
     id,
     token,
@@ -168,7 +237,7 @@ export async function remove({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.deleteRequest<Single>({
+    return API.deleteRequest<CreatedTask<"delete">>({
         target: links.containers().single(id),
         query,
         token,
