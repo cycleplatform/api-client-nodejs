@@ -14,7 +14,7 @@ import {
     CreatedTask,
     StatefulCounts,
 } from "../../common/Structs";
-import { ContainerState } from "../containers";
+import { ContainerState, Instances } from "../containers";
 
 export type Collection = CollectionDoc<Environment>;
 export type Single = SingleDoc<Environment>;
@@ -44,16 +44,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
 export interface EnvironmentMeta {
     counts?: {
         containers: StatefulCounts<ContainerState>;
-        instances: {
-            new: number;
-            starting: number;
-            reimaging: number;
-            running: number;
-            stopping: number;
-            stopped: number;
-            deleting: number;
-            deleted: number;
-        };
+        instances: StatefulCounts<Instances.InstanceState>;
     };
 }
 
