@@ -1,6 +1,9 @@
-export interface QueryParams {
-    include?: string[];
-    meta?: string[];
+export interface QueryParams<
+    I extends string = string,
+    M extends string = string
+> {
+    include?: I[];
+    meta?: M[];
     sort?: string[];
     filter?: { [key: string]: string | string[] };
     page?: {

@@ -1,3 +1,6 @@
+import { PublicAccount } from "../resources/accounts";
+import { ApiKeys } from "../resources/projects";
+
 /**
  * A unique identifier for this resource
  */
@@ -45,7 +48,12 @@ export type Mills = number;
 export type Days = number;
 
 /**
- * Common fields that can be in any response
+ * Field denoting an IP
+ */
+export type IP = string;
+
+/**
+ * Main API Return
  */
 export interface TopLevel<T extends Meta = {}, K extends Includes = {}> {
     meta?: T;
@@ -79,7 +87,7 @@ export interface Meta {
 
 export interface Includes {
     [key: string]: {
-        [key: string]: Resource;
+        [key: string]: Resource | any;
     };
 }
 
@@ -153,4 +161,19 @@ export type UserScopeType = "account" | "employee" | "api-key" | "visitor";
 export interface UserScope {
     type: UserScopeType;
     id: ResourceId;
+}
+
+/**
+ * Count number of resource of state
+ */
+export type StatefulCounts<K extends string> = { [P in K]: number };
+
+export interface OwnerIncludes {
+    accounts?: {
+        [key: string]: PublicAccount;
+    };
+    api_keys?: {
+        [key: string]: ApiKeys.ApiKey;
+    };
+    // employees
 }

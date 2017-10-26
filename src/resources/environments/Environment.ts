@@ -12,10 +12,19 @@ import {
     StandardEvents,
     UserScope,
     CreatedTask,
+    StatefulCounts,
 } from "../../common/Structs";
+import { ContainerState } from "../containers";
 
 export type Collection = CollectionDoc<Environment>;
 export type Single = SingleDoc<Environment>;
+
+export type EnvironmentState =
+    | "new"
+    | "live"
+    | "cloning"
+    | "deleting"
+    | "deleted";
 
 export interface Environment extends Resource<EnvironmentMeta> {
     name: string;
@@ -26,32 +35,19 @@ export interface Environment extends Resource<EnvironmentMeta> {
     project_id: ResourceId;
     state: ResourceState<EnvironmentState>;
     events: StandardEvents;
+    private_network: {};
     services: {
         dns: EnvService | null;
     };
 }
 
-export type EnvironmentState =
-    | "new"
-    | "live"
-    | "cloning"
-    | "deleting"
-    | "deleted";
-
 export interface EnvironmentMeta {
     counts?: {
-        containers: {
-            new: number;
-            starting: number;
-            running: number;
-            stopping: number;
-            stopped: number;
-            deleting: number;
-            deleted: number;
-        };
+        containers: StatefulCounts<ContainerState>;
         instances: {
             new: number;
             starting: number;
+            reimaging: number;
             running: number;
             stopping: number;
             stopped: number;

@@ -26,6 +26,10 @@ export interface Account extends Resource {
     temp?: boolean;
 }
 
+export interface PublicAccount extends Resource {
+    name: string;
+}
+
 export interface UpdateParams {
     name?: {
         first?: string;

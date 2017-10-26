@@ -1,9 +1,11 @@
-import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
-import { Config, Builds, Stack } from "../stacks";
-import { Image } from "../images";
+import { Token } from "../../../auth";
+import * as API from "../../../common/Api";
+import { QueryParams } from "../../../common/QueryParams";
+import { links } from "../../../common/Links";
+import { Config, Stack } from "../../stacks";
+import { Image } from "../../images";
+import { Server } from "../../infrastructure/servers";
+import { DataCenters } from "../../infrastructure/provider";
 import {
     CollectionDoc,
     Resource,
@@ -18,50 +20,56 @@ import {
     Task,
     CreatedTask,
     OwnerIncludes,
-} from "../../common/Structs";
-import { Features } from "./Features";
+} from "../../../common/Structs";
+import { IPNet } from "../../network";
 
-export type Collection = CollectionDoc<Container, {}, CollectionIncludes>;
-export type Single = SingleDoc<Container>;
-export type ContainerState =
+export type Collection = CollectionDoc<Instance, {}, CollectionIncludes>;
+export type Single = SingleDoc<Instance>;
+export type InstanceState =
     | "new"
     | "starting"
+    | "reimaging"
     | "running"
     | "stopping"
     | "stopped"
     | "deleting"
     | "deleted";
 
-export interface Container extends Resource<CollectionMetas> {
-    name: string;
+export interface Instance extends Resource<InstanceMeta> {
     owner: UserScope;
     project_id: ResourceId;
-    environment_id: ResourceId;
-    stack?: Stack;
-    image?: Image;
-    config: Config;
-    features: Features;
-    state: ResourceState<ContainerState>;
+    container_id: ResourceId;
+    environment: Environment;
+    datacenter_id: ResourceId;
+    server_id: ResourceId;
+    hostname: string;
+    state: ResourceState<InstanceState>;
     events: StandardEvents & {
+        first_boot?: Time;
         started?: Time;
     };
 }
 
+export interface Environment {
+    id: ResourceId;
+    network_id: number;
+    ipv4: IPNet;
+    ipv6: IPNet;
+}
+
 export interface CollectionIncludes extends Includes {
     owner: OwnerIncludes;
-    images: {
-        [key: string]: Image;
+    servers: {
+        [key: string]: Server;
     };
-    stack_builds: {
-        [key: string]: Builds.Build;
-    };
-    stacks: {
-        [key: string]: Stack;
+    datacenters: {
+        [key: string]: DataCenters.DataCenter;
     };
 }
 
-export interface CollectionMetas {
-    instance_counts?: { [key: string]: number };
+// tslint:disable-next-line:no-empty-interface
+export interface InstanceMeta {
+    //
 }
 
 export interface Stack {
@@ -88,7 +96,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams<keyof CollectionIncludes>;
+    query?: QueryParams<keyof CollectionIncludes, keyof InstanceMeta>;
     settings?: Settings;
 }) {
     return API.getRequest<Collection>({
