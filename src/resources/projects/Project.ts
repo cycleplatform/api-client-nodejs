@@ -20,8 +20,10 @@ export type ProjectState =
     | "configuring" // placing an order
     | "provisioning" // order confirmed, invoice billed
     | "live" // at least 1 server online
+    | "inactive"
     | "deleting"
     | "deleted";
+
 export interface Project extends Resource {
     name: string;
     events: StandardEvents;
