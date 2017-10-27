@@ -1,5 +1,5 @@
 import { Time, ResourceId } from "../../../common/structs";
-import { AssiciatedCredit } from "../credits";
+import { AssociatedCredit } from "../credits";
 
 export interface Credit {
     id: ResourceId;

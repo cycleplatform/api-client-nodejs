@@ -28,7 +28,7 @@ export interface Credit {
     state: State<CreditState>;
 }
 
-export interface AssiciatedCredit {
+export interface AssociatedCredit {
     id: ResourceId;
     amount: number;
 }
