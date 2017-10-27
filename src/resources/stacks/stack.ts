@@ -1,24 +1,30 @@
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
-    Settings,
     SingleDoc,
     ResourceId,
     State,
-    StandardEvents,
+    Events,
     UserScope,
     Task,
     CreatedTask,
-} from "../../common/Structs";
-import { StackContainer } from "./StackContainer";
-import { RepoProtocol } from "./StackImage";
+} from "../../common/structs";
+import { Container, RepoProtocol } from "./spec";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
+export type StackState =
+    | "new"
+    | "importing"
+    | "building"
+    | "verifying"
+    | "saving"
+    | "live"
+    | "deleting"
+    | "deleted";
 
 export interface Stack extends Resource {
     name: string;
@@ -26,16 +32,8 @@ export interface Stack extends Resource {
     project_id: ResourceId;
     source: Source;
     state: State<StackState>;
-    events: StandardEvents;
+    events: Events;
 }
-
-export type StackState =
-    | "new"
-    | "live"
-    | "building"
-    | "deploying"
-    | "deleting"
-    | "deleted";
 
 export interface Source {
     repo?: Repo;
@@ -49,13 +47,6 @@ export interface Repo {
     private_key_url?: string;
 }
 
-export interface Spec {
-    name: string;
-    description: string;
-    containers: { [key: string]: StackContainer };
-    annotations: { [key: string]: string };
-}
-
 export async function getCollection({
     token,
     query,
@@ -65,7 +56,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.stacks().collection(),
         query,
         token,
@@ -84,7 +75,7 @@ export async function getSingle({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>({
+    return Request.getRequest<Single>({
         target: links.stacks().single(id),
         query,
         token,
@@ -108,7 +99,7 @@ export async function create({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<Single>({
+    return Request.postRequest<Single>({
         target: links.stacks().collection(),
         value,
         query,
@@ -130,73 +121,9 @@ export async function update({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.patchRequest<Single>({
+    return Request.patchRequest<Single>({
         target: links.stacks().single(id),
         value,
-        query,
-        token,
-        settings,
-    });
-}
-
-export type StackAction = "build";
-export async function task<K = {}>({
-    id,
-    token,
-    value,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    value: Task<StackAction, K>;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.postRequest<CreatedTask<StackAction, K>>({
-        target: links.stacks().tasks(id),
-        value,
-        query,
-        token,
-        settings,
-    });
-}
-
-export async function buildStack({
-    id,
-    token,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return task({
-        id,
-        token,
-        query,
-        settings,
-        value: {
-            action: "build",
-        },
-    });
-}
-
-export async function remove({
-    id,
-    token,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.deleteRequest<Single>({
-        target: links.stacks().single(id),
         query,
         token,
         settings,

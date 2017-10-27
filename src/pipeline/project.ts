@@ -1,7 +1,7 @@
 import { Token } from "../auth";
 import * as Request from "../common/api/request";
 import { links, ProjectRequiredSettings } from "../common/api";
-import { connectToSocket } from "../common/WebSocket";
+import { connectToSocket } from "../common/api/websocket";
 import { PipelineEvent } from "./event";
 
 export type ProjectPipelineEventHeader =

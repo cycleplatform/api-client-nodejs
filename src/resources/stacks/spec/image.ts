@@ -1,4 +1,4 @@
-export interface StackImage {
+export interface Image {
     name: string;
     source: ImageSource;
     preload: boolean;

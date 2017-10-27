@@ -2,12 +2,12 @@ import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { ResourceId, CreatedTask } from "../../../common/structs";
-import { ImageSource } from "../../stacks/StackImage";
+import { Spec } from "../../stacks";
 
-export type ImageAction = "image.import" | "delete";
+export type ImageAction = "import";
 
 export interface BuildParams {
-    source: ImageSource;
+    source: Spec.ImageSource;
 }
 
 export async function build({
@@ -21,7 +21,7 @@ export async function build({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.postRequest<CreatedTask<"image.import">>({
+    return Request.postRequest<CreatedTask<"import">>({
         target: links.images().build(),
         value,
         query,

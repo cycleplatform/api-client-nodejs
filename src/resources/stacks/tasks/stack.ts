@@ -3,9 +3,9 @@ import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type ContainerAction = "start" | "stop";
+export type StackAction = "build";
 
-export async function start({
+export async function buildStack({
     id,
     token,
     query,
@@ -22,29 +22,7 @@ export async function start({
         query,
         settings,
         value: {
-            action: "start",
-        },
-    });
-}
-
-export async function stop({
-    id,
-    token,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return task({
-        id,
-        token,
-        query,
-        settings,
-        value: {
-            action: "stop",
+            action: "build",
         },
     });
 }
@@ -61,7 +39,7 @@ export async function remove({
     settings?: Settings;
 }) {
     return Request.deleteRequest<CreatedTask<"delete">>({
-        target: links.containers().single(id),
+        target: links.stacks().single(id),
         query,
         token,
         settings,
@@ -77,12 +55,12 @@ export async function task<K = {}>({
 }: {
     id: ResourceId;
     token: Token;
-    value: Task<ContainerAction, K>;
+    value: Task<StackAction, K>;
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.postRequest<CreatedTask<ContainerAction, K>>({
-        target: links.containers().tasks(id),
+    return Request.postRequest<CreatedTask<StackAction, K>>({
+        target: links.stacks().tasks(id),
         value,
         query,
         token,
