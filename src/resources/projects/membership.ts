@@ -1,17 +1,14 @@
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
     SingleDoc,
-    StandardEvents,
+    Events,
     State,
     ResourceId,
-    ProjectRequiredSettings,
-    Time,
-} from "../../common/Structs";
+} from "../../common/structs";
 
 export enum Role {
     OWNER,
@@ -23,22 +20,15 @@ export enum Role {
 
 export type Collection = CollectionDoc<Membership>;
 export type Single = SingleDoc<Membership>;
+export type MembershipState = "new" | "active" | "deleting" | "deleted";
+export type MembershipEvent = "accepted" | "declined" | "revoked" | "joined";
 
 export interface Membership extends Resource {
     account_id: ResourceId;
     project_id: ResourceId;
     role: Role;
-    events: MembershipEvents;
+    events: Events<MembershipEvent>;
     state: State<MembershipState>;
-}
-
-export type MembershipState = "new" | "live" | "deleting" | "deleted";
-
-export interface MembershipEvents extends StandardEvents {
-    accepted?: Time;
-    declined?: Time;
-    revoked?: Time;
-    joined?: Time;
 }
 
 /**
@@ -53,7 +43,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: ProjectRequiredSettings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links
             .projects()
             .members()

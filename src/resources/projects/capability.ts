@@ -1,25 +1,5 @@
-import * as API from "../../common/Api";
-import { links } from "../../common/Links";
-import { QueryParams } from "../../common/QueryParams";
-import { Settings } from "../../common/Structs";
-
-export interface CapabilityDoc {
-    data: Capability[];
-}
-
-export async function getCapabilities({
-    query,
-    settings,
-}: {
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return API.getRequest<CapabilityDoc>({
-        target: links.projects().capabilities(),
-        query,
-        settings,
-    });
-}
+import * as Request from "../../common/api/request";
+import { QueryParams, links, Settings } from "../../common/api";
 
 export type Capability =
     | "apikeys-manage"
@@ -56,3 +36,21 @@ export type Capability =
     | "stacks-delete"
     | "stacks-view"
     | "stacks-builds";
+
+export interface CapabilityDoc {
+    data: Capability[];
+}
+
+export async function getCapabilities({
+    query,
+    settings,
+}: {
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return Request.getRequest<CapabilityDoc>({
+        target: links.projects().capabilities(),
+        query,
+        settings,
+    });
+}

@@ -1,18 +1,16 @@
-import * as API from "../../common/Api";
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
     CollectionDoc,
-    Settings,
     Resource,
     ResourceId,
-    StandardEvents,
+    Events,
     State,
     UserScope,
     SingleDoc,
-} from "../../common/Structs";
+} from "../../common/structs";
 import { Capability } from "./Capability";
-import { links } from "../../common/Links";
 
 export type Collection = CollectionDoc<ApiKey>;
 export type Single = SingleDoc<ApiKey>;
@@ -25,7 +23,7 @@ export interface ApiKey extends Resource {
     project_id: ResourceId;
     whitelist: Whitelist;
     state: State<ApiKeyState>;
-    events: StandardEvents;
+    events: Events;
 }
 
 export type ApiKeyState = "live" | "deleting" | "deleted";
@@ -50,7 +48,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         token,
         target: links
             .projects()
@@ -70,7 +68,7 @@ export async function getSingle({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>({
+    return Request.getRequest<Single>({
         token,
         target: links
             .projects()
@@ -92,7 +90,7 @@ export async function create({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<Single>({
+    return Request.postRequest<Single>({
         token,
         target: links
             .projects()

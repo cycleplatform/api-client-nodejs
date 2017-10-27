@@ -1,4 +1,4 @@
-import * as Support from "./Support";
-import * as Bandwidth from "./Bandwidth";
-import * as Ips from "./Ips";
+import * as Support from "./support";
+import * as Bandwidth from "./bandwidth";
+import * as Ips from "./ips";
 export { Support, Bandwidth, Ips };

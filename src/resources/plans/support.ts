@@ -1,12 +1,6 @@
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
-import {
-    CollectionDoc,
-    Resource,
-    Settings,
-    SingleDoc,
-} from "../../common/Structs";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, Settings } from "../../common/api";
+import { CollectionDoc, Resource, SingleDoc } from "../../common/structs";
 import { Amount } from "../billing";
 
 export type Collection = CollectionDoc<SupportPlan>;
@@ -25,7 +19,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.plans().support(),
         query,
         settings,

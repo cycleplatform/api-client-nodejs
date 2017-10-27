@@ -1,13 +1,11 @@
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
-    Settings,
     SingleDoc,
     Mills,
-} from "../../common/Structs";
+} from "../../common/structs";
 import { Amount } from "../billing";
 
 export type Collection = CollectionDoc<BandwidthPlan>;
@@ -34,7 +32,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.plans().bandwidth(),
         query,
         settings,

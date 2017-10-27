@@ -1,9 +1,8 @@
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
-import * as Structs from "../../common/Structs";
-import * as Memberships from "./Membership";
+import { QueryParams, links, Settings } from "../../common/api";
+import { ResourceId, CollectionDoc, SingleDoc } from "../../common/structs";
+import * as Memberships from "./membership";
 
 export interface CreateParams {
     recipient: string; // Email
@@ -17,9 +16,9 @@ export async function getCollection({
 }: {
     token: Token;
     query?: QueryParams;
-    settings?: Structs.Settings;
+    settings?: Settings;
 }) {
-    return API.getRequest<Memberships.Collection>({
+    return Request.getRequest<CollectionDoc<Memberships.Membership>>({
         target: links
             .projects()
             .invites()
@@ -36,13 +35,13 @@ export async function create({
     query,
     settings,
 }: {
-    project: Structs.ResourceId;
+    project: ResourceId;
     token: Token;
     value: CreateParams;
     query?: QueryParams;
-    settings?: Structs.Settings;
+    settings?: Settings;
 }) {
-    return API.postRequest<Memberships.Single>({
+    return Request.postRequest<SingleDoc<Memberships.Membership>>({
         target: links
             .projects()
             .invites()

@@ -1,16 +1,18 @@
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import {
+    QueryParams,
+    links,
+    ProjectRequiredSettings,
+    Settings,
+} from "../../common/api";
 import {
     CollectionDoc,
     Resource,
-    Settings,
     SingleDoc,
-    StandardEvents,
+    Events,
     State,
-    ProjectRequiredSettings,
-} from "../../common/Structs";
+} from "../../common/structs";
 
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
@@ -26,7 +28,7 @@ export type ProjectState =
 
 export interface Project extends Resource {
     name: string;
-    events: StandardEvents;
+    events: Events;
     billing: {
         disabled: boolean;
     };
@@ -48,7 +50,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.projects().collection(),
         query,
         token,
@@ -67,7 +69,7 @@ export async function create({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<Single>({
+    return Request.postRequest<Single>({
         target: links.projects().collection(),
         value,
         query,
@@ -87,7 +89,7 @@ export async function update({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.patchRequest<Single>({
+    return Request.patchRequest<Single>({
         target: links.projects().single(),
         value,
         query,
@@ -105,7 +107,7 @@ export async function remove({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.deleteRequest<Single>({
+    return Request.deleteRequest<Single>({
         target: links.projects().single(),
         query,
         token,
