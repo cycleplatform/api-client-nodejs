@@ -1,22 +1,21 @@
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
-    Settings,
     SingleDoc,
     ResourceId,
     State,
-    StandardEvents,
+    Events,
     UserScope,
     CreatedTask,
     StatefulCounts,
-} from "../../common/Structs";
+    OwnerInclude,
+} from "../../common/structs";
 import { ContainerState, Instances } from "../containers";
 
-export type Collection = CollectionDoc<Environment>;
+export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment>;
 
 export type EnvironmentState =
@@ -34,11 +33,15 @@ export interface Environment extends Resource<EnvironmentMeta> {
     owner: UserScope;
     project_id: ResourceId;
     state: State<EnvironmentState>;
-    events: StandardEvents;
+    events: Events;
     private_network: {};
     services: {
         dns: EnvService | null;
     };
+}
+
+export interface EnvironmentIncludes {
+    owner: OwnerInclude;
 }
 
 export interface EnvironmentMeta {
@@ -66,10 +69,10 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: QueryParams<keyof EnvironmentIncludes>;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.environments().collection(),
         query,
         token,
@@ -85,10 +88,10 @@ export async function getSingle({
 }: {
     id: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: QueryParams<keyof EnvironmentIncludes>;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>({
+    return Request.getRequest<Single>({
         target: links.environments().single(id),
         query,
         token,
@@ -107,7 +110,7 @@ export async function create({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<Single>({
+    return Request.postRequest<Single>({
         target: links.environments().collection(),
         value,
         query,
@@ -129,7 +132,7 @@ export async function update({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.patchRequest<Single>({
+    return Request.patchRequest<Single>({
         target: links.environments().single(id),
         value,
         query,
@@ -149,7 +152,7 @@ export async function remove({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.deleteRequest<CreatedTask<"delete">>({
+    return Request.deleteRequest<CreatedTask<"delete">>({
         target: links.environments().single(id),
         query,
         token,

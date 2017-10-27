@@ -9,7 +9,7 @@ import {
     Events,
     UserScope,
     Includes,
-    OwnerIncludes,
+    OwnerInclude,
 } from "../../../common/structs";
 import { IPNet } from "../../network";
 
@@ -46,7 +46,7 @@ export interface Environment {
 }
 
 export interface CollectionIncludes extends Includes {
-    owner: OwnerIncludes;
+    owner: OwnerInclude;
     servers: {
         [key: string]: Server;
     };

@@ -11,7 +11,7 @@ import {
     State,
     Events,
     UserScope,
-    OwnerIncludes,
+    OwnerInclude,
 } from "../../common/structs";
 import { Features } from "./features";
 
@@ -41,7 +41,7 @@ export interface Container extends Resource<ContainerMetas> {
 }
 
 export interface ContainerIncludes {
-    owner: OwnerIncludes;
+    owner: OwnerInclude;
     images: {
         [key: string]: Image;
     };

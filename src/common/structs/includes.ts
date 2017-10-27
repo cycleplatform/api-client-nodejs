@@ -6,7 +6,7 @@ import { ApiKeys } from "../../resources/projects";
  */
 export type StatefulCounts<K extends string> = { [P in K]: number };
 
-export interface OwnerIncludes {
+export interface OwnerInclude {
     accounts?: {
         [key: string]: PublicAccount;
     };
