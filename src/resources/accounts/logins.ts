@@ -35,13 +35,6 @@ export interface PublicEmployeeInfo {
     id: ResourceId;
 }
 
-export interface UpdateParams {
-    name?: {
-        first?: string;
-        last?: string;
-    };
-}
-
 export async function getCollection({
     token,
     query,
@@ -53,26 +46,6 @@ export async function getCollection({
 }) {
     return Request.getRequest<Collection>({
         target: links.account().logins(),
-        query,
-        token,
-        settings,
-    });
-}
-
-export async function update({
-    token,
-    value,
-    query,
-    settings,
-}: {
-    token: Token;
-    value: UpdateParams;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.patchRequest<Single>({
-        target: links.account().single(),
-        value,
         query,
         token,
         settings,

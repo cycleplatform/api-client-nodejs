@@ -1,22 +1,16 @@
-import {
-    Time,
-    ResourceId,
-    StandardEvents,
-    ResourceState,
-} from "../../../common/Structs";
+import { ResourceId, Events, State } from "../../../common/structs";
 import { Amount } from "../Amount";
 
 export type DiscountState = "new" | "live" | "expired";
+export type DiscountEvent = "expires";
 
 export interface Discount {
     id: ResourceId;
     project_id?: ResourceId;
     apply_all: boolean;
-    events: StandardEvents & {
-        expires: Time;
-    };
+    events: Events<DiscountEvent>;
     plans: { [key: string]: Amount };
-    state: ResourceState<DiscountState>;
+    state: State<DiscountState>;
 }
 
 export interface AssociatedDiscount {

@@ -2,16 +2,18 @@ import {
     CollectionDoc,
     Resource,
     SingleDoc,
-    StandardEvents,
+    Events,
     ResourceId,
-    ResourceState,
+    State,
     Time,
-    ProjectRequiredSettings,
-} from "../../../common/Structs";
-import * as API from "../../../common/Api";
+} from "../../../common/structs";
+import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { QueryParams } from "../../../common/QueryParams";
-import { links } from "../../../common/Links";
+import {
+    QueryParams,
+    links,
+    ProjectRequiredSettings,
+} from "../../../common/api";
 import { Payment } from "./Payment";
 import { Credit } from "./Credit";
 import { LateFee } from "./LateFee";
@@ -19,25 +21,6 @@ import { Summary as ServiceSummary } from "../services";
 
 export type Collection = CollectionDoc<Invoice>;
 export type Single = SingleDoc<Invoice>;
-
-export interface Invoice extends Resource {
-    project_id: ResourceId;
-    approved: boolean;
-    services: ServiceSummary[];
-    payments: Payment[];
-    credits: Credit[];
-    late_fees: LateFee[];
-    charges: number;
-    events: StandardEvents & {
-        billed?: Time;
-        paid?: Time;
-        payment_attempt?: Time;
-        credited?: Time;
-        voided?: Time;
-    };
-    state: ResourceState<InvoiceState>;
-}
-
 export type InvoiceState =
     | "new"
     | "billing"
@@ -51,6 +34,26 @@ export type InvoiceState =
     | "credited"
     | "voiding"
     | "voided";
+export type InvoiceEvent =
+    | "billed"
+    | "paid"
+    | "payment_attempt"
+    | "credited"
+    | "voided";
+
+export interface Invoice extends Resource {
+    project_id: ResourceId;
+    approved: boolean;
+    services: ServiceSummary[];
+    payments: Payment[];
+    credits: Credit[];
+    late_fees: LateFee[];
+    charges: number;
+    due?: Time;
+    overdue?: Time;
+    events: Events<InvoiceEvent>;
+    state: State<InvoiceState>;
+}
 
 export async function getCollection({
     token,
@@ -61,7 +64,7 @@ export async function getCollection({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links
             .billing()
             .invoices()

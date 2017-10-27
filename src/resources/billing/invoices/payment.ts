@@ -1,4 +1,4 @@
-import { Time, ResourceId } from "../../../common/Structs";
+import { Time, ResourceId, Mills } from "../../../common/structs";
 
 export type PaymentGateway = "stripe";
 
@@ -6,8 +6,8 @@ export interface Payment {
     id: ResourceId;
     time: Time;
     description: string;
-    amount: number;
-    amount_refunded: number;
+    amount: Mills;
+    amount_refunded: Mills;
     refunds: Refund[];
     method_id: ResourceId;
     result: PaymentResult;

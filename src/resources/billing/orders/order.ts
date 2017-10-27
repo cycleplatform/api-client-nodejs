@@ -1,23 +1,25 @@
 import {
     CollectionDoc,
     Resource,
-    ProjectRequiredSettings,
     SingleDoc,
     Time,
     StandardEvents,
     ResourceId,
     Task,
-    Settings,
     UserScope,
     CreatedTask,
     Mills,
-    ResourceState,
-} from "../../../common/Structs";
-import * as API from "../../../common/Api";
+    State,
+} from "../../../common/structs";
 import { Term, TermLength } from "../Term";
+import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { QueryParams } from "../../../common/QueryParams";
-import { links } from "../../../common/Links";
+import {
+    QueryParams,
+    links,
+    ProjectRequiredSettings,
+    Settings,
+} from "../../../common/api";
 import { Item as ServiceItem } from "../services/Item";
 import { Amount } from "../Amount";
 import { AssociatedDiscount } from "../discounts";
@@ -46,7 +48,7 @@ export interface Order extends Resource<OrderMeta> {
         voided: Time;
         applied_late_fee: Time;
     };
-    state: ResourceState<BillingState>;
+    state: State<BillingState>;
 }
 
 export interface CreateParams {
@@ -89,7 +91,7 @@ export async function getSingle({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.getRequest<Single>({
+    return Request.getRequest<Single>({
         target: links
             .billing()
             .orders()
@@ -111,7 +113,7 @@ export async function create({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.postRequest<Single>({
+    return Request.postRequest<Single>({
         target: links
             .billing()
             .orders()
@@ -136,7 +138,7 @@ export async function update({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.patchRequest<Single>({
+    return Request.patchRequest<Single>({
         target: links
             .billing()
             .orders()
@@ -184,7 +186,7 @@ export async function task({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.postRequest<CreatedTask<OrderAction>>({
+    return Request.postRequest<CreatedTask<OrderAction>>({
         target: links
             .billing()
             .orders()

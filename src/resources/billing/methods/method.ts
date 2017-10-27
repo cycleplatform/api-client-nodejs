@@ -2,18 +2,21 @@ import {
     CollectionDoc,
     Resource,
     SingleDoc,
-    StandardEvents,
-    ResourceState,
-    ProjectRequiredSettings,
+    Events,
+    State,
     UserScope,
-} from "../../../common/Structs";
-import * as API from "../../../common/Api";
+} from "../../../common/structs";
+import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { QueryParams } from "../../../common/QueryParams";
-import { links } from "../../../common/Links";
+import {
+    QueryParams,
+    links,
+    ProjectRequiredSettings,
+} from "../../../common/api";
 
 export type Collection = CollectionDoc<Method>;
 export type Single = SingleDoc<Method>;
+export type MethodState = "live" | "deleting" | "deleted";
 
 export interface Method extends Resource {
     name: string;
@@ -21,11 +24,9 @@ export interface Method extends Resource {
     address: Address;
     owner: UserScope;
     credit_card: CreditCard;
-    state: ResourceState<MethodState>;
-    events: StandardEvents;
+    state: State<MethodState>;
+    events: Events;
 }
-
-export type MethodState = "live" | "deleting" | "deleted";
 
 export interface Address {
     country: string;
@@ -66,7 +67,7 @@ export async function getCollection({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links
             .billing()
             .methods()
@@ -88,7 +89,7 @@ export async function create({
     query?: QueryParams;
     settings: ProjectRequiredSettings;
 }) {
-    return API.postRequest<Single>({
+    return Request.postRequest<Single>({
         target: links
             .billing()
             .methods()

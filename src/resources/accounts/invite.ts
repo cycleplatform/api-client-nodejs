@@ -3,6 +3,8 @@ import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
 import * as Memberships from "../projects/membership";
 
+export * from "./tasks/invite";
+
 export async function getCollection({
     token,
     query,

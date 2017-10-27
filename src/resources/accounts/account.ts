@@ -6,8 +6,8 @@ import {
     Resource,
     SingleDoc,
     Time,
-    ResourceEvents,
-    ResourceState,
+    Events,
+    State,
 } from "../../common/structs";
 
 export type Collection = CollectionDoc<Account>;
@@ -25,8 +25,8 @@ export interface Account extends Resource {
     email: Email;
     two_factor_auth: TwoFactorAuth;
     active: boolean;
-    events: ResourceEvents;
-    state: ResourceState<AccountState>;
+    events: Events;
+    state: State<AccountState>;
 }
 
 export interface PublicAccount extends Resource {
@@ -48,13 +48,6 @@ export interface TwoFactorAuth {
     verified: boolean;
 }
 
-export interface UpdateParams {
-    name?: {
-        first?: string;
-        last?: string;
-    };
-}
-
 export async function getSingle({
     token,
     query,
@@ -70,6 +63,13 @@ export async function getSingle({
         token,
         settings,
     });
+}
+
+export interface UpdateParams {
+    name?: {
+        first?: string;
+        last?: string;
+    };
 }
 
 export async function update({
