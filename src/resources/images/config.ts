@@ -1,7 +1,6 @@
-import { ResourceId } from "../../common/Structs";
+import { ResourceId } from "../../common/structs";
 
 export interface Config {
-    hostname: string;
     user: ResourceId;
     ports: Port[];
     env: { [key: string]: string };
@@ -16,7 +15,8 @@ export interface Config {
 
 export interface Port {
     type: string;
-    number: number;
+    host: number;
+    container: number;
 }
 
 export type VolumeMode = "ro" | "rw";
