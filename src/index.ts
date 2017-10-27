@@ -13,6 +13,7 @@ import * as Notifications from "./resources/notifications";
 import * as Plans from "./resources/plans";
 import * as Projects from "./resources/projects";
 import { QueryParams } from "./common/api/query";
+import { Settings, ProjectRequiredSettings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
 import * as SuggestionPipeline from "./pipeline";
@@ -35,8 +36,10 @@ export {
     Notifications,
     Plans,
     Projects,
+    ProjectRequiredSettings,
     QueryParams,
     Request,
+    Settings,
     Stacks,
     Structs,
     SuggestionPipeline,
