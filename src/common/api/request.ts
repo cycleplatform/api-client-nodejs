@@ -30,8 +30,13 @@ export const ApiRequestInit: RequestInit = {
 
 export function makeUrl(settings?: Settings, websocket?: boolean) {
     let secure = true;
+    let version = "/" + VERSION;
     if (typeof location !== "undefined") {
         secure = location.protocol === "https:";
+    }
+
+    if (settings && settings.noVersion) {
+        version = "";
     }
 
     if (settings && settings.useHttp) {
@@ -43,11 +48,11 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
         : `http${secure ? "s" : ""}://`;
 
     if (settings && settings.url) {
-        return `${prefix}${settings.url}/${VERSION}`;
+        return `${prefix}${settings.url}${version}`;
     }
 
     // Default URL returned. Version will be updated here if changed
-    return `${prefix}api.cycle.io/${VERSION}`;
+    return `${prefix}api.cycle.io${version}`;
 }
 
 async function makeRequest<T>(

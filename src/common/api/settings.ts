@@ -18,6 +18,8 @@ export interface Settings {
      * allow force http
      */
     useHttp?: boolean;
+
+    noVersion?: boolean;
 }
 
 export interface ProjectRequiredSettings extends Settings {
