@@ -1,1 +1,1 @@
-export * from "./IPNet";
+export * from "./ipnet";

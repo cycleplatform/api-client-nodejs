@@ -1,17 +1,15 @@
-import * as API from "../../common/Api";
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
     Time,
     State,
     StandardEvents,
     Resource,
     CollectionDoc,
-    Settings,
     ResourceId,
     UserScope,
-} from "../../common/Structs";
+} from "../../common/structs";
 
 export type Collection = CollectionDoc<Notification>;
 
@@ -48,7 +46,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.notifications().collection(),
         query,
         token,
