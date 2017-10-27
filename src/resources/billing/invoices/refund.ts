@@ -1,5 +1,5 @@
 import { Time, ResourceId, Mills } from "../../../common/structs";
-import { PaymentGateway } from "./Payment";
+import { PaymentGateway } from "./payment";
 
 export interface Credit {
     id: ResourceId;

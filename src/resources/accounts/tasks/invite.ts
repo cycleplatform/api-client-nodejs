@@ -1,8 +1,7 @@
-import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
-import { ResourceId, Task } from "../../common/structs";
-import * as Memberships from "../projects/Membership";
+import * as Request from "../../../common/api/request";
+import { Token } from "../../../auth";
+import { QueryParams, links, Settings } from "../../../common/api";
+import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
 export type InviteAction = "accept" | "decline";
 
@@ -20,7 +19,7 @@ export async function task({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.postRequest<Memberships.Single>({
+    return Request.postRequest<CreatedTask<InviteAction>>({
         target: links
             .account()
             .invites()

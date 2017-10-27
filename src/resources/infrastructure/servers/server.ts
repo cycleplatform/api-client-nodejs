@@ -11,7 +11,7 @@ import {
     Time,
     Includes,
     CreatedTask,
-} from "../../../common/Structs";
+} from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
 import { DataCenters, Servers, Provider } from "../provider";
 

@@ -14,9 +14,9 @@ import {
     links,
     ProjectRequiredSettings,
 } from "../../../common/api";
-import { Payment } from "./Payment";
-import { Credit } from "./Credit";
-import { LateFee } from "./LateFee";
+import { Payment } from "./payment";
+import { Credit } from "./credit";
+import { LateFee } from "./latefee";
 import { Summary as ServiceSummary } from "../services";
 
 export type Collection = CollectionDoc<Invoice>;

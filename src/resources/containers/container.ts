@@ -1,7 +1,7 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
-import { Config, Builds, Stack } from "../stacks";
+import { Spec, Builds, Stack } from "../stacks";
 import { Image } from "../images";
 import {
     CollectionDoc,
@@ -34,7 +34,7 @@ export interface Container extends Resource<ContainerMetas> {
     environment_id: ResourceId;
     stack?: Stack;
     image?: Image;
-    config: Config;
+    config: Spec.Config;
     features: Features;
     state: State<ContainerState>;
     events: Events<ContainerEvent>;
@@ -108,7 +108,7 @@ export interface CreateParams {
     environment_id: ResourceId;
     image_id: ResourceId;
     dns_record_id: ResourceId;
-    config?: Partial<Config>;
+    config?: Partial<Spec.Config>;
 }
 
 export async function create({

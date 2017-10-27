@@ -6,9 +6,9 @@ import {
     SingleDoc,
     ResourceId,
     Includes,
-} from "../../../common/Structs";
-import { DataCenter } from "./DataCenter";
-import { ProviderName } from "./Provider";
+} from "../../../common/structs";
+import { DataCenter } from "./datacenter";
+import { ProviderName } from "./provider";
 import { Amount } from "../../billing";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;

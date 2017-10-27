@@ -15,10 +15,10 @@ import {
     links,
     ProjectRequiredSettings,
 } from "../../../common/api";
-import { Item as ServiceItem } from "../services/Item";
-import { Amount } from "../Amount";
+import { Item as ServiceItem } from "../services/item";
+import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
-import { Term, TermLength } from "../Term";
+import { Term, TermLength } from "../term";
 
 export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;

@@ -9,10 +9,8 @@ import {
     State,
     Events,
     UserScope,
-    Task,
-    CreatedTask,
 } from "../../common/structs";
-import { Container, RepoProtocol } from "./spec";
+import { Spec, RepoProtocol } from "./spec";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;

@@ -11,7 +11,7 @@ import {
     Bytes,
     UserScope,
 } from "../../common/structs";
-import { Config } from "./Config";
+import { Config } from "./config";
 
 export type Collection = CollectionDoc<Image>;
 export type Single = SingleDoc<Image>;

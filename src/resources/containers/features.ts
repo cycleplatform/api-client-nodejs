@@ -1,4 +1,4 @@
-import { Time, ResourceId } from "../../common/Structs";
+import { Time, ResourceId } from "../../common/structs";
 
 export interface Features {
     tls?: TLS;

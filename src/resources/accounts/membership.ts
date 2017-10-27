@@ -1,6 +1,7 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
+import { CollectionDoc } from "../../common/structs";
 import * as Memberships from "../projects/membership";
 
 export async function getMemberships({
@@ -12,7 +13,7 @@ export async function getMemberships({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.getRequest<Memberships.Collection>({
+    return Request.getRequest<CollectionDoc<Memberships.Membership>>({
         target: links.account().memberships(),
         query,
         token,

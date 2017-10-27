@@ -10,7 +10,7 @@ import {
     UserScope,
     SingleDoc,
 } from "../../common/structs";
-import { Capability } from "./Capability";
+import { Capability } from "./capability";
 
 export type Collection = CollectionDoc<ApiKey>;
 export type Single = SingleDoc<ApiKey>;

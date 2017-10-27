@@ -1,5 +1,5 @@
 import { ResourceId, Events, State } from "../../../common/structs";
-import { Amount } from "../Amount";
+import { Amount } from "../amount";
 
 export type DiscountState = "new" | "live" | "expired";
 export type DiscountEvent = "expires";

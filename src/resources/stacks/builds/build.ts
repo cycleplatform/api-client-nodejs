@@ -10,7 +10,7 @@ import {
     Events,
     UserScope,
 } from "../../../common/structs";
-import { Spec } from "../stack";
+import { Spec } from "../spec";
 
 export * from "./tasks/build";
 
