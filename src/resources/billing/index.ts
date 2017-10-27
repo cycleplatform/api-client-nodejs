@@ -5,5 +5,5 @@ import * as Orders from "./orders";
 import * as Services from "./services";
 
 export { Credits, Invoices, Methods, Orders, Services };
-export * from "./Amount";
-export * from "./Term";
+export * from "./amount";
+export * from "./term";

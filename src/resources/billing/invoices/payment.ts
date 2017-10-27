@@ -18,7 +18,7 @@ export interface Refund {
     id: ResourceId;
     time: Time;
     description: string;
-    amount: number;
+    amount: Mills;
     gateway: PaymentGateway;
 }
 

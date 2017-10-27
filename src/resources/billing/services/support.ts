@@ -1,5 +1,5 @@
-import { ResourceId } from "../../../common/Structs";
-import { Amount } from "../Amount";
+import { ResourceId } from "../../../common/structs";
+import { Amount } from "../amount";
 
 export interface SupportPlan {
     id: ResourceId;

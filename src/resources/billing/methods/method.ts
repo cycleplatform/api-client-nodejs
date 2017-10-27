@@ -43,21 +43,6 @@ export interface CreditCard {
     last_4: string;
 }
 
-export interface CreateParams {
-    name: string;
-    primary: boolean;
-    address: Address;
-    credit_card: {
-        name: string;
-        number: string;
-        cvv2: string;
-        expiration: {
-            month: number;
-            year: number;
-        };
-    };
-}
-
 export async function getCollection({
     token,
     query,
@@ -76,6 +61,21 @@ export async function getCollection({
         token,
         settings,
     });
+}
+
+export interface CreateParams {
+    name: string;
+    primary: boolean;
+    address: Address;
+    credit_card: {
+        name: string;
+        number: string;
+        cvv2: string;
+        expiration: {
+            month: number;
+            year: number;
+        };
+    };
 }
 
 export async function create({

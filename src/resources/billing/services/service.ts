@@ -1,15 +1,22 @@
 import {
     Time,
     ResourceId,
-    StandardEvents,
+    Events,
     State,
     UserScope,
     Mills,
-} from "../../../common/Structs";
-import { Term } from "../Term";
-import { Item } from "./Item";
-import { Amount } from "../Amount";
+} from "../../../common/structs";
+import { Term } from "../term";
+import { Item } from "./item";
+import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
+
+export type ServiceEvent =
+    | "billed"
+    | "paid"
+    | "payment_attempt"
+    | "credited"
+    | "voided";
 
 export interface Service {
     id: ResourceId;
@@ -18,13 +25,7 @@ export interface Service {
     title: string;
     order: Order;
     item: Item;
-    events: StandardEvents & {
-        billed?: Time;
-        paid?: Time;
-        payment_attempt?: Time;
-        credited?: Time;
-        voided?: Time;
-    };
+    events: Events<ServiceEvent>;
     discount: AssociatedDiscount;
     price: Amount;
     term: Term;

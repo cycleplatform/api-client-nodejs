@@ -1,5 +1,5 @@
-import { ResourceId } from "../../../common/Structs";
-import { ServerPricing } from "../../infrastructure/provider/Server";
+import { ResourceId } from "../../../common/structs";
+import { ServerPricing } from "../../infrastructure/provider/server";
 
 export interface Server {
     pricing: ServerPricing;
