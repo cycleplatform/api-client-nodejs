@@ -1,22 +1,19 @@
-import * as API from "../../common/Api";
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import { links, Settings, QueryParams } from "../../common/api";
 import {
     Time,
     State,
-    StandardEvents,
+    Events,
     Resource,
     CollectionDoc,
     SingleDoc,
-    Settings,
     ResourceId,
     UserScope,
-} from "../../common/Structs";
+} from "../../common/structs";
 
 export type Collection = CollectionDoc<Job>;
 export type Single = SingleDoc<Job>;
-
 export type JobState =
     | "new"
     | "queued"
@@ -25,13 +22,12 @@ export type JobState =
     | "expired"
     | "running"
     | "completed";
+export type JobEvent = "queued";
 
 export interface Job extends Resource {
     queue: string;
     caption: string;
-    events: StandardEvents & {
-        queued: Time;
-    };
+    events: Events<JobEvent>;
     schedule: Time;
     expires: Time;
     tasks: JobTask[];
@@ -47,7 +43,7 @@ export interface JobTask {
     caption: string;
     topic: string;
     action: string;
-    events: StandardEvents;
+    events: Events;
     steps: TaskStep[];
     state: State<TaskState>;
     failable: boolean;
@@ -73,7 +69,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.jobs().collection(),
         query,
         token,
@@ -92,7 +88,7 @@ export async function getSingle({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>({
+    return Request.getRequest<Single>({
         target: links.jobs().single(id),
         query,
         token,
