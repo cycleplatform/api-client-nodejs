@@ -3,6 +3,7 @@ import { ErrorResource } from "./error";
 import { formatParams, QueryParams } from "./query";
 import { CreatedTask } from "../structs";
 import { Settings } from "./settings";
+import { VERSION } from "./version";
 
 export type ApiResult<T> = ResultSuccess<T> | ResultFail<ErrorResource>;
 
@@ -42,11 +43,11 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
         : `http${secure ? "s" : ""}://`;
 
     if (settings && settings.url) {
-        return `${prefix}${settings.url}/v1`;
+        return `${prefix}${settings.url}/${VERSION}`;
     }
 
     // Default URL returned. Version will be updated here if changed
-    return `${prefix}api.cycle.io/v1`;
+    return `${prefix}api.cycle.io/${VERSION}`;
 }
 
 async function makeRequest<T>(

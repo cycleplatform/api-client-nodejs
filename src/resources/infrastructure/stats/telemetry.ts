@@ -1,17 +1,15 @@
+import * as Request from "../../../common/api/request";
+import { Token } from "../../../auth";
+import { links, Settings, QueryParams } from "../../../common/api";
 import {
     Resource,
     ResourceId,
     CollectionDoc,
-    Settings,
     Time,
-} from "../../../common/Structs";
-import * as API from "../../../common/Api";
-import { QueryParams } from "../../../common/QueryParams";
-import { Token } from "../../../auth";
-import { links } from "../../../common/Links";
-import { LoadStats } from "./LoadStats";
-import { RAMStats } from "./RAMStats";
-import { StorageStats } from "./StorageStats";
+} from "../../../common/structs";
+import { LoadStats } from "./load";
+import { RAMStats } from "./ram";
+import { StorageStats } from "./storage";
 
 export type Collection = CollectionDoc<TelemetryPoint>;
 
@@ -33,7 +31,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         token,
         target: links
             .infrastructure()

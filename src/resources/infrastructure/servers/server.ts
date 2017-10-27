@@ -1,10 +1,9 @@
-import * as API from "../../../common/Api";
+import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { QueryParams } from "../../../common/QueryParams";
+import { links, Settings, QueryParams } from "../../../common/api";
 import {
     CollectionDoc,
     SingleDoc,
-    Settings,
     Resource,
     ResourceId,
     State,
@@ -13,7 +12,6 @@ import {
     Includes,
     CreatedTask,
 } from "../../../common/Structs";
-import { links } from "../../../common/Links";
 import { Stats, Telemetry } from "../stats";
 import { DataCenters, Servers, Provider } from "../provider";
 
@@ -67,10 +65,10 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: QueryParams<keyof ServerIncludes>;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         token,
         target: links
             .infrastructure()
@@ -89,10 +87,10 @@ export async function getSingle({
 }: {
     id: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: QueryParams<keyof ServerIncludes>;
     settings?: Settings;
 }) {
-    return API.getRequest<Single>({
+    return Request.getRequest<Single>({
         token,
         target: links
             .infrastructure()
@@ -114,7 +112,7 @@ export async function remove({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.deleteRequest<CreatedTask<"delete">>({
+    return Request.deleteRequest<CreatedTask<"delete">>({
         token,
         target: links
             .infrastructure()

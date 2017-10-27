@@ -10,7 +10,7 @@ import {
     Events,
     Bytes,
     UserScope,
-} from "../../common/Structs";
+} from "../../common/structs";
 import { Config } from "./Config";
 
 export type Collection = CollectionDoc<Image>;

@@ -1,13 +1,11 @@
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
 import {
     CollectionDoc,
     Resource,
     ResourceId,
     SingleDoc,
-    Settings,
-} from "../../../common/Structs";
-import { QueryParams } from "../../../common/QueryParams";
-import * as API from "../../../common/Api";
-import { links } from "../../../common/Links";
+} from "../../../common/structs";
 
 export type Collection = CollectionDoc<DataCenter>;
 export type Single = SingleDoc<DataCenter>;
@@ -43,7 +41,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links
             .infrastructure()
             .providers()

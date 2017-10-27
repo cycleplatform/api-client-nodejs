@@ -1,4 +1,4 @@
-import * as Telemetry from "./Telemetry";
-export * from "./Stats";
+import * as Telemetry from "./telemetry";
+export * from "./stats";
 
 export { Telemetry };

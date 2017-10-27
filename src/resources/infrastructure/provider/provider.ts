@@ -1,7 +1,6 @@
-import * as API from "../../../common/Api";
-import { QueryParams } from "../../../common/QueryParams";
-import { CollectionDoc, Settings, Resource } from "../../../common/Structs";
-import { links } from "../../../common/Links";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
+import { CollectionDoc, Resource } from "../../../common/structs";
 
 export type Collection = CollectionDoc<Provider>;
 
@@ -20,8 +19,11 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
-        target: links.infrastructure().providers().collection(),
+    return Request.getRequest<Collection>({
+        target: links
+            .infrastructure()
+            .providers()
+            .collection(),
         query,
         settings,
     });

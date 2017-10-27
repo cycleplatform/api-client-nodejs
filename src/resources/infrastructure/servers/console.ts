@@ -1,8 +1,9 @@
-import * as API from "../../../common/Api";
+import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { ResourceId, ProjectRequiredSettings } from "../../../common/Structs";
-import { links } from "../../../common/Links";
-import { connectToSocket } from "../../../common/WebSocket";
+import { links, ProjectRequiredSettings } from "../../../common/api";
+import { ResourceId } from "../../../common/structs";
+import { connectToSocket } from "../../../common/api/websocket";
+import { VERSION } from "../../../common/api/version";
 
 export interface ConsolePipelineParams {
     id: ResourceId;
@@ -27,7 +28,7 @@ export async function connectToConsole(params: ConsolePipelineParams) {
         .servers()
         .console(params.id);
 
-    const secretResp = await API.getRequest<ConsolePipelineResponse>({
+    const secretResp = await Request.getRequest<ConsolePipelineResponse>({
         target,
         token: params.token,
         settings: params.settings,
@@ -41,7 +42,7 @@ export async function connectToConsole(params: ConsolePipelineParams) {
         target: "",
         token: secretResp.value.data.token,
         settings: {
-            url: `${secretResp.value.data.address}/v1/console`,
+            url: `${secretResp.value.data.address}/${VERSION}/console`,
         },
         onMessage: params.onMessage,
         noJsonDecode: true,

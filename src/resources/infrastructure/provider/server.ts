@@ -1,10 +1,8 @@
-import * as API from "../../../common/Api";
-import { QueryParams } from "../../../common/QueryParams";
-import { links } from "../../../common/Links";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
 import {
     CollectionDoc,
     Resource,
-    Settings,
     SingleDoc,
     ResourceId,
     Includes,
@@ -110,7 +108,7 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links
             .infrastructure()
             .providers()
