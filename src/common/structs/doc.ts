@@ -33,11 +33,7 @@ export interface Meta {
     [key: string]: any;
 }
 
-export interface Includes {
-    [key: string]: {
-        [key: string]: Resource | any;
-    };
-}
+export interface Includes {}
 
 /**
  * A unique identifier for resources

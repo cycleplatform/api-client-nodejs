@@ -1,14 +1,12 @@
+import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import * as API from "../../common/Api";
-import { QueryParams } from "../../common/QueryParams";
-import { links } from "../../common/Links";
+import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
     StatefulCounts,
-    ProjectRequiredSettings,
     ResourceId,
-} from "../../common/Structs";
+} from "../../common/structs";
 import { InstanceState } from "../containers/instances";
 
 export type Collection = CollectionDoc<ServerInstances>;
@@ -28,7 +26,7 @@ export async function getCollection({
     query?: QueryParams<"">;
     settings?: ProjectRequiredSettings;
 }) {
-    return API.getRequest<Collection>({
+    return Request.getRequest<Collection>({
         target: links.containers().servers(containerId),
         query,
         token,

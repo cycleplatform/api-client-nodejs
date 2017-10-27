@@ -6,12 +6,11 @@ import {
     SingleDoc,
     ResourceId,
     State,
-    StandardEvents,
-    Time,
+    Events,
     UserScope,
     Includes,
     OwnerIncludes,
-} from "../../../common/Structs";
+} from "../../../common/structs";
 import { IPNet } from "../../network";
 
 export type Collection = CollectionDoc<Instance, {}, CollectionIncludes>;
@@ -25,6 +24,7 @@ export type InstanceState =
     | "stopped"
     | "deleting"
     | "deleted";
+export type InstanceEvent = "first_boot" | "started";
 
 export interface Instance extends Resource<InstanceMeta> {
     owner: UserScope;
@@ -35,10 +35,7 @@ export interface Instance extends Resource<InstanceMeta> {
     server_id: ResourceId;
     hostname: string;
     state: State<InstanceState>;
-    events: StandardEvents & {
-        first_boot?: Time;
-        started?: Time;
-    };
+    events: Events<InstanceEvent>;
 }
 
 export interface Environment {
