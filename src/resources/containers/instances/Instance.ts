@@ -5,7 +5,7 @@ import {
     Resource,
     SingleDoc,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     Time,
     UserScope,
@@ -34,7 +34,7 @@ export interface Instance extends Resource<InstanceMeta> {
     datacenter_id: ResourceId;
     server_id: ResourceId;
     hostname: string;
-    state: ResourceState<InstanceState>;
+    state: State<InstanceState>;
     events: StandardEvents & {
         first_boot?: Time;
         started?: Time;

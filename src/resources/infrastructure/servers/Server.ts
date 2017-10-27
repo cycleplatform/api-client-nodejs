@@ -7,7 +7,7 @@ import {
     Settings,
     Resource,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     Time,
     Includes,
@@ -28,7 +28,7 @@ export interface Server extends Resource<ServerMeta> {
     provider: ServerProvider;
     node_id: ResourceId;
     tags: string[];
-    state: ResourceState<ServerState>;
+    state: State<ServerState>;
     events: StandardEvents;
 }
 

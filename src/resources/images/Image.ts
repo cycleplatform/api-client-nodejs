@@ -8,7 +8,7 @@ import {
     Settings,
     SingleDoc,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     Bytes,
     UserScope,
@@ -31,7 +31,7 @@ export interface Image extends Resource {
     config: Config;
     owner: UserScope;
     project: ResourceId;
-    state: ResourceState<ImageState>;
+    state: State<ImageState>;
     events: StandardEvents;
 }
 

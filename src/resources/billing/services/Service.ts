@@ -2,7 +2,7 @@ import {
     Time,
     ResourceId,
     StandardEvents,
-    ResourceState,
+    State,
     UserScope,
     Mills,
 } from "../../../common/Structs";
@@ -28,7 +28,7 @@ export interface Service {
     discount: AssociatedDiscount;
     price: Amount;
     term: Term;
-    state: ResourceState;
+    state: State;
 }
 
 export interface Order {

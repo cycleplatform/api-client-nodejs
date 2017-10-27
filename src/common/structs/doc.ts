@@ -44,13 +44,16 @@ export interface Includes {
  */
 export type ResourceId = string;
 
-export interface ResourceEvents {
+export interface StandardEvents {
     created?: Time;
     updated?: Time;
     deleted?: Time;
 }
 
-export interface ResourceState<T extends string = ""> {
+export type Events<T extends string = ""> = StandardEvents &
+    { [P in T]?: Time };
+
+export interface State<T extends string = ""> {
     current: T;
     changed: Time;
     job: JobInfo;

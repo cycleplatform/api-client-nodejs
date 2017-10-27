@@ -4,7 +4,7 @@ import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
 import {
     Time,
-    ResourceState,
+    State,
     StandardEvents,
     Resource,
     CollectionDoc,
@@ -23,7 +23,7 @@ export interface Notification extends Resource, NotificationOpts {
     association: Association;
     recipient: UserScope;
     creator_id: ResourceId;
-    state: ResourceState<NotificationState>;
+    state: State<NotificationState>;
     events: StandardEvents & {
         viewed: Time;
     };

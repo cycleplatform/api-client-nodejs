@@ -1,1 +1,1 @@
-export * from "./Method";
+export * from "./method";

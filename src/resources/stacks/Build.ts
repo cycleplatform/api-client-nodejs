@@ -8,7 +8,7 @@ import {
     Settings,
     SingleDoc,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     UserScope,
     Task,
@@ -24,7 +24,7 @@ export interface Build extends Resource {
     owner: UserScope;
     spec: Spec;
     events: StandardEvents;
-    state: ResourceState<StackState>;
+    state: State<StackState>;
 }
 
 export async function getCollection({

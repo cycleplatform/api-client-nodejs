@@ -7,7 +7,7 @@ import {
     Resource,
     SingleDoc,
     StandardEvents,
-    ResourceState,
+    State,
     ResourceId,
     ProjectRequiredSettings,
     Time,
@@ -29,7 +29,7 @@ export interface Membership extends Resource {
     project_id: ResourceId;
     role: Role;
     events: MembershipEvents;
-    state: ResourceState<MembershipState>;
+    state: State<MembershipState>;
 }
 
 export type MembershipState = "new" | "live" | "deleting" | "deleted";
@@ -54,7 +54,10 @@ export async function getCollection({
     settings?: ProjectRequiredSettings;
 }) {
     return API.getRequest<Collection>({
-        target: links.projects().members().collection(),
+        target: links
+            .projects()
+            .members()
+            .collection(),
         query,
         token,
         settings,

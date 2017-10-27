@@ -1,1 +1,1 @@
-export * from "./Discount";
+export * from "./discount";

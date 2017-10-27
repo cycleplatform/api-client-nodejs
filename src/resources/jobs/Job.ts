@@ -4,7 +4,7 @@ import { QueryParams } from "../../common/QueryParams";
 import { links } from "../../common/Links";
 import {
     Time,
-    ResourceState,
+    State,
     StandardEvents,
     Resource,
     CollectionDoc,
@@ -37,7 +37,7 @@ export interface Job extends Resource {
     tasks: JobTask[];
     owner: UserScope;
     project_id: ResourceId;
-    state: ResourceState<JobState>;
+    state: State<JobState>;
 }
 
 export type TaskState = "pending" | "error" | "running" | "completed";
@@ -49,7 +49,7 @@ export interface JobTask {
     action: string;
     events: StandardEvents;
     steps: TaskStep[];
-    state: ResourceState<TaskState>;
+    state: State<TaskState>;
     failable: boolean;
     contents: {};
     error?: {

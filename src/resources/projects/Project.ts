@@ -8,7 +8,7 @@ import {
     Settings,
     SingleDoc,
     StandardEvents,
-    ResourceState,
+    State,
     ProjectRequiredSettings,
 } from "../../common/Structs";
 
@@ -30,7 +30,7 @@ export interface Project extends Resource {
     billing: {
         disabled: boolean;
     };
-    state: ResourceState<ProjectState>;
+    state: State<ProjectState>;
 }
 
 export interface CreateParams {

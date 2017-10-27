@@ -8,7 +8,7 @@ import {
     Settings,
     SingleDoc,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     UserScope,
     Task,
@@ -25,7 +25,7 @@ export interface Stack extends Resource {
     owner: UserScope;
     project_id: ResourceId;
     source: Source;
-    state: ResourceState<StackState>;
+    state: State<StackState>;
     events: StandardEvents;
 }
 

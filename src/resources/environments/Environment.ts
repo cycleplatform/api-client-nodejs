@@ -8,7 +8,7 @@ import {
     Settings,
     SingleDoc,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     UserScope,
     CreatedTask,
@@ -33,7 +33,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
     };
     owner: UserScope;
     project_id: ResourceId;
-    state: ResourceState<EnvironmentState>;
+    state: State<EnvironmentState>;
     events: StandardEvents;
     private_network: {};
     services: {

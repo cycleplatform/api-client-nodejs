@@ -10,7 +10,7 @@ import {
     Settings,
     SingleDoc,
     ResourceId,
-    ResourceState,
+    State,
     StandardEvents,
     Time,
     UserScope,
@@ -41,7 +41,7 @@ export interface Container extends Resource<CollectionMetas> {
     image?: Image;
     config: Config;
     features: Features;
-    state: ResourceState<ContainerState>;
+    state: State<ContainerState>;
     events: StandardEvents & {
         started?: Time;
     };

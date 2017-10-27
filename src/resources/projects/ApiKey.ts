@@ -7,7 +7,7 @@ import {
     Resource,
     ResourceId,
     StandardEvents,
-    ResourceState,
+    State,
     UserScope,
     SingleDoc,
 } from "../../common/Structs";
@@ -24,7 +24,7 @@ export interface ApiKey extends Resource {
     capabilities: Capability[];
     project_id: ResourceId;
     whitelist: Whitelist;
-    state: ResourceState<ApiKeyState>;
+    state: State<ApiKeyState>;
     events: StandardEvents;
 }
 
