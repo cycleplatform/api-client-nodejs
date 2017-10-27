@@ -1,5 +1,5 @@
-import * as Account from "./AccountPipeline";
-import * as Project from "./ProjectPipeline";
+import * as Account from "./account";
+import * as Project from "./project";
 
-export * from "./PipelineEvent";
+export * from "./event";
 export { Account, Project };

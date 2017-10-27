@@ -31,7 +31,7 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
         : `http${secure ? "s" : ""}://`;
 
     if (settings && settings.url) {
-        return `${prefix}${settings.url}`;
+        return `${prefix}${settings.url}/v1`;
     }
 
     // Default URL returned. Version will be updated here if changed

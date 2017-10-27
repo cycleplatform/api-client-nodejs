@@ -1,9 +1,8 @@
-import * as API from "../common/Api";
 import { Token } from "../auth";
-import { ProjectRequiredSettings } from "../common/Structs";
-import { links } from "../common/Links";
+import * as Request from "../common/api/request";
+import { links, ProjectRequiredSettings } from "../common/api";
 import { connectToSocket } from "../common/WebSocket";
-import { PipelineEvent } from "./PipelineEvent";
+import { PipelineEvent } from "./event";
 
 export type ProjectPipelineEventHeader =
     | "project.update"
@@ -46,7 +45,7 @@ export interface ProjectSecretResponse {
 export async function connectToProjectPipeline(params: ProjectPipelineParams) {
     const target = links.projects().pipeline();
 
-    const secretResp = await API.getRequest<ProjectSecretResponse>({
+    const secretResp = await Request.getRequest<ProjectSecretResponse>({
         target,
         token: params.token,
         settings: params.settings,

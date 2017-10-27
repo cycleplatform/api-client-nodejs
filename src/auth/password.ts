@@ -1,7 +1,5 @@
-import { ApiResult, makeUrl } from "../common/Api";
-import { OAuthError } from "../common/Error";
-import { Settings } from "../common/Structs";
-import { Token } from "./Token";
+import { ApiResult, makeUrl, OAuthError, Settings } from "../common/api";
+import { Token } from "./token";
 
 export interface PasswordAuth {
     email: string;

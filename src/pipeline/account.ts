@@ -1,9 +1,8 @@
-import * as API from "../common/Api";
 import { Token } from "../auth";
-import { ProjectRequiredSettings } from "../common/Structs";
-import { links } from "../common/Links";
+import * as Request from "../common/api/request";
+import { links, ProjectRequiredSettings } from "../common/api";
 import { connectToSocket } from "../common/WebSocket";
-import { PipelineEvent } from "./PipelineEvent";
+import { PipelineEvent } from "./event";
 
 export type AccountPipelineEventHeader = "project.create" | "project.delete";
 
@@ -24,7 +23,7 @@ export interface AccountSecretResponse {
 export async function connectToAccountPipeline(params: AccountPipelineParams) {
     const target = links.account().pipeline();
 
-    const secretResp = await API.getRequest<AccountSecretResponse>({
+    const secretResp = await Request.getRequest<AccountSecretResponse>({
         target,
         token: params.token,
         settings: params.settings,

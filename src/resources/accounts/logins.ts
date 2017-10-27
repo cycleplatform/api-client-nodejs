@@ -4,48 +4,35 @@ import { QueryParams, links, Settings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
-    SingleDoc,
     Time,
-    ResourceEvents,
-    ResourceState,
+    ResourceId,
 } from "../../common/structs";
 
-export type Collection = CollectionDoc<Account>;
-export type Single = SingleDoc<Account>;
-export type AccountState =
-    | "new"
-    | "live"
-    | "suspending"
-    | "purging"
-    | "deleting"
-    | "deleted";
+export type Collection = CollectionDoc<Login>;
+export type LoginType = "password" | "employee";
 
-export interface Account extends Resource {
-    name: Name;
-    email: Email;
-    two_factor_auth: TwoFactorAuth;
-    active: boolean;
-    events: ResourceEvents;
-    state: ResourceState<AccountState>;
+export interface Login extends Resource {
+    account: AccountInfo;
+    time: Time;
+    type: LoginType;
+    success: boolean;
 }
 
-export interface PublicAccount extends Resource {
-    name: string;
+export interface AccountInfo {
+    id: ResourceId;
+    ip: string;
 }
 
-export interface Name {
-    first: string;
-    last: string;
+export interface PublicLogin extends Resource {
+    account: AccountInfo;
+    employee: PublicEmployeeInfo;
+    time: Time;
+    type: LoginType;
+    success: boolean;
 }
 
-export interface Email {
-    address: string;
-    verified: boolean;
-    added: Time;
-}
-
-export interface TwoFactorAuth {
-    verified: boolean;
+export interface PublicEmployeeInfo {
+    id: ResourceId;
 }
 
 export interface UpdateParams {
@@ -55,7 +42,7 @@ export interface UpdateParams {
     };
 }
 
-export async function getSingle({
+export async function getCollection({
     token,
     query,
     settings,
@@ -64,8 +51,8 @@ export async function getSingle({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.getRequest<Single>({
-        target: links.account().single(),
+    return Request.getRequest<Collection>({
+        target: links.account().logins(),
         query,
         token,
         settings,
