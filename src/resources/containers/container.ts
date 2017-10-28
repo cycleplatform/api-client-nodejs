@@ -26,7 +26,10 @@ export type ContainerState =
     | "deleting"
     | "deleted";
 export type ContainerEvent = "started";
-export type ContainerQuery = QueryParams<keyof ContainerIncludes>;
+export type ContainerQuery = QueryParams<
+    keyof ContainerIncludes,
+    keyof ContainerMetas
+>;
 
 export interface Container extends Resource<ContainerMetas> {
     name: string;
@@ -56,16 +59,6 @@ export interface ContainerIncludes {
 
 export interface ContainerMetas {
     instance_counts?: { [key: string]: number };
-}
-
-export interface Stack {
-    id: ResourceId;
-    build_id: ResourceId;
-    identifier: string;
-}
-
-export interface Image {
-    id: ResourceId;
 }
 
 export async function getCollection({
