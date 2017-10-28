@@ -16,7 +16,7 @@ import {
 import { Features } from "./features";
 
 export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
-export type Single = SingleDoc<Container>;
+export type Single = SingleDoc<Container, {}, ContainerIncludes>;
 export type ContainerState =
     | "new"
     | "starting"
