@@ -23,7 +23,7 @@ export async function getCollection({
 }: {
     containerId: ResourceId;
     token: Token;
-    query?: QueryParams<"">;
+    query?: QueryParams;
     settings?: ProjectRequiredSettings;
 }) {
     return Request.getRequest<Collection>({

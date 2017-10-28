@@ -26,6 +26,7 @@ export type ContainerState =
     | "deleting"
     | "deleted";
 export type ContainerEvent = "started";
+export type ContainerQuery = QueryParams<keyof ContainerIncludes>;
 
 export interface Container extends Resource<ContainerMetas> {
     name: string;
@@ -73,7 +74,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams<keyof ContainerIncludes>;
+    query?: ContainerQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Collection>({
@@ -92,7 +93,7 @@ export async function getSingle({
 }: {
     id: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: ContainerQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Single>({
@@ -119,7 +120,7 @@ export async function create({
 }: {
     value: CreateParams;
     token: Token;
-    query?: QueryParams;
+    query?: ContainerQuery;
     settings?: Settings;
 }) {
     return Request.postRequest<Single>({
@@ -141,7 +142,7 @@ export async function update({
     id: ResourceId;
     value: Partial<CreateParams>;
     token: Token;
-    query?: QueryParams;
+    query?: ContainerQuery;
     settings?: Settings;
 }) {
     return Request.patchRequest<Single>({

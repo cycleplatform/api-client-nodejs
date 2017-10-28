@@ -17,13 +17,13 @@ import { ContainerState, Instances } from "../containers";
 
 export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment>;
-
 export type EnvironmentState =
     | "new"
     | "live"
     | "cloning"
     | "deleting"
     | "deleted";
+export type EnvironmentQuery = QueryParams<keyof EnvironmentIncludes>;
 
 export interface Environment extends Resource<EnvironmentMeta> {
     name: string;
@@ -69,7 +69,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams<keyof EnvironmentIncludes>;
+    query?: EnvironmentQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Collection>({
@@ -88,7 +88,7 @@ export async function getSingle({
 }: {
     id: ResourceId;
     token: Token;
-    query?: QueryParams<keyof EnvironmentIncludes>;
+    query?: EnvironmentQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Single>({

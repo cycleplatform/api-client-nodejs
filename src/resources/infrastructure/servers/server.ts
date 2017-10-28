@@ -17,6 +17,7 @@ import { DataCenters, Servers, Provider } from "../provider";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
+export type ServerQuery = QueryParams<keyof ServerIncludes>;
 
 export { Telemetry };
 
@@ -65,7 +66,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams<keyof ServerIncludes>;
+    query?: ServerQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Collection>({
@@ -87,7 +88,7 @@ export async function getSingle({
 }: {
     id: ResourceId;
     token: Token;
-    query?: QueryParams<keyof ServerIncludes>;
+    query?: ServerQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Single>({
@@ -109,7 +110,7 @@ export async function remove({
 }: {
     id: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: ServerQuery;
     settings?: Settings;
 }) {
     return Request.deleteRequest<CreatedTask<"delete">>({
