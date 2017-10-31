@@ -3,7 +3,7 @@
     "version": "0.10.7",
     "description": "Cycle CaaS NodeJS API Client",
     "main": "dist/index.js",
-    "typings": "dist/typings/index.d.ts",
+    "typings": "dist/index.d.ts",
     "scripts": {
         "precommit": "node ./node_modules/lint-staged/index.js",
         "prepare": "rm -rf ./dist && tsc",
