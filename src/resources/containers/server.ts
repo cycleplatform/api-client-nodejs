@@ -13,6 +13,8 @@ export type Collection = CollectionDoc<ServerInstances>;
 
 export interface ServerInstances extends Resource {
     instances: StatefulCounts<InstanceState>;
+    primary_ip: string;
+    hostname: string;
 }
 
 export async function getCollection({
