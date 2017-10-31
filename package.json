@@ -11,7 +11,7 @@
     },
     "lint-staged": {
         "*.{ts,tsx}": [
-            "prettier --write --parser typescript --tab-width 4 --trailing-comma all",
+            "prettier --write",
             "git add"
         ]
     },

@@ -5,7 +5,6 @@
         "target": "es6",
         "outDir": "dist",
         "declaration": true,
-        "declarationDir": "dist/typings",
         "noImplicitReturns": true,
         "sourceMap": true,
         "pretty": true,
