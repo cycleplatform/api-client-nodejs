@@ -23,7 +23,10 @@ export type EnvironmentState =
     | "cloning"
     | "deleting"
     | "deleted";
-export type EnvironmentQuery = QueryParams<keyof EnvironmentIncludes>;
+export type EnvironmentQuery = QueryParams<
+    keyof EnvironmentIncludes,
+    keyof EnvironmentMeta
+>;
 
 export interface Environment extends Resource<EnvironmentMeta> {
     name: string;
