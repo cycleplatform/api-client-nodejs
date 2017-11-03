@@ -17,7 +17,7 @@ import { DataCenters, Servers, Provider } from "../provider";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
-export type ServerQuery = QueryParams<keyof ServerIncludes>;
+export type ServerQuery = QueryParams<keyof ServerIncludes, keyof ServerMeta>;
 
 export { Telemetry };
 
@@ -33,7 +33,6 @@ export interface Server extends Resource<ServerMeta> {
 
 export interface ServerMeta {
     stats?: Stats;
-    location?: DataCenters.Location;
     last_checkin?: Time;
 }
 
@@ -43,6 +42,9 @@ export interface ServerIncludes extends Includes {
     };
     plans: {
         [key: string]: Servers.Server;
+    };
+    datacenters: {
+        [key: string]: DataCenters.DataCenter;
     };
 }
 
