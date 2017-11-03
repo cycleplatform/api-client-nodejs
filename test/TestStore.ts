@@ -1,5 +1,5 @@
 import { Token } from "../src/auth";
-import { ProjectRequiredSettings } from "../src/common/Structs";
+import { ProjectRequiredSettings } from "../src/common/api";
 
 interface TestStoreState {
     token: Token;

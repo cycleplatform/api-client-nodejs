@@ -18,8 +18,8 @@ testPasswordGrant(store);
 // import { testEnvironments } from "./environments";
 // testEnvironments(store);
 
-// import { testInfrastructure } from "./infrastructure";
-// testInfrastructure(store);
+import { testInfrastructure } from "./infrastructure";
+testInfrastructure(store);
 
 // import { testInvoices } from "./billing";
 // testInvoices(store);
@@ -30,5 +30,5 @@ testPasswordGrant(store);
 // import { testProjects } from "./projects";
 // testProjects(store);
 
-import { testSuggestionPipeline } from "./pipeline";
-testSuggestionPipeline(store);
+// import { testSuggestionPipeline } from "./pipeline";
+// testSuggestionPipeline(store);

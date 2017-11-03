@@ -104,6 +104,26 @@ export async function getSingle({
     });
 }
 
+export async function getTags({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: ServerQuery;
+    settings?: Settings;
+}) {
+    return Request.getRequest<{ data: string[] }>({
+        token,
+        target: links
+            .infrastructure()
+            .servers()
+            .tags(),
+        query,
+        settings,
+    });
+}
+
 export async function remove({
     id,
     token,

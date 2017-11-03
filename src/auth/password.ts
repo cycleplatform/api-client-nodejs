@@ -17,7 +17,6 @@ export async function passwordGrant(
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
-
     const queryParams = Object.keys(options)
         .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
         .join("&");
@@ -38,7 +37,6 @@ export async function passwordGrant(
                 ok: false,
                 error: {
                     status: resp.status,
-                    source: "/data/email",
                     detail: err.error_description,
                     title: err.error,
                 },

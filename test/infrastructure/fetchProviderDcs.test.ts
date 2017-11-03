@@ -12,7 +12,7 @@ export function testFetchProviderDcs({ store }: TestParams) {
     let schema: TJS.Definition | null;
     before(() => {
         schema = getSchema(
-            "resources/infrastructure/provider/DataCenter.ts",
+            "resources/infrastructure/provider/datacenter.ts",
             "Collection",
         );
     });

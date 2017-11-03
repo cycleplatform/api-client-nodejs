@@ -8,7 +8,7 @@ export function testPasswordGrant(store: TestStore) {
     let schema: any;
     describe("OAuth Password Grant", () => {
         before(() => {
-            schema = getSchema("auth/Token.ts", "Token");
+            schema = getSchema("auth/token.ts", "Token");
         });
 
         it("should fetch a token", async () => {
@@ -29,6 +29,7 @@ export function testPasswordGrant(store: TestStore) {
                 },
                 {
                     url: process.env.AUTH_URL,
+                    noVersion: true,
                     useHttp: store.state.settings.useHttp,
                 },
             );

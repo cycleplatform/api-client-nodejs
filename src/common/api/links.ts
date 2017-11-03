@@ -54,6 +54,7 @@ export const links = {
                 `/infrastructure/servers/${id}/console`,
             telemetry: (id: ResourceId) =>
                 `/infrastructure/servers/${id}/telemetry`,
+            tags: () => `/infrastructure/servers/tags`,
         }),
         providers: () => ({
             collection: () => `/infrastructure/providers`,
