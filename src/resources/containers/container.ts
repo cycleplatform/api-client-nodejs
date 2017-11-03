@@ -45,7 +45,7 @@ export interface Container extends Resource<ContainerMetas> {
 }
 
 export interface ContainerIncludes {
-    owner: OwnerInclude;
+    owners: OwnerInclude;
     images: {
         [key: string]: Image;
     };

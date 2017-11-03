@@ -35,6 +35,15 @@ export const links = {
         servers: (id: ResourceId) => `/containers/${id}/servers`,
     }),
 
+    dns: () => ({
+        zones: () => ({
+            collection: () => `/dns/zones`,
+            single: (id: ResourceId) => `/dns/zones/${id}`,
+            tasks: (id: ResourceId) => `/dns/zones/${id}/tasks`,
+            records: (id: ResourceId) => `/dns/zones/${id}/records`,
+        }),
+    }),
+
     environments: () => ({
         collection: () => `/environments`,
         single: (id: ResourceId) => `/environments/${id}`,

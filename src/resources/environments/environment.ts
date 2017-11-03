@@ -44,7 +44,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
 }
 
 export interface EnvironmentIncludes {
-    owner: OwnerInclude;
+    owners: OwnerInclude;
 }
 
 export interface EnvironmentMeta {

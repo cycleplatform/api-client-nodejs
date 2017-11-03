@@ -4,6 +4,7 @@ import * as Auth from "./auth";
 import * as Request from "./common/api/request";
 import * as Billing from "./resources/billing";
 import * as Containers from "./resources/containers";
+import * as DNS from "./resources/dns";
 import * as Environments from "./resources/environments";
 import * as Error from "./common/api/error";
 import * as Images from "./resources/images";
@@ -28,6 +29,7 @@ export {
     Account,
     Billing,
     Containers,
+    DNS,
     Environments,
     Error,
     Images,

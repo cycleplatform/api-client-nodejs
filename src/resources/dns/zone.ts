@@ -8,9 +8,17 @@ import {
     Events,
     UserScope,
     ResourceId,
+    SingleDoc,
+    OwnerInclude,
 } from "../../common/structs";
+import * as Records from "./record";
 
-export type Collection = CollectionDoc<Zone>;
+export * from "./tasks/zone";
+export { Records };
+
+export type Collection = CollectionDoc<Zone, {}, ZoneIncludes>;
+export type Single = SingleDoc<Zone>;
+
 export type ZoneState =
     | "pending"
     | "verifying"
@@ -19,6 +27,7 @@ export type ZoneState =
     | "deleting"
     | "deleted";
 export type ZoneEvent = "last_verification" | "verified";
+export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
     project_id: ResourceId;
@@ -28,21 +37,75 @@ export interface Zone extends Resource {
     events: Events<ZoneEvent>;
 }
 
+export interface ZoneIncludes {
+    owners: OwnerInclude;
+}
+
 export async function getCollection({
-    containerId,
     token,
     query,
     settings,
 }: {
-    containerId: ResourceId;
+    token: Token;
+    query?: ZoneQuery;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.getRequest<Collection>({
+        target: links
+            .dns()
+            .zones()
+            .collection(),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function getSingle({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
     token: Token;
     query?: QueryParams;
     settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<Collection>({
-        target: links.containers().servers(containerId),
+    return Request.getRequest<Single>({
+        target: links
+            .dns()
+            .zones()
+            .single(id),
         query,
         token,
         settings,
+    });
+}
+
+export interface CreateParams {
+    origin: string;
+}
+
+export async function create({
+    value,
+    token,
+    query,
+    settings,
+}: {
+    value: CreateParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.postRequest<Single>({
+        target: links
+            .dns()
+            .zones()
+            .collection(),
+        query,
+        token,
+        settings,
+        value,
     });
 }
