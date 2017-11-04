@@ -16,6 +16,7 @@ export type NotificationLevel = "warn" | "error" | "info" | "success";
 export type AssociationType = "invoices";
 export type NotificationState = "new" | "viewed" | "deleting" | "deleted";
 export type NotificationEvent = "viewed";
+export type NotificationCode = "invoice.generated";
 
 export interface Notification extends Resource, NotificationOpts {
     association: Association;
@@ -23,6 +24,7 @@ export interface Notification extends Resource, NotificationOpts {
     creator_id: ResourceId;
     state: State<NotificationState>;
     events: Events<NotificationEvent>;
+    code: NotificationCode;
 }
 
 export interface NotificationOpts {

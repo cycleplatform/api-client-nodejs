@@ -4,7 +4,10 @@ import { links, ProjectRequiredSettings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
 import { PipelineEvent } from "./event";
 
-export type AccountPipelineEventHeader = "project.create" | "project.delete";
+export type AccountPipelineEventHeader =
+    | "project.create"
+    | "project.delete"
+    | "notification.send";
 
 export interface AccountPipelineParams {
     token: Token;
