@@ -20,13 +20,15 @@ export type ProjectPipelineEventHeader =
     | "environment.stop"
     | "environment.delete"
     | "environment.update"
+    | "order.confirm"
     | "job.new"
     | "job.scheduled"
     | "job.queued"
     | "job.running"
     | "job.error"
     | "job.completed"
-    | "job.expired";
+    | "job.expired"
+    | "server.delete";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;
 
