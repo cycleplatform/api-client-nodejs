@@ -8,6 +8,7 @@ import {
     Time,
     Events,
     State,
+    ResourceId,
 } from "../../common/structs";
 
 export type Collection = CollectionDoc<Account>;
@@ -24,6 +25,7 @@ export interface Account extends Resource {
     name: Name;
     email: Email;
     two_factor_auth: TwoFactorAuth;
+    promo_code_id: ResourceId;
     active: boolean;
     events: Events;
     state: State<AccountState>;

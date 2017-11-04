@@ -2,9 +2,8 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
 import {
-    Time,
     State,
-    StandardEvents,
+    Events,
     Resource,
     CollectionDoc,
     ResourceId,
@@ -16,15 +15,14 @@ export type Collection = CollectionDoc<Notification>;
 export type NotificationLevel = "warn" | "error" | "info" | "success";
 export type AssociationType = "invoices";
 export type NotificationState = "new" | "viewed" | "deleting" | "deleted";
+export type NotificationEvent = "viewed";
 
 export interface Notification extends Resource, NotificationOpts {
     association: Association;
     recipient: UserScope;
     creator_id: ResourceId;
     state: State<NotificationState>;
-    events: StandardEvents & {
-        viewed: Time;
-    };
+    events: Events<NotificationEvent>;
 }
 
 export interface NotificationOpts {
