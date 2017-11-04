@@ -3,7 +3,7 @@ import { Token } from "../../../../auth";
 import { QueryParams, links, Settings } from "../../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../../common/structs";
 
-export type BuildAction = "stack.build.deploy" | "delete";
+export type BuildAction = "deploy" | "delete";
 
 export interface DeployParams {
     environment_id: ResourceId;
@@ -31,7 +31,7 @@ export async function deployBuild({
         token,
         query,
         settings,
-        value: { action: "stack.build.deploy", contents: value },
+        value: { action: "deploy", contents: value },
     });
 }
 
