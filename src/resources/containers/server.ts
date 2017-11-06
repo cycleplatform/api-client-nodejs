@@ -11,6 +11,10 @@ import {
 import { InstanceState } from "../containers/instances";
 
 export type Collection = CollectionDoc<ServerInstances>;
+export type ServerInstancesQuery = QueryParams<
+    string,
+    keyof ServerInstancesMeta
+>;
 
 export interface ServerInstances extends Resource<ServerInstancesMeta> {
     instances: StatefulCounts<InstanceState>;

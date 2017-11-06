@@ -114,6 +114,7 @@ export const links = {
             collection: () => `/stacks/${stack}/builds`,
             single: (id: ResourceId) => `/stacks/${stack}/builds/${id}`,
             tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,
+            log: (build: ResourceId) => `/stacks/${stack}/builds/${build}/log`,
         }),
     }),
 };
