@@ -17,7 +17,7 @@ export interface CollectionDoc<
 }
 
 export interface SingleDoc<
-    T extends Resource | string,
+    T extends Resource | string | null,
     K extends Meta = {},
     P extends Includes = {}
 > extends TopLevel<K, P> {
