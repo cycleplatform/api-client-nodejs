@@ -6,15 +6,19 @@ import {
     Resource,
     StatefulCounts,
     ResourceId,
+    IP,
 } from "../../common/structs";
 import { InstanceState } from "../containers/instances";
 
 export type Collection = CollectionDoc<ServerInstances>;
 
-export interface ServerInstances extends Resource {
+export interface ServerInstances extends Resource<ServerInstancesMeta> {
     instances: StatefulCounts<InstanceState>;
-    primary_ip: string;
     hostname: string;
+}
+
+export interface ServerInstancesMeta {
+    primary_ip: IP;
 }
 
 export async function getCollection({

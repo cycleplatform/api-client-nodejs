@@ -110,7 +110,7 @@ export async function getTags({
     settings,
 }: {
     token: Token;
-    query?: ServerQuery;
+    query?: QueryParams;
     settings?: Settings;
 }) {
     return Request.getRequest<{ data: string[] }>({

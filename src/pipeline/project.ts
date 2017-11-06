@@ -5,6 +5,7 @@ import { connectToSocket } from "../common/api/websocket";
 import { PipelineEvent } from "./event";
 
 export type ProjectPipelineEventHeader =
+    | "billing_service.deactivate"
     | "project.update"
     | "stack.create"
     | "stack.update"
@@ -22,12 +23,14 @@ export type ProjectPipelineEventHeader =
     | "environment.update"
     | "order.confirm"
     | "job.new"
-    | "job.scheduled"
+    | "job.schedu92cc8640bcc7ec46cd5a450ad815b438d007b64cled"
     | "job.queued"
+    | "job.scheduled"
     | "job.running"
     | "job.error"
     | "job.completed"
     | "job.expired"
+    | "server.provision"
     | "server.delete";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;
