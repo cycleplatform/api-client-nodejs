@@ -72,7 +72,7 @@ export interface Item {
     service: ServiceItem;
     description: string;
     price: Amount;
-    discount: AssociatedDiscount;
+    discount?: AssociatedDiscount;
 }
 
 export async function getSingle({
