@@ -3,7 +3,7 @@ import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { Resource, SingleDoc, ResourceId } from "../../../common/structs";
 
-export type Single = SingleDoc<BuildLog | null>;
+export type Single = SingleDoc<BuildLog>;
 
 export interface BuildLog extends Resource {
     stack_id: ResourceId;

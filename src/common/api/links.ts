@@ -33,6 +33,7 @@ export const links = {
         single: (id: ResourceId) => `/containers/${id}`,
         tasks: (id: ResourceId) => `/containers/${id}/tasks`,
         servers: (id: ResourceId) => `/containers/${id}/servers`,
+        events: (id: ResourceId) => `/containers/${id}/events`,
     }),
 
     dns: () => ({
