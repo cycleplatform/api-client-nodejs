@@ -13,6 +13,7 @@ import {
 
 export type Collection = CollectionDoc<Account>;
 export type Single = SingleDoc<Account>;
+export type AccountEvent = "last_login";
 export type AccountState =
     | "new"
     | "live"
@@ -27,7 +28,7 @@ export interface Account extends Resource {
     two_factor_auth: TwoFactorAuth;
     promo_code_id: ResourceId;
     active: boolean;
-    events: Events;
+    events: Events<AccountEvent>;
     state: State<AccountState>;
 }
 
