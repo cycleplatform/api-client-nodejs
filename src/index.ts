@@ -19,11 +19,6 @@ import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
 import * as SuggestionPipeline from "./pipeline";
 
-if (typeof window === "undefined") {
-    // tslint:disable-next-line:no-var-requires
-    (global as any).WebSocket = require("ws");
-}
-
 export {
     Auth,
     Account,
