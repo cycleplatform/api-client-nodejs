@@ -42,8 +42,8 @@ export async function task({
 }) {
     return Request.postRequest<CreatedTask<ZoneAction>>({
         target: links
-            .account()
-            .invites()
+            .dns()
+            .zones()
             .tasks(id),
         value,
         query,
