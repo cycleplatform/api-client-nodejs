@@ -42,6 +42,8 @@ export const links = {
             single: (id: ResourceId) => `/dns/zones/${id}`,
             tasks: (id: ResourceId) => `/dns/zones/${id}/tasks`,
             records: (id: ResourceId) => `/dns/zones/${id}/records`,
+            record: (zoneId: ResourceId, id: ResourceId) =>
+                `/dns/zones/${zoneId}/records/${id}`,
         }),
     }),
 

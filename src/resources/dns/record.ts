@@ -10,6 +10,7 @@ import {
     ResourceId,
     SingleDoc,
     OwnerInclude,
+    CreatedTask,
 } from "../../common/structs";
 
 export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
@@ -96,5 +97,56 @@ export async function create({
         token,
         settings,
         value,
+    });
+}
+
+export async function update({
+    zoneId,
+    recordId,
+    value,
+    token,
+    query,
+    settings,
+}: {
+    zoneId: ResourceId;
+    recordId: ResourceId;
+    value: CreateParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.patchRequest<Single>({
+        target: links
+            .dns()
+            .zones()
+            .record(zoneId, recordId),
+        query,
+        token,
+        settings,
+        value,
+    });
+}
+
+export async function remove({
+    zoneId,
+    recordId,
+    token,
+    query,
+    settings,
+}: {
+    zoneId: ResourceId;
+    recordId: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.deleteRequest<CreatedTask<"delete">>({
+        target: links
+            .dns()
+            .zones()
+            .record(zoneId, recordId),
+        query,
+        token,
+        settings,
     });
 }
