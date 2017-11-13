@@ -10,6 +10,7 @@ import {
     ResourceId,
     SingleDoc,
     OwnerInclude,
+    CreatedTask,
 } from "../../common/structs";
 import * as Records from "./record";
 
@@ -107,5 +108,27 @@ export async function create({
         token,
         settings,
         value,
+    });
+}
+
+export async function remove({
+    zoneId,
+    token,
+    query,
+    settings,
+}: {
+    zoneId: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.deleteRequest<CreatedTask<"delete">>({
+        target: links
+            .dns()
+            .zones()
+            .single(zoneId),
+        query,
+        token,
+        settings,
     });
 }
