@@ -13,7 +13,6 @@ export async function verify({
 }: {
     id: ResourceId;
     token: Token;
-    value: Task<ZoneAction>;
     query?: QueryParams;
     settings?: Settings;
 }) {
