@@ -12,7 +12,6 @@ export async function verify({
     settings,
 }: {
     id: ResourceId;
-    project: ResourceId;
     token: Token;
     value: Task<ZoneAction>;
     query?: QueryParams;
