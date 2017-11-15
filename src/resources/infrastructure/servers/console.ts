@@ -43,6 +43,7 @@ export async function connectToConsole(params: ConsolePipelineParams) {
         token: secretResp.value.data.token,
         settings: {
             url: `${secretResp.value.data.address}/${VERSION}/console`,
+            noVersion: true,
         },
         onMessage: params.onMessage,
         noJsonDecode: true,
