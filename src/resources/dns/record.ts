@@ -4,7 +4,6 @@ import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import {
     CollectionDoc,
     Resource,
-    State,
     Events,
     UserScope,
     ResourceId,
