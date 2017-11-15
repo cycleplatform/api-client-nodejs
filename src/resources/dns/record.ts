@@ -16,7 +16,6 @@ import {
 export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
 export type Single = SingleDoc<Record>;
 
-export type RecordState = "live" | "deleting" | "deleted";
 export type RecordType = "a" | "aaaa" | "cname" | "mx" | "ns" | "txt";
 export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
@@ -30,7 +29,6 @@ export interface Record extends Resource {
     name: string;
     values: RecordValues;
     domain: string;
-    state: State<RecordState>;
     events: Events;
 }
 
