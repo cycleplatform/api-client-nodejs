@@ -1,3 +1,6 @@
+import * as Request from "../../../common/api/request";
+import { Token } from "../../../auth";
+import { QueryParams, links, Settings } from "../../../common/api";
 import { Server } from "../../infrastructure/servers";
 import { DataCenters } from "../../infrastructure/provider";
 import {
@@ -13,7 +16,7 @@ import {
 } from "../../../common/structs";
 import { IPNet } from "../../network";
 
-export type Collection = CollectionDoc<Instance, {}, CollectionIncludes>;
+export type Collection = CollectionDoc<Instance, {}, InstanceIncludes>;
 export type Single = SingleDoc<Instance>;
 export type InstanceState =
     | "new"
@@ -25,8 +28,12 @@ export type InstanceState =
     | "deleting"
     | "deleted";
 export type InstanceEvent = "first_boot" | "started";
+export type InstanceQuery = QueryParams<
+    keyof InstanceIncludes,
+    keyof InstanceMetas
+>;
 
-export interface Instance extends Resource<InstanceMeta> {
+export interface Instance extends Resource<InstanceMetas> {
     owner: UserScope;
     project_id: ResourceId;
     container_id: ResourceId;
@@ -45,7 +52,7 @@ export interface Environment {
     ipv6: IPNet;
 }
 
-export interface CollectionIncludes extends Includes {
+export interface InstanceIncludes extends Includes {
     owner: OwnerInclude;
     servers: {
         [key: string]: Server;
@@ -56,6 +63,52 @@ export interface CollectionIncludes extends Includes {
 }
 
 // tslint:disable-next-line:no-empty-interface
-export interface InstanceMeta {
+export interface InstanceMetas {
     //
+}
+
+export async function getCollection({
+    containerId,
+    token,
+    query,
+    settings,
+}: {
+    containerId: ResourceId;
+    token: Token;
+    query?: InstanceQuery;
+    settings?: Settings;
+}) {
+    return Request.getRequest<Collection>({
+        target: links
+            .containers()
+            .instances()
+            .collection(containerId),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function getSingle({
+    id,
+    containerId,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    containerId: ResourceId;
+    token: Token;
+    query?: InstanceQuery;
+    settings?: Settings;
+}) {
+    return Request.getRequest<Single>({
+        target: links
+            .containers()
+            .instances()
+            .single(id, containerId),
+        query,
+        token,
+        settings,
+    });
 }
