@@ -74,3 +74,25 @@ export async function getCollection({
         settings,
     });
 }
+
+export async function getSingle({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.getRequest<Single>({
+        target: links
+            .billing()
+            .invoices()
+            .single(id),
+        query,
+        token,
+        settings,
+    });
+}
