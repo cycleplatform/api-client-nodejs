@@ -9,6 +9,7 @@ import { Term } from "../term";
 import { Item } from "./item";
 import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
+import { PlanType } from "../../plans";
 
 export type ServiceEvent =
     | "billed"
@@ -39,6 +40,7 @@ export interface Order {
 export interface Summary {
     service_id: ResourceId;
     title: string;
+    type: PlanType;
     term: Term;
     price: Mills;
     discount: Mills;
