@@ -18,6 +18,8 @@ export type ProjectPipelineEventHeader =
 export type BillingHeader =
     | "billing.service.activate"
     | "billing.service.deactivate"
+    | "billing.invoice.pay"
+    | "billing.invoice.bill"
     | "billing.method.create";
 export type OrderHeader = "order.confirm";
 export type ProjectHeader = "project.update";
