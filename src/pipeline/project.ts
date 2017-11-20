@@ -38,7 +38,10 @@ export type EnvironmentHeader =
     | "environment.stop"
     | "environment.delete"
     | "environment.update";
-export type ServerHeader = "server.provision" | "server.delete";
+export type ServerHeader =
+    | "server.provision"
+    | "server.decommission"
+    | "server.delete";
 export type StackHeader =
     | "stack.create"
     | "stack.update"
