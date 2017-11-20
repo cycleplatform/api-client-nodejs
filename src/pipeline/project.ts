@@ -5,33 +5,47 @@ import { connectToSocket } from "../common/api/websocket";
 import { PipelineEvent } from "./event";
 
 export type ProjectPipelineEventHeader =
-    | "billing_service.deactivate"
-    | "project.update"
-    | "stack.create"
-    | "stack.update"
-    | "stack.delete"
-    | "stack.build"
-    | "stack.build.deploy"
-    | "stack.build.delete"
-    | "image.import"
-    | "api_key.create"
-    | "api_key.update"
-    | "environment.create"
-    | "environment.start"
-    | "environment.stop"
-    | "environment.delete"
-    | "environment.update"
-    | "order.confirm"
+    | BillingHeader
+    | OrderHeader
+    | ProjectHeader
+    | ImageHeader
+    | ApiKeyHeader
+    | JobHeader
+    | EnvironmentHeader
+    | ServerHeader
+    | StackHeader;
+
+export type BillingHeader =
+    | "billing.service.activate"
+    | "billing.service.deactivate"
+    | "billing.method.create";
+export type OrderHeader = "order.confirm";
+export type ProjectHeader = "project.update";
+export type ImageHeader = "image.import";
+export type ApiKeyHeader = "api_key.create" | "api_key.update";
+export type JobHeader =
     | "job.new"
-    | "job.schedu92cc8640bcc7ec46cd5a450ad815b438d007b64cled"
+    | "job.scheduled"
     | "job.queued"
     | "job.scheduled"
     | "job.running"
     | "job.error"
     | "job.completed"
-    | "job.expired"
-    | "server.provision"
-    | "server.delete";
+    | "job.expired";
+export type EnvironmentHeader =
+    | "environment.create"
+    | "environment.start"
+    | "environment.stop"
+    | "environment.delete"
+    | "environment.update";
+export type ServerHeader = "server.provision" | "server.delete";
+export type StackHeader =
+    | "stack.create"
+    | "stack.update"
+    | "stack.delete"
+    | "stack.build"
+    | "stack.build.deploy"
+    | "stack.build.delete";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;
 
