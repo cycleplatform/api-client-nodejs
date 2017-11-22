@@ -11,6 +11,7 @@ import {
     Time,
 } from "../../common/structs";
 import { PublicAccount } from "../accounts/account";
+import { Project } from "./project";
 
 export type Collection = CollectionDoc<Membership, {}, MembershipIncludes>;
 export type Single = SingleDoc<Membership>;
@@ -39,6 +40,9 @@ export interface Membership extends Resource {
 export interface MembershipIncludes {
     senders: {
         [key: string]: PublicAccount;
+    };
+    projects: {
+        [key: string]: Project;
     };
 }
 
