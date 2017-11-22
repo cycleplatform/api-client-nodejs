@@ -15,7 +15,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: Memberships.MembershipQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<CollectionDoc<Memberships.Membership>>({
