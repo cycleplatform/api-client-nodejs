@@ -5,8 +5,9 @@ import * as TJS from "typescript-json-schema";
 
 const settings: TJS.PartialArgs = {
     required: true,
-    // ignoreErrors: true,
     aliasRef: true,
+    // dont allow untyped props
+    noExtraProps: true,
 };
 
 const compilerOptions: CompilerOptions = {

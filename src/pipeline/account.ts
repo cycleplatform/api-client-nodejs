@@ -7,6 +7,7 @@ import { PipelineEvent } from "./event";
 export type AccountPipelineEventHeader =
     | "project.create"
     | "project.delete"
+    | "project.live"
     | "notification.send";
 
 export interface AccountPipelineParams {
