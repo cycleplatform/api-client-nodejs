@@ -15,7 +15,13 @@ export async function getCollection({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.getRequest<CollectionDoc<Memberships.Membership>>({
+    return Request.getRequest<
+        CollectionDoc<
+            Memberships.Membership,
+            {},
+            Memberships.MembershipIncludes
+        >
+    >({
         target: links
             .account()
             .invites()
