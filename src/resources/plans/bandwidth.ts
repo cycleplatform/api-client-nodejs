@@ -20,7 +20,7 @@ export interface BandwidthPlan extends Resource {
 export interface BandwidthPricing {
     fixed: Amount;
     overage: {
-        cost: Mills;
+        price: Mills;
         per: string;
     };
 }
