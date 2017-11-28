@@ -25,6 +25,7 @@ export type BillingHeader =
     | "billing.method.created"
     | "billing.method.state_changed";
 export type ProjectHeader =
+    | "project.updated"
     | "project.state_changed"
     | "project.membership.state_changed"
     | "project.api_key.created"
