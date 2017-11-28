@@ -37,7 +37,7 @@ export interface Container extends Resource<ContainerMetas> {
     project_id: ResourceId;
     environment_id: ResourceId;
     stack?: CondensedStack;
-    image?: Image;
+    image?: CondensedImage;
     config: Spec.Config;
     features: Features;
     state: State<ContainerState>;
@@ -68,6 +68,10 @@ export interface CondensedStack {
     };
     build_id: ResourceId;
     identifier: "db";
+}
+
+export interface CondensedImage {
+    id: ResourceId;
 }
 
 export async function getCollection({
