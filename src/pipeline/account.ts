@@ -7,6 +7,8 @@ import { PipelineEvent } from "./event";
 export type AccountPipelineEventHeader =
     | "project.create"
     | "project.delete"
+    | "invite.accept"
+    | "invite.decline"
     | "project.live"
     | "notification.send";
 

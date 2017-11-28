@@ -4,8 +4,8 @@ export const links = {
     account: () => ({
         single: () => `/account`,
         invites: () => ({
-            collection: () => `/invites`,
-            tasks: (id: ResourceId) => `/invites/${id}`,
+            collection: () => `/account/invites`,
+            tasks: (id: ResourceId) => `/account/invites/${id}/tasks`,
         }),
         memberships: () => `/account/memberships`,
         pipeline: () => `/account/pipeline`,
