@@ -27,6 +27,8 @@ export type BillingHeader =
 export type ProjectHeader =
     | "project.state_changed"
     | "project.membership.state_changed"
+    | "project.api_key.created"
+    | "project.api_key.updated"
     | "project.api_key.state_changed";
 export type ImageHeader = "image.state_changed";
 export type DNSHeader =
