@@ -16,7 +16,6 @@ export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
 export type StackState =
     | "new"
-    | "preparing"
     | "importing"
     | "building"
     | "verifying"
