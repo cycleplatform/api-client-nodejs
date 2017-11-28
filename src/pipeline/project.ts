@@ -17,6 +17,7 @@ export type ProjectPipelineEventHeader =
 export type BillingHeader =
     | "billing.service.state_changed"
     | "billing.invoice.state_changed"
+    | "billing.order.create"
     | "billing.order.state_changed"
     | "billing.discount.state_changed"
     | "billing.credit.state_changed"
@@ -27,7 +28,11 @@ export type ProjectHeader =
     | "project.membership.state_changed"
     | "project.api_key.state_changed";
 export type ImageHeader = "image.state_changed";
-export type DNSHeader = "dns.zone.state_changed";
+export type DNSHeader =
+    | "dns.zone.created"
+    | "dns.zone.updated"
+    | "dns.zone.state_changed"
+    | "dns.zone.new_record";
 export type JobHeader =
     | "job.new"
     | "job.scheduled"
@@ -37,11 +42,21 @@ export type JobHeader =
     | "job.error"
     | "job.completed"
     | "job.expired";
-export type EnvironmentHeader = "environment.state_changed";
+export type EnvironmentHeader =
+    | "environment.created"
+    | "environment.updated"
+    | "environment.state_changed";
 export type ServerHeader = "server.state_changed";
-export type StackHeader = "stack.state_changed" | "stack.build.state_changed";
+export type StackHeader =
+    | "stack.created"
+    | "stack.state_changed"
+    | "stack.build.created"
+    | "stack.build.state_changed";
 export type ContainerHeader =
+    | "container.created"
+    | "container.updated"
     | "container.state_changed"
+    | "container.instance.created"
     | "container.instance.state_changed";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;

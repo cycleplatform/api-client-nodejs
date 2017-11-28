@@ -111,31 +111,6 @@ export async function create({
     });
 }
 
-export async function update({
-    zoneId,
-    value,
-    token,
-    query,
-    settings,
-}: {
-    zoneId: ResourceId;
-    value: CreateParams;
-    token: Token;
-    query?: QueryParams;
-    settings?: ProjectRequiredSettings;
-}) {
-    return Request.patchRequest<Single>({
-        target: links
-            .dns()
-            .zones()
-            .single(zoneId),
-        query,
-        token,
-        settings,
-        value,
-    });
-}
-
 export async function remove({
     zoneId,
     token,
