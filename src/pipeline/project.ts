@@ -20,6 +20,7 @@ export type BillingHeader =
     | "billing.order.state_changed"
     | "billing.discount.state_changed"
     | "billing.credit.state_changed"
+    | "billing.method.create"
     | "billing.method.state_changed";
 export type ProjectHeader =
     | "project.state_changed"
