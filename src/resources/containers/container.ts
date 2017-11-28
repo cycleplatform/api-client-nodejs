@@ -36,7 +36,7 @@ export interface Container extends Resource<ContainerMetas> {
     owner: UserScope;
     project_id: ResourceId;
     environment_id: ResourceId;
-    stack?: Stack;
+    stack?: CondensedStack;
     image?: Image;
     config: Spec.Config;
     features: Features;
@@ -59,6 +59,15 @@ export interface ContainerIncludes {
 
 export interface ContainerMetas {
     instance_counts?: { [key: string]: number };
+}
+
+export interface CondensedStack {
+    id: ResourceId;
+    image: {
+        id: ResourceId;
+    };
+    build_id: ResourceId;
+    identifier: "db";
 }
 
 export async function getCollection({
