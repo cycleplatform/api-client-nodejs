@@ -6,25 +6,27 @@ import { PipelineEvent } from "./event";
 
 export type ProjectPipelineEventHeader =
     | BillingHeader
-    | OrderHeader
+    | ContainerHeader
     | ProjectHeader
     | ImageHeader
-    | ApiKeyHeader
     | JobHeader
     | EnvironmentHeader
     | ServerHeader
     | StackHeader;
 
 export type BillingHeader =
-    | "billing.service.activate"
-    | "billing.service.deactivate"
-    | "billing.invoice.pay"
-    | "billing.invoice.bill"
-    | "billing.method.create";
-export type OrderHeader = "order.confirm";
-export type ProjectHeader = "project.update";
-export type ImageHeader = "image.import";
-export type ApiKeyHeader = "api_key.create" | "api_key.update";
+    | "billing.service.state_changed"
+    | "billing.invoice.state_changed"
+    | "billing.order.state_changed"
+    | "billing.discount.state_changed"
+    | "billing.credit.state_changed"
+    | "billing.method.state_changed";
+export type ProjectHeader =
+    | "project.state_changed"
+    | "project.membership.state_changed"
+    | "project.api_key.state_changed";
+export type ImageHeader = "image.state_changed";
+export type DNSHeader = "dns.zone.state_changed";
 export type JobHeader =
     | "job.new"
     | "job.scheduled"
@@ -34,23 +36,12 @@ export type JobHeader =
     | "job.error"
     | "job.completed"
     | "job.expired";
-export type EnvironmentHeader =
-    | "environment.create"
-    | "environment.start"
-    | "environment.stop"
-    | "environment.delete"
-    | "environment.update";
-export type ServerHeader =
-    | "server.provision"
-    | "server.decommission"
-    | "server.delete";
-export type StackHeader =
-    | "stack.create"
-    | "stack.update"
-    | "stack.delete"
-    | "stack.build"
-    | "stack.build.deploy"
-    | "stack.build.delete";
+export type EnvironmentHeader = "environment.state_changed";
+export type ServerHeader = "server.state_changed";
+export type StackHeader = "stack.state_changed" | "stack.build.state_changed";
+export type ContainerHeader =
+    | "container.state_changed"
+    | "container.instance.state_changed";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;
 

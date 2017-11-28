@@ -5,12 +5,12 @@ import { connectToSocket } from "../common/api/websocket";
 import { PipelineEvent } from "./event";
 
 export type AccountPipelineEventHeader =
-    | "project.create"
-    | "project.delete"
-    | "invite.accept"
-    | "invite.decline"
-    | "project.live"
-    | "notification.send";
+    | "account.state_changed"
+    | "project.created"
+    | "project.deleted"
+    | "project.membership.new"
+    | "notification.new"
+    | "notification.state_changed";
 
 export interface AccountPipelineParams {
     token: Token;
