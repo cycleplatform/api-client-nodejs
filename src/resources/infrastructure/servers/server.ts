@@ -124,6 +124,35 @@ export async function getTags({
     });
 }
 
+export interface UpdateParams {
+    tags: string[];
+}
+
+export async function update({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: UpdateParams;
+    query?: ServerQuery;
+    settings?: Settings;
+}) {
+    return Request.patchRequest<Single>({
+        token,
+        target: links
+            .infrastructure()
+            .servers()
+            .single(id),
+        query,
+        value,
+        settings,
+    });
+}
+
 export async function remove({
     id,
     token,

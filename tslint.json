@@ -8,10 +8,6 @@
             false
         ],
         "object-literal-sort-keys": false,
-        "jsx-boolean-value": [
-            "never"
-        ],
-        "jsx-no-lambda": true,
         "no-implicit-dependencies": false,
         "ordered-imports": [
             false
