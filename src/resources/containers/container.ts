@@ -146,7 +146,7 @@ export async function update({
     settings,
 }: {
     id: ResourceId;
-    value: Partial<CreateParams>;
+    value: Pick<CreateParams, "name">;
     token: Token;
     query?: ContainerQuery;
     settings?: Settings;
