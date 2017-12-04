@@ -35,7 +35,10 @@ export interface Container extends Resource<ContainerMetas> {
     name: string;
     owner: UserScope;
     project_id: ResourceId;
-    environment_id: ResourceId;
+    environment: {
+        id: ResourceId;
+        network_id: number;
+    };
     stack?: CondensedStack;
     image?: CondensedImage;
     config: Spec.Config;
