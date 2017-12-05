@@ -37,19 +37,17 @@ export interface Instance extends Resource<InstanceMetas> {
     owner: UserScope;
     project_id: ResourceId;
     container_id: ResourceId;
-    environment: Environment;
+    environment: {
+        id: ResourceId;
+        network_id: number;
+        ipv4: IPNet;
+        ipv6: IPNet;
+    };
     datacenter_id: ResourceId;
     server_id: ResourceId;
     hostname: string;
     state: State<InstanceState>;
     events: Events<InstanceEvent>;
-}
-
-export interface Environment {
-    id: ResourceId;
-    network_id: number;
-    ipv4: IPNet;
-    ipv6: IPNet;
 }
 
 export interface InstanceIncludes extends Includes {

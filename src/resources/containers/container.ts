@@ -14,6 +14,7 @@ import {
     OwnerInclude,
 } from "../../common/structs";
 import { Features } from "./features";
+import { IPNet } from "../network";
 
 export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
 export type Single = SingleDoc<Container, {}, ContainerIncludes>;
@@ -38,6 +39,8 @@ export interface Container extends Resource<ContainerMetas> {
     environment: {
         id: ResourceId;
         network_id: number;
+        ipv4: IPNet;
+        ipv6: IPNet;
     };
     stack?: CondensedStack;
     image?: CondensedImage;

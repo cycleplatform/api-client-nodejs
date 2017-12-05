@@ -14,6 +14,7 @@ import {
     OwnerInclude,
 } from "../../common/structs";
 import { ContainerState, Instances } from "../containers";
+import { IPNet } from "../network";
 
 export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment>;
@@ -37,7 +38,12 @@ export interface Environment extends Resource<EnvironmentMeta> {
     project_id: ResourceId;
     state: State<EnvironmentState>;
     events: Events;
-    private_network: {};
+    private_network: {
+        vxlan_tag: number;
+        subnet: number;
+        ipv4: IPNet;
+        ipv6: IPNet;
+    };
     services: {
         dns: EnvService | null;
     };
