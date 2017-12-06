@@ -21,7 +21,7 @@ export type InvitationEvent = "accepted" | "declined" | "revoked";
 export type MembershipQuery = QueryParams<keyof MembershipIncludes>;
 
 export enum Role {
-    OWNER,
+    OWNER = 1 << 0,
     ADMIN = 1 << 1,
     DEVELOPER = 1 << 2,
     ANALYST = 1 << 3,

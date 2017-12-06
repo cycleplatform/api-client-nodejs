@@ -1,10 +1,12 @@
 export interface Network {
-    public: boolean;
-    hostname?: string;
-    ports?: string[];
+    public: NetworkPublicMode;
+    hostname: string;
+    ports: string[];
     dns: DNS;
     tls: TLS;
 }
+
+export type NetworkPublicMode = "enable" | "disable" | "egress-only";
 
 export interface DNS {
     domain?: string;
