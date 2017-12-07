@@ -13,9 +13,12 @@ import {
     Events,
     State,
 } from "../../common/structs";
+import { Membership } from "./membership";
 
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
+
+export type ProjectQuery = QueryParams<"", keyof ProjectMetas>;
 
 export type ProjectState =
     | "new"
@@ -26,13 +29,17 @@ export type ProjectState =
     | "deleting"
     | "deleted";
 
-export interface Project extends Resource {
+export interface Project extends Resource<ProjectMetas> {
     name: string;
     events: Events;
     billing: {
         disabled: boolean;
     };
     state: State<ProjectState>;
+}
+
+export interface ProjectMetas {
+    membership?: Membership;
 }
 
 export interface CreateParams {
