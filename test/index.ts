@@ -12,14 +12,14 @@ const store = new TestStore();
 import { testPasswordGrant } from "./auth/passwordGrant.test";
 testPasswordGrant(store);
 
-// import { testAccounts } from "./account";
-// testAccounts(store);
+import { testAccounts } from "./account";
+testAccounts(store);
 
 // import { testEnvironments } from "./environments";
 // testEnvironments(store);
 
-import { testInfrastructure } from "./infrastructure";
-testInfrastructure(store);
+// import { testInfrastructure } from "./infrastructure";
+// testInfrastructure(store);
 
 // import { testInvoices } from "./billing";
 // testInvoices(store);

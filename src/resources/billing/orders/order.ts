@@ -52,6 +52,7 @@ export interface CreateParams {
     bandwidth_plan_id?: ResourceId;
     support_plan_id?: ResourceId;
     term_length?: TermLength;
+    promo_code?: string;
 }
 
 export interface OrderMeta {
