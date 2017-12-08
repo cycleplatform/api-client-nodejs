@@ -54,7 +54,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: ProjectQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Collection>({
@@ -73,7 +73,7 @@ export async function create({
 }: {
     value: CreateParams;
     token: Token;
-    query?: QueryParams;
+    query?: ProjectQuery;
     settings?: Settings;
 }) {
     return Request.postRequest<Single>({
@@ -93,7 +93,7 @@ export async function update({
 }: {
     value: Partial<UpdateParams>;
     token: Token;
-    query?: QueryParams;
+    query?: ProjectQuery;
     settings?: Settings;
 }) {
     return Request.patchRequest<Single>({
@@ -111,7 +111,7 @@ export async function remove({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: ProjectQuery;
     settings: ProjectRequiredSettings;
 }) {
     return Request.deleteRequest<Single>({
