@@ -38,6 +38,7 @@ export type OrderEvent =
 export interface Order extends Resource<OrderMeta> {
     project_id: ResourceId;
     owner: UserScope;
+    promo_code_id: string | null;
     term: Term;
     approved: boolean;
     items: Item[];
