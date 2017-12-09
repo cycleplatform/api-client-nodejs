@@ -19,6 +19,7 @@ import { Item as ServiceItem } from "../services/item";
 import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
 import { Term, TermLength } from "../term";
+import { PromoCode } from "../promocodes";
 
 export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;
@@ -45,6 +46,12 @@ export interface Order extends Resource<OrderMeta> {
     total_price: Mills;
     events: Events<OrderEvent>;
     state: State<OrderState>;
+}
+
+export interface OrderIncludes {
+    promo_codes: {
+        [key: string]: PromoCode;
+    };
 }
 
 export interface CreateParams {
