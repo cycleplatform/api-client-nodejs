@@ -97,6 +97,7 @@ export const links = {
     projects: () => ({
         collection: () => `/projects`,
         single: () => `/projects/current`,
+        tasks: () => `/projects/current/tasks`,
         capabilities: () => `/projects/capabilities`,
         invites: () => ({
             collection: () => `/projects/current/invites`,
