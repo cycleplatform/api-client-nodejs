@@ -1,7 +1,7 @@
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
-import { ResourceId, Task, CreatedTask } from "../../../common/structs";
+import { Task, CreatedTask } from "../../../common/structs";
 
 export type ProjectAction = "leave";
 
@@ -10,7 +10,6 @@ export async function leave({
     query,
     settings,
 }: {
-    id: ResourceId;
     token: Token;
     query?: QueryParams;
     settings?: Settings;
