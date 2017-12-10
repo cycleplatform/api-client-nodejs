@@ -13,6 +13,8 @@ export type Capability =
     | "containers-state"
     | "containers-update"
     | "containers-delete"
+    | "dns-view"
+    | "dns-manage"
     | "environments-create"
     | "environments-delete"
     | "environments-view"
