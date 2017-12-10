@@ -12,6 +12,7 @@ import {
 } from "../../common/structs";
 import { PublicAccount } from "../accounts/account";
 import { Project } from "./project";
+import { Capability } from "./capability";
 
 export type Collection = CollectionDoc<Membership, {}, MembershipIncludes>;
 export type Single = SingleDoc<Membership>;
@@ -28,13 +29,17 @@ export enum Role {
     DEFAULT = 0,
 }
 
-export interface Membership extends Resource {
+export interface Membership extends Resource<MembershipMeta> {
     account_id: ResourceId;
     project_id: ResourceId;
     role: Role;
     events: Events<MembershipEvent>;
     state: State<MembershipState>;
     invitation: Invitation;
+}
+
+export interface MembershipMeta {
+    capabilities: Capability[];
 }
 
 export interface MembershipIncludes {
@@ -76,6 +81,26 @@ export async function getCollection({
             .projects()
             .members()
             .collection(),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function getCurrentMembership({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: QueryParams;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.getRequest<SingleDoc<Member>>({
+        target: links
+            .projects()
+            .members()
+            .single(),
         query,
         token,
         settings,

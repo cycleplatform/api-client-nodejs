@@ -102,6 +102,7 @@ export const links = {
         }),
         members: () => ({
             collection: () => `/projects/current/members`,
+            single: () => `/projects/current/membership`,
         }),
         keys: () => ({
             collection: () => `/projects/current/api-keys`,
