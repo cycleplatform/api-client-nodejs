@@ -17,6 +17,10 @@ import { DataCenters, Servers, Provider } from "../provider";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
+
+/**
+ * Filters: [tags]
+ */
 export type ServerQuery = QueryParams<keyof ServerIncludes, keyof ServerMeta>;
 
 export { Telemetry };

@@ -19,7 +19,10 @@ export type Single = SingleDoc<Membership>;
 export type MembershipState = "new" | "active" | "deleting" | "deleted";
 export type MembershipEvent = "joined";
 export type InvitationEvent = "accepted" | "declined" | "revoked";
-export type MembershipQuery = QueryParams<keyof MembershipIncludes>;
+export type MembershipQuery = QueryParams<
+    keyof MembershipIncludes,
+    keyof MembershipMeta
+>;
 
 export enum Role {
     OWNER = 1 << 0,

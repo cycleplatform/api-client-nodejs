@@ -56,6 +56,7 @@ export const links = {
     environments: () => ({
         collection: () => `/environments`,
         single: (id: ResourceId) => `/environments/${id}`,
+        events: (id: ResourceId) => `/environments/${id}/events`,
     }),
 
     images: () => ({
