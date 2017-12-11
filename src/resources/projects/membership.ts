@@ -62,7 +62,8 @@ export interface Invitation {
     events: Events<InvitationEvent>;
 }
 
-export interface Member extends PublicAccount {
+export interface Member extends Resource<MembershipMeta> {
+    name: string;
     role: Role;
     joined: Time;
 }
@@ -76,7 +77,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: MembershipQuery;
     settings?: ProjectRequiredSettings;
 }) {
     return Request.getRequest<CollectionDoc<Member>>({
@@ -96,7 +97,7 @@ export async function getCurrentMembership({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: MembershipQuery;
     settings?: ProjectRequiredSettings;
 }) {
     return Request.getRequest<SingleDoc<Member>>({
