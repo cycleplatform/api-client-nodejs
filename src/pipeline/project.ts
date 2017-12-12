@@ -59,6 +59,7 @@ export type StackHeader =
 export type ContainerHeader =
     | "container.created"
     | "container.updated"
+    | "container.event"
     | "container.state_changed"
     | "container.instance.created"
     | "container.instance.state_changed";
