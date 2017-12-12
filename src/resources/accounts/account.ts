@@ -33,7 +33,10 @@ export interface Account extends Resource {
 }
 
 export interface PublicAccount extends Resource {
-    name: string;
+    name: {
+        first: string;
+        last: string;
+    };
 }
 
 export interface Name {
