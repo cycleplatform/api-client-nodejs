@@ -1,6 +1,11 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import {
+    QueryParams,
+    links,
+    Settings,
+    ProjectRequiredSettings,
+} from "../../common/api";
 import {
     CollectionDoc,
     Resource,
@@ -98,6 +103,28 @@ export async function create({
             .collection(),
         value,
         query,
+        settings,
+    });
+}
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.deleteRequest<Single>({
+        target: links
+            .projects()
+            .keys()
+            .single(id),
+        query,
+        token,
         settings,
     });
 }
