@@ -1,10 +1,17 @@
 export interface Runtime {
     command?: RuntimeCommand;
-    namespaces: Namespace;
+    namespaces: Namespaces[];
     privileged: boolean;
 }
 
-export type Namespace = "ipc" | "pid" | "uts" | "network" | "mount" | "user";
+export enum Namespaces {
+    IPC = "ipc",
+    PID = "pid",
+    UTS = "uts",
+    NETWORK = "network",
+    MOUNT = "mount",
+    USER = "user",
+}
 
 export interface RuntimeCommand {
     path: string;
