@@ -1,17 +1,17 @@
 import { Volume } from "./volume";
-import { Tags } from "./tags";
+import { Deployment } from "./deployment";
 import { Runtime } from "./runtime";
 import { Network } from "./network";
 import { Resources } from "./resources";
 import { Options } from "./options";
+import { Scaling } from "./scaling";
 
 export interface Config {
-    instances?: number;
+    version: string;
     volumes: Volume[];
-    tags: Tags;
-    runtime: Runtime;
-    environment_vars: { [key: string]: string };
-    required_secrets: string[];
+    deployment?: Deployment;
+    scaling?: Scaling;
+    runtime?: Runtime;
     network: Network;
     resources?: Resources;
     options?: Options;
