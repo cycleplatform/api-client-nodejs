@@ -7,7 +7,6 @@ import { Options } from "./options";
 import { Scaling } from "./scaling";
 
 export interface Config {
-    version: string;
     volumes: Volume[];
     deployment?: Deployment;
     scaling?: Scaling;
