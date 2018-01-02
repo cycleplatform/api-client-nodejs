@@ -1,4 +1,3 @@
-import { Volume } from "./volume";
 import { Deployment } from "./deployment";
 import { Runtime } from "./runtime";
 import { Network } from "./network";
@@ -7,7 +6,6 @@ import { Options } from "./options";
 import { Scaling } from "./scaling";
 
 export interface Config {
-    volumes: Volume[];
     deployment?: Deployment;
     scaling?: Scaling;
     runtime?: Runtime;
