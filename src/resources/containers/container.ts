@@ -43,7 +43,7 @@ export interface Container extends Resource<ContainerMetas> {
         ipv6: IPNet;
     };
     stack?: CondensedStack;
-    image?: CondensedImage;
+    image: CondensedImage;
     config: Spec.Config;
     features: Features;
     state: State<ContainerState>;
