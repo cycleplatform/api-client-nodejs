@@ -2,8 +2,9 @@ import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
+import { Config } from "../../stacks/spec";
 
-export type ContainerAction = "start" | "stop";
+export type ContainerAction = "start" | "stop" | "reconfigure";
 
 export async function start({
     id,
@@ -45,6 +46,31 @@ export async function stop({
         settings,
         value: {
             action: "stop",
+        },
+    });
+}
+
+export async function reconfigure({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: Config;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "stop",
+            contents: value,
         },
     });
 }

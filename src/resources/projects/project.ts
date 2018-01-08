@@ -65,6 +65,23 @@ export async function getCollection({
     });
 }
 
+export async function getSingle({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: ProjectQuery;
+    settings?: Settings;
+}) {
+    return Request.getRequest<Single>({
+        target: links.projects().single(),
+        query,
+        token,
+        settings,
+    });
+}
+
 export async function create({
     value,
     token,
