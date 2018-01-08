@@ -1,6 +1,6 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "0.11.78",
+    "version": "0.11.80",
     "description": "Cycle API Client",
     "main": "dist/node.js",
     "browser": "dist/index.js",
