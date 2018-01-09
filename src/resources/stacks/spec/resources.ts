@@ -1,15 +1,17 @@
+import { DataSize, CPUShares } from "../../../common/structs";
+
 export interface Resources {
     cpu: CPUResources;
     ram: RAMResources;
 }
 
 export interface CPUResources {
-    limit?: string;
-    reserve?: string;
+    limit?: CPUShares;
+    reserve?: CPUShares;
 }
 
 export interface RAMResources {
-    limit?: string;
-    reserve?: string;
+    limit?: DataSize;
+    reserve?: DataSize;
     swappiness?: number;
 }
