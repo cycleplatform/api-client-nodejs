@@ -69,7 +69,7 @@ export async function reconfigure({
         query,
         settings,
         value: {
-            action: "stop",
+            action: "reconfigure",
             contents: value,
         },
     });
