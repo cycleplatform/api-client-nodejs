@@ -14,12 +14,12 @@ export interface LocalVolume {
 export interface VolumeRemoteAccess {
     allow: boolean;
     whitelist_ips: WhiteListIp[];
+    webhook: Webhook;
+    default_password?: string;
 }
 
 export interface WhiteListIp {
     ip: string;
-    auto_login: boolean;
     read_only: boolean;
-    webhook: Webhook;
     default_password?: string;
 }
