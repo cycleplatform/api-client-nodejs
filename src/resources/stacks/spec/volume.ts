@@ -21,4 +21,5 @@ export interface WhiteListIp {
     auto_login: boolean;
     read_only: boolean;
     webhook: Webhook;
+    default_password?: string;
 }
