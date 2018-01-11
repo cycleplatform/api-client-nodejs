@@ -10,20 +10,21 @@ export interface Events {
 }
 
 export interface DeployEvents {
-    web_hooks: string[];
+    web_hooks?: string[];
 }
 
 export interface StartEvents {
-    web_hooks: string[];
+    web_hooks?: string[];
 }
 
 export interface StopEvents {
-    web_hooks: string[];
+    web_hooks?: string[];
 }
 
 export interface Monitor {
     auto_restart: boolean;
     max_restarts?: number;
+    restart_delay?: number; // seconds
     notify: Notify;
 }
 

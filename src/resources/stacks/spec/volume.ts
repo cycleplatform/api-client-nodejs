@@ -1,7 +1,6 @@
-export type VolumeType = "local";
+import { DataSize, Webhook } from "../../../common/structs";
 
 export interface Volume {
-    type: VolumeType;
     read_only: boolean;
     local?: LocalVolume;
     destination: string;
@@ -9,10 +8,18 @@ export interface Volume {
 }
 
 export interface LocalVolume {
-    size_mb?: number;
+    max_size: DataSize;
 }
 
 export interface VolumeRemoteAccess {
     allow: boolean;
-    whitelist_ips: string[];
+    whitelist_ips: WhiteListIp[];
+    webhook: Webhook;
+    default_password?: string;
+}
+
+export interface WhiteListIp {
+    ip: string;
+    read_only: boolean;
+    default_password?: string;
 }

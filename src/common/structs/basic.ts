@@ -43,3 +43,34 @@ export type Days = number;
  * Field denoting an IP
  */
 export type IP = string;
+
+/**
+ * a url that cycle is able to call out to
+ */
+export type Webhook = string;
+
+/**
+ * Denotes size of data, i.e.
+ * 10G = 10 Gigabytes
+ * 50M = 50 Megabytes etc
+ */
+export type DataSize = string;
+
+export enum DataSizeUnits {
+    KB = "K",
+    MB = "M",
+    GB = "G",
+    TB = "T",
+}
+
+/**
+ * Denotes a unit of cpu compute time i.e.
+ * 1cores
+ * 2seconds
+ */
+export type CPUShares = string;
+
+export enum CPUShareUnits {
+    CORES = "cores",
+    SECONDS = "seconds",
+}
