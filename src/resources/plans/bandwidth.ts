@@ -1,11 +1,6 @@
 import * as Request from "../../common/api/request";
 import { QueryParams, links, Settings } from "../../common/api";
-import {
-    CollectionDoc,
-    Resource,
-    SingleDoc,
-    Mills,
-} from "../../common/structs";
+import { CollectionDoc, Resource, SingleDoc } from "../../common/structs";
 import { Amount } from "../billing";
 
 export type Collection = CollectionDoc<BandwidthPlan>;
@@ -20,7 +15,7 @@ export interface BandwidthPlan extends Resource {
 export interface BandwidthPricing {
     fixed: Amount;
     overage: {
-        price: Mills;
+        price: Amount;
         per: string;
     };
 }
