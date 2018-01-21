@@ -1,6 +1,6 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "0.13.1",
+    "version": "0.13.2",
     "description": "Cycle API Client",
     "main": "dist/node.js",
     "browser": "dist/index.js",
@@ -35,7 +35,7 @@
         "ts-node": "^3.0.6",
         "tslint": "^5.8.0",
         "tslint-config-prettier": "^1.6.0",
-        "typescript": "^2.6.1",
+        "typescript": "^2.7.0-rc",
         "typescript-json-schema": "^0.17.0"
     },
     "repository": {
