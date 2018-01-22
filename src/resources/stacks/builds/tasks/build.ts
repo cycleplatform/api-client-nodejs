@@ -8,6 +8,7 @@ export type BuildAction = "deploy" | "delete";
 export interface DeployParams {
     environment_id: ResourceId;
     update_configs: boolean;
+    redeploy: boolean;
 }
 
 export async function deployBuild({
