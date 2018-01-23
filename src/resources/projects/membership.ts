@@ -13,6 +13,7 @@ import {
 import { PublicAccount } from "../accounts/account";
 import { Project } from "./project";
 import { Capability } from "./capability";
+import { Name } from "../accounts";
 
 export type Collection = CollectionDoc<Membership, {}, MembershipIncludes>;
 export type Single = SingleDoc<Membership>;
@@ -63,7 +64,7 @@ export interface Invitation {
 }
 
 export interface Member extends Resource<MembershipMeta> {
-    name: string;
+    name: Name;
     role: Role;
     joined: Time;
 }
