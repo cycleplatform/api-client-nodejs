@@ -12,9 +12,10 @@ import {
     CreatedTask,
     StatefulCounts,
     OwnerInclude,
+    IP,
 } from "../../common/structs";
 import { ContainerState, Instances } from "../containers";
-import { IPNet } from "../network";
+import { IPNet, Kind, IPState } from "../network";
 
 export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment>;
@@ -58,6 +59,14 @@ export interface EnvironmentMeta {
         containers: StatefulCounts<ContainerState>;
         instances: StatefulCounts<Instances.InstanceState>;
     };
+    ips?: Array<{
+        kind: Kind;
+        ip: IPNet;
+        gateway: IP;
+        netmask: IP;
+        network: IP;
+        state: State<IPState>;
+    }>;
 }
 
 export interface CreateParams {
