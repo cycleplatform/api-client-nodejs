@@ -38,9 +38,9 @@ export interface Container extends Resource<ContainerMetas> {
     project_id: ResourceId;
     environment: {
         id: ResourceId;
-        network_id: number;
-        ipv4: IPNet;
-        ipv6: IPNet;
+        network_id: number | null;
+        ipv4: IPNet | null;
+        ipv6: IPNet | null;
     };
     stack?: CondensedStack;
     image: CondensedImage;
