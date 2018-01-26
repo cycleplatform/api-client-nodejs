@@ -30,12 +30,12 @@ export interface ContainerStats {
 }
 
 export interface InstanceStats {
-    geo: {
+    geo: Array<{
         datacenter_id: ResourceId;
         location: Location;
         available: number;
         total: number;
-    };
+    }>;
     state: { [key: string]: number };
     total: number;
     available: number;
