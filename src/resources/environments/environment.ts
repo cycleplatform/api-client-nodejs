@@ -46,7 +46,8 @@ export interface Environment extends Resource<EnvironmentMeta> {
         ipv6: IPNet;
     };
     services: {
-        dns: EnvService | null;
+        discovery: EnvService | null;
+        vpn: EnvService | null;
     };
 }
 
@@ -78,7 +79,8 @@ export interface CreateParams {
 
 export interface EnvService {
     container: string;
-    id: ResourceId;
+    ipv4: IPNet;
+    ipv6: IPNet;
 }
 
 export async function getCollection({

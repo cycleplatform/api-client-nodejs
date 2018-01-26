@@ -10,7 +10,7 @@ export type EnvironmentSummaryDoc = SingleDoc<EnvironmentSummary>;
 
 export interface EnvironmentSummary extends Resource {
     state: EnvironmentState;
-    services: ServiceSummary[];
+    services: { [key: string]: ServiceSummary };
     stats: Stats;
 }
 
