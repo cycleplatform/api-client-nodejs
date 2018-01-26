@@ -4,7 +4,11 @@ import { ApiKeys } from "../../resources/projects";
 /**
  * Count number of resource of state
  */
-export type StatefulCounts<K extends string> = { [P in K]: number };
+export interface StatefulCounts<K extends string> {
+    state: { [P in K]: number };
+    total: number;
+    available: number;
+}
 
 export interface OwnerInclude {
     accounts?: {
