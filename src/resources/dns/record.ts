@@ -10,25 +10,64 @@ import {
     SingleDoc,
     OwnerInclude,
     CreatedTask,
+    State,
 } from "../../common/structs";
 
 export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
 export type Single = SingleDoc<Record>;
 
-export type RecordType = "a" | "aaaa" | "cname" | "mx" | "ns" | "txt";
+export type RecordState = "live" | "deleting" | "deleted";
 export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {
     project_id: ResourceId;
     owner: UserScope;
     zone_id: ResourceId;
-    container_id: ResourceId;
-    type: RecordType;
-    assignable: boolean;
     name: string;
-    values: RecordValues;
-    domain: string;
+    resolved_domain: string;
+    type: RecordType;
+    state: State<RecordState>;
     events: Events;
+}
+
+export interface RecordType {
+    a?: TypeA;
+    aaaa?: TypeAAAA;
+    cname?: TypeCNAME;
+    ns?: TypeNS;
+    mx?: TypeMX;
+    txt?: TypeTXT;
+    hosted?: TypeHosted;
+}
+
+export interface TypeA {
+    ip: string;
+}
+
+export interface TypeAAAA {
+    ip: string;
+}
+
+export interface TypeCNAME {
+    domain: string;
+}
+
+export interface TypeNS {
+    domain: string;
+}
+
+export interface TypeMX {
+    priority: number;
+    domain: string;
+}
+
+export interface TypeTXT {
+    value: string;
+}
+
+export interface TypeHosted {
+    domain: string;
+    container_id: ResourceId;
 }
 
 export interface RecordValues {
