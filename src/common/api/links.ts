@@ -52,6 +52,9 @@ export const links = {
             record: (zoneId: ResourceId, id: ResourceId) =>
                 `/dns/zones/${zoneId}/records/${id}`,
         }),
+        domains: () => ({
+            collection: () => `/dns/domains`,
+        }),
     }),
 
     environments: () => ({

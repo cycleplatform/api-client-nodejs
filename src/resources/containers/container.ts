@@ -127,7 +127,7 @@ export interface CreateParams {
     name: string;
     environment_id: ResourceId;
     image_id: ResourceId;
-    dns_record_id: ResourceId;
+    hosted_domain_id?: ResourceId;
     config?: Partial<Spec.Config>;
 }
 

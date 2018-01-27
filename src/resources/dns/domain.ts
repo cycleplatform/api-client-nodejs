@@ -8,7 +8,6 @@ export type Collection = CollectionDoc<Record>;
 export type Single = SingleDoc<Record>;
 
 export async function getCollection({
-    zoneId,
     token,
     query,
     settings,
@@ -21,8 +20,8 @@ export async function getCollection({
     return Request.getRequest<Collection>({
         target: links
             .dns()
-            .zones()
-            .records(zoneId),
+            .domains()
+            .collection(),
         query,
         token,
         settings,
@@ -35,7 +34,6 @@ export interface CreateParams {
 }
 
 export async function create({
-    zoneId,
     value,
     token,
     query,
@@ -50,8 +48,8 @@ export async function create({
     return Request.postRequest<Single>({
         target: links
             .dns()
-            .zones()
-            .records(zoneId),
+            .domains()
+            .collection(),
         query,
         token,
         settings,

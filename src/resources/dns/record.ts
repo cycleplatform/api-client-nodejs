@@ -67,7 +67,7 @@ export interface TypeTXT {
 
 export interface TypeHosted {
     domain: string;
-    container_id: ResourceId;
+    container_id?: ResourceId;
 }
 
 export interface RecordValues {
@@ -107,8 +107,6 @@ export async function getCollection({
 export interface CreateParams {
     type: RecordType;
     name: string;
-    values: RecordValues;
-    assignable: boolean;
 }
 
 export async function create({
