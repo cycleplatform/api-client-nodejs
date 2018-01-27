@@ -12,9 +12,11 @@ import {
     Events,
     UserScope,
     OwnerInclude,
+    StatefulCounts,
 } from "../../common/structs";
 import { Features } from "./features";
 import { IPNet } from "../network";
+import { InstanceState } from "./instances";
 
 export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
 export type Single = SingleDoc<Container, {}, ContainerIncludes>;
@@ -65,7 +67,7 @@ export interface ContainerIncludes {
 }
 
 export interface ContainerMetas {
-    instance_counts?: { [key: string]: number };
+    instance_counts?: StatefulCounts<InstanceState>;
 }
 
 export interface CondensedStack {
