@@ -14,7 +14,7 @@ import {
     OwnerInclude,
     IP,
 } from "../../common/structs";
-import { ContainerState, Instances } from "../containers";
+import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
 
 export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
@@ -60,6 +60,7 @@ export interface EnvironmentMeta {
         containers: StatefulCounts<ContainerState>;
         instances: StatefulCounts<Instances.InstanceState>;
     };
+    containers?: ContainerSummary;
     ips?: Array<{
         kind: Kind;
         ip: IPNet;
