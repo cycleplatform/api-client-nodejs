@@ -12,7 +12,6 @@ export async function getCollection({
     query,
     settings,
 }: {
-    zoneId: ResourceId;
     token: Token;
     query?: QueryParams;
     settings?: ProjectRequiredSettings;
@@ -39,7 +38,6 @@ export async function create({
     query,
     settings,
 }: {
-    zoneId: ResourceId;
     value: CreateParams;
     token: Token;
     query?: QueryParams;
