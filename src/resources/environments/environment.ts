@@ -60,7 +60,7 @@ export interface EnvironmentMeta {
         containers: StatefulCounts<ContainerState>;
         instances: StatefulCounts<Instances.InstanceState>;
     };
-    containers?: ContainerSummary;
+    containers?: ContainerSummary[];
     ips?: Array<{
         kind: Kind;
         ip: IPNet;
