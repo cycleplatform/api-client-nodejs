@@ -17,6 +17,7 @@ import {
 import { Features } from "./features";
 import { IPNet } from "../network";
 import { InstanceState } from "./instances";
+import { Services } from "./services";
 
 export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
 export type Single = SingleDoc<Container, {}, ContainerIncludes>;
@@ -38,12 +39,7 @@ export interface Container extends Resource<ContainerMetas> {
     name: string;
     owner: UserScope;
     project_id: ResourceId;
-    environment: {
-        id: ResourceId;
-        network_id: number | null;
-        ipv4: IPNet | null;
-        ipv6: IPNet | null;
-    };
+    environment: CondensedEnvironment;
     stack?: CondensedStack;
     image: CondensedImage;
     config: Spec.Config;
@@ -80,7 +76,15 @@ export interface CondensedStack {
 }
 
 export interface CondensedImage {
+    id?: ResourceId;
+    service?: Services;
+}
+
+export interface CondensedEnvironment {
     id: ResourceId;
+    network_id: number | null;
+    ipv4: IPNet | null;
+    ipv6: IPNet | null;
 }
 
 export async function getCollection({

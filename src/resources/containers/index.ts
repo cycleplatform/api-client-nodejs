@@ -5,3 +5,5 @@ export * from "./container";
 export * from "./tasks/container";
 export * from "./features";
 export { Servers, Instances, Events };
+export * from "./services";
+export * from "./summary";
