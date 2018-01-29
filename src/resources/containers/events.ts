@@ -15,6 +15,7 @@ export interface Event extends Resource {
     platform: boolean;
     project_id: ResourceId;
     container_id: ResourceId;
+    description: string;
     caption: string;
     instance_id: ResourceId;
     type: EventType;
