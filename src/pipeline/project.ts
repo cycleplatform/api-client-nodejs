@@ -7,6 +7,7 @@ import { PipelineEvent } from "./event";
 export type ProjectPipelineEventHeader =
     | BillingHeader
     | ContainerHeader
+    | DNSHeader
     | ProjectHeader
     | ImageHeader
     | JobHeader
