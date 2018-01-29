@@ -13,9 +13,10 @@ import {
     UserScope,
     OwnerInclude,
     StatefulCounts,
+    IP,
 } from "../../common/structs";
 import { Features } from "./features";
-import { IPNet } from "../network";
+import { IPNet, Kind, IPState } from "../network";
 import { InstanceState } from "./instances";
 import { Services } from "./services";
 
@@ -64,6 +65,14 @@ export interface ContainerIncludes {
 
 export interface ContainerMetas {
     instance_counts?: StatefulCounts<InstanceState>;
+    ips?: Array<{
+        kind: Kind;
+        ip: IPNet;
+        gateway: IP;
+        netmask: IP;
+        network: IP;
+        state: State<IPState>;
+    }>;
 }
 
 export interface CondensedStack {
