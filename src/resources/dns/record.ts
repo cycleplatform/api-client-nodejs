@@ -66,7 +66,6 @@ export interface TypeTXT {
 }
 
 export interface TypeHosted {
-    domain: string;
     container_id?: ResourceId;
 }
 
