@@ -35,6 +35,7 @@ export interface InstanceStats {
         location: Location;
         available: number;
         total: number;
+        active: number;
     }>;
     state: { [key: string]: number };
     total: number;
