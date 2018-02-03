@@ -35,6 +35,8 @@ export const links = {
         servers: (id: ResourceId) => `/containers/${id}/servers`,
         events: (id: ResourceId) => `/containers/${id}/events`,
         summary: (id: ResourceId) => `/containers/${id}/summary`,
+        compatibleImages: (id: ResourceId) =>
+            `/containers/${id}/compatible-images`,
         instances: () => ({
             collection: (container: ResourceId) =>
                 `/containers/${container}/instances`,

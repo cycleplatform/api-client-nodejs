@@ -4,7 +4,7 @@ import { QueryParams, links, Settings } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 import { Config } from "../../stacks/spec";
 
-export type ContainerAction = "start" | "stop" | "reconfigure";
+export type ContainerAction = "start" | "stop" | "reconfigure" | "reimage";
 
 export async function start({
     id,
@@ -70,6 +70,35 @@ export async function reconfigure({
         settings,
         value: {
             action: "reconfigure",
+            contents: value,
+        },
+    });
+}
+
+export interface ReimageParams {
+    image_id: string;
+}
+
+export async function reimage({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: ReimageParams;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "reimage",
             contents: value,
         },
     });
