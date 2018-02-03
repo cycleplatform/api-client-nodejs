@@ -18,7 +18,7 @@ export async function getCompatibleImages({
     settings?: Settings;
 }) {
     return Request.getRequest<Collection>({
-        target: links.containers().single(id),
+        target: links.containers().compatibleImages(id),
         query,
         token,
         settings,

@@ -1,9 +1,10 @@
 import * as Servers from "./server";
 import * as Instances from "./instances";
 import * as Events from "./events";
+import * as CompatibleImages from "./images";
 export * from "./container";
 export * from "./tasks/container";
 export * from "./features";
-export { Servers, Instances, Events };
+export { Servers, Instances, Events, CompatibleImages };
 export * from "./services";
 export * from "./summary";
