@@ -48,9 +48,9 @@ export interface JobTask {
     state: State<TaskState>;
     failable: boolean;
     contents: {};
-    error?: {
+    error: {
         message: string;
-    };
+    } | null;
 }
 
 export interface TaskStep {
