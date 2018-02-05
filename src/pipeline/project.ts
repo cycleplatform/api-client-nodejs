@@ -19,23 +19,30 @@ export type BillingHeader =
     | "billing.service.state_changed"
     | "billing.invoice.created"
     | "billing.invoice.state_changed"
+    | "billing.invoice.error"
     | "billing.order.created"
     | "billing.order.state_changed"
+    | "billing.order.error"
     | "billing.discount.state_changed"
+    | "billing.discount.error"
     | "billing.credit.state_changed"
+    | "billing.credit.error"
     | "billing.method.created"
-    | "billing.method.state_changed";
+    | "billing.method.state_changed"
+    | "billing.method.error";
 export type ProjectHeader =
     | "project.updated"
     | "project.state_changed"
     | "project.membership.state_changed"
     | "project.api_key.created"
     | "project.api_key.updated"
-    | "project.api_key.state_changed";
-export type ImageHeader = "image.state_changed";
+    | "project.api_key.state_changed"
+    | "project.api_key.error";
+export type ImageHeader = "image.state_changed" | "image.error";
 export type DNSHeader =
     | "dns.zone.created"
     | "dns.zone.updated"
+    | "dns.zone.error"
     | "dns.zone.state_changed"
     | "dns.zone.new_record";
 export type JobHeader =
@@ -50,19 +57,26 @@ export type JobHeader =
 export type EnvironmentHeader =
     | "environment.created"
     | "environment.updated"
+    | "environment.error"
     | "environment.state_changed";
-export type ServerHeader = "server.state_changed";
+export type ServerHeader = "server.state_changed" | "server.error";
 export type StackHeader =
     | "stack.created"
+    | "stack.error"
     | "stack.state_changed"
     | "stack.build.created"
-    | "stack.build.state_changed";
+    | "stack.build.state_changed"
+    | "stack.build.error";
 export type ContainerHeader =
     | "container.created"
     | "container.updated"
+    | "container.error"
+    | "container.ip.state_changed"
+    | "container.ip.error"
     | "container.event"
     | "container.state_changed"
     | "container.instance.created"
+    | "container.instance.error"
     | "container.instance.state_changed";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;

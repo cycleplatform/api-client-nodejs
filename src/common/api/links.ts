@@ -43,6 +43,10 @@ export const links = {
             single: (id: ResourceId, container: ResourceId) =>
                 `/containers/${container}/instances/${id}`,
         }),
+        volumes: () => ({
+            accounts: (container: ResourceId) =>
+                `/containers/${container}/volumes/accounts`,
+        }),
     }),
 
     dns: () => ({

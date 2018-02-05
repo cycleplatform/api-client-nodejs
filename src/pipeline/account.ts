@@ -6,8 +6,10 @@ import { PipelineEvent } from "./event";
 
 export type AccountPipelineEventHeader =
     | "account.state_changed"
+    | "account.error"
     | "project.created"
     | "project.deleted"
+    | "project.error"
     | "project.membership.new"
     | "notification.new"
     | "notification.state_changed";
