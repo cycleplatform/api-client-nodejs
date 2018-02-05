@@ -13,7 +13,7 @@ export interface VolumeAccount extends Resource {
     destination: string;
 }
 
-export async function getCollection({
+export async function getAccounts({
     id,
     token,
     query,
