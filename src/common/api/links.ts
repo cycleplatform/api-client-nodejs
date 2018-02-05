@@ -42,6 +42,8 @@ export const links = {
                 `/containers/${container}/instances`,
             single: (id: ResourceId, container: ResourceId) =>
                 `/containers/${container}/instances/${id}`,
+            console: (id: ResourceId, container: ResourceId) =>
+                `/containers/${container}/instances/${id}/console`,
         }),
         volumes: () => ({
             accounts: (container: ResourceId) =>
