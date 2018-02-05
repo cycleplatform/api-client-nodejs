@@ -25,6 +25,7 @@ export enum Capability {
     CONTAINERS_STATE = "containers-state",
     CONTAINERS_VOLUMES_VIEW = "containers-volumes-view",
     CONTAINERS_VOLUMES_MANAGE = "containers-volumes-manage",
+    CONTAINERS_CONSOLE = "containers-console",
     STACKS_CREATE = "stacks-create",
     STACKS_DELETE = "stacks-delete",
     STACKS_VIEW = "stacks-view",
