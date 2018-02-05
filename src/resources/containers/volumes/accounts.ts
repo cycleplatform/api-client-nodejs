@@ -3,7 +3,7 @@ import { Token } from "../../../auth";
 import { QueryParams, Settings, links } from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
-export type Collection = CollectionDoc<VolumeAccount>;
+export type AccountsCollection = CollectionDoc<VolumeAccount>;
 
 export interface VolumeAccount extends Resource {
     username: string;
@@ -24,7 +24,7 @@ export async function getAccounts({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.getRequest<Collection>({
+    return Request.getRequest<AccountsCollection>({
         target: links
             .containers()
             .volumes()
@@ -55,7 +55,7 @@ export async function createAccount({
     query?: QueryParams;
     settings?: Settings;
 }) {
-    return Request.postRequest<Collection>({
+    return Request.postRequest<AccountsCollection>({
         target: links
             .containers()
             .volumes()
