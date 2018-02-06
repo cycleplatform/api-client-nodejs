@@ -44,7 +44,7 @@ export interface Container extends Resource<ContainerMetas> {
     stack?: CondensedStack;
     image: CondensedImage;
     config: Spec.Config;
-    volumes?: { [key: string]: Spec.Volume[] };
+    volumes?: Spec.Volume[];
     features: Features;
     state: State<ContainerState>;
     events: Events<ContainerEvent>;
