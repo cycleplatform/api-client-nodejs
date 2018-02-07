@@ -12,7 +12,7 @@ import {
     CreatedTask,
     State,
 } from "../../common/structs";
-import { ContainerSummary } from "../containers";
+import { Container } from "../containers";
 
 export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
 export type Single = SingleDoc<Record>;
@@ -81,7 +81,7 @@ export interface RecordValues {
 export interface RecordIncludes {
     owners?: OwnerInclude;
     containers?: {
-        [key: string]: ContainerSummary;
+        [key: string]: Container;
     };
 }
 
