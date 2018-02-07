@@ -15,7 +15,7 @@ export interface VolumeRemoteAccess {
     enable: boolean;
     whitelist_ips?: WhiteListIp[];
     webhook: Webhook;
-    default_password?: string;
+    default_password: string | null;
 }
 
 export interface WhiteListIp {
