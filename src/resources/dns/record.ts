@@ -12,6 +12,7 @@ import {
     CreatedTask,
     State,
 } from "../../common/structs";
+import { ContainerSummary } from "../containers";
 
 export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
 export type Single = SingleDoc<Record>;
@@ -78,7 +79,8 @@ export interface RecordValues {
 }
 
 export interface RecordIncludes {
-    owners: OwnerInclude;
+    owners?: OwnerInclude;
+    containers?: ContainerSummary[];
 }
 
 export async function getCollection({

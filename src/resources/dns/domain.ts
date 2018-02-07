@@ -2,9 +2,9 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import { ResourceId, CollectionDoc, SingleDoc } from "../../common/structs";
-import { Record } from "./record";
+import { Record, RecordIncludes, RecordQuery } from "./record";
 
-export type Collection = CollectionDoc<Record>;
+export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
 export type Single = SingleDoc<Record>;
 
 export async function getCollection({
@@ -13,7 +13,7 @@ export async function getCollection({
     settings,
 }: {
     token: Token;
-    query?: QueryParams;
+    query?: RecordQuery;
     settings?: ProjectRequiredSettings;
 }) {
     return Request.getRequest<Collection>({
