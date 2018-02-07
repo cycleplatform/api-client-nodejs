@@ -81,7 +81,7 @@ export interface RecordValues {
 export interface RecordIncludes {
     owners?: OwnerInclude;
     containers?: {
-        [key: string]: ContainerSummary[];
+        [key: string]: ContainerSummary;
     };
 }
 
