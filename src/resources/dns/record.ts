@@ -80,7 +80,9 @@ export interface RecordValues {
 
 export interface RecordIncludes {
     owners?: OwnerInclude;
-    containers?: ContainerSummary[];
+    containers?: {
+        [key: string]: ContainerSummary[];
+    };
 }
 
 export async function getCollection({

@@ -15,6 +15,7 @@ import {
     OwnerInclude,
 } from "../../../common/structs";
 import { IPNet } from "../../network";
+import { Services } from "../services";
 
 export type Collection = CollectionDoc<Instance, {}, InstanceIncludes>;
 export type Single = SingleDoc<Instance>;
@@ -37,6 +38,7 @@ export interface Instance extends Resource<InstanceMetas> {
     owner: UserScope;
     project_id: ResourceId;
     container_id: ResourceId;
+    service?: Services;
     environment: {
         id: ResourceId;
         network_id: number;
