@@ -9,8 +9,10 @@ import {
     State,
     Events,
     UserScope,
+    StatefulCounts,
 } from "../../../common/structs";
 import { Spec } from "../spec";
+import { ContainerState } from "../../containers";
 
 export * from "./tasks/build";
 
@@ -27,12 +29,18 @@ export type BuildState =
     | "deleting"
     | "deleted";
 
-export interface Build extends Resource {
+export type BuildsQuery = QueryParams<string, keyof BuildMetas>;
+
+export interface Build extends Resource<BuildMetas> {
     stack_id: ResourceId;
     owner: UserScope;
     spec: Spec;
     events: Events;
     state: State<BuildState>;
+}
+
+export interface BuildMetas {
+    container_counts: StatefulCounts<ContainerState>;
 }
 
 export async function getCollection({
@@ -43,7 +51,7 @@ export async function getCollection({
 }: {
     stack: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: BuildsQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Collection>({
@@ -67,7 +75,7 @@ export async function getSingle({
     id: ResourceId;
     stack: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: BuildsQuery;
     settings?: Settings;
 }) {
     return Request.getRequest<Single>({
