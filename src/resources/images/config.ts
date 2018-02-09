@@ -7,7 +7,7 @@ export interface Config {
     labels: { [key: string]: string };
     command: string[];
     onbuild: string[];
-    entrypoing: string[];
+    entrypoint: string[];
     volumes: Volume[];
     workdir: string;
     signal_stop?: string;
