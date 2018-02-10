@@ -45,10 +45,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
         ipv4: IPNet;
         ipv6: IPNet;
     };
-    services: {
-        discovery: EnvService | null;
-        vpn: EnvService | null;
-    };
+    services: Services;
 }
 
 export interface EnvironmentIncludes {
@@ -78,8 +75,14 @@ export interface CreateParams {
     };
 }
 
-export interface EnvService {
-    container: string;
+export interface Services {
+    discovery: Service | null;
+    vpn: Service | null;
+}
+
+export interface Service {
+    container_id: ResourceId;
+    instance_id: ResourceId;
     ipv4: IPNet;
     ipv6: IPNet;
 }
