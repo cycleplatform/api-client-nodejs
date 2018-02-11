@@ -9,7 +9,6 @@ import {
     State,
     Events,
     UserScope,
-    CreatedTask,
     StatefulCounts,
     OwnerInclude,
     IP,
@@ -159,25 +158,6 @@ export async function update({
     return Request.patchRequest<Single>({
         target: links.environments().single(id),
         value,
-        query,
-        token,
-        settings,
-    });
-}
-
-export async function remove({
-    id,
-    token,
-    query,
-    settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.deleteRequest<CreatedTask<"delete">>({
-        target: links.environments().single(id),
         query,
         token,
         settings,

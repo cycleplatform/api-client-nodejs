@@ -70,6 +70,7 @@ export const links = {
         single: (id: ResourceId) => `/environments/${id}`,
         events: (id: ResourceId) => `/environments/${id}/events`,
         summary: (id: ResourceId) => `/environments/${id}/summary`,
+        tasks: (id: ResourceId) => `/environments/${id}/tasks`,
     }),
 
     images: () => ({
