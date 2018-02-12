@@ -90,7 +90,7 @@ export async function reconfigureVolumes({
 }: {
     id: ResourceId;
     token: Token;
-    value: ContainerVolume;
+    value: ContainerVolume[];
     query?: QueryParams;
     settings?: Settings;
 }) {
