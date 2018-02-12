@@ -4,7 +4,7 @@ import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import { ResourceId, CollectionDoc } from "../../common/structs";
 import { Events, Container } from "../containers";
 
-export type EnvironmentQuery = QueryParams<keyof EventIncludes>;
+export type EventQuery = QueryParams<keyof EventIncludes>;
 
 export async function getCollection({
     environmentId,
@@ -14,7 +14,7 @@ export async function getCollection({
 }: {
     environmentId: ResourceId;
     token: Token;
-    query?: EnvironmentQuery;
+    query?: EventQuery;
     settings?: ProjectRequiredSettings;
 }) {
     return Request.getRequest<CollectionDoc<Events.Event, {}, EventIncludes>>({
