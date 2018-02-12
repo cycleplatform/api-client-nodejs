@@ -14,6 +14,7 @@ import * as Notifications from "./resources/notifications";
 import * as Plans from "./resources/plans";
 import * as Projects from "./resources/projects";
 import { QueryParams } from "./common/api/query";
+import * as Secrets from "./resources/secrets";
 import { Settings, ProjectRequiredSettings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
@@ -36,6 +37,7 @@ export {
     ProjectRequiredSettings,
     QueryParams,
     Request,
+    Secrets,
     Settings,
     Stacks,
     Structs,

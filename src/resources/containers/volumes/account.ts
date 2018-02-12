@@ -10,7 +10,7 @@ export interface VolumeAccount extends Resource {
     readonly: boolean;
     container_id: ResourceId;
     project_id: ResourceId;
-    destination: string;
+    container_volume_id: ResourceId;
 }
 
 export async function getAccounts({
@@ -60,6 +60,39 @@ export async function createAccount({
             .containers()
             .volumes()
             .accounts(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export interface UpdateAccountParams {
+    username?: string;
+    password?: string;
+    readonly?: boolean;
+}
+
+export async function updateAccount({
+    id,
+    containerId,
+    value,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    containerId: ResourceId;
+    value: UpdateAccountParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return Request.patchRequest<AccountsCollection>({
+        target: links
+            .containers()
+            .volumes()
+            .account(id, containerId),
         value,
         query,
         token,

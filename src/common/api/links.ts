@@ -44,10 +44,14 @@ export const links = {
                 `/containers/${container}/instances/${id}`,
             console: (id: ResourceId, container: ResourceId) =>
                 `/containers/${container}/instances/${id}/console`,
+            volumes: (id: ResourceId, container: ResourceId) =>
+                `/containers/${container}/instances/${id}/volumes`,
         }),
         volumes: () => ({
             accounts: (container: ResourceId) =>
                 `/containers/${container}/volumes/accounts`,
+            account: (id: ResourceId, container: ResourceId) =>
+                `/containers/${container}/volumes/accounts/${id}`,
         }),
     }),
 
