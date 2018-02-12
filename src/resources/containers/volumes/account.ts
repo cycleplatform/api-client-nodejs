@@ -39,7 +39,7 @@ export interface CreateAccountParams {
     username: string;
     password: string;
     readonly: boolean;
-    destination: string;
+    container_volume_id: ResourceId;
 }
 
 export async function createAccount({

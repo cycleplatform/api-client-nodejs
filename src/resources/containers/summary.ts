@@ -17,6 +17,7 @@ export type ContainerSummaryDoc = SingleDoc<ContainerSummary>;
 export interface ContainerSummary extends Resource {
     name: string;
     state: State<ContainerState>;
+    stats: ContainerSummaryStats;
 }
 
 export interface ContainerSummaryStats {
