@@ -2,7 +2,9 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import { ResourceId, CollectionDoc } from "../../common/structs";
-import { Events } from "../containers";
+import { Events, Container } from "../containers";
+
+export type EnvironmentQuery = QueryParams<keyof EventIncludes>;
 
 export async function getCollection({
     environmentId,
@@ -12,13 +14,19 @@ export async function getCollection({
 }: {
     environmentId: ResourceId;
     token: Token;
-    query?: QueryParams;
+    query?: EnvironmentQuery;
     settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<CollectionDoc<Events.Event>>({
+    return Request.getRequest<CollectionDoc<Events.Event, {}, EventIncludes>>({
         target: links.environments().events(environmentId),
         query,
         token,
         settings,
     });
+}
+
+export interface EventIncludes {
+    containers?: {
+        [key: string]: Container;
+    };
 }

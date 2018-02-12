@@ -3,8 +3,14 @@ import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 import { Config } from "../../stacks/spec";
+import { ContainerVolume } from "../volumes";
 
-export type ContainerAction = "start" | "stop" | "reconfigure" | "reimage";
+export type ContainerAction =
+    | "start"
+    | "stop"
+    | "reconfigure"
+    | "reimage"
+    | "reconfigure_volumes";
 
 export async function start({
     id,
@@ -70,6 +76,31 @@ export async function reconfigure({
         settings,
         value: {
             action: "reconfigure",
+            contents: value,
+        },
+    });
+}
+
+export async function reconfigureVolumes({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: ContainerVolume;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "reconfigure_volumes",
             contents: value,
         },
     });

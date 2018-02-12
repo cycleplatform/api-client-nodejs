@@ -19,6 +19,7 @@ import { Features } from "./features";
 import { IPNet, Kind, IPState } from "../network";
 import { InstanceState } from "./instances";
 import { Services } from "./services";
+import { ContainerVolume } from "./volumes";
 
 export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
 export type Single = SingleDoc<Container, {}, ContainerIncludes>;
@@ -61,12 +62,6 @@ export interface ContainerIncludes {
     stacks: {
         [key: string]: Stack;
     };
-}
-
-export interface ContainerVolume {
-    id: string;
-    hash: string;
-    config: Spec.Volume;
 }
 
 export interface ContainerMetas {

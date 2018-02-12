@@ -77,7 +77,8 @@ export type ContainerHeader =
     | "container.state_changed"
     | "container.instance.created"
     | "container.instance.error"
-    | "container.instance.state_changed";
+    | "container.instance.state_changed"
+    | "container.instances.revised";
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;
 
