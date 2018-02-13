@@ -5,6 +5,7 @@ import {
     Events,
     State,
     UserScope,
+    ResourceId,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
@@ -63,6 +64,28 @@ export async function getCollection({
     });
 }
 
+export async function getSingle({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.getRequest<Single>({
+        target: links
+            .billing()
+            .methods()
+            .single(id),
+        query,
+        token,
+        settings,
+    });
+}
+
 export interface CreateParams {
     name: string;
     primary: boolean;
@@ -94,6 +117,37 @@ export async function create({
             .billing()
             .methods()
             .collection(),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
+
+export interface UpdateParams {
+    name?: string;
+    primary?: boolean;
+    address?: Address;
+}
+
+export async function update({
+    id,
+    value,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    value: UpdateParams;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.patchRequest<Single>({
+        target: links
+            .billing()
+            .methods()
+            .single(id),
         value,
         query,
         token,

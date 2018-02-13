@@ -20,6 +20,7 @@ export const links = {
         }),
         methods: () => ({
             collection: () => `/billing/methods`,
+            single: (id: ResourceId) => `/billing/methods/${id}`,
         }),
         invoices: () => ({
             collection: () => `/billing/invoices`,
