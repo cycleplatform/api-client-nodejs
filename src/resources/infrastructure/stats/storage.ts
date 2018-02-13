@@ -1,7 +1,7 @@
 import { Megabytes } from "../../../common/structs";
 
 export interface StorageStats {
-    volume_groups: VolumeGroup[];
+    volume_groups: VolumeGroup[] | null;
     mounts: { [key: string]: MountedFS };
 }
 
