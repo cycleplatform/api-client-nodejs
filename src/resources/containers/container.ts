@@ -87,7 +87,7 @@ export interface CondensedStack {
 
 export interface CondensedImage {
     id?: ResourceId;
-    service?: Services;
+    service: Services | null;
 }
 
 export interface CondensedEnvironment {

@@ -1,4 +1,4 @@
-import { Resource, ResourceId, SingleDoc } from "../../common/structs";
+import { Resource, ResourceId, SingleDoc, State } from "../../common/structs";
 import { EnvironmentState, Service } from "./environment";
 import { ContainerState } from "../containers/container";
 import { Location } from "../infrastructure/provider/datacenter";
@@ -15,7 +15,7 @@ export interface EnvironmentSummary extends Resource {
 }
 
 export interface ServiceSummary extends Service {
-    state: ContainerState;
+    state: State<ContainerState>;
 }
 
 export interface Stats {
