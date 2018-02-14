@@ -63,5 +63,6 @@ export type ErrorCode =
     | "500.jobd"
     | "500.unknown"
     | "500.email"
+    | "500.token"
     | "415.invalid_content_type"
     | "500.payment_gateway";
