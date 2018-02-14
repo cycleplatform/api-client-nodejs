@@ -18,7 +18,7 @@ import { IPNet } from "../../network";
 import { Services } from "../services";
 
 export type Collection = CollectionDoc<Instance, {}, InstanceIncludes>;
-export type Single = SingleDoc<Instance>;
+export type Single = SingleDoc<Instance, {}, InstanceIncludes>;
 export type InstanceState =
     | "new"
     | "starting"
