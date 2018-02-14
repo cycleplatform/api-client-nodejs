@@ -19,6 +19,7 @@ export type NotificationEvent = "viewed";
 
 export enum NotificationCode {
     INVOICE_GENERATED = "invoice.generated",
+    SERVER_DEPLOYED = "server.deployed",
     SERVER_PROVISIONING_FAILED = "server.start.failed",
     PROJECT_INVITE = "project.invitation",
 }
