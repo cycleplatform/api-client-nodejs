@@ -75,3 +75,29 @@ export async function getSingle({
         settings,
     });
 }
+
+export interface UpdateParams {
+    name: string;
+}
+
+export async function update({
+    id,
+    value,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    value: UpdateParams;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return Request.patchRequest<Single>({
+        target: links.images().single(id),
+        value,
+        query,
+        token,
+        settings,
+    });
+}
