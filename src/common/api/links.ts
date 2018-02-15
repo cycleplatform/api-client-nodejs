@@ -124,7 +124,8 @@ export const links = {
         }),
         members: () => ({
             collection: () => `/projects/current/members`,
-            single: () => `/projects/current/membership`,
+            membership: () => `/projects/current/membership`,
+            single: (id: ResourceId) => `/projects/current/members/${id}`,
         }),
         keys: () => ({
             collection: () => `/projects/current/api-keys`,

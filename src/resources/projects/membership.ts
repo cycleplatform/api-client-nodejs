@@ -105,7 +105,29 @@ export async function getCurrentMembership({
         target: links
             .projects()
             .members()
-            .single(),
+            .membership(),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.deleteRequest<Single>({
+        target: links
+            .projects()
+            .members()
+            .single(id),
         query,
         token,
         settings,
