@@ -44,6 +44,9 @@ export interface ProjectMetas {
 
 export interface CreateParams {
     name: string;
+    ssl?: {
+        email: string;
+    };
 }
 
 export type UpdateParams = Partial<CreateParams>;
