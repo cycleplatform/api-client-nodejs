@@ -33,6 +33,7 @@ export interface Meta {
     [key: string]: any;
 }
 
+// tslint:disable-next-line:no-empty-interface
 export interface Includes {}
 
 /**

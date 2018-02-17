@@ -65,6 +65,7 @@ export interface Invitation {
 
 export interface Member extends Resource<MembershipMeta> {
     name: Name;
+    membership_id: ResourceId;
     role: Role;
     joined: Time;
 }

@@ -28,6 +28,7 @@ export interface Notification extends Resource, NotificationOpts {
     association: Association;
     recipient: UserScope;
     creator_id: ResourceId;
+    project_id: ResourceId | null;
     state: State<NotificationState>;
     events: Events<NotificationEvent>;
     code: NotificationCode;
