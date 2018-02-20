@@ -31,9 +31,6 @@ export const ApiRequestInit: RequestInit = {
 export function makeUrl(settings?: Settings, websocket?: boolean) {
     let secure = true;
     let version = "/" + VERSION;
-    if (typeof location !== "undefined") {
-        secure = location.protocol === "https:";
-    }
 
     if (settings && settings.noVersion) {
         version = "";
