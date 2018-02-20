@@ -1,5 +1,5 @@
 export interface Runtime {
-    command?: RuntimeCommand;
+    command: RuntimeCommand | null;
     namespaces: Namespaces[];
     environment_vars: { [key: string]: string };
     privileged: boolean;
