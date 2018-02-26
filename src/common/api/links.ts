@@ -82,6 +82,7 @@ export const links = {
         collection: () => `/images`,
         single: (id: ResourceId) => `/images/${id}`,
         build: () => `/images/build`,
+        containers: (id: ResourceId) => `/images/${id}/containers`,
     }),
 
     infrastructure: () => ({
@@ -123,7 +124,8 @@ export const links = {
         }),
         members: () => ({
             collection: () => `/projects/current/members`,
-            single: () => `/projects/current/membership`,
+            membership: () => `/projects/current/membership`,
+            single: (id: ResourceId) => `/projects/current/members/${id}`,
         }),
         keys: () => ({
             collection: () => `/projects/current/api-keys`,

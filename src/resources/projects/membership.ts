@@ -65,6 +65,7 @@ export interface Invitation {
 
 export interface Member extends Resource<MembershipMeta> {
     name: Name;
+    membership_id: ResourceId;
     role: Role;
     joined: Time;
 }
@@ -105,7 +106,29 @@ export async function getCurrentMembership({
         target: links
             .projects()
             .members()
-            .single(),
+            .membership(),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function remove({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.deleteRequest<Single>({
+        target: links
+            .projects()
+            .members()
+            .single(id),
         query,
         token,
         settings,

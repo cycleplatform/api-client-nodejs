@@ -10,7 +10,8 @@ export type ContainerAction =
     | "stop"
     | "reconfigure"
     | "reimage"
-    | "reconfigure_volumes";
+    | "reconfigure_volumes"
+    | "reconfigure_domain";
 
 export async function start({
     id,
@@ -130,6 +131,35 @@ export async function reimage({
         settings,
         value: {
             action: "reimage",
+            contents: value,
+        },
+    });
+}
+
+export interface ReconfigureDomainParams {
+    hosted_domain_id: string;
+}
+
+export async function reconfigureDomain({
+    id,
+    token,
+    value,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    value: ReconfigureDomainParams;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return task({
+        id,
+        token,
+        query,
+        settings,
+        value: {
+            action: "reconfigure_domain",
             contents: value,
         },
     });

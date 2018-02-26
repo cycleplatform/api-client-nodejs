@@ -9,7 +9,6 @@ export interface Network {
 export type NetworkPublicMode = "enable" | "disable" | "egress-only";
 
 export interface DNS {
-    domain?: string;
     nameservers?: string[];
 }
 

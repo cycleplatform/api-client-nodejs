@@ -26,11 +26,18 @@ export interface Volume extends Resource {
         storage: Storage;
         last_updated: Time;
     };
+    sftp: SFTP;
 }
 
 export interface Storage {
     used: Megabytes;
     total: Megabytes;
+}
+
+export interface SFTP {
+    host: string;
+    port: number;
+    username: string;
 }
 
 export async function getCollection({
