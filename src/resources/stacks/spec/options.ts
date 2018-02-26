@@ -24,7 +24,7 @@ export interface StopEvents {
 export interface Monitor {
     auto_restart: boolean;
     max_restarts?: number;
-    restart_delay?: number; // seconds
+    restart_delay_secs?: number; // seconds
     notify: Notify;
 }
 
