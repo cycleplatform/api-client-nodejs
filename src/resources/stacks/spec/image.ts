@@ -7,7 +7,7 @@ export interface Image {
 export interface ImageSource {
     docker_hub?: DockerHubSource;
     docker_registry?: DockerRegistrySource;
-    local?: LocalSource;
+    docker_file?: LocalSource;
     repo?: RepoSource;
     inherit?: InheritSource;
 }
