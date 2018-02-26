@@ -26,22 +26,17 @@ export interface ApiKey extends Resource {
     owner: UserScope;
     capabilities: Capability[];
     project_id: ResourceId;
-    whitelist: Whitelist;
+    ips: string[] | null;
     state: State<ApiKeyState>;
     events: Events;
 }
 
 export type ApiKeyState = "live" | "deleting" | "deleted";
 
-export interface Whitelist {
-    enable: boolean;
-    ips: string[];
-}
-
 export interface CreateParams {
     name: string;
     capabilities: Capability[];
-    whitelist: Whitelist;
+    ips: string[] | null;
 }
 
 export async function getCollection({
