@@ -1,9 +1,9 @@
 export interface Runtime {
     command: RuntimeCommand | null;
-    namespaces: Namespaces[];
+    namespaces: Namespaces[] | null;
     environment_vars: { [key: string]: string };
     privileged: boolean;
-    capabilities: BaseCapabilities | PrivilegedCapabilities | null;
+    capabilities: Array<BaseCapabilities | PrivilegedCapabilities> | null;
 }
 
 export enum BaseCapabilities {
