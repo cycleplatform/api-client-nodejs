@@ -6,14 +6,16 @@ export interface Resources {
 }
 
 export interface CPUResources {
-    limit?: CPUShares;
-    reserve?: CPUShares;
+    limit: CPUShares | null;
+    reserve: CPUShares | null;
     /** Comma separated list of CPU cores (numbers) this container is pinned to */
     cpus: string;
 }
 
 export interface RAMResources {
-    limit?: DataSize;
-    reserve?: DataSize;
-    swappiness?: number;
+    limit: DataSize | null;
+    reserve: DataSize | null;
+    swappiness: number | null;
+    kernel: DataSize | null;
+    kernel_tcp: DataSize | null;
 }
