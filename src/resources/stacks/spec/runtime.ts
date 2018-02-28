@@ -4,6 +4,8 @@ export interface Runtime {
     environment_vars: { [key: string]: string };
     privileged: boolean;
     capabilities: Array<BaseCapabilities | PrivilegedCapabilities> | null;
+    /** If true, Cycle will preserve the /tmp and /var/run directories between container restart */
+    disable_reset: boolean;
 }
 
 export enum BaseCapabilities {

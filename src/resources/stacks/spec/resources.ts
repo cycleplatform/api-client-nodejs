@@ -8,6 +8,8 @@ export interface Resources {
 export interface CPUResources {
     limit?: CPUShares;
     reserve?: CPUShares;
+    /** Comma separated list of CPU cores (numbers) this container is pinned to */
+    cpus: string;
 }
 
 export interface RAMResources {
