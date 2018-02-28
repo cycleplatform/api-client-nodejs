@@ -18,11 +18,8 @@ export interface DockerHubSource {
     password?: string;
 }
 
-export interface DockerRegistrySource {
-    target: string;
+export interface DockerRegistrySource extends DockerHubSource {
     url: string;
-    username: string;
-    password: string;
 }
 
 export interface LocalSource {

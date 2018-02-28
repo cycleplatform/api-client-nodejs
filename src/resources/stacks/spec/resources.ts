@@ -9,7 +9,7 @@ export interface CPUResources {
     limit: CPUShares | null;
     reserve: CPUShares | null;
     /** Comma separated list of CPU cores (numbers) this container is pinned to */
-    cpus: string;
+    cpus: string | null;
 }
 
 export interface RAMResources {
