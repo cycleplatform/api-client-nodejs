@@ -4,7 +4,7 @@ export interface Runtime {
     environment_vars: { [key: string]: string };
     privileged: boolean;
     capabilities: Array<BaseCapabilities | PrivilegedCapabilities> | null;
-    /** If true, Cycle will preserve the /tmp and /var/run directories between container restart */
+    /** If true, Cycle will NOT reinsert /var/run and /tmp from the image on container start */
     disable_reset: boolean;
 }
 
