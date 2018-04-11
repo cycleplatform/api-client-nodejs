@@ -11,9 +11,11 @@ import {
     Time,
     Includes,
     CreatedTask,
+    StatefulCounts,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
 import { DataCenters, Servers, Provider } from "../provider";
+import { InstanceState } from '../../containers/instances';
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
@@ -38,6 +40,9 @@ export interface Server extends Resource<ServerMeta> {
 export interface ServerMeta {
     stats?: Stats;
     last_checkin?: Time;
+    counts?: {
+        instances: StatefulCounts<InstanceState>;
+    }
 }
 
 export interface ServerIncludes extends Includes {
