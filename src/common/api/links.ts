@@ -26,6 +26,10 @@ export const links = {
             collection: () => `/billing/invoices`,
             single: (id: ResourceId) => `/billing/invoices/${id}`,
         }),
+        services: () => ({
+            collection: () => `/billing/services`,
+            single: (id: ResourceId) => `/billing/services/${id}`
+        }),
         credits: () => `/billing/credits`,
     }),
 

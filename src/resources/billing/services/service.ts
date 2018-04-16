@@ -4,22 +4,30 @@ import {
     State,
     UserScope,
     Mills,
+    Resource,
+    CollectionDoc,
+    SingleDoc,
 } from "../../../common/structs";
+import { Token } from "../../../auth";
+import {
+    QueryParams,
+    links,
+    ProjectRequiredSettings,
+} from "../../../common/api";
+import * as Request from "../../../common/api/request";
+
 import { Term } from "../term";
 import { Item } from "./item";
 import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
 import { PlanType } from "../../plans";
 
-export type ServiceEvent =
-    | "billed"
-    | "paid"
-    | "payment_attempt"
-    | "credited"
-    | "voided";
+export type Collection = CollectionDoc<Service>;
+export type Single = SingleDoc<Service>;
 
-export interface Service {
-    id: ResourceId;
+export type ServiceEvent = "last_billed";
+
+export interface Service extends Resource {
     owner: UserScope;
     project_id: ResourceId;
     title: string;
@@ -44,4 +52,46 @@ export interface Summary {
     term: Term;
     price: Mills;
     discount: Mills;
+}
+
+export async function getService({
+    id,
+    token,
+    query,
+    settings,
+}: {
+    id: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings: ProjectRequiredSettings;
+}) {
+    return Request.getRequest<Single>({
+        target: links
+            .billing()
+            .services()
+            .single(id),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function getServiceCollection({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: QueryParams;
+    settings?: ProjectRequiredSettings;
+}) {
+    return Request.getRequest<Collection>({
+        target: links
+            .billing()
+            .services()
+            .collection(),
+        query,
+        token,
+        settings,
+    });
 }
