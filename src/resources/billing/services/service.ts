@@ -54,7 +54,7 @@ export interface Summary {
     discount: Mills;
 }
 
-export async function getService({
+export async function getSingle({
     id,
     token,
     query,
@@ -76,7 +76,7 @@ export async function getService({
     });
 }
 
-export async function getServiceCollection({
+export async function getCollection({
     token,
     query,
     settings,
