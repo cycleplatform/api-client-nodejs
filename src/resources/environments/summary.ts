@@ -36,7 +36,7 @@ export interface InstanceStats {
         available: number;
         total: number;
         active: number;
-    }>;
+    }> | null;
     state: { [key: string]: number };
     total: number;
     available: number;
