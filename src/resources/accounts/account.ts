@@ -75,6 +75,7 @@ export interface UpdateParams {
         first?: string;
         last?: string;
     };
+    allow_support_login?: boolean;
 }
 
 export async function update({
