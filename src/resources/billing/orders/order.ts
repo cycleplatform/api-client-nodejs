@@ -32,6 +32,7 @@ export type OrderState =
     | "deleted";
 export type OrderEvent =
     | "paid"
+    | "expires"
     | "payment_attempt"
     | "credited"
     | "voided"
