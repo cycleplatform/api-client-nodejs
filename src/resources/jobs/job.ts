@@ -41,13 +41,14 @@ export type TaskState = "pending" | "error" | "running" | "completed";
 export interface JobTask {
     id: string;
     caption: string;
-    topic: string;
+    header: string;
     action: string;
     events: Events;
     steps: TaskStep[];
     state: State<TaskState>;
     failable: boolean;
-    contents: {};
+    input: {[key: string]: any};
+    output: {[key: string]: any};
     error: {
         message: string;
     } | null;

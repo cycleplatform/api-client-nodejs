@@ -14,6 +14,7 @@ import {
     QueryParams,
     links,
     ProjectRequiredSettings,
+    Settings,
 } from "../../../common/api";
 import { Item as ServiceItem } from "../services/item";
 import { Amount } from "../amount";
@@ -82,6 +83,23 @@ export interface Item {
     description: string;
     price: Amount;
     discount?: AssociatedDiscount;
+}
+
+export async function getCollection({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return Request.getRequest<Collection>({
+        target: links.billing().orders().collection(),
+        query,
+        token,
+        settings,
+    });
 }
 
 export async function getSingle({

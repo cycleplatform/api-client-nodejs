@@ -26,6 +26,7 @@ export interface Account extends Resource {
     email: Email;
     two_factor_auth: TwoFactorAuth;
     active: boolean;
+    allow_support_login: boolean;
     events: Events<AccountEvent>;
     state: State<AccountState>;
 }
