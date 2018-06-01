@@ -13,13 +13,23 @@ export type Collection = CollectionDoc<Login, {}, LoginIncludes>;
 export type LoginType = "password" | "employee";
 export type LoginQuery = QueryParams<keyof LoginIncludes>;
 
-export interface Login extends Resource {
+export interface BaseLogin extends Resource {
     account: AccountInfo;
-    employee?: PublicAccount;
     time: Time;
     type: LoginType;
     success: boolean;
 }
+
+export interface PasswordLogin extends BaseLogin {
+    type: "password";
+}
+
+export interface EmployeeLogin extends BaseLogin {
+    type: "employee";
+    employee: PublicAccount;
+}
+
+export type Login = PasswordLogin | EmployeeLogin;
 
 export interface AccountInfo {
     id: ResourceId;
