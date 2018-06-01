@@ -15,13 +15,13 @@ export interface VolumeRemoteAccess {
     enable: boolean;
     ips?: AuthorizedIp[];
     webhook: Webhook;
-    password?: VolumePassword;
+    password: VolumePassword | null;
 }
 
 export interface AuthorizedIp {
     ip: string;
     read_only: boolean;
-    password?: VolumePassword;
+    password: VolumePassword | null;
 }
 
 export interface VolumePassword {
