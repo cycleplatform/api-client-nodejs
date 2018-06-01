@@ -15,6 +15,7 @@ export type LoginQuery = QueryParams<keyof LoginIncludes>;
 
 export interface Login extends Resource {
     account: AccountInfo;
+    employee?: PublicAccount;
     time: Time;
     type: LoginType;
     success: boolean;
@@ -23,18 +24,6 @@ export interface Login extends Resource {
 export interface AccountInfo {
     id: ResourceId;
     ip: string;
-}
-
-export interface PublicLogin extends Resource {
-    account: AccountInfo;
-    employee: PublicEmployeeInfo;
-    time: Time;
-    type: LoginType;
-    success: boolean;
-}
-
-export interface PublicEmployeeInfo {
-    id: ResourceId;
 }
 
 export interface LoginIncludes {
