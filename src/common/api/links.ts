@@ -80,6 +80,7 @@ export const links = {
         events: (id: ResourceId) => `/environments/${id}/events`,
         summary: (id: ResourceId) => `/environments/${id}/summary`,
         tasks: (id: ResourceId) => `/environments/${id}/tasks`,
+        categories: () => `/environments/categories`
     }),
 
     images: () => ({

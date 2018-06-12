@@ -123,6 +123,23 @@ export async function getSingle({
     });
 }
 
+export async function getCategories({
+    token,
+    query,
+    settings,
+}: {
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return Request.getRequest<{ data: string[] }>({
+        target: links.environments().categories(),
+        query,
+        token,
+        settings,
+    });
+}
+
 export async function create({
     value,
     token,
