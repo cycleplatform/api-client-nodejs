@@ -70,6 +70,7 @@ export interface EnvironmentMeta {
 
 export interface CreateParams {
     name: string;
+    category?: string;
     about: {
         description: string;
     };
