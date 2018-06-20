@@ -23,15 +23,23 @@ export interface DockerRegistrySource extends DockerHubSource {
 }
 
 export interface LocalSource {
+    /** Path the Dockerfile is located in */
     path: string;
+    /** Equivalent of docker-compose context. Use this Dockerfile to build the path. */
+    build_file: string | null;
 }
 
 export type RepoProtocol = "http" | "https" | "ssh";
 
 export interface RepoSource {
     path: string;
-    url: string;
     tag: string;
+    /** Equivalent of docker-compose context. Use this Dockerfile to build the path. */
+    build_file: string | null;
+    
+    /** Build Params */
+
+    url: string;
     protocol: RepoProtocol;
     private_key?: string;
     private_key_url?: string;
