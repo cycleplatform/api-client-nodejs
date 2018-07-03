@@ -1,5 +1,6 @@
 import { Resource, ResourceId, SingleDoc, State } from "../../common/structs";
-import { EnvironmentState, Service } from "./environment";
+import { EnvironmentState } from "./environment";
+import { Service } from "./services";
 import { ContainerState } from "../containers/container";
 import { Location } from "../infrastructure/provider/datacenter";
 import { Token } from "../../auth";

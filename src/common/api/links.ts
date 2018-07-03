@@ -28,7 +28,7 @@ export const links = {
         }),
         services: () => ({
             collection: () => `/billing/services`,
-            single: (id: ResourceId) => `/billing/services/${id}`
+            single: (id: ResourceId) => `/billing/services/${id}`,
         }),
         credits: () => `/billing/credits`,
     }),
@@ -80,7 +80,18 @@ export const links = {
         events: (id: ResourceId) => `/environments/${id}/events`,
         summary: (id: ResourceId) => `/environments/${id}/summary`,
         tasks: (id: ResourceId) => `/environments/${id}/tasks`,
-        categories: () => `/environments/categories`
+        categories: () => `/environments/categories`,
+        services: () => ({
+            vpn: () => ({
+                details: (environment: ResourceId) =>
+                    `/environments/${environment}/services/vpn`,
+                users: (environment: ResourceId) =>
+                    `/environments/${environment}/services/vpn/users`,
+                user: (environment: ResourceId, user: ResourceId) =>
+                    `/environments/${environment}/services/vpn/users/${user}`,
+                tasks: (environment: ResourceId) => `/environments/${environment}/services/vpn/tasks`
+            }),
+        }),
     }),
 
     images: () => ({

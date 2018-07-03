@@ -15,6 +15,7 @@ import {
 } from "../../common/structs";
 import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
+import { DiscoveryService, VPNService } from "./services"; 
 
 export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment>;
@@ -48,6 +49,11 @@ export interface Environment extends Resource<EnvironmentMeta> {
     services: Services;
 }
 
+export interface Services {
+    discovery: DiscoveryService | null;
+    vpn: VPNService | null;
+}
+
 export interface EnvironmentIncludes {
     owners: OwnerInclude;
 }
@@ -74,18 +80,6 @@ export interface CreateParams {
     about: {
         description: string;
     };
-}
-
-export interface Services {
-    discovery: Service | null;
-    vpn: Service | null;
-}
-
-export interface Service {
-    container_id: ResourceId;
-    instance_id: ResourceId;
-    ipv4: IPNet;
-    ipv6: IPNet;
 }
 
 export async function getCollection({
