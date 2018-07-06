@@ -89,7 +89,8 @@ export const links = {
                     `/environments/${environment}/services/vpn/users`,
                 user: (environment: ResourceId, user: ResourceId) =>
                     `/environments/${environment}/services/vpn/users/${user}`,
-                tasks: (environment: ResourceId) => `/environments/${environment}/services/vpn/tasks`
+                tasks: (environment: ResourceId) => `/environments/${environment}/services/vpn/tasks`,
+                logins: (environment: ResourceId) => `/environments/${environment}/services/vpn/login`
             }),
         }),
     }),

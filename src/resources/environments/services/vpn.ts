@@ -7,6 +7,7 @@ import {
     CollectionDoc,
     SingleDoc,
     CreatedTask,
+    Time,
 } from "../../../common/structs";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
@@ -35,18 +36,29 @@ export interface VPNInfo {
 export interface VPNUser extends Resource {
     username: string;
     owner: UserScope;
+    last_login: Time;
     project_id: ResourceId;
     environment_id: ResourceId;
     events: Events;
 }
 
+export interface VPNLogin extends Resource {
+    username: string;
+    environment_id: ResourceId;
+    ip: string;
+    time: Time;
+    success: boolean;
+}
+
 export interface VPNReconfigureDetails {
     enable?: boolean;
-    config?: VPNConfig;
+    config?: Partial<VPNConfig>;
 }
 
 export type VPNUsersDoc = CollectionDoc<VPNUser>;
 export type VPNUserDoc = SingleDoc<VPNUser>;
+
+export type VPNLoginsDoc = CollectionDoc<VPNLogin>;
 
 export async function getVPNInfo({
     environmentId,
@@ -65,6 +77,29 @@ export async function getVPNInfo({
             .services()
             .vpn()
             .details(environmentId),
+        query,
+        token,
+        settings,
+    });
+}
+
+export async function getVPNLogins({
+    environmentId,
+    token,
+    query,
+    settings,
+}: {
+    environmentId: ResourceId;
+    token: Token;
+    query?: QueryParams;
+    settings?: Settings;
+}) {
+    return Request.getRequest<VPNLoginsDoc>({
+        target: links
+            .environments()
+            .services()
+            .vpn()
+            .logins(environmentId),
         query,
         token,
         settings,
@@ -134,7 +169,6 @@ export async function deleteVPNUser({
 }: {
     environmentId: ResourceId;
     userId: ResourceId;
-    value: CreateVPNUserParams;
     token: Token;
     query?: QueryParams;
     settings?: Settings;
