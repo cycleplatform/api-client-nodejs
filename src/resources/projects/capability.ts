@@ -21,7 +21,7 @@ export enum Capability {
     ENVIRONMENTS_STATE = "environments-state",
     ENVIRONMENTS_SERVICES_MANAGE = "environments-services-manage",
     ENVIRONMENTS_VPN_ACCESS = "environments-vpn-access",
-    ENVIRONMENTS_VPN_MANAGE = "environments-vpn-manage",
+    ENVIRONMENTS_VPN_ACCESS_MANAGE = "environments-vpn-access-manage",
     CONTAINERS_DEPLOY = "containers-deploy",
     CONTAINERS_VIEW = "containers-view",
     CONTAINERS_CONSOLE = "containers-console",
