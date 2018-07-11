@@ -58,7 +58,8 @@ export type EnvironmentHeader =
     | "environment.created"
     | "environment.updated"
     | "environment.error"
-    | "environment.state_changed";
+    | "environment.state_changed"
+    | "environment.vpn.reconfigured";
 export type ServerHeader = "server.state_changed" | "server.error";
 export type StackHeader =
     | "stack.created"

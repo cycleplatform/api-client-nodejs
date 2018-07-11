@@ -34,6 +34,7 @@ export enum Capability {
     STACKS_DELETE = "stacks-delete",
     STACKS_VIEW = "stacks-view",
     STACKS_BUILDS = "stacks-builds",
+    STACKS_UPDATE = "stacks-update",
     IMAGES_VIEW = "images-view",
     IMAGES_BUILD = "images-build",
     IMAGES_UPDATE = "images-update",

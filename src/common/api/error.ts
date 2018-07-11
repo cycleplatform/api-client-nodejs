@@ -65,4 +65,5 @@ export type ErrorCode =
     | "500.email"
     | "500.token"
     | "415.invalid_content_type"
-    | "500.payment_gateway";
+    | "500.payment_gateway"
+    | "503.vpn_not_ready";
