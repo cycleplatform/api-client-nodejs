@@ -10,10 +10,11 @@ import {
     SingleDoc,
     ResourceId,
     UserScope,
+    OwnerInclude,
 } from "../../common/structs";
 
-export type Collection = CollectionDoc<Job>;
-export type Single = SingleDoc<Job>;
+export type Collection = CollectionDoc<Job, {}, JobIncludes>;
+export type Single = SingleDoc<Job, {}, JobIncludes>;
 export type JobState =
     | "new"
     | "queued"
@@ -47,8 +48,8 @@ export interface JobTask {
     steps: TaskStep[];
     state: State<TaskState>;
     failable: boolean;
-    input: {[key: string]: any};
-    output: {[key: string]: any};
+    input: { [key: string]: any };
+    output: { [key: string]: any };
     error: {
         message: string;
     } | null;
@@ -59,6 +60,10 @@ export interface TaskStep {
     description: string;
     started: Time;
     completed: Time;
+}
+
+export interface JobIncludes {
+    owners: OwnerInclude;
 }
 
 export async function getCollection({
