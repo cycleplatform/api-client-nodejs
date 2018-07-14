@@ -23,7 +23,7 @@ export type JobState =
     | "expired"
     | "running"
     | "completed";
-export type JobEvent = "queued";
+export type JobEvent = "queued" | "completed" | "started";
 
 export interface Job extends Resource {
     queue: string;
