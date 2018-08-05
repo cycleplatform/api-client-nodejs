@@ -1,13 +1,13 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "0.17.17",
+    "version": "0.17.21",
     "description": "Cycle API Client",
     "main": "dist/node.js",
     "browser": "dist/index.js",
     "typings": "dist/index.d.ts",
     "scripts": {
         "precommit": "node ./node_modules/lint-staged/index.js",
-        "prepack": "rm -rf ./dist && tsc",
+        "publishOnly": "rm -rf ./dist && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },
     "lint-staged": {

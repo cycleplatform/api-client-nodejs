@@ -1,5 +1,5 @@
 import { Token } from "../../auth";
-import { ErrorResource } from "./error";
+import { ErrorResource, ErrorCode } from "./error";
 import { formatParams, QueryParams } from "./query";
 import { CreatedTask } from "../structs";
 import { Settings } from "./settings";
@@ -88,7 +88,7 @@ async function makeRequest<T>(
                 title: "Unable to reach server",
                 detail:
                     "There was an error attempting to fetch data from server.",
-                code: "0.network_error",
+                code: ErrorCode.C_0_NETWORK_ERROR,
             },
         };
     }

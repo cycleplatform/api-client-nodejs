@@ -1,4 +1,4 @@
-import { ApiResult, makeUrl, OAuthError, Settings } from "../common/api";
+import { ApiResult, makeUrl, OAuthError, Settings, ErrorCode } from "../common/api";
 import { Token } from "./token";
 
 export interface RefreshParams {
@@ -50,7 +50,7 @@ export async function refreshGrant(
         return {
             ok: false,
             error: {
-                code: "0.network_error",
+                code: ErrorCode.C_0_NETWORK_ERROR,
                 detail: e.message,
                 title: "Unable to reach authentication server",
             },

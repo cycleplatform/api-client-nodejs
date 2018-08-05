@@ -17,5 +17,10 @@ export interface OwnerInclude {
     api_keys?: {
         [key: string]: ApiKeys.ApiKey;
     };
-    // employees
+    employees?: {
+        [key: string]: PublicAccount;
+    };
+    visitors?: {
+        [key: string]: PublicAccount;
+    };
 }
