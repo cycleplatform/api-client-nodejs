@@ -40,7 +40,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://amattoni@gitlab.petrichor.io/cycle-faas/node-api-client.git"
+        "url": "https://github.com/cycleplatform/api-client-nodejs"
     },
     "author": "Petrichor, Inc.",
     "license": "Apache-2.0",
