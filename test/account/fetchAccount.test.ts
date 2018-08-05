@@ -8,9 +8,9 @@ interface TestParams {
     schema: TJS.Definition | null;
 }
 
-export function testFetchUserAccount({store, schema}: TestParams) {
+export function testFetchUserAccount({ store, schema }: TestParams) {
     it("should fetch user account", async () => {
-        if (!schema) { 
+        if (!schema) {
             throw new Error("Account schema not generated");
         }
         const { token } = store.state;
@@ -24,6 +24,8 @@ export function testFetchUserAccount({store, schema}: TestParams) {
         if (!resp.ok) {
             throw new Error(resp.error.title);
         }
+
+        console.log(resp.value);
 
         assert.isTrue(resp.ok);
         assert.jsonSchema(resp.value.data, schema);

@@ -66,7 +66,9 @@ async function makeRequest<T>(
     }
 
     try {
-        const resp = await fetch(req);
+        const resp = await fetch(req, {
+            signal: settings && settings.signal,
+        });
         if (!resp.ok) {
             const error = await resp.json();
             return {

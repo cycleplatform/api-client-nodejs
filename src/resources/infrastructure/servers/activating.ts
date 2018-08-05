@@ -2,13 +2,13 @@ import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { links, Settings, QueryParams } from "../../../common/api";
 import { CollectionDoc, Resource, Time } from "../../../common/structs";
-import { ProviderName } from "../provider";
+import { ProviderNames } from "../provider";
 
 export type ActivatingCollection = CollectionDoc<ActivatingServer>;
 
 export interface ActivatingServer extends Resource {
     hostname: string;
-    provider: ProviderName;
+    provider: ProviderNames;
     created: Time;
 }
 

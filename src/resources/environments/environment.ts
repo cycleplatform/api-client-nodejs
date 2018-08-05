@@ -15,7 +15,7 @@ import {
 } from "../../common/structs";
 import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
-import { DiscoveryService, VPNService } from "./services"; 
+import { DiscoveryService, VPNService } from "./services";
 
 export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment>;
@@ -45,7 +45,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
         subnet: number;
         ipv4: IPNet;
         ipv6: IPNet;
-    };
+    } | null;
     services: Services;
 }
 

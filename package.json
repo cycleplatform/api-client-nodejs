@@ -36,7 +36,7 @@
         "tslint": "^5.9.1",
         "tslint-config-prettier": "^1.9.0",
         "typescript": "^2.7.2",
-        "typescript-json-schema": "^0.17.0"
+        "typescript-json-schema": "^0.31.0"
     },
     "repository": {
         "type": "git",
