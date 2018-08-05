@@ -1,20 +1,28 @@
 import { ApiResult, makeUrl, OAuthError, Settings, ErrorCode } from "../common/api";
 import { Token } from "./token";
 
+/**
+ * Credentials required for client authorization
+ */
 export interface ClientCredsAuth {
     client_id: string;
     client_secret: string;
     scope?: string;
 }
 
+/**
+ * Make a request to the Cycle OAuth server using client credentials grant
+ * @param auth The ClientCredsAuth object containing authorization credentials
+ * @param settings Optional Settings object to control the request
+ */
 export async function clientCredentialsGrant(
-    options: ClientCredsAuth,
+    auth: ClientCredsAuth,
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
 
-    const queryParams = Object.keys(options)
-        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
+    const queryParams = Object.keys(auth)
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(auth[k]))
         .join("&");
 
     try {

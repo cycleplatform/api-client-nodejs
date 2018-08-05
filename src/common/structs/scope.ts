@@ -1,8 +1,15 @@
 import { ResourceId } from "./doc";
 
-export type UserScopeType = "account" | "employee" | "api-key" | "visitor";
+/**
+ * Types of 'owners'
+ */
+export type OwnerScopeType = "account" | "employee" | "api-key" | "visitor";
 
-export interface UserScope {
-    type: UserScopeType;
+/**
+ * The owner scope is embedded in resource objects
+ * to describe who created them
+ */
+export interface OwnerScope {
+    type: OwnerScopeType;
     id: ResourceId;
 }

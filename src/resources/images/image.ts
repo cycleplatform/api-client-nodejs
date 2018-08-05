@@ -9,7 +9,7 @@ import {
     State,
     Events,
     Bytes,
-    UserScope,
+    OwnerScope,
     OwnerInclude,
 } from "../../common/structs";
 import { Config } from "./config";
@@ -38,7 +38,7 @@ export interface Image extends Resource<ImageMetas> {
     tags: string[];
     config: Config;
     source: Spec.ImageSource;
-    owner: UserScope;
+    owner: OwnerScope;
     project: ResourceId;
     state: State<ImageState>;
     events: Events;

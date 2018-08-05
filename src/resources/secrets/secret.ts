@@ -4,7 +4,7 @@ import {
     SingleDoc,
     Events,
     State,
-    UserScope,
+    OwnerScope,
     ResourceId,
 } from "../../common/structs";
 
@@ -13,7 +13,7 @@ export type Single = SingleDoc<Secret>;
 export type SecretState = "live" | "deleting" | "deleted";
 
 export interface Secret extends Resource {
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     environment_id: ResourceId;
     container_id: ResourceId | null;

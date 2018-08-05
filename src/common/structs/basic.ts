@@ -70,6 +70,9 @@ export enum DataSizeUnits {
  */
 export type CPUShares = string;
 
+/**
+ * Units avaialble for CPU shares
+ */
 export enum CPUShareUnits {
     CORES = "cores",
     SECONDS = "seconds",

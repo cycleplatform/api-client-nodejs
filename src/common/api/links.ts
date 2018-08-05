@@ -1,5 +1,8 @@
 import { ResourceId } from "../structs";
 
+/**
+ * All possible endpoints of Cycle's API
+ */
 export const links = {
     account: () => ({
         single: () => `/account`,

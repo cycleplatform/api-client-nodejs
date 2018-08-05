@@ -9,7 +9,7 @@ import {
     CollectionDoc,
     SingleDoc,
     ResourceId,
-    UserScope,
+    OwnerScope,
     OwnerInclude,
 } from "../../common/structs";
 
@@ -32,7 +32,7 @@ export interface Job extends Resource {
     schedule: Time;
     expires: Time;
     tasks: JobTask[];
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     state: State<JobState>;
 }

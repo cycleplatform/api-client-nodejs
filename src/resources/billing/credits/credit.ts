@@ -1,6 +1,6 @@
 import {
     ResourceId,
-    UserScope,
+    OwnerScope,
     Events,
     State,
     CollectionDoc,
@@ -21,7 +21,7 @@ export interface Credit {
     id: ResourceId;
     project_id: ResourceId;
     description: string;
-    owner: UserScope;
+    owner: OwnerScope;
     amount: number;
     amount_remaining: number;
     events: Events<CreditEvent>;

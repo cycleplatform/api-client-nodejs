@@ -8,7 +8,7 @@ import {
     ResourceId,
     State,
     Events,
-    UserScope,
+    OwnerScope,
 } from "../../common/structs";
 import { Spec, RepoProtocol } from "./spec";
 
@@ -26,7 +26,7 @@ export type StackState =
 
 export interface Stack extends Resource {
     name: string;
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     source: Source;
     state: State<StackState>;

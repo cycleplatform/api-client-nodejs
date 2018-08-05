@@ -4,7 +4,7 @@ import {
     SingleDoc,
     Events,
     ResourceId,
-    UserScope,
+    OwnerScope,
     Mills,
     State,
 } from "../../../common/structs";
@@ -40,7 +40,7 @@ export type OrderEvent =
 
 export interface Order extends Resource<OrderMeta> {
     project_id: ResourceId;
-    owner: UserScope;
+    owner: OwnerScope;
     promo_code_id: string | null;
     term: Term;
     approved: boolean;

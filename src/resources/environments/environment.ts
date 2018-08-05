@@ -8,7 +8,7 @@ import {
     ResourceId,
     State,
     Events,
-    UserScope,
+    OwnerScope,
     StatefulCounts,
     OwnerInclude,
     IP,
@@ -36,7 +36,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
         description: string;
     };
     category: string;
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     state: State<EnvironmentState>;
     events: Events;

@@ -10,7 +10,7 @@ import {
     ResourceId,
     State,
     Events,
-    UserScope,
+    OwnerScope,
     OwnerInclude,
     StatefulCounts,
     IP,
@@ -39,7 +39,7 @@ export type ContainerQuery = QueryParams<
 
 export interface Container extends Resource<ContainerMetas> {
     name: string;
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     environment: CondensedEnvironment;
     stack?: CondensedStack;

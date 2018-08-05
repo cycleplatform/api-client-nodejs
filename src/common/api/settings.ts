@@ -8,7 +8,7 @@ export interface Settings {
     /** Sets the project scope. Auto injected into X-Project-Id header */
     project?: ResourceId;
 
-    /** allow force http in URL */
+    /** Allow force http in URL */
     useHttp?: boolean;
 
     /** If true, don't inject version into URL */

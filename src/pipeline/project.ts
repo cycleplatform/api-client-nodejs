@@ -4,82 +4,79 @@ import { links, ProjectRequiredSettings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
 import { PipelineEvent } from "./event";
 
-export type ProjectPipelineEventHeader =
-    | BillingHeader
-    | ContainerHeader
-    | DNSHeader
-    | ProjectHeader
-    | ImageHeader
-    | JobHeader
-    | EnvironmentHeader
-    | ServerHeader
-    | StackHeader;
+/**
+ * Possible event types that can be received
+ * on the project pipeline
+ */
+export enum ProjectPipelineEventHeader {
+    BILLING_SERVICE_STATE_CHANGED = "billing.service.state_changed",
+    BILLING_INVOICE_CREATED = "billing.invoice.created",
+    BILLING_INVOICE_STATE_CHANGED = "billing.invoice.state_changed",
+    BILLING_INVOICE_ERROR = "billing.invoice.error",
+    BILLING_ORDER_CREATED = "billing.order.created",
+    BILLING_ORDER_STATE_CHANGED = "billing.order.state_changed",
+    BILLING_ORDER_ERROR = "billing.order.error",
+    BILLING_DISCOUNT_STATE_CHANGED = "billing.discount.state_changed",
+    BILLING_DISCOUNT_ERROR = "billing.discount.error",
+    BILLING_CREDIT_STATE_CHANGED = "billing.credit.state_changed",
+    BILLING_CREDIT_ERROR = "billing.credit.error",
+    BILLING_METHOD_CREATED = "billing.method.created",
+    BILLING_METHOD_STATE_CHANGED = "billing.method.state_changed",
+    BILLING_METHOD_ERROR = "billing.method.error",
 
-export type BillingHeader =
-    | "billing.service.state_changed"
-    | "billing.invoice.created"
-    | "billing.invoice.state_changed"
-    | "billing.invoice.error"
-    | "billing.order.created"
-    | "billing.order.state_changed"
-    | "billing.order.error"
-    | "billing.discount.state_changed"
-    | "billing.discount.error"
-    | "billing.credit.state_changed"
-    | "billing.credit.error"
-    | "billing.method.created"
-    | "billing.method.state_changed"
-    | "billing.method.error";
-export type ProjectHeader =
-    | "project.updated"
-    | "project.state_changed"
-    | "project.membership.state_changed"
-    | "project.api_key.created"
-    | "project.api_key.updated"
-    | "project.api_key.state_changed"
-    | "project.api_key.error";
-export type ImageHeader = "image.state_changed" | "image.error";
-export type DNSHeader =
-    | "dns.zone.created"
-    | "dns.zone.updated"
-    | "dns.zone.error"
-    | "dns.zone.state_changed"
-    | "dns.zone.new_record";
-export type JobHeader =
-    | "job.new"
-    | "job.scheduled"
-    | "job.queued"
-    | "job.scheduled"
-    | "job.running"
-    | "job.error"
-    | "job.completed"
-    | "job.expired";
-export type EnvironmentHeader =
-    | "environment.created"
-    | "environment.updated"
-    | "environment.error"
-    | "environment.state_changed"
-    | "environment.vpn.reconfigured";
-export type ServerHeader = "server.state_changed" | "server.error";
-export type StackHeader =
-    | "stack.created"
-    | "stack.error"
-    | "stack.state_changed"
-    | "stack.build.created"
-    | "stack.build.state_changed"
-    | "stack.build.error";
-export type ContainerHeader =
-    | "container.created"
-    | "container.updated"
-    | "container.error"
-    | "container.ip.state_changed"
-    | "container.ip.error"
-    | "container.event"
-    | "container.state_changed"
-    | "container.instance.created"
-    | "container.instance.error"
-    | "container.instance.state_changed"
-    | "container.instances.revised";
+    CONTAINER_CREATED = "container.created",
+    CONTAINER_UPDATED = "container.updated",
+    CONTAINER_ERROR = "container.error",
+    CONTAINER_IP_STATE_CHANGED = "container.ip.state_changed",
+    CONTAINER_IP_ERROR = "container.ip.error",
+    CONTAINER_EVENT = "container.event",
+    CONTAINER_STATE_CHANGED = "container.state_changed",
+    CONTAINER_INSTANCE_CREATED = "container.instance.created",
+    CONTAINER_INSTANCE_ERROR = "container.instance.error",
+    CONTAINER_INSTANCE_STATE_CHANGED = "container.instance.state_changed",
+    CONTAINER_INSTANCES_REVISED = "container.instances.revised",
+
+    DNS_ZONE_CREATED = "dns.zone.created",
+    DNS_ZONE_UPDATED = "dns.zone.updated",
+    DNS_ZONE_ERROR = "dns.zone.error",
+    DNS_ZONE_STATE_CHANGED = "dns.zone.state_changed",
+    DNS_ZONE_NEW_RECORD = "dns.zone.new_record",
+
+    ENVIRONMENT_CREATED = "environment.created",
+    ENVIRONMENT_UPDATED = "environment.updated",
+    ENVIRONMENT_ERROR = "environment.error",
+    ENVIRONMENT_STATE_CHANGED = "environment.state_changed",
+    ENVIRONMENT_VPN_RECONFIGURED = "environment.vpn.reconfigured",
+
+    IMAGE_STATE_CHANGED = "image.state_changed",
+    IMAGE_ERROR = "image.error",
+
+    JOB_NEW = "job.new",
+    JOB_SCHEDULED = "job.scheduled",
+    JOB_QUEUED = "job.queued",
+    JOB_RUNNING = "job.running",
+    JOB_ERROR = "job.error",
+    JOB_COMPLETED = "job.completed",
+    JOB_EXPIRED = "job.expired",
+
+    PROJECT_UPDATED = "project.updated",
+    PROJECT_STATE_CHANGED = "project.state_changed",
+    PROJECT_MEMBERSHIP_STATE_CHANGED = "project.membership.state_changed",
+    PROJECT_API_KEY_CREATED = "project.api_key.created",
+    PROJECT_API_KEY_UPDATED = "project.api_key.updated",
+    PROJECT_API_KEY_STATE_CHANGED = "project.api_key.state_changed",
+    PROJECT_API_KEY_ERROR = "project.api_key.error",
+
+    SERVER_STATE_CHANGED = "server.state_changed",
+    SERVER_ERROR = "server.error",
+
+    STACK_CREATED = "stack.created",
+    STACK_ERROR = "stack.error",
+    STACK_STATE_CHANGED = "stack.state_changed",
+    STACK_BUILD_CREATED = "stack.build.created",
+    STACK_BUILD_STATE_CHANGED = "stack.build.state_changed",
+    STACK_BUILD_ERROR = "stack.build.error",
+}
 
 export type ProjectPipelineEvent = PipelineEvent<ProjectPipelineEventHeader>;
 

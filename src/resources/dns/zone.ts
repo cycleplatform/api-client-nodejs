@@ -6,7 +6,7 @@ import {
     Resource,
     State,
     Events,
-    UserScope,
+    OwnerScope,
     ResourceId,
     SingleDoc,
     OwnerInclude,
@@ -32,7 +32,7 @@ export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
     project_id: ResourceId;
-    owner: UserScope;
+    owner: OwnerScope;
     origin: string;
     state: State<ZoneState>;
     events: Events<ZoneEvent>;

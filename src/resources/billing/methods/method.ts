@@ -4,7 +4,7 @@ import {
     SingleDoc,
     Events,
     State,
-    UserScope,
+    OwnerScope,
     ResourceId,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
@@ -23,7 +23,7 @@ export interface Method extends Resource {
     name: string;
     primary: boolean;
     address: Address;
-    owner: UserScope;
+    owner: OwnerScope;
     credit_card: CreditCard;
     state: State<MethodState>;
     events: Events;

@@ -5,7 +5,7 @@ import {
     CollectionDoc,
     Resource,
     Events,
-    UserScope,
+    OwnerScope,
     ResourceId,
     SingleDoc,
     OwnerInclude,
@@ -22,7 +22,7 @@ export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {
     project_id: ResourceId;
-    owner: UserScope;
+    owner: OwnerScope;
     zone_id: ResourceId;
     name: string;
     resolved_domain: string;

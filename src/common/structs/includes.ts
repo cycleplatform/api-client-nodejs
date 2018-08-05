@@ -10,6 +10,9 @@ export interface StatefulCounts<K extends string> {
     available: number;
 }
 
+/**
+ * An owner is an identity that created a resource.
+ */
 export interface OwnerInclude {
     accounts?: {
         [key: string]: PublicAccount;

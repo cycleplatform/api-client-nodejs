@@ -1,6 +1,9 @@
 import { ApiResult, makeUrl, OAuthError, Settings, ErrorCode } from "../common/api";
 import { Token } from "./token";
 
+/**
+ * Credentials required for refresh grant
+ */
 export interface RefreshParams {
     token: Token;
     // Not required if running in browser/through thin client
@@ -8,13 +11,19 @@ export interface RefreshParams {
     client_secret?: string;
 }
 
+
+/**
+ * Make a request to the Cycle OAuth server to refresh token
+ * @param auth The RefreshParams object containing refresh credentials
+ * @param settings Optional Settings object to control the request
+ */
 export async function refreshGrant(
-    options: RefreshParams,
+    auth: RefreshParams,
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
 
-    const params = { ...options, refresh_token: options.token.refresh_token };
+    const params = { ...auth, refresh_token: auth.token.refresh_token };
     delete params.token;
     const queryParams = Object.keys(params)
         .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))

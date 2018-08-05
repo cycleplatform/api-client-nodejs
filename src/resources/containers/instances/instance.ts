@@ -10,7 +10,7 @@ import {
     ResourceId,
     State,
     Events,
-    UserScope,
+    OwnerScope,
     Includes,
     OwnerInclude,
 } from "../../../common/structs";
@@ -35,7 +35,7 @@ export type InstanceQuery = QueryParams<
 >;
 
 export interface Instance extends Resource<InstanceMetas> {
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     container_id: ResourceId;
     service?: Services;

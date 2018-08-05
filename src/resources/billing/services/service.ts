@@ -2,7 +2,7 @@ import {
     ResourceId,
     Events,
     State,
-    UserScope,
+    OwnerScope,
     Mills,
     Resource,
     CollectionDoc,
@@ -28,7 +28,7 @@ export type Single = SingleDoc<Service>;
 export type ServiceEvent = "last_billed";
 
 export interface Service extends Resource {
-    owner: UserScope;
+    owner: OwnerScope;
     project_id: ResourceId;
     title: string;
     order: Order;

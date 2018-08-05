@@ -7,7 +7,7 @@ import {
     Resource,
     CollectionDoc,
     ResourceId,
-    UserScope,
+    OwnerScope,
 } from "../../common/structs";
 
 export type Collection = CollectionDoc<Notification>;
@@ -26,7 +26,7 @@ export enum NotificationCode {
 
 export interface Notification extends Resource, NotificationOpts {
     association: Association;
-    recipient: UserScope;
+    recipient: OwnerScope;
     creator_id: ResourceId;
     project_id: ResourceId | null;
     state: State<NotificationState>;

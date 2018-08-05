@@ -8,7 +8,7 @@ import {
     ResourceId,
     State,
     Events,
-    UserScope,
+    OwnerScope,
     StatefulCounts,
 } from "../../../common/structs";
 import { Spec } from "../spec";
@@ -33,7 +33,7 @@ export type BuildsQuery = QueryParams<string, keyof BuildMetas>;
 
 export interface Build extends Resource<BuildMetas> {
     stack_id: ResourceId;
-    owner: UserScope;
+    owner: OwnerScope;
     spec: Spec;
     events: Events;
     state: State<BuildState>;

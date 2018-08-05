@@ -1,6 +1,15 @@
-import { ApiResult, makeUrl, OAuthError, Settings, ErrorCode } from "../common/api";
+import {
+    ApiResult,
+    makeUrl,
+    OAuthError,
+    Settings,
+    ErrorCode,
+} from "../common/api";
 import { Token } from "./token";
 
+/**
+ * Parameters for creating a password grant request
+ */
 export interface PasswordAuth {
     email: string;
     password: string;
@@ -12,13 +21,18 @@ export interface PasswordAuth {
     scope?: string;
 }
 
+/**
+ * Make a request to the Cycle OAuth server using client credentials grant
+ * @param auth The PasswordAuth object containing authorization credentials
+ * @param settings Optional Settings object to control the request
+ */
 export async function passwordGrant(
-    options: PasswordAuth,
+    auth: PasswordAuth,
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings)}/oauth/token`;
-    const queryParams = Object.keys(options)
-        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
+    const queryParams = Object.keys(auth)
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(auth[k]))
         .join("&");
 
     try {

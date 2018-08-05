@@ -1,3 +1,6 @@
+/**
+ * Standard error object returned from Cycle's API
+ */
 export interface ErrorResource {
     status?: number;
     code?: ErrorCode;
@@ -6,11 +9,21 @@ export interface ErrorResource {
     source?: string;
 }
 
+/**
+ * Error returned from Cycle's OAuth server
+ * (matches OAuth 2.0 spec)
+ */
 export interface OAuthError {
     error: string;
     error_description: string;
 }
 
+/**
+ * List of error codes that can be returned from the API.
+ * C_0_NETWORK_ERROR is specific to this library,
+ * signifying the network was unreachable and thus a response
+ * could not be generated.
+ */
 export enum ErrorCode {
     C_0_NETWORK_ERROR = "0.network_error", // Browser only, issued if fetch fails
     C_404_PROJECT = "404.project",
