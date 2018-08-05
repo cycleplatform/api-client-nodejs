@@ -1,9 +1,14 @@
 import { resolve } from "path";
 
-import { CompilerOptions } from "typescript";
+import {
+    CompilerOptions,
+    ModuleKind,
+    ScriptTarget,
+    ModuleResolutionKind,
+} from "typescript";
 import * as TJS from "typescript-json-schema";
 
-const settings: TJS.PartialArgs = {
+const settings = {
     required: true,
     aliasRef: true,
     // dont allow untyped props
@@ -13,12 +18,13 @@ const settings: TJS.PartialArgs = {
 const compilerOptions: CompilerOptions = {
     strictNullChecks: true,
     suppressImplicitAnyIndexErrors: true,
-    module: 1,
+    module: ModuleKind.ES2015,
     strict: true,
-    target: 4,
+    target: ScriptTarget.ES2018,
     experimentalDecorators: true,
     jsx: 2,
-    moduleResolution: 2,
+    moduleResolution: ModuleResolutionKind.NodeJs,
+    lib: ["dom", "es6"],
 };
 
 export function getSchema(file: string, interfaceName: string) {
@@ -26,6 +32,6 @@ export function getSchema(file: string, interfaceName: string) {
         [resolve(`./src/${file}`)],
         compilerOptions as any,
     );
-    const schema = TJS.generateSchema(program, interfaceName, settings);
+    const schema = TJS.generateSchema(program, interfaceName, settings as any);
     return schema;
 }

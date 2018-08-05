@@ -6,11 +6,13 @@ export type Collection = CollectionDoc<Provider>;
 
 export interface Provider extends Resource {
     id: string;
-    name: ProviderName;
+    name: ProviderNames;
     website: string;
 }
 
-export type ProviderName = "packet";
+export enum ProviderNames {
+    PACKET = "packet"
+}
 
 export async function getCollection({
     query,

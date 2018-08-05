@@ -1,27 +1,24 @@
 import { ResourceId } from "../structs";
 
-/**
- * Standard API call settings object.
- */
+/** Custom settings object for per-request customization */
 export interface Settings {
-    /**
-     * Overrides base url, so it can be pointed to a thin client
-     */
+    /** Override base url on a per request basis */
     url?: string;
 
-    /**
-     * Sets the project scope
-     */
+    /** Sets the project scope. Auto injected into X-Project-Id header */
     project?: ResourceId;
 
-    /**
-     * allow force http
-     */
+    /** allow force http in URL */
     useHttp?: boolean;
 
+    /** If true, don't inject version into URL */
     noVersion?: boolean;
+
+    /** Allow for fetch cancellation */
+    signal?: AbortSignal;
 }
 
+/** Custom settings object that requires a project ID */
 export interface ProjectRequiredSettings extends Settings {
     project: ResourceId;
 }

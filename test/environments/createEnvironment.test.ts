@@ -38,6 +38,8 @@ export function testCreateEnvironment({ store, schema }: TestParams) {
             throw new Error("data field is empty");
         }
 
+        updateActiveId("environment", resp.value.data.id);
+
         assert.isTrue(resp.ok);
         assert.jsonSchema(resp.value.data, schema);
         assert.equal(resp.value.data.name, value.name);
@@ -45,7 +47,5 @@ export function testCreateEnvironment({ store, schema }: TestParams) {
             resp.value.data.about.description,
             value.about.description,
         );
-
-        updateActiveId("environment", resp.value.data.id);
     });
 }
