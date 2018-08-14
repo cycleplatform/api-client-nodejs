@@ -20,6 +20,7 @@ export enum BaseCapabilities {
     CAP_MKNOD = "CAP_MKNOD",
     CAP_NET_BIND_SERVICE = "CAP_NET_BIND_SERVICE",
     CAP_AUDIT_WRITE = "CAP_AUDIT_WRITE",
+    CAP_SYS_CHROOT = "CAP_SYS_CHROOT",
 }
 
 export enum PrivilegedCapabilities {
