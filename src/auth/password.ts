@@ -30,7 +30,7 @@ export async function passwordGrant(
     auth: PasswordAuth,
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
-    const url = `${makeUrl(settings)}/oauth/token`;
+    const url = `${makeUrl(settings || { noVersion: true })}/oauth/token`;
     const queryParams = Object.keys(auth)
         .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(auth[k]))
         .join("&");

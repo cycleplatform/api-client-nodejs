@@ -1,40 +1,42 @@
-import { ApiResult, makeUrl, OAuthError, Settings, ErrorCode } from "../common/api";
+import {
+    ApiResult,
+    makeUrl,
+    OAuthError,
+    Settings,
+    ErrorCode,
+} from "../common/api";
 import { Token } from "./token";
 
 /**
- * Credentials required for refresh grant
+ * Credentials required for client authorization
  */
-export interface RefreshParams {
-    token: Token;
-    // Not required if running in browser/through thin client
-    client_id?: string;
-    client_secret?: string;
+export interface ApiKeyAuth {
+    api_key: string;
+    scope?: string;
 }
 
-
 /**
- * Make a request to the Cycle OAuth server to refresh token
- * @param auth The RefreshParams object containing refresh credentials
+ * Make a request to the Cycle OAuth server using client credentials grant
+ * @param auth The ClientCredsAuth object containing authorization credentials
  * @param settings Optional Settings object to control the request
  */
-export async function refreshGrant(
-    auth: RefreshParams,
+export async function apiKeyGrant(
+    auth: ApiKeyAuth,
     settings?: Settings,
 ): Promise<ApiResult<Token>> {
     const url = `${makeUrl(settings || { noVersion: true })}/oauth/token`;
 
-    const params = { ...auth, refresh_token: auth.token.refresh_token };
-    delete params.token;
-    const queryParams = Object.keys(params)
-        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
+    const queryParams = Object.keys(auth)
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(auth[k]))
         .join("&");
 
     try {
         const resp = await fetch(url, {
             method: "POST",
-            body: `grant_type=refresh_token&${queryParams}`,
+            body: `grant_type=api_key&${queryParams}`,
             headers: new Headers({
-                "Content-type": "application/x-www-form-urlencoded",
+                "Content-type":
+                    "application/x-www-form-urlencoded; charset=UTF-8",
                 Accept: "application/json",
             }),
         });
