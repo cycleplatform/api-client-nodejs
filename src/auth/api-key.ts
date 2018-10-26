@@ -11,7 +11,7 @@ import { Token } from "./token";
  * Credentials required for client authorization
  */
 export interface ApiKeyAuth {
-    api_key: string;
+    secret: string;
     scope?: string;
 }
 
