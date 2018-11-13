@@ -49,6 +49,15 @@ export type IP = string;
  */
 export type Webhook = string;
 
+/** Array of webhooks */
+export type Webhooks = Webhook[];
+
+/** Field denoting an email address */
+export type Email = string;
+
+/** Array of emails */
+export type Emails = Email[];
+
 /**
  * Denotes size of data, i.e.
  * 10G = 10 Gigabytes

@@ -14,7 +14,6 @@
         "experimentalDecorators": true,
         "baseUrl": "./src",
         "moduleResolution": "node",
-        "jsx": "react",
         "noEmitHelpers": true,
         "importHelpers": true,
         "lib": [

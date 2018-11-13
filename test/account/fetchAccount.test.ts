@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { Account } from "../../src/";
+import { Account } from "../../src";
 import * as TJS from "typescript-json-schema";
 import { TestStore } from "../TestStore";
 

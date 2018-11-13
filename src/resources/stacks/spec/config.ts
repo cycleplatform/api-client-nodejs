@@ -1,15 +1,15 @@
-import { Deployment } from "./deployment";
+import { Deploy } from "./deploy";
 import { Runtime } from "./runtime";
 import { Network } from "./network";
 import { Resources } from "./resources";
-import { Options } from "./options";
+import { Integrations } from "./integrations";
 import { Scaling } from "./scaling";
 
 export interface Config {
-  deployment: Deployment | null;
+  network: Network;
+  deploy: Deploy;
   scaling: Scaling | null;
   runtime: Runtime | null;
-  network: Network;
   resources: Resources | null;
-  options: Options | null;
+  integrations: Integrations | null;
 }
