@@ -1,20 +1,18 @@
 {
     "name": "@cycleplatform/cycle-api",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "description": "Cycle API Client",
     "main": "dist/node.js",
     "browser": "dist/index.js",
     "typings": "dist/index.d.ts",
     "scripts": {
-        "precommit": "node ./node_modules/lint-staged/index.js",
-        "publishOnly": "rm -rf ./dist && tsc",
+        "prepublishOnly": "rm -rf ./dist && tsc",
         "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
     },
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "node ./node_modules/prettier/index.js --write --parser typescript --tab-width 4 --trailing-comma all --jsx-bracket-same-line",
-            "git add"
-        ]
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     },
     "devDependencies": {
         "@types/chai": "^4.1.2",
@@ -28,15 +26,17 @@
         "chai-json-schema": "^1.4.0",
         "dotenv": "^4.0.0",
         "husky": "^0.14.3",
-        "lint-staged": "^4.3.0",
         "mocha": "^4.1.0",
         "prettier": "^1.11.1",
         "speakeasy": "^2.0.0",
         "ts-node": "^3.3.0",
-        "tslint": "^5.9.1",
-        "tslint-config-prettier": "^1.9.0",
         "typescript": "^3.0.1",
-        "typescript-json-schema": "^0.31.0"
+        "typescript-json-schema": "^0.31.0",
+        "tslint": "^5.11.0",
+        "tslint-config-blvd": "^1.2.1",
+        "tslint-config-prettier": "^1.15.0",
+        "tslint-plugin-prettier": "^2.0.1",
+        "pretty-quick": "^1.8.0"
     },
     "repository": {
         "type": "git",

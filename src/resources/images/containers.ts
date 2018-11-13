@@ -5,20 +5,20 @@ import * as Structs from "../../common/structs";
 import * as Containers from "../containers";
 
 export async function getContainers({
-    id,
-    token,
-    query,
-    settings,
+  id,
+  token,
+  query,
+  settings,
 }: {
-    id: Structs.ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
+  id: Structs.ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.getRequest<Containers.Collection>({
-        target: links.images().containers(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Containers.Collection>({
+    query,
+    token,
+    settings,
+    target: links.images().containers(id),
+  });
 }

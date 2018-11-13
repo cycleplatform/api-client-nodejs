@@ -4,8 +4,8 @@ import { Server } from "./server";
 import { SupportPlan } from "./support";
 
 export interface Item {
-    server?: Server;
-    ips?: IpsPlan;
-    bandwidth?: BandwidthPlan;
-    support?: SupportPlan;
+  server?: Server;
+  ips?: IpsPlan;
+  bandwidth?: BandwidthPlan;
+  support?: SupportPlan;
 }

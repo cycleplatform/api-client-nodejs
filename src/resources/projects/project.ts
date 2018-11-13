@@ -1,17 +1,17 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import {
-    QueryParams,
-    links,
-    ProjectRequiredSettings,
-    Settings,
+  QueryParams,
+  links,
+  ProjectRequiredSettings,
+  Settings,
 } from "../../common/api";
 import {
-    CollectionDoc,
-    Resource,
-    SingleDoc,
-    Events,
-    State,
+  CollectionDoc,
+  Resource,
+  SingleDoc,
+  Events,
+  State,
 } from "../../common/structs";
 import { Membership } from "./membership";
 
@@ -21,123 +21,123 @@ export type Single = SingleDoc<Project>;
 export type ProjectQuery = QueryParams<"", keyof ProjectMetas>;
 
 export type ProjectState =
-    | "new"
-    | "configuring" // placing an order
-    | "provisioning" // order confirmed, invoice billed
-    | "live" // at least 1 server online
-    | "inactive"
-    | "deleting"
-    | "deleted";
+  | "new"
+  | "configuring" // placing an order
+  | "provisioning" // order confirmed, invoice billed
+  | "live" // at least 1 server online
+  | "inactive"
+  | "deleting"
+  | "deleted";
 
 export interface Project extends Resource<ProjectMetas> {
-    name: string;
-    events: Events;
-    billing: {
-        disabled: boolean;
-    };
-    state: State<ProjectState>;
+  name: string;
+  events: Events;
+  billing: {
+    disabled: boolean;
+  };
+  state: State<ProjectState>;
 }
 
 export interface ProjectMetas {
-    membership?: Membership;
+  membership?: Membership;
 }
 
 export interface CreateParams {
-    name: string;
-    ssl?: {
-        email: string;
-    };
+  name: string;
+  ssl?: {
+    email: string;
+  };
 }
 
 export type UpdateParams = Partial<CreateParams>;
 
 export async function getCollection({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: ProjectQuery;
-    settings?: Settings;
+  token: Token;
+  query?: ProjectQuery;
+  settings?: Settings;
 }) {
-    return Request.getRequest<Collection>({
-        target: links.projects().collection(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Collection>({
+    query,
+    token,
+    settings,
+    target: links.projects().collection(),
+  });
 }
 
 export async function getSingle({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: ProjectQuery;
-    settings?: Settings;
+  token: Token;
+  query?: ProjectQuery;
+  settings?: Settings;
 }) {
-    return Request.getRequest<Single>({
-        target: links.projects().single(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Single>({
+    query,
+    token,
+    settings,
+    target: links.projects().single(),
+  });
 }
 
 export async function create({
-    value,
-    token,
-    query,
-    settings,
+  value,
+  token,
+  query,
+  settings,
 }: {
-    value: CreateParams;
-    token: Token;
-    query?: ProjectQuery;
-    settings?: Settings;
+  value: CreateParams;
+  token: Token;
+  query?: ProjectQuery;
+  settings?: Settings;
 }) {
-    return Request.postRequest<Single>({
-        target: links.projects().collection(),
-        value,
-        query,
-        token,
-        settings,
-    });
+  return Request.postRequest<Single>({
+    value,
+    query,
+    token,
+    settings,
+    target: links.projects().collection(),
+  });
 }
 
 export async function update({
-    value,
-    token,
-    query,
-    settings,
+  value,
+  token,
+  query,
+  settings,
 }: {
-    value: Partial<UpdateParams>;
-    token: Token;
-    query?: ProjectQuery;
-    settings?: Settings;
+  value: Partial<UpdateParams>;
+  token: Token;
+  query?: ProjectQuery;
+  settings?: Settings;
 }) {
-    return Request.patchRequest<Single>({
-        target: links.projects().single(),
-        value,
-        query,
-        token,
-        settings,
-    });
+  return Request.patchRequest<Single>({
+    value,
+    query,
+    token,
+    settings,
+    target: links.projects().single(),
+  });
 }
 
 export async function remove({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: ProjectQuery;
-    settings: ProjectRequiredSettings;
+  token: Token;
+  query?: ProjectQuery;
+  settings: ProjectRequiredSettings;
 }) {
-    return Request.deleteRequest<Single>({
-        target: links.projects().single(),
-        query,
-        token,
-        settings,
-    });
+  return Request.deleteRequest<Single>({
+    query,
+    token,
+    settings,
+    target: links.projects().single(),
+  });
 }

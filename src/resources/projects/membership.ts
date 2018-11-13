@@ -2,13 +2,13 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import {
-    CollectionDoc,
-    Resource,
-    SingleDoc,
-    Events,
-    State,
-    ResourceId,
-    Time,
+  CollectionDoc,
+  Resource,
+  SingleDoc,
+  Events,
+  State,
+  ResourceId,
+  Time,
 } from "../../common/structs";
 import { PublicAccount } from "../accounts/account";
 import { Project } from "./project";
@@ -21,116 +21,116 @@ export type MembershipState = "new" | "active" | "deleting" | "deleted";
 export type MembershipEvent = "joined";
 export type InvitationEvent = "accepted" | "declined" | "revoked";
 export type MembershipQuery = QueryParams<
-    keyof MembershipIncludes,
-    keyof MembershipMeta
+  keyof MembershipIncludes,
+  keyof MembershipMeta
 >;
 
 export enum Role {
-    OWNER = 1 << 0,
-    ADMIN = 1 << 1,
-    DEVELOPER = 1 << 2,
-    ANALYST = 1 << 3,
-    DEFAULT = 0,
+  OWNER = 1 << 0,
+  ADMIN = 1 << 1,
+  DEVELOPER = 1 << 2,
+  ANALYST = 1 << 3,
+  DEFAULT = 0,
 }
 
 export interface Membership extends Resource<MembershipMeta> {
-    account_id: ResourceId;
-    project_id: ResourceId;
-    role: Role;
-    events: Events<MembershipEvent>;
-    state: State<MembershipState>;
-    invitation: Invitation;
+  account_id: ResourceId;
+  project_id: ResourceId;
+  role: Role;
+  events: Events<MembershipEvent>;
+  state: State<MembershipState>;
+  invitation: Invitation;
 }
 
 export interface MembershipMeta {
-    capabilities: Capability[];
+  capabilities: Capability[];
 }
 
 export interface MembershipIncludes {
-    senders: {
-        [key: string]: PublicAccount;
-    };
-    projects: {
-        [key: string]: Project;
-    };
+  senders: {
+    [key: string]: PublicAccount;
+  };
+  projects: {
+    [key: string]: Project;
+  };
 }
 
 export interface Invitation {
-    sender: ResourceId;
-    recipient: {
-        email: string;
-    };
-    events: Events<InvitationEvent>;
+  sender: ResourceId;
+  recipient: {
+    email: string;
+  };
+  events: Events<InvitationEvent>;
 }
 
 export interface Member extends Resource<MembershipMeta> {
-    name: Name;
-    membership_id: ResourceId;
-    role: Role;
-    joined: Time;
+  name: Name;
+  membership_id: ResourceId;
+  role: Role;
+  joined: Time;
 }
 
 /**
  * Members in this project
  */
 export async function getCollection({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: MembershipQuery;
-    settings?: ProjectRequiredSettings;
+  token: Token;
+  query?: MembershipQuery;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<CollectionDoc<Member>>({
-        target: links
-            .projects()
-            .members()
-            .collection(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<CollectionDoc<Member>>({
+    query,
+    token,
+    settings,
+    target: links
+      .projects()
+      .members()
+      .collection(),
+  });
 }
 
 export async function getCurrentMembership({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: MembershipQuery;
-    settings?: ProjectRequiredSettings;
+  token: Token;
+  query?: MembershipQuery;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<SingleDoc<Member>>({
-        target: links
-            .projects()
-            .members()
-            .membership(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<SingleDoc<Member>>({
+    query,
+    token,
+    settings,
+    target: links
+      .projects()
+      .members()
+      .membership(),
+  });
 }
 
 export async function remove({
-    id,
-    token,
-    query,
-    settings,
+  id,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings: ProjectRequiredSettings;
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings: ProjectRequiredSettings;
 }) {
-    return Request.deleteRequest<Single>({
-        target: links
-            .projects()
-            .members()
-            .single(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.deleteRequest<Single>({
+    query,
+    token,
+    settings,
+    target: links
+      .projects()
+      .members()
+      .single(id),
+  });
 }

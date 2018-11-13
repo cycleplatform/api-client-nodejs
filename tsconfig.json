@@ -1,16 +1,15 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "esnext",
         "strict": true,
         "target": "es6",
         "outDir": "dist",
-        "declaration": true,
         "noImplicitReturns": true,
         "sourceMap": true,
         "pretty": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "removeComments": true,
+        "removeComments": false,
         "suppressImplicitAnyIndexErrors": true,
         "experimentalDecorators": true,
         "baseUrl": "./src",
@@ -21,12 +20,16 @@
         "lib": [
             "dom",
             "es6"
-        ]
+        ],
+        "paths": {
+            "__mocks__/*": [
+                "../__mocks__/*"
+            ]
+        }
     },
     "exclude": [
         "node_modules",
         "fuse.ts",
-        "test",
-        "**/*.test.ts"
+        "test"
     ]
 }

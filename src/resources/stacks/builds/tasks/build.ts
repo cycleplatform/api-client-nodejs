@@ -6,83 +6,83 @@ import { ResourceId, Task, CreatedTask } from "../../../../common/structs";
 export type BuildAction = "deploy" | "delete";
 
 export interface DeployParams {
-    environment_id: ResourceId;
-    update_configs: boolean;
-    redeploy: boolean;
+  environment_id: ResourceId;
+  update_configs: boolean;
+  redeploy: boolean;
 }
 
 export async function deployBuild({
+  id,
+  stackId,
+  value,
+  token,
+  query,
+  settings,
+}: {
+  id: ResourceId;
+  stackId: ResourceId;
+  value: DeployParams;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return task<DeployParams>({
     id,
     stackId,
-    value,
     token,
     query,
     settings,
-}: {
-    id: ResourceId;
-    stackId: ResourceId;
-    value: DeployParams;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return task<DeployParams>({
-        id,
-        stackId,
-        token,
-        query,
-        settings,
-        value: { action: "deploy", contents: value },
-    });
+    value: { action: "deploy", contents: value },
+  });
 }
 
 export async function remove({
-    id,
-    stack,
-    token,
-    query,
-    settings,
+  id,
+  stack,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    token: Token;
-    stack: ResourceId;
-    query?: QueryParams;
-    settings?: Settings;
+  id: ResourceId;
+  token: Token;
+  stack: ResourceId;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.deleteRequest<CreatedTask<"delete">>({
-        target: links
-            .stacks()
-            .builds(stack)
-            .single(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.deleteRequest<CreatedTask<"delete">>({
+    query,
+    token,
+    settings,
+    target: links
+      .stacks()
+      .builds(stack)
+      .single(id),
+  });
 }
 
 export async function task<K = {}>({
-    id,
-    stackId,
-    token,
+  id,
+  stackId,
+  token,
+  value,
+  query,
+  settings,
+}: {
+  id: ResourceId;
+  stackId: ResourceId;
+  token: Token;
+  value: Task<BuildAction, K>;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.postRequest<CreatedTask<BuildAction, K>>({
     value,
     query,
+    token,
     settings,
-}: {
-    id: ResourceId;
-    stackId: ResourceId;
-    token: Token;
-    value: Task<BuildAction, K>;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.postRequest<CreatedTask<BuildAction, K>>({
-        target: links
-            .stacks()
-            .builds(stackId)
-            .tasks(id),
-        value,
-        query,
-        token,
-        settings,
-    });
+    target: links
+      .stacks()
+      .builds(stackId)
+      .tasks(id),
+  });
 }

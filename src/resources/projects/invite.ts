@@ -5,50 +5,50 @@ import { ResourceId, CollectionDoc, SingleDoc } from "../../common/structs";
 import * as Memberships from "./membership";
 
 export interface CreateParams {
-    recipient: string; // Email
-    role: Memberships.Role;
+  recipient: string; // Email
+  role: Memberships.Role;
 }
 
 export async function getCollection({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: Memberships.MembershipQuery;
-    settings?: Settings;
+  token: Token;
+  query?: Memberships.MembershipQuery;
+  settings?: Settings;
 }) {
-    return Request.getRequest<CollectionDoc<Memberships.Membership>>({
-        target: links
-            .projects()
-            .invites()
-            .collection(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<CollectionDoc<Memberships.Membership>>({
+    query,
+    token,
+    settings,
+    target: links
+      .projects()
+      .invites()
+      .collection(),
+  });
 }
 
 export async function create({
-    token,
+  token,
+  value,
+  query,
+  settings,
+}: {
+  project: ResourceId;
+  token: Token;
+  value: CreateParams;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.postRequest<SingleDoc<Memberships.Membership>>({
     value,
     query,
+    token,
     settings,
-}: {
-    project: ResourceId;
-    token: Token;
-    value: CreateParams;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.postRequest<SingleDoc<Memberships.Membership>>({
-        target: links
-            .projects()
-            .invites()
-            .collection(),
-        value,
-        query,
-        token,
-        settings,
-    });
+    target: links
+      .projects()
+      .invites()
+      .collection(),
+  });
 }

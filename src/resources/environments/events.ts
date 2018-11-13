@@ -7,26 +7,26 @@ import { Events, Container } from "../containers";
 export type EventQuery = QueryParams<keyof EventIncludes>;
 
 export async function getCollection({
-    environmentId,
-    token,
-    query,
-    settings,
+  environmentId,
+  token,
+  query,
+  settings,
 }: {
-    environmentId: ResourceId;
-    token: Token;
-    query?: EventQuery;
-    settings?: ProjectRequiredSettings;
+  environmentId: ResourceId;
+  token: Token;
+  query?: EventQuery;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<CollectionDoc<Events.Event, {}, EventIncludes>>({
-        target: links.environments().events(environmentId),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<CollectionDoc<Events.Event, {}, EventIncludes>>({
+    query,
+    token,
+    settings,
+    target: links.environments().events(environmentId),
+  });
 }
 
 export interface EventIncludes {
-    containers?: {
-        [key: string]: Container;
-    };
+  containers?: {
+    [key: string]: Container;
+  };
 }

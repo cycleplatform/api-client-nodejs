@@ -5,35 +5,32 @@ import { TestStore } from "../TestStore";
 import { getSchema } from "../tjs";
 
 interface TestParams {
-    store: TestStore;
+  store: TestStore;
 }
 
 export function testFetchNotifications({ store }: TestParams) {
-    let schema: TJS.Definition | null;
-    before(() => {
-        schema = getSchema(
-            "resources/notifications/Notification.ts",
-            "Collection",
-        );
+  let schema: TJS.Definition | null;
+  before(() => {
+    schema = getSchema("resources/notifications/Notification.ts", "Collection");
+  });
+
+  it("should fetch notifications", async () => {
+    if (!schema) {
+      throw new Error("Notification schema not generated");
+    }
+
+    const { state: { token } } = store;
+
+    const resp = await Notifications.getCollection({
+      token,
+      settings: store.state.settings,
     });
 
-    it("should fetch notifications", async () => {
-        if (!schema) {
-            throw new Error("Notification schema not generated");
-        }
+    if (!resp.ok) {
+      throw new Error(resp.error.title);
+    }
 
-        const { state: { token } } = store;
-
-        const resp = await Notifications.getCollection({
-            token,
-            settings: store.state.settings,
-        });
-
-        if (!resp.ok) {
-            throw new Error(resp.error.title);
-        }
-
-        assert.isTrue(resp.ok);
-        assert.jsonSchema(resp.value, schema);
-    });
+    assert.isTrue(resp.ok);
+    assert.jsonSchema(resp.value, schema);
+  });
 }

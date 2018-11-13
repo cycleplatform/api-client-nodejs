@@ -1,20 +1,20 @@
 import {
-    CollectionDoc,
-    Resource,
-    SingleDoc,
-    Events,
-    ResourceId,
-    OwnerScope,
-    Mills,
-    State,
+  CollectionDoc,
+  Resource,
+  SingleDoc,
+  Events,
+  ResourceId,
+  OwnerScope,
+  Mills,
+  State,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import {
-    QueryParams,
-    links,
-    ProjectRequiredSettings,
-    Settings,
+  QueryParams,
+  links,
+  ProjectRequiredSettings,
+  Settings,
 } from "../../../common/api";
 import { Item as ServiceItem } from "../services/item";
 import { Amount } from "../amount";
@@ -25,150 +25,153 @@ import { PromoCode } from "../promocodes";
 export type Collection = CollectionDoc<Order>;
 export type Single = SingleDoc<Order>;
 export type OrderState =
-    | "new"
-    | "processed"
-    | "expired"
-    | "deleting"
-    | "deleted";
+  | "new"
+  | "processed"
+  | "expired"
+  | "deleting"
+  | "deleted";
 export type OrderEvent =
-    | "paid"
-    | "expires"
-    | "payment_attempt"
-    | "credited"
-    | "voided"
-    | "applied_late_fee";
+  | "paid"
+  | "expires"
+  | "payment_attempt"
+  | "credited"
+  | "voided"
+  | "applied_late_fee";
 
 export interface Order extends Resource<OrderMeta> {
-    project_id: ResourceId;
-    owner: OwnerScope;
-    promo_code_id: string | null;
-    term: Term;
-    approved: boolean;
-    items: Item[];
-    total_price: Mills;
-    events: Events<OrderEvent>;
-    state: State<OrderState>;
+  project_id: ResourceId;
+  owner: OwnerScope;
+  promo_code_id: string | null;
+  term: Term;
+  approved: boolean;
+  items: Item[];
+  total_price: Mills;
+  events: Events<OrderEvent>;
+  state: State<OrderState>;
 }
 
 export interface OrderIncludes {
-    promo_codes: {
-        [key: string]: PromoCode;
-    };
+  promo_codes: {
+    [key: string]: PromoCode;
+  };
 }
 
 export interface CreateParams {
-    servers?: OrderServer[];
-    ip_plan_id?: ResourceId;
-    bandwidth_plan_id?: ResourceId;
-    support_plan_id?: ResourceId;
-    term_length?: TermLength;
-    promo_code?: string;
+  servers?: OrderServer[];
+  ip_plan_id?: ResourceId;
+  bandwidth_plan_id?: ResourceId;
+  support_plan_id?: ResourceId;
+  term_length?: TermLength;
+  promo_code?: string;
 }
 
 export interface OrderMeta {
-    due?: {
-        term: Term;
-        amount: Mills;
-    };
+  due?: {
+    term: Term;
+    amount: Mills;
+  };
 }
 
 export interface OrderServer {
-    id: ResourceId;
-    datacenter_id: ResourceId;
-    count: number;
+  id: ResourceId;
+  datacenter_id: ResourceId;
+  count: number;
 }
 
 export interface Item {
-    id: ResourceId;
-    service: ServiceItem;
-    description: string;
-    price: Amount;
-    discount?: AssociatedDiscount;
+  id: ResourceId;
+  service: ServiceItem;
+  description: string;
+  price: Amount;
+  discount?: AssociatedDiscount;
 }
 
 export async function getCollection({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.getRequest<Collection>({
-        target: links.billing().orders().collection(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Collection>({
+    query,
+    token,
+    settings,
+    target: links
+      .billing()
+      .orders()
+      .collection(),
+  });
 }
 
 export async function getSingle({
-    id,
-    token,
-    query,
-    settings,
+  id,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings: ProjectRequiredSettings;
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<Single>({
-        target: links
-            .billing()
-            .orders()
-            .single(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Single>({
+    query,
+    token,
+    settings,
+    target: links
+      .billing()
+      .orders()
+      .single(id),
+  });
 }
 
 export async function create({
-    value,
-    token,
-    query,
-    settings,
+  value,
+  token,
+  query,
+  settings,
 }: {
-    value: CreateParams;
-    token: Token;
-    query?: QueryParams;
-    settings: ProjectRequiredSettings;
+  value: CreateParams;
+  token: Token;
+  query?: QueryParams;
+  settings: ProjectRequiredSettings;
 }) {
-    return Request.postRequest<Single>({
-        target: links
-            .billing()
-            .orders()
-            .collection(),
-        value,
-        query,
-        token,
-        settings,
-    });
+  return Request.postRequest<Single>({
+    value,
+    query,
+    token,
+    settings,
+    target: links
+      .billing()
+      .orders()
+      .collection(),
+  });
 }
 
 export async function update({
-    id,
-    value,
-    token,
-    query,
-    settings,
+  id,
+  value,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    value: CreateParams;
-    token: Token;
-    query?: QueryParams;
-    settings: ProjectRequiredSettings;
+  id: ResourceId;
+  value: CreateParams;
+  token: Token;
+  query?: QueryParams;
+  settings: ProjectRequiredSettings;
 }) {
-    return Request.patchRequest<Single>({
-        target: links
-            .billing()
-            .orders()
-            .single(id),
-        value,
-        query,
-        token,
-        settings,
-    });
+  return Request.patchRequest<Single>({
+    value,
+    query,
+    token,
+    settings,
+    target: links
+      .billing()
+      .orders()
+      .single(id),
+  });
 }

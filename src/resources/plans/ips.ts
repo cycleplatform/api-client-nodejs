@@ -7,20 +7,20 @@ export type Collection = CollectionDoc<IpsPlan>;
 export type Single = SingleDoc<IpsPlan>;
 
 export interface IpsPlan extends Resource {
-    quantity: number;
-    price: Amount;
+  quantity: number;
+  price: Amount;
 }
 
 export async function getCollection({
+  query,
+  settings,
+}: {
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.getRequest<Collection>({
     query,
     settings,
-}: {
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.getRequest<Collection>({
-        target: links.plans().ips(),
-        query,
-        settings,
-    });
+    target: links.plans().ips(),
+  });
 }

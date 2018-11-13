@@ -7,44 +7,44 @@ import { Spec } from "../../stacks";
 export type ImageAction = "import";
 
 export interface BuildParams {
-    source: Spec.ImageSource;
+  source: Spec.ImageSource;
 }
 
 export async function build({
-    value,
-    token,
-    query,
-    settings,
+  value,
+  token,
+  query,
+  settings,
 }: {
-    value: BuildParams;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
+  value: BuildParams;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.postRequest<CreatedTask<"import">>({
-        target: links.images().build(),
-        value,
-        query,
-        token,
-        settings,
-    });
+  return Request.postRequest<CreatedTask<"import">>({
+    value,
+    query,
+    token,
+    settings,
+    target: links.images().build(),
+  });
 }
 
 export async function remove({
-    id,
-    token,
-    query,
-    settings,
+  id,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.deleteRequest<CreatedTask<"delete">>({
-        target: links.images().single(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.deleteRequest<CreatedTask<"delete">>({
+    query,
+    token,
+    settings,
+    target: links.images().single(id),
+  });
 }

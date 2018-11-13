@@ -10,51 +10,53 @@ import * as Request from "../../common/api/request";
 export type EnvironmentSummaryDoc = SingleDoc<EnvironmentSummary>;
 
 export interface EnvironmentSummary extends Resource {
-    state: EnvironmentState;
-    services: { [key: string]: ServiceSummary };
-    stats: Stats;
+  state: EnvironmentState;
+  services: { [key: string]: ServiceSummary };
+  stats: Stats;
 }
 
 export interface ServiceSummary extends Service {
-    state: State<ContainerState>;
+  state: State<ContainerState>;
 }
 
 export interface Stats {
-    containers: ContainerStats;
-    instances: InstanceStats;
+  containers: ContainerStats;
+  instances: InstanceStats;
 }
 
 export interface ContainerStats {
-    state: { [key: string]: number };
-    total: number;
-    available: number;
+  state: { [key: string]: number };
+  total: number;
+  available: number;
 }
 
 export interface InstanceStats {
-    geo: Array<{
+  geo:
+    | {
         datacenter_id: ResourceId;
         location: Location;
         available: number;
         total: number;
         active: number;
-    }> | null;
-    state: { [key: string]: number };
-    total: number;
-    available: number;
+      }[]
+    | null;
+  state: { [key: string]: number };
+  total: number;
+  available: number;
 }
 
 export async function getSummary({
-    id,
+  id,
+  token,
+  settings,
+}: {
+  id: ResourceId;
+  token: Token;
+  settings?: Settings;
+}) {
+  return Request.getRequest<EnvironmentSummaryDoc>({
     token,
     settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    settings?: Settings;
-}) {
-    return Request.getRequest<EnvironmentSummaryDoc>({
-        target: links.environments().summary(id),
-        token,
-        settings,
-    });
+    target: links.environments().summary(id),
+  });
 }

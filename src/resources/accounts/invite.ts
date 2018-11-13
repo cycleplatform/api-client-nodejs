@@ -7,27 +7,23 @@ import * as Memberships from "../projects/membership";
 export * from "./tasks/invite";
 
 export async function getCollection({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.getRequest<
-        CollectionDoc<
-            Memberships.Membership,
-            {},
-            Memberships.MembershipIncludes
-        >
-    >({
-        target: links
-            .account()
-            .invites()
-            .collection(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<
+    CollectionDoc<Memberships.Membership, {}, Memberships.MembershipIncludes>
+  >({
+    query,
+    token,
+    settings,
+    target: links
+      .account()
+      .invites()
+      .collection(),
+  });
 }

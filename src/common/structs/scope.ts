@@ -10,6 +10,6 @@ export type OwnerScopeType = "account" | "employee" | "api-key" | "visitor";
  * to describe who created them
  */
 export interface OwnerScope {
-    type: OwnerScopeType;
-    id: ResourceId;
+  type: OwnerScopeType;
+  id: ResourceId;
 }

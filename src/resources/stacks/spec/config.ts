@@ -6,10 +6,10 @@ import { Options } from "./options";
 import { Scaling } from "./scaling";
 
 export interface Config {
-    deployment: Deployment | null;
-    scaling: Scaling | null;
-    runtime: Runtime | null;
-    network: Network;
-    resources: Resources | null;
-    options: Options | null;
+  deployment: Deployment | null;
+  scaling: Scaling | null;
+  runtime: Runtime | null;
+  network: Network;
+  resources: Resources | null;
+  options: Options | null;
 }

@@ -1,4 +1,4 @@
 export interface Tags {
-    require: string[];
-    pool: string[];
+  require: string[];
+  pool: string[];
 }

@@ -1,11 +1,11 @@
 import * as Request from "../../../common/api/request";
 import { QueryParams, links, Settings } from "../../../common/api";
 import {
-    CollectionDoc,
-    Resource,
-    SingleDoc,
-    ResourceId,
-    Includes,
+  CollectionDoc,
+  Resource,
+  SingleDoc,
+  ResourceId,
+  Includes,
 } from "../../../common/structs";
 import { DataCenter } from "./datacenter";
 import { ProviderNames } from "./provider";
@@ -15,105 +15,105 @@ export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
 export type Single = SingleDoc<Server>;
 
 export interface Server extends Resource {
-    name: string;
-    description: string;
+  name: string;
+  description: string;
 
-    specs: {
-        cpus: Array<GenericSpecs<ServerCPU>>;
-        memory: Array<GenericSpecs<ServerMemory>>;
-        drives: Array<GenericSpecs<ServerDrive>>;
-        nics: Array<GenericSpecs<ServerNIC>>;
-        features: ServerFeatures;
-    };
+  specs: {
+    cpus: GenericSpecs<ServerCPU>[];
+    memory: GenericSpecs<ServerMemory>[];
+    drives: GenericSpecs<ServerDrive>[];
+    nics: GenericSpecs<ServerNIC>[];
+    features: ServerFeatures;
+  };
 
-    provider: {
-        id: string;
-        name: ProviderNames;
-        slug: string;
-    };
+  provider: {
+    id: string;
+    name: ProviderNames;
+    slug: string;
+  };
 
-    pricing: ServerPricing;
+  pricing: ServerPricing;
 
-    recommended_containers: {
-        min: number;
-        max: number;
-    };
+  recommended_containers: {
+    min: number;
+    max: number;
+  };
 
-    datacenter_ids: ResourceId[];
+  datacenter_ids: ResourceId[];
 }
 
 export interface ServerIncludes extends Includes {
-    datacenters: { [key: string]: DataCenter };
+  datacenters: { [key: string]: DataCenter };
 }
 
 export interface GenericSpecs<T> {
-    count: number;
-    specs: T;
+  count: number;
+  specs: T;
 }
 
 export interface ServerCPU {
-    model: string;
-    cores: number;
-    frequency: {
-        speed: number;
-        unit: string;
-    };
+  model: string;
+  cores: number;
+  frequency: {
+    speed: number;
+    unit: string;
+  };
 }
 
 export interface ServerMemory {
-    storage: {
-        size: number;
-        unit: string;
-    };
-    type: string;
+  storage: {
+    size: number;
+    unit: string;
+  };
+  type: string;
 }
 
 export interface ServerDrive {
-    storage: {
-        size: number;
-        unit: string;
-    };
-    type: string;
-    raid?: {
-        enabled: boolean;
-        level: number;
-    };
+  storage: {
+    size: number;
+    unit: string;
+  };
+  type: string;
+  raid?: {
+    enabled: boolean;
+    level: number;
+  };
 }
 
 export interface ServerNIC {
-    throughput: {
-        speed: number;
-        unit: string;
-    };
-    type: string;
-    bonded: boolean;
+  throughput: {
+    speed: number;
+    unit: string;
+  };
+  type: string;
+  bonded: boolean;
 }
 
 export interface ServerFeatures {
-    raid: boolean;
-    txt: boolean;
+  raid: boolean;
+  txt: boolean;
 }
 
 export interface ServerPricing {
-    infrastructure: Amount;
-    licensing: Amount;
+  infrastructure: Amount;
+  licensing: Amount;
 }
 
 export async function getCollection({
-    provider,
+  provider,
+  query,
+  settings,
+}: {
+  provider: string;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.getRequest<Collection>({
     query,
     settings,
-}: {
-    provider: string;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.getRequest<Collection>({
-        target: links
-            .infrastructure()
-            .providers()
-            .servers(provider),
-        query,
-        settings,
-    });
+    target: links
+      .infrastructure()
+      .providers()
+      .servers(provider),
+  });
 }

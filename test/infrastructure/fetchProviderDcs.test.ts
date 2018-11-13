@@ -5,36 +5,36 @@ import { TestStore } from "../TestStore";
 import { getSchema } from "../tjs";
 
 interface TestParams {
-    store: TestStore;
+  store: TestStore;
 }
 
 export function testFetchProviderDcs({ store }: TestParams) {
-    let schema: TJS.Definition | null;
-    before(() => {
-        schema = getSchema(
-            "resources/infrastructure/provider/datacenter.ts",
-            "Collection",
-        );
+  let schema: TJS.Definition | null;
+  before(() => {
+    schema = getSchema(
+      "resources/infrastructure/provider/datacenter.ts",
+      "Collection",
+    );
+  });
+
+  it("should fetch provider datacenters", async () => {
+    if (!schema) {
+      throw new Error("DC schema not generated");
+    }
+
+    const { active: { provider } } = store.state;
+
+    const resp = await Infrastructure.Providers.DataCenters.getCollection({
+      provider,
+      query: {},
+      settings: store.state.settings,
     });
 
-    it("should fetch provider datacenters", async () => {
-        if (!schema) {
-            throw new Error("DC schema not generated");
-        }
+    if (!resp.ok) {
+      throw new Error(resp.error.title);
+    }
 
-        const { active: { provider } } = store.state;
-
-        const resp = await Infrastructure.Providers.DataCenters.getCollection({
-            provider,
-            query: {},
-            settings: store.state.settings,
-        });
-
-        if (!resp.ok) {
-            throw new Error(resp.error.title);
-        }
-
-        assert.isTrue(resp.ok);
-        assert.jsonSchema(resp.value, schema);
-    });
+    assert.isTrue(resp.ok);
+    assert.jsonSchema(resp.value, schema);
+  });
 }

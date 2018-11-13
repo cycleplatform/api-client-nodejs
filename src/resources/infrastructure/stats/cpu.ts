@@ -1,9 +1,9 @@
 export interface CPUStats {
-    cores?: number;
-    processors?: Proc[];
+  cores?: number;
+  processors?: Proc[];
 }
 
 export interface Proc {
-    model?: string;
-    speed?: number;
+  model?: string;
+  speed?: number;
 }

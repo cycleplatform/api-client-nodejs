@@ -1,7 +1,7 @@
 import { Spec } from "../../stacks";
 
 export interface ContainerVolume {
-    id: string;
-    hash: string;
-    config: Spec.Volume;
+  id: string;
+  hash: string;
+  config: Spec.Volume;
 }

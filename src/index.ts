@@ -6,7 +6,7 @@ import * as Billing from "./resources/billing";
 import * as Containers from "./resources/containers";
 import * as DNS from "./resources/dns";
 import * as Environments from "./resources/environments";
-import * as Error from "./common/api/error";
+import * as Errors from "./common/api/error";
 import * as Images from "./resources/images";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Jobs from "./resources/jobs";
@@ -21,25 +21,25 @@ import * as Structs from "./common/structs";
 import * as SuggestionPipeline from "./pipeline";
 
 export {
-    Auth,
-    Account,
-    Billing,
-    Containers,
-    DNS,
-    Environments,
-    Error,
-    Images,
-    Infrastructure,
-    Jobs,
-    Notifications,
-    Plans,
-    Projects,
-    ProjectRequiredSettings,
-    QueryParams,
-    Request,
-    Secrets,
-    Settings,
-    Stacks,
-    Structs,
-    SuggestionPipeline,
+  Auth,
+  Account,
+  Billing,
+  Containers,
+  DNS,
+  Environments,
+  Errors,
+  Images,
+  Infrastructure,
+  Jobs,
+  Notifications,
+  Plans,
+  Projects,
+  ProjectRequiredSettings,
+  QueryParams,
+  Request,
+  Secrets,
+  Settings,
+  Stacks,
+  Structs,
+  SuggestionPipeline,
 };

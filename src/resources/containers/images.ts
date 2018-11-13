@@ -7,20 +7,20 @@ import { Image } from "../images";
 export type Collection = CollectionDoc<Image>;
 
 export async function getCompatibleImages({
-    id,
-    token,
-    query,
-    settings,
+  id,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
 }) {
-    return Request.getRequest<Collection>({
-        target: links.containers().compatibleImages(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Collection>({
+    query,
+    token,
+    settings,
+    target: links.containers().compatibleImages(id),
+  });
 }

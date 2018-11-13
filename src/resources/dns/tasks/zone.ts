@@ -6,75 +6,75 @@ import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 export type ZoneAction = "verify" | "change_origin";
 
 export async function changeOrigin({
+  id,
+  token,
+  query,
+  origin,
+  settings,
+}: {
+  id: ResourceId;
+  token: Token;
+  origin: string;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return task({
     id,
     token,
     query,
-    origin,
     settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    origin: string;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return task({
-        id,
-        token,
-        query,
-        settings,
-        value: {
-            action: "change_origin",
-            contents: {
-                origin,
-            },
-        },
-    });
+    value: {
+      action: "change_origin",
+      contents: {
+        origin,
+      },
+    },
+  });
 }
 
 export async function verify({
+  id,
+  token,
+  query,
+  settings,
+}: {
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return task({
     id,
     token,
     query,
     settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return task({
-        id,
-        token,
-        query,
-        settings,
-        value: {
-            action: "verify",
-        },
-    });
+    value: {
+      action: "verify",
+    },
+  });
 }
 
 export async function task({
-    id,
-    token,
+  id,
+  token,
+  value,
+  query,
+  settings,
+}: {
+  id: ResourceId;
+  token: Token;
+  value: Task<ZoneAction>;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.postRequest<CreatedTask<ZoneAction>>({
     value,
     query,
+    token,
     settings,
-}: {
-    id: ResourceId;
-    token: Token;
-    value: Task<ZoneAction>;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.postRequest<CreatedTask<ZoneAction>>({
-        target: links
-            .dns()
-            .zones()
-            .tasks(id),
-        value,
-        query,
-        token,
-        settings,
-    });
+    target: links
+      .dns()
+      .zones()
+      .tasks(id),
+  });
 }

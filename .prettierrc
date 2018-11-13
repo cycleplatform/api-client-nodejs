@@ -1,5 +1,6 @@
 {
   "parser": "typescript",
-  "tabWidth": 4,
-  "trailingComma": "all"
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "semi": true
 }

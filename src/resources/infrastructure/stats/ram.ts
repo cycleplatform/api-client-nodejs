@@ -1,5 +1,5 @@
 export interface RAMStats {
-    available: number;
-    free: number;
-    total: number;
+  available: number;
+  free: number;
+  total: number;
 }

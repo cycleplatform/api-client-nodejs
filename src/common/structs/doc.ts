@@ -4,45 +4,45 @@ import { Time } from "./basic";
  * Main API Return.
  */
 export interface TopLevel<T extends Meta = {}, K extends Includes = {}> {
-    meta?: T;
-    includes?: K;
+  meta?: T;
+  includes?: K;
 }
 
 /**
  * A collection document refers to a return of multiple resources of the same type.
  */
 export interface CollectionDoc<
-    T extends Resource,
-    K extends Meta = {},
-    P extends Includes = {}
+  T extends Resource,
+  K extends Meta = {},
+  P extends Includes = {}
 > extends TopLevel<K, P> {
-    data: T[];
+  data: T[];
 }
 
 /**
  * A single document refers to a return of a single resource
  */
 export interface SingleDoc<
-    T extends Resource | string | null,
-    K extends Meta = {},
-    P extends Includes = {}
+  T extends Resource | string | null,
+  K extends Meta = {},
+  P extends Includes = {}
 > extends TopLevel<K, P> {
-    data: T;
+  data: T;
 }
 
 /**
  * A resource is a specific type of data.
  */
 export interface Resource<T extends Meta = {}> {
-    id: ResourceId;
-    meta?: T;
+  id: ResourceId;
+  meta?: T;
 }
 
 /**
  * Meta information is extra information attached to the document.
  */
 export interface Meta {
-    [key: string]: any;
+  [key: string]: any;
 }
 
 /**
@@ -60,9 +60,9 @@ export type ResourceId = string;
  * Standard events nearly every resource has.
  */
 export interface StandardEvents {
-    created?: Time;
-    updated?: Time;
-    deleted?: Time;
+  created?: Time;
+  updated?: Time;
+  deleted?: Time;
 }
 
 /**
@@ -71,7 +71,7 @@ export interface StandardEvents {
  * being the value.
  */
 export type Events<T extends string = ""> = StandardEvents &
-    { [P in T]?: Time };
+  { [P in T]?: Time };
 
 /**
  * Most Cycle resources contain a state field
@@ -79,26 +79,26 @@ export type Events<T extends string = ""> = StandardEvents &
  * if there is an error, a job, etc.
  */
 export interface State<T extends string = ""> {
-    current: T;
-    changed: Time;
-    job: JobInfo;
-    error?: ResourceError;
+  current: T;
+  changed: Time;
+  job: JobInfo;
+  error?: ResourceError;
 }
 
 /**
  * Errors attached to a specific resource
  */
 export interface ResourceError {
-    message: string;
-    time: Time;
-    block: boolean;
+  message: string;
+  time: Time;
+  block: boolean;
 }
 
 /**
  * Information about a job attached to a resource
  */
 export interface JobInfo {
-    id: string;
-    queued: Time;
-    queue: string;
+  id: string;
+  queued: Time;
+  queue: string;
 }

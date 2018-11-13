@@ -7,22 +7,22 @@ export type Collection = CollectionDoc<SupportPlan>;
 export type Single = SingleDoc<SupportPlan>;
 
 export interface SupportPlan extends Resource {
-    name: string;
-    price: Amount;
-    description: string;
-    max_infrastructure_spend: Amount;
+  name: string;
+  price: Amount;
+  description: string;
+  max_infrastructure_spend: Amount;
 }
 
 export async function getCollection({
+  query,
+  settings,
+}: {
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.getRequest<Collection>({
     query,
     settings,
-}: {
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.getRequest<Collection>({
-        target: links.plans().support(),
-        query,
-        settings,
-    });
+    target: links.plans().support(),
+  });
 }

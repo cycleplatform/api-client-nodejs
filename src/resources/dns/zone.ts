@@ -2,15 +2,15 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
 import {
-    CollectionDoc,
-    Resource,
-    State,
-    Events,
-    OwnerScope,
-    ResourceId,
-    SingleDoc,
-    OwnerInclude,
-    CreatedTask,
+  CollectionDoc,
+  Resource,
+  State,
+  Events,
+  OwnerScope,
+  ResourceId,
+  SingleDoc,
+  OwnerInclude,
+  CreatedTask,
 } from "../../common/structs";
 import * as Records from "./record";
 
@@ -21,114 +21,114 @@ export type Collection = CollectionDoc<Zone, {}, ZoneIncludes>;
 export type Single = SingleDoc<Zone>;
 
 export type ZoneState =
-    | "pending"
-    | "verifying"
-    | "live"
-    | "disabled"
-    | "deleting"
-    | "deleted";
+  | "pending"
+  | "verifying"
+  | "live"
+  | "disabled"
+  | "deleting"
+  | "deleted";
 export type ZoneEvent = "last_verification" | "verified";
 export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
-    project_id: ResourceId;
-    owner: OwnerScope;
-    origin: string;
-    state: State<ZoneState>;
-    events: Events<ZoneEvent>;
+  project_id: ResourceId;
+  owner: OwnerScope;
+  origin: string;
+  state: State<ZoneState>;
+  events: Events<ZoneEvent>;
 }
 
 export interface ZoneIncludes {
-    owners: OwnerInclude;
+  owners: OwnerInclude;
 }
 
 export async function getCollection({
-    token,
-    query,
-    settings,
+  token,
+  query,
+  settings,
 }: {
-    token: Token;
-    query?: ZoneQuery;
-    settings?: ProjectRequiredSettings;
+  token: Token;
+  query?: ZoneQuery;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<Collection>({
-        target: links
-            .dns()
-            .zones()
-            .collection(),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Collection>({
+    query,
+    token,
+    settings,
+    target: links
+      .dns()
+      .zones()
+      .collection(),
+  });
 }
 
 export async function getSingle({
-    id,
-    token,
-    query,
-    settings,
+  id,
+  token,
+  query,
+  settings,
 }: {
-    id: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: ProjectRequiredSettings;
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.getRequest<Single>({
-        target: links
-            .dns()
-            .zones()
-            .single(id),
-        query,
-        token,
-        settings,
-    });
+  return Request.getRequest<Single>({
+    query,
+    token,
+    settings,
+    target: links
+      .dns()
+      .zones()
+      .single(id),
+  });
 }
 
 export interface CreateParams {
-    origin: string;
+  origin: string;
 }
 
 export async function create({
-    value,
-    token,
-    query,
-    settings,
+  value,
+  token,
+  query,
+  settings,
 }: {
-    value: CreateParams;
-    token: Token;
-    query?: QueryParams;
-    settings?: ProjectRequiredSettings;
+  value: CreateParams;
+  token: Token;
+  query?: QueryParams;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.postRequest<Single>({
-        target: links
-            .dns()
-            .zones()
-            .collection(),
-        query,
-        token,
-        settings,
-        value,
-    });
+  return Request.postRequest<Single>({
+    query,
+    token,
+    settings,
+    value,
+    target: links
+      .dns()
+      .zones()
+      .collection(),
+  });
 }
 
 export async function remove({
-    zoneId,
-    token,
-    query,
-    settings,
+  zoneId,
+  token,
+  query,
+  settings,
 }: {
-    zoneId: ResourceId;
-    token: Token;
-    query?: QueryParams;
-    settings?: ProjectRequiredSettings;
+  zoneId: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings?: ProjectRequiredSettings;
 }) {
-    return Request.deleteRequest<CreatedTask<"delete">>({
-        target: links
-            .dns()
-            .zones()
-            .single(zoneId),
-        query,
-        token,
-        settings,
-    });
+  return Request.deleteRequest<CreatedTask<"delete">>({
+    query,
+    token,
+    settings,
+    target: links
+      .dns()
+      .zones()
+      .single(zoneId),
+  });
 }

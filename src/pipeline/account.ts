@@ -8,42 +8,42 @@ import { PipelineEvent } from "./event";
  * Possible event types that can be received
  * on the account pipeline
  */
-export enum AccountPipelineEventHeader {
-    /** The current state of the account has changed */
-    ACCOUNT_STATE_CHANGED = "account.state_changed",
-    /** An error occured related to the account */
-    ACCOUNT_ERROR = "account.error",
-    /** A new project was created */
-    PROJECT_CREATED = "project.created",
-    /** An error occurred on a project */
-    PROJECT_ERROR = "project.error",
-    /** A new member was added to a project in your scope */
-    PROJECT_MEMBERSHIP_NEW = "project.membership.new",
-    /** A new notification was generated for the account */
-    NOTIFICATION_NEW = "notification.new",
-    /** A notification state was changed */
-    NOTIFICATION_STATE_CHANGED = "notification.state_changed",
+export enum EventHeader {
+  /** The current state of the account has changed */
+  ACCOUNT_STATE_CHANGED = "account.state_changed",
+  /** An error occured related to the account */
+  ACCOUNT_ERROR = "account.error",
+  /** A new project was created */
+  PROJECT_CREATED = "project.created",
+  /** An error occurred on a project */
+  PROJECT_ERROR = "project.error",
+  /** A new member was added to a project in your scope */
+  PROJECT_MEMBERSHIP_NEW = "project.membership.new",
+  /** A new notification was generated for the account */
+  NOTIFICATION_NEW = "notification.new",
+  /** A notification state was changed */
+  NOTIFICATION_STATE_CHANGED = "notification.state_changed",
 }
 
 /**
  * Parameters required to initiate an account pipeline connection
  */
 export interface AccountPipelineParams {
-    token: Token;
-    settings: ProjectRequiredSettings;
-    onMessage?: (v: AccountPipelineEvent) => void;
+  token: Token;
+  settings: ProjectRequiredSettings;
+  onMessage?: (v: AccountPipelineEvent) => void;
 }
 
-export type AccountPipelineEvent = PipelineEvent<AccountPipelineEventHeader>;
+export type AccountPipelineEvent = PipelineEvent<EventHeader>;
 
 /**
  * Response from request to initiate account pipeline.
  * Use the token as a parameter to upgrade connection
  */
 export interface AccountSecretResponse {
-    data: {
-        token: string;
-    };
+  data: {
+    token: string;
+  };
 }
 
 /**
@@ -53,22 +53,22 @@ export interface AccountSecretResponse {
  * @param params Credentials to connect to pipeline
  */
 export async function connectToAccountPipeline(params: AccountPipelineParams) {
-    const target = links.account().pipeline();
+  const target = links.account().pipeline();
 
-    const secretResp = await Request.getRequest<AccountSecretResponse>({
-        target,
-        token: params.token,
-        settings: params.settings,
-    });
+  const secretResp = await Request.getRequest<AccountSecretResponse>({
+    target,
+    token: params.token,
+    settings: params.settings,
+  });
 
-    if (!secretResp.ok) {
-        return secretResp;
-    }
+  if (!secretResp.ok) {
+    return secretResp;
+  }
 
-    return connectToSocket<AccountPipelineEvent>({
-        target,
-        token: secretResp.value.data.token,
-        settings: params.settings,
-        onMessage: params.onMessage,
-    });
+  return connectToSocket<AccountPipelineEvent>({
+    target,
+    token: secretResp.value.data.token,
+    settings: params.settings,
+    onMessage: params.onMessage,
+  });
 }

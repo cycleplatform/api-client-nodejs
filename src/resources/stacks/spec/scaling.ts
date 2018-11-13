@@ -1,8 +1,8 @@
 export interface Scaling {
-    instances: Instances;
+  instances: Instances;
 }
 
 export interface Instances {
-    min: number;
-    max: number;
+  min: number;
+  max: number;
 }

@@ -7,27 +7,27 @@ import { ProviderNames } from "../provider";
 export type ActivatingCollection = CollectionDoc<ActivatingServer>;
 
 export interface ActivatingServer extends Resource {
-    hostname: string;
-    provider: ProviderNames;
-    created: Time;
+  hostname: string;
+  provider: ProviderNames;
+  created: Time;
 }
 
 export async function getActivating({
-    token,
+  token,
+  query,
+  settings,
+}: {
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.getRequest<ActivatingCollection>({
     query,
     settings,
-}: {
-    token: Token;
-    query?: QueryParams;
-    settings?: Settings;
-}) {
-    return Request.getRequest<ActivatingCollection>({
-        token,
-        target: links
-            .infrastructure()
-            .servers()
-            .activating(),
-        query,
-        settings,
-    });
+    token,
+    target: links
+      .infrastructure()
+      .servers()
+      .activating(),
+  });
 }

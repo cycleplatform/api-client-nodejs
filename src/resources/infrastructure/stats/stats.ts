@@ -7,11 +7,11 @@ import { StorageStats } from "./storage";
 import { OSStats } from "./os";
 
 export interface Stats {
-    network: NetworkStats;
-    uptime: UptimeStats;
-    cpu: CPUStats;
-    load: LoadStats;
-    ram: RAMStats;
-    storage: StorageStats;
-    os: OSStats;
+  network: NetworkStats;
+  uptime: UptimeStats;
+  cpu: CPUStats;
+  load: LoadStats;
+  ram: RAMStats;
+  storage: StorageStats;
+  os: OSStats;
 }

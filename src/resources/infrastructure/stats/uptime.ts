@@ -1,4 +1,4 @@
 export interface UptimeStats {
-    seconds?: number;
-    cpu_idle?: number;
+  seconds?: number;
+  cpu_idle?: number;
 }

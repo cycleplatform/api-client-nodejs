@@ -57,10 +57,10 @@ export type Webhook = string;
 export type DataSize = string;
 
 export enum DataSizeUnits {
-    KB = "K",
-    MB = "M",
-    GB = "G",
-    TB = "T",
+  KB = "K",
+  MB = "M",
+  GB = "G",
+  TB = "T",
 }
 
 /**
@@ -74,6 +74,6 @@ export type CPUShares = string;
  * Units avaialble for CPU shares
  */
 export enum CPUShareUnits {
-    CORES = "cores",
-    SECONDS = "seconds",
+  CORES = "cores",
+  SECONDS = "seconds",
 }
