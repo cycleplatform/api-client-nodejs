@@ -4,6 +4,7 @@
         "strict": true,
         "target": "es6",
         "outDir": "dist",
+        "declaration": true,
         "noImplicitReturns": true,
         "sourceMap": true,
         "pretty": true,

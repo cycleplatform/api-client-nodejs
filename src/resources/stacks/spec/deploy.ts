@@ -3,7 +3,6 @@ import { Emails, Webhooks } from "../../../common/structs";
 export interface Deploy {
   instances: number;
   constraints: Constraints | null;
-  tls: TLS | null;
   restart: RestartPolicy | null;
   health_check: HealthCheck | null;
 }
@@ -23,13 +22,6 @@ export interface Constraints {
 
 export interface NodeConstraints {
   tags: string[];
-}
-
-export interface TLS {
-  enable: boolean;
-  certificate_path?: string;
-  key_path?: string;
-  bundle_path?: string;
 }
 
 export interface HealthCheck {
