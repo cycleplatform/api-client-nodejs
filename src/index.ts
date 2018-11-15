@@ -11,6 +11,7 @@ import * as Images from "./resources/images";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Jobs from "./resources/jobs";
 import * as Notifications from "./resources/notifications";
+import * as Pipelines from "./resources/pipelines";
 import * as Plans from "./resources/plans";
 import * as Projects from "./resources/projects";
 import { QueryParams } from "./common/api/query";
@@ -32,6 +33,7 @@ export {
   Infrastructure,
   Jobs,
   Notifications,
+  Pipelines,
   Plans,
   Projects,
   ProjectRequiredSettings,
