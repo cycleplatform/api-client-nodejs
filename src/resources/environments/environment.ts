@@ -35,7 +35,6 @@ export interface Environment extends Resource<EnvironmentMeta> {
   about: {
     description: string;
   };
-  category: string;
   owner: OwnerScope;
   project_id: ResourceId;
   state: State<EnvironmentState>;
