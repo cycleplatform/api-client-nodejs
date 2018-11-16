@@ -75,7 +75,7 @@ export interface EnvironmentMeta {
 
 export interface CreateParams {
   name: string;
-  category?: string;
+
   about: {
     description: string;
   };
@@ -114,23 +114,6 @@ export async function getSingle({
     token,
     settings,
     target: links.environments().single(id),
-  });
-}
-
-export async function getCategories({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
-  return Request.getRequest<{ data: string[] }>({
-    query,
-    token,
-    settings,
-    target: links.environments().categories(),
   });
 }
 
