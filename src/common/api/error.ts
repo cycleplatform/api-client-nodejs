@@ -79,6 +79,8 @@ export enum ErrorCode {
   C_404_PAYMENT_METHOD = "404.payment_method",
   C_404_PROJECT_MEMBERSHIP = "404.project_membership",
 
+  C_409_DUPLICATE_FOUND = "409.duplicate_found",
+
   C_415_INVALID_CONTENT_TYPE = "415.invalid_content_type",
 
   C_422_ALREADY_EXISTS = "422.already_exists",

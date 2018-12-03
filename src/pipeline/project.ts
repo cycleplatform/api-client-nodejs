@@ -81,6 +81,7 @@ export enum EventHeader {
   STACK_CREATED = "stack.created",
   STACK_ERROR = "stack.error",
   STACK_STATE_CHANGED = "stack.state_changed",
+  STACK_UPDATED = "stack.updated",
   STACK_BUILD_CREATED = "stack.build.created",
   STACK_BUILD_STATE_CHANGED = "stack.build.state_changed",
   STACK_BUILD_ERROR = "stack.build.error",

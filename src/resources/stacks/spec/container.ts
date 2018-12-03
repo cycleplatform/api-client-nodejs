@@ -8,3 +8,5 @@ export interface Container {
   config: Config;
   volumes: Volume[];
 }
+
+export type ContainerIdentifier = string;
