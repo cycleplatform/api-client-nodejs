@@ -6,11 +6,12 @@ export type Collection = CollectionDoc<Provider>;
 
 export interface Provider extends Resource {
   id: string;
-  name: ProviderNames;
+  name: string;
+  identifier: ProviderIdentifier;
   website: string;
 }
 
-export enum ProviderNames {
+export enum ProviderIdentifier {
   PACKET = "packet",
 }
 

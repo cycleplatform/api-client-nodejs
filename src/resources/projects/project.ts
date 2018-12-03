@@ -14,6 +14,7 @@ import {
   State,
 } from "../../common/structs";
 import { Membership } from "./membership";
+import { Providers } from "resources/infrastructure";
 
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
@@ -32,10 +33,30 @@ export type ProjectState =
 export interface Project extends Resource<ProjectMetas> {
   name: string;
   events: Events;
-  billing: {
+  state: State<ProjectState>;
+  integrations: Integrations;
+  providers: Providers;
+  billing?: {
     disabled: boolean;
   };
-  state: State<ProjectState>;
+}
+
+export interface Integrations {
+  letsencrypt: LetsEncryptIntegration | null;
+}
+
+export interface LetsEncryptIntegration {
+  email: string;
+}
+
+export interface Providers {
+  packet: PacketProvider | null;
+}
+
+export interface PacketProvider {
+  project_id: string;
+  api_key: string | null;
+  bgp_md5: string | null;
 }
 
 export interface ProjectMetas {
@@ -44,9 +65,6 @@ export interface ProjectMetas {
 
 export interface CreateParams {
   name: string;
-  ssl?: {
-    email: string;
-  };
 }
 
 export type UpdateParams = Partial<CreateParams>;
