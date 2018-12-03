@@ -1,5 +1,4 @@
 import * as Support from "./support";
-import * as Bandwidth from "./bandwidth";
-import * as Ips from "./ips";
-export { Support, Bandwidth, Ips };
+import * as Tiers from "./tiers";
+export { Support, Tiers };
 export * from "./plan";

@@ -10,7 +10,7 @@ export interface SupportPlan extends Resource {
   name: string;
   price: Amount;
   description: string;
-  max_infrastructure_spend: Amount;
+  default?: true;
 }
 
 export async function getCollection({

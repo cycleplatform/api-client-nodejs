@@ -154,8 +154,7 @@ export const links = {
 
   plans: () => ({
     support: () => `/plans/support`,
-    ips: () => `/plans/ips`,
-    bandwidth: () => `/plans/bandwidth`,
+    tiers: () => `/plans/tiers`,
   }),
 
   stacks: () => ({

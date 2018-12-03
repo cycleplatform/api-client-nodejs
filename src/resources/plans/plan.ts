@@ -1,6 +1,6 @@
 import { ResourceId } from "../../common/structs";
 
-export type PlanType = "servers" | "bandwidth" | "ips" | "support";
+export type PlanType = "tier" | "support";
 export interface PlanAssociation {
   id: ResourceId;
   type: PlanType;
