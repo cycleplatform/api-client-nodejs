@@ -1,7 +1,7 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, Settings } from "../../common/api";
-import { CollectionDoc, Resource, SingleDoc } from "../../common/structs";
-import { Amount } from "../billing";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
+import { CollectionDoc, Resource, SingleDoc } from "../../../common/structs";
+import { Amount } from "../../billing";
 
 export type Collection = CollectionDoc<SupportPlan>;
 export type Single = SingleDoc<SupportPlan>;
@@ -23,6 +23,9 @@ export async function getCollection({
   return Request.getRequest<Collection>({
     query,
     settings,
-    target: links.plans().support(),
+    target: links
+      .billing()
+      .plans()
+      .support(),
   });
 }

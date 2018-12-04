@@ -14,7 +14,6 @@ import {
   State,
 } from "../../common/structs";
 import { Membership } from "./membership";
-import { Providers } from "resources/infrastructure";
 
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
@@ -54,8 +53,8 @@ export interface Providers {
 }
 
 export interface PacketProvider {
-  project_id: string;
-  api_key: string | null;
+  api_key: string;
+  project_id: string | null;
   bgp_md5: string | null;
 }
 
@@ -65,6 +64,8 @@ export interface ProjectMetas {
 
 export interface CreateParams {
   name: string;
+  integrations?: Project["integrations"];
+  providers?: Partial<Project["providers"]>;
 }
 
 export type UpdateParams = Partial<CreateParams>;
@@ -129,7 +130,7 @@ export async function update({
   query,
   settings,
 }: {
-  value: Partial<UpdateParams>;
+  value: UpdateParams;
   token: Token;
   query?: ProjectQuery;
   settings?: Settings;
