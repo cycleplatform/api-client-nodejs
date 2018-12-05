@@ -1,5 +1,13 @@
-import { SupportPlan } from "./support";
+import { ResourceId } from "../../../common/structs";
+import { Amount } from "../amount";
 
 export interface Item {
-  support?: SupportPlan;
+  support?: ItemPlan;
+  tier?: ItemPlan;
+}
+
+export interface ItemPlan {
+  id: ResourceId;
+  name: string;
+  price: Amount;
 }

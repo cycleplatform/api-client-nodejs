@@ -14,6 +14,7 @@ import {
   State,
 } from "../../common/structs";
 import { Membership } from "./membership";
+import { DeepPartial } from "typings/common";
 
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
@@ -65,11 +66,10 @@ export interface ProjectMetas {
 export interface CreateParams {
   name: string;
   integrations?: Project["integrations"];
-  providers?: Partial<Project["providers"]>;
+  providers?: DeepPartial<Project["providers"]>;
 }
 
 export type UpdateParams = Partial<CreateParams>;
-
 export async function getCollection({
   token,
   query,
