@@ -11,7 +11,6 @@ export const links = {
       tasks: (id: ResourceId) => `/account/invites/${id}/tasks`,
     }),
     memberships: () => `/account/memberships`,
-    pipeline: () => `/account/pipeline`,
     logins: () => `/account/logins`,
   }),
 
@@ -34,6 +33,11 @@ export const links = {
       single: (id: ResourceId) => `/billing/services/${id}`,
     }),
     credits: () => `/billing/credits`,
+  }),
+
+  channels: () => ({
+    account: () => "/account/notifications",
+    project: () => "/projects/current/notifications",
   }),
 
   containers: () => ({
@@ -128,10 +132,6 @@ export const links = {
     single: (id: ResourceId) => `/jobs/${id}`,
   }),
 
-  notifications: () => ({
-    collection: () => `/notifications`,
-  }),
-
   projects: () => ({
     collection: () => `/projects`,
     single: () => `/projects/current`,
@@ -149,7 +149,6 @@ export const links = {
       collection: () => `/projects/current/api-keys`,
       single: (id: ResourceId) => `/projects/current/api-keys/${id}`,
     }),
-    pipeline: () => `/projects/current/pipeline`,
   }),
 
   plans: () => ({

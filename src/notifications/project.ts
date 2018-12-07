@@ -2,11 +2,11 @@ import { Token } from "../auth";
 import * as Request from "../common/api/request";
 import { links, ProjectRequiredSettings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
-import { PipelineEvent } from "./event";
+import { Notification } from "./event";
 
 /**
  * Possible event types that can be received
- * on the project pipeline
+ * on the project notification channel
  */
 export enum EventHeader {
   /** A billing service state has changed */
@@ -87,12 +87,12 @@ export enum EventHeader {
   STACK_BUILD_ERROR = "stack.build.error",
 }
 
-export type ProjectPipelineEvent = PipelineEvent<EventHeader>;
+export type ProjectNotification = Notification<EventHeader>;
 
 export interface ProjectPipelineParams {
   token: Token;
   settings: ProjectRequiredSettings;
-  onMessage?: (v: ProjectPipelineEvent) => void;
+  onMessage?: (v: ProjectNotification) => void;
 }
 
 export interface ProjectSecretResponse {
@@ -101,8 +101,8 @@ export interface ProjectSecretResponse {
   };
 }
 
-export async function connectToProjectPipeline(params: ProjectPipelineParams) {
-  const target = links.projects().pipeline();
+export async function connectToProjectChannel(params: ProjectPipelineParams) {
+  const target = links.channels().project();
 
   const secretResp = await Request.getRequest<ProjectSecretResponse>({
     target,
@@ -114,7 +114,7 @@ export async function connectToProjectPipeline(params: ProjectPipelineParams) {
     return secretResp;
   }
 
-  return connectToSocket<ProjectPipelineEvent>({
+  return connectToSocket<ProjectNotification>({
     target,
     token: secretResp.value.data.token,
     settings: params.settings,

@@ -2,9 +2,9 @@ import { ResourceId } from "../common/structs";
 
 /**
  * The full structure of a websocket frame from
- * either pipeline.
+ * either channel.
  */
-export interface PipelineEvent<T extends string> {
+export interface Notification<T extends string> {
   header: T;
   id: ResourceId;
   state?: string;

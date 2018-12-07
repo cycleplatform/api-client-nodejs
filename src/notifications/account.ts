@@ -2,13 +2,13 @@ import { Token } from "../auth";
 import * as Request from "../common/api/request";
 import { links, ProjectRequiredSettings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
-import { PipelineEvent } from "./event";
+import { Notification } from "./event";
 
 /**
  * Possible event types that can be received
- * on the account pipeline
+ * on the account notification channel
  */
-export enum EventHeader {
+export enum NotificationHeader {
   /** The current state of the account has changed */
   ACCOUNT_STATE_CHANGED = "account.state_changed",
   /** An error occured related to the account */
@@ -19,43 +19,39 @@ export enum EventHeader {
   PROJECT_ERROR = "project.error",
   /** A new member was added to a project in your scope */
   PROJECT_MEMBERSHIP_NEW = "project.membership.new",
-  /** A new notification was generated for the account */
-  NOTIFICATION_NEW = "notification.new",
-  /** A notification state was changed */
-  NOTIFICATION_STATE_CHANGED = "notification.state_changed",
 }
 
+export type AccountNotification = Notification<NotificationHeader>;
+
 /**
- * Parameters required to initiate an account pipeline connection
+ * Parameters required to initiate an account channel connection
  */
-export interface AccountPipelineParams {
+export interface AccountChannelParams {
   token: Token;
   settings: ProjectRequiredSettings;
-  onMessage?: (v: AccountPipelineEvent) => void;
+  onMessage?: (v: AccountNotification) => void;
 }
 
-export type AccountPipelineEvent = PipelineEvent<EventHeader>;
-
 /**
- * Response from request to initiate account pipeline.
+ * Response from request to initiate account channel.
  * Use the token as a parameter to upgrade connection
  */
-export interface AccountSecretResponse {
+export interface AccountChannelSecretResponse {
   data: {
     token: string;
   };
 }
 
 /**
- * Opens connection to account pipeline. First, requests an access token using
+ * Opens connection to account channel. First, requests an access token using
  * the authorization token from OAuth. Then, takes that response and appends it to the URL,
  * which will return a websocket we can listen on.
  * @param params Credentials to connect to pipeline
  */
-export async function connectToAccountPipeline(params: AccountPipelineParams) {
-  const target = links.account().pipeline();
+export async function connectToAccountChannel(params: AccountChannelParams) {
+  const target = links.channels().account();
 
-  const secretResp = await Request.getRequest<AccountSecretResponse>({
+  const secretResp = await Request.getRequest<AccountChannelSecretResponse>({
     target,
     token: params.token,
     settings: params.settings,
@@ -65,7 +61,7 @@ export async function connectToAccountPipeline(params: AccountPipelineParams) {
     return secretResp;
   }
 
-  return connectToSocket<AccountPipelineEvent>({
+  return connectToSocket<AccountNotification>({
     target,
     token: secretResp.value.data.token,
     settings: params.settings,
