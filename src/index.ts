@@ -1,5 +1,6 @@
 import "isomorphic-fetch";
 import * as Account from "./resources/accounts";
+import * as Audit from "./resources/audits";
 import * as Auth from "./auth";
 import * as Request from "./common/api/request";
 import * as Billing from "./resources/billing";
@@ -21,6 +22,7 @@ import * as Notifications from "./notifications";
 
 export {
   Auth,
+  Audit,
   Account,
   Billing,
   Containers,

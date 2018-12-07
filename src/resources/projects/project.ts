@@ -24,7 +24,6 @@ export type ProjectQuery = QueryParams<"", keyof ProjectMetas>;
 export type ProjectState =
   | "new"
   | "configuring" // placing an order
-  | "provisioning" // order confirmed, invoice billed
   | "live" // at least 1 server online
   | "inactive"
   | "deleting"

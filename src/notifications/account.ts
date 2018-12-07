@@ -8,7 +8,7 @@ import { Notification } from "./event";
  * Possible event types that can be received
  * on the account notification channel
  */
-export enum NotificationHeader {
+export enum AccountHeader {
   /** The current state of the account has changed */
   ACCOUNT_STATE_CHANGED = "account.state_changed",
   /** An error occured related to the account */
@@ -21,7 +21,7 @@ export enum NotificationHeader {
   PROJECT_MEMBERSHIP_NEW = "project.membership.new",
 }
 
-export type AccountNotification = Notification<NotificationHeader>;
+export type AccountNotification = Notification<AccountHeader>;
 
 /**
  * Parameters required to initiate an account channel connection

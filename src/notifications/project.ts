@@ -8,7 +8,7 @@ import { Notification } from "./event";
  * Possible event types that can be received
  * on the project notification channel
  */
-export enum EventHeader {
+export enum ProjectHeader {
   /** A billing service state has changed */
   BILLING_SERVICE_STATE_CHANGED = "billing.service.state_changed",
   /** A new invoice has been created */
@@ -87,7 +87,7 @@ export enum EventHeader {
   STACK_BUILD_ERROR = "stack.build.error",
 }
 
-export type ProjectNotification = Notification<EventHeader>;
+export type ProjectNotification = Notification<ProjectHeader>;
 
 export interface ProjectPipelineParams {
   token: Token;

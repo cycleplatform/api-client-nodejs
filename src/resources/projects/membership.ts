@@ -17,7 +17,12 @@ import { Name } from "../accounts";
 
 export type Collection = CollectionDoc<Membership, {}, MembershipIncludes>;
 export type Single = SingleDoc<Membership>;
-export type MembershipState = "new" | "active" | "deleting" | "deleted";
+export type MembershipState =
+  | "pending"
+  | "accepted"
+  | "declined"
+  | "revoked"
+  | "deleted";
 export type MembershipEvent = "joined";
 export type InvitationEvent = "accepted" | "declined" | "revoked";
 export type MembershipQuery = QueryParams<
@@ -113,7 +118,7 @@ export async function getCurrentMembership({
   });
 }
 
-export async function remove({
+export async function revoke({
   id,
   token,
   query,

@@ -1,10 +1,8 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
-import { CollectionDoc } from "../../common/structs";
+import { CollectionDoc, ResourceId, SingleDoc } from "../../common/structs";
 import * as Memberships from "../projects/membership";
-
-export * from "./tasks/invite";
 
 export async function getCollection({
   token,
@@ -25,5 +23,37 @@ export async function getCollection({
       .account()
       .invites()
       .collection(),
+  });
+}
+
+export interface InviteUpdateParams {
+  accept?: true;
+  decline?: true;
+}
+
+export async function update({
+  inviteId,
+  token,
+  value,
+  query,
+  settings,
+}: {
+  inviteId: ResourceId;
+  value: InviteUpdateParams;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.patchRequest<
+    SingleDoc<Memberships.Membership, {}, Memberships.MembershipIncludes>
+  >({
+    value,
+    query,
+    token,
+    settings,
+    target: links
+      .account()
+      .invites()
+      .invite(inviteId),
   });
 }

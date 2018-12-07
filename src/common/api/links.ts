@@ -8,10 +8,14 @@ export const links = {
     single: () => `/account`,
     invites: () => ({
       collection: () => `/account/invites`,
-      tasks: (id: ResourceId) => `/account/invites/${id}/tasks`,
+      invite: (id: ResourceId) => `account/invites/${id}`,
     }),
     memberships: () => `/account/memberships`,
     logins: () => `/account/logins`,
+  }),
+
+  audit: () => ({
+    entries: () => `/audit/entries`,
   }),
 
   billing: () => ({
