@@ -57,9 +57,7 @@ export interface OrderIncludes {
 }
 
 export interface CreateParams {
-  servers?: OrderServer[];
-  ip_plan_id?: ResourceId;
-  bandwidth_plan_id?: ResourceId;
+  tier_plan_id?: ResourceId;
   support_plan_id?: ResourceId;
   term_length?: TermLength;
   promo_code?: string;
@@ -70,12 +68,6 @@ export interface OrderMeta {
     term: Term;
     amount: Mills;
   };
-}
-
-export interface OrderServer {
-  id: ResourceId;
-  datacenter_id: ResourceId;
-  count: number;
 }
 
 export interface Item {

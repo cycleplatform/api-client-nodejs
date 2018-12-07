@@ -16,9 +16,13 @@ export const links = {
 
   billing: () => ({
     orders: () => ({
-      collection: () => `/orders`,
-      single: (id: ResourceId) => `/orders/${id}`,
-      tasks: (id: ResourceId) => `/orders/${id}/tasks`,
+      collection: () => `/billing/orders`,
+      single: (id: ResourceId) => `/billing/orders/${id}`,
+      tasks: (id: ResourceId) => `/billing/orders/${id}/tasks`,
+    }),
+    plans: () => ({
+      support: () => `/billing/plans/support`,
+      tiers: () => `/billing/plans/tiers`,
     }),
     methods: () => ({
       collection: () => `/billing/methods`,
@@ -149,12 +153,6 @@ export const links = {
       collection: () => `/projects/current/api-keys`,
       single: (id: ResourceId) => `/projects/current/api-keys/${id}`,
     }),
-  }),
-
-  plans: () => ({
-    support: () => `/plans/support`,
-    ips: () => `/plans/ips`,
-    bandwidth: () => `/plans/bandwidth`,
   }),
 
   stacks: () => ({

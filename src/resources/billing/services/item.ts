@@ -1,11 +1,13 @@
-import { IpsPlan } from "./ip";
-import { BandwidthPlan } from "./bandwidth";
-import { Server } from "./server";
-import { SupportPlan } from "./support";
+import { ResourceId } from "../../../common/structs";
+import { Amount } from "../amount";
 
 export interface Item {
-  server?: Server;
-  ips?: IpsPlan;
-  bandwidth?: BandwidthPlan;
-  support?: SupportPlan;
+  support?: ItemPlan;
+  tier?: ItemPlan;
+}
+
+export interface ItemPlan {
+  id: ResourceId;
+  name: string;
+  price: Amount;
 }

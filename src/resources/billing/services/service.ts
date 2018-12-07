@@ -20,7 +20,7 @@ import { Term } from "../term";
 import { Item } from "./item";
 import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
-import { PlanType } from "../../plans";
+import { PlanType } from "../../billing/plans";
 
 export type Collection = CollectionDoc<Service>;
 export type Single = SingleDoc<Service>;

@@ -14,6 +14,7 @@ import {
   State,
 } from "../../common/structs";
 import { Membership } from "./membership";
+import { DeepPartial } from "typings/common";
 
 export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
@@ -32,10 +33,30 @@ export type ProjectState =
 export interface Project extends Resource<ProjectMetas> {
   name: string;
   events: Events;
-  billing: {
+  state: State<ProjectState>;
+  integrations: Integrations;
+  providers: Providers;
+  billing?: {
     disabled: boolean;
   };
-  state: State<ProjectState>;
+}
+
+export interface Integrations {
+  letsencrypt: LetsEncryptIntegration | null;
+}
+
+export interface LetsEncryptIntegration {
+  email: string;
+}
+
+export interface Providers {
+  packet: PacketProvider | null;
+}
+
+export interface PacketProvider {
+  api_key: string;
+  project_id: string | null;
+  bgp_md5: string | null;
 }
 
 export interface ProjectMetas {
@@ -44,13 +65,11 @@ export interface ProjectMetas {
 
 export interface CreateParams {
   name: string;
-  ssl?: {
-    email: string;
-  };
+  integrations?: Project["integrations"];
+  providers?: DeepPartial<Project["providers"]>;
 }
 
 export type UpdateParams = Partial<CreateParams>;
-
 export async function getCollection({
   token,
   query,
@@ -111,7 +130,7 @@ export async function update({
   query,
   settings,
 }: {
-  value: Partial<UpdateParams>;
+  value: UpdateParams;
   token: Token;
   query?: ProjectQuery;
   settings?: Settings;

@@ -8,7 +8,7 @@ import {
   Includes,
 } from "../../../common/structs";
 import { DataCenter } from "./datacenter";
-import { ProviderNames } from "./provider";
+import { ProviderIdentifier } from "./provider";
 import { Amount } from "../../billing";
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
@@ -28,7 +28,7 @@ export interface Server extends Resource {
 
   provider: {
     id: string;
-    name: ProviderNames;
+    name: ProviderIdentifier;
     slug: string;
   };
 
