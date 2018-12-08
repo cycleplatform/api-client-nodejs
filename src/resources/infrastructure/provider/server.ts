@@ -6,39 +6,31 @@ import {
   SingleDoc,
   ResourceId,
   Includes,
+  Gigabytes,
 } from "../../../common/structs";
 import { DataCenter } from "./datacenter";
 import { ProviderIdentifier } from "./provider";
 import { Amount } from "../../billing";
 
+/** A collection of servers for a provider */
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
+
+/** A single provider server document */
 export type Single = SingleDoc<Server>;
 
+/** A provider server interface */
 export interface Server extends Resource {
+  /** Name of the server */
   name: string;
+  /** Description of the server */
   description: string;
-
-  specs: {
-    cpus: GenericSpecs<ServerCPU>[];
-    memory: GenericSpecs<ServerMemory>[];
-    drives: GenericSpecs<ServerDrive>[];
-    nics: GenericSpecs<ServerNIC>[];
-    features: ServerFeatures;
-  };
-
-  provider: {
-    id: string;
-    name: ProviderIdentifier;
-    slug: string;
-  };
-
-  pricing: ServerPricing;
-
-  recommended_containers: {
-    min: number;
-    max: number;
-  };
-
+  /** Detailed breakdown of the server's specs */
+  specs: ServerSpecs;
+  /** Information about the provider of this server */
+  provider: ServerProvider;
+  /** Price of this server */
+  pricing: Amount;
+  /** List of datacenter IDs this server is available in */
   datacenter_ids: ResourceId[];
 }
 
@@ -46,57 +38,45 @@ export interface ServerIncludes extends Includes {
   datacenters: { [key: string]: DataCenter };
 }
 
-export interface GenericSpecs<T> {
+export interface ServerProvider {
+  identifier: ProviderIdentifier;
+  category: string;
+  class?: string;
+  plan_id: string;
+}
+
+/** Detailed breakdown of a provider server's specs */
+export interface ServerSpecs {
+  cpus: CPU[];
+  memory: Memory;
+  storage: Storage[];
+  network: NIC[];
+}
+
+/** Details of a CPU on a provider server */
+export interface CPU {
+  /** Number of this type of CPU */
   count: number;
-  specs: T;
-}
-
-export interface ServerCPU {
-  model: string;
-  cores: number;
-  frequency: {
-    speed: number;
-    unit: string;
-  };
-}
-
-export interface ServerMemory {
-  storage: {
-    size: number;
-    unit: string;
-  };
   type: string;
+  extra?: { [key: string]: string };
 }
 
-export interface ServerDrive {
-  storage: {
-    size: number;
-    unit: string;
-  };
+export interface Memory {
+  size_gb: Gigabytes;
   type: string;
-  raid?: {
-    enabled: boolean;
-    level: number;
-  };
+  extra?: { [key: string]: string };
 }
 
-export interface ServerNIC {
-  throughput: {
-    speed: number;
-    unit: string;
-  };
+export interface Storage {
+  count: number;
+  size_gb: Gigabytes;
   type: string;
-  bonded: boolean;
+  extra?: { [key: string]: string };
 }
 
-export interface ServerFeatures {
-  raid: boolean;
-  txt: boolean;
-}
-
-export interface ServerPricing {
-  infrastructure: Amount;
-  licensing: Amount;
+export interface NIC {
+  count: number;
+  throughput_mbps: number;
 }
 
 export async function getCollection({
@@ -104,7 +84,7 @@ export async function getCollection({
   query,
   settings,
 }: {
-  provider: string;
+  provider: ProviderIdentifier;
   query?: QueryParams;
   settings?: Settings;
 }) {

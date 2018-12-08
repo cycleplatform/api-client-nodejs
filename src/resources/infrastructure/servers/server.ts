@@ -17,9 +17,6 @@ import { Stats, Telemetry } from "../stats";
 import { DataCenters, Servers, Provider } from "../provider";
 import { InstanceState } from "../../containers/instances";
 
-export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
-export type Single = SingleDoc<Server>;
-
 /**
  * Filters: [tags]
  */
@@ -37,14 +34,6 @@ export interface Server extends Resource<ServerMeta> {
   events: Events;
 }
 
-export interface ServerMeta {
-  stats?: Stats;
-  last_checkin?: Time;
-  counts?: {
-    instances: StatefulCounts<InstanceState>;
-  };
-}
-
 export interface ServerIncludes extends Includes {
   providers: {
     [key: string]: Provider;
@@ -54,6 +43,17 @@ export interface ServerIncludes extends Includes {
   };
   datacenters: {
     [key: string]: DataCenters.DataCenter;
+  };
+}
+
+export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
+export type Single = SingleDoc<Server>;
+
+export interface ServerMeta {
+  stats?: Stats;
+  last_checkin?: Time;
+  counts?: {
+    instances: StatefulCounts<InstanceState>;
   };
 }
 
