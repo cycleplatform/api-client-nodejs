@@ -78,13 +78,15 @@ export interface NIC {
   throughput_mbps: number;
 }
 
+export type ProviderServerQuery = QueryParams<keyof ServerIncludes>;
+
 export async function getCollection({
   provider,
   query,
   settings,
 }: {
   provider: ProviderIdentifier;
-  query?: QueryParams;
+  query?: ProviderServerQuery;
   settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
