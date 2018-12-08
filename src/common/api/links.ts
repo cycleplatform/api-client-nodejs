@@ -130,8 +130,8 @@ export const links = {
       collection: () => `/infrastructure/providers`,
       servers: (provider: ResourceId) =>
         `/infrastructure/providers/${provider}/servers`,
-      datacenters: (provider: ResourceId) =>
-        `/infrastructure/providers/${provider}/datacenters`,
+      locations: (provider: ResourceId) =>
+        `/infrastructure/providers/${provider}/locations`,
     }),
   }),
 

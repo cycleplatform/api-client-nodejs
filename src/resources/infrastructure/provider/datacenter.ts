@@ -47,6 +47,6 @@ export async function getCollection({
     target: links
       .infrastructure()
       .providers()
-      .datacenters(provider),
+      .locations(provider),
   });
 }
