@@ -58,7 +58,7 @@ export interface InstanceIncludes extends Includes {
     [key: string]: Server;
   };
   datacenters: {
-    [key: string]: DataCenters.DataCenter;
+    [key: string]: DataCenters.Location;
   };
 }
 

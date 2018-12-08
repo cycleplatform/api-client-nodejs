@@ -2,7 +2,7 @@ import { Resource, ResourceId, SingleDoc, State } from "../../common/structs";
 import { EnvironmentState } from "./environment";
 import { Service } from "./services";
 import { ContainerState } from "../containers/container";
-import { Location } from "../infrastructure/provider/datacenter";
+import { Location } from "../infrastructure/provider/location";
 import { Token } from "../../auth";
 import { Settings, links } from "../../common/api";
 import * as Request from "../../common/api/request";

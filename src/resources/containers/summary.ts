@@ -6,7 +6,7 @@ import {
   StatefulCounts,
 } from "../../common/structs";
 import { ContainerState } from "../containers/container";
-import { Location } from "../infrastructure/provider/datacenter";
+import { Location } from "../infrastructure/provider/location";
 import { InstanceState } from "./instances";
 import { Token } from "../../auth";
 import { Settings, links } from "../../common/api";

@@ -8,7 +8,6 @@ import {
   Includes,
   Gigabytes,
 } from "../../../common/structs";
-import { DataCenter } from "./datacenter";
 import { ProviderIdentifier } from "./provider";
 import { Amount } from "../../billing";
 
@@ -30,12 +29,12 @@ export interface Server extends Resource {
   provider: ServerProvider;
   /** Price of this server */
   pricing: Amount;
-  /** List of datacenter IDs this server is available in */
-  datacenter_ids: ResourceId[];
+  /** List of location IDs this server is available in */
+  location_ids: ResourceId[];
 }
 
 export interface ServerIncludes extends Includes {
-  datacenters: { [key: string]: DataCenter };
+  locations: Record<ResourceId, Location>;
 }
 
 export interface ServerProvider {

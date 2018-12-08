@@ -42,7 +42,7 @@ export interface ServerIncludes extends Includes {
     [key: string]: Servers.Server;
   };
   datacenters: {
-    [key: string]: DataCenters.DataCenter;
+    [key: string]: DataCenters.Location;
   };
 }
 

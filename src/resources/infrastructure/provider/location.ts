@@ -6,29 +6,31 @@ import {
   ResourceId,
   SingleDoc,
 } from "../../../common/structs";
+import { ProviderIdentifier } from "./provider";
 
-export type Collection = CollectionDoc<DataCenter>;
-export type Single = SingleDoc<DataCenter>;
+export type Collection = CollectionDoc<Location>;
+export type Single = SingleDoc<Location>;
 
-export interface DataCenter extends Resource {
+export interface Location extends Resource {
   name: string;
-  location: Location;
-  provider: DataCenterProvider;
+  geographic: Geographic | null;
+  provider: LocationProvider;
   features: string[];
   abbreviation: string;
 }
 
-export interface Location {
+export interface Geographic {
   latitude: number;
   longitude: number;
   city: string;
   state: string;
   country: string;
+  region: string;
 }
 
-export interface DataCenterProvider {
-  id: ResourceId;
-  datacenter_id: ResourceId;
+export interface LocationProvider {
+  identifier: ProviderIdentifier;
+  location_id: string;
   code: string;
 }
 
