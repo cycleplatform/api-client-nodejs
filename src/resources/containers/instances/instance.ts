@@ -2,7 +2,7 @@ import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { Server } from "../../infrastructure/servers";
-import { DataCenters } from "../../infrastructure/provider";
+import { Locations } from "../../infrastructure/provider";
 import {
   CollectionDoc,
   Resource,
@@ -57,8 +57,8 @@ export interface InstanceIncludes extends Includes {
   servers: {
     [key: string]: Server;
   };
-  datacenters: {
-    [key: string]: DataCenters.Location;
+  locations: {
+    [key: string]: Locations.Location;
   };
 }
 

@@ -14,7 +14,7 @@ import {
   StatefulCounts,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
-import { DataCenters, Servers, Provider } from "../provider";
+import { Locations, Servers, Provider } from "../provider";
 import { InstanceState } from "../../containers/instances";
 
 /**
@@ -41,8 +41,8 @@ export interface ServerIncludes extends Includes {
   plans: {
     [key: string]: Servers.Server;
   };
-  datacenters: {
-    [key: string]: DataCenters.Location;
+  locations: {
+    [key: string]: Locations.Location;
   };
 }
 

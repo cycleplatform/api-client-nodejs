@@ -76,6 +76,7 @@ export interface Item {
   description: string;
   price: Amount;
   discount?: AssociatedDiscount;
+  net_price: Mills;
 }
 
 export async function getCollection({

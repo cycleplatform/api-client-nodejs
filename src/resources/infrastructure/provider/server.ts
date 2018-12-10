@@ -10,6 +10,7 @@ import {
 } from "../../../common/structs";
 import { ProviderIdentifier } from "./provider";
 import { Amount } from "../../billing";
+import { Location } from "./location";
 
 /** A collection of servers for a provider */
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
@@ -48,8 +49,8 @@ export interface ServerProvider {
 export interface ServerSpecs {
   cpus: CPU[];
   memory: Memory;
-  storage: Storage[];
-  network: NIC[];
+  drives: Storage[];
+  nics: NIC[];
 }
 
 /** Details of a CPU on a provider server */

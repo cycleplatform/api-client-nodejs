@@ -1,5 +1,5 @@
-import * as DataCenters from "./location";
+import * as Locations from "./location";
 import * as Servers from "./server";
 
 export * from "./provider";
-export { DataCenters, Servers };
+export { Locations, Servers };
