@@ -30,8 +30,6 @@ export interface Server extends Resource {
   provider: ServerProvider;
   /** Price of this server */
   pricing: Amount;
-  /** List of location IDs this server is available in */
-  location_ids: ResourceId[];
 }
 
 export interface ServerIncludes extends Includes {
@@ -42,15 +40,17 @@ export interface ServerProvider {
   identifier: ProviderIdentifier;
   category: string;
   class?: string;
-  plan_id: string;
+  plan_identifier: string;
+  /** List of location IDs this server is available in */
+  location_identifiers: ResourceId[];
 }
 
 /** Detailed breakdown of a provider server's specs */
 export interface ServerSpecs {
   cpus: CPU[];
   memory: Memory;
-  drives: Storage[];
-  nics: NIC[];
+  storage: Storage[];
+  network: NIC[];
 }
 
 /** Details of a CPU on a provider server */
@@ -74,9 +74,13 @@ export interface Storage {
   extra?: { [key: string]: string };
 }
 
+export type NICScope = "public" | "private" | "shared";
+
 export interface NIC {
   count: number;
+  scope: NICScope;
   throughput_mbps: number;
+  type: string;
 }
 
 export type ProviderServerQuery = QueryParams<keyof ServerIncludes>;

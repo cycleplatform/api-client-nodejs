@@ -1,10 +1,11 @@
 import * as Request from "../../../common/api/request";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { CollectionDoc, Resource } from "../../../common/structs";
+import { Location } from "./location";
 
 export type Collection = CollectionDoc<Provider>;
 
-export interface Provider extends Resource {
+export interface Provider extends Resource<ProviderMetas> {
   id: string;
   name: string;
   identifier: ProviderIdentifier;
@@ -13,6 +14,10 @@ export interface Provider extends Resource {
 
 export enum ProviderIdentifier {
   PACKET = "packet",
+}
+
+export interface ProviderMetas {
+  locations: Location[];
 }
 
 export async function getCollection({

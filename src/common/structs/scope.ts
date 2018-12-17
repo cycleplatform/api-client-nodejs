@@ -3,7 +3,13 @@ import { ResourceId } from "./doc";
 /**
  * Types of 'owners'
  */
-export type OwnerScopeType = "account" | "employee" | "api-key" | "visitor";
+export type OwnerScopeType =
+  | "account"
+  | "employee"
+  | "api-key"
+  | "environment"
+  | "visitor"
+  | "platform";
 
 /**
  * The owner scope is embedded in resource objects

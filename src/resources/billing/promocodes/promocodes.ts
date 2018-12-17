@@ -1,4 +1,4 @@
-import { Resource, ResourceId, Time } from "../../../common/structs";
+import { Resource, ResourceId, Time, State } from "../../../common/structs";
 import { Amount } from "../amount";
 
 export interface PromoCode extends Resource {
@@ -6,4 +6,5 @@ export interface PromoCode extends Resource {
   credit: Amount;
   discount_id: ResourceId;
   expires: Time;
+  state: State<"live" | "deleted">;
 }

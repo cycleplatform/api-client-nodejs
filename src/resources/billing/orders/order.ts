@@ -22,8 +22,8 @@ import { AssociatedDiscount } from "../discounts";
 import { Term, TermLength } from "../term";
 import { PromoCode } from "../promocodes";
 
-export type Collection = CollectionDoc<Order>;
-export type Single = SingleDoc<Order>;
+export type Collection = CollectionDoc<Order, {}, OrderIncludes>;
+export type Single = SingleDoc<Order, {}, OrderIncludes>;
 export type OrderState =
   | "new"
   | "processed"
