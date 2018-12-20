@@ -30,7 +30,7 @@ export interface Geographic {
 
 export interface LocationProvider {
   identifier: ProviderIdentifier;
-  location_identifier: string;
+  location: string;
   code: string;
 }
 

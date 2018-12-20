@@ -42,7 +42,7 @@ export interface ServerProvider {
   class?: string;
   plan_identifier: string;
   /** List of location IDs this server is available in */
-  location_identifiers: ResourceId[];
+  locations: ResourceId[];
 }
 
 /** Detailed breakdown of a provider server's specs */
@@ -51,6 +51,11 @@ export interface ServerSpecs {
   memory: Memory;
   storage: Storage[];
   network: NIC[];
+  features: Features;
+}
+
+export interface Features {
+  raid: string | null;
 }
 
 /** Details of a CPU on a provider server */

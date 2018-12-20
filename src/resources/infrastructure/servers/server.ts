@@ -14,7 +14,7 @@ import {
   StatefulCounts,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
-import { Locations, Servers, Provider } from "../provider";
+import { Locations, Servers, Provider, ProviderIdentifier } from "../provider";
 import { InstanceState } from "../../containers/instances";
 
 /**
@@ -130,6 +130,42 @@ export async function getTags({
       .infrastructure()
       .servers()
       .tags(),
+  });
+}
+
+export interface ServerCreate {
+  provider: ProviderIdentifier;
+  model: string;
+  location: string;
+  quantity: number;
+  /** must have equal number of hostnames as quantity */
+  hostnames: string[];
+}
+
+export interface CreateParams {
+  servers: ServerCreate[];
+}
+
+export async function create({
+  token,
+  query,
+  settings,
+  value,
+}: {
+  token: Token;
+  query: QueryParams;
+  settings: Settings;
+  value: CreateParams;
+}) {
+  return Request.postRequest<CreatedTask<any>>({
+    query,
+    settings,
+    token,
+    value,
+    target: links
+      .infrastructure()
+      .servers()
+      .collection(),
   });
 }
 
