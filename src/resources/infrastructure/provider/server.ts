@@ -30,6 +30,8 @@ export interface Server extends Resource {
   provider: ServerProvider;
   /** Price of this server */
   pricing: Amount;
+
+  location_ids: ResourceId[];
 }
 
 export interface ServerIncludes extends Includes {
@@ -42,7 +44,7 @@ export interface ServerProvider {
   class?: string;
   plan_identifier: string;
   /** List of location IDs this server is available in */
-  locations: ResourceId[];
+  locations: string[];
 }
 
 /** Detailed breakdown of a provider server's specs */

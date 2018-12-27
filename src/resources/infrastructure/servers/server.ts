@@ -12,9 +12,10 @@ import {
   Includes,
   CreatedTask,
   StatefulCounts,
+  OwnerScope,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
-import { Locations, Servers, Provider, ProviderIdentifier } from "../provider";
+import { Locations, ProviderIdentifier } from "../provider";
 import { InstanceState } from "../../containers/instances";
 
 /**
@@ -26,21 +27,18 @@ export { Telemetry };
 
 export interface Server extends Resource<ServerMeta> {
   hostname: string;
+  owner: OwnerScope;
   project_id: ResourceId;
   provider: ServerProvider;
-  node_id: ResourceId;
+  location_id: ResourceId;
+  model_id: ResourceId;
+  node_id: ResourceId | null;
   tags: string[];
   state: State<ServerState>;
   events: Events;
 }
 
 export interface ServerIncludes extends Includes {
-  providers: {
-    [key: string]: Provider;
-  };
-  plans: {
-    [key: string]: Servers.Server;
-  };
   locations: {
     [key: string]: Locations.Location;
   };
@@ -66,9 +64,10 @@ export type ServerState =
   | "deleted";
 
 export interface ServerProvider {
-  id: ResourceId;
-  plan_id: ResourceId;
-  datacenter_id: ResourceId;
+  identifier: ProviderIdentifier;
+  model: string;
+  location: string;
+  server: string;
 }
 
 export async function getCollection({
@@ -135,11 +134,11 @@ export async function getTags({
 
 export interface ServerCreate {
   provider: ProviderIdentifier;
-  model: string;
-  location: string;
+  model_id: string;
+  location_id: string;
   quantity: number;
   /** must have equal number of hostnames as quantity */
-  hostnames: string[];
+  hostnames?: string[];
 }
 
 export interface CreateParams {
@@ -153,7 +152,7 @@ export async function create({
   value,
 }: {
   token: Token;
-  query: QueryParams;
+  query?: QueryParams;
   settings: Settings;
   value: CreateParams;
 }) {
