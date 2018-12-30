@@ -8,7 +8,7 @@ export const links = {
     single: () => `/account`,
     invites: () => ({
       collection: () => `/account/invites`,
-      invite: (id: ResourceId) => `account/invites/${id}`,
+      invite: (id: ResourceId) => `/account/invites/${id}`,
     }),
     memberships: () => `/account/memberships`,
     logins: () => `/account/logins`,
