@@ -1,12 +1,14 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
-import { ResourceId, CollectionDoc, SingleDoc } from "../../common/structs";
+import { CollectionDoc, SingleDoc } from "../../common/structs";
 import * as Memberships from "./membership";
+
+export type RoleName = "owner" | "admin" | "developer" | "analyst";
 
 export interface CreateParams {
   recipient: string; // Email
-  role: Memberships.Role;
+  role: RoleName;
 }
 
 export async function getCollection({
@@ -35,7 +37,6 @@ export async function create({
   query,
   settings,
 }: {
-  project: ResourceId;
   token: Token;
   value: CreateParams;
   query?: QueryParams;
