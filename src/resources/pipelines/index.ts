@@ -1,2 +1,4 @@
+import * as Hooks from "./hook";
 export * from "./pipeline";
-export * from "./hook";
+
+export { Hooks };

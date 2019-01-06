@@ -10,7 +10,7 @@ import {
   Events,
   OwnerScope,
 } from "../../common/structs";
-import { Spec, RepoProtocol } from "./spec";
+import { Spec } from "./spec";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
@@ -40,7 +40,6 @@ export interface Source {
 
 export interface Repo {
   url: string;
-  protocol?: RepoProtocol;
   private_key?: string; // used for creating
   private_key_url?: string;
 }

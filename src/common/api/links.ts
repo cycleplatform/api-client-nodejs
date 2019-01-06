@@ -140,6 +140,12 @@ export const links = {
     single: (id: ResourceId) => `/jobs/${id}`,
   }),
 
+  pipelines: () => ({
+    collection: () => `/pipelines`,
+    single: (id: ResourceId) => `/pipelines/${id}`,
+    hooks: (id: ResourceId) => `/pipelines/${id}/hooks`,
+  }),
+
   projects: () => ({
     collection: () => `/projects`,
     single: () => `/projects/current`,
