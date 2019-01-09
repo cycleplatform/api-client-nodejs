@@ -170,4 +170,8 @@ export const links = {
       log: (build: ResourceId) => `/stacks/${stack}/builds/${build}/log`,
     }),
   }),
+
+  usage: () => ({
+    infrastructure: () => `/usage/infrastructure`,
+  }),
 };

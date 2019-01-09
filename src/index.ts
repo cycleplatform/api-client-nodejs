@@ -18,6 +18,7 @@ import * as Secrets from "./resources/secrets";
 import { Settings, ProjectRequiredSettings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
+import * as Usage from "./resources/usage";
 import * as Notifications from "./notifications";
 
 export {
@@ -42,4 +43,5 @@ export {
   Settings,
   Stacks,
   Structs,
+  Usage,
 };
