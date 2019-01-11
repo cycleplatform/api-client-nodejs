@@ -18,7 +18,7 @@ import {
 import { Features } from "./features";
 import { IPNet, Kind, IPState } from "../network";
 import { InstanceState } from "./instances";
-import { Services } from "./services";
+import { Service } from "./services";
 import { ContainerVolume } from "./volumes";
 
 export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
@@ -88,7 +88,7 @@ export interface CondensedStack {
 
 export interface CondensedImage {
   id?: ResourceId;
-  service: Services | null;
+  service: Service | null;
 }
 
 export interface CondensedEnvironment {

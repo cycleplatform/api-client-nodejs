@@ -2,7 +2,7 @@ import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { Server } from "../../infrastructure/servers";
-import { Locations } from "../../infrastructure/provider";
+import { Locations, ProviderIdentifier } from "../../infrastructure/provider";
 import {
   CollectionDoc,
   Resource,
@@ -15,7 +15,7 @@ import {
   OwnerInclude,
 } from "../../../common/structs";
 import { IPNet } from "../../network";
-import { Services } from "../services";
+import { Service } from "../services";
 
 export type Collection = CollectionDoc<Instance, {}, InstanceIncludes>;
 export type Single = SingleDoc<Instance, {}, InstanceIncludes>;
@@ -28,6 +28,15 @@ export type InstanceState =
   | "stopped"
   | "deleting"
   | "deleted";
+
+/**
+ * Instance status
+ * @param active this instance can be started/stopped &nbsp;
+ * @param purge this instance should be deleted
+ * @param hibernate this instance is active but not allowed to run
+ */
+export type ReadyState = "active" | "purge" | "hibernate";
+
 export type InstanceEvent = "first_boot" | "started";
 export type InstanceQuery = QueryParams<
   keyof InstanceIncludes,
@@ -38,18 +47,25 @@ export interface Instance extends Resource<InstanceMetas> {
   owner: OwnerScope;
   project_id: ResourceId;
   container_id: ResourceId;
-  service?: Services;
-  environment: {
-    id: ResourceId;
-    network_id: number;
-    ipv4: IPNet;
-    ipv6: IPNet;
-  };
-  datacenter_id: ResourceId;
+  environment: Environment;
+  provider: Provider;
   server_id: ResourceId;
+  ready_state: ReadyState;
   hostname: string;
+  service: Service | null;
   state: State<InstanceState>;
   events: Events<InstanceEvent>;
+}
+
+export interface Environment {
+  id: ResourceId;
+  instance_subnet: string;
+  ipv6: IPNet | null;
+}
+
+export interface Provider {
+  identifier: ProviderIdentifier;
+  location: Locations.LocationProvider;
 }
 
 export interface InstanceIncludes extends Includes {
