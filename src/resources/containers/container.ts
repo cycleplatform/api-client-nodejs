@@ -39,15 +39,16 @@ export type ContainerQuery = QueryParams<
 
 export interface Container extends Resource<ContainerMetas> {
   name: string;
-  owner: OwnerScope;
-  project_id: ResourceId;
   identifier: Spec.ContainerIdentifier;
+  owner: OwnerScope;
   environment: CondensedEnvironment;
-  stack?: CondensedStack;
+  project_id: ResourceId;
   image: CondensedImage;
-  config: Spec.Config;
-  volumes?: ContainerVolume[];
+  stack?: CondensedStack;
   features: Features;
+  config: Spec.Config;
+  instances: number;
+  volumes?: ContainerVolume[];
   state: State<ContainerState>;
   events: Events<ContainerEvent>;
 }
@@ -93,8 +94,7 @@ export interface CondensedImage {
 
 export interface CondensedEnvironment {
   id: ResourceId;
-  network_id: number | null;
-  ipv4: IPNet | null;
+  container_subnet: string;
   ipv6: IPNet | null;
 }
 
