@@ -2,7 +2,11 @@ import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { Server } from "../../infrastructure/servers";
-import { Locations, ProviderIdentifier } from "../../infrastructure/provider";
+import {
+  Locations,
+  ProviderIdentifier,
+  Provider,
+} from "../../infrastructure/provider";
 import {
   CollectionDoc,
   Resource,
@@ -47,8 +51,8 @@ export interface Instance extends Resource<InstanceMetas> {
   owner: OwnerScope;
   project_id: ResourceId;
   container_id: ResourceId;
-  environment: Environment;
-  provider: Provider;
+  environment: CondensedEnvironment;
+  provider: CondensedProvider;
   server_id: ResourceId;
   ready_state: ReadyState;
   hostname: string;
@@ -57,31 +61,25 @@ export interface Instance extends Resource<InstanceMetas> {
   events: Events<InstanceEvent>;
 }
 
-export interface Environment {
+export interface CondensedEnvironment {
   id: ResourceId;
   instance_subnet: string;
   ipv6: IPNet | null;
 }
 
-export interface Provider {
+export interface CondensedProvider {
   identifier: ProviderIdentifier;
   location: Locations.LocationProvider;
 }
 
 export interface InstanceIncludes extends Includes {
   owner: OwnerInclude;
-  servers: {
-    [key: string]: Server;
-  };
-  locations: {
-    [key: string]: Locations.Location;
-  };
+  servers: Record<ResourceId, Server>;
+  locations: Record<ResourceId, Locations.Location>;
+  providers: Record<ProviderIdentifier, Provider>;
 }
 
-// tslint:disable-next-line:no-empty-interface
-export interface InstanceMetas {
-  //
-}
+export interface InstanceMetas {}
 
 export async function getCollection({
   containerId,
