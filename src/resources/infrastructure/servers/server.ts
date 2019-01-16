@@ -15,7 +15,11 @@ import {
   OwnerScope,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
-import { Locations, ProviderIdentifier } from "../provider";
+import {
+  Locations,
+  ProviderIdentifier,
+  Servers as ProviderServers,
+} from "../provider";
 import { InstanceState } from "../../containers/instances";
 
 /**
@@ -23,7 +27,7 @@ import { InstanceState } from "../../containers/instances";
  */
 export type ServerQuery = QueryParams<keyof ServerIncludes, keyof ServerMeta>;
 
-export { Telemetry };
+export { Telemetry, Stats };
 
 export interface Server extends Resource<ServerMeta> {
   hostname: string;
@@ -39,9 +43,8 @@ export interface Server extends Resource<ServerMeta> {
 }
 
 export interface ServerIncludes extends Includes {
-  locations: {
-    [key: string]: Locations.Location;
-  };
+  locations: Record<ResourceId, Locations.Location>;
+  models: Record<ResourceId, ProviderServers.Server>;
 }
 
 export type Collection = CollectionDoc<Server, {}, ServerIncludes>;

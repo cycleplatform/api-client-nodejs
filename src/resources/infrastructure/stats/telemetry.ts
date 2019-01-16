@@ -33,11 +33,11 @@ export async function getCollection({
 }) {
   return Request.getRequest<Collection>({
     token,
+    query,
+    settings,
     target: links
       .infrastructure()
       .servers()
       .telemetry(server_id),
-    query,
-    settings,
   });
 }
