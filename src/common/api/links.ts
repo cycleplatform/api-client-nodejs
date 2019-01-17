@@ -74,6 +74,9 @@ export const links = {
       account: (id: ResourceId, container: ResourceId) =>
         `/containers/${container}/volumes/accounts/${id}`,
     }),
+    telemetry: () => ({
+      instances: (id: ResourceId) => `/containers/${id}/telemetry/instances`,
+    }),
   }),
 
   dns: () => ({
@@ -126,7 +129,7 @@ export const links = {
       console: (id: ResourceId) => `/infrastructure/servers/${id}/console`,
       telemetry: (id: ResourceId) => `/infrastructure/servers/${id}/telemetry`,
       tags: () => `/infrastructure/servers/tags`,
-      activating: () => `/infrastructure/servers/activating`,
+      usage: () => `/infrastructure/servers/usage`,
     }),
     providers: () => ({
       collection: () => `/infrastructure/providers`,
@@ -177,9 +180,5 @@ export const links = {
       tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,
       log: (build: ResourceId) => `/stacks/${stack}/builds/${build}/log`,
     }),
-  }),
-
-  usage: () => ({
-    infrastructure: () => `/usage/infrastructure`,
   }),
 };

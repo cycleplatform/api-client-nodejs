@@ -1,18 +1,13 @@
 import { PublicAccount } from "../../resources/accounts";
 import { ApiKeys } from "../../resources/projects";
 
-/**
- * Count number of resource of state
- */
+/** Count number of resource of state */
 export interface StatefulCounts<K extends string> {
-  state: { [P in K]: number };
+  state: Record<K, number>;
   total: number;
-  available: number;
 }
 
-/**
- * An owner is an identity that created a resource.
- */
+/** An owner is an identity that created a resource. */
 export interface OwnerInclude {
   accounts?: {
     [key: string]: PublicAccount;

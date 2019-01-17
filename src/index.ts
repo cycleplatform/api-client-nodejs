@@ -18,11 +18,7 @@ import * as Secrets from "./resources/secrets";
 import { Settings, ProjectRequiredSettings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
-import * as Usage from "./resources/usage";
 import * as Notifications from "./notifications";
-
-// export const Capabilities = Projects.Capability;
-// export type Capabilities = typeof Projects.Capability;
 
 export { Capability } from "./resources/projects";
 
@@ -48,5 +44,4 @@ export {
   Settings,
   Stacks,
   Structs,
-  Usage,
 };

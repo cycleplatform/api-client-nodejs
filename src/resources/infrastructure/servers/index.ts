@@ -1,4 +1,6 @@
+import * as Usage from "./usage";
+
+export { Usage };
 export * from "./server";
 export * from "./console";
-export * from "./activating";
 export * from "./reservation";
