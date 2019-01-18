@@ -1,7 +1,8 @@
 import { Time, ResourceId } from "../../../common/structs";
 import { Token } from "../../../auth/token";
-import { QueryParams, Settings, getRequest, links } from "../../../common/api";
+import { QueryParams, Settings, links } from "../../../common/api";
 import { InstanceState } from "../instances";
+import * as Request from "../../../common/api/request";
 
 export type Collection = {
   data: TelemetryPoint[];
@@ -23,7 +24,7 @@ export async function getInstancesTelemetry({
   query?: QueryParams;
   settings?: Settings;
 }) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     query,
     token,
     settings,
