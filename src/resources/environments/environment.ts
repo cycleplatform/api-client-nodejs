@@ -75,10 +75,13 @@ export interface EnvironmentMeta {
 
 export interface CreateParams {
   name: string;
-
   about: {
     description: string;
   };
+  /** The id of the stack you want to apply to this environment (if any) */
+  stack_id?: ResourceId;
+  /** The id of the build you want to apply to this environment (if any) */
+  build_id?: ResourceId;
 }
 
 export async function getCollection({
