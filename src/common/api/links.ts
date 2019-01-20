@@ -113,6 +113,9 @@ export const links = {
           `/environments/${environment}/services/vpn/logins`,
       }),
     }),
+    telemetry: () => ({
+      instances: (id: ResourceId) => `/environments/${id}/telemetry/instances`,
+    }),
   }),
 
   images: () => ({

@@ -61,7 +61,7 @@ export function formatParams(q: QueryParams | undefined) {
           continue;
         }
         isEmpty = false;
-        recurse(cur[p], prop ? prop + "[" + p + "]" : p);
+        recurse(cur[p], prop ? `${prop}[${p}]` : p);
       }
       if (isEmpty && prop) {
         result[prop] = {};
@@ -71,6 +71,6 @@ export function formatParams(q: QueryParams | undefined) {
   recurse(q, "");
 
   return Object.keys(result)
-    .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(result[k]))
+    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(result[k])}`)
     .join("&");
 }

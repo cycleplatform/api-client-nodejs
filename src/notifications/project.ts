@@ -75,7 +75,10 @@ export enum ProjectHeader {
   PROJECT_API_KEY_STATE_CHANGED = "project.api_key.state_changed",
   PROJECT_API_KEY_ERROR = "project.api_key.error",
 
-  SERVER_STATE_CHANGED = "server.state_changed",
+  INFRASTRUCTURE_SERVER_CREATED = "infrastructure.server.created",
+  INFRASTRUCTURE_SERVER_STATE_CHANGED = "infrastructure.server.state_changed",
+  INFRASTRUCTURE_SERVER_ERROR = "infrastructure.server.error",
+
   SERVER_ERROR = "server.error",
 
   STACK_CREATED = "stack.created",
