@@ -38,14 +38,25 @@ export interface Environment extends Resource<EnvironmentMeta> {
   owner: OwnerScope;
   project_id: ResourceId;
   state: State<EnvironmentState>;
+  pipeline: Pipeline | null;
+  stack: Stack | null;
   events: Events;
   private_network: {
     vxlan_tag: number;
     subnet: number;
-    ipv4: IPNet;
     ipv6: IPNet;
   } | null;
   services: Services;
+}
+
+export interface Pipeline {
+  id: ResourceId;
+  stage: string;
+}
+
+export interface Stack {
+  id: ResourceId;
+  build_id: ResourceId;
 }
 
 export interface Services {
@@ -78,10 +89,12 @@ export interface CreateParams {
   about: {
     description: string;
   };
-  /** The id of the stack you want to apply to this environment (if any) */
-  stack_id?: ResourceId;
-  /** The id of the build you want to apply to this environment (if any) */
-  build_id?: ResourceId;
+  stack?: {
+    /** The id of the stack you want to apply to this environment (if any) */
+    id: ResourceId;
+    /** The id of the build you want to apply to this environment (if any) */
+    build_id: ResourceId;
+  };
 }
 
 export async function getCollection({
