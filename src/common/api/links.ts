@@ -40,7 +40,10 @@ export const links = {
       collection: () => `/billing/services`,
       single: (id: ResourceId) => `/billing/services/${id}`,
     }),
-    credits: () => `/billing/credits`,
+    credits: () => ({
+      collection: () => `/billing/credits`,
+      single: (id: ResourceId) => `/billing/credits/${id}`,
+    }),
   }),
 
   channels: () => ({

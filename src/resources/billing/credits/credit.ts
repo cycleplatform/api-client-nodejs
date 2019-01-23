@@ -4,6 +4,7 @@ import {
   Events,
   State,
   CollectionDoc,
+  SingleDoc,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
@@ -14,6 +15,7 @@ import {
 } from "../../../common/api";
 
 export type Collection = CollectionDoc<Credit>;
+export type Single = SingleDoc<Credit>;
 export type CreditState = "new" | "live" | "expired";
 export type CreditEvent = "expires";
 
@@ -46,6 +48,31 @@ export async function getCollection({
     query,
     token,
     settings,
-    target: links.billing().credits(),
+    target: links
+      .billing()
+      .credits()
+      .collection(),
+  });
+}
+
+export async function getSingle({
+  id,
+  token,
+  query,
+  settings,
+}: {
+  id: ResourceId;
+  token: Token;
+  query?: QueryParams;
+  settings: ProjectRequiredSettings;
+}) {
+  return Request.getRequest<Single>({
+    query,
+    token,
+    settings,
+    target: links
+      .billing()
+      .credits()
+      .single(id),
   });
 }
