@@ -5,6 +5,7 @@ import {
   State,
   CollectionDoc,
   SingleDoc,
+  Time,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
@@ -26,6 +27,7 @@ export interface Credit {
   owner: OwnerScope;
   amount: number;
   amount_remaining: number;
+  expires: Expires | null;
   events: Events<CreditEvent>;
   state: State<CreditState>;
 }
@@ -33,6 +35,10 @@ export interface Credit {
 export interface AssociatedCredit {
   id: ResourceId;
   amount: number;
+}
+
+export interface Expires {
+  date: Time;
 }
 
 export async function getCollection({

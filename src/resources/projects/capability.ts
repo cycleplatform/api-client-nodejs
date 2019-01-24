@@ -14,6 +14,7 @@ export enum Capability {
   BILLING_INVOICES_PAY = "billing-invoices-pay",
   BILLING_ORDERS_MANAGE = "billing-orders-manage",
   BILLING_SERVICES_VIEW = "billing-services-view",
+  BILLING_CREDITS_VIEW = "billing-credits-view",
   ENVIRONMENTS_CREATE = "environments-create",
   ENVIRONMENTS_DELETE = "environments-delete",
   ENVIRONMENTS_VIEW = "environments-view",

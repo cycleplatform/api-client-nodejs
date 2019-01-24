@@ -34,7 +34,7 @@ export interface Service extends Resource {
   order: Order;
   item: Item;
   events: Events<ServiceEvent>;
-  discount: AssociatedDiscount;
+  discount: AssociatedDiscount | null;
   price: Amount;
   term: Term;
   state: State;
