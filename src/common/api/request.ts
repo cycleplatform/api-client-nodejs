@@ -47,6 +47,10 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
     secure = false;
   }
 
+  if (settings && settings.url && settings.url.indexOf("://") > -1) {
+    return settings.url;
+  }
+
   const prefix = websocket
     ? `ws${secure ? "s" : ""}://`
     : `http${secure ? "s" : ""}://`;

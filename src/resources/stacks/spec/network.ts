@@ -3,7 +3,6 @@ export interface Network {
   hostname: string;
   ports: string[];
   load_balancer: LoadBalancer | null;
-  haproxy: HAProxyConfig | null;
 }
 
 export type NetworkPublicMode = "enable" | "disable" | "egress-only";
@@ -15,7 +14,8 @@ export type LoadBalanceDeploymentStrategy =
   | "per-server";
 
 export interface LoadBalancer {
-  deployment_strategy: LoadBalanceDeploymentStrategy;
+  deploy: LoadBalanceDeploymentStrategy;
+  haproxy: HAProxyConfig | null;
 }
 
 export interface HAProxyConfig {

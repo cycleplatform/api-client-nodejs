@@ -3,7 +3,6 @@ import { Token } from "../../../auth";
 import { links, ProjectRequiredSettings } from "../../../common/api";
 import { ResourceId } from "../../../common/structs";
 import { connectToSocket } from "../../../common/api/websocket";
-import { VERSION } from "../../../common/api/version";
 
 export interface ConsolePipelineParams {
   id: ResourceId;
@@ -42,7 +41,7 @@ export async function connectToConsole(params: ConsolePipelineParams) {
     target: "",
     token: secretResp.value.data.token,
     settings: {
-      url: `${secretResp.value.data.address}/${VERSION}/console`,
+      url: `${secretResp.value.data.address}`,
       noVersion: true,
     },
     onMessage: params.onMessage,

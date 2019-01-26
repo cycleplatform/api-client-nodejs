@@ -3,8 +3,13 @@ import { Emails, Webhooks } from "../../../common/structs";
 export interface Deploy {
   instances: number;
   constraints: Constraints | null;
+  shutdown: ShutdownPolicy | null;
   restart: RestartPolicy | null;
   health_check: HealthCheck | null;
+}
+
+export interface ShutdownPolicy {
+  graceful_timeout: number;
 }
 
 export interface RestartPolicy {

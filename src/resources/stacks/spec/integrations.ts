@@ -1,16 +1,17 @@
 import { Webhooks } from "../../../common/structs";
 
 export interface Integrations {
-  events: Events;
+  events: Events | null;
   tls: TLS | null;
   // monitor: Monitor;
 }
 
 export interface TLS {
   enable: boolean;
-  certificate_path?: string;
-  key_path?: string;
-  bundle_path?: string;
+  certificate_path: string | null;
+  chain_path: string | null;
+  key_path: string | null;
+  bundle_path: string | null;
 }
 
 export interface Events {
