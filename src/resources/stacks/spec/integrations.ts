@@ -2,11 +2,11 @@ import { Webhooks } from "../../../common/structs";
 
 export interface Integrations {
   events: Events | null;
-  tls: TLS | null;
+  lets_encrypt: LetsEncrypt | null;
   // monitor: Monitor;
 }
 
-export interface TLS {
+export interface LetsEncrypt {
   enable: boolean;
   certificate_path: string | null;
   chain_path: string | null;

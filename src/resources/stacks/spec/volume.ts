@@ -2,7 +2,7 @@ import { DataSize, Webhook } from "../../../common/structs";
 
 export interface Volume {
   read_only: boolean;
-  local?: LocalVolume;
+  local: LocalVolume | null;
   destination: string;
   remote_access: VolumeRemoteAccess;
 }

@@ -41,6 +41,7 @@ export enum ProjectHeader {
   CONTAINER_STATE_CHANGED = "container.state_changed",
   CONTAINER_INSTANCE_CREATED = "container.instance.created",
   CONTAINER_INSTANCE_ERROR = "container.instance.error",
+  CONTAINER_RECONFIGURED = "container.reconfigured",
   CONTAINER_INSTANCE_STATE_CHANGED = "container.instance.state_changed",
   CONTAINER_INSTANCES_REVISED = "container.instances.revised",
 
