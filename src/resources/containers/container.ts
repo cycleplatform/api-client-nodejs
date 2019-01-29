@@ -135,9 +135,8 @@ export interface CreateParams {
   name: string;
   environment_id: ResourceId;
   image_id: ResourceId;
-  config?: Partial<Spec.Config>;
-  hosted_domain_id?: ResourceId;
-  volumes?: Spec.Volume[];
+  config: Spec.Config;
+  volumes: Spec.Volume[];
 }
 
 export async function create({

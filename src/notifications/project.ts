@@ -11,6 +11,7 @@ import { Notification } from "./event";
 export enum ProjectHeader {
   /** A billing service state has changed */
   BILLING_SERVICE_STATE_CHANGED = "billing.service.state_changed",
+  BILLING_SERVICE_ERROR = "billing.service.error",
   /** A new invoice has been created */
   BILLING_INVOICE_CREATED = "billing.invoice.created",
   /** An invoice state has changed */
@@ -32,17 +33,17 @@ export enum ProjectHeader {
   BILLING_METHOD_STATE_CHANGED = "billing.method.state_changed",
   BILLING_METHOD_ERROR = "billing.method.error",
 
+  CERTIFICATES_STATE_CHANGED = "certificates.state_changed",
+  CERTIFICATES_ERROR = "certificates.error",
+
   CONTAINER_CREATED = "container.created",
   CONTAINER_UPDATED = "container.updated",
   CONTAINER_ERROR = "container.error",
-  CONTAINER_IP_STATE_CHANGED = "container.ip.state_changed",
-  CONTAINER_IP_ERROR = "container.ip.error",
   CONTAINER_EVENT = "container.event",
+  CONTAINER_STATE_CHANGE_DESIRED = "container.state_changed.desired",
   CONTAINER_STATE_CHANGED = "container.state_changed",
   CONTAINER_INSTANCE_CREATED = "container.instance.created",
-  CONTAINER_INSTANCE_ERROR = "container.instance.error",
   CONTAINER_RECONFIGURED = "container.reconfigured",
-  CONTAINER_INSTANCE_STATE_CHANGED = "container.instance.state_changed",
   CONTAINER_INSTANCES_REVISED = "container.instances.revised",
 
   DNS_ZONE_CREATED = "dns.zone.created",
@@ -50,12 +51,16 @@ export enum ProjectHeader {
   DNS_ZONE_ERROR = "dns.zone.error",
   DNS_ZONE_STATE_CHANGED = "dns.zone.state_changed",
   DNS_ZONE_NEW_RECORD = "dns.zone.new_record",
+  DNS_RECORD_STATE_CHANGED = "dns.record.state_changed",
 
   ENVIRONMENT_CREATED = "environment.created",
   ENVIRONMENT_UPDATED = "environment.updated",
   ENVIRONMENT_ERROR = "environment.error",
   ENVIRONMENT_STATE_CHANGED = "environment.state_changed",
   ENVIRONMENT_VPN_RECONFIGURED = "environment.vpn.reconfigured",
+
+  EMPLOYEES_STATE_CHANGED = "employees.state_changed",
+  EMPLOYEES_ERROR = "employees.error",
 
   IMAGE_STATE_CHANGED = "image.state_changed",
   IMAGE_ERROR = "image.error",
@@ -68,6 +73,14 @@ export enum ProjectHeader {
   JOB_COMPLETED = "job.completed",
   JOB_EXPIRED = "job.expired",
 
+  PIPELINE_CREATED = "pipeline.created",
+  PIPELINE_UPDATED = "pipeline.updated",
+  PIPELINE_STATE_CHANGED = "pipeline.state_changed",
+  PIPELINE_ERROR = "pipeline.error",
+  PIPELINE_HOOK_CREATED = "pipeline.hook.created",
+  PIPELINE_HOOK_UPDATED = "pipeline.hook.updated",
+  PIPELINE_HOOK_TASK_DEPLOY = "pipeline.hook.task_deploy",
+
   PROJECT_UPDATED = "project.updated",
   PROJECT_STATE_CHANGED = "project.state_changed",
   PROJECT_MEMBERSHIP_STATE_CHANGED = "project.membership.state_changed",
@@ -76,6 +89,8 @@ export enum ProjectHeader {
   PROJECT_API_KEY_STATE_CHANGED = "project.api_key.state_changed",
   PROJECT_API_KEY_ERROR = "project.api_key.error",
 
+  INFRASTRUCTURE_IP_STATE_CHANGED = "infrastructure.ip.state_changed",
+  INFRASTRUCTURE_IP_ERROR = "infrastructure.ip.error",
   INFRASTRUCTURE_SERVER_CREATED = "infrastructure.server.created",
   INFRASTRUCTURE_SERVER_STATE_CHANGED = "infrastructure.server.state_changed",
   INFRASTRUCTURE_SERVER_ERROR = "infrastructure.server.error",
