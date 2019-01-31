@@ -8,14 +8,21 @@ import {
 import { QueryParams, links, Settings } from "../../common/api";
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
+import { Structs } from "../../../dist";
 
 export type Collection = CollectionDoc<Hook>;
 
-export interface Hook extends Resource {
+export interface Hook extends Resource<HookMetas> {
   pipeline_id: ResourceId;
+  name: string;
   active: boolean;
+  stage: string;
   secret: string;
   ips: IP[];
+}
+
+export interface HookMetas {
+  url?: string[];
 }
 
 export async function getCollection({
@@ -38,16 +45,20 @@ export async function getCollection({
 }
 
 export interface CreateParams {
+  name: string;
+  stage: string;
   ips?: IP[];
 }
 
 export async function create({
-  value = {},
+  value,
+  pipelineId,
   token,
   query,
   settings,
 }: {
   value: CreateParams;
+  pipelineId: Structs.ResourceId;
   token: Token;
   query?: QueryParams;
   settings?: Settings;
@@ -57,6 +68,6 @@ export async function create({
     query,
     token,
     settings,
-    target: links.pipelines().collection(),
+    target: links.pipelines().hooks(pipelineId),
   });
 }

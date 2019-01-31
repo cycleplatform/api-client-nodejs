@@ -10,6 +10,7 @@ import {
 import { QueryParams, links, Settings } from "../../common/api";
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
+import { Omit } from "typings/common";
 
 export type Collection = CollectionDoc<Pipeline>;
 export type Single = SingleDoc<Pipeline>;
@@ -32,10 +33,7 @@ export interface Pipeline extends Resource {
   events: Events;
 }
 
-export interface Stages {
-  labels: string[];
-  default: string;
-}
+export type Stages = string[];
 
 export async function getCollection({
   token,
@@ -96,5 +94,29 @@ export async function create({
     token,
     settings,
     target: links.pipelines().collection(),
+  });
+}
+
+export type UpdateParams = Partial<Omit<CreateParams, "stack_id">>;
+
+export async function update({
+  id,
+  value,
+  token,
+  query,
+  settings,
+}: {
+  id: ResourceId;
+  value: UpdateParams;
+  token: Token;
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.patchRequest<Single>({
+    value,
+    query,
+    token,
+    settings,
+    target: links.pipelines().single(id),
   });
 }

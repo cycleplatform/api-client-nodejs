@@ -3,9 +3,9 @@ import { Time } from "./basic";
 /**
  * Main API Return.
  */
-export interface TopLevel<T extends Meta = {}, K extends Includes = {}> {
-  meta?: T;
-  includes?: K;
+export interface TopLevel<T extends Includes = {}, K extends Meta = {}> {
+  includes?: T;
+  meta?: K;
 }
 
 /**
@@ -13,8 +13,8 @@ export interface TopLevel<T extends Meta = {}, K extends Includes = {}> {
  */
 export interface CollectionDoc<
   T extends Resource,
-  K extends Meta = {},
-  P extends Includes = {}
+  K extends Includes = {},
+  P extends Meta = {}
 > extends TopLevel<K, P> {
   data: T[];
 }
@@ -24,8 +24,8 @@ export interface CollectionDoc<
  */
 export interface SingleDoc<
   T extends Resource | string | null,
-  K extends Meta = {},
-  P extends Includes = {}
+  K extends Includes = {},
+  P extends Meta = {}
 > extends TopLevel<K, P> {
   data: T;
 }
