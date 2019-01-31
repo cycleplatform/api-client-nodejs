@@ -12,7 +12,7 @@ import { Token } from "../../auth";
 export type Collection = CollectionDoc<Hook>;
 
 export interface Hook extends Resource<HookMetas> {
-  pipeline_id: ResourceId;
+  project_id: ResourceId;
   name: string;
   active: boolean;
   stage: string;
@@ -25,12 +25,12 @@ export interface HookMetas {
 }
 
 export async function getCollection({
-  pipelineId,
+  projectId: pipelineId,
   token,
   query,
   settings,
 }: {
-  pipelineId: ResourceId;
+  projectId: ResourceId;
   token: Token;
   query?: QueryParams;
   settings?: Settings;
@@ -39,7 +39,7 @@ export async function getCollection({
     query,
     token,
     settings,
-    target: links.pipelines().hooks(pipelineId),
+    target: links.projects().hooks(pipelineId),
   });
 }
 
@@ -67,6 +67,6 @@ export async function create({
     query,
     token,
     settings,
-    target: links.pipelines().hooks(pipelineId),
+    target: links.projects().hooks(pipelineId),
   });
 }

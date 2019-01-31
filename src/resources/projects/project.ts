@@ -48,7 +48,7 @@ export async function getCollection({
     query,
     token,
     settings,
-    target: links.pipelines().collection(),
+    target: links.projects().collection(),
   });
 }
 
@@ -67,7 +67,7 @@ export async function getSingle({
     query,
     token,
     settings,
-    target: links.pipelines().single(id),
+    target: links.projects().single(id),
   });
 }
 
@@ -93,7 +93,7 @@ export async function create({
     query,
     token,
     settings,
-    target: links.pipelines().collection(),
+    target: links.projects().collection(),
   });
 }
 
@@ -117,6 +117,6 @@ export async function update({
     query,
     token,
     settings,
-    target: links.pipelines().single(id),
+    target: links.projects().single(id),
   });
 }

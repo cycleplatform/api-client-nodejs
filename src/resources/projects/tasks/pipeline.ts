@@ -20,7 +20,7 @@ export async function remove({
     query,
     token,
     settings,
-    target: links.pipelines().single(id),
+    target: links.projects().single(id),
   });
 }
 

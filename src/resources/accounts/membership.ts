@@ -14,7 +14,7 @@ export async function getMemberships({
   settings?: Settings;
 }) {
   return Request.getRequest<
-    CollectionDoc<Memberships.Membership, {}, Memberships.MembershipIncludes>
+    CollectionDoc<Memberships.Membership, Memberships.MembershipIncludes>
   >({
     query,
     token,
