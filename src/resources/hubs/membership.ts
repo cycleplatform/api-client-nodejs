@@ -11,12 +11,12 @@ import {
   Time,
 } from "../../common/structs";
 import { PublicAccount } from "../accounts/account";
-import { Cloud } from "./cloud";
+import { Hub } from "./hub";
 import { Capability } from "./capability";
 import { Name } from "../accounts";
 
 export type Collection = CollectionDoc<Membership, MembershipIncludes>;
-export type Single = SingleDoc<Membership, MembershipIncludes>;
+export type Single = SingleDoc<Membership>;
 export type MembershipState =
   | "pending"
   | "accepted"
@@ -40,7 +40,7 @@ export enum Role {
 
 export interface Membership extends Resource<MembershipMeta> {
   account_id: ResourceId;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   role: Role;
   events: Events<MembershipEvent>;
   state: State<MembershipState>;
@@ -55,8 +55,8 @@ export interface MembershipIncludes {
   senders: {
     [key: string]: PublicAccount;
   };
-  clouds: {
-    [key: string]: Cloud;
+  hubs: {
+    [key: string]: Hub;
   };
 }
 
@@ -76,7 +76,7 @@ export interface Member extends Resource<MembershipMeta> {
 }
 
 /**
- * Members of this cloud
+ * Members of this hub
  */
 export async function getCollection({
   token,
@@ -92,7 +92,7 @@ export async function getCollection({
     token,
     settings,
     target: links
-      .clouds()
+      .hubs()
       .members()
       .collection(),
   });
@@ -112,7 +112,7 @@ export async function getCurrentMembership({
     token,
     settings,
     target: links
-      .clouds()
+      .hubs()
       .members()
       .membership(),
   });
@@ -134,7 +134,7 @@ export async function revoke({
     token,
     settings,
     target: links
-      .clouds()
+      .hubs()
       .members()
       .single(id),
   });

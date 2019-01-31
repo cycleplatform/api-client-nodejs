@@ -25,7 +25,7 @@ export type ServiceEvent = "last_billed";
 
 export interface Service extends Resource {
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   title: string;
   order: Order;
   item: Item;

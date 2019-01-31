@@ -9,7 +9,7 @@ export interface Notification<T extends string> {
   id: ResourceId;
   state?: string;
   error?: boolean;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   environment_id: ResourceId;
   account_id: ResourceId;
 }

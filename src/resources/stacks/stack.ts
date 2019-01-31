@@ -27,7 +27,7 @@ export type StackState =
 export interface Stack extends Resource {
   name: string;
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   source: Source;
   state: State<StackState>;
   events: Events;

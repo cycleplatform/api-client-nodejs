@@ -11,12 +11,12 @@ import {
 import { Membership } from "./membership";
 import { DeepPartial } from "typings/common";
 
-export type Collection = CollectionDoc<Cloud>;
-export type Single = SingleDoc<Cloud>;
+export type Collection = CollectionDoc<Hub>;
+export type Single = SingleDoc<Hub>;
 
-export type CloudQuery = QueryParams<"", keyof CloudMetas>;
+export type HubQuery = QueryParams<"", keyof HubMetas>;
 
-export type CloudState =
+export type HubState =
   | "new"
   | "configuring" // placing an order
   | "live" // at least 1 server online
@@ -24,10 +24,10 @@ export type CloudState =
   | "deleting"
   | "deleted";
 
-export interface Cloud extends Resource<CloudMetas> {
+export interface Hub extends Resource<HubMetas> {
   name: string;
   events: Events;
-  state: State<CloudState>;
+  state: State<HubState>;
   integrations: Integrations;
   providers: Providers;
   billing?: {
@@ -49,18 +49,18 @@ export interface Providers {
 
 export interface PacketProvider {
   api_key: string;
-  cloud_id: string | null;
+  hub_id: string | null;
   bgp_md5: string | null;
 }
 
-export interface CloudMetas {
+export interface HubMetas {
   membership?: Membership;
 }
 
 export interface CreateParams {
   name: string;
-  integrations?: Cloud["integrations"];
-  providers?: DeepPartial<Cloud["providers"]>;
+  integrations?: Hub["integrations"];
+  providers?: DeepPartial<Hub["providers"]>;
 }
 
 export type UpdateParams = Partial<CreateParams>;
@@ -70,14 +70,14 @@ export async function getCollection({
   settings,
 }: {
   token: Token;
-  query?: CloudQuery;
+  query?: HubQuery;
   settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
     token,
     settings,
-    target: links.clouds().collection(),
+    target: links.hubs().collection(),
   });
 }
 
@@ -87,14 +87,14 @@ export async function getSingle({
   settings,
 }: {
   token: Token;
-  query?: CloudQuery;
+  query?: HubQuery;
   settings?: Settings;
 }) {
   return Request.getRequest<Single>({
     query,
     token,
     settings,
-    target: links.clouds().single(),
+    target: links.hubs().single(),
   });
 }
 
@@ -106,7 +106,7 @@ export async function create({
 }: {
   value: CreateParams;
   token: Token;
-  query?: CloudQuery;
+  query?: HubQuery;
   settings?: Settings;
 }) {
   return Request.postRequest<Single>({
@@ -114,7 +114,7 @@ export async function create({
     query,
     token,
     settings,
-    target: links.clouds().collection(),
+    target: links.hubs().collection(),
   });
 }
 
@@ -126,7 +126,7 @@ export async function update({
 }: {
   value: UpdateParams;
   token: Token;
-  query?: CloudQuery;
+  query?: HubQuery;
   settings?: Settings;
 }) {
   return Request.patchRequest<Single>({
@@ -134,7 +134,7 @@ export async function update({
     query,
     token,
     settings,
-    target: links.clouds().single(),
+    target: links.hubs().single(),
   });
 }
 
@@ -144,13 +144,13 @@ export async function remove({
   settings,
 }: {
   token: Token;
-  query?: CloudQuery;
+  query?: HubQuery;
   settings: Settings;
 }) {
   return Request.deleteRequest<Single>({
     query,
     token,
     settings,
-    target: links.clouds().single(),
+    target: links.hubs().single(),
   });
 }

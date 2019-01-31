@@ -2,7 +2,7 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
 import { CollectionDoc, ResourceId, SingleDoc } from "../../common/structs";
-import * as Memberships from "../clouds/membership";
+import * as Memberships from "../hubs/membership";
 
 export async function getCollection({
   token,

@@ -48,25 +48,25 @@ export const links = {
 
   channels: () => ({
     account: () => "/account/notifications",
-    cloud: () => "/clouds/current/notifications",
+    hub: () => "/hubs/current/notifications",
   }),
 
-  clouds: () => ({
-    collection: () => `/clouds`,
-    single: () => `/clouds/current`,
-    tasks: () => `/clouds/current/tasks`,
-    capabilities: () => `/clouds/capabilities`,
+  hubs: () => ({
+    collection: () => `/hubs`,
+    single: () => `/hubs/current`,
+    tasks: () => `/hubs/current/tasks`,
+    capabilities: () => `/hubs/capabilities`,
     invites: () => ({
-      collection: () => `/clouds/current/invites`,
+      collection: () => `/hubs/current/invites`,
     }),
     members: () => ({
-      collection: () => `/clouds/current/members`,
-      membership: () => `/clouds/current/membership`,
-      single: (id: ResourceId) => `/clouds/current/members/${id}`,
+      collection: () => `/hubs/current/members`,
+      membership: () => `/hubs/current/membership`,
+      single: (id: ResourceId) => `/hubs/current/members/${id}`,
     }),
     keys: () => ({
-      collection: () => `/clouds/current/api-keys`,
-      single: (id: ResourceId) => `/clouds/current/api-keys/${id}`,
+      collection: () => `/hubs/current/api-keys`,
+      single: (id: ResourceId) => `/hubs/current/api-keys/${id}`,
     }),
   }),
 

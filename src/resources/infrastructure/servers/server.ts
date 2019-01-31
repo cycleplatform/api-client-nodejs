@@ -32,7 +32,7 @@ export { Telemetry, Stats };
 export interface Server extends Resource<ServerMeta> {
   hostname: string;
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   provider: ServerProvider;
   location_id: ResourceId;
   model_id: ResourceId;

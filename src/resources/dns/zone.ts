@@ -31,7 +31,7 @@ export type ZoneEvent = "last_verification" | "verified";
 export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   owner: OwnerScope;
   origin: string;
   state: State<ZoneState>;

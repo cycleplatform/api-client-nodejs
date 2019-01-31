@@ -18,7 +18,7 @@ export type CreditEvent = "expires";
 
 export interface Credit {
   id: ResourceId;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   description: string;
   owner: OwnerScope;
   amount: number;

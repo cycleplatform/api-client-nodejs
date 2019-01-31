@@ -13,12 +13,12 @@ export enum AccountHeader {
   ACCOUNT_STATE_CHANGED = "account.state_changed",
   /** An error occured related to the account */
   ACCOUNT_ERROR = "account.error",
-  /** A new cloud was created */
-  CLOUD_CREATED = "cloud.created",
-  /** An error occurred on a cloud */
-  CLOUD_ERROR = "cloud.error",
-  /** A new member was added to a cloud */
-  CLOUD_MEMBERSHIP_NEW = "cloud.membership.new",
+  /** A new hub was created */
+  HUB_CREATED = "hub.created",
+  /** An error occurred on a hub */
+  HUB_ERROR = "hub.error",
+  /** A new member was added to a hub */
+  HUB_MEMBERSHIP_NEW = "hub.membership.new",
 }
 
 export type AccountNotification = Notification<AccountHeader>;

@@ -1,3 +1,3 @@
 export * from "./account";
-export * from "./cloud";
+export * from "./hub";
 export * from "./event";

@@ -12,7 +12,7 @@ import * as Images from "./resources/images";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Jobs from "./resources/jobs";
 import * as Pipelines from "./resources/pipelines";
-import * as Clouds from "./resources/clouds";
+import * as Hubs from "./resources/hubs";
 import { QueryParams } from "./common/api/query";
 import * as Secrets from "./resources/secrets";
 import { Settings } from "./common/api/settings";
@@ -20,7 +20,7 @@ import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
 import * as Notifications from "./notifications";
 
-export { Capability } from "./resources/clouds";
+export { Capability } from "./resources/hubs";
 
 export {
   Auth,
@@ -36,7 +36,7 @@ export {
   Jobs,
   Notifications,
   Pipelines,
-  Clouds,
+  Hubs,
   QueryParams,
   Request,
   Secrets,

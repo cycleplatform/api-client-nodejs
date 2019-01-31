@@ -25,7 +25,7 @@ export async function getCollection({
     token,
     settings,
     target: links
-      .clouds()
+      .hubs()
       .invites()
       .collection(),
   });
@@ -48,7 +48,7 @@ export async function create({
     token,
     settings,
     target: links
-      .clouds()
+      .hubs()
       .invites()
       .collection(),
   });

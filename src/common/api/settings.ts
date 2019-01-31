@@ -5,8 +5,8 @@ export interface Settings {
   /** Override base url on a per request basis */
   url?: string;
 
-  /** Sets the cloud scope. Auto injected into X-Cloud-Id header */
-  cloud?: ResourceId;
+  /** Sets the hub scope. Auto injected into X-hub-Id header */
+  hub?: ResourceId;
 
   /** Force http in URL */
   useHttp?: boolean;

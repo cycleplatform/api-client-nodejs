@@ -13,7 +13,7 @@ export type EventType = "default" | "info" | "success" | "error";
 
 export interface Event extends Resource {
   platform: boolean;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   container_id: ResourceId;
   detail: string;
   caption: string;

@@ -49,7 +49,7 @@ export type InstanceQuery = QueryParams<
 
 export interface Instance extends Resource<InstanceMetas> {
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   container_id: ResourceId;
   environment: CondensedEnvironment;
   provider: CondensedProvider;

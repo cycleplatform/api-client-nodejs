@@ -41,7 +41,7 @@ export interface Container extends Resource<ContainerMetas> {
   identifier: Spec.ContainerIdentifier;
   owner: OwnerScope;
   environment: CondensedEnvironment;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   image: CondensedImage;
   load_balancer: LoadBalancer | null;
   stack?: CondensedStack;

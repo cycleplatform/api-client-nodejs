@@ -30,7 +30,7 @@ export interface EntryComponent {
 }
 
 export interface Entry extends Resource {
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   environment_id: ResourceId;
   user: OwnerScope;
   session: EntrySession;

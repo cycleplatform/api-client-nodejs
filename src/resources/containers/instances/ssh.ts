@@ -18,7 +18,7 @@ export interface SSHConnectionResponse {
 export interface SSHToken extends Resource {
   instance_id: ResourceId;
   container_id: ResourceId;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   owner: OwnerScope;
   events: {
     created: Time;

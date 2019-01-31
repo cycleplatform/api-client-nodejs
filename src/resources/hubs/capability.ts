@@ -2,13 +2,13 @@ import * as Request from "../../common/api/request";
 import { QueryParams, links, Settings } from "../../common/api";
 
 export enum Capability {
-  CLOUDS_UPDATE = "clouds-update",
-  CLOUDS_DELETE = "clouds-delete",
-  CLOUDS_INVITES_SEND = "clouds-invites-send",
-  CLOUDS_INVITES_MANAGE = "clouds-invites-manage",
-  CLOUDS_MEMBERS_MANAGE = "clouds-members-manage",
-  CLOUDS_MEMBERS_VIEW = "clouds-members-view",
-  CLOUDS_NOTIFICATIONS_LISTEN = "clouds-notifications-listen",
+  HUBS_UPDATE = "hubs-update",
+  HUBS_DELETE = "hubs-delete",
+  HUBS_INVITES_SEND = "hubs-invites-send",
+  HUBS_INVITES_MANAGE = "hubs-invites-manage",
+  HUBS_MEMBERS_MANAGE = "hubs-members-manage",
+  HUBS_MEMBERS_VIEW = "hubs-members-view",
+  HUBS_NOTIFICATIONS_LISTEN = "hubs-notifications-listen",
   BILLING_METHODS_MANAGE = "billing-methods-manage",
   BILLING_INVOICES_VIEW = "billing-invoices-view",
   BILLING_INVOICES_PAY = "billing-invoices-pay",
@@ -74,6 +74,6 @@ export async function getCapabilities({
   return Request.getRequest<CapabilityDoc>({
     query,
     settings,
-    target: links.clouds().capabilities(),
+    target: links.hubs().capabilities(),
   });
 }

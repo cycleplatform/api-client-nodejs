@@ -39,7 +39,7 @@ export interface Image extends Resource<ImageMetas> {
   config: Config;
   source: Spec.ImageSource;
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   state: State<ImageState>;
   events: Events;
 }

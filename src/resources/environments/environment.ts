@@ -36,7 +36,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
     description: string;
   };
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   state: State<EnvironmentState>;
   pipeline: Pipeline | null;
   stack: Stack | null;

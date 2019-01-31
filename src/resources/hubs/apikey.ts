@@ -20,7 +20,7 @@ export interface ApiKey extends Resource {
   secret: string;
   owner: OwnerScope;
   capabilities: Capability[];
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   ips: string[] | null;
   state: State<ApiKeyState>;
   events: Events;
@@ -48,7 +48,7 @@ export async function getCollection({
     settings,
     token,
     target: links
-      .clouds()
+      .hubs()
       .keys()
       .collection(),
   });
@@ -68,7 +68,7 @@ export async function getSingle({
     settings,
     token,
     target: links
-      .clouds()
+      .hubs()
       .keys()
       .collection(),
   });
@@ -91,7 +91,7 @@ export async function create({
     settings,
     token,
     target: links
-      .clouds()
+      .hubs()
       .keys()
       .collection(),
   });
@@ -113,7 +113,7 @@ export async function remove({
     token,
     settings,
     target: links
-      .clouds()
+      .hubs()
       .keys()
       .single(id),
   });

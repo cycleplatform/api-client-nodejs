@@ -3,7 +3,7 @@ import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { Task, CreatedTask } from "../../../common/structs";
 
-export type CloudAction = "leave";
+export type HubAction = "leave";
 
 export async function leave({
   token,
@@ -31,15 +31,15 @@ export async function task<K = {}>({
   settings,
 }: {
   token: Token;
-  value: Task<CloudAction, K>;
+  value: Task<HubAction, K>;
   query?: QueryParams;
   settings?: Settings;
 }) {
-  return Request.postRequest<CreatedTask<CloudAction, K>>({
+  return Request.postRequest<CreatedTask<HubAction, K>>({
     value,
     query,
     token,
     settings,
-    target: links.clouds().tasks(),
+    target: links.hubs().tasks(),
   });
 }

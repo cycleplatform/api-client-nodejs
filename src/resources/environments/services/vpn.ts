@@ -37,7 +37,7 @@ export interface VPNUser extends Resource {
   username: string;
   owner: OwnerScope;
   last_login: Time;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   environment_id: ResourceId;
   events: Events;
 }

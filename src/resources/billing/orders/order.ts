@@ -34,7 +34,7 @@ export type OrderEvent =
   | "applied_late_fee";
 
 export interface Order extends Resource<OrderMeta> {
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   owner: OwnerScope;
   promo_code_id: string | null;
   term: Term;

@@ -38,7 +38,7 @@ export type InvoiceEvent =
   | "voided";
 
 export interface Invoice extends Resource {
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   approved: boolean;
   services: ServiceSummary[];
   payments: Payment[];

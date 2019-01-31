@@ -6,9 +6,9 @@ import { Notification } from "./event";
 
 /**
  * Possible event types that can be received
- * on the cloud notification channel
+ * on the hub notification channel
  */
-export enum CloudHeader {
+export enum HubHeader {
   /** A billing service state has changed */
   BILLING_SERVICE_STATE_CHANGED = "billing.service.state_changed",
   BILLING_SERVICE_ERROR = "billing.service.error",
@@ -81,13 +81,13 @@ export enum CloudHeader {
   PIPELINE_HOOK_UPDATED = "pipeline.hook.updated",
   PIPELINE_HOOK_TASK_DEPLOY = "pipeline.hook.task_deploy",
 
-  CLOUD_UPDATED = "cloud.updated",
-  CLOUD_STATE_CHANGED = "cloud.state_changed",
-  CLOUD_MEMBERSHIP_STATE_CHANGED = "cloud.membership.state_changed",
-  CLOUD_API_KEY_CREATED = "cloud.api_key.created",
-  CLOUD_API_KEY_UPDATED = "cloud.api_key.updated",
-  CLOUD_API_KEY_STATE_CHANGED = "cloud.api_key.state_changed",
-  CLOUD_API_KEY_ERROR = "cloud.api_key.error",
+  HUB_UPDATED = "hub.updated",
+  HUB_STATE_CHANGED = "hub.state_changed",
+  HUB_MEMBERSHIP_STATE_CHANGED = "hub.membership.state_changed",
+  HUB_API_KEY_CREATED = "hub.api_key.created",
+  HUB_API_KEY_UPDATED = "hub.api_key.updated",
+  HUB_API_KEY_STATE_CHANGED = "hub.api_key.state_changed",
+  HUB_API_KEY_ERROR = "hub.api_key.error",
 
   INFRASTRUCTURE_IP_STATE_CHANGED = "infrastructure.ip.state_changed",
   INFRASTRUCTURE_IP_ERROR = "infrastructure.ip.error",
@@ -104,24 +104,24 @@ export enum CloudHeader {
   STACK_BUILD_ERROR = "stack.build.error",
 }
 
-export type CloudNotification = Notification<CloudHeader>;
+export type HubNotification = Notification<HubHeader>;
 
-export interface CloudPipelineParams {
+export interface HubPipelineParams {
   token: Token;
   settings: Settings;
-  onMessage?: (v: CloudNotification) => void;
+  onMessage?: (v: HubNotification) => void;
 }
 
-export interface CloudSecretResponse {
+export interface HubSecretResponse {
   data: {
     token: string;
   };
 }
 
-export async function connectToCloudChannel(params: CloudPipelineParams) {
-  const target = links.channels().cloud();
+export async function connectToHubChannel(params: HubPipelineParams) {
+  const target = links.channels().hub();
 
-  const secretResp = await Request.getRequest<CloudSecretResponse>({
+  const secretResp = await Request.getRequest<HubSecretResponse>({
     target,
     token: params.token,
     settings: params.settings,
@@ -131,7 +131,7 @@ export async function connectToCloudChannel(params: CloudPipelineParams) {
     return secretResp;
   }
 
-  return connectToSocket<CloudNotification>({
+  return connectToSocket<HubNotification>({
     target,
     token: secretResp.value.data.token,
     settings: params.settings,

@@ -21,7 +21,7 @@ export type RecordState = "live" | "deleting" | "deleted";
 export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   owner: OwnerScope;
   zone_id: ResourceId;
   name: string;

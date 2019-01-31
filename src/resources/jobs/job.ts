@@ -33,7 +33,7 @@ export interface Job extends Resource {
   expires: Time;
   tasks: JobTask[];
   owner: OwnerScope;
-  cloud_id: ResourceId;
+  hub_id: ResourceId;
   state: State<JobState>;
 }
 
