@@ -15,8 +15,8 @@ import { Cloud } from "./cloud";
 import { Capability } from "./capability";
 import { Name } from "../accounts";
 
-export type Collection = CollectionDoc<Membership, {}, MembershipIncludes>;
-export type Single = SingleDoc<Membership>;
+export type Collection = CollectionDoc<Membership, MembershipIncludes>;
+export type Single = SingleDoc<Membership, MembershipIncludes>;
 export type MembershipState =
   | "pending"
   | "accepted"

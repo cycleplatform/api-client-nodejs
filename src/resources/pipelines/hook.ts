@@ -8,7 +8,6 @@ import {
 import { QueryParams, links, Settings } from "../../common/api";
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { Structs } from "../../../dist";
 
 export type Collection = CollectionDoc<Hook>;
 
@@ -58,7 +57,7 @@ export async function create({
   settings,
 }: {
   value: CreateParams;
-  pipelineId: Structs.ResourceId;
+  pipelineId: ResourceId;
   token: Token;
   query?: QueryParams;
   settings?: Settings;
