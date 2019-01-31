@@ -7,7 +7,7 @@ export type Single = SingleDoc<BuildLog>;
 
 export interface BuildLog extends Resource {
   stack_id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   build_id: ResourceId;
   log: string;
 }

@@ -1,6 +1,6 @@
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { links, ProjectRequiredSettings } from "../../../common/api";
+import { links, Settings } from "../../../common/api";
 import { ResourceId } from "../../../common/structs";
 import { connectToSocket } from "../../../common/api/websocket";
 
@@ -8,10 +8,8 @@ export interface ConsolePipelineParams {
   id: ResourceId;
   container_id: ResourceId;
   token: Token;
-  settings?: ProjectRequiredSettings;
-  /**
-   * optional typed onmessage handler
-   */
+  settings?: Settings;
+  /** optional typed onmessage handler */
   onMessage?: (v: string) => void;
 }
 

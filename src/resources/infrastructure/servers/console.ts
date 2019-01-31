@@ -1,13 +1,13 @@
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { links, ProjectRequiredSettings } from "../../../common/api";
+import { links, Settings } from "../../../common/api";
 import { ResourceId } from "../../../common/structs";
 import { connectToSocket } from "../../../common/api/websocket";
 
 export interface ConsolePipelineParams {
   id: ResourceId;
   token: Token;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
   /**
    * optional typed onmessage handler
    */

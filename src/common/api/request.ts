@@ -73,8 +73,8 @@ async function makeRequest<T>(
     req.headers.append("Authorization", `Bearer ${token.access_token}`);
   }
 
-  if (settings && settings.project) {
-    req.headers.append("X-Project-Id", settings.project);
+  if (settings && settings.cloud) {
+    req.headers.append("X-Cloud-Id", settings.cloud);
   }
 
   try {

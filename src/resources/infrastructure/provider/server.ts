@@ -13,7 +13,7 @@ import { Amount } from "../../billing";
 import { Location } from "./location";
 
 /** A collection of servers for a provider */
-export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
+export type Collection = CollectionDoc<Server, ServerIncludes>;
 
 /** A single provider server document */
 export type Single = SingleDoc<Server>;

@@ -14,7 +14,7 @@ export type SecretState = "live" | "deleting" | "deleted";
 
 export interface Secret extends Resource {
   owner: OwnerScope;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   environment_id: ResourceId;
   container_id: ResourceId | null;
   identifier: string;

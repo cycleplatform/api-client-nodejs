@@ -21,8 +21,8 @@ import {
 import { IPNet } from "../../network";
 import { Service } from "../services";
 
-export type Collection = CollectionDoc<Instance, {}, InstanceIncludes>;
-export type Single = SingleDoc<Instance, {}, InstanceIncludes>;
+export type Collection = CollectionDoc<Instance, InstanceIncludes>;
+export type Single = SingleDoc<Instance, InstanceIncludes>;
 export type InstanceState =
   | "new"
   | "starting"
@@ -49,7 +49,7 @@ export type InstanceQuery = QueryParams<
 
 export interface Instance extends Resource<InstanceMetas> {
   owner: OwnerScope;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   container_id: ResourceId;
   environment: CondensedEnvironment;
   provider: CondensedProvider;

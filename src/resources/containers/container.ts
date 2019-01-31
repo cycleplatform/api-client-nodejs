@@ -20,8 +20,8 @@ import { InstanceState } from "./instances";
 import { Service } from "./services";
 import { ContainerVolume } from "./volumes";
 
-export type Collection = CollectionDoc<Container, {}, ContainerIncludes>;
-export type Single = SingleDoc<Container, {}, ContainerIncludes>;
+export type Collection = CollectionDoc<Container, ContainerIncludes>;
+export type Single = SingleDoc<Container, ContainerIncludes>;
 export type ContainerState =
   | "new"
   | "starting"
@@ -41,7 +41,7 @@ export interface Container extends Resource<ContainerMetas> {
   identifier: Spec.ContainerIdentifier;
   owner: OwnerScope;
   environment: CondensedEnvironment;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   image: CondensedImage;
   load_balancer: LoadBalancer | null;
   stack?: CondensedStack;

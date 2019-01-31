@@ -10,20 +10,15 @@ import {
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import {
-  QueryParams,
-  links,
-  ProjectRequiredSettings,
-  Settings,
-} from "../../../common/api";
+import { QueryParams, links, Settings } from "../../../common/api";
 import { Item as ServiceItem } from "../services/item";
 import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
 import { Term, TermLength } from "../term";
 import { PromoCode } from "../promocodes";
 
-export type Collection = CollectionDoc<Order, {}, OrderIncludes>;
-export type Single = SingleDoc<Order, {}, OrderIncludes>;
+export type Collection = CollectionDoc<Order, OrderIncludes>;
+export type Single = SingleDoc<Order, OrderIncludes>;
 export type OrderState =
   | "new"
   | "processed"
@@ -39,7 +34,7 @@ export type OrderEvent =
   | "applied_late_fee";
 
 export interface Order extends Resource<OrderMeta> {
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   owner: OwnerScope;
   promo_code_id: string | null;
   term: Term;
@@ -108,7 +103,7 @@ export async function getSingle({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Single>({
     query,
@@ -130,7 +125,7 @@ export async function create({
   value: CreateParams;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.postRequest<Single>({
     value,
@@ -155,7 +150,7 @@ export async function update({
   value: CreateParams;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.patchRequest<Single>({
     value,

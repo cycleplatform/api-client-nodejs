@@ -5,10 +5,10 @@ export interface Settings {
   /** Override base url on a per request basis */
   url?: string;
 
-  /** Sets the project scope. Auto injected into X-Project-Id header */
-  project?: ResourceId;
+  /** Sets the cloud scope. Auto injected into X-Cloud-Id header */
+  cloud?: ResourceId;
 
-  /** Allow force http in URL */
+  /** Force http in URL */
   useHttp?: boolean;
 
   /** If true, don't inject version into URL */
@@ -16,9 +16,4 @@ export interface Settings {
 
   /** Allow for fetch cancellation */
   signal?: AbortSignal;
-}
-
-/** Custom settings object that requires a project ID */
-export interface ProjectRequiredSettings extends Settings {
-  project: ResourceId;
 }

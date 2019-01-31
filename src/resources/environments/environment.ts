@@ -17,8 +17,8 @@ import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
 import { DiscoveryService, VPNService } from "./services";
 
-export type Collection = CollectionDoc<Environment, {}, EnvironmentIncludes>;
-export type Single = SingleDoc<Environment>;
+export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
+export type Single = SingleDoc<Environment, EnvironmentIncludes>;
 export type EnvironmentState =
   | "new"
   | "live"
@@ -36,7 +36,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
     description: string;
   };
   owner: OwnerScope;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   state: State<EnvironmentState>;
   pipeline: Pipeline | null;
   stack: Stack | null;

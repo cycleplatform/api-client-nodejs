@@ -9,11 +9,7 @@ import {
   SingleDoc,
 } from "../../../common/structs";
 import { Token } from "../../../auth";
-import {
-  QueryParams,
-  links,
-  ProjectRequiredSettings,
-} from "../../../common/api";
+import { QueryParams, links, Settings } from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
 import { Term } from "../term";
@@ -29,7 +25,7 @@ export type ServiceEvent = "last_billed";
 
 export interface Service extends Resource {
   owner: OwnerScope;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   title: string;
   order: Order;
   item: Item;
@@ -63,7 +59,7 @@ export async function getSingle({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Single>({
     query,
@@ -83,7 +79,7 @@ export async function getCollection({
 }: {
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,

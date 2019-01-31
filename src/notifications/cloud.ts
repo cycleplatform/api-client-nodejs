@@ -1,14 +1,14 @@
 import { Token } from "../auth";
 import * as Request from "../common/api/request";
-import { links, ProjectRequiredSettings } from "../common/api";
+import { links, Settings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
 import { Notification } from "./event";
 
 /**
  * Possible event types that can be received
- * on the project notification channel
+ * on the cloud notification channel
  */
-export enum ProjectHeader {
+export enum CloudHeader {
   /** A billing service state has changed */
   BILLING_SERVICE_STATE_CHANGED = "billing.service.state_changed",
   BILLING_SERVICE_ERROR = "billing.service.error",
@@ -81,21 +81,19 @@ export enum ProjectHeader {
   PIPELINE_HOOK_UPDATED = "pipeline.hook.updated",
   PIPELINE_HOOK_TASK_DEPLOY = "pipeline.hook.task_deploy",
 
-  PROJECT_UPDATED = "project.updated",
-  PROJECT_STATE_CHANGED = "project.state_changed",
-  PROJECT_MEMBERSHIP_STATE_CHANGED = "project.membership.state_changed",
-  PROJECT_API_KEY_CREATED = "project.api_key.created",
-  PROJECT_API_KEY_UPDATED = "project.api_key.updated",
-  PROJECT_API_KEY_STATE_CHANGED = "project.api_key.state_changed",
-  PROJECT_API_KEY_ERROR = "project.api_key.error",
+  CLOUD_UPDATED = "cloud.updated",
+  CLOUD_STATE_CHANGED = "cloud.state_changed",
+  CLOUD_MEMBERSHIP_STATE_CHANGED = "cloud.membership.state_changed",
+  CLOUD_API_KEY_CREATED = "cloud.api_key.created",
+  CLOUD_API_KEY_UPDATED = "cloud.api_key.updated",
+  CLOUD_API_KEY_STATE_CHANGED = "cloud.api_key.state_changed",
+  CLOUD_API_KEY_ERROR = "cloud.api_key.error",
 
   INFRASTRUCTURE_IP_STATE_CHANGED = "infrastructure.ip.state_changed",
   INFRASTRUCTURE_IP_ERROR = "infrastructure.ip.error",
   INFRASTRUCTURE_SERVER_CREATED = "infrastructure.server.created",
   INFRASTRUCTURE_SERVER_STATE_CHANGED = "infrastructure.server.state_changed",
   INFRASTRUCTURE_SERVER_ERROR = "infrastructure.server.error",
-
-  SERVER_ERROR = "server.error",
 
   STACK_CREATED = "stack.created",
   STACK_ERROR = "stack.error",
@@ -106,24 +104,24 @@ export enum ProjectHeader {
   STACK_BUILD_ERROR = "stack.build.error",
 }
 
-export type ProjectNotification = Notification<ProjectHeader>;
+export type CloudNotification = Notification<CloudHeader>;
 
-export interface ProjectPipelineParams {
+export interface CloudPipelineParams {
   token: Token;
-  settings: ProjectRequiredSettings;
-  onMessage?: (v: ProjectNotification) => void;
+  settings: Settings;
+  onMessage?: (v: CloudNotification) => void;
 }
 
-export interface ProjectSecretResponse {
+export interface CloudSecretResponse {
   data: {
     token: string;
   };
 }
 
-export async function connectToProjectChannel(params: ProjectPipelineParams) {
-  const target = links.channels().project();
+export async function connectToCloudChannel(params: CloudPipelineParams) {
+  const target = links.channels().cloud();
 
-  const secretResp = await Request.getRequest<ProjectSecretResponse>({
+  const secretResp = await Request.getRequest<CloudSecretResponse>({
     target,
     token: params.token,
     settings: params.settings,
@@ -133,7 +131,7 @@ export async function connectToProjectChannel(params: ProjectPipelineParams) {
     return secretResp;
   }
 
-  return connectToSocket<ProjectNotification>({
+  return connectToSocket<CloudNotification>({
     target,
     token: secretResp.value.data.token,
     settings: params.settings,

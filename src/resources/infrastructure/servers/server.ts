@@ -32,7 +32,7 @@ export { Telemetry, Stats };
 export interface Server extends Resource<ServerMeta> {
   hostname: string;
   owner: OwnerScope;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   provider: ServerProvider;
   location_id: ResourceId;
   model_id: ResourceId;
@@ -47,7 +47,7 @@ export interface ServerIncludes extends Includes {
   models: Record<ResourceId, ProviderServers.Server>;
 }
 
-export type Collection = CollectionDoc<Server, {}, ServerIncludes>;
+export type Collection = CollectionDoc<Server, ServerIncludes>;
 export type Single = SingleDoc<Server>;
 
 export interface ServerMeta {

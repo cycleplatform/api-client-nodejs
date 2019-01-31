@@ -3,7 +3,7 @@ import { Token } from "../../../auth";
 import { QueryParams, links, Settings } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type Action = "start" | "stop";
+export type EnvironmentAction = "start" | "stop";
 
 export async function start({
   id,
@@ -77,11 +77,11 @@ export async function task<K = {}>({
 }: {
   id: ResourceId;
   token: Token;
-  value: Task<Action, K>;
+  value: Task<EnvironmentAction, K>;
   query?: QueryParams;
   settings?: Settings;
 }) {
-  return Request.postRequest<CreatedTask<Action, K>>({
+  return Request.postRequest<CreatedTask<EnvironmentAction, K>>({
     value,
     query,
     token,

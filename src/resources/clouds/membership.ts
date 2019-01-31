@@ -1,6 +1,6 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -11,7 +11,7 @@ import {
   Time,
 } from "../../common/structs";
 import { PublicAccount } from "../accounts/account";
-import { Project } from "./project";
+import { Cloud } from "./cloud";
 import { Capability } from "./capability";
 import { Name } from "../accounts";
 
@@ -40,7 +40,7 @@ export enum Role {
 
 export interface Membership extends Resource<MembershipMeta> {
   account_id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   role: Role;
   events: Events<MembershipEvent>;
   state: State<MembershipState>;
@@ -55,8 +55,8 @@ export interface MembershipIncludes {
   senders: {
     [key: string]: PublicAccount;
   };
-  projects: {
-    [key: string]: Project;
+  clouds: {
+    [key: string]: Cloud;
   };
 }
 
@@ -76,7 +76,7 @@ export interface Member extends Resource<MembershipMeta> {
 }
 
 /**
- * Members in this project
+ * Members of this cloud
  */
 export async function getCollection({
   token,
@@ -85,14 +85,14 @@ export async function getCollection({
 }: {
   token: Token;
   query?: MembershipQuery;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<CollectionDoc<Member>>({
     query,
     token,
     settings,
     target: links
-      .projects()
+      .clouds()
       .members()
       .collection(),
   });
@@ -105,14 +105,14 @@ export async function getCurrentMembership({
 }: {
   token: Token;
   query?: MembershipQuery;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<SingleDoc<Member>>({
     query,
     token,
     settings,
     target: links
-      .projects()
+      .clouds()
       .members()
       .membership(),
   });
@@ -127,14 +127,14 @@ export async function revoke({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.deleteRequest<Single>({
     query,
     token,
     settings,
     target: links
-      .projects()
+      .clouds()
       .members()
       .single(id),
   });

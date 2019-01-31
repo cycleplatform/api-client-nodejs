@@ -9,11 +9,7 @@ import {
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import {
-  QueryParams,
-  links,
-  ProjectRequiredSettings,
-} from "../../../common/api";
+import { QueryParams, links, Settings } from "../../../common/api";
 
 export type Collection = CollectionDoc<Method>;
 export type Single = SingleDoc<Method>;
@@ -51,7 +47,7 @@ export async function getCollection({
 }: {
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
@@ -73,7 +69,7 @@ export async function getSingle({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Single>({
     query,
@@ -110,7 +106,7 @@ export async function create({
   value: CreateParams;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.postRequest<Single>({
     value,
@@ -141,7 +137,7 @@ export async function update({
   value: UpdateParams;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.patchRequest<Single>({
     value,

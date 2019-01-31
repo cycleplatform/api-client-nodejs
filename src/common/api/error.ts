@@ -33,8 +33,8 @@ export enum ErrorCode {
   C_401_AUTH_EXPIRED = "401.auth_expired",
   C_401_INVALID_API_KEY = "401.invalid_api_key",
 
-  C_403_PROJECT_MISMATCH = "403.project_mismatch",
-  C_403_PROJECT_NOT_READY = "403.project_not_ready",
+  C_403_CLOUD_MISMATCH = "403.cloud_mismatch",
+  C_403_CLOUD_NOT_READY = "403.cloud_not_ready",
   C_403_ENVIRONMENT_NOT_READY = "403.environment_not_ready",
   C_403_PIPELINE_NOT_READY = "403.pipeline_not_ready",
   C_403_PORTAL_RESTRICTED = "403.restricted_portal",
@@ -44,8 +44,8 @@ export enum ErrorCode {
   C_403_KEY_DISALLOWED = "403.key_disallowed",
   C_403_INVALID_STATE = "403.invalid_state",
 
-  C_404_PROJECT = "404.project",
-  C_404_PROJECT_INVITATION = "404.project_invitation",
+  C_404_CLOUD = "404.cloud",
+  C_404_CLOUD_INVITATION = "404.cloud_invitation",
   C_404_ENVIRONMENT = "404.environment",
   C_404_PIPELINE = "404.pipeline",
   C_404_PIPELINE_HOOK = "404.pipeline_hook",
@@ -77,7 +77,7 @@ export enum ErrorCode {
   C_404_PROMO_CODE = "404.promo_code",
   C_404_TIER = "404.tier",
   C_404_PAYMENT_METHOD = "404.payment_method",
-  C_404_PROJECT_MEMBERSHIP = "404.project_membership",
+  C_404_CLOUD_MEMBERSHIP = "404.cloud_membership",
 
   C_409_DUPLICATE_FOUND = "409.duplicate_found",
 

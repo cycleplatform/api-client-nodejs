@@ -9,7 +9,7 @@ import {
 } from "../../common/structs";
 import { PublicAccount } from "./account";
 
-export type Collection = CollectionDoc<Login, {}, LoginIncludes>;
+export type Collection = CollectionDoc<Login, LoginIncludes>;
 export type LoginType = "password" | "employee";
 export type LoginQuery = QueryParams<keyof LoginIncludes>;
 

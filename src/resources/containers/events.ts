@@ -1,6 +1,6 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -13,7 +13,7 @@ export type EventType = "default" | "info" | "success" | "error";
 
 export interface Event extends Resource {
   platform: boolean;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   container_id: ResourceId;
   detail: string;
   caption: string;
@@ -31,7 +31,7 @@ export async function getCollection({
   containerId: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,

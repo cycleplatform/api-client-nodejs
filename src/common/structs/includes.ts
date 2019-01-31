@@ -1,5 +1,5 @@
 import { PublicAccount } from "../../resources/accounts";
-import { ApiKeys } from "../../resources/projects";
+import { ApiKeys } from "../../resources/clouds";
 
 /** Count number of resource of state */
 export interface StatefulCounts<K extends string> {

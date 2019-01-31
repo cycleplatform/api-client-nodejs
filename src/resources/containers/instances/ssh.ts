@@ -5,11 +5,7 @@ import {
   Time,
 } from "../../../common/structs";
 import { Token } from "../../../auth";
-import {
-  links,
-  ProjectRequiredSettings,
-  getRequest,
-} from "../../../common/api";
+import { links, Settings, getRequest } from "../../../common/api";
 
 export type SSHConnectionDoc = { data: SSHConnectionResponse };
 
@@ -22,7 +18,7 @@ export interface SSHConnectionResponse {
 export interface SSHToken extends Resource {
   instance_id: ResourceId;
   container_id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   owner: OwnerScope;
   events: {
     created: Time;
@@ -41,7 +37,7 @@ export async function getSSHConnection({
   containerId: ResourceId;
   instanceId: ResourceId;
   token: Token;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return getRequest<SSHConnectionDoc>({
     token,

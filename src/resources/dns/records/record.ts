@@ -1,6 +1,6 @@
-import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
+import * as Request from "../../../common/api/request";
+import { Token } from "../../../auth";
+import { QueryParams, links, Settings } from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -11,17 +11,17 @@ import {
   OwnerInclude,
   CreatedTask,
   State,
-} from "../../common/structs";
-import { Container } from "../containers";
+} from "../../../common/structs";
+import { Container } from "../../containers";
 
-export type Collection = CollectionDoc<Record, {}, RecordIncludes>;
-export type Single = SingleDoc<Record>;
+export type Collection = CollectionDoc<Record, RecordIncludes>;
+export type Single = SingleDoc<Record, RecordIncludes>;
 
 export type RecordState = "live" | "deleting" | "deleted";
 export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   owner: OwnerScope;
   zone_id: ResourceId;
   name: string;
@@ -94,7 +94,7 @@ export async function getCollection({
   zoneId: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
@@ -123,7 +123,7 @@ export async function create({
   value: CreateParams;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.postRequest<Single>({
     query,
@@ -150,7 +150,7 @@ export async function update({
   value: CreateParams;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.patchRequest<Single>({
     query,
@@ -175,7 +175,7 @@ export async function remove({
   recordId: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     query,

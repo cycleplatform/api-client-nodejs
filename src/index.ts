@@ -12,15 +12,15 @@ import * as Images from "./resources/images";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Jobs from "./resources/jobs";
 import * as Pipelines from "./resources/pipelines";
-import * as Projects from "./resources/projects";
+import * as Clouds from "./resources/clouds";
 import { QueryParams } from "./common/api/query";
 import * as Secrets from "./resources/secrets";
-import { Settings, ProjectRequiredSettings } from "./common/api/settings";
+import { Settings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
 import * as Notifications from "./notifications";
 
-export { Capability } from "./resources/projects";
+export { Capability } from "./resources/clouds";
 
 export {
   Auth,
@@ -36,8 +36,7 @@ export {
   Jobs,
   Notifications,
   Pipelines,
-  Projects,
-  ProjectRequiredSettings,
+  Clouds,
   QueryParams,
   Request,
   Secrets,

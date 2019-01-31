@@ -9,11 +9,7 @@ import {
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import {
-  QueryParams,
-  links,
-  ProjectRequiredSettings,
-} from "../../../common/api";
+import { QueryParams, links, Settings } from "../../../common/api";
 
 export type Collection = CollectionDoc<Credit>;
 export type Single = SingleDoc<Credit>;
@@ -22,7 +18,7 @@ export type CreditEvent = "expires";
 
 export interface Credit {
   id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   description: string;
   owner: OwnerScope;
   amount: number;
@@ -48,7 +44,7 @@ export async function getCollection({
 }: {
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
@@ -70,7 +66,7 @@ export async function getSingle({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Single>({
     query,

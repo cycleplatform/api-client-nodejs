@@ -27,7 +27,7 @@ export interface Pipeline extends Resource {
   name: string;
   owner: OwnerScope;
   stack_id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   stages: Stages;
   state: State<PipelineState>;
   events: Events;

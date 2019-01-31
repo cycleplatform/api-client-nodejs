@@ -4,7 +4,7 @@ import { ProviderIdentifier } from "../provider";
 
 export interface Reservation extends Resource {
   container_id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   kind: Kind;
   provider: Provider;
   ip: IPNet;

@@ -2,7 +2,7 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
 import { CollectionDoc } from "../../common/structs";
-import * as Memberships from "../projects/membership";
+import * as Memberships from "../clouds/membership";
 
 export async function getMemberships({
   token,

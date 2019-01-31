@@ -32,14 +32,14 @@ export interface Image extends Resource<ImageMetas> {
   name: string;
   stack_id: ResourceId;
   size: Bytes;
-  about: {
-    description: string;
+  about?: {
+    description: string | null;
   };
   tags: string[];
   config: Config;
   source: Spec.ImageSource;
   owner: OwnerScope;
-  project: ResourceId;
+  cloud_id: ResourceId;
   state: State<ImageState>;
   events: Events;
 }

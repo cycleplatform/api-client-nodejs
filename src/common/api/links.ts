@@ -48,7 +48,26 @@ export const links = {
 
   channels: () => ({
     account: () => "/account/notifications",
-    project: () => "/projects/current/notifications",
+    cloud: () => "/clouds/current/notifications",
+  }),
+
+  clouds: () => ({
+    collection: () => `/clouds`,
+    single: () => `/clouds/current`,
+    tasks: () => `/clouds/current/tasks`,
+    capabilities: () => `/clouds/capabilities`,
+    invites: () => ({
+      collection: () => `/clouds/current/invites`,
+    }),
+    members: () => ({
+      collection: () => `/clouds/current/members`,
+      membership: () => `/clouds/current/membership`,
+      single: (id: ResourceId) => `/clouds/current/members/${id}`,
+    }),
+    keys: () => ({
+      collection: () => `/clouds/current/api-keys`,
+      single: (id: ResourceId) => `/clouds/current/api-keys/${id}`,
+    }),
   }),
 
   containers: () => ({
@@ -156,25 +175,6 @@ export const links = {
     collection: () => `/pipelines`,
     single: (id: ResourceId) => `/pipelines/${id}`,
     hooks: (id: ResourceId) => `/pipelines/${id}/hooks`,
-  }),
-
-  projects: () => ({
-    collection: () => `/projects`,
-    single: () => `/projects/current`,
-    tasks: () => `/projects/current/tasks`,
-    capabilities: () => `/projects/capabilities`,
-    invites: () => ({
-      collection: () => `/projects/current/invites`,
-    }),
-    members: () => ({
-      collection: () => `/projects/current/members`,
-      membership: () => `/projects/current/membership`,
-      single: (id: ResourceId) => `/projects/current/members/${id}`,
-    }),
-    keys: () => ({
-      collection: () => `/projects/current/api-keys`,
-      single: (id: ResourceId) => `/projects/current/api-keys/${id}`,
-    }),
   }),
 
   stacks: () => ({

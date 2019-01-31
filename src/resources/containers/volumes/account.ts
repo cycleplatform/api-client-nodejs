@@ -9,7 +9,7 @@ export interface VolumeAccount extends Resource {
   username: string;
   readonly: boolean;
   container_id: ResourceId;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   container_volume_id: ResourceId;
 }
 

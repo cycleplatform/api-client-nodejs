@@ -4,44 +4,34 @@ import { QueryParams, links, Settings } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
-  SingleDoc,
   ResourceId,
-  State,
   Events,
+  State,
   OwnerScope,
+  SingleDoc,
 } from "../../common/structs";
-import { Spec } from "./spec";
+import { Capability } from "./capability";
 
-export type Collection = CollectionDoc<Stack>;
-export type Single = SingleDoc<Stack>;
-export type StackState =
-  | "new"
-  | "importing"
-  | "building"
-  | "verifying"
-  | "saving"
-  | "live"
-  | "deleting"
-  | "deleted";
+export type Collection = CollectionDoc<ApiKey>;
+export type Single = SingleDoc<ApiKey>;
 
-export interface Stack extends Resource {
+export interface ApiKey extends Resource {
   name: string;
+  secret: string;
   owner: OwnerScope;
+  capabilities: Capability[];
   cloud_id: ResourceId;
-  source: Source;
-  state: State<StackState>;
+  ips: string[] | null;
+  state: State<ApiKeyState>;
   events: Events;
 }
 
-export interface Source {
-  repo?: Repo;
-  raw?: string | Spec; // string for creating. Spec on return
-}
+export type ApiKeyState = "live" | "deleting" | "deleted";
 
-export interface Repo {
-  url: string;
-  private_key?: string; // used for creating
-  private_key_url?: string;
+export interface CreateParams {
+  name: string;
+  capabilities: Capability[];
+  ips: string[] | null;
 }
 
 export async function getCollection({
@@ -55,74 +45,76 @@ export async function getCollection({
 }) {
   return Request.getRequest<Collection>({
     query,
-    token,
     settings,
-    target: links.stacks().collection(),
+    token,
+    target: links
+      .clouds()
+      .keys()
+      .collection(),
   });
 }
 
 export async function getSingle({
-  id,
   token,
   query,
   settings,
 }: {
-  id: ResourceId;
   token: Token;
   query?: QueryParams;
   settings?: Settings;
 }) {
   return Request.getRequest<Single>({
     query,
-    token,
     settings,
-    target: links.stacks().single(id),
+    token,
+    target: links
+      .clouds()
+      .keys()
+      .collection(),
   });
 }
 
-export interface StackCreateParams {
-  name: string;
-  source: Source;
-}
-
 export async function create({
-  value,
   token,
+  value,
   query,
   settings,
 }: {
-  value: StackCreateParams;
   token: Token;
+  value: CreateParams;
   query?: QueryParams;
   settings?: Settings;
 }) {
   return Request.postRequest<Single>({
     value,
     query,
-    token,
     settings,
-    target: links.stacks().collection(),
+    token,
+    target: links
+      .clouds()
+      .keys()
+      .collection(),
   });
 }
 
-export async function update({
+export async function remove({
   id,
   token,
-  value,
   query,
   settings,
 }: {
   id: ResourceId;
   token: Token;
-  value: StackCreateParams;
   query?: QueryParams;
-  settings?: Settings;
+  settings: Settings;
 }) {
-  return Request.patchRequest<Single>({
-    value,
+  return Request.deleteRequest<Single>({
     query,
     token,
     settings,
-    target: links.stacks().single(id),
+    target: links
+      .clouds()
+      .keys()
+      .single(id),
   });
 }

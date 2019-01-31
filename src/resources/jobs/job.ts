@@ -13,8 +13,8 @@ import {
   OwnerInclude,
 } from "../../common/structs";
 
-export type Collection = CollectionDoc<Job, {}, JobIncludes>;
-export type Single = SingleDoc<Job, {}, JobIncludes>;
+export type Collection = CollectionDoc<Job, JobIncludes>;
+export type Single = SingleDoc<Job, JobIncludes>;
 export type JobState =
   | "new"
   | "queued"
@@ -33,7 +33,7 @@ export interface Job extends Resource {
   expires: Time;
   tasks: JobTask[];
   owner: OwnerScope;
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   state: State<JobState>;
 }
 

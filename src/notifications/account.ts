@@ -1,6 +1,6 @@
 import { Token } from "../auth";
 import * as Request from "../common/api/request";
-import { links, ProjectRequiredSettings } from "../common/api";
+import { links, Settings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
 import { Notification } from "./event";
 
@@ -13,12 +13,12 @@ export enum AccountHeader {
   ACCOUNT_STATE_CHANGED = "account.state_changed",
   /** An error occured related to the account */
   ACCOUNT_ERROR = "account.error",
-  /** A new project was created */
-  PROJECT_CREATED = "project.created",
-  /** An error occurred on a project */
-  PROJECT_ERROR = "project.error",
-  /** A new member was added to a project in your scope */
-  PROJECT_MEMBERSHIP_NEW = "project.membership.new",
+  /** A new cloud was created */
+  CLOUD_CREATED = "cloud.created",
+  /** An error occurred on a cloud */
+  CLOUD_ERROR = "cloud.error",
+  /** A new member was added to a cloud */
+  CLOUD_MEMBERSHIP_NEW = "cloud.membership.new",
 }
 
 export type AccountNotification = Notification<AccountHeader>;
@@ -28,7 +28,7 @@ export type AccountNotification = Notification<AccountHeader>;
  */
 export interface AccountChannelParams {
   token: Token;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
   onMessage?: (v: AccountNotification) => void;
 }
 

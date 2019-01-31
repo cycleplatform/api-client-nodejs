@@ -2,7 +2,7 @@ import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
 import { QueryParams, links, Settings } from "../../common/api";
 import { CollectionDoc, ResourceId, SingleDoc } from "../../common/structs";
-import * as Memberships from "../projects/membership";
+import * as Memberships from "../clouds/membership";
 
 export async function getCollection({
   token,
@@ -14,7 +14,7 @@ export async function getCollection({
   settings?: Settings;
 }) {
   return Request.getRequest<
-    CollectionDoc<Memberships.Membership, {}, Memberships.MembershipIncludes>
+    CollectionDoc<Memberships.Membership, Memberships.MembershipIncludes>
   >({
     query,
     token,
@@ -45,7 +45,7 @@ export async function update({
   settings?: Settings;
 }) {
   return Request.patchRequest<
-    SingleDoc<Memberships.Membership, {}, Memberships.MembershipIncludes>
+    SingleDoc<Memberships.Membership, Memberships.MembershipIncludes>
   >({
     value,
     query,

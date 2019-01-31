@@ -9,11 +9,7 @@ import {
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import {
-  QueryParams,
-  links,
-  ProjectRequiredSettings,
-} from "../../../common/api";
+import { QueryParams, links, Settings } from "../../../common/api";
 import { Payment } from "./payment";
 import { Credit } from "./credit";
 import { LateFee } from "./latefee";
@@ -42,7 +38,7 @@ export type InvoiceEvent =
   | "voided";
 
 export interface Invoice extends Resource {
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   approved: boolean;
   services: ServiceSummary[];
   payments: Payment[];
@@ -62,7 +58,7 @@ export async function getCollection({
 }: {
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
@@ -84,7 +80,7 @@ export async function getSingle({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings: ProjectRequiredSettings;
+  settings: Settings;
 }) {
   return Request.getRequest<Single>({
     query,

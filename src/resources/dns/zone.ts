@@ -1,6 +1,6 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -12,13 +12,13 @@ import {
   OwnerInclude,
   CreatedTask,
 } from "../../common/structs";
-import * as Records from "./record";
+import * as Records from "./records";
 
 export * from "./tasks/zone";
 export { Records };
 
-export type Collection = CollectionDoc<Zone, {}, ZoneIncludes>;
-export type Single = SingleDoc<Zone>;
+export type Collection = CollectionDoc<Zone, ZoneIncludes>;
+export type Single = SingleDoc<Zone, ZoneIncludes>;
 
 export type ZoneState =
   | "pending"
@@ -31,7 +31,7 @@ export type ZoneEvent = "last_verification" | "verified";
 export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   owner: OwnerScope;
   origin: string;
   state: State<ZoneState>;
@@ -49,7 +49,7 @@ export async function getCollection({
 }: {
   token: Token;
   query?: ZoneQuery;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
@@ -71,7 +71,7 @@ export async function getSingle({
   id: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<Single>({
     query,
@@ -97,7 +97,7 @@ export async function create({
   value: CreateParams;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.postRequest<Single>({
     query,
@@ -120,7 +120,7 @@ export async function remove({
   zoneId: ResourceId;
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     query,

@@ -1,6 +1,6 @@
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { QueryParams, links, ProjectRequiredSettings } from "../../common/api";
+import { QueryParams, links, Settings } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -30,7 +30,7 @@ export interface EntryComponent {
 }
 
 export interface Entry extends Resource {
-  project_id: ResourceId;
+  cloud_id: ResourceId;
   environment_id: ResourceId;
   user: OwnerScope;
   session: EntrySession;
@@ -51,7 +51,7 @@ export async function getEntries({
 }: {
   token: Token;
   query?: QueryParams;
-  settings?: ProjectRequiredSettings;
+  settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
     query,
