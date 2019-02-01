@@ -9,7 +9,7 @@ import {
   State,
 } from "../../common/structs";
 import { Membership } from "./membership";
-import { DeepPartial } from "typings/common";
+import { DeepPartial } from "../../common/types/common";
 
 export type Collection = CollectionDoc<Hub>;
 export type Single = SingleDoc<Hub>;

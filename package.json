@@ -1,51 +1,51 @@
 {
-    "name": "@cycleplatform/cycle-api",
-    "version": "2.0.0-next.93",
-    "description": "Cycle API Client",
-    "main": "dist/node.js",
-    "browser": "dist/index.js",
-    "typings": "dist/index.d.ts",
-    "scripts": {
-        "prepublishOnly": "rm -rf ./dist && tsc",
-        "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --staged"
-        }
-    },
-    "devDependencies": {
-        "@types/chai": "^4.1.2",
-        "@types/chai-json-schema": "^1.4.3",
-        "@types/dotenv": "^4.0.2",
-        "@types/mocha": "^2.2.48",
-        "@types/node": "^8.9.4",
-        "@types/speakeasy": "^2.0.2",
-        "@types/ws": "^3.2.1",
-        "chai": "^4.1.2",
-        "chai-json-schema": "^1.4.0",
-        "dotenv": "^4.0.0",
-        "husky": "^0.14.3",
-        "mocha": "^4.1.0",
-        "prettier": "^1.11.1",
-        "speakeasy": "^2.0.0",
-        "ts-node": "^3.3.0",
-        "typescript": "^3.0.1",
-        "typescript-json-schema": "^0.31.0",
-        "tslint": "^5.11.0",
-        "tslint-config-blvd": "^1.2.1",
-        "tslint-config-prettier": "^1.15.0",
-        "tslint-plugin-prettier": "^2.0.1",
-        "pretty-quick": "^1.8.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/cycleplatform/api-client-nodejs"
-    },
-    "author": "Petrichor, Inc.",
-    "license": "Apache-2.0",
-    "dependencies": {
-        "isomorphic-fetch": "^2.2.1",
-        "ws": "^4.1.0"
+  "name": "@cycleplatform/cycle-api",
+  "version": "2.0.0-next.93",
+  "description": "Cycle API Client",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "prepublishOnly": "npm run build",
+    "test": "TS_NODE_PROJECT=test mocha -r ts-node/register test/index.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
     }
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/chai-json-schema": "^1.4.3",
+    "@types/dotenv": "^4.0.2",
+    "@types/mocha": "^2.2.48",
+    "@types/node": "^8.9.4",
+    "@types/speakeasy": "^2.0.2",
+    "@types/ws": "^3.2.1",
+    "chai": "^4.1.2",
+    "chai-json-schema": "^1.4.0",
+    "dotenv": "^4.0.0",
+    "husky": "^0.14.3",
+    "mocha": "^4.1.0",
+    "prettier": "^1.11.1",
+    "speakeasy": "^2.0.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^3.0.1",
+    "typescript-json-schema": "^0.31.0",
+    "tslint": "^5.11.0",
+    "tslint-config-blvd": "^1.2.1",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "pretty-quick": "^1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cycleplatform/api-client-nodejs"
+  },
+  "author": "Petrichor, Inc.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "ws": "^4.1.0"
+  }
 }

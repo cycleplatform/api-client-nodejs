@@ -38,7 +38,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
   owner: OwnerScope;
   hub_id: ResourceId;
   state: State<EnvironmentState>;
-  pipeline: Pipeline | null;
+  project: Project | null;
   stack: Stack | null;
   events: Events;
   private_network: {
@@ -49,9 +49,8 @@ export interface Environment extends Resource<EnvironmentMeta> {
   services: Services;
 }
 
-export interface Pipeline {
+export interface Project {
   id: ResourceId;
-  stage: string;
 }
 
 export interface Stack {

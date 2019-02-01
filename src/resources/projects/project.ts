@@ -10,12 +10,12 @@ import {
 import { QueryParams, links, Settings } from "../../common/api";
 import * as Request from "../../common/api/request";
 import { Token } from "../../auth";
-import { Omit } from "typings/common";
+import { Omit } from "../../common/types/common";
 
-export type Collection = CollectionDoc<Pipeline>;
-export type Single = SingleDoc<Pipeline>;
+export type Collection = CollectionDoc<Project>;
+export type Single = SingleDoc<Project>;
 
-export type PipelineState =
+export type ProjectState =
   | "new"
   | "live"
   | "building"
@@ -23,17 +23,14 @@ export type PipelineState =
   | "deleting"
   | "deleted";
 
-export interface Pipeline extends Resource {
+export interface Project extends Resource {
   name: string;
   owner: OwnerScope;
   stack_id: ResourceId;
   hub_id: ResourceId;
-  stages: Stages;
-  state: State<PipelineState>;
+  state: State<ProjectState>;
   events: Events;
 }
-
-export type Stages = string[];
 
 export async function getCollection({
   token,
@@ -73,7 +70,6 @@ export async function getSingle({
 
 export interface CreateParams {
   name: string;
-  stages: Stages;
   stack_id: string;
 }
 

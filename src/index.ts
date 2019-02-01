@@ -11,7 +11,7 @@ import * as Errors from "./common/api/error";
 import * as Images from "./resources/images";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Jobs from "./resources/jobs";
-import * as Pipelines from "./resources/pipelines";
+import * as Projects from "./resources/projects";
 import * as Hubs from "./resources/hubs";
 import { QueryParams } from "./common/api/query";
 import * as Secrets from "./resources/secrets";
@@ -35,7 +35,7 @@ export {
   Infrastructure,
   Jobs,
   Notifications,
-  Pipelines,
+  Projects,
   Hubs,
   QueryParams,
   Request,

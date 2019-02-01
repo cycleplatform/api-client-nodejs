@@ -17,19 +17,10 @@
     "moduleResolution": "node",
     "noEmitHelpers": true,
     "importHelpers": true,
-    "lib": [
-      "dom",
-      "es6"
-    ],
+    "lib": ["dom", "es6"],
     "paths": {
-      "__mocks__/*": [
-        "../__mocks__/*"
-      ]
+      "__mocks__/*": ["../__mocks__/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "fuse.ts",
-    "test"
-  ]
+  "exclude": ["node_modules", "test", "./dist"]
 }
