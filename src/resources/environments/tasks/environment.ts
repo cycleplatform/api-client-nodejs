@@ -1,91 +1,54 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
 export type EnvironmentAction = "start" | "stop";
 
-export async function start({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function start(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "start",
     },
   });
 }
 
-export async function stop({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function stop(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "stop",
     },
   });
 }
 
-export async function remove({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
-    target: links.environments().single(id),
+    ...params,
+    target: links.environments().single(params.id),
   });
 }
 
-export async function task<K = {}>({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: Task<EnvironmentAction, K>;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function task<K = {}>(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Task<EnvironmentAction, K>;
+  },
+) {
   return Request.postRequest<CreatedTask<EnvironmentAction, K>>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.environments().tasks(id),
+    ...params,
+    target: links.environments().tasks(params.id),
   });
 }

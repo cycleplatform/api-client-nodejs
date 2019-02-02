@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 import { Config } from "../../stacks/spec";
 import { ContainerVolume } from "../volumes";
@@ -13,96 +12,58 @@ export type ContainerAction =
   | "reconfigure_volumes"
   | "reconfigure_domain";
 
-export async function start({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function start(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "start",
     },
   });
 }
 
-export async function stop({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function stop(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "stop",
     },
   });
 }
 
-export async function reconfigure({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: Config;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function reconfigure(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Config;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "reconfigure",
-      contents: value,
+      contents: params.value,
     },
   });
 }
 
-export async function reconfigureVolumes({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: ContainerVolume[];
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function reconfigureVolumes(
+  params: StandardParams & {
+    id: ResourceId;
+    value: ContainerVolume[];
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "reconfigure_volumes",
-      contents: value,
+      contents: params.value,
     },
   });
 }
@@ -111,97 +72,40 @@ export interface ReimageParams {
   image_id: string;
 }
 
-export async function reimage({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: ReimageParams;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function reimage(
+  params: StandardParams & {
+    id: ResourceId;
+    value: ReimageParams;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "reimage",
-      contents: value,
+      contents: params.value,
     },
   });
 }
 
-export interface ReconfigureDomainParams {
-  hosted_domain_id: string;
-}
-
-export async function reconfigureDomain({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: ReconfigureDomainParams;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
-  return task({
-    id,
-    token,
-    query,
-    settings,
-    value: {
-      action: "reconfigure_domain",
-      contents: value,
-    },
-  });
-}
-
-export async function remove({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
-    target: links.containers().single(id),
+    ...params,
+    target: links.containers().single(params.id),
   });
 }
 
-export async function task<K = {}>({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: Task<ContainerAction, K>;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function task<K = {}>(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Task<ContainerAction, K>;
+  },
+) {
   return Request.postRequest<CreatedTask<ContainerAction, K>>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.containers().tasks(id),
+    ...params,
+    target: links.containers().tasks(params.id),
   });
 }

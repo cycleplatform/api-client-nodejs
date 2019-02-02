@@ -7,8 +7,7 @@ import {
   Megabytes,
   Time,
 } from "../../../common/structs";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { Spec } from "../../stacks";
 
 export type Collection = CollectionDoc<Volume>;
@@ -40,26 +39,17 @@ export interface SFTP {
   username: string;
 }
 
-export async function getCollection({
-  instanceId,
-  containerId,
-  token,
-  query,
-  settings,
-}: {
-  instanceId: ResourceId;
-  containerId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams & {
+    instanceId: ResourceId;
+    containerId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .instances()
-      .volumes(instanceId, containerId),
+      .volumes(params.instanceId, params.containerId),
   });
 }

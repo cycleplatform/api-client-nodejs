@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -34,19 +33,9 @@ export interface CreateParams {
   ips: string[] | null;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
-    query,
-    settings,
-    token,
+    ...params,
     target: links
       .hubs()
       .keys()
@@ -54,42 +43,23 @@ export async function getCollection({
   });
 }
 
-export async function getSingle({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams & {
+    apiKeyId: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    settings,
-    token,
+    ...params,
     target: links
       .hubs()
       .keys()
-      .collection(),
+      .single(params.apiKeyId),
   });
 }
 
-export async function create({
-  token,
-  value,
-  query,
-  settings,
-}: {
-  token: Token;
-  value: CreateParams;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(params: StandardParams & { value: CreateParams }) {
   return Request.postRequest<Single>({
-    value,
-    query,
-    settings,
-    token,
+    ...params,
     target: links
       .hubs()
       .keys()
@@ -97,24 +67,16 @@ export async function create({
   });
 }
 
-export async function remove({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function remove(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .hubs()
       .keys()
-      .single(id),
+      .single(params.id),
   });
 }

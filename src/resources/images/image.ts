@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -58,39 +57,21 @@ export interface ImageIncludes {
   };
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: ImageQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams<ImageQuery>) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.images().collection(),
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: ImageQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<ImageQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
-    target: links.images().single(id),
+    ...params,
+    target: links.images().single(params.id),
   });
 }
 
@@ -98,24 +79,14 @@ export interface UpdateParams {
   name: string;
 }
 
-export async function update({
-  id,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  value: UpdateParams;
-  token: Token;
-  query?: ImageQuery;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams<ImageQuery> & {
+    id: ResourceId;
+    value: UpdateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.images().single(id),
+    ...params,
+    target: links.images().single(params.id),
   });
 }

@@ -1,16 +1,11 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { ResourceId } from "../../../common/structs";
 import { connectToSocket } from "../../../common/api/websocket";
 
-export interface ConsolePipelineParams {
+export interface ConsolePipelineParams extends StandardParams {
   id: ResourceId;
-  token: Token;
-  settings?: Settings;
-  /**
-   * optional typed onmessage handler
-   */
+  /** optional typed onmessage handler */
   onMessage?: (v: string) => void;
 }
 
@@ -28,9 +23,8 @@ export async function connectToConsole(params: ConsolePipelineParams) {
     .console(params.id);
 
   const secretResp = await Request.getRequest<ConsolePipelineResponse>({
+    ...params,
     target,
-    token: params.token,
-    settings: params.settings,
   });
 
   if (!secretResp.ok) {

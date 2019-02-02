@@ -8,8 +8,7 @@ import {
   Time,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { Payment } from "./payment";
 import { Credit } from "./credit";
 import { LateFee } from "./latefee";
@@ -51,19 +50,9 @@ export interface Invoice extends Resource {
   state: State<InvoiceState>;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .invoices()
@@ -71,24 +60,16 @@ export async function getCollection({
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .invoices()
-      .single(id),
+      .single(params.id),
   });
 }

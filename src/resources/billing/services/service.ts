@@ -8,10 +8,8 @@ import {
   CollectionDoc,
   SingleDoc,
 } from "../../../common/structs";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import * as Request from "../../../common/api/request";
-
 import { Term } from "../term";
 import { Item } from "./item";
 import { Amount } from "../amount";
@@ -50,41 +48,23 @@ export interface Summary {
   discount: Mills;
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .services()
-      .single(id),
+      .single(params.id),
   });
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .services()

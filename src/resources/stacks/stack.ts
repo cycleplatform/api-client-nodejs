@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -44,39 +43,21 @@ export interface Repo {
   private_key_url?: string;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.stacks().collection(),
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
-    target: links.stacks().single(id),
+    ...params,
+    target: links.stacks().single(params.id),
   });
 }
 
@@ -85,44 +66,25 @@ export interface StackCreateParams {
   source: Source;
 }
 
-export async function create({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: StackCreateParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams & {
+    value: StackCreateParams;
+  },
+) {
   return Request.postRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links.stacks().collection(),
   });
 }
 
-export async function update({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: StackCreateParams;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams & {
+    id: ResourceId;
+    value: StackCreateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.stacks().single(id),
+    ...params,
+    target: links.stacks().single(params.id),
   });
 }

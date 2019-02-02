@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -54,19 +53,9 @@ export interface TwoFactorAuth {
   verified: boolean;
 }
 
-export async function getSingle({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getSingle(params: StandardParams) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.account().single(),
   });
 }
@@ -79,22 +68,13 @@ export interface UpdateParams {
   allow_support_login?: boolean;
 }
 
-export async function update({
-  token,
-  value,
-  query,
-  settings,
-}: {
-  token: Token;
-  value: UpdateParams;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams & {
+    value: UpdateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links.account().single(),
   });
 }

@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import { Spec, Builds, Stack } from "../stacks";
 import { Image } from "../images";
 import {
@@ -95,39 +94,21 @@ export interface LoadBalancer {
   container_id: ResourceId;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: ContainerQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams<ContainerQuery>) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.containers().collection(),
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: ContainerQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<ContainerQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
-    target: links.containers().single(id),
+    ...params,
+    target: links.containers().single(params.id),
   });
 }
 
@@ -139,44 +120,23 @@ export interface CreateParams {
   volumes: Spec.Volume[];
 }
 
-export async function create({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: CreateParams;
-  token: Token;
-  query?: ContainerQuery;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams<ContainerQuery> & { value: CreateParams },
+) {
   return Request.postRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links.containers().collection(),
   });
 }
 
-export async function update({
-  id,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  value: Pick<CreateParams, "name">;
-  token: Token;
-  query?: ContainerQuery;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams<ContainerQuery> & {
+    id: ResourceId;
+    value: Pick<CreateParams, "name">;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.containers().single(id),
+    ...params,
+    target: links.containers().single(params.id),
   });
 }

@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { links, Settings, QueryParams } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import {
   Resource,
   ResourceId,
@@ -20,24 +19,16 @@ export interface TelemetryPoint extends Resource {
   storage_root: StorageStats;
 }
 
-export async function getCollection({
-  server_id,
-  token,
-  query,
-  settings,
-}: {
-  server_id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams & {
+    serverId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    token,
-    query,
-    settings,
+    ...params,
     target: links
       .infrastructure()
       .servers()
-      .telemetry(server_id),
+      .telemetry(params.serverId),
   });
 }

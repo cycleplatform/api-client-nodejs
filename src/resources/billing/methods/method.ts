@@ -8,8 +8,7 @@ import {
   ResourceId,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 
 export type Collection = CollectionDoc<Method>;
 export type Single = SingleDoc<Method>;
@@ -40,19 +39,9 @@ export interface CreditCard {
   last_4: string;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .methods()
@@ -60,25 +49,17 @@ export async function getCollection({
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .methods()
-      .single(id),
+      .single(params.id),
   });
 }
 
@@ -97,22 +78,13 @@ export interface CreateParams {
   };
 }
 
-export async function create({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: CreateParams;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function create(
+  params: StandardParams & {
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .methods()
@@ -126,27 +98,17 @@ export interface UpdateParams {
   address?: Address;
 }
 
-export async function update({
-  id,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  value: UpdateParams;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function update(
+  params: StandardParams & {
+    id: ResourceId;
+    value: UpdateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .billing()
       .methods()
-      .single(id),
+      .single(params.id),
   });
 }

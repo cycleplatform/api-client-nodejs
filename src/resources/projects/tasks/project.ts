@@ -1,47 +1,28 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
 type Action = "delete";
 
-export async function remove({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
-    target: links.projects().single(id),
+    ...params,
+    target: links.projects().single(params.id),
   });
 }
 
-export async function task<K = {}>({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: Task<Action, K>;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function task<K = {}>(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Task<Action, K>;
+  },
+) {
   return Request.postRequest<CreatedTask<Action, K>>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.environments().tasks(id),
+    ...params,
+    target: links.environments().tasks(params.id),
   });
 }

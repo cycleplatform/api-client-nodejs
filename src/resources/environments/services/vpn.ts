@@ -9,8 +9,7 @@ import {
   CreatedTask,
   Time,
 } from "../../../common/structs";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
 export interface VPNService extends Service {
@@ -60,72 +59,48 @@ export type VPNUserDoc = SingleDoc<VPNUser>;
 
 export type VPNLoginsDoc = CollectionDoc<VPNLogin>;
 
-export async function getVPNInfo({
-  environmentId,
-  token,
-  query,
-  settings,
-}: {
-  environmentId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getVPNInfo(
+  params: StandardParams & {
+    environmentId: ResourceId;
+  },
+) {
   return Request.getRequest<{ data: VPNInfo }>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .environments()
       .services()
       .vpn()
-      .details(environmentId),
+      .details(params.environmentId),
   });
 }
 
-export async function getVPNLogins({
-  environmentId,
-  token,
-  query,
-  settings,
-}: {
-  environmentId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getVPNLogins(
+  params: StandardParams & {
+    environmentId: ResourceId;
+  },
+) {
   return Request.getRequest<VPNLoginsDoc>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .environments()
       .services()
       .vpn()
-      .logins(environmentId),
+      .logins(params.environmentId),
   });
 }
 
-export async function getVPNUsers({
-  environmentId,
-  token,
-  query,
-  settings,
-}: {
-  environmentId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getVPNUsers(
+  params: StandardParams & {
+    environmentId: ResourceId;
+  },
+) {
   return Request.getRequest<VPNUsersDoc>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .environments()
       .services()
       .vpn()
-      .users(environmentId),
+      .users(params.environmentId),
   });
 }
 
@@ -134,84 +109,56 @@ export interface CreateVPNUserParams {
   password: string;
 }
 
-export async function createVPNUser({
-  environmentId,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  environmentId: ResourceId;
-  value: CreateVPNUserParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function createVPNUser(
+  params: StandardParams & {
+    environmentId: ResourceId;
+    value: CreateVPNUserParams;
+  },
+) {
   return Request.postRequest<VPNUsersDoc>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .environments()
       .services()
       .vpn()
-      .users(environmentId),
+      .users(params.environmentId),
   });
 }
 
-export async function deleteVPNUser({
-  environmentId,
-  userId,
-  token,
-  query,
-  settings,
-}: {
-  environmentId: ResourceId;
-  userId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function deleteVPNUser(
+  params: StandardParams & {
+    environmentId: ResourceId;
+    userId: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .environments()
       .services()
       .vpn()
-      .user(environmentId, userId),
+      .user(params.environmentId, params.userId),
   });
 }
 
 export type Action = "reconfigure";
 
-export async function reconfigure({
-  environmentId,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  environmentId: ResourceId;
-  token: Token;
-  value: VPNReconfigureDetails;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function reconfigure(
+  params: StandardParams & {
+    environmentId: ResourceId;
+    value: VPNReconfigureDetails;
+  },
+) {
   return Request.postRequest<CreatedTask<Action>>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .environments()
       .services()
       .vpn()
-      .tasks(environmentId),
+      .tasks(params.environmentId),
     value: {
       action: "reconfigure",
-      contents: value,
+      contents: params.value,
     },
   });
 }

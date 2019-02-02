@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -42,19 +41,9 @@ export interface ZoneIncludes {
   owners: OwnerInclude;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: ZoneQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams<ZoneQuery>) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .dns()
       .zones()
@@ -62,25 +51,17 @@ export async function getCollection({
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<ZoneQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .dns()
       .zones()
-      .single(id),
+      .single(params.id),
   });
 }
 
@@ -88,22 +69,13 @@ export interface CreateParams {
   origin: string;
 }
 
-export async function create({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: CreateParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams<ZoneQuery> & {
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<Single>({
-    query,
-    token,
-    settings,
-    value,
+    ...params,
     target: links
       .dns()
       .zones()
@@ -111,24 +83,16 @@ export async function create({
   });
 }
 
-export async function remove({
-  zoneId,
-  token,
-  query,
-  settings,
-}: {
-  zoneId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams<ZoneQuery> & {
+    zoneId: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .dns()
       .zones()
-      .single(zoneId),
+      .single(params.zoneId),
   });
 }

@@ -1,27 +1,18 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import * as Instances from "../../containers/instances";
 import { ResourceId } from "../../../common/structs";
 
-export async function getServerInstances({
-  serverId,
-  token,
-  query,
-  settings,
-}: {
-  serverId: ResourceId;
-  token: Token;
-  query?: Instances.InstanceQuery;
-  settings?: Settings;
-}) {
+export async function getServerInstances(
+  params: StandardParams<Instances.InstanceQuery> & {
+    serverId: ResourceId;
+  },
+) {
   return Request.getRequest<Instances.Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .infrastructure()
       .servers()
-      .instances(serverId),
+      .instances(params.serverId),
   });
 }

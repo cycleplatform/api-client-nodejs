@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { links, Settings, QueryParams } from "../../../common/api";
+import { links, StandardParams, QueryParams } from "../../../common/api";
 import {
   CollectionDoc,
   SingleDoc,
@@ -73,19 +72,9 @@ export interface ServerProvider {
   server: string;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: ServerQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams<ServerQuery>) {
   return Request.getRequest<Collection>({
-    query,
-    settings,
-    token,
+    ...params,
     target: links
       .infrastructure()
       .servers()
@@ -93,41 +82,23 @@ export async function getCollection({
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: ServerQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<ServerQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    settings,
-    token,
+    ...params,
     target: links
       .infrastructure()
       .servers()
-      .single(id),
+      .single(params.id),
   });
 }
 
-export async function getTags({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getTags(params: StandardParams) {
   return Request.getRequest<{ data: string[] }>({
-    query,
-    settings,
-    token,
+    ...params,
     target: links
       .infrastructure()
       .servers()
@@ -148,22 +119,13 @@ export interface CreateParams {
   servers: ServerCreate[];
 }
 
-export async function create({
-  token,
-  query,
-  settings,
-  value,
-}: {
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-  value: CreateParams;
-}) {
+export async function create(
+  params: StandardParams<ServerQuery> & {
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<CreatedTask<any>>({
-    query,
-    settings,
-    token,
-    value,
+    ...params,
     target: links
       .infrastructure()
       .servers()
@@ -175,49 +137,31 @@ export interface UpdateParams {
   tags: string[];
 }
 
-export async function update({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: UpdateParams;
-  query?: ServerQuery;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams<ServerQuery> & {
+    id: ResourceId;
+    value: UpdateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    query,
-    value,
-    settings,
-    token,
+    ...params,
     target: links
       .infrastructure()
       .servers()
-      .single(id),
+      .single(params.id),
   });
 }
 
-export async function remove({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: ServerQuery;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams<ServerQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    token,
-    query,
-    settings,
+    ...params,
     target: links
       .infrastructure()
       .servers()
-      .single(id),
+      .single(params.id),
   });
 }

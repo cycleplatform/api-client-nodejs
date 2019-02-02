@@ -8,8 +8,7 @@ import {
 import { ContainerState } from "../containers/container";
 import { Location } from "../infrastructure/provider/location";
 import { InstanceState } from "./instances";
-import { Token } from "../../auth";
-import { Settings, links } from "../../common/api";
+import { StandardParams, links } from "../../common/api";
 import * as Request from "../../common/api/request";
 
 export type ContainerSummaryDoc = SingleDoc<ContainerSummary>;
@@ -38,18 +37,13 @@ export interface ContainerSummaryGeo {
   total: number;
 }
 
-export async function getSummary({
-  id,
-  token,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  settings?: Settings;
-}) {
+export async function getSummary(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<ContainerSummaryDoc>({
-    token,
-    settings,
-    target: links.containers().summary(id),
+    ...params,
+    target: links.containers().summary(params.id),
   });
 }

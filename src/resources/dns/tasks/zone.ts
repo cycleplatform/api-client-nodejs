@@ -1,80 +1,52 @@
 import * as Request from "../../../common/api/request";
 import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
 export type ZoneAction = "verify" | "change_origin";
 
-export async function changeOrigin({
-  id,
-  token,
-  query,
-  origin,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  origin: string;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function changeOrigin(
+  params: StandardParams & {
+    id: ResourceId;
+    origin: string;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "change_origin",
       contents: {
-        origin,
+        origin: params.origin,
       },
     },
   });
 }
 
-export async function verify({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function verify(
+  params: StandardParams & {
+    id: ResourceId;
+    token: Token;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "verify",
     },
   });
 }
 
-export async function task({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: Task<ZoneAction>;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function task(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Task<ZoneAction>;
+  },
+) {
   return Request.postRequest<CreatedTask<ZoneAction>>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .dns()
       .zones()
-      .tasks(id),
+      .tasks(params.id),
   });
 }

@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -64,93 +63,46 @@ export interface CreateParams {
 }
 
 export type UpdateParams = Partial<CreateParams>;
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: HubQuery;
-  settings?: Settings;
-}) {
+
+export async function getCollection(params: StandardParams<HubQuery>) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.hubs().collection(),
   });
 }
 
-export async function getSingle({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: HubQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(params: StandardParams<HubQuery>) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.hubs().single(),
   });
 }
 
-export async function create({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: CreateParams;
-  token: Token;
-  query?: HubQuery;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams<HubQuery> & {
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links.hubs().collection(),
   });
 }
 
-export async function update({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: UpdateParams;
-  token: Token;
-  query?: HubQuery;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams<HubQuery> & {
+    value: UpdateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links.hubs().single(),
   });
 }
 
-export async function remove({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: HubQuery;
-  settings: Settings;
-}) {
+export async function remove(params: StandardParams<HubQuery>) {
   return Request.deleteRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.hubs().single(),
   });
 }

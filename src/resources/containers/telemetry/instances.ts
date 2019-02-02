@@ -1,6 +1,5 @@
 import { Time, ResourceId } from "../../../common/structs";
-import { Token } from "../../../auth/token";
-import { QueryParams, Settings, links } from "../../../common/api";
+import { StandardParams, links } from "../../../common/api";
 import { InstanceState } from "../instances";
 import * as Request from "../../../common/api/request";
 
@@ -13,24 +12,16 @@ export interface TelemetryPoint {
   instances: Record<InstanceState, number>;
 }
 
-export async function getInstancesTelemetry({
-  containerId,
-  token,
-  query,
-  settings,
-}: {
-  containerId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getInstancesTelemetry(
+  params: StandardParams & {
+    containerId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .telemetry()
-      .instances(containerId),
+      .instances(params.containerId),
   });
 }

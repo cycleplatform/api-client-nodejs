@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { QueryParams, links, StandardParams } from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -85,25 +84,17 @@ export interface RecordIncludes {
   };
 }
 
-export async function getCollection({
-  zoneId,
-  token,
-  query,
-  settings,
-}: {
-  zoneId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams & {
+    zoneId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .dns()
       .zones()
-      .records(zoneId),
+      .records(params.zoneId),
   });
 }
 
@@ -112,78 +103,48 @@ export interface CreateParams {
   name: string;
 }
 
-export async function create({
-  zoneId,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  zoneId: ResourceId;
-  value: CreateParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams & {
+    zoneId: ResourceId;
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<Single>({
-    query,
-    token,
-    settings,
-    value,
+    ...params,
     target: links
       .dns()
       .zones()
-      .records(zoneId),
+      .records(params.zoneId),
   });
 }
 
-export async function update({
-  zoneId,
-  recordId,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  zoneId: ResourceId;
-  recordId: ResourceId;
-  value: CreateParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams & {
+    zoneId: ResourceId;
+    recordId: ResourceId;
+    value: CreateParams;
+  },
+) {
   return Request.patchRequest<Single>({
-    query,
-    token,
-    settings,
-    value,
+    ...params,
     target: links
       .dns()
       .zones()
-      .record(zoneId, recordId),
+      .record(params.zoneId, params.recordId),
   });
 }
 
-export async function remove({
-  zoneId,
-  recordId,
-  token,
-  query,
-  settings,
-}: {
-  zoneId: ResourceId;
-  recordId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams & {
+    zoneId: ResourceId;
+    recordId: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .dns()
       .zones()
-      .record(zoneId, recordId),
+      .record(params.zoneId, params.recordId),
   });
 }

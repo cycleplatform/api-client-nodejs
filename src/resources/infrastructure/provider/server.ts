@@ -92,21 +92,16 @@ export interface NIC {
 
 export type ProviderServerQuery = QueryParams<keyof ServerIncludes>;
 
-export async function getCollection({
-  provider,
-  query,
-  settings,
-}: {
+export async function getCollection(params: {
   provider: ProviderIdentifier;
   query?: ProviderServerQuery;
   settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
-    query,
-    settings,
+    ...params,
     target: links
       .infrastructure()
       .providers()
-      .servers(provider),
+      .servers(params.provider),
   });
 }

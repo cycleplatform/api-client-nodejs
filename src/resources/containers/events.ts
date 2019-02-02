@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -22,21 +21,13 @@ export interface Event extends Resource {
   time: Time;
 }
 
-export async function getCollection({
-  containerId,
-  token,
-  query,
-  settings,
-}: {
-  containerId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams & {
+    containerId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
-    target: links.containers().events(containerId),
+    ...params,
+    target: links.containers().events(params.containerId),
   });
 }

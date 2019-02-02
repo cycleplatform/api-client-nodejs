@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -25,21 +24,13 @@ export interface ServerInstancesMeta {
   primary_ip: IP;
 }
 
-export async function getCollection({
-  containerId,
-  token,
-  query,
-  settings,
-}: {
-  containerId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams & {
+    containerId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
-    target: links.containers().servers(containerId),
+    ...params,
+    target: links.containers().servers(params.containerId),
   });
 }

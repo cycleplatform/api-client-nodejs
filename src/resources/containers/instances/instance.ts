@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { QueryParams, links, StandardParams } from "../../../common/api";
 import { Server } from "../../infrastructure/servers";
 import {
   Locations,
@@ -81,48 +80,31 @@ export interface InstanceIncludes extends Includes {
 
 export interface InstanceMetas {}
 
-export async function getCollection({
-  containerId,
-  token,
-  query,
-  settings,
-}: {
-  containerId: ResourceId;
-  token: Token;
-  query?: InstanceQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams<InstanceQuery> & {
+    containerId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .instances()
-      .collection(containerId),
+      .collection(params.containerId),
   });
 }
 
-export async function getSingle({
-  id,
-  containerId,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  containerId: ResourceId;
-  token: Token;
-  query?: InstanceQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<InstanceQuery> & {
+    id: ResourceId;
+    containerId: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .instances()
-      .single(id, containerId),
+      .single(params.id, params.containerId),
   });
 }

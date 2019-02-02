@@ -3,8 +3,7 @@ import { EnvironmentState } from "./environment";
 import { Service } from "./services";
 import { ContainerState } from "../containers/container";
 import { Location } from "../infrastructure/provider/location";
-import { Token } from "../../auth";
-import { Settings, links } from "../../common/api";
+import { StandardParams, links } from "../../common/api";
 import * as Request from "../../common/api/request";
 
 export type EnvironmentSummaryDoc = SingleDoc<EnvironmentSummary>;
@@ -45,18 +44,13 @@ export interface InstanceStats {
   available: number;
 }
 
-export async function getSummary({
-  id,
-  token,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  settings?: Settings;
-}) {
+export async function getSummary(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<EnvironmentSummaryDoc>({
-    token,
-    settings,
-    target: links.environments().summary(id),
+    ...params,
+    target: links.environments().summary(params.id),
   });
 }

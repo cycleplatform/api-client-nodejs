@@ -5,6 +5,7 @@ import {
   Resource,
   SingleDoc,
   Gigabytes,
+  ResourceId,
 } from "../../../common/structs";
 import { Amount } from "../../billing";
 
@@ -30,16 +31,13 @@ export interface ImageStorage {
   additional_gb: Amount;
 }
 
-export async function getCollection({
-  query,
-  settings,
-}: {
+export async function getCollection(params: {
+  hubId: ResourceId;
   query?: QueryParams;
   settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
-    query,
-    settings,
+    ...params,
     target: links
       .billing()
       .plans()

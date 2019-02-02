@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -96,80 +95,43 @@ export interface CreateParams {
   };
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: EnvironmentQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams<EnvironmentQuery>) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links.environments().collection(),
   });
 }
 
-export async function getSingle({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: EnvironmentQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<EnvironmentQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
-    target: links.environments().single(id),
+    ...params,
+    target: links.environments().single(params.id),
   });
 }
 
-export async function create({
-  value,
-  token,
-  query,
-  settings,
-}: {
-  value: CreateParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams<EnvironmentQuery> & {
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links.environments().collection(),
   });
 }
 
-export async function update({
-  id,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  value: Partial<CreateParams>;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function update(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Partial<CreateParams>;
+  },
+) {
   return Request.patchRequest<Single>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.environments().single(id),
+    ...params,
+    target: links.environments().single(params.id),
   });
 }

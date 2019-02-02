@@ -1,6 +1,5 @@
-import { Token } from "../auth";
 import * as Request from "../common/api/request";
-import { links, Settings } from "../common/api";
+import { links, StandardParams } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
 import { Notification } from "./event";
 
@@ -106,9 +105,7 @@ export enum HubHeader {
 
 export type HubNotification = Notification<HubHeader>;
 
-export interface HubPipelineParams {
-  token: Token;
-  settings: Settings;
+export interface HubPipelineParams extends StandardParams {
   onMessage?: (v: HubNotification) => void;
 }
 
@@ -122,9 +119,8 @@ export async function connectToHubChannel(params: HubPipelineParams) {
   const target = links.channels().hub();
 
   const secretResp = await Request.getRequest<HubSecretResponse>({
+    ...params,
     target,
-    token: params.token,
-    settings: params.settings,
   });
 
   if (!secretResp.ok) {

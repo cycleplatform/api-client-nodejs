@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import { CollectionDoc, SingleDoc } from "../../common/structs";
 import * as Memberships from "./membership";
 
@@ -11,19 +10,11 @@ export interface CreateParams {
   role: RoleName;
 }
 
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: Memberships.MembershipQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams<Memberships.MembershipQuery>,
+) {
   return Request.getRequest<CollectionDoc<Memberships.Membership>>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .hubs()
       .invites()
@@ -31,22 +22,13 @@ export async function getCollection({
   });
 }
 
-export async function create({
-  token,
-  value,
-  query,
-  settings,
-}: {
-  token: Token;
-  value: CreateParams;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams<Memberships.MembershipQuery> & {
+    value: CreateParams;
+  },
+) {
   return Request.postRequest<SingleDoc<Memberships.Membership>>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .hubs()
       .invites()

@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { Resource, SingleDoc, ResourceId } from "../../../common/structs";
 
 export type Single = SingleDoc<BuildLog>;
@@ -12,26 +11,17 @@ export interface BuildLog extends Resource {
   log: string;
 }
 
-export async function getSingle({
-  stackId,
-  buildId,
-  token,
-  query,
-  settings,
-}: {
-  stackId: ResourceId;
-  buildId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams & {
+    stackId: ResourceId;
+    buildId: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .stacks()
-      .builds(stackId)
-      .log(buildId),
+      .builds(params.stackId)
+      .log(params.buildId),
   });
 }

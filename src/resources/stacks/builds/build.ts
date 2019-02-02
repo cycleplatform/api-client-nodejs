@@ -1,6 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { QueryParams, links, StandardParams } from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -43,48 +42,31 @@ export interface BuildMetas {
   container_counts: StatefulCounts<ContainerState>;
 }
 
-export async function getCollection({
-  stack,
-  token,
-  query,
-  settings,
-}: {
-  stack: ResourceId;
-  token: Token;
-  query?: BuildsQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams<BuildsQuery> & {
+    stackId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .stacks()
-      .builds(stack)
+      .builds(params.stackId)
       .collection(),
   });
 }
 
-export async function getSingle({
-  id,
-  stack,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  stack: ResourceId;
-  token: Token;
-  query?: BuildsQuery;
-  settings?: Settings;
-}) {
+export async function getSingle(
+  params: StandardParams<BuildsQuery> & {
+    id: ResourceId;
+    stackId: ResourceId;
+  },
+) {
   return Request.getRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .stacks()
-      .builds(stack)
-      .single(id),
+      .builds(params.stackId)
+      .single(params.id),
   });
 }

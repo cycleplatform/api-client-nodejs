@@ -1,69 +1,41 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
 export type StackAction = "build";
 
-export async function buildStack({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function buildStack(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return task({
-    id,
-    token,
-    query,
-    settings,
+    ...params,
     value: {
       action: "build",
     },
   });
 }
 
-export async function remove({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function remove(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<CreatedTask<"delete">>({
-    query,
-    token,
-    settings,
-    target: links.stacks().single(id),
+    ...params,
+    target: links.stacks().single(params.id),
   });
 }
 
-export async function task<K = {}>({
-  id,
-  token,
-  value,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  value: Task<StackAction, K>;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function task<K = {}>(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Task<StackAction, K>;
+  },
+) {
   return Request.postRequest<CreatedTask<StackAction, K>>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.stacks().tasks(id),
+    ...params,
+    target: links.stacks().tasks(params.id),
   });
 }

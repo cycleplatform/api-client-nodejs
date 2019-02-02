@@ -34,21 +34,16 @@ export interface LocationProvider {
   code: string;
 }
 
-export async function getCollection({
-  provider,
-  query,
-  settings,
-}: {
+export async function getCollection(params: {
   provider: ResourceId;
   query?: QueryParams;
   settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
-    query,
-    settings,
+    ...params,
     target: links
       .infrastructure()
       .providers()
-      .locations(provider),
+      .locations(params.provider),
   });
 }

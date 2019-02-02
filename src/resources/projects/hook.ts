@@ -5,9 +5,8 @@ import {
   CollectionDoc,
   CreatedTask,
 } from "../../common/structs";
-import { QueryParams, links, Settings } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
 
 export type Collection = CollectionDoc<Hook>;
 
@@ -24,49 +23,30 @@ export interface HookMetas {
   url?: string[];
 }
 
-export async function getCollection({
-  projectId: pipelineId,
-  token,
-  query,
-  settings,
-}: {
-  projectId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getCollection(
+  params: StandardParams & {
+    projectId: ResourceId;
+  },
+) {
   return Request.getRequest<Collection>({
-    query,
-    token,
-    settings,
-    target: links.projects().hooks(pipelineId),
+    ...params,
+    target: links.projects().hooks(params.projectId),
   });
 }
 
 export interface CreateParams {
   name: string;
-  stage: string;
   ips?: IP[];
 }
 
-export async function create({
-  value,
-  pipelineId,
-  token,
-  query,
-  settings,
-}: {
-  value: CreateParams;
-  pipelineId: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function create(
+  params: StandardParams & {
+    value: CreateParams;
+    projectId: ResourceId;
+  },
+) {
   return Request.postRequest<CreatedTask<any>>({
-    value,
-    query,
-    token,
-    settings,
-    target: links.projects().hooks(pipelineId),
+    ...params,
+    target: links.projects().hooks(params.projectId),
   });
 }

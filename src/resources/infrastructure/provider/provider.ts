@@ -20,16 +20,12 @@ export interface ProviderMetas {
   locations: Location[];
 }
 
-export async function getCollection({
-  query,
-  settings,
-}: {
+export async function getCollection(params: {
   query?: QueryParams;
   settings?: Settings;
 }) {
   return Request.getRequest<Collection>({
-    query,
-    settings,
+    ...params,
     target: links
       .infrastructure()
       .providers()

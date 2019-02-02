@@ -1,6 +1,11 @@
 import { ResourceId, Resource, CollectionDoc } from "../../../common/structs";
 import { Token } from "../../../auth";
-import { QueryParams, Settings, links } from "../../../common/api";
+import {
+  QueryParams,
+  Settings,
+  links,
+  StandardParams,
+} from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
 export type AccountsCollection = CollectionDoc<VolumeAccount>;
@@ -13,25 +18,17 @@ export interface VolumeAccount extends Resource {
   container_volume_id: ResourceId;
 }
 
-export async function getAccounts({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function getAccounts(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
   return Request.getRequest<AccountsCollection>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .volumes()
-      .accounts(id),
+      .accounts(params.id),
   });
 }
 
@@ -42,13 +39,7 @@ export interface CreateAccountParams {
   container_volume_id: ResourceId;
 }
 
-export async function createAccount({
-  id,
-  value,
-  token,
-  query,
-  settings,
-}: {
+export async function createAccount(params: {
   id: ResourceId;
   value: CreateAccountParams;
   token: Token;
@@ -56,14 +47,11 @@ export async function createAccount({
   settings?: Settings;
 }) {
   return Request.postRequest<AccountsCollection>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .volumes()
-      .accounts(id),
+      .accounts(params.id),
   });
 }
 
@@ -73,29 +61,18 @@ export interface UpdateAccountParams {
   readonly?: boolean;
 }
 
-export async function updateAccount({
-  id,
-  containerId,
-  value,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  containerId: ResourceId;
-  value: UpdateAccountParams;
-  token: Token;
-  query?: QueryParams;
-  settings?: Settings;
-}) {
+export async function updateAccount(
+  params: StandardParams & {
+    id: ResourceId;
+    containerId: ResourceId;
+    value: UpdateAccountParams;
+  },
+) {
   return Request.patchRequest<AccountsCollection>({
-    value,
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .containers()
       .volumes()
-      .account(id, containerId),
+      .account(params.id, params.containerId),
   });
 }

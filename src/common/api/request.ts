@@ -1,7 +1,7 @@
 import { Token } from "../../auth";
 import { ErrorResource, ErrorCode } from "./error";
 import { formatParams, QueryParams } from "./query";
-import { CreatedTask } from "../structs";
+import { CreatedTask, ResourceId } from "../structs";
 import { Settings } from "./settings";
 import { VERSION } from "./version";
 
@@ -9,6 +9,13 @@ import { VERSION } from "./version";
  * The result structure of an API request. Can be success or failure
  */
 export type ApiResult<T> = ResultSuccess<T> | ResultFail<ErrorResource>;
+
+export type StandardParams<T = QueryParams> = {
+  token: Token;
+  hubId: ResourceId;
+  query?: T;
+  settings?: Settings;
+};
 
 /** The result of a successful API call */
 export interface ResultSuccess<T> {
@@ -67,14 +74,15 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
 async function makeRequest<T>(
   req: Request,
   token?: Token,
+  hubId?: ResourceId,
   settings?: Settings,
 ): Promise<ApiResult<T>> {
   if (token) {
     req.headers.append("Authorization", `Bearer ${token.access_token}`);
   }
 
-  if (settings && settings.hub) {
-    req.headers.append("X-Hub-Id", settings.hub);
+  if (hubId) {
+    req.headers.append("X-Hub-Id", hubId);
   }
 
   try {
@@ -111,18 +119,20 @@ export async function getRequest<T>({
   target,
   query = {},
   token,
+  hubId,
   settings,
 }: {
   target: string;
   query?: QueryParams;
   token?: Token;
+  hubId?: ResourceId;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
   const req = new Request(
     `${makeUrl(settings)}${target}?${formatParams(query)}`,
     ApiRequestInit,
   );
-  return makeRequest<T>(req, token, settings);
+  return makeRequest<T>(req, token, hubId, settings);
 }
 
 export async function postRequest<T>({
@@ -130,11 +140,13 @@ export async function postRequest<T>({
   value,
   query = {},
   token,
+  hubId,
   settings,
 }: {
   target: string;
   value: object;
   query?: QueryParams;
+  hubId?: ResourceId;
   token?: Token;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
@@ -149,19 +161,21 @@ export async function postRequest<T>({
     },
   );
 
-  return makeRequest<T>(req, token, settings);
+  return makeRequest<T>(req, token, hubId, settings);
 }
 
 export async function patchRequest<T>({
   target,
   value,
   query = {},
+  hubId,
   token,
   settings,
 }: {
   target: string;
   value: object;
   query?: QueryParams;
+  hubId?: ResourceId;
   token?: Token;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
@@ -176,18 +190,20 @@ export async function patchRequest<T>({
     },
   );
 
-  return makeRequest<T>(req, token, settings);
+  return makeRequest<T>(req, token, hubId, settings);
 }
 
 export async function deleteRequest<T = CreatedTask<"delete">>({
   target,
   query = {},
   token,
+  hubId,
   settings,
 }: {
   target: string;
   query?: QueryParams;
   token?: Token;
+  hubId?: ResourceId;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
   const req = new Request(
@@ -200,5 +216,5 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
     },
   );
 
-  return makeRequest<T>(req, token, settings);
+  return makeRequest<T>(req, token, hubId, settings);
 }

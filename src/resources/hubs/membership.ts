@@ -1,6 +1,5 @@
 import * as Request from "../../common/api/request";
-import { Token } from "../../auth";
-import { QueryParams, links, Settings } from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -78,19 +77,9 @@ export interface Member extends Resource<MembershipMeta> {
 /**
  * Members of this hub
  */
-export async function getCollection({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: MembershipQuery;
-  settings?: Settings;
-}) {
+export async function getCollection(params: StandardParams<MembershipQuery>) {
   return Request.getRequest<CollectionDoc<Member>>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .hubs()
       .members()
@@ -98,19 +87,11 @@ export async function getCollection({
   });
 }
 
-export async function getCurrentMembership({
-  token,
-  query,
-  settings,
-}: {
-  token: Token;
-  query?: MembershipQuery;
-  settings?: Settings;
-}) {
+export async function getCurrentMembership(
+  params: StandardParams<MembershipQuery>,
+) {
   return Request.getRequest<SingleDoc<Member>>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .hubs()
       .members()
@@ -118,24 +99,16 @@ export async function getCurrentMembership({
   });
 }
 
-export async function revoke({
-  id,
-  token,
-  query,
-  settings,
-}: {
-  id: ResourceId;
-  token: Token;
-  query?: QueryParams;
-  settings: Settings;
-}) {
+export async function revoke(
+  params: StandardParams<MembershipQuery> & {
+    id: ResourceId;
+  },
+) {
   return Request.deleteRequest<Single>({
-    query,
-    token,
-    settings,
+    ...params,
     target: links
       .hubs()
       .members()
-      .single(id),
+      .single(params.id),
   });
 }
