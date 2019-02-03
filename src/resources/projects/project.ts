@@ -6,13 +6,17 @@ import {
   Events,
   CollectionDoc,
   SingleDoc,
+  OwnerInclude,
 } from "../../common/structs";
-import { links, StandardParams } from "../../common/api";
+import { links, StandardParams, QueryParams } from "../../common/api";
 import * as Request from "../../common/api/request";
 import { Omit } from "../../common/types/common";
+import { Stack } from "../stacks";
 
-export type Collection = CollectionDoc<Project>;
-export type Single = SingleDoc<Project>;
+export type Collection = CollectionDoc<Project, ProjectIncludes>;
+export type Single = SingleDoc<Project, ProjectIncludes>;
+
+export type ProjectQuery = QueryParams<keyof ProjectIncludes>;
 
 export type ProjectState =
   | "live"
@@ -24,14 +28,19 @@ export type ProjectState =
 export interface Project extends Resource {
   name: string;
   owner: OwnerScope;
-  stack: Stack;
+  stack: StackSummary;
   hub_id: ResourceId;
   state: State<ProjectState>;
   events: Events;
 }
 
-export interface Stack {
+export interface StackSummary {
   id: ResourceId;
+}
+
+export interface ProjectIncludes {
+  owners: OwnerInclude;
+  stacks: Record<ResourceId, Stack>;
 }
 
 export async function getCollection(params: StandardParams) {
