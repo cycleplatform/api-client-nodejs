@@ -16,6 +16,8 @@ export type LoadBalanceDeploymentStrategy =
 export interface LoadBalancer {
   deploy: LoadBalanceDeploymentStrategy;
   haproxy: HAProxyConfig | null;
+  ipv4: boolean | null;
+  ipv6: boolean | null;
 }
 
 export interface HAProxyConfig {

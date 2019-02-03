@@ -15,7 +15,6 @@ export type Collection = CollectionDoc<Project>;
 export type Single = SingleDoc<Project>;
 
 export type ProjectState =
-  | "new"
   | "live"
   | "building"
   | "deploying"
@@ -25,10 +24,14 @@ export type ProjectState =
 export interface Project extends Resource {
   name: string;
   owner: OwnerScope;
-  stack_id: ResourceId;
+  stack: Stack;
   hub_id: ResourceId;
   state: State<ProjectState>;
   events: Events;
+}
+
+export interface Stack {
+  id: ResourceId;
 }
 
 export async function getCollection(params: StandardParams) {
