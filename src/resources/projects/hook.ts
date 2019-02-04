@@ -4,11 +4,13 @@ import {
   IP,
   CollectionDoc,
   CreatedTask,
+  SingleDoc,
 } from "../../common/structs";
 import { links, StandardParams } from "../../common/api";
 import * as Request from "../../common/api/request";
 
 export type Collection = CollectionDoc<Hook>;
+export type Single = SingleDoc<Hook>;
 
 export interface Hook extends Resource<HookMetas> {
   project_id: ResourceId;
