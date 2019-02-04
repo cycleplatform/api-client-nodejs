@@ -14,8 +14,8 @@ export interface Hook extends Resource<HookMetas> {
   project_id: ResourceId;
   name: string;
   active: boolean;
-  stage: string;
   secret: string;
+  default_tag: string;
   ips: IP[];
 }
 
@@ -37,6 +37,7 @@ export async function getCollection(
 export interface CreateParams {
   name: string;
   ips?: IP[];
+  default_tag: string;
 }
 
 export async function create(
@@ -46,6 +47,25 @@ export async function create(
   },
 ) {
   return Request.postRequest<CreatedTask<any>>({
+    ...params,
+    target: links.projects().hooks(params.projectId),
+  });
+}
+
+export interface UpdateParams {
+  name?: string;
+  active?: boolean;
+  default_tag?: string;
+  ips?: IP[];
+}
+
+export async function update(
+  params: StandardParams & {
+    value: UpdateParams;
+    projectId: ResourceId;
+  },
+) {
+  return Request.patchRequest<CreatedTask<any>>({
     ...params,
     target: links.projects().hooks(params.projectId),
   });
