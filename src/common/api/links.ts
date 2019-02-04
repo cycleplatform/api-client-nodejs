@@ -174,7 +174,6 @@ export const links = {
   projects: () => ({
     collection: () => `/projects`,
     single: (id: ResourceId) => `/projects/${id}`,
-    hooks: (id: ResourceId) => `/projects/${id}/hooks`,
   }),
 
   stacks: () => ({
@@ -186,6 +185,11 @@ export const links = {
       single: (id: ResourceId) => `/stacks/${stack}/builds/${id}`,
       tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,
       log: (build: ResourceId) => `/stacks/${stack}/builds/${build}/log`,
+    }),
+    hooks: (stack: ResourceId) => ({
+      collection: () => `/stacks/${stack}/hooks`,
+      single: (id: ResourceId) => `/stacks/${stack}/hooks/${id}`,
+      tasks: (id: ResourceId) => `/stacks/${stack}/hooks/${id}/tasks`,
     }),
   }),
 };

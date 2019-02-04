@@ -1,8 +1,7 @@
 export interface NetworkStats {
   interfaces?: { [key: string]: NetworkInterface };
-  primary_routes?: NetworkRoute[];
-  primary_ip: string;
-  primary_mac_addr: string;
+  external_ipv4: string;
+  external_ipv6: string;
 }
 
 export interface NetworkInterface {

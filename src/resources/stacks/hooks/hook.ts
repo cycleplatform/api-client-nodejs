@@ -5,15 +5,15 @@ import {
   CollectionDoc,
   CreatedTask,
   SingleDoc,
-} from "../../common/structs";
-import { links, StandardParams } from "../../common/api";
-import * as Request from "../../common/api/request";
+} from "../../../common/structs";
+import { links, StandardParams } from "../../../common/api";
+import * as Request from "../../../common/api/request";
 
 export type Collection = CollectionDoc<Hook>;
 export type Single = SingleDoc<Hook>;
 
 export interface Hook extends Resource<HookMetas> {
-  project_id: ResourceId;
+  stack_id: ResourceId;
   name: string;
   active: boolean;
   secret: string;
@@ -27,12 +27,30 @@ export interface HookMetas {
 
 export async function getCollection(
   params: StandardParams & {
-    projectId: ResourceId;
+    stackId: ResourceId;
   },
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.projects().hooks(params.projectId),
+    target: links
+      .stacks()
+      .hooks(params.stackId)
+      .collection(),
+  });
+}
+
+export async function getSingle(
+  params: StandardParams & {
+    stackId: ResourceId;
+    hookId: ResourceId;
+  },
+) {
+  return Request.getRequest<Collection>({
+    ...params,
+    target: links
+      .stacks()
+      .hooks(params.stackId)
+      .single(params.hookId),
   });
 }
 
@@ -45,12 +63,15 @@ export interface CreateParams {
 export async function create(
   params: StandardParams & {
     value: CreateParams;
-    projectId: ResourceId;
+    stackId: ResourceId;
   },
 ) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
-    target: links.projects().hooks(params.projectId),
+    target: links
+      .stacks()
+      .hooks(params.stackId)
+      .collection(),
   });
 }
 
@@ -64,11 +85,15 @@ export interface UpdateParams {
 export async function update(
   params: StandardParams & {
     value: UpdateParams;
-    projectId: ResourceId;
+    stackId: ResourceId;
+    hookId: ResourceId;
   },
 ) {
   return Request.patchRequest<CreatedTask<any>>({
     ...params,
-    target: links.projects().hooks(params.projectId),
+    target: links
+      .stacks()
+      .hooks(params.stackId)
+      .single(params.hookId),
   });
 }
