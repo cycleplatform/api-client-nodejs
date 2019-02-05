@@ -3,7 +3,6 @@ import {
   ResourceId,
   IP,
   CollectionDoc,
-  CreatedTask,
   SingleDoc,
 } from "../../../common/structs";
 import { links, StandardParams } from "../../../common/api";
@@ -66,7 +65,7 @@ export async function create(
     stackId: ResourceId;
   },
 ) {
-  return Request.postRequest<CreatedTask<any>>({
+  return Request.postRequest<Single>({
     ...params,
     target: links
       .stacks()
@@ -89,7 +88,7 @@ export async function update(
     hookId: ResourceId;
   },
 ) {
-  return Request.patchRequest<CreatedTask<any>>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links
       .stacks()

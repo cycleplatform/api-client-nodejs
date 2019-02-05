@@ -1,7 +1,7 @@
 export interface VPN {
   logins: VPNLogins;
   allow_internet_access: boolean;
-  auth_api: AuthAPI;
+  auth_api: AuthAPI | null;
 }
 
 export interface VPNLogins {
