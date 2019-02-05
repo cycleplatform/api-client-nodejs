@@ -11,25 +11,10 @@ import {
 } from "../../../common/structs";
 import { links, StandardParams } from "../../../common/api";
 import * as Request from "../../../common/api/request";
+import { Spec } from "../../stacks";
 
 export interface VPNService extends Service {
-  config: VPNConfig;
-}
-
-export interface VPNConfig {
-  allow_cycle_accounts: boolean;
-  allow_environment_accounts: boolean;
-  auth_api: AuthAPI | null;
-}
-
-export interface AuthAPI {
-  allow: boolean;
-  url: string;
-}
-
-export interface VPNInfo {
-  url: string;
-  service: VPNService;
+  config: Spec.VPN;
 }
 
 export interface VPNUser extends Resource {
@@ -51,13 +36,18 @@ export interface VPNLogin extends Resource {
 
 export interface VPNReconfigureDetails {
   enable?: boolean;
-  config?: Partial<VPNConfig>;
+  config?: Partial<Spec.VPN>;
 }
 
 export type VPNUsersDoc = CollectionDoc<VPNUser>;
 export type VPNUserDoc = SingleDoc<VPNUser>;
 
 export type VPNLoginsDoc = CollectionDoc<VPNLogin>;
+
+export interface VPNInfo {
+  url: string;
+  service: VPNService;
+}
 
 export async function getVPNInfo(
   params: StandardParams & {

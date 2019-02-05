@@ -18,8 +18,12 @@ import {
   Locations,
   ProviderIdentifier,
   Servers as ProviderServers,
+  Provider,
 } from "../provider";
 import { InstanceState } from "../../containers/instances";
+
+export type Collection = CollectionDoc<Server, ServerIncludes>;
+export type Single = SingleDoc<Server, ServerIncludes>;
 
 /**
  * Filters: [tags]
@@ -44,10 +48,8 @@ export interface Server extends Resource<ServerMeta> {
 export interface ServerIncludes extends Includes {
   locations: Record<ResourceId, Locations.Location>;
   models: Record<ResourceId, ProviderServers.Server>;
+  providers: Record<ResourceId, Provider>;
 }
-
-export type Collection = CollectionDoc<Server, ServerIncludes>;
-export type Single = SingleDoc<Server>;
 
 export interface ServerMeta {
   stats?: Stats;

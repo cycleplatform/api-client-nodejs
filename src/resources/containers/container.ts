@@ -42,7 +42,6 @@ export interface Container extends Resource<ContainerMetas> {
   environment: CondensedEnvironment;
   hub_id: ResourceId;
   image: CondensedImage;
-  load_balancer: LoadBalancer | null;
   stack?: CondensedStack;
   features: Features;
   config: Spec.Config;
@@ -88,10 +87,6 @@ export interface CondensedEnvironment {
   id: ResourceId;
   container_subnet: string;
   ipv6: IPNet | null;
-}
-
-export interface LoadBalancer {
-  container_id: ResourceId;
 }
 
 export async function getCollection(params: StandardParams<ContainerQuery>) {

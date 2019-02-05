@@ -14,8 +14,8 @@ import {
 import { Config } from "./config";
 import { Builds, Stack, Spec } from "../stacks";
 
-export type Collection = CollectionDoc<Image>;
-export type Single = SingleDoc<Image>;
+export type Collection = CollectionDoc<Image, ImageIncludes>;
+export type Single = SingleDoc<Image, ImageIncludes>;
 export type ImageQuery = QueryParams<keyof ImageIncludes, keyof ImageMetas>;
 export type ImageState =
   | "new"

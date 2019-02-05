@@ -15,6 +15,7 @@ import {
 import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
 import { DiscoveryService, VPNService } from "./services";
+import { Stack } from "../stacks";
 
 export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment, EnvironmentIncludes>;
@@ -38,7 +39,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
   hub_id: ResourceId;
   state: State<EnvironmentState>;
   project: ProjectSummary | null;
-  stack: Stack | null;
+  stack: StackSummary | null;
   events: Events;
   private_network: {
     vxlan_tag: number;
@@ -53,7 +54,7 @@ export interface ProjectSummary {
   tag: string;
 }
 
-export interface Stack {
+export interface StackSummary {
   id: ResourceId;
   build_id: ResourceId;
 }
@@ -65,6 +66,7 @@ export interface Services {
 
 export interface EnvironmentIncludes {
   owners: OwnerInclude;
+  stacks: Record<ResourceId, Stack>;
 }
 
 export interface EnvironmentMeta {

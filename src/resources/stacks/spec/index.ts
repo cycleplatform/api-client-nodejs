@@ -9,3 +9,4 @@ export * from "./runtime";
 export * from "./scaling";
 export * from "./spec";
 export * from "./volume";
+export * from "./services";

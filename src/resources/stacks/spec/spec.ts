@@ -1,11 +1,17 @@
 import { Container } from "./container";
 import { TestContainer } from "./tests";
+import { Services } from "./services";
 
 export interface Spec {
-  name: string;
+  version: string;
+  about: About;
+  tests: TestContainer[];
+  services: Services;
+  containers: Record<string, Container>;
+  annotations: Record<string, string>;
+}
+
+export interface About {
   version: string;
   description: string;
-  containers: Record<string, Container>;
-  tests: TestContainer[];
-  annotations: Record<string, string>;
 }
