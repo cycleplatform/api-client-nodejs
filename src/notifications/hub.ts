@@ -76,9 +76,6 @@ export enum HubHeader {
   PROJECT_UPDATED = "project.updated",
   PROJECT_STATE_CHANGED = "project.state_changed",
   PROJECT_ERROR = "project.error",
-  PROJECT_HOOK_CREATED = "project.hook.created",
-  PROJECT_HOOK_UPDATED = "project.hook.updated",
-  PROJECT_HOOK_TASK_DEPLOY = "project.hook.task_deploy",
 
   HUB_UPDATED = "hub.updated",
   HUB_STATE_CHANGED = "hub.state_changed",
@@ -101,6 +98,9 @@ export enum HubHeader {
   STACK_BUILD_CREATED = "stack.build.created",
   STACK_BUILD_STATE_CHANGED = "stack.build.state_changed",
   STACK_BUILD_ERROR = "stack.build.error",
+  STACK_HOOK_CREATED = "stack.hook.created",
+  STACK_HOOK_UPDATED = "stack.hook.updated",
+  STACK_HOOK_TASK_DEPLOY = "stack.hook.task_deploy",
 }
 
 export type HubNotification = Notification<HubHeader>;

@@ -1,10 +1,10 @@
 export interface VPN {
-  logins: VPNLogins;
-  allow_internet_access: boolean;
-  auth_api: AuthAPI | null;
+  auth: VPNAuth;
+  allow_internet: boolean;
 }
 
-export interface VPNLogins {
+export interface VPNAuth {
+  auth_api: AuthAPI | null;
   allow_cycle_accounts: boolean;
   allow_environment_accounts: boolean;
 }

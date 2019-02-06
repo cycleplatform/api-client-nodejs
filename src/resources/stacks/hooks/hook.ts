@@ -96,3 +96,18 @@ export async function update(
       .single(params.hookId),
   });
 }
+
+export async function remove(
+  params: StandardParams & {
+    stackId: ResourceId;
+    hookId: ResourceId;
+  },
+) {
+  return Request.deleteRequest<{ data: true }>({
+    ...params,
+    target: links
+      .stacks()
+      .hooks(params.stackId)
+      .single(params.hookId),
+  });
+}
