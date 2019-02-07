@@ -18,19 +18,8 @@ import { PromoCode } from "../promocodes";
 
 export type Collection = CollectionDoc<Order, OrderIncludes>;
 export type Single = SingleDoc<Order, OrderIncludes>;
-export type OrderState =
-  | "new"
-  | "processed"
-  | "expired"
-  | "deleting"
-  | "deleted";
-export type OrderEvent =
-  | "paid"
-  | "expires"
-  | "payment_attempt"
-  | "credited"
-  | "voided"
-  | "applied_late_fee";
+export type OrderState = "new" | "processed" | "deleting" | "deleted";
+export type OrderEvent = "expires";
 
 export interface Order extends Resource<OrderMeta> {
   hub_id: ResourceId;
