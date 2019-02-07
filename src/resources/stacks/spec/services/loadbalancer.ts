@@ -11,6 +11,11 @@ export interface LoadBalancer {
 }
 
 export interface HAProxyConfig {
+  default: HAProxyConfigSet;
+  ports: Record<number, HAProxyConfigSet>;
+}
+
+export interface HAProxyConfigSet {
   frontend: HAProxyFrontend | null;
   backend: HAProxyBackend | null;
 }

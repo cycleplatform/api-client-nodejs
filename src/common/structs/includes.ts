@@ -5,6 +5,7 @@ import { ApiKeys } from "../../resources/hubs";
 export interface StatefulCounts<K extends string> {
   state: Record<K, number>;
   total: number;
+  available: number;
 }
 
 /** An owner is an identity that created a resource. */
