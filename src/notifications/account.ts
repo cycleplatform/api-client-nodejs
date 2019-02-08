@@ -17,6 +17,8 @@ export enum AccountHeader {
   HUB_CREATED = "hub.created",
   /** An error occurred on a hub */
   HUB_ERROR = "hub.error",
+  /** A hub was deleted */
+  HUB_DELETED = "hub.deleted",
   /** A new member was added to a hub */
   HUB_MEMBERSHIP_NEW = "hub.membership.new",
 }
