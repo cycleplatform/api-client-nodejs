@@ -25,7 +25,6 @@ export interface AuthorizedIp {
 }
 
 export interface VolumePassword {
-  raw?: string;
-  sha512?: string;
-  md5?: string;
+  algorithm: string;
+  data: string;
 }
