@@ -1,12 +1,12 @@
 import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
-import { CollectionDoc, SingleDoc } from "../../common/structs";
+import { CollectionDoc, SingleDoc, Email } from "../../common/structs";
 import * as Memberships from "./membership";
 
 export type RoleName = "owner" | "admin" | "developer" | "analyst";
 
 export interface CreateParams {
-  recipient: string; // Email
+  recipient: Email; // Email
   role: RoleName;
 }
 
