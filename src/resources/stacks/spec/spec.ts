@@ -4,7 +4,7 @@ import { Services } from "./services";
 
 export interface Spec {
   version: string;
-  about: About;
+  about: About | null;
   tests: TestContainer[];
   services: Services;
   containers: Record<string, Container>;

@@ -1,4 +1,4 @@
-import { Webhooks } from "../../../common/structs";
+import { Webhook } from "../../../common/structs";
 
 export interface Integrations {
   events: Events | null;
@@ -15,9 +15,9 @@ export interface LetsEncrypt {
 }
 
 export interface Events {
-  deploy: Webhooks;
-  start: Webhooks;
-  stop: Webhooks;
+  deploy: Webhook;
+  start: Webhook;
+  stop: Webhook;
 }
 
 // export interface Monitor {

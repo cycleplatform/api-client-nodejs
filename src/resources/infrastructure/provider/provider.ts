@@ -6,15 +6,14 @@ import { Location } from "./location";
 export type Collection = CollectionDoc<Provider>;
 
 export interface Provider extends Resource<ProviderMetas> {
-  id: string;
   name: string;
   identifier: ProviderIdentifier;
   website: string;
+  required_fields: string[];
+  features: string[];
 }
 
-export enum ProviderIdentifier {
-  PACKET = "packet",
-}
+export type ProviderIdentifier = "packet" | "vultr";
 
 export interface ProviderMetas {
   locations: Location[];

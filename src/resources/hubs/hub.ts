@@ -8,7 +8,7 @@ import {
   State,
 } from "../../common/structs";
 import { Membership } from "./membership";
-import { DeepPartial } from "../../common/types/common";
+import { Providers } from "./providers";
 
 export type Collection = CollectionDoc<Hub>;
 export type Single = SingleDoc<Hub>;
@@ -42,16 +42,6 @@ export interface LetsEncryptIntegration {
   email: string;
 }
 
-export interface Providers {
-  packet: PacketProvider | null;
-}
-
-export interface PacketProvider {
-  api_key: string;
-  hub_id: string | null;
-  bgp_md5: string | null;
-}
-
 export interface HubMetas {
   membership?: Membership;
 }
@@ -59,7 +49,7 @@ export interface HubMetas {
 export interface CreateParams {
   name: string;
   integrations?: Hub["integrations"];
-  providers?: DeepPartial<Hub["providers"]>;
+  providers: Partial<Providers>;
 }
 
 export type UpdateParams = Partial<CreateParams>;
