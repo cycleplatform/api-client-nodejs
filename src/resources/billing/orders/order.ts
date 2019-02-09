@@ -9,7 +9,7 @@ import {
   State,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
+import { links, StandardParams, QueryParams } from "../../../common/api";
 import { Item as ServiceItem } from "../services/item";
 import { Amount } from "../amount";
 import { AssociatedDiscount } from "../discounts";
@@ -20,6 +20,7 @@ export type Collection = CollectionDoc<Order, OrderIncludes>;
 export type Single = SingleDoc<Order, OrderIncludes>;
 export type OrderState = "new" | "processed" | "deleting" | "deleted";
 export type OrderEvent = "expires";
+export type OrderQuery = QueryParams<keyof OrderIncludes, keyof OrderMeta>;
 
 export interface Order extends Resource<OrderMeta> {
   hub_id: ResourceId;
@@ -62,7 +63,7 @@ export interface Item {
   net_price: Mills;
 }
 
-export async function getCollection(params: StandardParams) {
+export async function getCollection(params: StandardParams<OrderQuery>) {
   return Request.getRequest<Collection>({
     ...params,
     target: links
@@ -73,7 +74,7 @@ export async function getCollection(params: StandardParams) {
 }
 
 export async function getSingle(
-  params: StandardParams & {
+  params: StandardParams<OrderQuery> & {
     id: ResourceId;
   },
 ) {
@@ -87,7 +88,7 @@ export async function getSingle(
 }
 
 export async function create(
-  params: StandardParams & {
+  params: StandardParams<OrderQuery> & {
     value: CreateParams;
   },
 ) {
@@ -101,7 +102,7 @@ export async function create(
 }
 
 export async function update(
-  params: StandardParams & {
+  params: StandardParams<OrderQuery> & {
     id: ResourceId;
     value: CreateParams;
   },

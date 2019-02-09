@@ -6,4 +6,9 @@ export interface Term {
   renew?: TermLength;
 }
 
+export interface Expiration {
+  interval: "days" | "weeks" | "months" | "years";
+  number: number;
+}
+
 export type TermLength = "once" | "monthly" | "yearly";
