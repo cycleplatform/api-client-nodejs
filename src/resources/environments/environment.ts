@@ -14,7 +14,7 @@ import {
 } from "../../common/structs";
 import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
-import { DiscoveryService, VPNService } from "./services";
+import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
 import { Stack } from "../stacks";
 
 export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
@@ -37,16 +37,16 @@ export interface Environment extends Resource<EnvironmentMeta> {
   };
   owner: OwnerScope;
   hub_id: ResourceId;
-  state: State<EnvironmentState>;
   project: ProjectSummary | null;
-  stack: StackSummary | null;
+  state: State<EnvironmentState>;
   events: Events;
+  stack: StackSummary | null;
+  services: Services;
   private_network: {
     vxlan_tag: number;
     subnet: number;
     ipv6: IPNet;
   } | null;
-  services: Services;
 }
 
 export interface ProjectSummary {
@@ -62,6 +62,7 @@ export interface StackSummary {
 export interface Services {
   discovery: DiscoveryService | null;
   vpn: VPNService | null;
+  loadbalancer: LoadBalancerService | null;
 }
 
 export interface EnvironmentIncludes {

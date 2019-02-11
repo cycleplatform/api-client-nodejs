@@ -13,5 +13,3 @@ export interface Config {
   resources: Resources | null;
   integrations: Integrations | null;
 }
-
-export { Deploy, Runtime, Network, Resources, Integrations, Scaling };

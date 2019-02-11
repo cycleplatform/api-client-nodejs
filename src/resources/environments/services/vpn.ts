@@ -12,6 +12,10 @@ import {
 import { links, StandardParams } from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
+export interface VPNService extends Service {
+  config: VPN;
+}
+
 export interface VPN {
   auth: VPNAuth;
   allow_internet: boolean;
@@ -26,10 +30,6 @@ export interface VPNAuth {
 export interface AuthAPI {
   allow: boolean;
   url: string;
-}
-
-export interface VPNService extends Service {
-  config: VPN;
 }
 
 export interface VPNUser extends Resource {

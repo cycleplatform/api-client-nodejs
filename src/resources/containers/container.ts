@@ -119,7 +119,7 @@ export interface CreateParams {
   environment_id: ResourceId;
   image_id: ResourceId;
   config: Config;
-  volumes: Volumes.Volume;
+  volumes: Volumes.Volume[];
 }
 
 export async function create(
