@@ -1,4 +1,5 @@
 import "isomorphic-fetch";
+import "isomorphic-ws";
 import * as Account from "./resources/accounts";
 import * as Audit from "./resources/audits";
 import * as Auth from "./auth";

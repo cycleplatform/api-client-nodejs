@@ -1,12 +1,5 @@
-export * from "./config";
-export * from "./container";
-export * from "./deploy";
-export * from "./image";
-export * from "./network";
-export * from "./integrations";
-export * from "./resources";
-export * from "./runtime";
-export * from "./scaling";
-export * from "./spec";
-export * from "./volume";
-export * from "./services";
+import { Spec as SpecV1 } from "./v1";
+
+export type Spec = SpecV1; // SpecV1 | SpecV2
+
+export { SpecV1 };

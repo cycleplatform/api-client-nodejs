@@ -12,7 +12,8 @@ import {
   OwnerInclude,
 } from "../../common/structs";
 import { Config } from "./config";
-import { Builds, Stack, Spec } from "../stacks";
+import { Builds, Stack } from "../stacks";
+import { ImageSource } from "./source";
 
 export type Collection = CollectionDoc<Image, ImageIncludes>;
 export type Single = SingleDoc<Image, ImageIncludes>;
@@ -36,7 +37,7 @@ export interface Image extends Resource<ImageMetas> {
   };
   tags: string[];
   config: Config;
-  source: Spec.ImageSource;
+  source: ImageSource;
   owner: OwnerScope;
   hub_id: ResourceId;
   state: State<ImageState>;

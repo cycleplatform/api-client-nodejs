@@ -1,12 +1,14 @@
-import * as Servers from "./server";
+import * as Servers from "./servers";
 import * as Instances from "./instances";
 import * as Events from "./events";
-import * as CompatibleImages from "./images";
-import * as Volumes from "./volumes";
+import * as CompatibleImages from "./compatible-images";
 import * as Telemetry from "./telemetry";
+import * as Config from "./config";
+
+export { Servers, Instances, Events, CompatibleImages, Telemetry, Config };
+
 export * from "./container";
-export * from "./tasks/container";
+export * from "./tasks";
 export * from "./features";
-export { Servers, Instances, Events, CompatibleImages, Volumes, Telemetry };
 export * from "./services";
 export * from "./summary";

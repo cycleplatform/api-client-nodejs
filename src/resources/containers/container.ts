@@ -1,6 +1,6 @@
 import * as Request from "../../common/api/request";
 import { QueryParams, links, StandardParams } from "../../common/api";
-import { Spec, Builds, Stack } from "../stacks";
+import { Builds, Stack } from "../stacks";
 import { Image } from "../images";
 import {
   CollectionDoc,
@@ -12,12 +12,13 @@ import {
   OwnerScope,
   OwnerInclude,
   StatefulCounts,
+  ContainerIdentifier,
 } from "../../common/structs";
 import { Features } from "./features";
 import { IPNet } from "../network";
 import { InstanceState } from "./instances";
 import { Service } from "./services";
-import { ContainerVolume } from "./volumes";
+import { Config, Volumes } from "./config";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
@@ -37,16 +38,16 @@ export type ContainerQuery = QueryParams<
 
 export interface Container extends Resource<ContainerMetas> {
   name: string;
-  identifier: Spec.ContainerIdentifier;
+  identifier: ContainerIdentifier;
   owner: OwnerScope;
-  environment: CondensedEnvironment;
+  environment: EnvironmentSummary;
   hub_id: ResourceId;
-  image: CondensedImage;
-  stack?: CondensedStack;
+  image: ImageSummary;
+  stack?: StackSummary;
   features: Features;
-  config: Spec.Config;
+  config: Config;
   instances: number;
-  volumes?: ContainerVolume[];
+  volumes?: VolumeSummary[];
   state: State<ContainerState>;
   events: Events<ContainerEvent>;
 }
@@ -69,7 +70,7 @@ export interface ContainerMetas {
   domain?: string;
 }
 
-export interface CondensedStack {
+export interface StackSummary {
   id: ResourceId;
   image: {
     id: ResourceId;
@@ -78,15 +79,21 @@ export interface CondensedStack {
   identifier: "db";
 }
 
-export interface CondensedImage {
+export interface ImageSummary {
   id?: ResourceId;
   service: Service | null;
 }
 
-export interface CondensedEnvironment {
+export interface EnvironmentSummary {
   id: ResourceId;
   container_subnet: string;
   ipv6: IPNet | null;
+}
+
+export interface VolumeSummary {
+  id: string;
+  hash: string;
+  config: Volumes.Volume;
 }
 
 export async function getCollection(params: StandardParams<ContainerQuery>) {
@@ -111,8 +118,8 @@ export interface CreateParams {
   name: string;
   environment_id: ResourceId;
   image_id: ResourceId;
-  config: Spec.Config;
-  volumes: Spec.Volume[];
+  config: Config;
+  volumes: Volumes.Volume;
 }
 
 export async function create(

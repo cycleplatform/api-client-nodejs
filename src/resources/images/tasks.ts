@@ -1,12 +1,12 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
-import { ResourceId, CreatedTask } from "../../../common/structs";
-import { Spec } from "../../stacks";
+import * as Request from "../../common/api/request";
+import { links, StandardParams } from "../../common/api";
+import { ResourceId, CreatedTask } from "../../common/structs";
+import { ImageSource } from "./source";
 
 export type ImageAction = "import";
 
 export interface BuildParams {
-  source: Spec.ImageSource;
+  source: ImageSource;
 }
 
 export async function build(

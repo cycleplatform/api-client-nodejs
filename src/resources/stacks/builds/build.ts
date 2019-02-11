@@ -32,6 +32,7 @@ export type BuildsQuery = QueryParams<string, keyof BuildMetas>;
 
 export interface Build extends Resource<BuildMetas> {
   stack_id: ResourceId;
+  hub_id: ResourceId;
   owner: OwnerScope;
   spec: Spec;
   events: Events;

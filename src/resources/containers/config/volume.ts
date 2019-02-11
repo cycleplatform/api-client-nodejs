@@ -1,4 +1,4 @@
-import { DataSize, Webhook } from "../../../common/structs";
+import { DataSize, Webhook, IP, Algorithm } from "../../../common/structs";
 
 export interface Volume {
   read_only: boolean;
@@ -13,18 +13,12 @@ export interface LocalVolume {
 
 export interface VolumeRemoteAccess {
   enable: boolean;
-  ips?: AuthorizedIp[];
+  ips?: IP[];
   webhook: Webhook;
   password: VolumePassword | null;
 }
 
-export interface AuthorizedIp {
-  ip: string;
-  read_only: boolean;
-  password: VolumePassword | null;
-}
-
 export interface VolumePassword {
-  algorithm: string;
+  algorithm: Algorithm;
   data: string;
 }

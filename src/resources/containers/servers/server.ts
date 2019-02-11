@@ -1,13 +1,13 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
   StatefulCounts,
   ResourceId,
   IP,
-} from "../../common/structs";
-import { InstanceState } from "../containers/instances";
+} from "../../../common/structs";
+import { InstanceState } from "../../containers/instances";
 
 export type Collection = CollectionDoc<ServerInstances>;
 export type ServerInstancesQuery = QueryParams<

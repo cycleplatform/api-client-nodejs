@@ -1,8 +1,8 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
-import { ResourceId, Task, CreatedTask } from "../../../common/structs";
-import { Config } from "../../stacks/spec";
-import { ContainerVolume } from "../volumes";
+import * as Request from "../../common/api/request";
+import { links, StandardParams } from "../../common/api";
+import { ResourceId, Task, CreatedTask } from "../../common/structs";
+import { Config } from "./config";
+import { VolumeSummary } from "./container";
 
 export type ContainerAction =
   | "start"
@@ -56,7 +56,7 @@ export async function reconfigure(
 export async function reconfigureVolumes(
   params: StandardParams & {
     id: ResourceId;
-    value: ContainerVolume[];
+    value: VolumeSummary[];
   },
 ) {
   return task({

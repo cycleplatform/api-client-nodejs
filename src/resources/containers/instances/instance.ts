@@ -50,8 +50,9 @@ export interface Instance extends Resource<InstanceMetas> {
   owner: OwnerScope;
   hub_id: ResourceId;
   container_id: ResourceId;
-  environment: CondensedEnvironment;
-  provider: CondensedProvider;
+  location_id: ResourceId;
+  environment: EnvironmentSummary;
+  provider: ProviderSummary;
   server_id: ResourceId;
   ready_state: ReadyState;
   hostname: string;
@@ -60,13 +61,13 @@ export interface Instance extends Resource<InstanceMetas> {
   events: Events<InstanceEvent>;
 }
 
-export interface CondensedEnvironment {
+export interface EnvironmentSummary {
   id: ResourceId;
   instance_subnet: string;
   ipv6: IPNet | null;
 }
 
-export interface CondensedProvider {
+export interface ProviderSummary {
   identifier: ProviderIdentifier;
   location: Locations.LocationProvider;
 }

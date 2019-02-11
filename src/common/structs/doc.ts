@@ -1,4 +1,4 @@
-import { Time } from "./basic";
+import { Time } from "./units";
 
 /**
  * Main API Return.

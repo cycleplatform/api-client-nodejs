@@ -1,7 +1,7 @@
-import { ResourceId, CollectionDoc } from "../../common/structs";
-import { StandardParams, links } from "../../common/api";
-import * as Request from "../../common/api/request";
-import { Image } from "../images";
+import { ResourceId, CollectionDoc } from "../../../common/structs";
+import { StandardParams, links } from "../../../common/api";
+import * as Request from "../../../common/api/request";
+import { Image } from "../../images";
 
 export type Collection = CollectionDoc<Image>;
 

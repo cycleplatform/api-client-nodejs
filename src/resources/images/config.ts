@@ -1,10 +1,8 @@
-import { ResourceId } from "../../common/structs";
-
 export interface Config {
-  user: ResourceId;
+  user: string;
   ports: Port[];
-  env: { [key: string]: string };
-  labels: { [key: string]: string };
+  env: Record<string, string>;
+  labels: Record<string, string>;
   command: string[];
   onbuild: string[];
   entrypoint: string[];

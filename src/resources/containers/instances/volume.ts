@@ -8,24 +8,27 @@ import {
   Time,
 } from "../../../common/structs";
 import { links, StandardParams } from "../../../common/api";
-import { Spec } from "../../stacks";
+import { Volumes } from "../config";
 
-export type Collection = CollectionDoc<Volume>;
-export type Single = SingleDoc<Volume>;
+export type Collection = CollectionDoc<InstanceVolume>;
+export type Single = SingleDoc<InstanceVolume>;
 export type SecretState = "live" | "deleting" | "deleted";
 
-export interface Volume extends Resource {
-  config: Spec.Volume;
-  deployed: {
-    server_id: ResourceId | null;
-    container_id: ResourceId;
-    container_volume_id: ResourceId;
-    hash: string;
-    path: string;
-    storage: Storage;
-    last_updated: Time;
-  };
+export interface InstanceVolume extends Resource {
+  config: Volumes.Volume;
+  deployed: DeployedVolume;
   sftp: SFTP;
+}
+
+export interface DeployedVolume {
+  server_id: ResourceId | null;
+  container_id: ResourceId;
+  container_volume_id: ResourceId;
+  instance_id: ResourceId;
+  hash: string;
+  path: string;
+  storage: Storage;
+  last_updated: Time;
 }
 
 export interface Storage {
@@ -37,6 +40,7 @@ export interface SFTP {
   host: string;
   port: number;
   username: string;
+  password: Volumes.VolumePassword;
 }
 
 export async function getCollection(
