@@ -13,15 +13,7 @@ import { Spec } from "./spec";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
-export type StackState =
-  | "new"
-  | "importing"
-  | "building"
-  | "verifying"
-  | "saving"
-  | "live"
-  | "deleting"
-  | "deleted";
+export type StackState = "new" | "live" | "deleting" | "deleted";
 
 export interface Stack extends Resource {
   name: string;
@@ -29,7 +21,7 @@ export interface Stack extends Resource {
   hub_id: ResourceId;
   source: Source;
   state: State<StackState>;
-  events: Events;
+  events: Events<"latest_build">;
 }
 
 export interface Source {

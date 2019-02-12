@@ -6,9 +6,10 @@ import {
   SingleDoc,
   ResourceId,
   State,
-  Events,
   OwnerScope,
   StatefulCounts,
+  Time,
+  StandardEvents,
 } from "../../../common/structs";
 import { Spec } from "../spec";
 import { ContainerState } from "../../containers";
@@ -34,9 +35,34 @@ export interface Build extends Resource<BuildMetas> {
   stack_id: ResourceId;
   hub_id: ResourceId;
   owner: OwnerScope;
-  spec: Spec;
-  events: Events;
+  source: Source;
+  events: StandardEvents;
   state: State<BuildState>;
+}
+
+export interface Source {
+  version: RepoVersion | null;
+  spec: Spec | null;
+}
+
+export interface RepoVersion {
+  url: string;
+  tag: string;
+  commit: GitCommit | null;
+}
+
+export interface GitCommit {
+  id: string;
+  message: string;
+  timestamp: Time;
+  url: string;
+  author: {
+    name: string;
+    email: string;
+  };
+  added: string[];
+  modified: string[];
+  removed: string[];
 }
 
 export interface BuildMetas {

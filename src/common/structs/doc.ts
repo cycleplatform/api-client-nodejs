@@ -70,7 +70,7 @@ export interface StandardEvents {
  * the event being the key and a formatted time string
  * being the value.
  */
-export type Events<T extends string = ""> = StandardEvents &
+export type Events<T extends string = "created"> = StandardEvents &
   { [P in T]?: Time };
 
 /**
