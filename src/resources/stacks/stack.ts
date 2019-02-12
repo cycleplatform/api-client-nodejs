@@ -26,7 +26,7 @@ export interface Stack extends Resource {
 
 export interface Source {
   repo?: Repo;
-  raw?: Spec; // string for creating. Spec on return
+  raw?: Spec;
 }
 
 export interface Repo {
