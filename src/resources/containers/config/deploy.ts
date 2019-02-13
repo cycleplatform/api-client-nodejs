@@ -10,6 +10,7 @@ export interface Deploy {
 
 export interface ShutdownPolicy {
   graceful_timeout: number;
+  signals: string[];
 }
 
 export interface RestartPolicy {
