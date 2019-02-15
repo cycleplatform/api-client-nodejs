@@ -4,12 +4,15 @@ import {
   IP,
   CollectionDoc,
   SingleDoc,
+  Events,
 } from "../../../common/structs";
-import { links, StandardParams } from "../../../common/api";
+import { links, StandardParams, QueryParams } from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
 export type Collection = CollectionDoc<Hook>;
 export type Single = SingleDoc<Hook>;
+
+export type HookQuery = QueryParams<"", keyof HookMetas>;
 
 export interface Hook extends Resource<HookMetas> {
   stack_id: ResourceId;
@@ -17,11 +20,12 @@ export interface Hook extends Resource<HookMetas> {
   active: boolean;
   secret: string;
   default_tag: string;
+  events: Events<"last_trigger">;
   ips: IP[];
 }
 
 export interface HookMetas {
-  url?: string[];
+  urls?: string[];
 }
 
 export async function getCollection(
