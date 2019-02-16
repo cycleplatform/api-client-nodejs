@@ -10,8 +10,10 @@ import {
   OwnerInclude,
   CreatedTask,
   State,
+  ContainerIdentifier,
 } from "../../../common/structs";
 import { Container } from "../../containers";
+import { Project } from "../../projects";
 
 export type Collection = CollectionDoc<Record, RecordIncludes>;
 export type Single = SingleDoc<Record, RecordIncludes>;
@@ -37,7 +39,8 @@ export interface RecordType {
   ns?: TypeNS;
   mx?: TypeMX;
   txt?: TypeTXT;
-  hosted?: TypeHosted;
+  alias?: TypeALIAS;
+  linked?: TypeLinked;
 }
 
 export interface TypeA {
@@ -65,8 +68,25 @@ export interface TypeTXT {
   value: string;
 }
 
-export interface TypeHosted {
+export interface TypeALIAS {
+  domain: string;
+}
+
+export interface TypeLinked {
   container_id?: ResourceId;
+  project?: ProjectLink;
+  features: LinkFeatures;
+}
+
+export interface ProjectLink {
+  project_id: ResourceId;
+  container: ContainerIdentifier;
+}
+
+export interface LinkFeatures {
+  tls: {
+    enable: boolean;
+  };
 }
 
 export interface RecordValues {
@@ -81,6 +101,9 @@ export interface RecordIncludes {
   owners?: OwnerInclude;
   containers?: {
     [key: string]: Container;
+  };
+  projects?: {
+    [key: string]: Project;
   };
 }
 

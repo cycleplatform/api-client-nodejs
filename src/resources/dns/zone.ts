@@ -33,6 +33,7 @@ export interface Zone extends Resource {
   hub_id: ResourceId;
   owner: OwnerScope;
   origin: string;
+  hosted: boolean;
   state: State<ZoneState>;
   events: Events<ZoneEvent>;
 }
@@ -67,6 +68,7 @@ export async function getSingle(
 
 export interface CreateParams {
   origin: string;
+  hosted: boolean;
 }
 
 export async function create(
@@ -80,6 +82,20 @@ export async function create(
       .dns()
       .zones()
       .collection(),
+  });
+}
+
+export type UpdateParams = Pick<CreateParams, "hosted">;
+
+export async function update(
+  params: StandardParams<ZoneQuery> & {
+    id: ResourceId;
+    value: UpdateParams;
+  },
+) {
+  return Request.patchRequest<Single>({
+    ...params,
+    target: links.containers().single(params.id),
   });
 }
 

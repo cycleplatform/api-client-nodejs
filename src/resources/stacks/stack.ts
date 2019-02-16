@@ -21,7 +21,7 @@ export interface Stack extends Resource {
   hub_id: ResourceId;
   source: Source;
   state: State<StackState>;
-  events: Events<"latest_build">;
+  events: Events<"last_build">;
 }
 
 export interface Source {

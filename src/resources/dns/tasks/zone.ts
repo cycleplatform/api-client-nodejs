@@ -3,24 +3,7 @@ import { Token } from "../../../auth";
 import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type ZoneAction = "verify" | "change_origin";
-
-export async function changeOrigin(
-  params: StandardParams & {
-    id: ResourceId;
-    origin: string;
-  },
-) {
-  return task({
-    ...params,
-    value: {
-      action: "change_origin",
-      contents: {
-        origin: params.origin,
-      },
-    },
-  });
-}
+export type ZoneAction = "verify";
 
 export async function verify(
   params: StandardParams & {
