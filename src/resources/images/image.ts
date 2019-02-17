@@ -14,6 +14,7 @@ import {
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
 import { ImageSource } from "./source";
+import { ContainerIdentifier } from "../../common/structs";
 
 export type Collection = CollectionDoc<Image, ImageIncludes>;
 export type Single = SingleDoc<Image, ImageIncludes>;
@@ -30,7 +31,7 @@ export type ImageState =
 
 export interface Image extends Resource<ImageMetas> {
   name: string;
-  stack_id: ResourceId;
+  stack: StackSummary | null;
   size: Bytes;
   about?: {
     description: string | null;
@@ -44,18 +45,20 @@ export interface Image extends Resource<ImageMetas> {
   events: Events;
 }
 
+export interface StackSummary {
+  id: ResourceId;
+  build_id: ResourceId;
+  containers: ContainerIdentifier[];
+}
+
 export interface ImageMetas {
   containers_count?: number;
 }
 
 export interface ImageIncludes {
   owners: OwnerInclude;
-  stack_builds: {
-    [key: string]: Builds.Build;
-  };
-  stacks: {
-    [key: string]: Stack;
-  };
+  stack_builds: Record<ResourceId, Builds.Build>;
+  stacks: Record<ResourceId, Stack>;
 }
 
 export async function getCollection(params: StandardParams<ImageQuery>) {

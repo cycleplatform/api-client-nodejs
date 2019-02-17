@@ -13,7 +13,7 @@ import { Spec } from "./spec";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
-export type StackState = "new" | "live" | "deleting" | "deleted";
+export type StackState = "live" | "deleting" | "deleted";
 
 export interface Stack extends Resource {
   name: string;
