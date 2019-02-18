@@ -95,7 +95,10 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links.containers().single(params.id),
+    target: links
+      .dns()
+      .zones()
+      .single(params.id),
   });
 }
 

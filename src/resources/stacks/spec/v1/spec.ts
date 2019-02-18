@@ -8,7 +8,7 @@ export interface Spec {
   about: About | null;
   tests: TestContainer[];
   services: Services;
-  containers: Record<ContainerIdentifier, Container>;
+  containers: Record<ContainerIdentifier, Container> | null;
   annotations: Record<string, string>;
 }
 
