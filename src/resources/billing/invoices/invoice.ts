@@ -8,7 +8,7 @@ import {
   Time,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
+import { links, StandardParams, QueryParams } from "../../../common/api";
 import { Payment } from "./payment";
 import { Credit } from "./credit";
 import { LateFee } from "./latefee";
@@ -16,6 +16,7 @@ import { Summary as ServiceSummary } from "../services";
 
 export type Collection = CollectionDoc<Invoice>;
 export type Single = SingleDoc<Invoice>;
+export type InvoiceQuery = QueryParams<"", keyof InvoiceMeta>;
 export type InvoiceState =
   | "new"
   | "billing"
@@ -36,7 +37,7 @@ export type InvoiceEvent =
   | "credited"
   | "voided";
 
-export interface Invoice extends Resource {
+export interface Invoice extends Resource<InvoiceMeta> {
   hub_id: ResourceId;
   approved: boolean;
   services: ServiceSummary[];
@@ -50,7 +51,11 @@ export interface Invoice extends Resource {
   state: State<InvoiceState>;
 }
 
-export async function getCollection(params: StandardParams) {
+export interface InvoiceMeta {
+  due?: number;
+}
+
+export async function getCollection(params: StandardParams<InvoiceQuery>) {
   return Request.getRequest<Collection>({
     ...params,
     target: links
@@ -61,7 +66,7 @@ export async function getCollection(params: StandardParams) {
 }
 
 export async function getSingle(
-  params: StandardParams & {
+  params: StandardParams<InvoiceQuery> & {
     id: ResourceId;
   },
 ) {
