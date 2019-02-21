@@ -56,7 +56,6 @@ export enum HubHeader {
   ENVIRONMENT_UPDATED = "environment.updated",
   ENVIRONMENT_ERROR = "environment.error",
   ENVIRONMENT_STATE_CHANGED = "environment.state_changed",
-  ENVIRONMENT_VPN_RECONFIGURED = "environment.vpn.reconfigured",
   ENVIRONMENT_SERVICES_UPDATED = "environment.services.updated",
 
   EMPLOYEES_STATE_CHANGED = "employees.state_changed",

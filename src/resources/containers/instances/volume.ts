@@ -17,7 +17,7 @@ export type SecretState = "live" | "deleting" | "deleted";
 export interface InstanceVolume extends Resource {
   config: Volumes.Volume;
   deployed: DeployedVolume;
-  sftp: SFTP;
+  sftp: SFTP | null;
 }
 
 export interface DeployedVolume {
