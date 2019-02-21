@@ -49,7 +49,7 @@ export async function getCollection(
     containerId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection>({
+  return Request.getRequest<Collection | { data: null }>({
     ...params,
     target: links
       .containers()
