@@ -20,6 +20,7 @@ export type Collection = CollectionDoc<Service>;
 export type Single = SingleDoc<Service>;
 
 export type ServiceEvent = "last_billed";
+export type ServiceState = "active";
 
 export interface Service extends Resource {
   owner: OwnerScope;
@@ -31,7 +32,7 @@ export interface Service extends Resource {
   discount: AssociatedDiscount | null;
   price: Amount;
   term: Term;
-  state: State;
+  state: State<ServiceState>;
 }
 
 export interface Order {

@@ -39,6 +39,7 @@ export const links = {
     services: () => ({
       collection: () => `/billing/services`,
       single: (id: ResourceId) => `/billing/services/${id}`,
+      overage: () => `/billing/services/overages`,
     }),
     credits: () => ({
       collection: () => `/billing/credits`,
