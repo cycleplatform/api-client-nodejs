@@ -18,7 +18,6 @@ export interface TierPlan extends Resource {
   description: string;
   ram: RAM;
   image_storage: ImageStorage;
-  premium_features: boolean;
   default?: true;
 }
 

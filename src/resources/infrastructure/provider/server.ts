@@ -29,7 +29,7 @@ export interface Server extends Resource {
   /** Information about the provider of this server */
   provider: ServerProvider;
   /** Price of this server */
-  pricing: Amount;
+  price: Amount;
 
   location_ids: ResourceId[];
 }
