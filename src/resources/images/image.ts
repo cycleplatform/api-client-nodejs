@@ -36,6 +36,7 @@ export interface Image extends Resource<ImageMetas> {
   about?: {
     description: string | null;
   };
+  backend: ImageBackend;
   tags: string[];
   config: Config;
   source: ImageSource;
@@ -43,6 +44,11 @@ export interface Image extends Resource<ImageMetas> {
   hub_id: ResourceId;
   state: State<ImageState>;
   events: Events;
+}
+
+export interface ImageBackend {
+  provider: string;
+  size: Bytes;
 }
 
 export interface StackSummary {

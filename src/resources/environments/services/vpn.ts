@@ -8,6 +8,7 @@ import {
   SingleDoc,
   CreatedTask,
   Time,
+  Webhook,
 } from "../../../common/structs";
 import { links, StandardParams } from "../../../common/api";
 import * as Request from "../../../common/api/request";
@@ -22,14 +23,9 @@ export interface VPN {
 }
 
 export interface VPNAuth {
-  auth_api: AuthAPI | null;
-  allow_cycle_accounts: boolean;
-  allow_environment_accounts: boolean;
-}
-
-export interface AuthAPI {
-  allow: boolean;
-  url: string;
+  webhook: Webhook;
+  cycle_accounts: boolean;
+  vpn_accounts: boolean;
 }
 
 export interface VPNUser extends Resource {

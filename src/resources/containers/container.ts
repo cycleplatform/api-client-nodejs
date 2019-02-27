@@ -20,6 +20,7 @@ import { IPNet } from "../network";
 import { InstanceState } from "./instances";
 import { Service } from "./services";
 import { Config, Volumes } from "./config";
+import { IP } from "../infrastructure/network/ip";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
@@ -70,6 +71,7 @@ export interface ContainerMetas {
   instance_counts?: StatefulCounts<InstanceState>;
   domain?: string;
   domains?: { fqdn: string; record: Zones.Records.Record | null };
+  ips?: IP[];
 }
 
 export interface StackSummary {
