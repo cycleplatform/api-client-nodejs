@@ -2,6 +2,7 @@ import * as Request from "../../common/api/request";
 import { QueryParams, links, StandardParams } from "../../common/api";
 import { Builds, Stack } from "../stacks";
 import { Image } from "../images";
+import { Zones } from "../dns";
 import {
   CollectionDoc,
   Resource,
@@ -68,6 +69,7 @@ export interface ContainerIncludes {
 export interface ContainerMetas {
   instance_counts?: StatefulCounts<InstanceState>;
   domain?: string;
+  domains?: { fqdn: string; record: Zones.Records.Record | null };
 }
 
 export interface StackSummary {
