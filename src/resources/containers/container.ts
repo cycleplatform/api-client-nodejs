@@ -92,6 +92,12 @@ export interface EnvironmentSummary {
   id: ResourceId;
   container_subnet: string;
   ipv6: IPNet | null;
+  legacy: Legacy | null;
+}
+
+export interface Legacy {
+  subnet: number;
+  ipv4: IPNet | null;
 }
 
 export interface VolumeSummary {

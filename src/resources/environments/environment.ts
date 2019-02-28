@@ -40,13 +40,26 @@ export interface Environment extends Resource<EnvironmentMeta> {
   project: ProjectSummary | null;
   state: State<EnvironmentState>;
   events: Events;
+  features: Features;
   stack: StackSummary | null;
   services: Services;
-  private_network: {
-    vxlan_tag: number;
-    subnet: number;
-    ipv6: IPNet;
-  } | null;
+  private_network: PrivateNetwork | null;
+}
+
+export interface PrivateNetwork {
+  vxlan_tag: number;
+  subnet: number;
+  ipv6: IPNet;
+  legacy: Legacy | null;
+}
+
+export interface Legacy {
+  subnet: number;
+  ipv4: IPNet;
+}
+
+export interface Features {
+  legacy_networking: boolean;
 }
 
 export interface ProjectSummary {
@@ -90,6 +103,10 @@ export interface CreateParams {
   name: string;
   about: {
     description: string;
+  };
+  features: {
+    // IPv4 Support - limits the number of containers that can be deployed
+    legacy_networking: boolean;
   };
   stack?: {
     /** The id of the stack you want to apply to this environment (if any) */
