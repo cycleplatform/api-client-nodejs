@@ -19,8 +19,10 @@ export enum AccountHeader {
   HUB_ERROR = "hub.error",
   /** A hub was deleted */
   HUB_DELETED = "hub.deleted",
-  /** A new member was added to a hub */
-  HUB_MEMBERSHIP_NEW = "hub.membership.new",
+  /** User joined a new hub */
+  HUB_MEMBERSHIPS_NEW = "hub.memberships.new",
+  /** A hub membership was updated (accepted invite, etc) */
+  HUB_MEMBERSHIPS_UPDATED = "hub.memberships.updated",
 }
 
 export type AccountNotification = Notification<AccountHeader>;

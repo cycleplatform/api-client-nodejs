@@ -60,7 +60,10 @@ export interface MembershipIncludes {
 }
 
 export interface Invitation {
-  sender: ResourceId;
+  sender: {
+    id: ResourceId;
+    type: string;
+  };
   recipient: {
     email: string;
   };
