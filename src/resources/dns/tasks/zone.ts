@@ -3,7 +3,7 @@ import { Token } from "../../../auth";
 import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type ZoneAction = "verify" | "certs.generate";
+export type ZoneAction = "verify" | "generate_certs";
 
 export async function verify(
   params: StandardParams & {
@@ -27,7 +27,7 @@ export async function generateCerts(
   return task({
     ...params,
     value: {
-      action: "certs.generate",
+      action: "generate_certs",
     },
   });
 }
