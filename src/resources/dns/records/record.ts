@@ -11,6 +11,7 @@ import {
   CreatedTask,
   State,
   ContainerIdentifier,
+  Time,
 } from "../../../common/structs";
 import { Container } from "../../containers";
 import { Project } from "../../projects";
@@ -28,8 +29,18 @@ export interface Record extends Resource {
   name: string;
   resolved_domain: string;
   type: RecordType;
+  features: RecordFeatures | null;
   state: State<RecordState>;
   events: Events;
+}
+
+export interface RecordFeatures {
+  certificate: Certificate | null;
+}
+
+export interface Certificate {
+  id: ResourceId;
+  generated: Time;
 }
 
 export interface RecordType {
