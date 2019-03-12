@@ -30,7 +30,10 @@ export interface Server extends Resource {
   provider: ServerProvider;
   /** Price of this server */
   price: Amount;
-
+  /** Whether this server is compatible with Cycle or not */
+  compatible: boolean;
+  /** If true, this server has limited resources and should only be used for lightweight applications */
+  low_resource: boolean;
   location_ids: ResourceId[];
 }
 
