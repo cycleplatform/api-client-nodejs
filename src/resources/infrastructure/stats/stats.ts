@@ -5,6 +5,7 @@ import { LoadStats } from "./load";
 import { RAMStats } from "./ram";
 import { StorageStats } from "./storage";
 import { OSStats } from "./os";
+import { Versions } from "./versions";
 
 export interface Stats {
   network: NetworkStats;
@@ -14,4 +15,5 @@ export interface Stats {
   ram: RAMStats;
   storage: StorageStats;
   os: OSStats;
+  versions: Versions;
 }
