@@ -10,6 +10,7 @@ export type CycleService =
   | "console"
   | "manager"
   | "dns"
+  | "agent"
   | "nexus";
 
 export interface Versions {
