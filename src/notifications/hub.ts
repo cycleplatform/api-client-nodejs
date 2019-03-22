@@ -51,6 +51,8 @@ export enum HubHeader {
   DNS_ZONE_STATE_CHANGED = "dns.zone.state_changed",
   DNS_ZONE_NEW_RECORD = "dns.zone.record.created",
   DNS_RECORD_STATE_CHANGED = "dns.zone.record.state_changed",
+  DNS_ZONE_CERTIFICATES_GENERATED = "dns.zone.certificates.generated",
+  DNS_ZONE_VERIFIED = "dns.zone.verified",
 
   ENVIRONMENT_CREATED = "environment.created",
   ENVIRONMENT_UPDATED = "environment.updated",
