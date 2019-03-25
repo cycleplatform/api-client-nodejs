@@ -1,15 +1,12 @@
+import { Webhook } from "../../../../../common/structs";
+
 export interface VPN {
   auth: VPNAuth;
   allow_internet: boolean;
 }
 
 export interface VPNAuth {
-  auth_api: AuthAPI | null;
-  allow_cycle_accounts: boolean;
-  allow_environment_accounts: boolean;
-}
-
-export interface AuthAPI {
-  allow: boolean;
-  url: string;
+  web_hook: Webhook;
+  cycle_accounts: boolean;
+  vpn_accounts: boolean;
 }

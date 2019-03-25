@@ -5,7 +5,6 @@ import {
   Resource,
   SingleDoc,
   Gigabytes,
-  ResourceId,
 } from "../../../common/structs";
 import { Amount } from "../../billing";
 
@@ -31,7 +30,6 @@ export interface ImageStorage {
 }
 
 export async function getCollection(params: {
-  hubId: ResourceId;
   query?: QueryParams;
   settings?: Settings;
 }) {

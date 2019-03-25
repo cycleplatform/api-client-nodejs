@@ -1,4 +1,5 @@
-import { Emails, Webhooks } from "../../../common/structs";
+import { Emails, Webhook } from "../../../common/structs";
+import { Signal } from "../../stacks/spec/v1";
 
 export interface Deploy {
   instances: number;
@@ -10,7 +11,7 @@ export interface Deploy {
 
 export interface ShutdownPolicy {
   graceful_timeout: number;
-  signals: string[];
+  signals: Signal[];
 }
 
 export interface RestartPolicy {
@@ -46,5 +47,5 @@ export enum RestartCondition {
 
 export interface Notify {
   emails: Emails;
-  web_hooks: Webhooks;
+  web_hook: Webhook;
 }

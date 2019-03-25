@@ -1,11 +1,6 @@
 import * as Request from "../../../common/api/request";
 import { QueryParams, links, Settings } from "../../../common/api";
-import {
-  CollectionDoc,
-  Resource,
-  SingleDoc,
-  ResourceId,
-} from "../../../common/structs";
+import { CollectionDoc, Resource, SingleDoc } from "../../../common/structs";
 import { Amount } from "../../billing";
 
 export type Collection = CollectionDoc<SupportPlan>;
@@ -19,7 +14,6 @@ export interface SupportPlan extends Resource {
 }
 
 export async function getCollection(params: {
-  hubId: ResourceId;
   query?: QueryParams;
   settings?: Settings;
 }) {

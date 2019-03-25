@@ -14,7 +14,7 @@ export interface LocalVolume {
 export interface VolumeRemoteAccess {
   enable: boolean;
   ips?: IP[];
-  webhook: Webhook;
+  web_hook: Webhook;
   password: VolumePassword | null;
 }
 
