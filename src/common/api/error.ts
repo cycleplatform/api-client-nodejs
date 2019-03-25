@@ -43,6 +43,7 @@ export enum ErrorCode {
   C_403_WRONG_SCOPE = "403.wrong_scope",
   C_403_KEY_DISALLOWED = "403.key_disallowed",
   C_403_INVALID_STATE = "403.invalid_state",
+  C_403_NOT_APPROVED = "403.not_approved",
 
   C_404_HUB = "404.hub",
   C_404_HUB_INVITATION = "404.hub_invitation",
