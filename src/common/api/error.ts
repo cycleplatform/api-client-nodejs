@@ -26,6 +26,7 @@ export interface OAuthError {
  */
 export enum ErrorCode {
   C_0_NETWORK_ERROR = "0.network_error", // Browser only, issued if fetch fails
+  C_0_PARSE_ERROR = "0.parse_error",
 
   C_400_INVALID_SYNTAX = "400.invalid_syntax",
 

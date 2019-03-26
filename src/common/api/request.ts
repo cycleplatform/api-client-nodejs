@@ -97,11 +97,23 @@ async function makeRequest<T>(
       };
     }
 
-    const result: T = await resp.json();
-    return {
-      ok: true,
-      value: result,
-    };
+    try {
+      const result: T = await resp.json();
+      return {
+        ok: true,
+        value: result,
+      };
+    } catch (e) {
+      return {
+        ok: false,
+        error: {
+          status: 0,
+          title: "Error parsing response",
+          detail: "API returned a non-JSON response",
+          code: ErrorCode.C_0_PARSE_ERROR,
+        },
+      };
+    }
   } catch (e) {
     return {
       ok: false,

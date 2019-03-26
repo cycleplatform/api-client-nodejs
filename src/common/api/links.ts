@@ -48,28 +48,13 @@ export const links = {
     }),
   }),
 
+  changelog: () => ({
+    collection: () => "/changelog",
+  }),
+
   channels: () => ({
     account: () => "/account/notifications",
     hub: () => "/hubs/current/notifications",
-  }),
-
-  hubs: () => ({
-    collection: () => `/hubs`,
-    single: () => `/hubs/current`,
-    tasks: () => `/hubs/current/tasks`,
-    capabilities: () => `/hubs/capabilities`,
-    invites: () => ({
-      collection: () => `/hubs/current/invites`,
-    }),
-    members: () => ({
-      collection: () => `/hubs/current/members`,
-      membership: () => `/hubs/current/membership`,
-      single: (id: ResourceId) => `/hubs/current/members/${id}`,
-    }),
-    keys: () => ({
-      collection: () => `/hubs/current/api-keys`,
-      single: (id: ResourceId) => `/hubs/current/api-keys/${id}`,
-    }),
   }),
 
   containers: () => ({
@@ -139,6 +124,25 @@ export const links = {
     }),
     telemetry: () => ({
       instances: (id: ResourceId) => `/environments/${id}/telemetry/instances`,
+    }),
+  }),
+
+  hubs: () => ({
+    collection: () => `/hubs`,
+    single: () => `/hubs/current`,
+    tasks: () => `/hubs/current/tasks`,
+    capabilities: () => `/hubs/capabilities`,
+    invites: () => ({
+      collection: () => `/hubs/current/invites`,
+    }),
+    members: () => ({
+      collection: () => `/hubs/current/members`,
+      membership: () => `/hubs/current/membership`,
+      single: (id: ResourceId) => `/hubs/current/members/${id}`,
+    }),
+    keys: () => ({
+      collection: () => `/hubs/current/api-keys`,
+      single: (id: ResourceId) => `/hubs/current/api-keys/${id}`,
     }),
   }),
 
