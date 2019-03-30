@@ -29,6 +29,7 @@ export type InstanceState =
   | "running"
   | "stopping"
   | "stopped"
+  | "failed"
   | "deleting"
   | "deleted";
 
@@ -52,6 +53,7 @@ export interface Instance extends Resource<InstanceMetas> {
   container_id: ResourceId;
   location_id: ResourceId;
   environment: EnvironmentSummary;
+  stateful: Stateful;
   provider: ProviderSummary;
   server_id: ResourceId;
   ready_state: ReadyState;
@@ -63,13 +65,18 @@ export interface Instance extends Resource<InstanceMetas> {
 
 export interface EnvironmentSummary {
   id: ResourceId;
-  instance_subnet: string;
+  subnet: string;
   ipv6: IPNet | null;
   legacy: Legacy | null;
 }
 
+export interface Stateful {
+  id: number;
+  base_hostname: string;
+}
+
 export interface Legacy {
-  subnet: number;
+  host: number;
   ipv4: IPNet | null;
 }
 

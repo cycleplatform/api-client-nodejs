@@ -1,13 +1,26 @@
 import { Emails, Webhook } from "../../../../common/structs";
+import { RuntimeCommand } from "./runtime";
 
 export type Signal = "SIGTERM" | "SIGINT" | "SIGUSR1" | "SIGUSR2" | "SIGHUP";
 
 export interface Deploy {
   instances: number;
+  strategy: DeploymentStrategy | null;
+  stateful: Stateful | null;
   constraints: Constraints | null;
   shutdown: ShutdownPolicy | null;
   restart: RestartPolicy | null;
   health_check: HealthCheck | null;
+}
+
+export interface Stateful {
+  increment_hostnames: boolean;
+  instances: Record<string, StatefulInstance>;
+}
+
+export interface StatefulInstance {
+  command: RuntimeCommand;
+  environment_vars: Record<string, string>;
 }
 
 export interface ShutdownPolicy {
@@ -29,7 +42,14 @@ export interface Constraints {
 }
 
 export interface NodeConstraints {
-  tags: string[];
+  tags: Tags;
+}
+
+export interface Tags {
+  /** can match any server that has at least one of these tags */
+  any: string[];
+  /** can only match servers that have all of the tags listed */
+  all: string[];
 }
 
 export interface HealthCheck {
@@ -44,6 +64,15 @@ export enum RestartCondition {
   RSTRC_ALWAYS = "always",
   RSTRC_NEVER = "never",
   RSTRC_FAILURE = "failure",
+}
+
+export enum DeploymentStrategy {
+  /** Cycle will try to balance based on resource usage of the servers that match the tags */
+  DS_RESOURCE_DENSITY = "resource-density",
+  /** Cycle will try to allocate in the best way to spread out the instances */
+  DS_HIGH_AVAILABILITY = "high-availability",
+  /** Just allocate ASAP to any available server */
+  DS_FIRST_AVAILABLE = "first-available",
 }
 
 export interface Notify {
