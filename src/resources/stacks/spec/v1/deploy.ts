@@ -14,13 +14,14 @@ export interface Deploy {
 }
 
 export interface Stateful {
-  increment_hostnames: boolean;
-  instances: Record<string, StatefulInstance>;
+  instances: StatefulInstance[];
 }
 
 export interface StatefulInstance {
+  hostname: string;
   command: RuntimeCommand;
   environment_vars: Record<string, string>;
+  ports: string[];
 }
 
 export interface ShutdownPolicy {
