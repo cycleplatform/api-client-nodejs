@@ -13,6 +13,7 @@ import { PublicAccount } from "../accounts/account";
 import { Hub } from "./hub";
 import { Capability } from "./capability";
 import { Name } from "../accounts";
+import { RoleName } from "./invite";
 
 export type Collection = CollectionDoc<Membership, MembershipIncludes>;
 export type Single = SingleDoc<Membership, MembershipIncludes>;
@@ -99,6 +100,25 @@ export async function getCurrentMembership(
       .hubs()
       .members()
       .membership(),
+  });
+}
+
+export interface UpdateParams {
+  role: RoleName;
+}
+
+export async function update(
+  params: StandardParams<MembershipQuery> & {
+    id: ResourceId;
+    value: UpdateParams;
+  },
+) {
+  return Request.patchRequest<SingleDoc<Member>>({
+    ...params,
+    target: links
+      .hubs()
+      .members()
+      .single(params.id),
   });
 }
 
