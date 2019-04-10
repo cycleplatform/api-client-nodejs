@@ -9,7 +9,7 @@ export interface Provider extends Resource<ProviderMetas> {
   name: string;
   identifier: ProviderIdentifier;
   website: string;
-  required_fields: string[];
+  required_fields: Record<string, RequiredField>;
   features: string[];
 }
 
@@ -19,6 +19,11 @@ export type ProviderIdentifier =
   | "digital-ocean"
   | "aws"
   | "azure";
+
+export interface RequiredField {
+  caption: string;
+  regex: string;
+}
 
 export interface ProviderMetas {
   locations: Location[];

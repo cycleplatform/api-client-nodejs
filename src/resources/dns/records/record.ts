@@ -51,6 +51,7 @@ export interface RecordType {
   mx?: TypeMX;
   txt?: TypeTXT;
   alias?: TypeALIAS;
+  srv?: TypeSRV;
   linked?: TypeLinked;
 }
 
@@ -80,6 +81,13 @@ export interface TypeTXT {
 }
 
 export interface TypeALIAS {
+  domain: string;
+}
+
+export interface TypeSRV {
+  weight: number;
+  priority: number;
+  port: number;
   domain: string;
 }
 
