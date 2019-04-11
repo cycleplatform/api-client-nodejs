@@ -16,9 +16,7 @@ export type Single = SingleDoc<ApiKey>;
 
 export interface ApiKey extends Resource {
   name: string;
-  secret: string;
   owner: OwnerScope;
-  capabilities: Capability[];
   hub_id: ResourceId;
   ips: string[] | null;
   state: State<ApiKeyState>;
