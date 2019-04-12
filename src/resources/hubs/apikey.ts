@@ -18,6 +18,8 @@ export interface ApiKey extends Resource {
   name: string;
   owner: OwnerScope;
   hub_id: ResourceId;
+  secret?: string;
+  capabilities?: Capability[];
   ips: string[] | null;
   state: State<ApiKeyState>;
   events: Events;
@@ -65,9 +67,21 @@ export async function create(params: StandardParams & { value: CreateParams }) {
   });
 }
 
+export async function update(
+  params: StandardParams & { keyId: ResourceId; value: Partial<CreateParams> },
+) {
+  return Request.patchRequest<Single>({
+    ...params,
+    target: links
+      .hubs()
+      .keys()
+      .single(params.keyId),
+  });
+}
+
 export async function remove(
   params: StandardParams & {
-    id: ResourceId;
+    keyId: ResourceId;
   },
 ) {
   return Request.deleteRequest<Single>({
@@ -75,6 +89,6 @@ export async function remove(
     target: links
       .hubs()
       .keys()
-      .single(params.id),
+      .single(params.keyId),
   });
 }
