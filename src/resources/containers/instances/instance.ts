@@ -61,7 +61,7 @@ export interface Instance extends Resource<InstanceMetas> {
   hostname: string;
   service: Service | null;
   state: State<InstanceState> & {
-    health: {
+    health?: {
       healthy: boolean;
       updated: Time;
     };
