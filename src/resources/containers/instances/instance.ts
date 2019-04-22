@@ -16,6 +16,7 @@ import {
   OwnerScope,
   Includes,
   OwnerInclude,
+  Time,
 } from "../../../common/structs";
 import { IPNet } from "../../network";
 import { Service } from "../services";
@@ -59,7 +60,12 @@ export interface Instance extends Resource<InstanceMetas> {
   ready_state: ReadyState;
   hostname: string;
   service: Service | null;
-  state: State<InstanceState>;
+  state: State<InstanceState> & {
+    health: {
+      healthy: boolean;
+      updated: Time;
+    };
+  };
   events: Events<InstanceEvent>;
 }
 
