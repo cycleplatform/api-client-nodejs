@@ -1,4 +1,6 @@
 import { Service } from "./common";
+import { StandardParams, getRequest, links } from "../../../common/api";
+import { ResourceId } from "../../../common/structs";
 
 export interface LoadBalancerService extends Service {
   config: LoadBalancer;
@@ -57,4 +59,24 @@ export interface BackendTimeouts {
   connect_ms: number | null;
   queue_ms: number | null;
   tunnel_secs: number | null;
+}
+
+export interface LoadBalancerInfoReturn {
+  default_config: LoadBalancer;
+  service: LoadBalancerService;
+}
+
+export async function getLoadbalancerInfo(
+  params: StandardParams & {
+    environmentId: ResourceId;
+  },
+) {
+  return getRequest<{ data: LoadBalancerInfoReturn }>({
+    ...params,
+    target: links
+      .environments()
+      .services()
+      .lb()
+      .info(params.environmentId),
+  });
 }

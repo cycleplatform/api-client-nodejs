@@ -109,6 +109,10 @@ export const links = {
     summary: (id: ResourceId) => `/environments/${id}/summary`,
     tasks: (id: ResourceId) => `/environments/${id}/tasks`,
     services: () => ({
+      lb: () => ({
+        info: (environment: ResourceId) =>
+          `/environments/${environment}/services/lb`,
+      }),
       vpn: () => ({
         details: (environment: ResourceId) =>
           `/environments/${environment}/services/vpn`,
