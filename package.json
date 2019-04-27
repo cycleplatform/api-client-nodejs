@@ -1,6 +1,6 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.3.0-beta.46",
+  "version": "1.3.0-beta.51",
   "description": "Cycle API Client",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",

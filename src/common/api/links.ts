@@ -112,6 +112,8 @@ export const links = {
       lb: () => ({
         info: (environment: ResourceId) =>
           `/environments/${environment}/services/lb`,
+        tasks: (environment: ResourceId) =>
+          `/environments/${environment}/services/lb/tasks`,
       }),
       vpn: () => ({
         details: (environment: ResourceId) =>

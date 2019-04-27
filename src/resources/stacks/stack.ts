@@ -15,13 +15,17 @@ export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
 export type StackState = "live" | "deleting" | "deleted";
 
-export interface Stack extends Resource {
+export interface Stack extends Resource<StackMetas> {
   name: string;
   owner: OwnerScope;
   hub_id: ResourceId;
   source: Source;
   state: State<StackState>;
   events: Events<"last_build">;
+}
+
+export interface StackMetas {
+  containers_count?: number;
 }
 
 export interface Source {

@@ -9,7 +9,7 @@ export interface Runtime {
   namespaces: Namespaces[] | null;
   environment_vars: Record<string, string>;
   privileged: boolean;
-  capabilities: BaseCapabilities | PrivilegedCapabilities[] | null;
+  capabilities: BaseCapabilities[] | PrivilegedCapabilities[] | null;
   workdir: string | null;
 }
 

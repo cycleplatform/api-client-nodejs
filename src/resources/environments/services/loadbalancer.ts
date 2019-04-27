@@ -1,6 +1,11 @@
 import { Service } from "./common";
-import { StandardParams, getRequest, links } from "../../../common/api";
-import { ResourceId } from "../../../common/structs";
+import {
+  StandardParams,
+  getRequest,
+  links,
+  postRequest,
+} from "../../../common/api";
+import { ResourceId, CreatedTask } from "../../../common/structs";
 
 export interface LoadBalancerService extends Service {
   config: LoadBalancer;
@@ -24,8 +29,8 @@ export interface HAProxyConfig {
 }
 
 export interface HAProxyConfigSet {
-  frontend: HAProxyFrontend | null;
-  backend: HAProxyBackend | null;
+  frontend: HAProxyFrontend;
+  backend: HAProxyBackend;
 }
 
 export type HAProxyMode = "tcp" | "http";
@@ -66,7 +71,7 @@ export interface LoadBalancerInfoReturn {
   service: LoadBalancerService;
 }
 
-export async function getLoadbalancerInfo(
+export async function getLoadBalancerInfo(
   params: StandardParams & {
     environmentId: ResourceId;
   },
@@ -78,5 +83,31 @@ export async function getLoadbalancerInfo(
       .services()
       .lb()
       .info(params.environmentId),
+  });
+}
+
+export interface LoadBalancerReconfig {
+  config?: LoadBalancer;
+}
+
+export type LoadBalancerAction = "reconfigure";
+
+export async function reconfigureLoadBalancer(
+  params: StandardParams & {
+    environmentId: ResourceId;
+    value: LoadBalancerReconfig;
+  },
+) {
+  return postRequest<CreatedTask<LoadBalancerAction>>({
+    ...params,
+    target: links
+      .environments()
+      .services()
+      .lb()
+      .tasks(params.environmentId),
+    value: {
+      action: "reconfigure",
+      contents: params.value,
+    },
   });
 }

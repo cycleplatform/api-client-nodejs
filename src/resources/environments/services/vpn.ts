@@ -142,15 +142,15 @@ export async function deleteVPNUser(
   });
 }
 
-export type Action = "reconfigure";
+export type VPNAction = "reconfigure";
 
-export async function reconfigure(
+export async function reconfigureVPN(
   params: StandardParams & {
     environmentId: ResourceId;
     value: VPNReconfigureDetails;
   },
 ) {
-  return Request.postRequest<CreatedTask<Action>>({
+  return Request.postRequest<CreatedTask<VPNAction>>({
     ...params,
     target: links
       .environments()
