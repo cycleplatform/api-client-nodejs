@@ -102,4 +102,5 @@ export enum ErrorCode {
   C_500_EMAIL = "500.email",
   C_500_PAYMENT_GATEWAY = "500.payment_gateway",
   C_503_VPN_NOT_READY = "503.vpn_not_ready",
+  C_503_LB_NOT_ENABLED = "503.lb_not_enabled",
 }
