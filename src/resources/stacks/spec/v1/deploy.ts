@@ -9,8 +9,10 @@ export interface Deploy {
   stateful: Stateful | null;
   constraints: Constraints | null;
   shutdown: ShutdownPolicy | null;
+  startup: StartupPolicy | null;
   restart: RestartPolicy | null;
   health_check: HealthCheck | null;
+  update: UpdatePolicy | null;
 }
 
 export interface Stateful {
@@ -27,6 +29,16 @@ export interface StatefulInstance {
 export interface ShutdownPolicy {
   graceful_timeout: number;
   signals: Signal[];
+}
+
+export interface StartupPolicy {
+  delay: number | null;
+  order: number | null;
+}
+
+export interface UpdatePolicy {
+  parallelism: number;
+  delay: number;
 }
 
 export interface RestartPolicy {
