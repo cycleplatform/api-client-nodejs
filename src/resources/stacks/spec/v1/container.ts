@@ -7,5 +7,8 @@ export interface Container {
   image: Image;
   stateful: boolean;
   config: Config;
+  role?: ContainerRole;
   volumes: Volume[];
 }
+
+export type ContainerRole = "orchestrator";

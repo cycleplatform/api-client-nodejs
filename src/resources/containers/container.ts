@@ -21,6 +21,7 @@ import { InstanceState } from "./instances";
 import { Service } from "./services";
 import { Config, Volumes } from "./config";
 import { IP } from "../infrastructure/network/ip";
+import { ContainerRole } from "../stacks/spec/v1/container";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
@@ -50,6 +51,7 @@ export interface Container extends Resource<ContainerMetas> {
   config: Config;
   instances: number;
   volumes?: VolumeSummary[];
+  role: ContainerRole;
   state: State<ContainerState>;
   events: Events<ContainerEvent>;
 }
@@ -128,6 +130,7 @@ export interface CreateParams {
   name: string;
   environment_id: ResourceId;
   image_id: ResourceId;
+  stateful: boolean;
   config: Config;
   volumes: Volumes.Volume[];
 }

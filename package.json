@@ -16,6 +16,8 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-typescript": "^7.3.3",
     "@types/chai": "^4.1.2",
     "@types/chai-json-schema": "^1.4.3",
     "@types/dotenv": "^4.0.2",
@@ -23,6 +25,7 @@
     "@types/node": "^8.9.4",
     "@types/speakeasy": "^2.0.2",
     "@types/ws": "^3.2.1",
+    "babel-loader": "^8.0.5",
     "chai": "^4.1.2",
     "chai-json-schema": "^1.4.0",
     "dotenv": "^4.0.0",

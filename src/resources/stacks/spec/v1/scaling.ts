@@ -3,8 +3,8 @@ import { ContainerIdentifier } from "../../../../common/structs";
 export type ScalingMetric = "ram";
 
 export interface Scaling {
-  auto?: AutoScaling;
-  orchestrator?: ContainerIdentifier;
+  auto: AutoScaling | null;
+  orchestrator: ContainerIdentifier | null;
 }
 
 export interface AutoScaling {
