@@ -68,7 +68,7 @@ export interface BackendTimeouts {
 
 export interface LoadBalancerInfoReturn {
   default_config: LoadBalancer;
-  service: LoadBalancerService;
+  service: LoadBalancerService | null;
 }
 
 export async function getLoadBalancerInfo(
