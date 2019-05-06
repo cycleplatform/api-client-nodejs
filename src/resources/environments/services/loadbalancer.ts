@@ -8,7 +8,7 @@ import {
 import { ResourceId, CreatedTask } from "../../../common/structs";
 
 export interface LoadBalancerService extends Service {
-  config: LoadBalancer;
+  config: LoadBalancer | null;
 }
 
 export type LoadBalanceDeploymentStrategy =
@@ -68,7 +68,7 @@ export interface BackendTimeouts {
 
 export interface LoadBalancerInfoReturn {
   default_config: LoadBalancer;
-  service: LoadBalancerService | null;
+  service: LoadBalancerService;
 }
 
 export async function getLoadBalancerInfo(
