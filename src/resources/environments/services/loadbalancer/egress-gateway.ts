@@ -52,7 +52,7 @@ export async function getEgressGateway(
     gatewayId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return getRequest<Single>({
     ...params,
     target: links
       .environments()
@@ -75,7 +75,7 @@ export async function createGateway(
     value: GatewayCreateParams;
   },
 ) {
-  return postRequest<Collection>({
+  return postRequest<Single>({
     ...params,
     target: links
       .environments()
