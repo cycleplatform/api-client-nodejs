@@ -1,11 +1,11 @@
-import { Service } from "./common";
+import { Service } from "../common";
 import {
   StandardParams,
   getRequest,
   links,
   postRequest,
-} from "../../../common/api";
-import { ResourceId, CreatedTask } from "../../../common/structs";
+} from "../../../../common/api";
+import { ResourceId, CreatedTask } from "../../../../common/structs";
 
 export interface LoadBalancerService extends Service {
   config: LoadBalancer | null;
@@ -53,6 +53,7 @@ export type HAProxyBalanceMode =
   | "leastconn"
   | "first"
   | "source";
+
 export interface HAProxyBackend {
   balance: HAProxyBalanceMode;
   timeouts: BackendTimeouts | null;

@@ -114,6 +114,12 @@ export const links = {
           `/environments/${environment}/services/lb`,
         tasks: (environment: ResourceId) =>
           `/environments/${environment}/services/lb/tasks`,
+        egress: () => ({
+          collection: (environment: ResourceId) =>
+            `/environments/${environment}/services/lb/egress-gateways`,
+          single: (environment: ResourceId, gateway: ResourceId) =>
+            `/environments/${environment}/services/lb/egress-gateways/${gateway}`,
+        }),
       }),
       vpn: () => ({
         details: (environment: ResourceId) =>
