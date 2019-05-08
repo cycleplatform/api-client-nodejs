@@ -13,6 +13,7 @@ import {
   links,
   postRequest,
   deleteRequest,
+  patchRequest,
 } from "../../../../common/api";
 
 export type Collection = CollectionDoc<EgressGateway>;
@@ -83,6 +84,24 @@ export async function createGateway(
       .lb()
       .egress()
       .collection(params.environmentId),
+  });
+}
+
+export async function updateGateway(
+  params: StandardParams & {
+    environmentId: ResourceId;
+    gatewayId: ResourceId;
+    value: Partial<GatewayCreateParams>;
+  },
+) {
+  return patchRequest<Single>({
+    ...params,
+    target: links
+      .environments()
+      .services()
+      .lb()
+      .egress()
+      .single(params.environmentId, params.gatewayId),
   });
 }
 
