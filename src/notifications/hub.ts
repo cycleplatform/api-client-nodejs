@@ -59,6 +59,7 @@ export enum HubHeader {
   ENVIRONMENT_SERVICES_UPDATED = "environment.services.updated",
   ENVIRONMENT_SERVICES_VPN_USER_CREATED = "environment.services.vpn.user.created",
   ENVIRONMENT_SERVICES_VPN_USER_DELETED = "environment.services.vpn.user.deleted",
+  ENVIRONMENT_EGRESS_GATEWAY_CREATED = "environment.egress_gateway.created",
 
   EMPLOYEES_STATE_CHANGED = "employees.state_changed",
   EMPLOYEES_ERROR = "employees.error",
