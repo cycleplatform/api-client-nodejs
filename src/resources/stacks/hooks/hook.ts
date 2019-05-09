@@ -19,9 +19,25 @@ export interface Hook extends Resource<HookMetas> {
   name: string;
   active: boolean;
   secret: string;
-  default_tag: string;
+  default_label: string;
+  integrations: Integrations;
   events: Events<"last_trigger">;
   ips: IP[];
+}
+
+export interface Integrations {
+  git?: Git;
+}
+
+export interface Git {
+  require: GitRequire;
+}
+
+export interface GitRequire {
+  /** If true, this hook will only trigger if a label is detected in the git commit */
+  label: boolean;
+  /** If true, this hook will only trigger if a version label is detected in the git commit */
+  version: boolean;
 }
 
 export interface HookMetas {
@@ -81,8 +97,9 @@ export async function create(
 export interface UpdateParams {
   name?: string;
   active?: boolean;
-  default_tag?: string;
+  default_label?: string;
   ips?: IP[];
+  integrations?: Integrations;
 }
 
 export async function update(

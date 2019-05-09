@@ -41,7 +41,8 @@ export interface Build extends Resource<BuildMetas> {
 }
 
 export interface Source {
-  version: RepoVersion | null;
+  hook_id: ResourceId;
+  repo: RepoVersion | null;
   spec: Spec | null;
 }
 
