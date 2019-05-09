@@ -12,6 +12,7 @@ import {
   CreatedTask,
   StatefulCounts,
   OwnerScope,
+  Cluster,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
 import {
@@ -41,6 +42,7 @@ export interface Server extends Resource<ServerMeta> {
   model_id: ResourceId;
   node_id: ResourceId | null;
   tags: string[];
+  cluster: Cluster;
   state: State<ServerState>;
   events: Events;
 }
@@ -108,6 +110,16 @@ export async function getTags(params: StandardParams) {
   });
 }
 
+export async function getClusters(params: StandardParams) {
+  return Request.getRequest<{ data: string[] }>({
+    ...params,
+    target: links
+      .infrastructure()
+      .servers()
+      .clusters(),
+  });
+}
+
 export interface ServerCreate {
   provider: ProviderIdentifier;
   model_id: string;
@@ -119,6 +131,7 @@ export interface ServerCreate {
 
 export interface CreateParams {
   servers: ServerCreate[];
+  cluster: Cluster;
 }
 
 export async function create(

@@ -11,6 +11,7 @@ import {
   StatefulCounts,
   OwnerInclude,
   IP,
+  Cluster,
 } from "../../common/structs";
 import { ContainerState, Instances, ContainerSummary } from "../containers";
 import { IPNet, Kind, IPState } from "../network";
@@ -32,6 +33,7 @@ export type EnvironmentQuery = QueryParams<
 
 export interface Environment extends Resource<EnvironmentMeta> {
   name: string;
+  cluster: Cluster;
   about: {
     description: string;
   };
@@ -101,6 +103,7 @@ export interface EnvironmentMeta {
 
 export interface CreateParams {
   name: string;
+  cluster: Cluster;
   about: {
     description: string;
   };

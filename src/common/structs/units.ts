@@ -57,3 +57,6 @@ export type Email = string;
 
 /** Array of emails */
 export type Emails = Email[];
+
+/** An identifier describing the cluster the server/environment is a member of */
+export type Cluster = string;

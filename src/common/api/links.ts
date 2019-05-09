@@ -173,6 +173,7 @@ export const links = {
       telemetry: (id: ResourceId) => `/infrastructure/servers/${id}/telemetry`,
       instances: (id: ResourceId) => `/infrastructure/servers/${id}/instances`,
       tags: () => `/infrastructure/servers/tags`,
+      clusters: () => `/infrastructure/servers/clusters`,
       usage: () => `/infrastructure/servers/usage`,
     }),
     providers: () => ({
