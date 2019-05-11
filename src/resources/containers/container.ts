@@ -52,6 +52,7 @@ export interface Container extends Resource<ContainerMetas> {
   instances: number;
   volumes?: VolumeSummary[];
   role: ContainerRole;
+  stateful: boolean;
   state: State<ContainerState>;
   events: Events<ContainerEvent>;
 }
