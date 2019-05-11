@@ -3,7 +3,7 @@ import { Webhook } from "../../../../common/structs";
 export interface Integrations {
   events: Events | null;
   lets_encrypt: LetsEncrypt | null;
-  // monitor: Monitor;
+  files: File[] | null;
 }
 
 export interface LetsEncrypt {
@@ -20,14 +20,7 @@ export interface Events {
   stop: Webhook;
 }
 
-// export interface Monitor {
-//   auto_restart: boolean;
-//   max_restarts?: number;
-//   restart_delay_secs?: number; // seconds
-//   notify: Notify;
-// }
-
-// export interface Notify {
-//   email: string;
-//   web_hook: string;
-// }
+export interface File {
+  source: string;
+  destination: string;
+}
