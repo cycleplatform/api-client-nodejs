@@ -164,7 +164,7 @@ export async function update(
   params: StandardParams & {
     zoneId: ResourceId;
     recordId: ResourceId;
-    value: CreateParams;
+    value: Omit<CreateParams, "name">;
   },
 ) {
   return Request.patchRequest<Single>({

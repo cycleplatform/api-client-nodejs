@@ -8,3 +8,4 @@ tslint.json
 typings.json
 typings/
 .vscode
+src/
