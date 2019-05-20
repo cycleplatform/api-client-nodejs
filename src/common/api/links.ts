@@ -183,6 +183,12 @@ export const links = {
       locations: (provider: ResourceId) =>
         `/infrastructure/providers/${provider}/locations`,
     }),
+    ips: () => ({
+      pools: () => ({
+        collection: () => `/infrastructure/ips/pools`,
+        single: (id: ResourceId) => `/infrastructure/ips/pools/${id}`,
+      }),
+    }),
   }),
 
   jobs: () => ({

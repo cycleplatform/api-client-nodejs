@@ -4,7 +4,7 @@ import {
   IP as IPString,
   State,
 } from "../../../common/structs";
-import { Kind } from "../../network";
+import { Kind } from "./kind";
 
 export type IPState = "assigning" | "assigned" | "releasing" | "available";
 

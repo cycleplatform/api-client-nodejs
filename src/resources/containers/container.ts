@@ -16,11 +16,11 @@ import {
   ContainerIdentifier,
 } from "../../common/structs";
 import { Features } from "./features";
-import { IPNet } from "../network";
+import { IPNet } from "../infrastructure/ips";
 import { InstanceState } from "./instances";
 import { Service } from "./services";
 import { Config, Volumes } from "./config";
-import { IP } from "../infrastructure/network/ip";
+import { IP } from "../infrastructure/ips";
 import { ContainerRole } from "../stacks/spec/v1/container";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;

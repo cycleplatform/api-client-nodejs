@@ -18,7 +18,7 @@ import {
   OwnerInclude,
   Time,
 } from "../../../common/structs";
-import { IPNet } from "../../network";
+import { IPNet } from "../../infrastructure/ips";
 import { Service } from "../services";
 
 export type Collection = CollectionDoc<Instance, InstanceIncludes>;

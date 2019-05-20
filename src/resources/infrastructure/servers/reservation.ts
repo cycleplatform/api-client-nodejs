@@ -1,5 +1,5 @@
 import { Resource, ResourceId, IP, State } from "../../../common/structs";
-import { Kind, IPNet } from "../../../resources/network";
+import { Kind, IPNet } from "../../infrastructure/ips";
 import { ProviderIdentifier } from "../provider";
 
 export interface Reservation extends Resource {
