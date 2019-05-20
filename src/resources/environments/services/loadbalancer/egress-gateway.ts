@@ -27,8 +27,13 @@ export interface EgressGateway extends Resource {
   environment_id: ResourceId;
   state: State<EggressGatewayState>;
   destinations: string[];
-  ports: string[];
+  ports: Port;
   events: Events;
+}
+
+export interface Port {
+  internal: string;
+  external: string;
 }
 
 export async function getEgressGatewayCollection(
@@ -67,7 +72,7 @@ export async function getEgressGateway(
 export interface GatewayCreateParams {
   name: string;
   destinations: string[];
-  ports: string[];
+  ports: Port;
 }
 
 export async function createGateway(
