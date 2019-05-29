@@ -3,8 +3,12 @@
  * passed into an API request function
  */
 export interface QueryParams<
+  /** Includes */
   I extends string = string,
-  M extends string = string
+  /** Meta */
+  M extends string = string,
+  /** Filters */
+  F extends string = string
 > {
   /**
    * Optional fields to expand.
@@ -27,7 +31,7 @@ export interface QueryParams<
   /**
    * Filter by specific params, i.e. {name: 'Website'}
    */
-  filter?: { [key: string]: string | string[] };
+  filter?: Record<F | "search", string | string[]>;
 
   /**
    * Pagination. Specify number of resources for the 'page' and which

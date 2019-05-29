@@ -187,6 +187,7 @@ export const links = {
       pools: () => ({
         collection: () => `/infrastructure/ips/pools`,
         single: (id: ResourceId) => `/infrastructure/ips/pools/${id}`,
+        ips: (id: ResourceId) => `/infrastructure/ips/pools/${id}/ips`,
       }),
     }),
   }),

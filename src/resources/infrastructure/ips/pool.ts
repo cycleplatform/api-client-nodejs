@@ -1,23 +1,34 @@
 import {
   Resource,
   ResourceId,
-  IP,
+  IP as IPString,
   State,
   CollectionDoc,
   SingleDoc,
+  OwnerInclude,
 } from "../../../common/structs";
 import { Kind } from "./kind";
-import { ProviderIdentifier } from "../provider";
+import { ProviderIdentifier, Provider } from "../provider";
 import {
   StandardParams,
   getRequest,
   patchRequest,
   links,
+  QueryParams,
 } from "../../../common/api";
+import { IP } from "./ip";
+import { Server } from "../servers";
+import { Location } from "../provider/location";
 
-export type Collection = CollectionDoc<Pool>;
-export type Single = SingleDoc<Pool>;
+export type Collection = CollectionDoc<Pool, PoolIncludes>;
+export type Single = SingleDoc<Pool, PoolIncludes>;
 export type PoolState = "live" | "releasing" | "released";
+
+export type PoolQuery = QueryParams<
+  keyof PoolIncludes,
+  string,
+  "available" | "cluster"
+>;
 
 export interface Pool extends Resource {
   hub_id: ResourceId;
@@ -38,9 +49,9 @@ export interface IPs {
 
 export interface Block {
   cidr: string;
-  gateway: IP;
-  netmask: IP;
-  network: IP;
+  gateway: IPString;
+  netmask: IPString;
+  network: IPString;
 }
 
 export type ReservationIdentifier = string;
@@ -55,7 +66,14 @@ export interface Provider {
   server_assignment: ServerAssignmentIdentifier;
 }
 
-export async function getCollection(params: StandardParams) {
+export interface PoolIncludes {
+  owners: OwnerInclude;
+  servers: Record<ResourceId, Server>;
+  providers: Record<ResourceId, Provider>;
+  locations: Record<ResourceId, Location>;
+}
+
+export async function getCollection(params: StandardParams<PoolQuery>) {
   return getRequest<Collection>({
     ...params,
     target: links
@@ -67,7 +85,7 @@ export async function getCollection(params: StandardParams) {
 }
 
 export async function getSingle(
-  params: StandardParams & {
+  params: StandardParams<PoolQuery> & {
     id: ResourceId;
   },
 ) {
@@ -86,7 +104,7 @@ export interface UpdateParams {
 }
 
 export async function update(
-  params: StandardParams & {
+  params: StandardParams<PoolQuery> & {
     id: ResourceId;
     value: UpdateParams;
   },
@@ -98,5 +116,20 @@ export async function update(
       .ips()
       .pools()
       .single(params.id),
+  });
+}
+
+export async function getPoolIPs(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
+  return getRequest<CollectionDoc<IP>>({
+    ...params,
+    target: links
+      .infrastructure()
+      .ips()
+      .pools()
+      .ips(params.id),
   });
 }
