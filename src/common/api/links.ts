@@ -100,6 +100,9 @@ export const links = {
     domains: () => ({
       collection: () => `/dns/domains`,
     }),
+    tls: () => ({
+      collection: () => `/dns/tls/attempts`,
+    }),
   }),
 
   environments: () => ({

@@ -12,9 +12,9 @@ import { ProviderIdentifier, Provider } from "../provider";
 import {
   StandardParams,
   getRequest,
-  patchRequest,
   links,
   QueryParams,
+  deleteRequest,
 } from "../../../common/api";
 import { IP } from "./ip";
 import { Server } from "../servers";
@@ -33,9 +33,9 @@ export type PoolQuery = QueryParams<
 export interface Pool extends Resource {
   hub_id: ResourceId;
   kind: Kind;
-  provider: Provider;
+  provider: PoolProvider;
   server_id: ResourceId;
-  preserve: boolean;
+  floating: boolean;
   location_id: ResourceId;
   ips: IPs;
   block: Block;
@@ -58,7 +58,7 @@ export type ReservationIdentifier = string;
 export type ServerIdentifier = string;
 export type ServerAssignmentIdentifier = string;
 
-export interface Provider {
+export interface PoolProvider {
   identifier: ProviderIdentifier;
   location: string;
   reservation: ReservationIdentifier;
@@ -99,17 +99,12 @@ export async function getSingle(
   });
 }
 
-export interface UpdateParams {
-  preserve: boolean;
-}
-
-export async function update(
+export async function remove(
   params: StandardParams<PoolQuery> & {
     id: ResourceId;
-    value: UpdateParams;
   },
 ) {
-  return patchRequest<Single>({
+  return deleteRequest<Single>({
     ...params,
     target: links
       .infrastructure()

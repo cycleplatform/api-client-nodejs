@@ -1,2 +1,3 @@
 import * as Zones from "./zone";
-export { Zones };
+import * as TLS from "./tls";
+export { Zones, TLS };
