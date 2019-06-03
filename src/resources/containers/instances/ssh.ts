@@ -4,7 +4,12 @@ import {
   OwnerScope,
   Time,
 } from "../../../common/structs";
-import { links, getRequest, StandardParams } from "../../../common/api";
+import {
+  links,
+  getRequest,
+  StandardParams,
+  deleteRequest,
+} from "../../../common/api";
 
 export type SSHConnectionDoc = { data: SSHConnectionResponse };
 
@@ -34,6 +39,21 @@ export async function getSSHConnection(
   },
 ) {
   return getRequest<SSHConnectionDoc>({
+    ...params,
+    target: links
+      .containers()
+      .instances()
+      .ssh(params.instanceId, params.containerId),
+  });
+}
+
+export async function expireInstanceSSHTokens(
+  params: StandardParams & {
+    containerId: ResourceId;
+    instanceId: ResourceId;
+  },
+) {
+  return deleteRequest<SSHConnectionDoc>({
     ...params,
     target: links
       .containers()
