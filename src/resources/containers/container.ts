@@ -22,6 +22,7 @@ import { Service } from "./services";
 import { Config, Volumes } from "./config";
 import { IP } from "../infrastructure/ips";
 import { ContainerRole } from "../stacks/spec/v1/container";
+import { Environment } from "../environments";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
@@ -36,7 +37,8 @@ export type ContainerState =
 export type ContainerEvent = "started";
 export type ContainerQuery = QueryParams<
   keyof ContainerIncludes,
-  keyof ContainerMetas
+  keyof ContainerMetas,
+  "image" | "environment" | "state"
 >;
 
 export interface Container extends Resource<ContainerMetas> {
@@ -68,6 +70,7 @@ export interface ContainerIncludes {
   stacks?: {
     [key: string]: Stack;
   };
+  environments?: Record<ResourceId, Environment>;
 }
 
 export interface ContainerMetas {

@@ -166,6 +166,7 @@ export const links = {
     single: (id: ResourceId) => `/images/${id}`,
     build: () => `/images/build`,
     containers: (id: ResourceId) => `/images/${id}/containers`,
+    tasks: () => `/images/tasks`,
   }),
 
   infrastructure: () => ({
