@@ -11,7 +11,7 @@ import { VERSION } from "./version";
 export type ApiResult<T> = ResultSuccess<T> | ResultFail<ErrorResource>;
 
 export type StandardParams<T = QueryParams> = {
-  token: Token;
+  token: Token | string;
   hubId: ResourceId;
   query?: T;
   settings?: Settings;
@@ -73,12 +73,15 @@ export function makeUrl(settings?: Settings, websocket?: boolean) {
 /** Make the request */
 async function makeRequest<T>(
   req: Request,
-  token?: Token,
+  token?: Token | string,
   hubId?: ResourceId,
   settings?: Settings,
 ): Promise<ApiResult<T>> {
   if (token) {
-    req.headers.append("Authorization", `Bearer ${token.access_token}`);
+    req.headers.append(
+      "Authorization",
+      `Bearer ${typeof token === "string" ? token : token.access_token}`,
+    );
   }
 
   if (hubId) {
@@ -136,7 +139,7 @@ export async function getRequest<T>({
 }: {
   target: string;
   query?: QueryParams;
-  token?: Token;
+  token?: Token | string;
   hubId?: ResourceId;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
@@ -159,7 +162,7 @@ export async function postRequest<T>({
   value: object;
   query?: QueryParams;
   hubId?: ResourceId;
-  token?: Token;
+  token?: Token | string;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
   const req = new Request(
@@ -188,7 +191,7 @@ export async function patchRequest<T>({
   value: object;
   query?: QueryParams;
   hubId?: ResourceId;
-  token?: Token;
+  token?: Token | string;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
   const req = new Request(
@@ -214,7 +217,7 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
 }: {
   target: string;
   query?: QueryParams;
-  token?: Token;
+  token?: Token | string;
   hubId?: ResourceId;
   settings?: Settings;
 }): Promise<ApiResult<T>> {

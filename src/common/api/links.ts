@@ -188,7 +188,6 @@ export const links = {
         `/infrastructure/providers/${provider}/locations`,
     }),
     ips: () => ({
-      addFloating: () => `/infrastructure/ips`,
       pools: () => ({
         collection: () => `/infrastructure/ips/pools`,
         single: (id: ResourceId) => `/infrastructure/ips/pools/${id}`,
