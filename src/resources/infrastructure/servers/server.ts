@@ -44,7 +44,12 @@ export interface Server extends Resource<ServerMeta> {
   tags: string[];
   cluster: Cluster;
   state: State<ServerState>;
-  events: Events;
+  events: Events & {
+    provisioning: {
+      started: Time;
+      completed: Time;
+    };
+  };
 }
 
 export interface ServerIncludes extends Includes {
@@ -74,6 +79,7 @@ export interface ServerProvider {
   model: string;
   location: string;
   server: string;
+  init_ips: string[] | null;
 }
 
 export async function getCollection(params: StandardParams<ServerQuery>) {
