@@ -1,7 +1,7 @@
 import { Service } from "./common";
 
 export interface DiscoveryService extends Service {
-  config: DiscoveryConfig;
+  config: DiscoveryConfig | null;
 }
 
 // tslint:disable-next-line:no-empty-interface

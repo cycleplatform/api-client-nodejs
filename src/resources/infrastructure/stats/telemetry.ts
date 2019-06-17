@@ -8,7 +8,6 @@ import {
 } from "../../../common/structs";
 import { LoadStats } from "./load";
 import { RAMStats } from "./ram";
-import { StorageStats } from "./storage";
 
 export type Collection = CollectionDoc<TelemetryPoint>;
 
@@ -16,7 +15,11 @@ export interface TelemetryPoint extends Resource {
   time: Time;
   load: LoadStats;
   ram: RAMStats;
-  storage_root: StorageStats;
+  storage_base: {
+    available: number;
+    free: number;
+    total: number;
+  };
 }
 
 export async function getCollection(
