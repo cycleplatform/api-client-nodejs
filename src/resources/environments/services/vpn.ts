@@ -116,7 +116,7 @@ export async function createVPNUser(
     value: CreateVPNUserParams;
   },
 ) {
-  return Request.postRequest<VPNUsersDoc>({
+  return Request.postRequest<VPNUserDoc>({
     ...params,
     target: links
       .environments()
