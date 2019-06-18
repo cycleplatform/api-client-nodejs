@@ -6,7 +6,6 @@ import {
   SingleDoc,
   ResourceId,
   State,
-  OwnerScope,
   StatefulCounts,
   Time,
   StandardEvents,
@@ -34,16 +33,17 @@ export type BuildsQuery = QueryParams<string, keyof BuildMetas>;
 export interface Build extends Resource<BuildMetas> {
   stack_id: ResourceId;
   hub_id: ResourceId;
-  owner: OwnerScope;
   source: Source;
+  label: string | null;
+  version: string | null;
   events: StandardEvents;
   state: State<BuildState>;
 }
 
 export interface Source {
-  hook_id: ResourceId;
+  hook_id: ResourceId | null;
   repo: RepoVersion | null;
-  spec: Spec | null;
+  spec: Spec;
 }
 
 export interface RepoVersion {
