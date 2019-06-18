@@ -13,7 +13,7 @@ import {
   IP,
   Cluster,
 } from "../../common/structs";
-import { ContainerState, Instances, ContainerSummary } from "../containers";
+import { ContainerState, Instances, Service } from "../containers";
 import { IPNet, Kind, IPState, FloatingIP } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
 import { Stack } from "../stacks";
@@ -50,7 +50,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
 
 export interface PrivateNetwork {
   vxlan_tag: number;
-  subnet: number;
+  subnet: string;
   ipv6: IPNet;
   legacy: Legacy | null;
 }
@@ -91,7 +91,23 @@ export interface EnvironmentMeta {
     containers: StatefulCounts<ContainerState>;
     instances: StatefulCounts<Instances.InstanceState>;
   };
-  containers?: ContainerSummary[];
+  containers?: {
+    id: ResourceId;
+    name: string;
+    state: State<ContainerState> & {
+      desired: ContainerState;
+    };
+    image: {
+      id: ResourceId;
+      service: Service | null;
+    };
+    environment: {
+      id: ResourceId;
+      container_subnet?: string;
+      ipv6?: IPNet;
+      legacy: Legacy | null;
+    };
+  }[];
   ips?: {
     kind: Kind;
     ip: IPNet;

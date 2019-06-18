@@ -45,7 +45,8 @@ export interface ServerProvider {
   identifier: ProviderIdentifier;
   category: string;
   class?: string;
-  plan_identifier: string;
+  model: string;
+  plan_identifier?: string;
   /** List of location IDs this server is available in */
   locations: string[];
 }

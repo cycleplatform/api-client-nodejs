@@ -7,7 +7,7 @@ export interface Spec {
   version: string;
   about: About | null;
   tests: TestContainer[];
-  services: Services;
+  services: Services | {};
   containers: Record<ContainerIdentifier, Container> | null;
   annotations: Record<string, string>;
 }

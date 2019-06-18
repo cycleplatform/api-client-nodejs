@@ -6,6 +6,7 @@ import {
   CollectionDoc,
   SingleDoc,
   OwnerInclude,
+  CreatedTask,
 } from "../../../common/structs";
 import { Kind } from "./kind";
 import { ProviderIdentifier, Provider } from "../provider";
@@ -104,7 +105,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return deleteRequest<Single>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .infrastructure()

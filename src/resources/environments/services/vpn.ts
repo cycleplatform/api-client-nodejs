@@ -23,7 +23,7 @@ export interface VPN {
 }
 
 export interface VPNAuth {
-  web_hook: Webhook;
+  webhook: Webhook | null;
   cycle_accounts: boolean;
   vpn_accounts: boolean;
 }
