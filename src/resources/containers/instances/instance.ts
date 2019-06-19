@@ -54,17 +54,17 @@ export interface Instance extends Resource<InstanceMetas> {
   container_id: ResourceId;
   location_id: ResourceId;
   environment: EnvironmentSummary;
-  stateful: Stateful;
+  stateful: Stateful | null;
   provider: ProviderSummary;
   server_id: ResourceId;
   ready_state: ReadyState;
   hostname: string;
   service: Service | null;
   state: State<InstanceState> & {
-    health?: {
+    health: {
       healthy: boolean;
       updated: Time;
-    };
+    } | null;
   };
   events: Events<InstanceEvent>;
 }
@@ -88,7 +88,7 @@ export interface Legacy {
 
 export interface ProviderSummary {
   identifier: ProviderIdentifier;
-  location: Locations.LocationProvider;
+  location: string;
 }
 
 export interface InstanceIncludes extends Includes {

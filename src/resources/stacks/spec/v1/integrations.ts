@@ -12,6 +12,7 @@ export interface LetsEncrypt {
   chain_path: string | null;
   key_path: string | null;
   bundle_path: string | null;
+  additional_certs_path: string | null;
 }
 
 export interface Events {

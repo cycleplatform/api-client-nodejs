@@ -15,7 +15,6 @@ import {
   StatefulCounts,
   ContainerIdentifier,
 } from "../../common/structs";
-import { Features } from "./features";
 import { IPNet } from "../infrastructure/ips";
 import { InstanceState } from "./instances";
 import { Service } from "./services";
@@ -49,13 +48,14 @@ export interface Container extends Resource<ContainerMetas> {
   hub_id: ResourceId;
   image: ImageSummary;
   stack?: StackSummary;
-  features: Features;
   config: Config;
   instances: number;
   volumes?: VolumeSummary[];
-  role: ContainerRole;
+  role: ContainerRole | null;
   stateful: boolean;
-  state: State<ContainerState>;
+  state: State<ContainerState> & {
+    desired: ContainerState;
+  };
   events: Events<ContainerEvent>;
 }
 
@@ -76,7 +76,7 @@ export interface ContainerIncludes {
 export interface ContainerMetas {
   instance_counts?: StatefulCounts<InstanceState>;
   domain?: string;
-  domains?: { fqdn: string; record: Zones.Records.Record | null };
+  domains?: { fqdn: string; record: Zones.Records.Record | null }[];
   ips?: IP[];
 }
 
@@ -86,7 +86,7 @@ export interface StackSummary {
     id: ResourceId;
   };
   build_id: ResourceId;
-  identifier: "db";
+  identifier: string;
 }
 
 export interface ImageSummary {
@@ -106,7 +106,7 @@ export interface Legacy {
   ipv4: IPNet | null;
 }
 
-export interface VolumeSummary {
+export interface  VolumeSummary {
   id: string;
   hash: string;
   config: Volumes.Volume;

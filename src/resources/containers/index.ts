@@ -9,6 +9,5 @@ export { Servers, Instances, Events, CompatibleImages, Telemetry, Config };
 
 export * from "./container";
 export * from "./tasks";
-export * from "./features";
 export * from "./services";
 export * from "./summary";
