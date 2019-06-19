@@ -53,7 +53,7 @@ export async function expireInstanceSSHTokens(
     instanceId: ResourceId;
   },
 ) {
-  return deleteRequest<SSHConnectionDoc>({
+  return deleteRequest<{ data: { tokens: number } }>({
     ...params,
     target: links
       .containers()
