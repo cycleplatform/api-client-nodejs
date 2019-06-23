@@ -72,6 +72,7 @@ export interface Instance extends Resource<InstanceMetas> {
 export interface EnvironmentSummary {
   id: ResourceId;
   subnet: string;
+  mac_addr: string;
   ipv6: IPNet | null;
   legacy: Legacy | null;
 }
