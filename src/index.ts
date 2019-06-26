@@ -16,6 +16,7 @@ import * as Jobs from "./resources/jobs";
 import * as Projects from "./resources/projects";
 import * as Hubs from "./resources/hubs";
 import { QueryParams } from "./common/api/query";
+import * as SDN from "./resources/sdn";
 import * as Secrets from "./resources/secrets";
 import { Settings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
@@ -42,6 +43,7 @@ export {
   Hubs,
   QueryParams,
   Request,
+  SDN,
   Secrets,
   Settings,
   Stacks,
