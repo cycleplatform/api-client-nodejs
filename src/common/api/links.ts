@@ -206,6 +206,13 @@ export const links = {
     single: (id: ResourceId) => `/projects/${id}`,
   }),
 
+  sdn: () => ({
+    networks: () => ({
+      collection: () => `/sdn/networks`,
+      single: (id: ResourceId) => `/sdn/networks/${id}`,
+    }),
+  }),
+
   stacks: () => ({
     collection: () => `/stacks`,
     single: (id: ResourceId) => `/stacks/${id}`,

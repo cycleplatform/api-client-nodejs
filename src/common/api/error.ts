@@ -80,6 +80,7 @@ export enum ErrorCode {
   C_404_TIER = "404.tier",
   C_404_PAYMENT_METHOD = "404.payment_method",
   C_404_HUB_MEMBERSHIP = "404.hub_membership",
+  C_404_SDN_NETWORK = "404.sdn_network",
 
   C_409_DUPLICATE_FOUND = "409.duplicate_found",
 
