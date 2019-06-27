@@ -208,8 +208,9 @@ export const links = {
 
   sdn: () => ({
     networks: () => ({
-      collection: () => `/sdn/networks`,
-      single: (id: ResourceId) => `/sdn/networks/${id}`,
+      collection: () => `/networks`,
+      single: (id: ResourceId) => `/networks/${id}`,
+      tasks: (id: ResourceId) => `/networks/${id}/tasks`,
     }),
   }),
 

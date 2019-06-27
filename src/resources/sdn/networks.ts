@@ -19,6 +19,8 @@ export type Single = SingleDoc<Network, NetworkIncludes>;
 export type NetworkQuery = QueryParams<keyof NetworkIncludes>;
 export type NetworkState = "live" | "deleting" | "deleted";
 
+export * from "./tasks";
+
 export interface Network extends Resource {
   name: string;
   cluster: string;
@@ -60,6 +62,26 @@ export async function getSingle(
       .sdn()
       .networks()
       .single(params.id),
+  });
+}
+
+interface CreateParams {
+  name: string;
+  cluster: string;
+  environments: ResourceId[];
+}
+
+export async function create(
+  params: StandardParams<NetworkQuery> & {
+    value: CreateParams;
+  },
+) {
+  return Request.postRequest<Single>({
+    ...params,
+    target: links
+      .sdn()
+      .networks()
+      .collection(),
   });
 }
 
