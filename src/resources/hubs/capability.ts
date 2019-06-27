@@ -58,7 +58,8 @@ export enum Capability {
   USAGE_VIEW = "usage-view",
   DNS_VIEW = "dns-view",
   DNS_MANAGE = "dns-manage",
-  SDN_NETWORKS_VIEW="sdn-networks-view"
+  SDN_NETWORKS_VIEW = "sdn-networks-view",
+  SDN_NETWORKS_MANAGE = "sdn-networks-manage",
 }
 
 export interface CapabilityDoc {

@@ -65,7 +65,7 @@ export async function getSingle(
   });
 }
 
-interface CreateParams {
+export interface CreateParams {
   name: string;
   cluster: string;
   environments: ResourceId[];

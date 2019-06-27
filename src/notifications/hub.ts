@@ -106,6 +106,9 @@ export enum HubHeader {
   STACK_HOOK_CREATED = "stack.hook.created",
   STACK_HOOK_UPDATED = "stack.hook.updated",
   STACK_HOOK_TASK_DEPLOY = "stack.hook.task_deploy",
+
+  SDN_NETWORK_CREATED = "sdn.network.created",
+  SDN_NETWORK_RECONFIGURED = "sdn.network.reconfigured",
 }
 
 export type HubNotification = Notification<HubHeader>;
