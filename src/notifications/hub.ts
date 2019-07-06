@@ -109,6 +109,7 @@ export enum HubHeader {
 
   SDN_NETWORK_CREATED = "sdn.network.created",
   SDN_NETWORK_RECONFIGURED = "sdn.network.reconfigured",
+  SDN_NETWORK_STATE_CHANGED = "sdn.network.state_changed",
 }
 
 export type HubNotification = Notification<HubHeader>;

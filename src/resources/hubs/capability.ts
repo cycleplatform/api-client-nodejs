@@ -21,7 +21,7 @@ export enum Capability {
   ENVIRONMENTS_UPDATE = "environments-update",
   ENVIRONMENTS_STATE = "environments-state",
   ENVIRONMENTS_SERVICES_MANAGE = "environments-services-manage",
-  ENVIRONMENTS_VPN = "environments-vpn-manage",
+  ENVIRONMENTS_VPN = "environments-vpn",
   ENVIRONMENTS_VPN_MANAGE = "environments-vpn-manage",
   PROJECTS_CREATE = "projects-create",
   PROJECTS_DELETE = "projects-delete",
