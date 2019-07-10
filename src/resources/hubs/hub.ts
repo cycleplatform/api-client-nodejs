@@ -9,6 +9,7 @@ import {
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
+import { Term } from "../billing";
 
 export type Collection = CollectionDoc<Hub>;
 export type Single = SingleDoc<Hub>;
@@ -29,9 +30,7 @@ export interface Hub extends Resource<HubMetas> {
   state: State<HubState>;
   integrations: Integrations;
   providers: Providers;
-  billing?: {
-    disabled: boolean;
-  };
+  billing: BillingProfile | null;
 }
 
 export interface Integrations {
@@ -40,6 +39,12 @@ export interface Integrations {
 
 export interface LetsEncryptIntegration {
   email: string;
+}
+
+export interface BillingProfile {
+  term: Term;
+  allow_prepaid?: boolean;
+  disable?: boolean;
 }
 
 export interface HubMetas {
