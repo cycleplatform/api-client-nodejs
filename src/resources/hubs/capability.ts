@@ -55,6 +55,8 @@ export enum Capability {
   INFRASTRUCTURE_SERVERS_STATE = "servers-state",
   INFRASTRUCTURE_SERVERS_DECOMMISSION = "servers-decommission",
   INFRASTRUCTURE_IPS_MANAGE = "ips-manage",
+  INFRASTRUCTURE_STORAGE_SANS_VIEW = "storage-sans-view",
+  INFRASTRUCTURE_STORAGE_SANS_MANAGE = "storage-sans-view",
   USAGE_VIEW = "usage-view",
   DNS_VIEW = "dns-view",
   DNS_MANAGE = "dns-manage",

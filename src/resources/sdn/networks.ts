@@ -23,6 +23,7 @@ export * from "./tasks";
 
 export interface Network extends Resource {
   name: string;
+  identifier: string;
   cluster: string;
   owner: OwnerScope;
   hub_id: ResourceId;
@@ -67,6 +68,7 @@ export async function getSingle(
 
 export interface CreateParams {
   name: string;
+  identifier: string;
   cluster: string;
   environments: ResourceId[];
 }
@@ -87,6 +89,7 @@ export async function create(
 
 export interface UpdateParams {
   name: string;
+  identifier: string;
 }
 
 export async function update(
@@ -97,7 +100,10 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links.images().single(params.id),
+    target: links
+      .sdn()
+      .networks()
+      .single(params.id),
   });
 }
 

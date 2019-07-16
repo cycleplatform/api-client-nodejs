@@ -3,12 +3,18 @@ import { DataSize, Webhook, Algorithm } from "../../../../common/structs";
 export interface Volume {
   read_only: boolean;
   local: LocalVolume | null;
+  san: SAN | null;
   destination: string;
   remote_access: VolumeRemoteAccess;
 }
 
 export interface LocalVolume {
   max_size: DataSize;
+}
+
+export interface SAN {
+  max_size: DataSize;
+  performance: boolean;
 }
 
 export interface VolumeRemoteAccess {
