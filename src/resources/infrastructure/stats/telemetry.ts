@@ -16,7 +16,7 @@ export interface TelemetryPoint extends Resource {
   load: LoadStats;
   ram: RAMStats;
   storage_base: {
-    available: number;
+    used: number;
     free: number;
     total: number;
   };
