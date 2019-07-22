@@ -22,6 +22,7 @@ import { Settings } from "./common/api/settings";
 import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
 import * as Notifications from "./notifications";
+import * as Websocket from "./common/api/websocket";
 
 export { Capability } from "./resources/hubs";
 
@@ -48,4 +49,5 @@ export {
   Settings,
   Stacks,
   Structs,
+  Websocket,
 };
