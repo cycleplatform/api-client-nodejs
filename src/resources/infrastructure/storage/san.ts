@@ -7,20 +7,30 @@ import {
   State,
   Cluster,
   Gigabytes,
+  Includes,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
 import { links, StandardParams, QueryParams } from "../../../common/api";
+import { Locations, Provider as ProviderStruct } from "../provider";
+import { Instance } from "../../containers/instances";
 
-export type Collection = CollectionDoc<SAN>;
-export type Single = SingleDoc<SAN>;
+export type Collection = CollectionDoc<SAN, SANIncludes>;
+export type Single = SingleDoc<SAN, SANIncludes>;
 export type SANQuery = QueryParams;
 export type SANState =
   | "provisioning"
   | "live"
+  | "purge"
   | "decommissioning"
   | "decommissioned";
 
 export type SANEvent = "attached";
+
+export interface SANIncludes extends Includes {
+  locations: Record<ResourceId, Locations.Location>;
+  instances: Record<ResourceId, Instance>;
+  providers: Record<ResourceId, ProviderStruct>;
+}
 
 export interface SAN extends Resource {
   hub_id: ResourceId;

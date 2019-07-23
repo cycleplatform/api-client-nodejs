@@ -95,6 +95,8 @@ export enum HubHeader {
   INFRASTRUCTURE_SERVER_STATE_CHANGED = "infrastructure.server.state_changed",
   INFRASTRUCTURE_SERVER_ERROR = "infrastructure.server.error",
   INFRASTRUCTURE_SERVER_UPDATED = "infrastructure.server.updated",
+  INFRASTRUCTURE_STORAGE_SAN_STATE_CHANGED = "infrastructure.storage.san.state_changed",
+  INFRASTRUCTURE_STORAGE_SAN_ERROR = "infrastructure.storage.san.error",
 
   STACK_CREATED = "stack.created",
   STACK_ERROR = "stack.error",
