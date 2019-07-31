@@ -1,14 +1,13 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
-import * as Structs from "../../common/structs";
-import * as Containers from "../containers";
+import { links, StandardParams, getRequest } from "common/api";
+import { ResourceId } from "common/structs";
+import { Collection as ContainerCollection } from "resources/containers";
 
 export async function getContainers(
   params: StandardParams & {
-    id: Structs.ResourceId;
+    id: ResourceId;
   },
 ) {
-  return Request.getRequest<Containers.Collection>({
+  return getRequest<ContainerCollection>({
     ...params,
     target: links.images().containers(params.id),
   });

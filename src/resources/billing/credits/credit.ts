@@ -6,9 +6,9 @@ import {
   CollectionDoc,
   SingleDoc,
   Time,
-} from "../../../common/structs";
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
+} from "common/structs";
+import { getRequest } from "common/api/request";
+import { links, StandardParams } from "common/api";
 
 export type Collection = CollectionDoc<Credit>;
 export type Single = SingleDoc<Credit>;
@@ -37,7 +37,7 @@ export interface Expires {
 }
 
 export async function getCollection(params: StandardParams) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .billing()
@@ -51,7 +51,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .billing()

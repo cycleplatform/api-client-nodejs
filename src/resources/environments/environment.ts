@@ -1,5 +1,11 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import {
+  QueryParams,
+  links,
+  StandardParams,
+  getRequest,
+  postRequest,
+  patchRequest,
+} from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -12,11 +18,15 @@ import {
   OwnerInclude,
   IP,
   Cluster,
-} from "../../common/structs";
-import { ContainerState, Instances, ContainerSummary } from "../containers";
-import { IPNet, Kind, IPState, FloatingIP } from "../infrastructure/ips";
+} from "common/structs";
+import {
+  ContainerState,
+  Instances,
+  ContainerSummary,
+} from "resources/containers";
+import { IPNet, Kind, IPState, FloatingIP } from "resources/infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
-import { Stack } from "../stacks";
+import { Stack } from "resources/stacks";
 
 export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment, EnvironmentIncludes>;
@@ -121,7 +131,7 @@ export interface CreateParams {
 }
 
 export async function getCollection(params: StandardParams<EnvironmentQuery>) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links.environments().collection(),
   });
@@ -132,7 +142,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links.environments().single(params.id),
   });
@@ -143,7 +153,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return Request.postRequest<Single>({
+  return postRequest<Single>({
     ...params,
     target: links.environments().collection(),
   });
@@ -155,7 +165,7 @@ export async function update(
     value: Partial<CreateParams>;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links.environments().single(params.id),
   });

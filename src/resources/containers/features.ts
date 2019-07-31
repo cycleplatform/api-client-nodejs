@@ -1,4 +1,4 @@
-import { ResourceId } from "../../common/structs";
+import { ResourceId } from "common/structs";
 
 export interface Features {
   tls: TLS | null;

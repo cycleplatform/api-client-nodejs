@@ -1,4 +1,4 @@
-import { Time, ResourceId } from "../../../common/structs";
+import { Time, ResourceId } from "common/structs";
 import { AssociatedCredit } from "../credits";
 
 export interface Credit {

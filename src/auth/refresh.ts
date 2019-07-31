@@ -4,8 +4,8 @@ import {
   OAuthError,
   Settings,
   ErrorCode,
-} from "../common/api";
-import { Token } from "./token";
+} from '../common/api';
+import { Token } from './token';
 
 /**
  * Credentials required for refresh grant
@@ -24,23 +24,25 @@ export interface RefreshParams {
  */
 export async function refreshGrant(
   auth: RefreshParams,
-  settings?: Settings,
+  settings?: Settings
 ): Promise<ApiResult<Token>> {
   const url = `${makeUrl(settings || { noVersion: true })}/oauth/token`;
 
   const params = { ...auth, refresh_token: auth.token.refresh_token };
   delete params.token;
   const queryParams = Object.keys(params)
-    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
-    .join("&");
+    .map(
+      k => `${encodeURIComponent(k)}=${encodeURIComponent((params as any)[k])}`
+    )
+    .join('&');
 
   try {
     const resp = await fetch(url, {
-      method: "POST",
+      method: 'POST',
       body: `grant_type=refresh_token&${queryParams}`,
       headers: new Headers({
-        "Content-type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
+        'Content-type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
       }),
     });
     if (!resp.ok) {
@@ -66,7 +68,7 @@ export async function refreshGrant(
       error: {
         code: ErrorCode.C_0_NETWORK_ERROR,
         detail: e.message,
-        title: "Unable to reach authentication server",
+        title: 'Unable to reach authentication server',
       },
     };
   }

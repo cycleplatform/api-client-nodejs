@@ -1,7 +1,7 @@
 import { Container } from "./container";
 import { TestContainer } from "./tests";
 import { Services } from "./services";
-import { ContainerIdentifier } from "../../../../common/structs";
+import { ContainerIdentifier } from "common/structs";
 
 export interface Spec {
   version: string;

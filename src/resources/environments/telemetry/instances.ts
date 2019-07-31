@@ -1,7 +1,6 @@
-import { Time, ResourceId } from "../../../common/structs";
-import { StandardParams, links } from "../../../common/api";
-import { InstanceState } from "../../containers/instances";
-import * as Request from "../../../common/api/request";
+import { Time, ResourceId } from "common/structs";
+import { StandardParams, links, getRequest } from "common/api";
+import { InstanceState } from "resources/containers/instances";
 
 export type Collection = {
   data: TelemetryPoint[];
@@ -17,7 +16,7 @@ export async function getInstancesTelemetry(
     environmentId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .environments()

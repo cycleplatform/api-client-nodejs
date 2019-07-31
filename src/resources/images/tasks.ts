@@ -1,6 +1,5 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
-import { ResourceId, CreatedTask } from "../../common/structs";
+import { links, StandardParams, postRequest, deleteRequest } from "common/api";
+import { ResourceId, CreatedTask } from "common/structs";
 import { ImageSource } from "./source";
 
 export type ImageAction = "import";
@@ -14,7 +13,7 @@ export async function build(
     value: BuildParams;
   },
 ) {
-  return Request.postRequest<CreatedTask<"import">>({
+  return postRequest<CreatedTask<"import">>({
     ...params,
     target: links.images().build(),
   });
@@ -25,7 +24,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.images().single(params.id),
   });

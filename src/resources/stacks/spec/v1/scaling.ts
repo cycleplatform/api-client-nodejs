@@ -1,4 +1,4 @@
-import { ContainerIdentifier } from "../../../../common/structs";
+import { ContainerIdentifier } from "common/structs";
 
 export type ScalingMetric = "ram";
 

@@ -6,7 +6,7 @@ import {
   Events,
   CollectionDoc,
   SingleDoc,
-} from "../../../../common/structs";
+} from "common/structs";
 import {
   StandardParams,
   getRequest,
@@ -14,7 +14,7 @@ import {
   postRequest,
   deleteRequest,
   patchRequest,
-} from "../../../../common/api";
+} from "common/api";
 
 export type Collection = CollectionDoc<EgressGateway>;
 export type Single = SingleDoc<EgressGateway>;

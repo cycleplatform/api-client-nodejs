@@ -1,5 +1,12 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import {
+  QueryParams,
+  links,
+  StandardParams,
+  getRequest,
+  postRequest,
+  patchRequest,
+  deleteRequest,
+} from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -10,7 +17,7 @@ import {
   SingleDoc,
   OwnerInclude,
   CreatedTask,
-} from "../../common/structs";
+} from "common/structs";
 import * as Records from "./records";
 
 export * from "./tasks/zone";
@@ -43,7 +50,7 @@ export interface ZoneIncludes {
 }
 
 export async function getCollection(params: StandardParams<ZoneQuery>) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .dns()
@@ -57,7 +64,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .dns()
@@ -76,7 +83,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return Request.postRequest<Single>({
+  return postRequest<Single>({
     ...params,
     target: links
       .dns()
@@ -93,7 +100,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links
       .dns()
@@ -107,7 +114,7 @@ export async function remove(
     zoneId: ResourceId;
   },
 ) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .dns()

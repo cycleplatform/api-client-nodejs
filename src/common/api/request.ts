@@ -1,7 +1,7 @@
-import { Token } from "../../auth";
+import { Token } from "auth";
 import { ErrorResource, ErrorCode } from "./error";
 import { formatParams, QueryParams } from "./query";
-import { CreatedTask, ResourceId } from "../structs";
+import { CreatedTask, ResourceId } from "common/structs";
 import { Settings } from "./settings";
 import { VERSION } from "./version";
 

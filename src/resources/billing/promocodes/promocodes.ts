@@ -1,4 +1,4 @@
-import { Resource, Time, State } from "../../../common/structs";
+import { Resource, Time, State } from "common/structs";
 import { Amount } from "../amount";
 import { Expiration } from "../term";
 

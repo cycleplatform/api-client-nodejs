@@ -6,9 +6,9 @@ import {
   State,
   OwnerScope,
   ResourceId,
-} from "../../../common/structs";
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
+} from "common/structs";
+import { getRequest, postRequest, patchRequest } from "common/api/request";
+import { links, StandardParams } from "common/api";
 
 export type Collection = CollectionDoc<Method>;
 export type Single = SingleDoc<Method>;
@@ -40,7 +40,7 @@ export interface CreditCard {
 }
 
 export async function getCollection(params: StandardParams) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .billing()
@@ -54,7 +54,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .billing()
@@ -83,7 +83,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return Request.postRequest<Single>({
+  return postRequest<Single>({
     ...params,
     target: links
       .billing()
@@ -104,7 +104,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links
       .billing()

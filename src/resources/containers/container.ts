@@ -1,8 +1,8 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import { getRequest, postRequest, patchRequest } from "common/api/request";
+import { QueryParams, links, StandardParams } from "common/api";
 import { Builds, Stack } from "../stacks";
-import { Image } from "../images";
-import { Zones } from "../dns";
+import { Image } from "resources/images";
+import { Zones } from "resources/dns";
 import {
   CollectionDoc,
   Resource,
@@ -14,14 +14,14 @@ import {
   OwnerInclude,
   StatefulCounts,
   ContainerIdentifier,
-} from "../../common/structs";
+} from "common/structs";
 import { Features } from "./features";
-import { IPNet } from "../infrastructure/ips";
+import { IPNet } from "resources/infrastructure/ips";
 import { InstanceState } from "./instances";
 import { Service } from "./services";
 import { Config, Volumes } from "./config";
-import { IP } from "../infrastructure/ips";
-import { ContainerRole } from "../stacks/spec/v1/container";
+import { IP } from "resources/infrastructure/ips";
+import { ContainerRole } from "resources/stacks/spec/v1/container";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
@@ -110,7 +110,7 @@ export interface VolumeSummary {
 }
 
 export async function getCollection(params: StandardParams<ContainerQuery>) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links.containers().collection(),
   });
@@ -121,7 +121,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links.containers().single(params.id),
   });
@@ -139,7 +139,7 @@ export interface CreateParams {
 export async function create(
   params: StandardParams<ContainerQuery> & { value: CreateParams },
 ) {
-  return Request.postRequest<Single>({
+  return postRequest<Single>({
     ...params,
     target: links.containers().collection(),
   });
@@ -151,7 +151,7 @@ export async function update(
     value: Pick<CreateParams, "name">;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links.containers().single(params.id),
   });

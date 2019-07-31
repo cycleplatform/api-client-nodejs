@@ -1,6 +1,6 @@
-import { getRequest } from "../../common/api/request";
-import { Resource, CollectionDoc } from "../../common/structs";
-import { links, QueryParams, Settings } from "../../common/api";
+import { getRequest } from "common/api/request";
+import { Resource, CollectionDoc } from "common/structs";
+import { links, QueryParams, Settings } from "common/api";
 
 export type ChangeType =
   | "added"

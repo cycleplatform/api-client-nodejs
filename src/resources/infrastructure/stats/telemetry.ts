@@ -1,11 +1,5 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
-import {
-  Resource,
-  ResourceId,
-  CollectionDoc,
-  Time,
-} from "../../../common/structs";
+import { links, StandardParams, getRequest } from "common/api";
+import { Resource, ResourceId, CollectionDoc, Time } from "common/structs";
 import { LoadStats } from "./load";
 import { RAMStats } from "./ram";
 import { StorageStats } from "./storage";
@@ -24,7 +18,7 @@ export async function getCollection(
     serverId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()

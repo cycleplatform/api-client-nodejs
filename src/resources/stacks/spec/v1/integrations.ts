@@ -1,4 +1,4 @@
-import { Webhook } from "../../../../common/structs";
+import { Webhook } from "common/structs";
 
 export interface Integrations {
   events: Events | null;

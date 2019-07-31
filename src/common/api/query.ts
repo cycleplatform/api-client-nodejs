@@ -52,7 +52,7 @@ export function formatParams(q: QueryParams | undefined) {
     return "";
   }
 
-  const result = {};
+  const result: Record<string, any> = {};
   function recurse(cur: any, prop: any) {
     if (Object(cur) !== cur) {
       result[prop] = cur;

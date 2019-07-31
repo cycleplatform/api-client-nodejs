@@ -1,4 +1,4 @@
-import { IP } from "../../../common/structs";
+import { IP } from "common/structs";
 
 export interface IPNet {
   ip: IP;

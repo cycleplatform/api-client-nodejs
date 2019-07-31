@@ -1,5 +1,5 @@
-import { links, StandardParams } from "../../../common/api";
-import * as Request from "../../../common/api/request";
+import { links, StandardParams } from "common/api";
+import { getRequest } from "common/api/request";
 import { Term } from "../term";
 
 export interface Overage {
@@ -11,7 +11,7 @@ export interface Overage {
 }
 
 export async function getOverages(params: StandardParams) {
-  return Request.getRequest<{ data: Overage }>({
+  return getRequest<{ data: Overage }>({
     ...params,
     target: links
       .billing()

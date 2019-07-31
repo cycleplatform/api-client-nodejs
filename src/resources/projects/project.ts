@@ -7,11 +7,16 @@ import {
   CollectionDoc,
   SingleDoc,
   OwnerInclude,
-} from "../../common/structs";
-import { links, StandardParams, QueryParams } from "../../common/api";
-import * as Request from "../../common/api/request";
-import { Omit } from "../../common/types/common";
-import { Stack } from "../stacks";
+} from "common/structs";
+import {
+  links,
+  StandardParams,
+  QueryParams,
+  getRequest,
+  postRequest,
+  patchRequest,
+} from "common/api";
+import { Stack } from "resources/stacks";
 
 export type Collection = CollectionDoc<Project, ProjectIncludes>;
 export type Single = SingleDoc<Project, ProjectIncludes>;
@@ -44,7 +49,7 @@ export interface ProjectIncludes {
 }
 
 export async function getCollection(params: StandardParams) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links.projects().collection(),
   });
@@ -55,7 +60,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links.projects().single(params.id),
   });
@@ -71,7 +76,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return Request.postRequest<Single>({
+  return postRequest<Single>({
     ...params,
     target: links.projects().collection(),
   });
@@ -85,7 +90,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links.projects().single(params.id),
   });

@@ -1,4 +1,4 @@
-import * as Request from "../../../common/api/request";
+import { getRequest } from "common/api/request";
 import {
   CollectionDoc,
   Resource,
@@ -6,8 +6,8 @@ import {
   ResourceId,
   Megabytes,
   Time,
-} from "../../../common/structs";
-import { links, StandardParams } from "../../../common/api";
+} from "common/structs";
+import { links, StandardParams } from "common/api";
 import { Volumes } from "../config";
 
 export type Collection = CollectionDoc<InstanceVolume>;
@@ -49,7 +49,7 @@ export async function getCollection(
     containerId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection | { data: null }>({
+  return getRequest<Collection | { data: null }>({
     ...params,
     target: links
       .containers()

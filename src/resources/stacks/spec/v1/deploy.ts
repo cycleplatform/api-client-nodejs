@@ -1,4 +1,4 @@
-import { Emails, Webhook } from "../../../../common/structs";
+import { Emails, Webhook } from "common/structs";
 import { RuntimeCommand } from "./runtime";
 
 export type Signal = "SIGTERM" | "SIGINT" | "SIGUSR1" | "SIGUSR2" | "SIGHUP";

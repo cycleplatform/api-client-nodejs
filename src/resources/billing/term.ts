@@ -1,4 +1,4 @@
-import { Time } from "../../common/structs";
+import { Time } from "common/structs";
 
 export interface Term {
   start: Time;

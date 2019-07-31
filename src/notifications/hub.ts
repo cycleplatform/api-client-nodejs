@@ -1,6 +1,4 @@
-import * as Request from "../common/api/request";
-import { links, StandardParams } from "../common/api";
-import { connectToSocket } from "../common/api/websocket";
+import { links, StandardParams, connectToSocket, getRequest } from "common/api";
 import { Notification } from "./event";
 
 /**
@@ -122,7 +120,7 @@ export interface HubSecretResponse {
 export async function connectToHubChannel(params: HubPipelineParams) {
   const target = links.channels().hub();
 
-  const secretResp = await Request.getRequest<HubSecretResponse>({
+  const secretResp = await getRequest<HubSecretResponse>({
     ...params,
     target,
   });

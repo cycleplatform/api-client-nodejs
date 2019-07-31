@@ -1,5 +1,4 @@
-import * as Request from "../../../common/api/request";
-import { QueryParams, links, Settings } from "../../../common/api";
+import { QueryParams, links, Settings, getRequest } from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -7,9 +6,9 @@ import {
   ResourceId,
   Includes,
   Gigabytes,
-} from "../../../common/structs";
+} from "common/structs";
 import { ProviderIdentifier } from "./provider";
-import { Amount } from "../../billing";
+import { Amount } from "resources/billing";
 import { Location } from "./location";
 
 /** A collection of servers for a provider */
@@ -100,7 +99,7 @@ export async function getCollection(params: {
   query?: ProviderServerQuery;
   settings?: Settings;
 }) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()

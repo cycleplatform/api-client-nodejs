@@ -1,4 +1,4 @@
-import { DataSize, Webhook, Algorithm } from "../../../../common/structs";
+import { DataSize, Webhook, Algorithm } from "common/structs";
 
 export interface Volume {
   read_only: boolean;

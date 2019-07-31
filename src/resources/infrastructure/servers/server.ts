@@ -1,5 +1,12 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams, QueryParams } from "../../../common/api";
+import {
+  links,
+  StandardParams,
+  QueryParams,
+  getRequest,
+  patchRequest,
+  postRequest,
+  deleteRequest,
+} from "common/api";
 import {
   CollectionDoc,
   SingleDoc,
@@ -13,7 +20,7 @@ import {
   StatefulCounts,
   OwnerScope,
   Cluster,
-} from "../../../common/structs";
+} from "common/structs";
 import { Stats, Telemetry } from "../stats";
 import {
   Locations,
@@ -21,7 +28,7 @@ import {
   Servers as ProviderServers,
   Provider,
 } from "../provider";
-import { InstanceState } from "../../containers/instances";
+import { InstanceState } from "resources/containers/instances";
 
 export type Collection = CollectionDoc<Server, ServerIncludes>;
 export type Single = SingleDoc<Server, ServerIncludes>;
@@ -77,7 +84,7 @@ export interface ServerProvider {
 }
 
 export async function getCollection(params: StandardParams<ServerQuery>) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()
@@ -91,7 +98,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .infrastructure()
@@ -101,7 +108,7 @@ export async function getSingle(
 }
 
 export async function getTags(params: StandardParams) {
-  return Request.getRequest<{ data: string[] }>({
+  return getRequest<{ data: string[] }>({
     ...params,
     target: links
       .infrastructure()
@@ -111,7 +118,7 @@ export async function getTags(params: StandardParams) {
 }
 
 export async function getClusters(params: StandardParams) {
-  return Request.getRequest<{ data: string[] }>({
+  return getRequest<{ data: string[] }>({
     ...params,
     target: links
       .infrastructure()
@@ -139,7 +146,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return Request.postRequest<CreatedTask<any>>({
+  return postRequest<CreatedTask<any>>({
     ...params,
     target: links
       .infrastructure()
@@ -158,7 +165,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links
       .infrastructure()
@@ -172,7 +179,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .infrastructure()

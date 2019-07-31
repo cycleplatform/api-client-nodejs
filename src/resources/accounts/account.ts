@@ -1,5 +1,5 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
+import { getRequest, patchRequest } from "common/api/request";
+import { links, StandardParams } from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -7,7 +7,7 @@ import {
   Time,
   Events,
   State,
-} from "../../common/structs";
+} from "common/structs";
 
 export type Collection = CollectionDoc<Account>;
 export type Single = SingleDoc<Account>;
@@ -54,7 +54,7 @@ export interface TwoFactorAuth {
 }
 
 export async function getSingle(params: StandardParams) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links.account().single(),
   });
@@ -73,7 +73,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links.account().single(),
   });

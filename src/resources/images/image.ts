@@ -1,5 +1,10 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import {
+  QueryParams,
+  links,
+  StandardParams,
+  getRequest,
+  patchRequest,
+} from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -10,11 +15,11 @@ import {
   Bytes,
   OwnerScope,
   OwnerInclude,
-} from "../../common/structs";
+} from "common/structs";
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
 import { ImageSource } from "./source";
-import { ContainerIdentifier } from "../../common/structs";
+import { ContainerIdentifier } from "common/structs";
 
 export type Collection = CollectionDoc<Image, ImageIncludes>;
 export type Single = SingleDoc<Image, ImageIncludes>;
@@ -68,7 +73,7 @@ export interface ImageIncludes {
 }
 
 export async function getCollection(params: StandardParams<ImageQuery>) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links.images().collection(),
   });
@@ -79,7 +84,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links.images().single(params.id),
   });
@@ -95,7 +100,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links.images().single(params.id),
   });

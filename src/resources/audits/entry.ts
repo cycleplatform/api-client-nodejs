@@ -1,5 +1,5 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
+import { getRequest } from "common/api/request";
+import { links, StandardParams } from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -8,7 +8,7 @@ import {
   ResourceId,
   SingleDoc,
   IP,
-} from "../../common/structs";
+} from "common/structs";
 
 export interface EntrySession {
   ip: IP;
@@ -44,7 +44,7 @@ export type Collection = CollectionDoc<Entry>;
 export type Single = SingleDoc<Entry>;
 
 export async function getEntries(params: StandardParams) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links.audit().entries(),
   });

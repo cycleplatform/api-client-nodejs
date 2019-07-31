@@ -1,12 +1,12 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import * as Request from "common/api/request";
+import { QueryParams, links, StandardParams } from "common/api";
 import {
   CollectionDoc,
   Resource,
   SingleDoc,
   Events,
   State,
-} from "../../common/structs";
+} from "common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
 

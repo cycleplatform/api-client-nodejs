@@ -1,10 +1,5 @@
-import {
-  Resource,
-  ResourceId,
-  OwnerScope,
-  Time,
-} from "../../../common/structs";
-import { links, getRequest, StandardParams } from "../../../common/api";
+import { Resource, ResourceId, OwnerScope, Time } from "common/structs";
+import { links, getRequest, StandardParams } from "common/api";
 
 export type SSHConnectionDoc = { data: SSHConnectionResponse };
 

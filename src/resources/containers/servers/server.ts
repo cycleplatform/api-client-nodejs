@@ -1,13 +1,13 @@
-import * as Request from "../../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../../common/api";
+import { getRequest } from "common/api/request";
+import { QueryParams, links, StandardParams } from "common/api";
 import {
   CollectionDoc,
   Resource,
   StatefulCounts,
   ResourceId,
   IP,
-} from "../../../common/structs";
-import { InstanceState } from "../../containers/instances";
+} from "common/structs";
+import { InstanceState } from "resources/containers/instances";
 
 export type Collection = CollectionDoc<ServerInstances>;
 export type ServerInstancesQuery = QueryParams<
@@ -29,7 +29,7 @@ export async function getCollection(
     containerId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links.containers().servers(params.containerId),
   });

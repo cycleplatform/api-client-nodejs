@@ -1,5 +1,5 @@
-import * as Request from "../../common/api/request";
-import { QueryParams, links, Settings } from "../../common/api";
+import * as Request from "common/api/request";
+import { QueryParams, links, Settings } from "common/api";
 
 export enum Capability {
   HUBS_UPDATE = "hubs-update",

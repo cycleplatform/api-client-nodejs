@@ -2,7 +2,7 @@ import {
   Namespaces,
   BaseCapabilities,
   PrivilegedCapabilities,
-} from "../../../../common/structs";
+} from "common/structs";
 
 export interface Runtime {
   command: RuntimeCommand | null;

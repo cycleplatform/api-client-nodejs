@@ -1,6 +1,5 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
-import { ResourceId, Task, CreatedTask } from "../../../common/structs";
+import { links, StandardParams, deleteRequest, postRequest } from "common/api";
+import { ResourceId, Task, CreatedTask } from "common/structs";
 
 export type StackAction = "build";
 
@@ -22,7 +21,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.stacks().single(params.id),
   });
@@ -34,7 +33,7 @@ export async function task<K = {}>(
     value: Task<StackAction, K>;
   },
 ) {
-  return Request.postRequest<CreatedTask<StackAction, K>>({
+  return postRequest<CreatedTask<StackAction, K>>({
     ...params,
     target: links.stacks().tasks(params.id),
   });

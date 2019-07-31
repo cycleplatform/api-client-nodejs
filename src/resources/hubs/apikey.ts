@@ -1,5 +1,10 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
+import {
+  getRequest,
+  postRequest,
+  patchRequest,
+  deleteRequest,
+} from "common/api/request";
+import { links, StandardParams } from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -8,7 +13,7 @@ import {
   State,
   OwnerScope,
   SingleDoc,
-} from "../../common/structs";
+} from "common/structs";
 import { Capability } from "./capability";
 
 export type Collection = CollectionDoc<ApiKey>;
@@ -34,7 +39,7 @@ export interface CreateParams {
 }
 
 export async function getCollection(params: StandardParams) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .hubs()
@@ -48,7 +53,7 @@ export async function getSingle(
     apiKeyId: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .hubs()
@@ -58,7 +63,7 @@ export async function getSingle(
 }
 
 export async function create(params: StandardParams & { value: CreateParams }) {
-  return Request.postRequest<Single>({
+  return postRequest<Single>({
     ...params,
     target: links
       .hubs()
@@ -70,7 +75,7 @@ export async function create(params: StandardParams & { value: CreateParams }) {
 export async function update(
   params: StandardParams & { keyId: ResourceId; value: Partial<CreateParams> },
 ) {
-  return Request.patchRequest<Single>({
+  return patchRequest<Single>({
     ...params,
     target: links
       .hubs()
@@ -84,7 +89,7 @@ export async function remove(
     keyId: ResourceId;
   },
 ) {
-  return Request.deleteRequest<Single>({
+  return deleteRequest<Single>({
     ...params,
     target: links
       .hubs()

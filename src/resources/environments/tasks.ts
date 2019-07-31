@@ -1,6 +1,5 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
-import { ResourceId, Task, CreatedTask } from "../../common/structs";
+import { links, StandardParams, deleteRequest, postRequest } from "common/api";
+import { ResourceId, Task, CreatedTask } from "common/structs";
 
 export type EnvironmentAction = "start" | "stop";
 
@@ -35,7 +34,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.environments().single(params.id),
   });
@@ -47,7 +46,7 @@ export async function task<K = {}>(
     value: Task<EnvironmentAction, K>;
   },
 ) {
-  return Request.postRequest<CreatedTask<EnvironmentAction, K>>({
+  return postRequest<CreatedTask<EnvironmentAction, K>>({
     ...params,
     target: links.environments().tasks(params.id),
   });

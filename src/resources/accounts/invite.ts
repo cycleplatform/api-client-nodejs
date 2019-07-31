@@ -1,10 +1,10 @@
-import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
-import { CollectionDoc, ResourceId, SingleDoc } from "../../common/structs";
-import * as Memberships from "../hubs/membership";
+import { getRequest, patchRequest } from "common/api/request";
+import { links, StandardParams } from "common/api";
+import { CollectionDoc, ResourceId, SingleDoc } from "common/structs";
+import * as Memberships from "resources/hubs/membership";
 
 export async function getCollection(params: StandardParams) {
-  return Request.getRequest<
+  return getRequest<
     CollectionDoc<Memberships.Membership, Memberships.MembershipIncludes>
   >({
     ...params,
@@ -26,7 +26,7 @@ export async function update(
     value: InviteUpdateParams;
   },
 ) {
-  return Request.patchRequest<
+  return patchRequest<
     SingleDoc<Memberships.Membership, Memberships.MembershipIncludes>
   >({
     ...params,

@@ -1,26 +1,30 @@
 {
+  "include": ["src", "types"],
   "compilerOptions": {
+    "target": "es5",
     "module": "esnext",
-    "strict": true,
-    "target": "es6",
-    "outDir": "dist",
+    "lib": ["dom", "esnext"],
+    "importHelpers": true,
     "declaration": true,
-    "noImplicitReturns": true,
     "sourceMap": true,
-    "pretty": true,
+    "rootDir": "./",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "experimentalDecorators": true,
-    "baseUrl": "./src",
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "noEmitHelpers": true,
-    "importHelpers": true,
-    "lib": ["dom", "es6"],
+    "baseUrl": "./",
     "paths": {
-      "__mocks__/*": ["../__mocks__/*"]
-    }
-  },
-  "exclude": ["node_modules", "test", "./dist"]
+      "*": ["src/*", "node_modules/*"]
+    },
+    "jsx": "react",
+    "esModuleInterop": true
+  }
 }

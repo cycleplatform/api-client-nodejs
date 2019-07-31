@@ -6,7 +6,7 @@ import {
   CollectionDoc,
   SingleDoc,
   OwnerInclude,
-} from "../../../common/structs";
+} from "common/structs";
 import { Kind } from "./kind";
 import { ProviderIdentifier, Provider } from "../provider";
 import {
@@ -15,7 +15,7 @@ import {
   patchRequest,
   links,
   QueryParams,
-} from "../../../common/api";
+} from "common/api";
 import { IP } from "./ip";
 import { Server } from "../servers";
 import { Location } from "../provider/location";
@@ -33,9 +33,9 @@ export type PoolQuery = QueryParams<
 export interface Pool extends Resource {
   hub_id: ResourceId;
   kind: Kind;
-  provider: Provider;
+  provider: PoolProvider;
   server_id: ResourceId;
-  preserve: boolean;
+  floating: boolean;
   location_id: ResourceId;
   ips: IPs;
   block: Block;
@@ -58,7 +58,7 @@ export type ReservationIdentifier = string;
 export type ServerIdentifier = string;
 export type ServerAssignmentIdentifier = string;
 
-export interface Provider {
+export interface PoolProvider {
   identifier: ProviderIdentifier;
   location: string;
   reservation: ReservationIdentifier;
@@ -100,7 +100,7 @@ export async function getSingle(
 }
 
 export interface UpdateParams {
-  preserve: boolean;
+  floating: boolean;
 }
 
 export async function update(

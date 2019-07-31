@@ -1,7 +1,6 @@
-import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
-import { links, StandardParams } from "../../../common/api";
-import { ResourceId, Task, CreatedTask } from "../../../common/structs";
+import { Token } from "auth";
+import { links, StandardParams, postRequest } from "common/api";
+import { ResourceId, Task, CreatedTask } from "common/structs";
 
 export type ZoneAction = "verify" | "generate_certs";
 
@@ -38,7 +37,7 @@ export async function task(
     value: Task<ZoneAction>;
   },
 ) {
-  return Request.postRequest<CreatedTask<ZoneAction>>({
+  return postRequest<CreatedTask<ZoneAction>>({
     ...params,
     target: links
       .dns()

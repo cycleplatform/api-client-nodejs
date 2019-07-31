@@ -6,7 +6,7 @@ import {
   State,
   OwnerScope,
   ResourceId,
-} from "../../common/structs";
+} from "common/structs";
 
 export type Collection = CollectionDoc<Secret>;
 export type Single = SingleDoc<Secret>;

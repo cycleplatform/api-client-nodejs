@@ -1,11 +1,11 @@
-import * as Request from "../../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../../common/api";
-import { Server } from "../../infrastructure/servers";
+import { getRequest } from "common/api/request";
+import { QueryParams, links, StandardParams } from "common/api";
+import { Server } from "resources/infrastructure/servers";
 import {
   Locations,
   ProviderIdentifier,
   Provider,
-} from "../../infrastructure/provider";
+} from "resources/infrastructure/provider";
 import {
   CollectionDoc,
   Resource,
@@ -17,8 +17,8 @@ import {
   Includes,
   OwnerInclude,
   Time,
-} from "../../../common/structs";
-import { IPNet } from "../../infrastructure/ips";
+} from "common/structs";
+import { IPNet } from "resources/infrastructure/ips";
 import { Service } from "../services";
 
 export type Collection = CollectionDoc<Instance, InstanceIncludes>;
@@ -105,7 +105,7 @@ export async function getCollection(
     containerId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .containers()
@@ -120,7 +120,7 @@ export async function getSingle(
     containerId: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .containers()

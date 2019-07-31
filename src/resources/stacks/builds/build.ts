@@ -1,5 +1,4 @@
-import * as Request from "../../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../../common/api";
+import { QueryParams, links, StandardParams, getRequest } from "common/api";
 import {
   CollectionDoc,
   Resource,
@@ -10,9 +9,9 @@ import {
   StatefulCounts,
   Time,
   StandardEvents,
-} from "../../../common/structs";
+} from "common/structs";
 import { Spec } from "../spec";
-import { ContainerState } from "../../containers";
+import { ContainerState } from "resources/containers";
 
 export * from "./tasks/build";
 
@@ -75,7 +74,7 @@ export async function getCollection(
     stackId: ResourceId;
   },
 ) {
-  return Request.getRequest<Collection>({
+  return getRequest<Collection>({
     ...params,
     target: links
       .stacks()
@@ -90,7 +89,7 @@ export async function getSingle(
     stackId: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
+  return getRequest<Single>({
     ...params,
     target: links
       .stacks()

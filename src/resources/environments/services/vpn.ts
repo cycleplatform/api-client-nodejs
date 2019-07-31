@@ -9,9 +9,14 @@ import {
   CreatedTask,
   Time,
   Webhook,
-} from "../../../common/structs";
-import { links, StandardParams } from "../../../common/api";
-import * as Request from "../../../common/api/request";
+} from "common/structs";
+import {
+  links,
+  StandardParams,
+  getRequest,
+  postRequest,
+  deleteRequest,
+} from "common/api";
 
 export interface VPNService extends Service {
   config: VPN;
@@ -65,7 +70,7 @@ export async function getVPNInfo(
     environmentId: ResourceId;
   },
 ) {
-  return Request.getRequest<{ data: VPNInfo }>({
+  return getRequest<{ data: VPNInfo }>({
     ...params,
     target: links
       .environments()
@@ -80,7 +85,7 @@ export async function getVPNLogins(
     environmentId: ResourceId;
   },
 ) {
-  return Request.getRequest<VPNLoginsDoc>({
+  return getRequest<VPNLoginsDoc>({
     ...params,
     target: links
       .environments()
@@ -95,7 +100,7 @@ export async function getVPNUsers(
     environmentId: ResourceId;
   },
 ) {
-  return Request.getRequest<VPNUsersDoc>({
+  return getRequest<VPNUsersDoc>({
     ...params,
     target: links
       .environments()
@@ -116,7 +121,7 @@ export async function createVPNUser(
     value: CreateVPNUserParams;
   },
 ) {
-  return Request.postRequest<VPNUsersDoc>({
+  return postRequest<VPNUsersDoc>({
     ...params,
     target: links
       .environments()
@@ -132,7 +137,7 @@ export async function deleteVPNUser(
     userId: ResourceId;
   },
 ) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .environments()
@@ -150,7 +155,7 @@ export async function reconfigureVPN(
     value: VPNReconfigureDetails;
   },
 ) {
-  return Request.postRequest<CreatedTask<VPNAction>>({
+  return postRequest<CreatedTask<VPNAction>>({
     ...params,
     target: links
       .environments()

@@ -1,11 +1,6 @@
 import { Service } from "../common";
-import {
-  StandardParams,
-  getRequest,
-  links,
-  postRequest,
-} from "../../../../common/api";
-import { ResourceId, CreatedTask } from "../../../../common/structs";
+import { StandardParams, getRequest, links, postRequest } from "common/api";
+import { ResourceId, CreatedTask } from "common/structs";
 
 export interface LoadBalancerService extends Service {
   config: LoadBalancer | null;

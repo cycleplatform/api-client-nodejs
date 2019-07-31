@@ -1,5 +1,5 @@
-import { Time, Gigabytes } from "../../../common/structs";
-import { StandardParams, getRequest, links } from "../../../common/api";
+import { Time, Gigabytes } from "common/structs";
+import { StandardParams, getRequest, links } from "common/api";
 
 export type Collection = {
   data: UsageDatum[];

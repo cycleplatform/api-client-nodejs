@@ -1,6 +1,6 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
-import { Task, CreatedTask } from "../../../common/structs";
+import * as Request from "common/api/request";
+import { links, StandardParams } from "common/api";
+import { Task, CreatedTask } from "common/structs";
 
 export type HubAction = "leave";
 

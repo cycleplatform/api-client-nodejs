@@ -1,4 +1,4 @@
-import { ResourceId } from "../structs";
+import { ResourceId } from "common/structs";
 
 /**
  * All possible endpoints of Cycle's API

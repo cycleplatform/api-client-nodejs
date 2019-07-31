@@ -1,7 +1,7 @@
-import * as Request from "../../../common/api/request";
-import { links, StandardParams } from "../../../common/api";
-import { ResourceId } from "../../../common/structs";
-import { connectToSocket } from "../../../common/api/websocket";
+import { getRequest } from "common/api/request";
+import { links, StandardParams } from "common/api";
+import { ResourceId } from "common/structs";
+import { connectToSocket } from "common/api/websocket";
 
 export interface ConsolePipelineParams extends StandardParams {
   id: ResourceId;
@@ -23,7 +23,7 @@ export async function connectToConsole(params: ConsolePipelineParams) {
     .instances()
     .console(params.id, params.containerId);
 
-  const secretResp = await Request.getRequest<ConsolePipelineResponse>({
+  const secretResp = await getRequest<ConsolePipelineResponse>({
     target,
     hubId: params.hubId,
     token: params.token,
