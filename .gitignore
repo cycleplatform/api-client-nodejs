@@ -1,46 +1,5 @@
-# Default Extensions
-*.diff
-*.err
 *.log
-*.orig
-*.rej
-*.swo
-*.swp
-*.vi
-*.zip
-*.tgz
-*.iml
-*.env
-*~
-
-# OS/Editor Files/Folders
-._*
-.cache
 .DS_Store
-.project
-.settings
-.vscode
-.tmproj
-.idea
-*.esproj
-*.sublime-project
-*.sublime-workspace
-nbproject
-Thumbs.db
-
-# NPM
 node_modules
-
-# Project Folders
-.tscache
-.awcache
-.test
-.fusebox
-tmp
-.build
-build
+.rts2_*
 dist
-*-dist
-npm-debug*
-#public
-config/app/meta

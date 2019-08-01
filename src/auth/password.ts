@@ -32,7 +32,9 @@ export async function passwordGrant(
 ): Promise<ApiResult<Token>> {
   const url = `${makeUrl(settings || { noVersion: true })}/oauth/token`;
   const queryParams = Object.keys(auth)
-    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(auth[k])}`)
+    .map(
+      k => `${encodeURIComponent(k)}=${encodeURIComponent(auth[k as "email"])}`,
+    )
     .join("&");
 
   try {

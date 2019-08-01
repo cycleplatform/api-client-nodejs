@@ -2,7 +2,7 @@ import {
   Resource,
   ResourceId,
   Time,
-  CollectionDoc,
+  CollectionDoc
 } from "../../../common/structs";
 import { StandardParams, getRequest, links } from "../../../common/api";
 
@@ -31,6 +31,6 @@ export async function getAttempts(params: StandardParams) {
     target: links
       .dns()
       .tls()
-      .collection(),
+      .collection()
   });
 }

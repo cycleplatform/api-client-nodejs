@@ -9,3 +9,5 @@ typings.json
 typings/
 .vscode
 src/
+
+.rts2_/*
