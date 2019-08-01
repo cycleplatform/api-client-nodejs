@@ -35,5 +35,9 @@
     "tsdx": "^0.7.2",
     "tslib": "^1.9.3",
     "typescript": "^3.5.1"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "2.2.1",
+    "isomorphic-ws": "4.0.1"
   }
 }
