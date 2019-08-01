@@ -1,5 +1,4 @@
 import * as Request from "../../../common/api/request";
-import { Token } from "../../../auth";
 import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
@@ -8,7 +7,6 @@ export type ZoneAction = "verify" | "generate_certs";
 export async function verify(
   params: StandardParams & {
     id: ResourceId;
-    token: Token;
   },
 ) {
   return task({

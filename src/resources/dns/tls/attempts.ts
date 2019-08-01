@@ -14,11 +14,11 @@ export interface BaseAttempt extends Resource {
   time: Time;
 }
 
-export interface FailedAttempt extends BaseAttempt {
+export interface SuccessfulAttempt extends BaseAttempt {
   success: true;
 }
 
-export interface SuccessfulAttempt extends BaseAttempt {
+export interface FailedAttempt extends BaseAttempt {
   success: false;
   error: string;
 }

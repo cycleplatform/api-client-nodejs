@@ -10,7 +10,6 @@ import {
 } from "../../common/structs";
 import { links, StandardParams, QueryParams } from "../../common/api";
 import * as Request from "../../common/api/request";
-import { Omit } from "../../common/types/common";
 import { Stack } from "../stacks";
 
 export type Collection = CollectionDoc<Project, ProjectIncludes>;

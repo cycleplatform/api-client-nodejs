@@ -15,7 +15,6 @@ import {
 } from "../../../common/structs";
 import { Container } from "../../containers";
 import { Project } from "../../projects";
-import { Omit } from "../../../common/types/common";
 
 export type Collection = CollectionDoc<Record, RecordIncludes>;
 export type Single = SingleDoc<Record, RecordIncludes>;
