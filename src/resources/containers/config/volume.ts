@@ -1,1 +1,1 @@
-export * from "resources/stacks/spec/v1/volume";
+export * from "../../stacks/spec/v1/volume";

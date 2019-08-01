@@ -1,8 +1,13 @@
-import { links, StandardParams, getRequest } from "common/api";
-import { Resource, ResourceId, CollectionDoc, Time } from "common/structs";
+import * as Request from "../../../common/api/request";
+import { links, StandardParams } from "../../../common/api";
+import {
+  Resource,
+  ResourceId,
+  CollectionDoc,
+  Time,
+} from "../../../common/structs";
 import { LoadStats } from "./load";
 import { RAMStats } from "./ram";
-import { StorageStats } from "./storage";
 
 export type Collection = CollectionDoc<TelemetryPoint>;
 
@@ -10,7 +15,11 @@ export interface TelemetryPoint extends Resource {
   time: Time;
   load: LoadStats;
   ram: RAMStats;
-  storage_root: StorageStats;
+  storage_base: {
+    used: number;
+    free: number;
+    total: number;
+  };
 }
 
 export async function getCollection(
@@ -18,7 +27,7 @@ export async function getCollection(
     serverId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()

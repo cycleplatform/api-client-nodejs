@@ -1,6 +1,6 @@
-import { postRequest } from "common/api/request";
-import { links, StandardParams } from "common/api";
-import { ResourceId, Task, CreatedTask } from "common/structs";
+import * as Request from "../../../common/api/request";
+import { links, StandardParams } from "../../../common/api";
+import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
 export type InvoiceAction = "pay";
 
@@ -23,7 +23,7 @@ export async function task(
     value: Task<InvoiceAction>;
   },
 ) {
-  return postRequest<CreatedTask<InvoiceAction>>({
+  return Request.postRequest<CreatedTask<InvoiceAction>>({
     ...params,
     target: links
       .billing()

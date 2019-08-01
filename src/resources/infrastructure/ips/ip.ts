@@ -1,4 +1,9 @@
-import { Resource, ResourceId, IP as IPString, State } from "common/structs";
+import {
+  Resource,
+  ResourceId,
+  IP as IPString,
+  State,
+} from "../../../common/structs";
 import { Kind } from "./kind";
 
 export type IPState = "assigning" | "assigned" | "releasing" | "available";

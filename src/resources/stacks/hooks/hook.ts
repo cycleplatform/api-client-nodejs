@@ -5,16 +5,9 @@ import {
   CollectionDoc,
   SingleDoc,
   Events,
-} from "common/structs";
-import {
-  links,
-  StandardParams,
-  QueryParams,
-  getRequest,
-  postRequest,
-  patchRequest,
-  deleteRequest,
-} from "common/api";
+} from "../../../common/structs";
+import { links, StandardParams, QueryParams } from "../../../common/api";
+import * as Request from "../../../common/api/request";
 
 export type Collection = CollectionDoc<Hook>;
 export type Single = SingleDoc<Hook>;
@@ -56,7 +49,7 @@ export async function getCollection(
     stackId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .stacks()
@@ -71,7 +64,7 @@ export async function getSingle(
     hookId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .stacks()
@@ -92,7 +85,7 @@ export async function create(
     stackId: ResourceId;
   },
 ) {
-  return postRequest<Single>({
+  return Request.postRequest<Single>({
     ...params,
     target: links
       .stacks()
@@ -116,7 +109,7 @@ export async function update(
     hookId: ResourceId;
   },
 ) {
-  return patchRequest<Single>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links
       .stacks()
@@ -131,7 +124,7 @@ export async function remove(
     hookId: ResourceId;
   },
 ) {
-  return deleteRequest<{ data: true }>({
+  return Request.deleteRequest<{ data: true }>({
     ...params,
     target: links
       .stacks()

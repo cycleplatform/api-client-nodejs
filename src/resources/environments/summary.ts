@@ -1,9 +1,10 @@
-import { Resource, ResourceId, SingleDoc, State } from "common/structs";
+import { Resource, ResourceId, SingleDoc, State } from "../../common/structs";
 import { EnvironmentState } from "./environment";
 import { Service } from "./services";
-import { ContainerState } from "resources/containers/container";
-import { Location } from "resources/infrastructure/provider/location";
-import { StandardParams, links, getRequest } from "common/api";
+import { ContainerState } from "../containers/container";
+import { Location } from "../infrastructure/provider/location";
+import { StandardParams, links } from "../../common/api";
+import * as Request from "../../common/api/request";
 
 export type EnvironmentSummaryDoc = SingleDoc<EnvironmentSummary>;
 
@@ -48,7 +49,7 @@ export async function getSummary(
     id: ResourceId;
   },
 ) {
-  return getRequest<EnvironmentSummaryDoc>({
+  return Request.getRequest<EnvironmentSummaryDoc>({
     ...params,
     target: links.environments().summary(params.id),
   });

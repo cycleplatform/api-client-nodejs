@@ -4,8 +4,8 @@ import {
   OAuthError,
   Settings,
   ErrorCode,
-} from 'common/api';
-import { Token } from './token';
+} from "../common/api";
+import { Token } from "./token";
 
 /**
  * Parameters for creating a password grant request
@@ -28,23 +28,23 @@ export interface PasswordAuth {
  */
 export async function passwordGrant(
   auth: PasswordAuth,
-  settings?: Settings
+  settings?: Settings,
 ): Promise<ApiResult<Token>> {
   const url = `${makeUrl(settings || { noVersion: true })}/oauth/token`;
   const queryParams = Object.keys(auth)
     .map(
-      k => `${encodeURIComponent(k)}=${encodeURIComponent((auth as any)[k])}`
+      k => `${encodeURIComponent(k)}=${encodeURIComponent(auth[k as "email"])}`,
     )
-    .join('&');
+    .join("&");
 
   try {
     const resp = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       body: `grant_type=password&${queryParams}`,
-      credentials: 'include', // support registered device cookie
+      credentials: "include", // support registered device cookie
       headers: new Headers({
-        'Content-type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
+        "Content-type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
       }),
     });
     if (!resp.ok) {
@@ -70,7 +70,7 @@ export async function passwordGrant(
       error: {
         code: ErrorCode.C_0_NETWORK_ERROR,
         detail: e.message,
-        title: 'Unable to reach authentication server',
+        title: "Unable to reach authentication server",
       },
     };
   }

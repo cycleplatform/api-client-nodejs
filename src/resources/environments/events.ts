@@ -1,6 +1,7 @@
-import { QueryParams, links, StandardParams, getRequest } from "common/api";
-import { ResourceId, CollectionDoc } from "common/structs";
-import { Events, Container } from "resources/containers";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../common/api";
+import { ResourceId, CollectionDoc } from "../../common/structs";
+import { Events, Container } from "../containers";
 
 export type EventQuery = QueryParams<keyof EventIncludes>;
 
@@ -9,7 +10,7 @@ export async function getCollection(
     environmentId: ResourceId;
   },
 ) {
-  return getRequest<CollectionDoc<Events.Event, EventIncludes>>({
+  return Request.getRequest<CollectionDoc<Events.Event, EventIncludes>>({
     ...params,
     target: links.environments().events(params.environmentId),
   });

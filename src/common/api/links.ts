@@ -1,4 +1,4 @@
-import { ResourceId } from "common/structs";
+import { ResourceId } from "../structs";
 
 /**
  * All possible endpoints of Cycle's API
@@ -100,6 +100,9 @@ export const links = {
     domains: () => ({
       collection: () => `/dns/domains`,
     }),
+    tls: () => ({
+      collection: () => `/dns/tls/attempts`,
+    }),
   }),
 
   environments: () => ({
@@ -163,6 +166,7 @@ export const links = {
     single: (id: ResourceId) => `/images/${id}`,
     build: () => `/images/build`,
     containers: (id: ResourceId) => `/images/${id}/containers`,
+    tasks: () => `/images/tasks`,
   }),
 
   infrastructure: () => ({
@@ -182,12 +186,19 @@ export const links = {
         `/infrastructure/providers/${provider}/servers`,
       locations: (provider: ResourceId) =>
         `/infrastructure/providers/${provider}/locations`,
+      features: () => `/infrastructure/locations/features`,
     }),
     ips: () => ({
       pools: () => ({
         collection: () => `/infrastructure/ips/pools`,
         single: (id: ResourceId) => `/infrastructure/ips/pools/${id}`,
         ips: (id: ResourceId) => `/infrastructure/ips/pools/${id}/ips`,
+      }),
+    }),
+    storage: () => ({
+      sans: () => ({
+        collection: () => `/infrastructure/storage/sans`,
+        single: (id: ResourceId) => `/infrastructure/storage/sans/${id}`,
       }),
     }),
   }),
@@ -200,6 +211,14 @@ export const links = {
   projects: () => ({
     collection: () => `/projects`,
     single: (id: ResourceId) => `/projects/${id}`,
+  }),
+
+  sdn: () => ({
+    networks: () => ({
+      collection: () => `/sdn/networks`,
+      single: (id: ResourceId) => `/sdn/networks/${id}`,
+      tasks: (id: ResourceId) => `/sdn/networks/${id}/tasks`,
+    }),
   }),
 
   stacks: () => ({

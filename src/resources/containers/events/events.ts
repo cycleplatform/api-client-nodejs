@@ -1,6 +1,11 @@
-import { getRequest } from "common/api/request";
-import { links, StandardParams } from "common/api";
-import { CollectionDoc, Resource, ResourceId, Time } from "common/structs";
+import * as Request from "../../../common/api/request";
+import { links, StandardParams } from "../../../common/api";
+import {
+  CollectionDoc,
+  Resource,
+  ResourceId,
+  Time,
+} from "../../../common/structs";
 
 export type Collection = CollectionDoc<Event>;
 export type EventType = "default" | "info" | "success" | "error";
@@ -21,7 +26,7 @@ export async function getCollection(
     containerId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.containers().events(params.containerId),
   });

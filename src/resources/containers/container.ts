@@ -1,8 +1,8 @@
-import { getRequest, postRequest, patchRequest } from "common/api/request";
-import { QueryParams, links, StandardParams } from "common/api";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import { Builds, Stack } from "../stacks";
-import { Image } from "resources/images";
-import { Zones } from "resources/dns";
+import { Image } from "../images";
+import { Zones } from "../dns";
 import {
   CollectionDoc,
   Resource,
@@ -14,14 +14,14 @@ import {
   OwnerInclude,
   StatefulCounts,
   ContainerIdentifier,
-} from "common/structs";
-import { Features } from "./features";
-import { IPNet } from "resources/infrastructure/ips";
+} from "../../common/structs";
+import { IPNet } from "../infrastructure/ips";
 import { InstanceState } from "./instances";
 import { Service } from "./services";
 import { Config, Volumes } from "./config";
-import { IP } from "resources/infrastructure/ips";
-import { ContainerRole } from "resources/stacks/spec/v1/container";
+import { IP } from "../infrastructure/ips";
+import { ContainerRole } from "../stacks/spec/v1/container";
+import { Environment } from "../environments";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
@@ -36,7 +36,8 @@ export type ContainerState =
 export type ContainerEvent = "started";
 export type ContainerQuery = QueryParams<
   keyof ContainerIncludes,
-  keyof ContainerMetas
+  keyof ContainerMetas,
+  "image" | "environment" | "state"
 >;
 
 export interface Container extends Resource<ContainerMetas> {
@@ -47,13 +48,14 @@ export interface Container extends Resource<ContainerMetas> {
   hub_id: ResourceId;
   image: ImageSummary;
   stack?: StackSummary;
-  features: Features;
   config: Config;
   instances: number;
   volumes?: VolumeSummary[];
-  role: ContainerRole;
+  role: ContainerRole | null;
   stateful: boolean;
-  state: State<ContainerState>;
+  state: State<ContainerState> & {
+    desired: ContainerState;
+  };
   events: Events<ContainerEvent>;
 }
 
@@ -68,12 +70,13 @@ export interface ContainerIncludes {
   stacks?: {
     [key: string]: Stack;
   };
+  environments?: Record<ResourceId, Environment>;
 }
 
 export interface ContainerMetas {
   instance_counts?: StatefulCounts<InstanceState>;
   domain?: string;
-  domains?: { fqdn: string; record: Zones.Records.Record | null };
+  domains?: { fqdn: string; record: Zones.Records.Record | null }[];
   ips?: IP[];
 }
 
@@ -83,7 +86,7 @@ export interface StackSummary {
     id: ResourceId;
   };
   build_id: ResourceId;
-  identifier: "db";
+  identifier: string;
 }
 
 export interface ImageSummary {
@@ -103,14 +106,14 @@ export interface Legacy {
   ipv4: IPNet | null;
 }
 
-export interface VolumeSummary {
+export interface  VolumeSummary {
   id: string;
   hash: string;
   config: Volumes.Volume;
 }
 
 export async function getCollection(params: StandardParams<ContainerQuery>) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.containers().collection(),
   });
@@ -121,7 +124,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links.containers().single(params.id),
   });
@@ -139,7 +142,7 @@ export interface CreateParams {
 export async function create(
   params: StandardParams<ContainerQuery> & { value: CreateParams },
 ) {
-  return postRequest<Single>({
+  return Request.postRequest<Single>({
     ...params,
     target: links.containers().collection(),
   });
@@ -151,7 +154,7 @@ export async function update(
     value: Pick<CreateParams, "name">;
   },
 ) {
-  return patchRequest<Single>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links.containers().single(params.id),
   });

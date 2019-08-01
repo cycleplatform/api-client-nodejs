@@ -1,6 +1,6 @@
-import { postRequest, deleteRequest } from "common/api/request";
-import { links, StandardParams } from "common/api";
-import { ResourceId, Task, CreatedTask } from "common/structs";
+import * as Request from "../../common/api/request";
+import { links, StandardParams } from "../../common/api";
+import { ResourceId, Task, CreatedTask } from "../../common/structs";
 import { Config } from "./config";
 import { VolumeSummary } from "./container";
 
@@ -92,7 +92,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return deleteRequest<CreatedTask<"delete">>({
+  return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.containers().single(params.id),
   });
@@ -104,7 +104,7 @@ export async function task<K = {}>(
     value: Task<ContainerAction, K>;
   },
 ) {
-  return postRequest<CreatedTask<ContainerAction, K>>({
+  return Request.postRequest<CreatedTask<ContainerAction, K>>({
     ...params,
     target: links.containers().tasks(params.id),
   });

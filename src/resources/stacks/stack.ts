@@ -1,10 +1,5 @@
-import {
-  links,
-  StandardParams,
-  getRequest,
-  postRequest,
-  patchRequest,
-} from "common/api";
+import * as Request from "../../common/api/request";
+import { links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -13,7 +8,7 @@ import {
   State,
   Events,
   OwnerScope,
-} from "common/structs";
+} from "../../common/structs";
 import { Spec } from "./spec";
 
 export type Collection = CollectionDoc<Stack>;
@@ -45,7 +40,7 @@ export interface Repo {
 }
 
 export async function getCollection(params: StandardParams) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.stacks().collection(),
   });
@@ -56,7 +51,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links.stacks().single(params.id),
   });
@@ -72,7 +67,7 @@ export async function create(
     value: StackCreateParams;
   },
 ) {
-  return postRequest<Single>({
+  return Request.postRequest<Single>({
     ...params,
     target: links.stacks().collection(),
   });
@@ -84,7 +79,7 @@ export async function update(
     value: StackCreateParams;
   },
 ) {
-  return patchRequest<Single>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links.stacks().single(params.id),
   });

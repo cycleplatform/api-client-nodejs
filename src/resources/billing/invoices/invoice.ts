@@ -6,9 +6,9 @@ import {
   ResourceId,
   State,
   Time,
-} from "common/structs";
-import { getRequest } from "common/api/request";
-import { links, StandardParams, QueryParams } from "common/api";
+} from "../../../common/structs";
+import * as Request from "../../../common/api/request";
+import { links, StandardParams, QueryParams } from "../../../common/api";
 import { Payment } from "./payment";
 import { Credit } from "./credit";
 import { LateFee } from "./latefee";
@@ -56,7 +56,7 @@ export interface InvoiceMeta {
 }
 
 export async function getCollection(params: StandardParams<InvoiceQuery>) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .billing()
@@ -70,7 +70,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links
       .billing()

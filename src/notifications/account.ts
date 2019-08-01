@@ -1,5 +1,7 @@
-import { Token } from "auth";
-import { links, Settings, getRequest, connectToSocket } from "common/api";
+import { Token } from "../auth";
+import * as Request from "../common/api/request";
+import { links, Settings } from "../common/api";
+import { connectToSocket } from "../common/api/websocket";
 import { Notification } from "./event";
 
 /**
@@ -53,7 +55,7 @@ export interface AccountChannelSecretResponse {
 export async function connectToAccountChannel(params: AccountChannelParams) {
   const target = links.channels().account();
 
-  const secretResp = await getRequest<AccountChannelSecretResponse>({
+  const secretResp = await Request.getRequest<AccountChannelSecretResponse>({
     target,
     token: params.token,
     settings: params.settings,

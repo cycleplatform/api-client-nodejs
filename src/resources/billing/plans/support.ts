@@ -1,7 +1,7 @@
-import { getRequest } from "common/api/request";
-import { QueryParams, links, Settings } from "common/api";
-import { CollectionDoc, Resource, SingleDoc } from "common/structs";
-import { Amount } from "../amount";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
+import { CollectionDoc, Resource, SingleDoc } from "../../../common/structs";
+import { Amount } from "../../billing";
 
 export type Collection = CollectionDoc<SupportPlan>;
 export type Single = SingleDoc<SupportPlan>;
@@ -17,7 +17,7 @@ export async function getCollection(params: {
   query?: QueryParams;
   settings?: Settings;
 }) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .billing()

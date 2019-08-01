@@ -6,16 +6,17 @@ import {
   CollectionDoc,
   SingleDoc,
   OwnerInclude,
-} from "common/structs";
+  CreatedTask,
+} from "../../../common/structs";
 import { Kind } from "./kind";
 import { ProviderIdentifier, Provider } from "../provider";
 import {
   StandardParams,
   getRequest,
-  patchRequest,
   links,
   QueryParams,
-} from "common/api";
+  deleteRequest,
+} from "../../../common/api";
 import { IP } from "./ip";
 import { Server } from "../servers";
 import { Location } from "../provider/location";
@@ -99,17 +100,12 @@ export async function getSingle(
   });
 }
 
-export interface UpdateParams {
-  floating: boolean;
-}
-
-export async function update(
+export async function remove(
   params: StandardParams<PoolQuery> & {
     id: ResourceId;
-    value: UpdateParams;
   },
 ) {
-  return patchRequest<Single>({
+  return deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .infrastructure()

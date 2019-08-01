@@ -4,12 +4,12 @@ import {
   State,
   ResourceId,
   StatefulCounts,
-} from "common/structs";
+} from "../../common/structs";
 import { ContainerState } from "../containers/container";
-import { Location } from "resources/infrastructure/provider/location";
+import { Location } from "../infrastructure/provider/location";
 import { InstanceState } from "./instances";
-import { StandardParams, links } from "common/api";
-import * as Request from "common/api/request";
+import { StandardParams, links } from "../../common/api";
+import * as Request from "../../common/api/request";
 
 export type ContainerSummaryDoc = SingleDoc<ContainerSummary>;
 

@@ -1,12 +1,5 @@
-import {
-  links,
-  StandardParams,
-  QueryParams,
-  getRequest,
-  patchRequest,
-  postRequest,
-  deleteRequest,
-} from "common/api";
+import * as Request from "../../../common/api/request";
+import { links, StandardParams, QueryParams } from "../../../common/api";
 import {
   CollectionDoc,
   SingleDoc,
@@ -20,7 +13,7 @@ import {
   StatefulCounts,
   OwnerScope,
   Cluster,
-} from "common/structs";
+} from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
 import {
   Locations,
@@ -28,7 +21,7 @@ import {
   Servers as ProviderServers,
   Provider,
 } from "../provider";
-import { InstanceState } from "resources/containers/instances";
+import { InstanceState } from "../../containers/instances";
 
 export type Collection = CollectionDoc<Server, ServerIncludes>;
 export type Single = SingleDoc<Server, ServerIncludes>;
@@ -51,7 +44,12 @@ export interface Server extends Resource<ServerMeta> {
   tags: string[];
   cluster: Cluster;
   state: State<ServerState>;
-  events: Events;
+  events: Events & {
+    provisioning: {
+      started: Time;
+      completed: Time;
+    };
+  };
 }
 
 export interface ServerIncludes extends Includes {
@@ -81,10 +79,11 @@ export interface ServerProvider {
   model: string;
   location: string;
   server: string;
+  init_ips: string[] | null;
 }
 
 export async function getCollection(params: StandardParams<ServerQuery>) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()
@@ -98,7 +97,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links
       .infrastructure()
@@ -108,7 +107,7 @@ export async function getSingle(
 }
 
 export async function getTags(params: StandardParams) {
-  return getRequest<{ data: string[] }>({
+  return Request.getRequest<{ data: string[] }>({
     ...params,
     target: links
       .infrastructure()
@@ -118,7 +117,7 @@ export async function getTags(params: StandardParams) {
 }
 
 export async function getClusters(params: StandardParams) {
-  return getRequest<{ data: string[] }>({
+  return Request.getRequest<{ data: string[] }>({
     ...params,
     target: links
       .infrastructure()
@@ -146,7 +145,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return postRequest<CreatedTask<any>>({
+  return Request.postRequest<CreatedTask<any>>({
     ...params,
     target: links
       .infrastructure()
@@ -165,7 +164,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return patchRequest<Single>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links
       .infrastructure()
@@ -179,7 +178,7 @@ export async function remove(
     id: ResourceId;
   },
 ) {
-  return deleteRequest<CreatedTask<"delete">>({
+  return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .infrastructure()

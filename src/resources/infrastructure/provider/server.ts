@@ -1,4 +1,5 @@
-import { QueryParams, links, Settings, getRequest } from "common/api";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -6,9 +7,9 @@ import {
   ResourceId,
   Includes,
   Gigabytes,
-} from "common/structs";
+} from "../../../common/structs";
 import { ProviderIdentifier } from "./provider";
-import { Amount } from "resources/billing";
+import { Amount } from "../../billing";
 import { Location } from "./location";
 
 /** A collection of servers for a provider */
@@ -44,7 +45,8 @@ export interface ServerProvider {
   identifier: ProviderIdentifier;
   category: string;
   class?: string;
-  plan_identifier: string;
+  model: string;
+  plan_identifier?: string;
   /** List of location IDs this server is available in */
   locations: string[];
 }
@@ -99,7 +101,7 @@ export async function getCollection(params: {
   query?: ProviderServerQuery;
   settings?: Settings;
 }) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()

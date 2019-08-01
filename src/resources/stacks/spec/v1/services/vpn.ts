@@ -1,4 +1,4 @@
-import { Webhook } from "common/structs";
+import { Webhook } from "../../../../../common/structs";
 
 export interface VPN {
   auth: VPNAuth;

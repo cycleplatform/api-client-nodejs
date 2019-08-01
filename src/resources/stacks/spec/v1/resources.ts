@@ -1,4 +1,4 @@
-import { DataSize, CPUShares } from "common/structs";
+import { DataSize, CPUShares } from "../../../../common/structs";
 
 export interface Resources {
   cpu: CPUResources;

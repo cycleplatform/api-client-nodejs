@@ -1,5 +1,5 @@
-import { getRequest, patchRequest, deleteRequest } from "common/api/request";
-import { QueryParams, links, StandardParams } from "common/api";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -8,10 +8,11 @@ import {
   State,
   ResourceId,
   Time,
-} from "common/structs";
+} from "../../common/structs";
+import { PublicAccount } from "../accounts/account";
 import { Hub } from "./hub";
 import { Capability } from "./capability";
-import { Name, PublicAccount } from "resources/accounts";
+import { Name } from "../accounts";
 import { RoleName } from "./invite";
 
 export type Collection = CollectionDoc<Membership, MembershipIncludes>;
@@ -81,7 +82,7 @@ export interface Member extends Resource<MembershipMeta> {
  * Members of this hub
  */
 export async function getCollection(params: StandardParams<MembershipQuery>) {
-  return getRequest<CollectionDoc<Member>>({
+  return Request.getRequest<CollectionDoc<Member>>({
     ...params,
     target: links
       .hubs()
@@ -93,7 +94,7 @@ export async function getCollection(params: StandardParams<MembershipQuery>) {
 export async function getCurrentMembership(
   params: StandardParams<MembershipQuery>,
 ) {
-  return getRequest<SingleDoc<Member>>({
+  return Request.getRequest<SingleDoc<Member>>({
     ...params,
     target: links
       .hubs()
@@ -112,7 +113,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return patchRequest<SingleDoc<Member>>({
+  return Request.patchRequest<SingleDoc<Member>>({
     ...params,
     target: links
       .hubs()
@@ -126,7 +127,7 @@ export async function revoke(
     id: ResourceId;
   },
 ) {
-  return deleteRequest<Single>({
+  return Request.deleteRequest<Single>({
     ...params,
     target: links
       .hubs()

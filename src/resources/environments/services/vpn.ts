@@ -9,14 +9,9 @@ import {
   CreatedTask,
   Time,
   Webhook,
-} from "common/structs";
-import {
-  links,
-  StandardParams,
-  getRequest,
-  postRequest,
-  deleteRequest,
-} from "common/api";
+} from "../../../common/structs";
+import { links, StandardParams } from "../../../common/api";
+import * as Request from "../../../common/api/request";
 
 export interface VPNService extends Service {
   config: VPN;
@@ -28,7 +23,7 @@ export interface VPN {
 }
 
 export interface VPNAuth {
-  web_hook: Webhook;
+  webhook: Webhook | null;
   cycle_accounts: boolean;
   vpn_accounts: boolean;
 }
@@ -70,7 +65,7 @@ export async function getVPNInfo(
     environmentId: ResourceId;
   },
 ) {
-  return getRequest<{ data: VPNInfo }>({
+  return Request.getRequest<{ data: VPNInfo }>({
     ...params,
     target: links
       .environments()
@@ -85,7 +80,7 @@ export async function getVPNLogins(
     environmentId: ResourceId;
   },
 ) {
-  return getRequest<VPNLoginsDoc>({
+  return Request.getRequest<VPNLoginsDoc>({
     ...params,
     target: links
       .environments()
@@ -100,7 +95,7 @@ export async function getVPNUsers(
     environmentId: ResourceId;
   },
 ) {
-  return getRequest<VPNUsersDoc>({
+  return Request.getRequest<VPNUsersDoc>({
     ...params,
     target: links
       .environments()
@@ -121,7 +116,7 @@ export async function createVPNUser(
     value: CreateVPNUserParams;
   },
 ) {
-  return postRequest<VPNUsersDoc>({
+  return Request.postRequest<VPNUserDoc>({
     ...params,
     target: links
       .environments()
@@ -137,7 +132,7 @@ export async function deleteVPNUser(
     userId: ResourceId;
   },
 ) {
-  return deleteRequest<CreatedTask<"delete">>({
+  return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links
       .environments()
@@ -155,7 +150,7 @@ export async function reconfigureVPN(
     value: VPNReconfigureDetails;
   },
 ) {
-  return postRequest<CreatedTask<VPNAction>>({
+  return Request.postRequest<CreatedTask<VPNAction>>({
     ...params,
     target: links
       .environments()

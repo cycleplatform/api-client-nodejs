@@ -1,17 +1,17 @@
-import { QueryParams, links, StandardParams, getRequest } from "common/api";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
   SingleDoc,
   ResourceId,
   State,
-  OwnerScope,
   StatefulCounts,
   Time,
   StandardEvents,
-} from "common/structs";
+} from "../../../common/structs";
 import { Spec } from "../spec";
-import { ContainerState } from "resources/containers";
+import { ContainerState } from "../../containers";
 
 export * from "./tasks/build";
 
@@ -33,16 +33,17 @@ export type BuildsQuery = QueryParams<string, keyof BuildMetas>;
 export interface Build extends Resource<BuildMetas> {
   stack_id: ResourceId;
   hub_id: ResourceId;
-  owner: OwnerScope;
   source: Source;
+  label: string | null;
+  version: string | null;
   events: StandardEvents;
   state: State<BuildState>;
 }
 
 export interface Source {
-  hook_id: ResourceId;
+  hook_id: ResourceId | null;
   repo: RepoVersion | null;
-  spec: Spec | null;
+  spec: Spec;
 }
 
 export interface RepoVersion {
@@ -74,7 +75,7 @@ export async function getCollection(
     stackId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .stacks()
@@ -89,7 +90,7 @@ export async function getSingle(
     stackId: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links
       .stacks()

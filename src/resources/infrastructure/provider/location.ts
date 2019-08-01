@@ -1,6 +1,11 @@
-import { getRequest } from "common/api/request";
-import { QueryParams, links, Settings } from "common/api";
-import { CollectionDoc, Resource, ResourceId, SingleDoc } from "common/structs";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, Settings } from "../../../common/api";
+import {
+  CollectionDoc,
+  Resource,
+  ResourceId,
+  SingleDoc,
+} from "../../../common/structs";
 import { ProviderIdentifier } from "./provider";
 
 export type Collection = CollectionDoc<Location>;
@@ -10,7 +15,10 @@ export interface Location extends Resource {
   name: string;
   geographic: Geographic | null;
   provider: LocationProvider;
-  features: string[];
+  features: {
+    available: string[];
+    supported: string[];
+  };
   abbreviation: string;
 }
 
@@ -34,11 +42,24 @@ export async function getCollection(params: {
   query?: QueryParams;
   settings?: Settings;
 }) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .infrastructure()
       .providers()
       .locations(params.provider),
+  });
+}
+
+export async function getFeatures(params: {
+  query?: QueryParams;
+  settings?: Settings;
+}) {
+  return Request.getRequest<{ data: { features: string[] } }>({
+    ...params,
+    target: links
+      .infrastructure()
+      .providers()
+      .features(),
   });
 }

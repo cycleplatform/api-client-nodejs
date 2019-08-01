@@ -1,5 +1,6 @@
-import { links, StandardParams, getRequest } from "common/api";
-import { Resource, SingleDoc, ResourceId } from "common/structs";
+import * as Request from "../../../common/api/request";
+import { links, StandardParams } from "../../../common/api";
+import { Resource, SingleDoc, ResourceId } from "../../../common/structs";
 
 export type Single = SingleDoc<BuildLog>;
 
@@ -16,7 +17,7 @@ export async function getSingle(
     buildId: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links
       .stacks()

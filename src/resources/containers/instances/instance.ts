@@ -1,11 +1,11 @@
-import { getRequest } from "common/api/request";
-import { QueryParams, links, StandardParams } from "common/api";
-import { Server } from "resources/infrastructure/servers";
+import * as Request from "../../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../../common/api";
+import { Server } from "../../infrastructure/servers";
 import {
   Locations,
   ProviderIdentifier,
   Provider,
-} from "resources/infrastructure/provider";
+} from "../../infrastructure/provider";
 import {
   CollectionDoc,
   Resource,
@@ -17,8 +17,8 @@ import {
   Includes,
   OwnerInclude,
   Time,
-} from "common/structs";
-import { IPNet } from "resources/infrastructure/ips";
+} from "../../../common/structs";
+import { IPNet } from "../../infrastructure/ips";
 import { Service } from "../services";
 
 export type Collection = CollectionDoc<Instance, InstanceIncludes>;
@@ -54,17 +54,17 @@ export interface Instance extends Resource<InstanceMetas> {
   container_id: ResourceId;
   location_id: ResourceId;
   environment: EnvironmentSummary;
-  stateful: Stateful;
+  stateful: Stateful | null;
   provider: ProviderSummary;
   server_id: ResourceId;
   ready_state: ReadyState;
   hostname: string;
   service: Service | null;
   state: State<InstanceState> & {
-    health?: {
+    health: {
       healthy: boolean;
       updated: Time;
-    };
+    } | null;
   };
   events: Events<InstanceEvent>;
 }
@@ -72,6 +72,7 @@ export interface Instance extends Resource<InstanceMetas> {
 export interface EnvironmentSummary {
   id: ResourceId;
   subnet: string;
+  mac_addr: string;
   ipv6: IPNet | null;
   legacy: Legacy | null;
 }
@@ -88,7 +89,7 @@ export interface Legacy {
 
 export interface ProviderSummary {
   identifier: ProviderIdentifier;
-  location: Locations.LocationProvider;
+  location: string;
 }
 
 export interface InstanceIncludes extends Includes {
@@ -105,7 +106,7 @@ export async function getCollection(
     containerId: ResourceId;
   },
 ) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links
       .containers()
@@ -120,7 +121,7 @@ export async function getSingle(
     containerId: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links
       .containers()

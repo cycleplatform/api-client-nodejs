@@ -1,6 +1,6 @@
-import { getRequest, postRequest } from "common/api/request";
-import { links, StandardParams } from "common/api";
-import { CollectionDoc, SingleDoc, Email } from "common/structs";
+import * as Request from "../../common/api/request";
+import { links, StandardParams } from "../../common/api";
+import { CollectionDoc, SingleDoc, Email } from "../../common/structs";
 import * as Memberships from "./membership";
 
 export type RoleName = "owner" | "admin" | "developer" | "analyst";
@@ -13,7 +13,7 @@ export interface CreateParams {
 export async function getCollection(
   params: StandardParams<Memberships.MembershipQuery>,
 ) {
-  return getRequest<CollectionDoc<Memberships.Membership>>({
+  return Request.getRequest<CollectionDoc<Memberships.Membership>>({
     ...params,
     target: links
       .hubs()
@@ -27,7 +27,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return postRequest<SingleDoc<Memberships.Membership>>({
+  return Request.postRequest<SingleDoc<Memberships.Membership>>({
     ...params,
     target: links
       .hubs()

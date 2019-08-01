@@ -1,4 +1,6 @@
-import { links, StandardParams, connectToSocket, getRequest } from "common/api";
+import * as Request from "../common/api/request";
+import { links, StandardParams } from "../common/api";
+import { connectToSocket } from "../common/api/websocket";
 import { Notification } from "./event";
 
 /**
@@ -48,6 +50,7 @@ export enum HubHeader {
   DNS_ZONE_ERROR = "dns.zone.error",
   DNS_ZONE_STATE_CHANGED = "dns.zone.state_changed",
   DNS_ZONE_CERTIFICATES_GENERATED = "dns.zone.certificates.generated",
+  DNS_ZONE_CERTIFICATES_FAILED = "dns.zone.certificates.failed",
   DNS_ZONE_VERIFIED = "dns.zone.verified",
 
   ENVIRONMENT_CREATED = "environment.created",
@@ -92,6 +95,8 @@ export enum HubHeader {
   INFRASTRUCTURE_SERVER_STATE_CHANGED = "infrastructure.server.state_changed",
   INFRASTRUCTURE_SERVER_ERROR = "infrastructure.server.error",
   INFRASTRUCTURE_SERVER_UPDATED = "infrastructure.server.updated",
+  INFRASTRUCTURE_STORAGE_SAN_STATE_CHANGED = "infrastructure.storage.san.state_changed",
+  INFRASTRUCTURE_STORAGE_SAN_ERROR = "infrastructure.storage.san.error",
 
   STACK_CREATED = "stack.created",
   STACK_ERROR = "stack.error",
@@ -103,6 +108,10 @@ export enum HubHeader {
   STACK_HOOK_CREATED = "stack.hook.created",
   STACK_HOOK_UPDATED = "stack.hook.updated",
   STACK_HOOK_TASK_DEPLOY = "stack.hook.task_deploy",
+
+  SDN_NETWORK_CREATED = "sdn.network.created",
+  SDN_NETWORK_RECONFIGURED = "sdn.network.reconfigured",
+  SDN_NETWORK_STATE_CHANGED = "sdn.network.state_changed",
 }
 
 export type HubNotification = Notification<HubHeader>;
@@ -120,7 +129,7 @@ export interface HubSecretResponse {
 export async function connectToHubChannel(params: HubPipelineParams) {
   const target = links.channels().hub();
 
-  const secretResp = await getRequest<HubSecretResponse>({
+  const secretResp = await Request.getRequest<HubSecretResponse>({
     ...params,
     target,
   });

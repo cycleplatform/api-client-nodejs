@@ -1,11 +1,5 @@
-import {
-  QueryParams,
-  links,
-  StandardParams,
-  getRequest,
-  postRequest,
-  patchRequest,
-} from "common/api";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -18,15 +12,11 @@ import {
   OwnerInclude,
   IP,
   Cluster,
-} from "common/structs";
-import {
-  ContainerState,
-  Instances,
-  ContainerSummary,
-} from "resources/containers";
-import { IPNet, Kind, IPState, FloatingIP } from "resources/infrastructure/ips";
+} from "../../common/structs";
+import { ContainerState, Instances, Service } from "../containers";
+import { IPNet, Kind, IPState, FloatingIP } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
-import { Stack } from "resources/stacks";
+import { Stack } from "../stacks";
 
 export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment, EnvironmentIncludes>;
@@ -60,7 +50,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
 
 export interface PrivateNetwork {
   vxlan_tag: number;
-  subnet: number;
+  subnet: string;
   ipv6: IPNet;
   legacy: Legacy | null;
 }
@@ -101,7 +91,23 @@ export interface EnvironmentMeta {
     containers: StatefulCounts<ContainerState>;
     instances: StatefulCounts<Instances.InstanceState>;
   };
-  containers?: ContainerSummary[];
+  containers?: {
+    id: ResourceId;
+    name: string;
+    state: State<ContainerState> & {
+      desired: ContainerState;
+    };
+    image: {
+      id: ResourceId;
+      service: Service | null;
+    };
+    environment: {
+      id: ResourceId;
+      container_subnet?: string;
+      ipv6?: IPNet;
+      legacy: Legacy | null;
+    };
+  }[];
   ips?: {
     kind: Kind;
     ip: IPNet;
@@ -131,7 +137,7 @@ export interface CreateParams {
 }
 
 export async function getCollection(params: StandardParams<EnvironmentQuery>) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.environments().collection(),
   });
@@ -142,7 +148,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links.environments().single(params.id),
   });
@@ -153,7 +159,7 @@ export async function create(
     value: CreateParams;
   },
 ) {
-  return postRequest<Single>({
+  return Request.postRequest<Single>({
     ...params,
     target: links.environments().collection(),
   });
@@ -165,7 +171,7 @@ export async function update(
     value: Partial<CreateParams>;
   },
 ) {
-  return patchRequest<Single>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links.environments().single(params.id),
   });

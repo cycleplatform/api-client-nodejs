@@ -1,6 +1,11 @@
-import { getRequest } from "common/api/request";
-import { QueryParams, links, StandardParams } from "common/api";
-import { CollectionDoc, Resource, Time, ResourceId } from "common/structs";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, StandardParams } from "../../common/api";
+import {
+  CollectionDoc,
+  Resource,
+  Time,
+  ResourceId,
+} from "../../common/structs";
 import { PublicAccount } from "./account";
 
 export type Collection = CollectionDoc<Login, LoginIncludes>;
@@ -37,7 +42,7 @@ export interface LoginIncludes {
 }
 
 export async function getCollection(params: StandardParams<LoginQuery>) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.account().logins(),
   });

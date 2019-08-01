@@ -1,5 +1,5 @@
-import * as Request from "common/api/request";
-import { QueryParams, links, Settings } from "common/api";
+import * as Request from "../../common/api/request";
+import { QueryParams, links, Settings } from "../../common/api";
 
 export enum Capability {
   HUBS_UPDATE = "hubs-update",
@@ -21,7 +21,7 @@ export enum Capability {
   ENVIRONMENTS_UPDATE = "environments-update",
   ENVIRONMENTS_STATE = "environments-state",
   ENVIRONMENTS_SERVICES_MANAGE = "environments-services-manage",
-  ENVIRONMENTS_VPN = "environments-vpn-manage",
+  ENVIRONMENTS_VPN = "environments-vpn",
   ENVIRONMENTS_VPN_MANAGE = "environments-vpn-manage",
   PROJECTS_CREATE = "projects-create",
   PROJECTS_DELETE = "projects-delete",
@@ -55,9 +55,13 @@ export enum Capability {
   INFRASTRUCTURE_SERVERS_STATE = "servers-state",
   INFRASTRUCTURE_SERVERS_DECOMMISSION = "servers-decommission",
   INFRASTRUCTURE_IPS_MANAGE = "ips-manage",
+  INFRASTRUCTURE_STORAGE_SANS_VIEW = "storage-sans-view",
+  INFRASTRUCTURE_STORAGE_SANS_MANAGE = "storage-sans-view",
   USAGE_VIEW = "usage-view",
   DNS_VIEW = "dns-view",
   DNS_MANAGE = "dns-manage",
+  SDN_NETWORKS_VIEW = "sdn-networks-view",
+  SDN_NETWORKS_MANAGE = "sdn-networks-manage",
 }
 
 export interface CapabilityDoc {

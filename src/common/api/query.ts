@@ -31,7 +31,7 @@ export interface QueryParams<
   /**
    * Filter by specific params, i.e. {name: 'Website'}
    */
-  filter?: Record<F | "search", string | string[]>;
+  filter?: Partial<Record<F | "search", string | string[]>>;
 
   /**
    * Pagination. Specify number of resources for the 'page' and which
@@ -52,12 +52,12 @@ export function formatParams(q: QueryParams | undefined) {
     return "";
   }
 
-  const result: Record<string, any> = {};
+  const result = {};
   function recurse(cur: any, prop: any) {
     if (Object(cur) !== cur) {
-      result[prop] = cur;
+      (result as any)[prop] = cur;
     } else if (Array.isArray(cur)) {
-      result[prop] = cur.join(",");
+      (result as any)[prop] = cur.join(",");
     } else {
       let isEmpty = true;
       for (const p in cur) {
@@ -68,13 +68,15 @@ export function formatParams(q: QueryParams | undefined) {
         recurse(cur[p], prop ? `${prop}[${p}]` : p);
       }
       if (isEmpty && prop) {
-        result[prop] = {};
+        (result as any)[prop] = {};
       }
     }
   }
   recurse(q, "");
 
   return Object.keys(result)
-    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(result[k])}`)
+    .map(
+      k => `${encodeURIComponent(k)}=${encodeURIComponent((result as any)[k])}`,
+    )
     .join("&");
 }

@@ -1,4 +1,4 @@
-import { ResourceId } from "common/structs";
+import { ResourceId } from "../../../common/structs";
 
 export type PlanType = "tier" | "support";
 export interface PlanAssociation {

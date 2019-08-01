@@ -1,4 +1,5 @@
-import { links, StandardParams, getRequest } from "common/api";
+import * as Request from "../../common/api/request";
+import { links, StandardParams } from "../../common/api";
 import {
   Time,
   State,
@@ -9,7 +10,7 @@ import {
   ResourceId,
   OwnerScope,
   OwnerInclude,
-} from "common/structs";
+} from "../../common/structs";
 
 export type Collection = CollectionDoc<Job, JobIncludes>;
 export type Single = SingleDoc<Job, JobIncludes>;
@@ -65,7 +66,7 @@ export interface JobIncludes {
 }
 
 export async function getCollection(params: StandardParams) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.jobs().collection(),
   });
@@ -76,7 +77,7 @@ export async function getSingle(
     id: ResourceId;
   },
 ) {
-  return getRequest<Single>({
+  return Request.getRequest<Single>({
     ...params,
     target: links.jobs().single(params.id),
   });
