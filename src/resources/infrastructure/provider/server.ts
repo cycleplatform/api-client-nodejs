@@ -12,13 +12,13 @@ import { ProviderIdentifier } from "./provider";
 import { Amount } from "../../billing";
 import { Location } from "./location";
 
-/** A collection of servers for a provider */
+/** A collection of server models for a provider */
 export type Collection = CollectionDoc<Server, ServerIncludes>;
 
-/** A single provider server document */
+/** A single provider server model document */
 export type Single = SingleDoc<Server>;
 
-/** A provider server interface */
+/** A provider server model */
 export interface Server extends Resource {
   /** Name of the server */
   name: string;
@@ -34,7 +34,9 @@ export interface Server extends Resource {
   compatible: boolean;
   /** If true, this server has limited resources and should only be used for lightweight applications */
   low_resource: boolean;
+  /** An array of Location IDs where this server type is available */
   location_ids: ResourceId[];
+  /** A list of features this particular server type has available */
 }
 
 export interface ServerIncludes extends Includes {
@@ -49,6 +51,18 @@ export interface ServerProvider {
   plan_identifier?: string;
   /** List of location IDs this server is available in */
   locations: string[];
+}
+
+export interface ServerFeatures {
+  /** Features specific to AWS */
+  aws: AWSFeatures;
+}
+
+export interface AWSFeatures {
+  /** A VM type that can support a much higher networking throughput */
+  ena_support: boolean;
+  /** A VM type that can support a much higher storage throughput */
+  ebs_optimized: boolean;
 }
 
 /** Detailed breakdown of a provider server's specs */
