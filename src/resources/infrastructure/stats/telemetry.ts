@@ -15,9 +15,19 @@ export interface TelemetryPoint extends Resource {
   time: Time;
   load: LoadStats;
   ram: RAMStats;
+  /** Cycle's base volume, 25GB */
   storage_base: {
     used: number;
     free: number;
+    total: number;
+  };
+  /** User data storage across all devices */
+  storage_pool: {
+    /** The percentage of storage used by user data */
+    data_percent: number;
+    /** The percentage of storage used by the file allocation tables, etc. */
+    meta_percent: number;
+    /** The total amount of storage available */
     total: number;
   };
 }
