@@ -37,6 +37,7 @@ export interface Server extends Resource {
   /** An array of Location IDs where this server type is available */
   location_ids: ResourceId[];
   /** A list of features this particular server type has available */
+  features: ServerFeatures;
 }
 
 export interface ServerIncludes extends Includes {
