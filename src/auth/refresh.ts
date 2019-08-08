@@ -32,7 +32,10 @@ export async function refreshGrant(
   delete params.token;
   const queryParams = Object.keys(params)
     .map(
-      k => `${encodeURIComponent(k)}=${encodeURIComponent((auth as any)[k])}`,
+      k =>
+        `${encodeURIComponent(k)}=${encodeURIComponent(
+          params[k as "refresh_token"],
+        )}`,
     )
     .join("&");
 
