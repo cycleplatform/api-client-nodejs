@@ -5,7 +5,7 @@ import { ResourceId, CreatedTask, Task } from "../../common/structs";
 export type NetworkAction = "reconfigure";
 
 export interface ReconfigureParams {
-  environments: ResourceId[];
+  environment_ids: ResourceId[];
 }
 
 export async function reconfigure(
@@ -18,6 +18,7 @@ export async function reconfigure(
     ...params,
     value: {
       action: "reconfigure",
+      contents: params.value,
     },
   });
 }
