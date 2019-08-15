@@ -51,7 +51,7 @@ export interface Shared {
   identifier: string;
 }
 
-export interface Instance {
+export interface SANInstance {
   id: ResourceId;
 }
 

@@ -31,6 +31,8 @@ export interface Job extends Resource {
   schedule: Time;
   expires: Time;
   tasks: JobTask[];
+  hash: string;
+  limit_duplicates: boolean;
   owner: OwnerScope;
   hub_id: ResourceId;
   state: State<JobState>;
