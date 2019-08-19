@@ -15,6 +15,7 @@ export interface Location extends Resource {
   name: string;
   geographic: Geographic | null;
   provider: LocationProvider;
+  compatible: boolean;
   features: {
     available: string[];
     supported: string[];
