@@ -21,6 +21,7 @@ export interface Location extends Resource {
     supported: string[];
   };
   abbreviation: string;
+  annotations: Record<string, string>;
 }
 
 export interface Geographic {

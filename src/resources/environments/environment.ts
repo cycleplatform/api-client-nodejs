@@ -36,6 +36,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
   cluster: Cluster;
   about: {
     description: string;
+    favorite: boolean;
   };
   owner: OwnerScope;
   hub_id: ResourceId;
