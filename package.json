@@ -1,12 +1,14 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Cycle API Client",
   "main": "dist/index.js",
   "umd:main": "dist/node-api-client.umd.production.js",
   "module": "dist/node-api-client.es.production.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
