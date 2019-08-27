@@ -31,6 +31,7 @@ export type ContainerState =
   | "running"
   | "stopping"
   | "stopped"
+  | "reimaging"
   | "deleting"
   | "deleted";
 export type ContainerEvent = "started";
@@ -106,7 +107,7 @@ export interface Legacy {
   ipv4: IPNet | null;
 }
 
-export interface  VolumeSummary {
+export interface VolumeSummary {
   id: string;
   hash: string;
   config: Volumes.Volume;
