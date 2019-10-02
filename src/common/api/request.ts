@@ -212,6 +212,7 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
   target,
   query = {},
   token,
+  value,
   hubId,
   settings,
 }: {
@@ -219,6 +220,7 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
   query?: QueryParams;
   token?: Token | string;
   hubId?: ResourceId;
+  value?: object;
   settings?: Settings;
 }): Promise<ApiResult<T>> {
   const req = new Request(
@@ -227,6 +229,7 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
       ...ApiRequestInit,
       ...{
         method: "DELETE",
+        body: value ? JSON.stringify(value) : undefined,
       },
     },
   );
