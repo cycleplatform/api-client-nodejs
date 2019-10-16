@@ -28,8 +28,19 @@ export interface Network extends Resource {
   owner: OwnerScope;
   hub_id: ResourceId;
   state: State<NetworkState>;
+  private_network: PrivateNetwork;
   environments: NetworkEnvironment[];
   events: Events;
+}
+
+export interface PrivateNetwork {
+  vxlan_tag: number;
+  subnet: string;
+  mac_addr_suffix: number;
+  ipv6: {
+    ip: string;
+    cidr: string;
+  };
 }
 
 export interface NetworkEnvironment {
