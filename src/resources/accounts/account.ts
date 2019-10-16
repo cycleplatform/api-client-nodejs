@@ -78,3 +78,10 @@ export async function update(
     target: links.account().single(),
   });
 }
+
+export async function remove(params: StandardParams) {
+  return Request.deleteRequest({
+    ...params,
+    target: links.account().single(),
+  });
+}
