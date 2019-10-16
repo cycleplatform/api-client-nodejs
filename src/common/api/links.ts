@@ -136,6 +136,10 @@ export const links = {
         logins: (environment: ResourceId) =>
           `/environments/${environment}/services/vpn/logins`,
       }),
+      discovery: () => ({
+        tasks: (environment: ResourceId) =>
+          `/environments/${environment}/services/discovery/tasks`,
+      }),
     }),
     telemetry: () => ({
       instances: (id: ResourceId) => `/environments/${id}/telemetry/instances`,

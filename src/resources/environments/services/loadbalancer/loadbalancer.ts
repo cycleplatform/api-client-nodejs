@@ -89,6 +89,7 @@ export async function getLoadBalancerInfo(
 
 export interface LoadBalancerReconfig {
   config?: LoadBalancer;
+  high_availability?: boolean;
 }
 
 export type LoadBalancerAction = "reconfigure";

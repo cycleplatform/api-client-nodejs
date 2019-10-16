@@ -48,6 +48,7 @@ export interface VPNLogin extends Resource {
 export interface VPNReconfigureDetails {
   enable?: boolean;
   config?: Partial<VPN>;
+  high_availability?: boolean;
 }
 
 export type VPNUsersDoc = CollectionDoc<VPNUser>;
