@@ -1,4 +1,4 @@
-import { DataSize, CPUShares } from "../../../../common/structs";
+import { DataSize } from "../../../../common/structs";
 
 export interface Resources {
   cpu: CPUResources;
@@ -6,10 +6,14 @@ export interface Resources {
 }
 
 export interface CPUResources {
-  limit: CPUShares | null;
-  reserve: CPUShares | null;
+  shares?: CPUShares;
   /** Comma separated list of CPU cores (numbers) this container is pinned to */
   cpus: string | null;
+}
+
+export interface CPUShares {
+  limit: number;
+  reserve: number;
 }
 
 export interface RAMResources {

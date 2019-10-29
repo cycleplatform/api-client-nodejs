@@ -41,8 +41,8 @@ export interface Server extends Resource<ServerMeta> {
   location_id: ResourceId;
   model_id: ResourceId;
   node_id: ResourceId | null;
-  tags: string[];
   cluster: Cluster;
+  constraints: Constraints;
   state: State<ServerState>;
   events: Events & {
     provisioning: {
@@ -80,6 +80,18 @@ export interface ServerProvider {
   location: string;
   server: string;
   init_ips: string[] | null;
+}
+
+export interface Constraints {
+  tags: string[];
+  allow: ConstraintsAllow;
+}
+
+export interface ConstraintsAllow {
+  /** Allow pooled containers? */
+  pool: boolean;
+  /** Allow services? */
+  services: boolean;
 }
 
 export async function getCollection(params: StandardParams<ServerQuery>) {
@@ -155,7 +167,7 @@ export async function create(
 }
 
 export interface UpdateParams {
-  tags: string[];
+  constraints: Constraints;
 }
 
 export async function update(
