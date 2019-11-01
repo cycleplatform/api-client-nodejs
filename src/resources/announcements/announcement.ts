@@ -25,7 +25,7 @@ export interface Announcement extends Resource {
 }
 
 export async function getCollection(params: StandardParams) {
-  return Request.getRequest<Announcement>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.announcements().collection(),
   });
