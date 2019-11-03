@@ -12,7 +12,6 @@ import { StandardParams, links } from "common/api";
 
 export type Collection = CollectionDoc<Announcement>;
 export type Single = SingleDoc<Announcement>;
-export type AnnouncementEvents = "created" | "deleted" | "updated";
 export type AnnouncementState = "live" | "deleted";
 
 export interface Announcement extends Resource {
@@ -31,13 +30,8 @@ export async function getCollection(params: StandardParams) {
   });
 }
 
-export async function getSingle(
-  params: StandardParams & {
-    id: ResourceId;
-  },
-) {
+export async function getActive() {
   return Request.getRequest<Single>({
-    ...params,
-    target: links.announcements().single(params.id),
+    target: links.announcements().active(),
   });
 }
