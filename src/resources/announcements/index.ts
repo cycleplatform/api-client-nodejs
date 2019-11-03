@@ -1,1 +1,3 @@
-export * from "./announcement";
+import * as Announcements from "./announcement";
+
+export { Announcements };

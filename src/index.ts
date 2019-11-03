@@ -1,6 +1,7 @@
 import "isomorphic-fetch";
 import "isomorphic-ws";
 import * as Account from "./resources/accounts";
+import * as Announcements from "./resources/announcements";
 import * as Audit from "./resources/audits";
 import * as Auth from "./auth";
 import * as Request from "./common/api/request";
@@ -30,6 +31,7 @@ export {
   Auth,
   Audit,
   Account,
+  Announcements,
   Billing,
   ChangeLog,
   Containers,
