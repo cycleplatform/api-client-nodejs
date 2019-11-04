@@ -14,6 +14,11 @@ export const links = {
     logins: () => `/account/logins`,
   }),
 
+  announcements: () => ({
+    active: () => `/announcements/active`,
+    collection: () => `/announcements`,
+  }),
+
   audit: () => ({
     entries: () => `/audit/entries`,
   }),
