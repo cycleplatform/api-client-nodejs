@@ -8,7 +8,7 @@ import {
   CollectionDoc,
   SingleDoc,
 } from "../../common/structs";
-import { StandardParams, links } from "common/api";
+import { StandardParams, links } from "../../common/api";
 
 export type Collection = CollectionDoc<Announcement>;
 export type Single = SingleDoc<Announcement>;
