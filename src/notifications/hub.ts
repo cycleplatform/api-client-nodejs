@@ -89,8 +89,8 @@ export enum HubHeader {
   HUB_API_KEY_STATE_CHANGED = "hub.api_key.state_changed",
   HUB_API_KEY_ERROR = "hub.api_key.error",
 
-  INFRASTRUCTURE_IP_STATE_CHANGED = "infrastructure.ip.state_changed",
-  INFRASTRUCTURE_IP_ERROR = "infrastructure.ip.error",
+  INFRASTRUCTURE_IP_STATE_CHANGED = "infrastructure.ips.pool.state_changed",
+  INFRASTRUCTURE_IP_ERROR = "infrastructure.ips.pool.error",
   INFRASTRUCTURE_SERVER_CREATED = "infrastructure.server.created",
   INFRASTRUCTURE_SERVER_STATE_CHANGED = "infrastructure.server.state_changed",
   INFRASTRUCTURE_SERVER_ERROR = "infrastructure.server.error",
