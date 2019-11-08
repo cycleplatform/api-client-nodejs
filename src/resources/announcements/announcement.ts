@@ -13,10 +13,18 @@ import { StandardParams, links } from "../../common/api";
 export type Collection = CollectionDoc<Announcement>;
 export type Single = SingleDoc<Announcement>;
 export type AnnouncementState = "live" | "deleted";
+export type AnnouncementPriority =
+  | "notice"
+  | "low"
+  | "medium"
+  | "high"
+  | "severe";
 
 export interface Announcement extends Resource {
   id: ResourceId;
-  detail: string;
+  title: string;
+  description: string;
+  priority: AnnouncementPriority;
   link: string | null;
   events: StandardEvents;
   creator: OwnerScope;

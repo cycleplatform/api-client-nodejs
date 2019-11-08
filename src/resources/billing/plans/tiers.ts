@@ -7,6 +7,7 @@ import {
   Gigabytes,
 } from "../../../common/structs";
 import { Amount } from "../../billing";
+import { Builds } from "resources/stacks";
 
 export type Collection = CollectionDoc<TierPlan>;
 export type Single = SingleDoc<TierPlan>;
@@ -17,7 +18,10 @@ export interface TierPlan extends Resource {
   description: string;
   ram: RAM;
   image_storage: ImageStorage;
+  builds: Builds;
   default?: true;
+  hidden: boolean;
+  code: string;
 }
 
 export interface RAM {
@@ -27,6 +31,12 @@ export interface RAM {
 
 export interface ImageStorage {
   included_gb: Gigabytes;
+}
+
+export interface Builds {
+  parallel: number;
+  cpu_cores: number;
+  ram_gb: Gigabytes;
 }
 
 export async function getCollection(params: {
