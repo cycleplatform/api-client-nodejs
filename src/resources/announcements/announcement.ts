@@ -37,9 +37,3 @@ export async function getCollection(params: StandardParams) {
     target: links.announcements().collection(),
   });
 }
-
-export async function getActive() {
-  return Request.getRequest<Single>({
-    target: links.announcements().active(),
-  });
-}

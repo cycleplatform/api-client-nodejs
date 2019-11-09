@@ -15,7 +15,6 @@ export const links = {
   }),
 
   announcements: () => ({
-    active: () => `/announcements/active`,
     collection: () => `/announcements`,
   }),
 
