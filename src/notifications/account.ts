@@ -23,6 +23,8 @@ export enum AccountHeader {
   HUB_MEMBERSHIPS_NEW = "hub.memberships.new",
   /** A hub membership was updated (accepted invite, etc) */
   HUB_MEMBERSHIPS_UPDATED = "hub.memberships.updated",
+
+  ANNOUNCEMENT_STATE_CHANGED = "announcement.state_changed",
 }
 
 export type AccountNotification = Notification<AccountHeader>;
