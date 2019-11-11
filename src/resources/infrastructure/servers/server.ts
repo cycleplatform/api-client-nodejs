@@ -79,7 +79,7 @@ export interface ServerProvider {
   model: string;
   location: string;
   server: string;
-  init_ips: string[] | null;
+  init_ips?: string[];
 }
 
 export interface Constraints {
