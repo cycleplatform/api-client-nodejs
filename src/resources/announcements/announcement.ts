@@ -25,7 +25,6 @@ export interface Announcement extends Resource {
   title: string;
   description: string;
   priority: AnnouncementPriority;
-  link: string | null;
   events: StandardEvents;
   creator: OwnerScope;
   state: State<AnnouncementState>;
