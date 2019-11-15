@@ -4,9 +4,9 @@ import {
   ResourceId,
   OwnerScope,
   State,
-  StandardEvents,
   CollectionDoc,
   SingleDoc,
+  Events,
 } from "../../common/structs";
 import { StandardParams, links } from "../../common/api";
 
@@ -25,7 +25,7 @@ export interface Announcement extends Resource {
   title: string;
   description: string;
   priority: AnnouncementPriority;
-  events: StandardEvents;
+  events: Events<"resolved">;
   creator: OwnerScope;
   state: State<AnnouncementState>;
 }

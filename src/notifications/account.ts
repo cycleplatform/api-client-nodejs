@@ -24,6 +24,8 @@ export enum AccountHeader {
   /** A hub membership was updated (accepted invite, etc) */
   HUB_MEMBERSHIPS_UPDATED = "hub.memberships.updated",
 
+  ANNOUNCEMENT_CREATED = "announcement.created",
+  ANNOUNCEMENT_UPDATED = "announcement.updated",
   ANNOUNCEMENT_STATE_CHANGED = "announcement.state_changed",
 }
 
