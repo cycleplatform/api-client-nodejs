@@ -178,6 +178,7 @@ export const links = {
   }),
 
   infrastructure: () => ({
+    summary: () => `/infrastructure/summary`,
     servers: () => ({
       collection: () => `/infrastructure/servers`,
       single: (id: ResourceId) => `/infrastructure/servers/${id}`,
