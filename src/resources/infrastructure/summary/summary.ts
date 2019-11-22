@@ -57,7 +57,7 @@ export interface ProviderStats {
   models: Record<string, number>;
 }
 
-export async function getCollection(params: {
+export async function getSummary(params: {
   query?: QueryParams;
   settings?: Settings;
 }) {
