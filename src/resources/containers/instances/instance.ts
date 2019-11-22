@@ -85,6 +85,7 @@ export interface Stateful {
 export interface Legacy {
   host: number;
   ipv4: IPNet | null;
+  subnet: number;
 }
 
 export interface ProviderSummary {
