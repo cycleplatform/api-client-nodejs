@@ -9,6 +9,7 @@ export type ContainerAction =
   | "stop"
   | "reconfigure"
   | "reimage"
+  | "scale"
   | "reconfigure_volumes"
   | "reconfigure_domain";
 
@@ -82,6 +83,25 @@ export async function reimage(
     ...params,
     value: {
       action: "reimage",
+      contents: params.value,
+    },
+  });
+}
+
+export interface ScaleParams {
+  instances: number;
+}
+
+export async function scale(
+  params: StandardParams & {
+    id: ResourceId;
+    value: ScaleParams;
+  },
+) {
+  return task({
+    ...params,
+    value: {
+      action: "scale",
       contents: params.value,
     },
   });
