@@ -59,12 +59,19 @@ export interface DiskResources {
 export interface ServerStats {
   count: number;
   providers: Record<ProviderIdentifier, ProviderStats>;
-  resources: ClusterResources;
+  locations: Record<string, LocationStats>;
 }
 
 export interface ProviderStats {
   locations: Record<string, number>;
   models: Record<string, number>;
+  resources: ClusterResources;
+}
+
+export interface LocationStats {
+  providers: Record<ProviderIdentifier, number>;
+  models: Record<string, number>;
+  resources: ClusterResources;
 }
 
 export async function getSummary(params: {
