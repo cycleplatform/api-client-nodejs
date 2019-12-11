@@ -1,6 +1,6 @@
 import * as Request from "../../../common/api/request";
 import { links, Settings, QueryParams } from "../../../common/api";
-import { ResourceId, Megabytes } from "../../../common/structs";
+import { ResourceId, Megabytes, Time } from "../../../common/structs";
 import { ProviderIdentifier } from "../provider";
 
 /** A single infrastructure summary document */
@@ -13,6 +13,7 @@ export interface InfrastructureSummary {
   /** Stats about image usage */
   images: ImageStats;
   clusters: Record<string, Cluster>;
+  updated: Time;
 }
 
 export interface ImageStats {
@@ -32,14 +33,17 @@ export interface Cluster {
 export interface ClusterResources {
   ram: RAMResources;
   cpu: CPUResources;
+  disk: DiskResources;
 }
 
 export interface RAMResources {
   total_mb: Megabytes;
+  allocated_mb: Megabytes;
   used_mb: Megabytes;
 }
 
 export interface CPUResources {
+  cores: number;
   shares: {
     allocated: number;
     total: number;
@@ -47,9 +51,15 @@ export interface CPUResources {
   share_ratio: number;
 }
 
+export interface DiskResources {
+  total_mb: Megabytes;
+  used_mb: Megabytes;
+}
+
 export interface ServerStats {
   count: number;
   providers: Record<ProviderIdentifier, ProviderStats>;
+  resources: ClusterResources;
 }
 
 export interface ProviderStats {
