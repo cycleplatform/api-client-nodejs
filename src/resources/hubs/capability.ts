@@ -47,7 +47,7 @@ export enum Capability {
   IMAGES_UPDATE = "images-update",
   IMAGES_DELETE = "images-delete",
   JOBS_VIEW = "jobs-view",
-  APIKEYS_MANAGE = "apikeys-manage",
+  APIKEYS_MANAGE = "api-keys-manage",
   INFRASTRUCTURE_SERVERS_PROVISION = "servers-provision",
   INFRASTRUCTURE_SERVERS_VIEW = "servers-view",
   INFRASTRUCTURE_SERVERS_LOGIN = "servers-login",
