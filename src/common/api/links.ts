@@ -80,6 +80,8 @@ export const links = {
         `/containers/${container}/instances/${instance}/ssh`,
       volumes: (id: ResourceId, container: ResourceId) =>
         `/containers/${container}/instances/${id}/volumes`,
+      tasks: (id: ResourceId, container: ResourceId) =>
+        `/containers/${container}/instances/${id}/tasks`,
     }),
     volumes: () => ({
       accounts: (container: ResourceId) =>
