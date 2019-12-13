@@ -45,7 +45,11 @@ export interface JobTask {
   caption: string;
   header: string;
   action: string;
-  events: Events;
+  events: {
+    queued: Time;
+    started: Time;
+    completed: Time;
+  };
   steps: TaskStep[];
   state: State<TaskState>;
   failable: boolean;
