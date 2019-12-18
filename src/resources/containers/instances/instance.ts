@@ -59,6 +59,7 @@ export interface Instance extends Resource<InstanceMetas> {
   server_id: ResourceId;
   ready_state: ReadyState;
   hostname: string;
+  migration: Migration | null;
   service: Service | null;
   state: State<InstanceState> & {
     health: {
@@ -91,6 +92,17 @@ export interface Legacy {
 export interface ProviderSummary {
   identifier: ProviderIdentifier;
   location: string;
+}
+
+export interface Migration {
+  to?: MigrationInstance;
+  from?: MigrationInstance;
+  key: string;
+}
+
+export interface MigrationInstance {
+  instance_id: ResourceId;
+  server_id: ResourceId;
 }
 
 export interface InstanceIncludes extends Includes {
