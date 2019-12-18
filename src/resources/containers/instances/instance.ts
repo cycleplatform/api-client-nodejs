@@ -27,6 +27,7 @@ export type InstanceState =
   | "new"
   | "starting"
   | "reimaging"
+  | "migrating"
   | "running"
   | "stopping"
   | "stopped"
