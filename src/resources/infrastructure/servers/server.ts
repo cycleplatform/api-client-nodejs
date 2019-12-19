@@ -92,6 +92,8 @@ export interface ConstraintsAllow {
   pool: boolean;
   /** Allow services? */
   services: boolean;
+  /** Allow 2x overcommit? */
+  overcommit: boolean;
 }
 
 export async function getCollection(params: StandardParams<ServerQuery>) {
