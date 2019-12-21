@@ -72,12 +72,14 @@ export interface ServerStats {
 }
 
 export interface ProviderStats {
+  count: number;
   locations: Record<string, number>;
   models: Record<string, number>;
   resources: ClusterResources;
 }
 
 export interface LocationStats {
+  count: number;
   providers: Record<ProviderIdentifier, number>;
   models: Record<string, number>;
   resources: ClusterResources;
