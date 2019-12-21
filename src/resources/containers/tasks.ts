@@ -72,7 +72,7 @@ export async function reconfigureVolumes(
 export interface ReimageParams {
   image_id: string;
   allow_incompatible?: boolean;
-  overwrite_config?: boolean;
+  overwrite_runtime_config?: boolean;
 }
 
 export async function reimage(
