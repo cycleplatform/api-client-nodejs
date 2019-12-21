@@ -1,7 +1,13 @@
 import * as Request from "../../../common/api/request";
 import { links, Settings, QueryParams } from "../../../common/api";
-import { ResourceId, Megabytes, Time } from "../../../common/structs";
+import {
+  ResourceId,
+  Megabytes,
+  Time,
+  StatefulCounts,
+} from "../../../common/structs";
 import { ProviderIdentifier } from "../provider";
+import { InstanceState } from "../../containers/instances";
 
 /** A single infrastructure summary document */
 export type Single = { data: InfrastructureSummary };
@@ -27,6 +33,8 @@ export interface Cluster {
   name: string;
   resources: ClusterResources;
   servers: ServerStats;
+  instances: StatefulCounts<InstanceState>;
+  healthy: boolean;
   versions: Record<string, Record<string, number>>;
 }
 
@@ -60,6 +68,7 @@ export interface ServerStats {
   count: number;
   providers: Record<ProviderIdentifier, ProviderStats>;
   locations: Record<string, LocationStats>;
+  server_ids: ResourceId[];
 }
 
 export interface ProviderStats {
