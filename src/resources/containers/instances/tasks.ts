@@ -10,7 +10,7 @@ export interface MigrateParams {
 }
 
 export interface StatefulMigrationParams {
-  copy_volume: boolean;
+  copy_volumes: boolean;
 }
 
 export async function migrate(

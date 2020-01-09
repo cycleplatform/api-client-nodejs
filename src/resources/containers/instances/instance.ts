@@ -20,6 +20,8 @@ import {
 } from "../../../common/structs";
 import { IPNet } from "../../infrastructure/ips";
 import { Service } from "../services";
+import { Container } from "../container";
+import { Environment } from "../../environments";
 
 export type Collection = CollectionDoc<Instance, InstanceIncludes>;
 export type Single = SingleDoc<Instance, InstanceIncludes>;
@@ -111,6 +113,8 @@ export interface InstanceIncludes extends Includes {
   servers: Record<ResourceId, Server>;
   locations: Record<ResourceId, Locations.Location>;
   providers: Record<ProviderIdentifier, Provider>;
+  containers: Record<ResourceId, Container>;
+  environments: Record<ResourceId, Environment>;
 }
 
 export interface InstanceMetas {}
