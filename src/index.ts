@@ -14,7 +14,6 @@ import * as Errors from "./common/api/error";
 import * as Images from "./resources/images";
 import * as Infrastructure from "./resources/infrastructure";
 import * as Jobs from "./resources/jobs";
-import * as Projects from "./resources/projects";
 import * as Hubs from "./resources/hubs";
 import { QueryParams } from "./common/api/query";
 import * as SDN from "./resources/sdn";
@@ -42,7 +41,6 @@ export {
   Infrastructure,
   Jobs,
   Notifications,
-  Projects,
   Hubs,
   QueryParams,
   Request,

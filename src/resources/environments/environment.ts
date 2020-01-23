@@ -40,7 +40,6 @@ export interface Environment extends Resource<EnvironmentMeta> {
   };
   owner: OwnerScope;
   hub_id: ResourceId;
-  project: ProjectSummary | null;
   state: State<EnvironmentState>;
   events: Events;
   features: Features;
@@ -64,11 +63,6 @@ export interface Legacy {
 export interface Features {
   legacy_networking: boolean;
   floating_ips: FloatingIP[];
-}
-
-export interface ProjectSummary {
-  id: ResourceId;
-  tag: string;
 }
 
 export interface StackSummary {

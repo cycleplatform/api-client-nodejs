@@ -219,11 +219,6 @@ export const links = {
     single: (id: ResourceId) => `/jobs/${id}`,
   }),
 
-  projects: () => ({
-    collection: () => `/projects`,
-    single: (id: ResourceId) => `/projects/${id}`,
-  }),
-
   sdn: () => ({
     networks: () => ({
       collection: () => `/sdn/networks`,

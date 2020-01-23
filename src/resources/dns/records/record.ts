@@ -14,7 +14,6 @@ import {
   Time,
 } from "../../../common/structs";
 import { Container } from "../../containers";
-import { Project } from "../../projects";
 
 export type Collection = CollectionDoc<Record, RecordIncludes>;
 export type Single = SingleDoc<Record, RecordIncludes>;
@@ -120,9 +119,6 @@ export interface RecordIncludes {
   owners?: OwnerInclude;
   containers?: {
     [key: string]: Container;
-  };
-  projects?: {
-    [key: string]: Project;
   };
 }
 
