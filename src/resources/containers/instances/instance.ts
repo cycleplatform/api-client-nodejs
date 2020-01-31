@@ -63,7 +63,7 @@ export interface Instance extends Resource<InstanceMetas> {
   ready_state: ReadyState;
   hostname: string;
   migration: Migration | null;
-  purge_time: Time;
+  purge_time?: Time;
   service: Service | null;
   state: State<InstanceState> & {
     health: {
