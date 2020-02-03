@@ -101,7 +101,10 @@ export interface ProviderSummary {
 export interface Migration {
   to?: MigrationInstance;
   from?: MigrationInstance;
+  started?: Time;
+  completed?: Time;
   key: string;
+  copy_volumes: boolean;
 }
 
 export interface MigrationInstance {
