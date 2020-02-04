@@ -16,7 +16,7 @@ export interface StatefulMigrationParams {
 export async function migrate(
   params: StandardParams & {
     id: ResourceId;
-    instanceId: ResourceId;
+    containerId: ResourceId;
     value: MigrateParams;
   },
 ) {
@@ -32,15 +32,13 @@ export async function migrate(
 export async function revertMigration(
   params: StandardParams & {
     id: ResourceId;
-    instanceId: ResourceId;
-    value: MigrateParams;
+    containerId: ResourceId;
   },
 ) {
   return task({
     ...params,
     value: {
       action: "migrate.revert",
-      contents: params.value,
     },
   });
 }
@@ -48,7 +46,7 @@ export async function revertMigration(
 export async function task<K = {}>(
   params: StandardParams & {
     id: ResourceId;
-    instanceId: ResourceId;
+    containerId: ResourceId;
     value: Task<InstanceAction, K>;
   },
 ) {
@@ -57,6 +55,6 @@ export async function task<K = {}>(
     target: links
       .containers()
       .instances()
-      .tasks(params.id, params.instanceId),
+      .tasks(params.id, params.containerId),
   });
 }
