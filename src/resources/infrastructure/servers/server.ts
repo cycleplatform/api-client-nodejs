@@ -69,6 +69,8 @@ export interface NodeMetaStats {
   last_checkin: Time;
   state: State<ServerState>;
   stats: Stats;
+  healthy: boolean;
+  online: boolean;
 }
 
 export type ServerState =
