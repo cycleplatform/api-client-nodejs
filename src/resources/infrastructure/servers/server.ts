@@ -59,11 +59,16 @@ export interface ServerIncludes extends Includes {
 }
 
 export interface ServerMeta {
-  stats?: Stats;
-  last_checkin?: Time;
+  node: NodeMetaStats;
   counts?: {
     instances: StatefulCounts<InstanceState>;
   };
+}
+
+export interface NodeMetaStats {
+  last_checkin: Time;
+  state: State<ServerState>;
+  stats: Stats;
 }
 
 export type ServerState =
