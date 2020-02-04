@@ -2,7 +2,7 @@ import * as Request from "../../../common/api/request";
 import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type InstanceAction = "migrate";
+export type InstanceAction = "migrate" | "migrate.revert";
 
 export interface MigrateParams {
   destination_server_id: ResourceId;
@@ -24,6 +24,22 @@ export async function migrate(
     ...params,
     value: {
       action: "migrate",
+      contents: params.value,
+    },
+  });
+}
+
+export async function revertMigration(
+  params: StandardParams & {
+    id: ResourceId;
+    containerId: ResourceId;
+    value: MigrateParams;
+  },
+) {
+  return task({
+    ...params,
+    value: {
+      action: "migrate.revert",
       contents: params.value,
     },
   });
