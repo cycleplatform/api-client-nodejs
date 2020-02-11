@@ -10,11 +10,18 @@ import { VERSION } from "./version";
  */
 export type ApiResult<T> = ResultSuccess<T> | ResultFail<ErrorResource>;
 
-export type StandardParams<T = QueryParams> = {
-  token: Token | string;
-  hubId: ResourceId;
+export type BaseParams<T = QueryParams> = {
   query?: T;
   settings?: Settings;
+};
+
+export type StandardParams<T = QueryParams> = BaseParams<T> & {
+  token: Token | string;
+  hubId: ResourceId;
+};
+
+export type PostParams<T = object> = {
+  value: T;
 };
 
 /** The result of a successful API call */

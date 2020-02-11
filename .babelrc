@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": "./",
+        "alias": {
+          "common": "./src/common",
+          "resources": "./src/resources",
+          "*": ["src/*", "node_modules/*"]
+        }
+      }
+    ]
+  ]
+}

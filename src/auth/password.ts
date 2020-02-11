@@ -1,11 +1,6 @@
-import {
-  ApiResult,
-  makeUrl,
-  OAuthError,
-  Settings,
-  ErrorCode,
-} from "../common/api";
-import { Token } from "./token";
+import { postRequest, BaseParams, PostParams } from "../common/api";
+import { DEFAULT_AUTH_URL } from "./common";
+import { Time } from "../common/structs";
 
 /**
  * Parameters for creating a password grant request
@@ -13,65 +8,37 @@ import { Token } from "./token";
 export interface PasswordAuth {
   email: string;
   password: string;
-  totp_passcode: string;
+  application_id: string;
+  totp_passcode?: string;
   register_device?: boolean;
-  // Not required if running in browser/through thin client
-  client_id?: string;
-  client_secret?: string;
-  scope?: string;
+}
+
+export interface PasswordAuthReturn {
+  redirect_url?: string;
+  application_id: string;
+  expires: Time;
+  grant_code: string;
 }
 
 /**
- * Make a request to the Cycle OAuth server using client credentials grant
+ * **You probably don't need this, you most likely want the clientCredentialsGrant() or to pass in an API key for your token directly**
+ *
+ * Make a request to the Cycle OAuth server using password grant in order to obtain an access token.
+ * This will return a grant code that can be used with the getGrantAccessToken() function,
+ * and an http-only cookie that can be used with the getBrowserAccessToken() function.
+ *
  * @param auth The PasswordAuth object containing authorization credentials
  * @param settings Optional Settings object to control the request
  */
 export async function passwordGrant(
-  auth: PasswordAuth,
-  settings?: Settings,
-): Promise<ApiResult<Token>> {
-  const url = `${makeUrl(settings || { noVersion: true })}/oauth/token`;
-  const queryParams = Object.keys(auth)
-    .map(
-      k => `${encodeURIComponent(k)}=${encodeURIComponent(auth[k as "email"])}`,
-    )
-    .join("&");
-
-  try {
-    const resp = await fetch(url, {
-      method: "POST",
-      body: `grant_type=password&${queryParams}`,
-      credentials: "include", // support registered device cookie
-      headers: new Headers({
-        "Content-type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-      }),
-    });
-    if (!resp.ok) {
-      const err: OAuthError = await resp.json();
-      return {
-        ok: false,
-        error: {
-          status: resp.status,
-          detail: err.error_description,
-          title: err.error,
-        },
-      };
-    }
-
-    const token: Token = await resp.json();
-    return {
-      ok: true,
-      value: token,
-    };
-  } catch (e) {
-    return {
-      ok: false,
-      error: {
-        code: ErrorCode.C_0_NETWORK_ERROR,
-        detail: e.message,
-        title: "Unable to reach authentication server",
-      },
-    };
-  }
+  params: BaseParams & PostParams<PasswordAuth>,
+) {
+  return postRequest<PasswordAuthReturn>({
+    ...params,
+    target: "/auth/password",
+    settings: {
+      ...params.settings,
+      url: DEFAULT_AUTH_URL,
+    },
+  });
 }

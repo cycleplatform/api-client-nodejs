@@ -22,6 +22,8 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
+      "common": ["./src/common"],
+      "resources": ["./src/resources"],
       "*": ["src/*", "node_modules/*"]
     },
     "jsx": "react",
