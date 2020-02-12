@@ -179,6 +179,7 @@ export async function postRequest<T>({
       ...{
         method: "POST",
         body: JSON.stringify(value),
+        credentials: "include",
       },
     },
   );

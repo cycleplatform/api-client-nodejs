@@ -1,16 +1,13 @@
 import { BaseParams, PostParams, postRequest } from "../common/api";
 import { DEFAULT_AUTH_URL } from "./common";
+import { Time } from "../common/structs";
 
 /**
  * An OAuth 2.0 token
  */
 export interface Token {
   access_token: string;
-  token_type: string;
-  expires_in: number;
-  created?: number;
-  refresh_token: string;
-  scope: string;
+  expires: Time;
 }
 
 interface BrowserAccessTokenParams {
@@ -23,12 +20,15 @@ interface BrowserAccessTokenParams {
 export async function getBrowserAccessToken(
   params: BaseParams & PostParams<BrowserAccessTokenParams>,
 ) {
-  return postRequest<Token>({
+  return postRequest<{ data: Token }>({
     ...params,
-    target: "/auth/browser",
+    target: "/auth/token/browser",
     settings: {
       ...params.settings,
-      url: DEFAULT_AUTH_URL,
+      url:
+        params.settings && params.settings.url
+          ? params.settings.url
+          : DEFAULT_AUTH_URL,
     },
   });
 }
@@ -45,12 +45,15 @@ interface GrantAccessTokenParams {
 export async function getGrantAccessToken(
   params: BaseParams & PostParams<GrantAccessTokenParams>,
 ) {
-  return postRequest<Token>({
+  return postRequest<{ data: Token }>({
     ...params,
-    target: "/auth/grant",
+    target: "/auth/token/grant",
     settings: {
       ...params.settings,
-      url: DEFAULT_AUTH_URL,
+      url:
+        params.settings && params.settings.url
+          ? params.settings.url
+          : DEFAULT_AUTH_URL,
     },
   });
 }

@@ -1,1 +1,1 @@
-export const DEFAULT_AUTH_URL = "auth-api.cycle.io:10443";
+export const DEFAULT_AUTH_URL = "auth.cycle.io:10443";

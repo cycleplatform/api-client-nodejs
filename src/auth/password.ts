@@ -33,12 +33,15 @@ export interface PasswordAuthReturn {
 export async function passwordGrant(
   params: BaseParams & PostParams<PasswordAuth>,
 ) {
-  return postRequest<PasswordAuthReturn>({
+  return postRequest<{ data: PasswordAuthReturn }>({
     ...params,
     target: "/auth/password",
     settings: {
       ...params.settings,
-      url: DEFAULT_AUTH_URL,
+      url:
+        params.settings && params.settings.url
+          ? params.settings.url
+          : DEFAULT_AUTH_URL,
     },
   });
 }

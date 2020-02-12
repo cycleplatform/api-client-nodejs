@@ -31,9 +31,17 @@ export enum ErrorCode {
   C_400_INVALID_SYNTAX = "400.invalid_syntax",
 
   C_401_AUTH_INVALID = "401.auth_invalid",
-  C_401_AUTH_EXPIRED = "401.auth_expired",
+  C_401_TOKEN_EXPIRED = "401.token_expired",
   C_401_INVALID_API_KEY = "401.invalid_api_key",
+  C_401_INVALID_TOKEN = "401.invalid_token",
+  C_401_INVALID_ACCOUNT = "401.invalid_account",
+  C_401_UNAUTHORIZED_APPLICATION = "401.unauthorized_application",
+  C_401_NO_COOKIE = "401.no_cookie",
 
+  C_403_ACCESS_DENIED = "403.access_denied",
+  C_403_2FA_REQUIRED = "403.2fa_required",
+  C_403_2FA_FAILED = "403.2fa_failed",
+  C_403_NEW_APPLICATION_CAPABILITIES = "403.new_application_capabilities",
   C_403_HUB_MISMATCH = "403.hub_mismatch",
   C_403_HUB_NOT_READY = "403.hub_not_ready",
   C_403_ENVIRONMENT_NOT_READY = "403.environment_not_ready",
@@ -93,6 +101,8 @@ export enum ErrorCode {
   C_422_INVALID_EMAIL_VERIFICATION = "422.invalid_input",
   C_422_NOT_COMPATIBLE = "422.not_compatible",
   C_422_ELEVATED_SUPPORT_PLAN_REQUIRED = "422.elevated_support_plan_required",
+  C_422_INVALID_APPLICATION_ID = "422.invalid_application_id",
+  C_422_INVALID_GRANT_CODE = "422.invalid_grant_code",
 
   C_500_DATABASE = "500.database",
   C_500_DATABASE_INSERT = "500.database_insert",
@@ -104,4 +114,5 @@ export enum ErrorCode {
   C_500_PAYMENT_GATEWAY = "500.payment_gateway",
   C_503_VPN_NOT_READY = "503.vpn_not_ready",
   C_503_LB_NOT_ENABLED = "503.lb_not_enabled",
+  C_500_SERVER_ERROR = "500.server_error",
 }
