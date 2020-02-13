@@ -57,3 +57,18 @@ export async function getGrantAccessToken(
     },
   });
 }
+
+export async function revokeAuth(params: BaseParams) {
+  return postRequest({
+    ...params,
+    target: "/auth/revoke",
+    value: {},
+    settings: {
+      ...params.settings,
+      url:
+        params.settings && params.settings.url
+          ? params.settings.url
+          : DEFAULT_AUTH_URL,
+    },
+  });
+}
