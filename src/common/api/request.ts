@@ -1,5 +1,5 @@
 import { Token } from "../../auth";
-import { ErrorResource, ErrorCode } from "./error";
+import { ErrorResource } from "./error";
 import { formatParams, QueryParams } from "./query";
 import { CreatedTask, ResourceId } from "../structs";
 import { Settings } from "./settings";
@@ -120,7 +120,7 @@ async function makeRequest<T>(
           status: 0,
           title: "Error parsing response",
           detail: "API returned a non-JSON response",
-          code: ErrorCode.C_0_PARSE_ERROR,
+          code: "0.parse_error",
         },
       };
     }
@@ -131,7 +131,7 @@ async function makeRequest<T>(
         status: 0,
         title: "Unable to reach server",
         detail: "There was an error attempting to fetch data from server.",
-        code: ErrorCode.C_0_NETWORK_ERROR,
+        code: "0.network_error",
       },
     };
   }

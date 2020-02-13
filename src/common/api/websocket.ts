@@ -1,6 +1,5 @@
 import { ApiResult, makeUrl } from "./request";
 import { Settings } from "./settings";
-import { ErrorCode } from "./error";
 
 export interface SocketConnectParams<T> {
   target: string;
@@ -37,7 +36,7 @@ export async function connectToSocket<T>({
     return {
       ok: false,
       error: {
-        code: ErrorCode.C_0_NETWORK_ERROR,
+        code: "0.network_error",
         title: (e as CloseEvent).reason,
       },
     };

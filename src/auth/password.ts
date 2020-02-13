@@ -9,7 +9,7 @@ export interface PasswordAuth {
   email: string;
   password: string;
   application_id: string;
-  totp_passcode?: string;
+  totp_code?: string;
   register_device?: boolean;
 }
 
