@@ -14,14 +14,15 @@ export type Single = SingleDoc<TierPlan>;
 
 export interface TierPlan extends Resource {
   name: string;
+  code: string;
   price: Amount;
-  description: string;
   ram: RAM;
   image_storage: ImageStorage;
   builds: Builds;
-  default?: true;
+  trial: boolean;
   hidden: boolean;
-  code: string;
+  description: string;
+  default?: true;
 }
 
 export interface RAM {
