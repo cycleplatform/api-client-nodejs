@@ -204,12 +204,6 @@ export const links = {
         ips: (id: ResourceId) => `/infrastructure/ips/pools/${id}/ips`,
       }),
     }),
-    storage: () => ({
-      sans: () => ({
-        collection: () => `/infrastructure/storage/sans`,
-        single: (id: ResourceId) => `/infrastructure/storage/sans/${id}`,
-      }),
-    }),
   }),
 
   jobs: () => ({
