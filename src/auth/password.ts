@@ -38,6 +38,7 @@ export async function passwordGrant(
     target: "/auth/password",
     settings: {
       ...params.settings,
+      credentials: "include",
       url:
         params.settings && params.settings.url
           ? params.settings.url

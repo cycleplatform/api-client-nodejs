@@ -11,4 +11,7 @@ export interface Settings {
 
   /** Allow for fetch cancellation */
   signal?: AbortSignal;
+
+  /** Apply credentials to request */
+  credentials?: RequestCredentials;
 }

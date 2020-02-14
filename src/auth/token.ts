@@ -25,6 +25,7 @@ export async function getBrowserAccessToken(
     target: "/auth/token/browser",
     settings: {
       ...params.settings,
+      credentials: "include",
       url:
         params.settings && params.settings.url
           ? params.settings.url
@@ -50,6 +51,7 @@ export async function getGrantAccessToken(
     target: "/auth/token/grant",
     settings: {
       ...params.settings,
+      credentials: "include",
       url:
         params.settings && params.settings.url
           ? params.settings.url
@@ -65,6 +67,7 @@ export async function revokeAuth(params: BaseParams) {
     value: {},
     settings: {
       ...params.settings,
+      credentials: "include",
       url:
         params.settings && params.settings.url
           ? params.settings.url

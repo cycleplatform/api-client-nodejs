@@ -152,7 +152,11 @@ export async function getRequest<T>({
 }): Promise<ApiResult<T>> {
   const req = new Request(
     `${makeUrl(settings)}${target}?${formatParams(query)}`,
-    ApiRequestInit,
+    {
+      ...ApiRequestInit,
+      credentials:
+        settings && settings.credentials ? settings.credentials : undefined,
+    },
   );
   return makeRequest<T>(req, token, hubId, settings);
 }
@@ -179,7 +183,8 @@ export async function postRequest<T>({
       ...{
         method: "POST",
         body: JSON.stringify(value),
-        credentials: "include",
+        credentials:
+          settings && settings.credentials ? settings.credentials : undefined,
       },
     },
   );
@@ -209,6 +214,8 @@ export async function patchRequest<T>({
       ...{
         method: "PATCH",
         body: JSON.stringify(value),
+        credentials:
+          settings && settings.credentials ? settings.credentials : undefined,
       },
     },
   );
