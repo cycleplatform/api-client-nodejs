@@ -8,26 +8,17 @@ import { Notification } from "./event";
  * Possible event types that can be received
  * on the account notification channel
  */
-export enum AccountHeader {
-  /** The current state of the account has changed */
-  ACCOUNT_STATE_CHANGED = "account.state_changed",
-  /** An error occured related to the account */
-  ACCOUNT_ERROR = "account.error",
-  /** A new hub was created */
-  HUB_CREATED = "hub.created",
-  /** An error occurred on a hub */
-  HUB_ERROR = "hub.error",
-  /** A hub was deleted */
-  HUB_DELETED = "hub.deleted",
-  /** User joined a new hub */
-  HUB_MEMBERSHIPS_NEW = "hub.memberships.new",
-  /** A hub membership was updated (accepted invite, etc) */
-  HUB_MEMBERSHIPS_UPDATED = "hub.memberships.updated",
-
-  ANNOUNCEMENT_CREATED = "announcement.created",
-  ANNOUNCEMENT_UPDATED = "announcement.updated",
-  ANNOUNCEMENT_STATE_CHANGED = "announcement.state_changed",
-}
+export type AccountHeader =
+  | "account.state_changed"
+  | "account.error"
+  | "hub.created"
+  | "hub.error"
+  | "hub.deleted"
+  | "hub.memberships.new"
+  | "hub.memberships.updated"
+  | "announcement.created"
+  | "announcement.updated"
+  | "announcement.state_changed";
 
 export type AccountNotification = Notification<AccountHeader>;
 
