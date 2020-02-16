@@ -1,63 +1,73 @@
 import * as Request from "../../common/api/request";
 import { QueryParams, links, Settings } from "../../common/api";
 
-export enum Capability {
-  HUBS_UPDATE = "hubs-update",
-  HUBS_DELETE = "hubs-delete",
-  HUBS_INVITES_SEND = "hubs-invites-send",
-  HUBS_INVITES_MANAGE = "hubs-invites-manage",
-  HUBS_MEMBERS_MANAGE = "hubs-members-manage",
-  HUBS_MEMBERS_VIEW = "hubs-members-view",
-  HUBS_NOTIFICATIONS_LISTEN = "hubs-notifications-listen",
-  BILLING_METHODS_MANAGE = "billing-methods-manage",
-  BILLING_INVOICES_VIEW = "billing-invoices-view",
-  BILLING_INVOICES_PAY = "billing-invoices-pay",
-  BILLING_ORDERS_MANAGE = "billing-orders-manage",
-  BILLING_SERVICES_VIEW = "billing-services-view",
-  BILLING_CREDITS_VIEW = "billing-credits-view",
-  ENVIRONMENTS_CREATE = "environments-create",
-  ENVIRONMENTS_DELETE = "environments-delete",
-  ENVIRONMENTS_VIEW = "environments-view",
-  ENVIRONMENTS_UPDATE = "environments-update",
-  ENVIRONMENTS_STATE = "environments-state",
-  ENVIRONMENTS_SERVICES_MANAGE = "environments-services-manage",
-  ENVIRONMENTS_VPN = "environments-vpn",
-  ENVIRONMENTS_VPN_MANAGE = "environments-vpn-manage",
-  CONTAINERS_DEPLOY = "containers-deploy",
-  CONTAINERS_VIEW = "containers-view",
-  CONTAINERS_CONSOLE = "containers-console",
-  CONTAINERS_SSH = "containers-ssh",
-  CONTAINERS_UPDATE = "containers-update",
-  CONTAINERS_DELETE = "containers-delete",
-  CONTAINERS_STATE = "containers-state",
-  CONTAINERS_VOLUMES_MANAGE = "containers-volumes-manage",
-  CONTAINERS_VOLUMES_VIEW = "containers-volumes-view",
-  CONTAINERS_INSTANCES_MIGRATE = "containers-instances-migrate",
-  STACKS_CREATE = "stacks-create",
-  STACKS_UPDATE = "stacks-update",
-  STACKS_DELETE = "stacks-delete",
-  STACKS_VIEW = "stacks-view",
-  STACKS_BUILDS_MANAGE = "stacks-builds-manage",
-  STACKS_HOOKS_MANAGE = "stacks-hooks-manage",
-  IMAGES_VIEW = "images-view",
-  IMAGES_BUILD = "images-build",
-  IMAGES_UPDATE = "images-update",
-  IMAGES_DELETE = "images-delete",
-  JOBS_VIEW = "jobs-view",
-  APIKEYS_MANAGE = "api-keys-manage",
-  INFRASTRUCTURE_SERVERS_PROVISION = "servers-provision",
-  INFRASTRUCTURE_SERVERS_VIEW = "servers-view",
-  INFRASTRUCTURE_SERVERS_LOGIN = "servers-login",
-  INFRASTRUCTURE_SERVERS_UPDATE = "servers-update",
-  INFRASTRUCTURE_SERVERS_STATE = "servers-state",
-  INFRASTRUCTURE_SERVERS_DECOMMISSION = "servers-decommission",
-  INFRASTRUCTURE_IPS_MANAGE = "ips-manage",
-  USAGE_VIEW = "usage-view",
-  DNS_VIEW = "dns-view",
-  DNS_MANAGE = "dns-manage",
-  SDN_NETWORKS_VIEW = "sdn-networks-view",
-  SDN_NETWORKS_MANAGE = "sdn-networks-manage",
-}
+export type Capability =
+  // hubs
+  | "hubs-update"
+  | "hubs-delete"
+  | "hubs-invites-send"
+  | "hubs-invites-manage"
+  | "hubs-members-manage"
+  | "hubs-members-view"
+  | "hubs-notifications-listen"
+  // billing
+  | "billing-methods-manage"
+  | "billing-invoices-view"
+  | "billing-invoices-pay"
+  | "billing-orders-manage"
+  | "billing-services-view"
+  | "billing-credits-view"
+  // environments
+  | "environments-create"
+  | "environments-delete"
+  | "environments-view"
+  | "envitonments-update"
+  | "environments-state"
+  | "environments-services-manage"
+  | "environments-vpn"
+  | "environments-vpn-manage"
+  // containers
+  | "containers-deploy"
+  | "containers-view"
+  | "containers-console"
+  | "containers-ssh"
+  | "containers-update"
+  | "containers-delete"
+  | "containers-state"
+  | "containers-volumes-manage"
+  | "containers-volumes-view"
+  | "containers-instances-migrate"
+  // stacks
+  | "stacks-create"
+  | "stacks-update"
+  | "stacks-delete"
+  | "stacks-view"
+  | "stacks-builds-manage"
+  | "stacks-hooks-manage"
+  // images
+  | "images-view"
+  | "images-build"
+  | "images-update"
+  | "images-delete"
+  // jobs
+  | "jobs-view"
+  // api keys
+  | "api-keys-manage"
+  // infrastructure
+  | "servers-provision"
+  | "servers-view"
+  | "servers-update"
+  | "servers-state"
+  | "servers-decommission"
+  | "ips-manage"
+  // usage
+  | "usage-view"
+  // dns
+  | "dns-view"
+  | "dns-manage"
+  // sdn
+  | "sdn-networks-view"
+  | "sdn-networks-manage";
 
 export interface CapabilityDoc {
   data: Capability[];
