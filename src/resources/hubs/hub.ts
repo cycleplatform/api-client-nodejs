@@ -6,6 +6,7 @@ import {
   SingleDoc,
   Events,
   State,
+  Time,
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
