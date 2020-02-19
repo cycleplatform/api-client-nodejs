@@ -77,6 +77,7 @@ export type HubHeader =
   | "infrastructure.ips.pool.state_changed"
   | "infrastructure.ips.pool.error"
   | "infrastructure.server.state_changed"
+  | "infrastructure.server.created"
   | "infrastructure.server.error"
   | "infrastructure.server.updated"
   // stack
