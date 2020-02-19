@@ -9,6 +9,8 @@ import { Notification } from "./event";
  */
 export type HubHeader =
   // billing
+  | "billing.credit.state_changed"
+  | "billing.credit.error"
   | "billing.service.state_changed"
   | "billing.service.error"
   | "billing.invoice.created"
