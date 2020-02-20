@@ -87,7 +87,7 @@ async function makeRequest<T>(
   if (token) {
     req.headers.append(
       "Authorization",
-      `Bearer ${typeof token === "string" ? token : token.access_token}`,
+      `Bearer ${typeof token === "string" ? token : token.token}`,
     );
   }
 
