@@ -21,7 +21,7 @@ export type Capability =
   | "environments-create"
   | "environments-delete"
   | "environments-view"
-  | "envitonments-update"
+  | "environments-update"
   | "environments-state"
   | "environments-services-manage"
   | "environments-vpn"
