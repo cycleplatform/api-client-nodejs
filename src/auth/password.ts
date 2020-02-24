@@ -10,7 +10,7 @@ export interface PasswordAuth {
   password: string;
   application_id: string;
   totp_code?: string;
-  register_device?: boolean;
+  remember_me?: boolean;
 }
 
 export interface PasswordAuthReturn {
