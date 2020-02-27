@@ -116,4 +116,5 @@ export type ErrorCode =
 
   // 503
   | "503.not_ready"
-  | "503.not_enabled";
+  | "503.not_enabled"
+  | "503.dependency_not_enabled";

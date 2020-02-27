@@ -21,11 +21,15 @@ export type AccountState =
   | "deleted";
 
 export interface Account extends Resource {
+  /** The first and last name of the account owner */
   name: Name;
+  /** Email registered to this account */
   email: Email;
-  two_factor_auth: TwoFactorAuth;
-  // TODO - this isn't being returned right now.
-  active: boolean;
+  /** Number of trial hubs this account has made */
+  trials: number;
+  /** 2FA information */
+  two_factor_auth: TwoFactorAuth | null;
+  /** Whether to allow Cycle employees to log in to diagnose support issues */
   allow_support_login: boolean;
   events: Events<AccountEvent>;
   state: State<AccountState>;

@@ -9,6 +9,8 @@ import { Notification } from "./event";
  */
 export type HubHeader =
   // billing
+  | "billing.credit.state_changed"
+  | "billing.credit.error"
   | "billing.service.state_changed"
   | "billing.service.error"
   | "billing.invoice.created"
@@ -75,6 +77,7 @@ export type HubHeader =
   | "infrastructure.ips.pool.state_changed"
   | "infrastructure.ips.pool.error"
   | "infrastructure.server.state_changed"
+  | "infrastructure.server.created"
   | "infrastructure.server.error"
   | "infrastructure.server.updated"
   // stack
