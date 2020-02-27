@@ -8,8 +8,8 @@ import { Scaling } from "./scaling";
 export interface Config {
   network: Network;
   deploy: Deploy;
-  scaling: Scaling | null;
-  runtime: Runtime | null;
-  resources: Resources | null;
-  integrations: Integrations | null;
+  scaling?: Scaling;
+  runtime?: Runtime;
+  resources?: Resources;
+  integrations?: Integrations;
 }

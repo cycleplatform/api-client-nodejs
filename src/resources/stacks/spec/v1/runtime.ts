@@ -5,13 +5,13 @@ import {
 } from "../../../../common/structs";
 
 export interface Runtime {
-  command: RuntimeCommand | null;
-  namespaces: Namespaces[] | null;
-  environment_vars: Record<string, string>;
-  sysctl: Record<string, string> | null;
+  workdir?: string;
+  command?: RuntimeCommand;
+  environment_vars?: Record<string, string>;
+  namespaces?: Namespaces[];
+  sysctl?: Record<string, string>;
   privileged: boolean;
-  capabilities: BaseCapabilities[] | PrivilegedCapabilities[] | null;
-  workdir: string | null;
+  capabilities?: BaseCapabilities[] | PrivilegedCapabilities[];
 }
 
 export interface RuntimeCommand {

@@ -1,13 +1,17 @@
-export type LoadBalanceDeploymentStrategy =
-  | "single"
-  | "per-provider"
-  | "per-location";
-
 export interface LoadBalancer {
-  deploy: LoadBalanceDeploymentStrategy;
-  haproxy: HAProxyConfig | null;
-  ipv4: boolean | null;
-  ipv6: boolean | null;
+  haproxy?: HAProxyConfig;
+  ipv4?: boolean;
+  ipv6?: boolean;
+}
+
+export interface EgressGateway {
+  name: string;
+  /** An array of hostnames */
+  destinations: string[];
+  ports: {
+    internal: string;
+    external: string;
+  };
 }
 
 export interface HAProxyConfig {

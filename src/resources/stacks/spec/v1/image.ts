@@ -22,7 +22,7 @@ export interface DockerRegistrySource extends DockerHubSource {
 
 export interface LocalSource {
   /** Path the Dockerfile is located in */
-  dir: string | null;
+  dir?: string;
   /** Equivalent of docker-compose context. Use this Dockerfile to build the path. */
   build_file: string;
 }

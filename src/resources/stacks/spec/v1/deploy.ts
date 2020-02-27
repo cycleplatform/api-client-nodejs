@@ -5,14 +5,14 @@ export type Signal = "SIGTERM" | "SIGINT" | "SIGUSR1" | "SIGUSR2" | "SIGHUP";
 
 export interface Deploy {
   instances: number;
-  strategy: DeploymentStrategy | null;
-  stateful: Stateful | null;
-  constraints: Constraints | null;
-  shutdown: ShutdownPolicy | null;
-  startup: StartupPolicy | null;
-  restart: RestartPolicy | null;
-  health_check: HealthCheck | null;
-  update: UpdatePolicy | null;
+  strategy?: DeploymentStrategy;
+  stateful?: Stateful;
+  constraints?: Constraints;
+  shutdown?: ShutdownPolicy;
+  startup?: StartupPolicy;
+  restart?: RestartPolicy;
+  health_check?: HealthCheck;
+  update?: UpdatePolicy;
 }
 
 export interface Stateful {
@@ -21,9 +21,10 @@ export interface Stateful {
 
 export interface StatefulInstance {
   hostname: string;
-  command: RuntimeCommand;
-  environment_vars: Record<string, string>;
-  ports: string[];
+  startup_command?: RuntimeCommand;
+  command?: RuntimeCommand;
+  environment_vars?: Record<string, string>;
+  ports?: string[];
 }
 
 export interface ShutdownPolicy {
@@ -45,13 +46,13 @@ export interface RestartPolicy {
   condition: RestartCondition;
   delay: number;
   max_attempts: number;
-  notify: Notify | null;
+  notify?: Notify;
 }
 
 export interface Constraints {
-  node: NodeConstraints | null;
-  secrets: string[];
-  containers: string[];
+  node?: NodeConstraints;
+  secrets?: string[];
+  containers?: string[];
 }
 
 export interface NodeConstraints {
@@ -60,9 +61,9 @@ export interface NodeConstraints {
 
 export interface Tags {
   /** can match any server that has at least one of these tags */
-  any: string[];
+  any?: string[];
   /** can only match servers that have all of the tags listed */
-  all: string[];
+  all?: string[];
 }
 
 export interface HealthCheck {
@@ -89,6 +90,6 @@ export enum DeploymentStrategy {
 }
 
 export interface Notify {
-  emails: Emails;
-  web_hook: Webhook;
+  emails?: Emails;
+  web_hook?: Webhook;
 }

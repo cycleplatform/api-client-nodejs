@@ -8,7 +8,7 @@ export interface Resources {
 export interface CPUResources {
   shares?: CPUShares;
   /** Comma separated list of CPU cores (numbers) this container is pinned to */
-  cpus: string | null;
+  cpus?: string;
 }
 
 export interface CPUShares {
@@ -17,9 +17,9 @@ export interface CPUShares {
 }
 
 export interface RAMResources {
-  limit: DataSize | null;
-  reserve: DataSize | null;
-  swappiness: number | null;
-  kernel: DataSize | null;
-  kernel_tcp: DataSize | null;
+  limit?: DataSize;
+  reserve?: DataSize;
+  swappiness?: number;
+  kernel?: DataSize;
+  kernel_tcp?: DataSize;
 }

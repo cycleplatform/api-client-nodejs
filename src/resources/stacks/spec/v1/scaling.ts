@@ -1,12 +1,12 @@
 export type ScalingMetric = "ram";
 
 export interface Scaling {
-  auto: AutoScaling | null;
+  auto?: AutoScaling;
 }
 
 export interface AutoScaling {
   instances: Instances;
-  rules: AutoScalingRule[];
+  rules?: AutoScalingRule[];
 }
 
 export interface AutoScalingRule {

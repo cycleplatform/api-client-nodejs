@@ -5,11 +5,11 @@ import { ContainerIdentifier } from "../../../../common/structs";
 
 export interface Spec {
   version: string;
-  about: About | null;
+  about?: About;
   tests: TestContainer[];
   services: Services | {};
   containers: Record<ContainerIdentifier, Container> | null;
-  annotations: Record<string, string>;
+  annotations?: Record<string, string>;
 }
 
 export interface About {

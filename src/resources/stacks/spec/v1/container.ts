@@ -6,9 +6,9 @@ export interface Container {
   name: string;
   image: Image;
   stateful: boolean;
-  config: Config;
+  config?: Config;
   role?: ContainerRole;
-  volumes: Volume[];
+  volumes?: Volume[];
 }
 
 export type ContainerRole = "orchestrator";

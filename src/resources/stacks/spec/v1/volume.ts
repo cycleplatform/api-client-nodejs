@@ -2,9 +2,9 @@ import { DataSize, Webhook, Algorithm } from "../../../../common/structs";
 
 export interface Volume {
   read_only: boolean;
-  local: LocalVolume | null;
+  local?: LocalVolume;
   destination: string;
-  remote_access: VolumeRemoteAccess;
+  remote_access?: VolumeRemoteAccess;
 }
 
 export interface LocalVolume {
@@ -14,7 +14,7 @@ export interface LocalVolume {
 export interface VolumeRemoteAccess {
   enable: boolean;
   ips?: AuthorizedIp[];
-  web_hook: Webhook;
+  web_hook?: Webhook;
   password: VolumePassword | null;
 }
 

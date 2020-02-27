@@ -1,24 +1,24 @@
 import { Webhook } from "../../../../common/structs";
 
 export interface Integrations {
-  events: Events | null;
-  lets_encrypt: LetsEncrypt | null;
-  files: File[] | null;
+  events?: Events;
+  lets_encrypt?: LetsEncrypt;
+  files?: File[];
 }
 
 export interface LetsEncrypt {
   enable: boolean;
-  certificate_path: string | null;
-  chain_path: string | null;
-  key_path: string | null;
-  bundle_path: string | null;
-  additional_certs_path: string | null;
+  certificate_path?: string;
+  chain_path?: string;
+  key_path?: string;
+  bundle_path?: string;
+  additional_certs_path?: string;
 }
 
 export interface Events {
-  deploy: Webhook;
-  start: Webhook;
-  stop: Webhook;
+  deploy?: Webhook;
+  start?: Webhook;
+  stop?: Webhook;
 }
 
 export interface File {
