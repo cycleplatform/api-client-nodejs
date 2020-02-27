@@ -33,8 +33,7 @@ export interface ShutdownPolicy {
 }
 
 export interface StartupPolicy {
-  delay: number | null;
-  order: number | null;
+  delay: number;
 }
 
 export interface UpdatePolicy {
