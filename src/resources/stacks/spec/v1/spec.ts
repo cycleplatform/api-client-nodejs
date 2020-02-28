@@ -6,8 +6,8 @@ import { ContainerIdentifier } from "../../../../common/structs";
 export interface Spec {
   version: string;
   about?: About;
-  tests: TestContainer[];
-  services: Services | {};
+  tests?: TestContainer[];
+  services?: Services | {};
   containers: Record<ContainerIdentifier, Container> | null;
   annotations?: Record<string, string>;
 }
