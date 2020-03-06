@@ -5,7 +5,7 @@ import { ResourceId } from "../common/structs";
  * either channel.
  */
 export interface Notification<T extends string> {
-  header: T;
+  topic: T;
   id: ResourceId;
   state?: string;
   error?: boolean;

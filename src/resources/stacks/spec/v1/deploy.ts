@@ -21,10 +21,15 @@ export interface Stateful {
 
 export interface StatefulInstance {
   hostname: string;
-  startup_command?: RuntimeCommand;
+  first_start?: RuntimeCommand;
   command?: RuntimeCommand;
   environment_vars?: Record<string, string>;
   ports?: string[];
+}
+
+export interface StatefulFirstStart {
+  command?: RuntimeCommand;
+  delay: number;
 }
 
 export interface ShutdownPolicy {

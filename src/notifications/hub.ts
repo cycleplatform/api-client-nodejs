@@ -7,96 +7,144 @@ import { Notification } from "./event";
  * Possible event types that can be received
  * on the hub notification channel
  */
-export type HubHeader =
-  // billing
-  | "billing.credit.state_changed"
+export type HubTopic =
+  // billing credits
+  | "billing.credit.state.changed"
   | "billing.credit.error"
-  | "billing.service.state_changed"
-  | "billing.service.error"
-  | "billing.invoice.created"
-  | "billing.invoice.state_changed"
-  | "billing.invoice.error"
-  | "billing.order.created"
-  | "billing.order.state_changed"
-  | "billing.order.error"
-  | "billing.discount.state_changed"
+
+  // billing discount
+  | "billing.discount.state.changed"
   | "billing.discount.error"
+
+  // billing invoice
+  | "billing.invoice.created"
+  | "billing.invoice.state.changed"
+  | "billing.invoice.error"
+
+  //billing method
   | "billing.method.created"
-  | "billing.method.state_changed"
+  | "billing.method.state.changed"
+  | "billing.method.updated"
   | "billing.method.error"
-  // certificated
-  | "certificates.state_changed"
-  | "certificates.error"
+
+  // billing order
+  | "billing.order.created"
+  | "billing.order.state.changed"
+  | "billing.order.error"
+  | "billing.order.updated"
+
+  // billing service
+  | "billing.service.state.changed"
+  | "billing.service.error"
+
   // container
   | "container.created"
   | "container.updated"
-  | "container.error"
-  | "container.event"
-  | "container.state_changed.desired"
-  | "container.state_changed"
-  | "container.instance.created"
   | "container.reconfigured"
-  | "container.instances.revised"
-  // dns
-  | "dns.zone.created"
-  | "dns.zone.updated"
+  | "container.event.created"
+  | "container.state.changed"
+  | "container.desired_state.changed"
+  | "container.error"
+
+  // container instance
+  | "container.instance.state.changed"
+  | "container.instance.error"
+  | "container.instance.reconfigured"
+
+  // dns certificate
+  | "dns.certificate.state.changed"
+  | "dns.certificate.error"
+
+  // dns zone
+  | "dns.zone.state.changed"
   | "dns.zone.error"
-  | "dns.zone.state_changed"
-  | "dns.zone.certificates.generated"
-  | "dns.zone.certificates.failed"
+  | "dns.zone.created"
   | "dns.zone.verified"
+  | "dns.zone.records.updated"
+
+  // dns zone record
+  | "dns.zone.record.state.changed"
+  | "dns.zone.record.certificate.ready"
+
+  // employees
+  | "employee.state.changed"
+  | "employee.error"
+
   // environments
   | "environment.created"
   | "environment.updated"
   | "environment.error"
-  | "environment.state_changed"
-  | "environment.services.updated"
-  | "environment.services.vpn.user.created"
-  | "environment.services.vpn.user.deleted"
-  | "environment.egress_gateway.created"
-  // images
-  | "image.state_changed"
-  | "image.error"
-  // jobs
-  | "job.new"
-  | "job.scheduled"
-  | "job.queued"
-  | "job.running"
-  | "job.error"
-  | "job.completed"
-  | "job.expired"
+  | "environment.state.changed"
+  | "environment.services.reconfigured"
+  | "environment.services.vpn.users.updated"
+  | "environment.services.lb.ip.acquired"
+
   // hub
   | "hub.updated"
-  | "hub.state_changed"
-  | "hub.membership.state_changed"
+  | "hub.state.changed"
+  | "hub.error"
+
+  // hub api keys
   | "hub.api_key.created"
   | "hub.api_key.updated"
-  | "hub.api_key.state_changed"
+  | "hub.api_key.state.changed"
   | "hub.api_key.error"
-  // infrastructure
-  | "infrastructure.ips.pool.state_changed"
+
+  // hub memberships
+  | "hub.membership.state.changed"
+  | "hub.membership.error"
+  | "hub.membership.updated"
+
+  // images
+  | "image.state.changed"
+  | "image.updated"
+  | "image.error"
+
+  // infrastructure ips assignment
+  | "infrastructure.ips.assignment.state.changed"
+  | "infrastructure.ips.assignment.error"
+
+  // infrastructure ips pool
+  | "infrastructure.ips.pool.state.changed"
   | "infrastructure.ips.pool.error"
-  | "infrastructure.server.state_changed"
-  | "infrastructure.server.created"
+
+  // infrastructure server
+  | "infrastructure.server.state.changed"
   | "infrastructure.server.error"
-  | "infrastructure.server.updated"
+  | "infrastructure.server.new"
+  | "infrastructure.server.reconfigured"
+
+  // jobs
+  | "job.state.changed"
+
+  // sdn
+  | "sdn.network.created"
+  | "sdn.network.error"
+  | "sdn.network.reconfigured"
+  | "sdn.network.state.changed"
+  | "sdn.network.update"
+
+  // secret
+  | "secret.state.changed"
+  | "secret.error"
+
+  // stack
+  | "stack.state.changed"
+  | "stack.error"
+
   // stack
   | "stack.created"
   | "stack.error"
-  | "stack.state_changed"
+  | "stack.state.changed"
   | "stack.updated"
-  | "stack.build.created"
-  | "stack.build.state_changed"
-  | "stack.build.error"
-  | "stack.hook.created"
-  | "stack.hook.updated"
-  | "stack.hook.task_deploy"
-  // sdn
-  | "sdn.network.created"
-  | "sdn.network.reconfigured"
-  | "sdn.network.state_changed";
 
-export type HubNotification = Notification<HubHeader>;
+  // builds
+  | "stack.build.created"
+  | "stack.build.state.changed"
+  | "stack.build.error"
+  | "stack.build.deployed";
+
+export type HubNotification = Notification<HubTopic>;
 
 export interface HubPipelineParams extends StandardParams {
   onMessage?: (v: HubNotification) => void;

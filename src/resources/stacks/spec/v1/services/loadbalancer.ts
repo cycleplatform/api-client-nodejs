@@ -4,16 +4,6 @@ export interface LoadBalancer {
   ipv6?: boolean;
 }
 
-export interface EgressGateway {
-  name: string;
-  /** An array of hostnames */
-  destinations: string[];
-  ports: {
-    internal: string;
-    external: string;
-  };
-}
-
 export interface HAProxyConfig {
   default: HAProxyConfigSet;
   ports: Record<number, HAProxyConfigSet>;

@@ -97,6 +97,7 @@ export interface ImageSummary {
 
 export interface EnvironmentSummary {
   id: ResourceId;
+  cluster: string;
   container_subnet: string;
   ipv6: IPNet | null;
   legacy: Legacy | null;

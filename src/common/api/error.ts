@@ -57,7 +57,6 @@ export type ErrorCode =
   | "404.hub_invitation"
   | "404.sdn_network"
   | "404.environment"
-  | "404.environment_egress_gateway"
   | "404.api_key"
   | "404.uri"
   | "404.provider"

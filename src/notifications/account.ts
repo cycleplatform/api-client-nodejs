@@ -9,16 +9,24 @@ import { Notification } from "./event";
  * on the account notification channel
  */
 export type AccountHeader =
-  | "account.state_changed"
+  // account
+  | "account.state.changed"
   | "account.error"
+
+  // hub
   | "hub.created"
+  | "hub.state.changed"
   | "hub.error"
   | "hub.deleted"
+
+  // hub memberships
   | "hub.memberships.new"
   | "hub.memberships.updated"
+
+  // announcements
   | "announcement.created"
   | "announcement.updated"
-  | "announcement.state_changed";
+  | "announcement.state.changed";
 
 export type AccountNotification = Notification<AccountHeader>;
 
