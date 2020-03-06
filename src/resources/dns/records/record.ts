@@ -48,6 +48,7 @@ export interface RecordType {
   cname?: TypeCNAME;
   ns?: TypeNS;
   mx?: TypeMX;
+  caa?: TypeCAA;
   txt?: TypeTXT;
   alias?: TypeALIAS;
   srv?: TypeSRV;
@@ -88,6 +89,11 @@ export interface TypeSRV {
   priority: number;
   port: number;
   domain: string;
+}
+
+export interface TypeCAA {
+  tag: string;
+  value: string;
 }
 
 export interface TypeLinked {
