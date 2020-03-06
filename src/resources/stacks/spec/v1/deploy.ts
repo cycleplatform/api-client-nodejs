@@ -21,7 +21,7 @@ export interface Stateful {
 
 export interface StatefulInstance {
   hostname: string;
-  first_start?: RuntimeCommand;
+  first_start?: StatefulFirstStart;
   command?: RuntimeCommand;
   environment_vars?: Record<string, string>;
   ports?: string[];
