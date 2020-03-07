@@ -18,6 +18,7 @@ export type HubTopic =
 
   // billing invoice
   | "billing.invoice.created"
+  | "billing.invoice.updated"
   | "billing.invoice.state.changed"
   | "billing.invoice.error"
 
