@@ -9,6 +9,7 @@ import { Notification } from "./event";
  */
 export type HubTopic =
   // billing credits
+  | "billing.credit.created"
   | "billing.credit.state.changed"
   | "billing.credit.error"
 
