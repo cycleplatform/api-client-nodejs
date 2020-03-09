@@ -63,7 +63,7 @@ export type HubTopic =
   | "dns.zone.created"
   | "dns.zone.verified"
   | "dns.zone.reconfigured"
-  | "dns.zone.records.updated"
+  | "dns.zone.records.reconfigured"
 
   // dns zone record
   | "dns.zone.record.state.changed"
