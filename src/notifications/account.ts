@@ -8,7 +8,7 @@ import { Notification } from "./event";
  * Possible event types that can be received
  * on the account notification channel
  */
-export type AccountHeader =
+export type AccountTopic =
   // account
   | "account.state.changed"
   | "account.error"
@@ -28,7 +28,7 @@ export type AccountHeader =
   | "announcement.updated"
   | "announcement.state.changed";
 
-export type AccountNotification = Notification<AccountHeader>;
+export type AccountNotification = Notification<AccountTopic>;
 
 /**
  * Parameters required to initiate an account channel connection

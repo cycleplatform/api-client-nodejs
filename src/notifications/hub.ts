@@ -61,6 +61,7 @@ export type HubTopic =
   | "dns.zone.created"
   | "dns.zone.verified"
   | "dns.zone.records.updated"
+  | "dns.zone.reconfigured"
 
   // dns zone record
   | "dns.zone.record.state.changed"
@@ -71,6 +72,8 @@ export type HubTopic =
   | "employee.error"
 
   // environments
+  | "environment.started"
+  | "environment.stopped"
   | "environment.created"
   | "environment.updated"
   | "environment.error"
@@ -115,6 +118,7 @@ export type HubTopic =
   | "infrastructure.server.reconfigured"
 
   // jobs
+  | "job.created"
   | "job.state.changed"
 
   // sdn
