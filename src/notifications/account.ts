@@ -17,11 +17,11 @@ export type AccountTopic =
   | "hub.created"
   | "hub.state.changed"
   | "hub.error"
-  | "hub.deleted"
 
   // hub memberships
   | "hub.memberships.new"
   | "hub.memberships.updated"
+  | "hub.invite.new"
 
   // announcements
   | "announcement.created"

@@ -9,6 +9,7 @@ import { Notification } from "./event";
  */
 export type HubTopic =
   // billing credits
+  | "billing.credit.created"
   | "billing.credit.state.changed"
   | "billing.credit.error"
 
@@ -18,6 +19,7 @@ export type HubTopic =
 
   // billing invoice
   | "billing.invoice.created"
+  | "billing.invoice.updated"
   | "billing.invoice.state.changed"
   | "billing.invoice.error"
 
@@ -60,8 +62,8 @@ export type HubTopic =
   | "dns.zone.error"
   | "dns.zone.created"
   | "dns.zone.verified"
-  | "dns.zone.records.updated"
   | "dns.zone.reconfigured"
+  | "dns.zone.records.reconfigured"
 
   // dns zone record
   | "dns.zone.record.state.changed"
@@ -120,6 +122,7 @@ export type HubTopic =
   // jobs
   | "job.created"
   | "job.state.changed"
+  | "job.created"
 
   // sdn
   | "sdn.network.created"
