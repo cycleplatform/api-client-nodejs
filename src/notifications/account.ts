@@ -2,7 +2,7 @@ import { Token } from "../auth";
 import * as Request from "../common/api/request";
 import { links, Settings } from "../common/api";
 import { connectToSocket } from "../common/api/websocket";
-import { Notification } from "./event";
+import { Notification } from "./notification";
 
 /**
  * Possible event types that can be received
