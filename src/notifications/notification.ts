@@ -11,7 +11,7 @@ export interface Notification<T extends string> {
 }
 
 export interface Object {
-  id?: ResourceId;
+  id: ResourceId;
   state?: string;
   error?: string;
 }
