@@ -19,8 +19,8 @@ export interface Object {
 export interface Context {
   hub_id: ResourceId | null;
   account_id: ResourceId | null;
-  environments: ResourceId[];
-  dns_zones: ResourceId[];
-  clusters: string[];
-  containers: ResourceId[];
+  environments: ResourceId[] | null;
+  dns_zones: ResourceId[] | null;
+  clusters: string[] | null;
+  containers: ResourceId[] | null;
 }
