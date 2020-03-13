@@ -26,6 +26,7 @@ export interface Stack extends Resource<StackMetas> {
 
 export interface StackMetas {
   containers_count?: number;
+  builds_count?: number;
 }
 
 export interface Source {
