@@ -2,7 +2,7 @@ import * as Request from "../../../common/api/request";
 import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type StackAction = "build";
+export type StackAction = "build" | "prune";
 
 export async function buildStack(
   params: StandardParams & {
@@ -13,6 +13,20 @@ export async function buildStack(
     ...params,
     value: {
       action: "build",
+    },
+  });
+}
+
+/** Removes all builds that are not in use and have not been created in the last 30 minutes */
+export async function pruneBuilds(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
+  return task({
+    ...params,
+    value: {
+      action: "prune",
     },
   });
 }
