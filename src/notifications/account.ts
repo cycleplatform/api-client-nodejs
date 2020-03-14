@@ -19,8 +19,8 @@ export type AccountTopic =
   | "hub.error"
 
   // hub memberships
-  | "hub.memberships.new"
-  | "hub.memberships.updated"
+  | "hub.membership.new"
+  | "hub.membership.updated"
   | "hub.invite.new"
 
   // announcements
