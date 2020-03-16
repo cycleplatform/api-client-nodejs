@@ -129,7 +129,7 @@ export type HubTopic =
   | "sdn.network.error"
   | "sdn.network.reconfigured"
   | "sdn.network.state.changed"
-  | "sdn.network.update"
+  | "sdn.network.updated"
 
   // secret
   | "secret.state.changed"
