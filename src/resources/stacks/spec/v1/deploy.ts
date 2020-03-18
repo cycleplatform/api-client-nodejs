@@ -21,19 +21,17 @@ export interface Stateful {
 
 export interface StatefulInstance {
   match: Match;
-  first_start?: StatefulFirstStart;
-  command?: RuntimeCommand;
-  environment_vars?: Record<string, string>;
-  ports?: string[];
-  startup?: StartupPolicy;
+  first_start?: StatefulStart;
+  start?: StatefulStart;
 }
 
 export interface Match {
   hostname?: string;
 }
 
-export interface StatefulFirstStart {
+export interface StatefulStart {
   command?: RuntimeCommand;
+  environment_vars?: Record<string, string>;
   delay: number;
 }
 

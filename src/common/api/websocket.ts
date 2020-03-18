@@ -1,5 +1,6 @@
 import { ApiResult, makeUrl } from "./request";
 import { Settings } from "./settings";
+import WebSocket from "isomorphic-ws";
 
 export interface SocketConnectParams<T> {
   target: string;
@@ -21,7 +22,7 @@ export async function connectToSocket<T>({
       `${makeUrl(settings, true)}${target}?token=${token}`,
     );
     if (onMessage) {
-      ws.onmessage = e => {
+      ws.onmessage = (e: MessageEvent) => {
         try {
           const payload: T = noJsonDecode ? e.data : JSON.parse(e.data);
           onMessage(payload);
