@@ -1,6 +1,6 @@
 import { ApiResult, makeUrl } from "./request";
 import { Settings } from "./settings";
-import WebSocket from "isomorphic-ws";
+import WS from "isomorphic-ws";
 
 export interface SocketConnectParams<T> {
   target: string;
@@ -18,11 +18,9 @@ export async function connectToSocket<T>({
   noJsonDecode,
 }: SocketConnectParams<T>): Promise<ApiResult<WebSocket>> {
   try {
-    const ws = new WebSocket(
-      `${makeUrl(settings, true)}${target}?token=${token}`,
-    );
+    const ws = new WS(`${makeUrl(settings, true)}${target}?token=${token}`);
     if (onMessage) {
-      ws.onmessage = e => {
+      ws.onmessage = (e: MessageEvent) => {
         try {
           const payload: T = noJsonDecode
             ? e.data
@@ -34,7 +32,7 @@ export async function connectToSocket<T>({
         }
       };
     }
-    return { ok: true, value: ws };
+    return { ok: true, value: ws as WebSocket };
   } catch (e) {
     return {
       ok: false,

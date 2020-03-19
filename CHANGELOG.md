@@ -5,9 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v1.7.44] - 2020-03-18
+
 ### Fixed
 
-- Added type definitions for ws
+- Fixed type definitions for websocket requests
 
 ## [v1.7.43] - 2020-03-18
 
