@@ -22,9 +22,11 @@ export async function connectToSocket<T>({
       `${makeUrl(settings, true)}${target}?token=${token}`,
     );
     if (onMessage) {
-      ws.onmessage = (e: MessageEvent) => {
+      ws.onmessage = e => {
         try {
-          const payload: T = noJsonDecode ? e.data : JSON.parse(e.data);
+          const payload: T = noJsonDecode
+            ? e.data
+            : JSON.parse(e.data as string);
           onMessage(payload);
         } catch (e) {
           // tslint:disable-next-line:no-console
