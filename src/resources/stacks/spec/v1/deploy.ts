@@ -32,7 +32,7 @@ export interface Match {
 export interface StatefulStart {
   command?: RuntimeCommand;
   environment_vars?: Record<string, string>;
-  delay: number;
+  delay?: number;
 }
 
 export interface ShutdownPolicy {
@@ -41,7 +41,7 @@ export interface ShutdownPolicy {
 }
 
 export interface StartupPolicy {
-  delay: number;
+  delay?: number;
 }
 
 export interface UpdatePolicy {
