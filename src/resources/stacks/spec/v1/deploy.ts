@@ -22,7 +22,7 @@ export interface Stateful {
 export interface StatefulInstance {
   match: Match;
   first_start?: StatefulStart;
-  start?: StatefulStart;
+  default_start?: StatefulStart;
   auto_start?: StatefulStart;
 }
 
