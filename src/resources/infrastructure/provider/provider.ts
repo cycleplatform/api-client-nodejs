@@ -13,12 +13,7 @@ export interface Provider extends Resource<ProviderMetas> {
   features: string[];
 }
 
-export type ProviderIdentifier =
-  | "packet"
-  | "vultr"
-  | "digital-ocean"
-  | "aws"
-  | "azure";
+export type ProviderIdentifier = "packet" | "vultr" | "aws";
 
 export interface RequiredField {
   caption: string;
