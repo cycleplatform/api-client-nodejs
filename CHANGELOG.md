@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v1.7.45] - 2020-03-21
+
+### Added
+
+- Added AWS definition to hub provider object
+
 ## [v1.7.44] - 2020-03-18
 
 ### Fixed
