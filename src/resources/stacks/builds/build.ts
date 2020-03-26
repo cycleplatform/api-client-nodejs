@@ -1,5 +1,10 @@
 import * as Request from "../../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../../common/api";
+import {
+  QueryParams,
+  links,
+  StandardParams,
+  PostParams,
+} from "../../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -34,14 +39,18 @@ export interface Build extends Resource<BuildMetas> {
   stack_id: ResourceId;
   hub_id: ResourceId;
   source: Source;
-  label: string | null;
-  version: string | null;
+  about: About;
+  instructions: Instructions;
   events: StandardEvents;
   state: State<BuildState>;
 }
 
+export interface About {
+  version: string;
+  description: string;
+}
+
 export interface Source {
-  hook_id: ResourceId | null;
   repo: RepoVersion | null;
   spec: Spec;
 }
@@ -64,6 +73,15 @@ export interface GitCommit {
   added: string[];
   modified: string[];
   removed: string[];
+}
+
+export interface Instructions {
+  git?: GitInstructions;
+}
+
+export interface GitInstructions {
+  commit: string | null;
+  tag: string | null;
 }
 
 export interface BuildMetas {
@@ -96,5 +114,24 @@ export async function getSingle(
       .stacks()
       .builds(params.stackId)
       .single(params.id),
+  });
+}
+
+export interface CreateParams {
+  instructions?: Instructions;
+  about?: About;
+}
+
+export async function create(
+  params: PostParams<CreateParams> & {
+    stackId: ResourceId;
+  },
+) {
+  return Request.postRequest<Single>({
+    ...params,
+    target: links
+      .stacks()
+      .builds(params.stackId)
+      .collection(),
   });
 }

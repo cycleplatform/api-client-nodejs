@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v1.8.1] - 2020-03-26
+
+### Added
+
+- Updated stack build struct to match platform
+- Added stack build create call for new workflow
+- Added stack build import task for doing a build
+
+### Changed
+
+- Removed stack build task in favor of above
+
 ## [v1.8.0] - 2020-03-25
 
 ### Changed
