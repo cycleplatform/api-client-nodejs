@@ -38,7 +38,7 @@ export type BuildsQuery = QueryParams<string, keyof BuildMetas>;
 export interface Build extends Resource<BuildMetas> {
   stack_id: ResourceId;
   hub_id: ResourceId;
-  source: Source;
+  spec: Spec;
   about: About;
   instructions: Instructions;
   events: StandardEvents;
@@ -48,6 +48,7 @@ export interface Build extends Resource<BuildMetas> {
 export interface About {
   version: string;
   description: string;
+  git_commit?: GitCommit;
 }
 
 export interface Source {

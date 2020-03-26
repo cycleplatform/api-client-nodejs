@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Adjusted stack build: removed `source` field and added `spec` field, moved git commit info into `about` field
+
 ## [v1.8.1] - 2020-03-26
 
 ### Added
