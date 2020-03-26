@@ -81,7 +81,6 @@ export type Events<T extends string = "created"> = StandardEvents &
 export interface State<T extends string = ""> {
   current: T;
   changed: Time;
-  job: JobInfo;
   error?: ResourceError;
 }
 
@@ -92,13 +91,4 @@ export interface ResourceError {
   message: string;
   time: Time;
   block: boolean;
-}
-
-/**
- * Information about a job attached to a resource
- */
-export interface JobInfo {
-  id: string;
-  queued: Time;
-  queue: string;
 }

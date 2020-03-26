@@ -88,3 +88,18 @@ export async function getSingle(
     target: links.jobs().single(params.id),
   });
 }
+
+export async function getLatest(
+  params: StandardParams & {
+    lookupId: ResourceId;
+  },
+) {
+  return Request.getRequest<Single>({
+    ...params,
+    query: {
+      ...params.query,
+      ["task-object-id"]: params.lookupId,
+    } as any,
+    target: links.jobs().latest(),
+  });
+}

@@ -205,6 +205,7 @@ export const links = {
   jobs: () => ({
     collection: () => `/jobs`,
     single: (id: ResourceId) => `/jobs/${id}`,
+    latest: () => `/jobs/latest`,
   }),
 
   sdn: () => ({

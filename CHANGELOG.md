@@ -5,7 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [v1.7.45] - 2020-03-21
+## [v1.8.0] - 2020-03-25
+
+### Changed
+
+- Removed job block from state
+
+### Added
+
+- Added job lookup call
+
+## [v1.7.49] - 2020-03-21
 
 ### Added
 
