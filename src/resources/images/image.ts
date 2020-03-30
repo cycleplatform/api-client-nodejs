@@ -1,5 +1,10 @@
 import * as Request from "../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../common/api";
+import {
+  QueryParams,
+  links,
+  StandardParams,
+  PostParams,
+} from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -67,6 +72,10 @@ export interface ImageIncludes {
   stacks: Record<ResourceId, Stack>;
 }
 
+/**
+ * Fetch a list of images
+ * @capability images-view
+ */
 export async function getCollection(params: StandardParams<ImageQuery>) {
   return Request.getRequest<Collection>({
     ...params,
@@ -74,6 +83,10 @@ export async function getCollection(params: StandardParams<ImageQuery>) {
   });
 }
 
+/**
+ * Fetch a single image
+ * @capability images-view
+ */
 export async function getSingle(
   params: StandardParams<ImageQuery> & {
     id: ResourceId;
@@ -85,10 +98,39 @@ export async function getSingle(
   });
 }
 
+export interface CreateParams {
+  source: ImageSource;
+}
+
+/**
+ * Creates an image object. This DOES NOT import it, you'll need to call
+ * importImage() with the id of this to be able to use it.
+ * @param params standard params, and image source value
+ * @capability images-import
+ */
+export async function create(
+  params: StandardParams<ImageQuery> & PostParams<CreateParams>,
+) {
+  return Request.postRequest<Single>({
+    ...params,
+    target: links.images().collection(),
+  });
+}
+
+/**
+ * Parameters for updating an image
+ */
 export interface UpdateParams {
+  /** The new name for the image */
   name: string;
 }
 
+/**
+ * Update basic image properties
+ * @param params.id - Image ID
+ * @param params.value.name - The name we want to set for this image
+ * @capability images-update
+ */
 export async function update(
   params: StandardParams<ImageQuery> & {
     id: ResourceId;

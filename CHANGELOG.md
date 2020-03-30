@@ -5,9 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- New image call: `create()`
+- New image call: `importImage()`
+
 ### Changed
 
 - Adjusted stack build: removed `source` field and added `spec` field, moved git commit info into `about` field
+- Images now require two steps to import - Create, then import. This puts it in line with all other processes
+- Capability: `images-build` changed to `images-import`
 
 ## [v1.8.1] - 2020-03-26
 

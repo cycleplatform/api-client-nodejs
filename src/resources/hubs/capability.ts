@@ -10,6 +10,7 @@ export type Capability =
   | "hubs-members-manage"
   | "hubs-members-view"
   | "hubs-notifications-listen"
+
   // billing
   | "billing-methods-manage"
   | "billing-invoices-view"
@@ -17,6 +18,7 @@ export type Capability =
   | "billing-orders-manage"
   | "billing-services-view"
   | "billing-credits-view"
+
   // environments
   | "environments-create"
   | "environments-delete"
@@ -26,6 +28,7 @@ export type Capability =
   | "environments-services-manage"
   | "environments-vpn"
   | "environments-vpn-manage"
+
   // containers
   | "containers-deploy"
   | "containers-view"
@@ -37,6 +40,7 @@ export type Capability =
   | "containers-volumes-manage"
   | "containers-volumes-view"
   | "containers-instances-migrate"
+
   // stacks
   | "stacks-create"
   | "stacks-update"
@@ -44,15 +48,19 @@ export type Capability =
   | "stacks-view"
   | "stacks-builds-manage"
   | "stacks-hooks-manage"
+
   // images
   | "images-view"
-  | "images-build"
+  | "images-import"
   | "images-update"
   | "images-delete"
+
   // jobs
   | "jobs-view"
+
   // api keys
   | "api-keys-manage"
+
   // infrastructure
   | "servers-provision"
   | "servers-view"
@@ -60,11 +68,14 @@ export type Capability =
   | "servers-state"
   | "servers-decommission"
   | "ips-manage"
+
   // usage
   | "usage-view"
+
   // dns
   | "dns-view"
   | "dns-manage"
+
   // sdn
   | "sdn-networks-view"
   | "sdn-networks-manage";

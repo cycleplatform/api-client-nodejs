@@ -1,22 +1,24 @@
 import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
 import { ResourceId, CreatedTask, Task } from "../../common/structs";
-import { ImageSource } from "./source";
 
 export type ImageAction = "import" | "prune";
 
-export interface BuildParams {
-  source: ImageSource;
+export async function importImage(params: StandardParams) {
+  return task({
+    ...params,
+    value: {
+      action: "import",
+    },
+  });
 }
 
-export async function build(
-  params: StandardParams & {
-    value: BuildParams;
-  },
-) {
-  return Request.postRequest<CreatedTask<"import">>({
+export async function pruneUnused(params: StandardParams) {
+  return task({
     ...params,
-    target: links.images().build(),
+    value: {
+      action: "prune",
+    },
   });
 }
 
@@ -31,14 +33,6 @@ export async function remove(
   });
 }
 
-export async function pruneUnused(params: StandardParams) {
-  return task({
-    ...params,
-    value: {
-      action: "prune",
-    },
-  });
-}
 export async function task<K = {}>(
   params: StandardParams & {
     value: Task<ImageAction, K>;
