@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v1.8.2] - 2020-03-30
+
 ### Added
 
 - New image call: `create()`
