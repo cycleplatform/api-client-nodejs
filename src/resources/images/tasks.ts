@@ -2,10 +2,15 @@ import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
 import { ResourceId, CreatedTask, Task } from "../../common/structs";
 
-export type ImageAction = "import" | "prune";
+export type CollectionTaskAction = "prune";
+export type ImageTaskAction = "import";
 
-export async function importImage(params: StandardParams) {
-  return task({
+export async function importImage(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
+  return imageTask({
     ...params,
     value: {
       action: "import",
@@ -14,7 +19,7 @@ export async function importImage(params: StandardParams) {
 }
 
 export async function pruneUnused(params: StandardParams) {
-  return task({
+  return collectionTask({
     ...params,
     value: {
       action: "prune",
@@ -33,13 +38,25 @@ export async function remove(
   });
 }
 
-export async function task<K = {}>(
+export async function collectionTask<K = {}>(
   params: StandardParams & {
-    value: Task<ImageAction, K>;
+    value: Task<CollectionTaskAction, K>;
   },
 ) {
-  return Request.postRequest<CreatedTask<ImageAction, K>>({
+  return Request.postRequest<CreatedTask<CollectionTaskAction, K>>({
     ...params,
-    target: links.images().tasks(),
+    target: links.images().collectionTasks(),
+  });
+}
+
+export async function imageTask<K = {}>(
+  params: StandardParams & {
+    id: ResourceId;
+    value: Task<ImageTaskAction, K>;
+  },
+) {
+  return Request.postRequest<CreatedTask<ImageTaskAction, K>>({
+    ...params,
+    target: links.images().imageTasks(params.id),
   });
 }

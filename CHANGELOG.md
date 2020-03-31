@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added `image.created` as a valid hub notification
+
+### Fixed
+
+- Fixed image tasks to separate into collection tasks and individual tasks
+
+### Changed
+
+- `importBuild()` -> `generate()`
+
 ## [v1.8.2] - 2020-03-30
 
 ### Added

@@ -101,6 +101,7 @@ export type HubTopic =
   | "hub.membership.updated"
 
   // images
+  | "image.created"
   | "image.state.changed"
   | "image.updated"
   | "image.error"

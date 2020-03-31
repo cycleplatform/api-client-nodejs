@@ -2,7 +2,7 @@ import * as Request from "../../../../common/api/request";
 import { links, StandardParams } from "../../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../../common/structs";
 
-export type BuildAction = "deploy" | "delete" | "import";
+export type BuildAction = "deploy" | "delete" | "generate";
 
 export interface DeployParams {
   environment_id: ResourceId;
@@ -23,7 +23,7 @@ export async function deployBuild(
   });
 }
 
-export async function importBuild(
+export async function generate(
   params: StandardParams & {
     id: ResourceId;
     stackId: ResourceId;
@@ -31,7 +31,7 @@ export async function importBuild(
 ) {
   return task<DeployParams>({
     ...params,
-    value: { action: "import" },
+    value: { action: "generate" },
   });
 }
 

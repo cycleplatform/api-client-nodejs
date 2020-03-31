@@ -11,7 +11,7 @@
   ],
   "publishConfig": {
     "registry": "http://npm-registry.internal.cycle.io:4873",
-    "access": "private"
+    "access": "restricted"
   },
   "scripts": {
     "start": "tsdx watch",
