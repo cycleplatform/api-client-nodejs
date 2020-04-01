@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fixed image tasks to separate into collection tasks and individual tasks
+- Hub delete return type has been corrected to be a task object
 
 ### Changed
 

@@ -7,6 +7,7 @@ import {
   Events,
   State,
   Time,
+  CreatedTask,
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
@@ -103,7 +104,7 @@ export async function update(
 }
 
 export async function remove(params: StandardParams<HubQuery>) {
-  return Request.deleteRequest<Single>({
+  return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.hubs().single(),
   });
