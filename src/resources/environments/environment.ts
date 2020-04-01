@@ -14,7 +14,7 @@ import {
   Cluster,
 } from "../../common/structs";
 import { ContainerState, Instances, Service } from "../containers";
-import { IPNet, Kind, IPState, FloatingIP } from "../infrastructure/ips";
+import { IPNet, Kind, IPState } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
 import { Stack } from "../stacks";
 
@@ -62,7 +62,6 @@ export interface Legacy {
 
 export interface Features {
   legacy_networking: boolean;
-  floating_ips: FloatingIP[];
 }
 
 export interface StackSummary {
