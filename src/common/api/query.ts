@@ -31,7 +31,9 @@ export interface QueryParams<
   /**
    * Filter by specific params, i.e. {name: 'Website'}
    */
-  filter?: Partial<Record<F | "search", string | string[] | object>>;
+  filter?: Partial<
+    Record<F | "search", string | string[] | Record<string, any>>
+  >;
 
   /**
    * Pagination. Specify number of resources for the 'page' and which
