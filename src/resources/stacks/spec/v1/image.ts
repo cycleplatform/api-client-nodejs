@@ -1,4 +1,4 @@
-export interface Image {
+export interface SpecImage {
   name: string;
   source: ImageSource;
 }
