@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hub delete return type has been corrected to be a task object
 - Removed `floating_ips` from environment as they no longer exist
 - Updated container desired state to support empty
+- Query filter type definition now supports nested object
 
 ### Changed
 
