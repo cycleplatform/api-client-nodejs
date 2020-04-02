@@ -14,10 +14,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed image tasks to separate into collection tasks and individual tasks
 - Hub delete return type has been corrected to be a task object
 - Removed `floating_ips` from environment as they no longer exist
+- Updated container desired state to support empty
 
 ### Changed
 
 - `importBuild()` -> `generate()`
+- Docker Hub image source swaps password for token
 
 ## [v1.8.2] - 2020-03-30
 

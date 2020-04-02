@@ -10,16 +10,25 @@ export interface ImageSource {
   repo?: RepoSource;
 }
 
+/** Describes an image imported from the official Docker Hub registry */
 export interface DockerHubSource {
+  /** The image and tag, formatted like `image:tag` */
   target: string;
+  /** Username for Docker Hub */
   username?: string;
+  /** Auth token for Docker Hub. Cycle will remember this for the target specified */
+  token?: string;
+}
+
+/** Describes an image imported from a private registry */
+export interface DockerRegistrySource extends DockerHubSource {
+  /** URL to the private registry */
+  url: string;
+  /** Password to the private registry */
   password?: string;
 }
 
-export interface DockerRegistrySource extends DockerHubSource {
-  url: string;
-}
-
+/** Describes an image to be built off local code (inside a repo) */
 export interface LocalSource {
   /** Path the Dockerfile is located in */
   dir?: string;

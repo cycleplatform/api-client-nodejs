@@ -18,7 +18,7 @@ import {
 } from "../../common/structs";
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
-import { ImageSource } from "./source";
+import { ImageSource } from "../stacks/spec/v1/image";
 import { ContainerIdentifier } from "../../common/structs";
 
 export type Collection = CollectionDoc<Image, ImageIncludes>;

@@ -55,7 +55,7 @@ export interface Container extends Resource<ContainerMetas> {
   role: ContainerRole | null;
   stateful: boolean;
   state: State<ContainerState> & {
-    desired: ContainerState;
+    desired: ContainerState | "";
   };
   events: Events<ContainerEvent>;
 }
@@ -98,7 +98,7 @@ export interface ImageSummary {
 export interface EnvironmentSummary {
   id: ResourceId;
   cluster: string;
-  container_subnet: string;
+  container_subnet: string | null;
   ipv6: IPNet | null;
   legacy: Legacy | null;
 }
