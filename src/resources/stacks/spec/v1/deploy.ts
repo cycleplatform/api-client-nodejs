@@ -12,6 +12,7 @@ export interface Deploy {
   startup?: StartupPolicy;
   restart?: RestartPolicy;
   health_check?: HealthCheck;
+  telemetry?: Telemetry;
   update?: UpdatePolicy;
 }
 
@@ -80,6 +81,12 @@ export interface HealthCheck {
   interval: number;
   timeout: number;
   restart: boolean;
+}
+
+export interface Telemetry {
+  retention: number;
+  interval: number;
+  disable: boolean;
 }
 
 export enum RestartCondition {
