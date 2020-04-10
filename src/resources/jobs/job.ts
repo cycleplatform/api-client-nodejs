@@ -89,7 +89,7 @@ export async function getSingle(
   });
 }
 
-export async function getLatest(
+export async function lookup(
   params: StandardParams & {
     lookupId: ResourceId;
   },
