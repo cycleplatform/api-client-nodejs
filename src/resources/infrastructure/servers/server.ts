@@ -87,6 +87,8 @@ export interface ServerProvider {
   location: string;
   server: string;
   init_ips?: string[];
+  mac_addr?: string;
+  extra?: object;
 }
 
 export interface Constraints {

@@ -18,7 +18,7 @@ import { Container } from "../../containers";
 export type Collection = CollectionDoc<Record, RecordIncludes>;
 export type Single = SingleDoc<Record, RecordIncludes>;
 
-export type RecordState = "live" | "deleting" | "deleted";
+export type RecordState = "pending" | "live" | "deleting" | "deleted";
 export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {

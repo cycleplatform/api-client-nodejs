@@ -31,6 +31,18 @@ export interface SingleDoc<
 }
 
 /**
+ * A data point collection is functionally the same as a regular collection,
+ * except that it does not require each data point to have IDs
+ */
+export interface DataPointCollection<
+  T,
+  K extends Includes = {},
+  P extends Meta = {}
+> extends TopLevel<K, P> {
+  data: T[];
+}
+
+/**
  * A resource is a specific type of data.
  */
 export interface Resource<T extends Meta = {}> {

@@ -1,17 +1,12 @@
 import * as Request from "../../../common/api/request";
 import { links, StandardParams } from "../../../common/api";
-import {
-  Resource,
-  ResourceId,
-  CollectionDoc,
-  Time,
-} from "../../../common/structs";
+import { ResourceId, DataPointCollection, Time } from "../../../common/structs";
 import { LoadStats } from "./load";
 import { RAMStats } from "./ram";
 
-export type Collection = CollectionDoc<TelemetryPoint>;
+export type Collection = DataPointCollection<TelemetryPoint>;
 
-export interface TelemetryPoint extends Resource {
+export interface TelemetryPoint {
   time: Time;
   load: LoadStats;
   ram: RAMStats;

@@ -3,7 +3,7 @@ import { Time } from "../../common/structs";
 export interface Term {
   start: Time;
   end: Time;
-  renew?: TermLength;
+  renew: TermLength | null;
 }
 
 export interface Expiration {
