@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added `image.created` as a valid hub notification
+- Added `image.created` as a valid hub notification=
 
 ### Fixed
 
@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Updated container desired state to support empty
 - Query filter type definition now supports nested object
 - Fixed structure of provider server features, which was one level too high
+- Added missing `new` state to DNS Zones
 
 ### Changed
 

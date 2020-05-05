@@ -20,6 +20,7 @@ export type Collection = CollectionDoc<Zone, ZoneIncludes>;
 export type Single = SingleDoc<Zone, ZoneIncludes>;
 
 export type ZoneState =
+  | "new"
   | "pending"
   | "verifying"
   | "live"
