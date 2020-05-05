@@ -36,8 +36,6 @@ export interface Server extends Resource {
   low_resource: boolean;
   /** An array of Location IDs where this server type is available */
   location_ids: ResourceId[];
-  /** A list of features this particular server type has available */
-  features: ServerFeatures;
 }
 
 export interface ServerIncludes extends Includes {
@@ -54,18 +52,6 @@ export interface ServerProvider {
   locations: string[];
 }
 
-export interface ServerFeatures {
-  /** Features specific to AWS */
-  aws: AWSFeatures;
-}
-
-export interface AWSFeatures {
-  /** A VM type that can support a much higher networking throughput */
-  ena_support: boolean;
-  /** A VM type that can support a much higher storage throughput */
-  ebs_optimized: boolean;
-}
-
 /** Detailed breakdown of a provider server's specs */
 export interface ServerSpecs {
   cpus: CPU[];
@@ -76,7 +62,18 @@ export interface ServerSpecs {
 }
 
 export interface Features {
+  /** The type of raid supported, if any */
   raid: string | null;
+  /** Features specific to AWS */
+  aws?: AWSFeatures;
+}
+
+/** Features specific to AWS */
+export interface AWSFeatures {
+  /** A VM type that can support a much higher networking throughput */
+  ena_support: boolean;
+  /** A VM type that can support a much higher storage throughput */
+  ebs_optimized: boolean;
 }
 
 /** Details of a CPU on a provider server */

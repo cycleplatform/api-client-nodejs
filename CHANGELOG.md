@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed `floating_ips` from environment as they no longer exist
 - Updated container desired state to support empty
 - Query filter type definition now supports nested object
+- Fixed structure of provider server features, which was one level too high
 
 ### Changed
 
