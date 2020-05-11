@@ -7,7 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added `image.created` as a valid hub notification=
+- Added `image.created` as a valid hub notification
+- 'manual' as a valid container deployment type
 
 ### Fixed
 

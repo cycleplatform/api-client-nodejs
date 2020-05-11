@@ -95,14 +95,19 @@ export enum RestartCondition {
   RSTRC_FAILURE = "failure",
 }
 
-export enum DeploymentStrategy {
-  /** Cycle will try to balance based on resource usage of the servers that match the tags */
-  DS_RESOURCE_DENSITY = "resource-density",
-  /** Cycle will try to allocate in the best way to spread out the instances */
-  DS_HIGH_AVAILABILITY = "high-availability",
-  /** Just allocate ASAP to any available server */
-  DS_FIRST_AVAILABLE = "first-available",
-}
+/**
+ * The deployment strategy Cycle will use to decide wkhere to put container instances
+ *
+ * @param resource-density Cycle will try to balance based on resource usage of the servers that match the tags
+ * @param high-availability Cycle will try to allocate in the best way to spread out the instances
+ * @param first-available Cycle will allocate to any available server that matches the tags
+ * @param manual Cycle will not attempt to create or manage any instances - it will be up to the user how instances are distributed
+ */
+export type DeploymentStrategy =
+  | "resource-density"
+  | "high-availability"
+  | "first-available"
+  | "manual";
 
 export interface Notify {
   emails?: Emails;
