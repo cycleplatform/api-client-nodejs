@@ -31,6 +31,23 @@ export async function getCollection(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.containers().servers(params.containerId),
+    target: links
+      .containers()
+      .servers(params.containerId)
+      .list(),
+  });
+}
+
+export async function usable(
+  params: StandardParams & {
+    containerId: ResourceId;
+  },
+) {
+  return Request.getRequest<Collection>({
+    ...params,
+    target: links
+      .containers()
+      .servers(params.containerId)
+      .usable(),
   });
 }

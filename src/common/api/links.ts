@@ -65,7 +65,10 @@ export const links = {
     collection: () => `/containers`,
     single: (id: ResourceId) => `/containers/${id}`,
     tasks: (id: ResourceId) => `/containers/${id}/tasks`,
-    servers: (id: ResourceId) => `/containers/${id}/servers`,
+    servers: (id: ResourceId) => ({
+      list: () => `/containers/${id}/servers`,
+      usable: () => `/containers/${id}/servers/usable`,
+    }),
     events: (id: ResourceId) => `/containers/${id}/events`,
     summary: (id: ResourceId) => `/containers/${id}/summary`,
     compatibleImages: (id: ResourceId) => `/containers/${id}/compatible-images`,

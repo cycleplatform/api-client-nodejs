@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added `image.created` as a valid hub notification
 - 'manual' as a valid container deployment type
+- `Containers.Servers.usable()` call to get servers that this container COULD be deployed to
 
 ### Fixed
 
