@@ -102,12 +102,14 @@ export enum RestartCondition {
  * @param high-availability Cycle will try to allocate in the best way to spread out the instances
  * @param first-available Cycle will allocate to any available server that matches the tags
  * @param manual Cycle will not attempt to create or manage any instances - it will be up to the user how instances are distributed
+ * @param ephemeral [COMING SOON] Turn container execution into one off processes
  */
 export type DeploymentStrategy =
   | "resource-density"
   | "high-availability"
   | "first-available"
-  | "manual";
+  | "manual"
+  | "ephemeral";
 
 export interface Notify {
   emails?: Emails;

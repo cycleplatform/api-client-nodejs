@@ -1,5 +1,10 @@
 import * as Request from "../../../common/api/request";
-import { QueryParams, links, StandardParams } from "../../../common/api";
+import {
+  QueryParams,
+  links,
+  StandardParams,
+  PostParams,
+} from "../../../common/api";
 import { Server } from "../../infrastructure/servers";
 import {
   Locations,
@@ -17,6 +22,7 @@ import {
   Includes,
   OwnerInclude,
   Time,
+  CreatedTask,
 } from "../../../common/structs";
 import { IPNet } from "../../infrastructure/ips";
 import { Service } from "../services";
@@ -144,6 +150,40 @@ export async function getSingle(
   },
 ) {
   return Request.getRequest<Single>({
+    ...params,
+    target: links
+      .containers()
+      .instances()
+      .single(params.id, params.containerId),
+  });
+}
+
+export interface CreateParams {
+  server_id: ResourceId;
+  new_instances: number;
+}
+
+export async function create(
+  params: StandardParams<InstanceQuery> & {
+    containerId: ResourceId;
+  } & PostParams<CreateParams>,
+) {
+  return Request.postRequest<CreatedTask<any>>({
+    ...params,
+    target: links
+      .containers()
+      .instances()
+      .collection(params.containerId),
+  });
+}
+
+export async function remove(
+  params: StandardParams<InstanceQuery> & {
+    id: ResourceId;
+    containerId: ResourceId;
+  },
+) {
+  return Request.deleteRequest<CreatedTask<any>>({
     ...params,
     target: links
       .containers()
