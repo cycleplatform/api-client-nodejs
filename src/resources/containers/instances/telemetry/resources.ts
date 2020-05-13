@@ -79,19 +79,41 @@ export interface TelemetryStreamParams extends StandardParams {
   onMessage?: (v: ResourceSnapshot) => void;
 }
 
+export interface TelemetryAuthResponse {
+  data: {
+    token: string;
+    address: string;
+  };
+}
+
 export async function getInstanceResourceTelemetryStream(
   params: TelemetryStreamParams,
 ) {
-  const token =
-    typeof params.token === "string" ? params.token : params.token.token;
+  const target = links
+    .containers()
+    .instances()
+    .telemetry()
+    .resourcesStream(params.id, params.containerId);
+
+  const authResp = await getRequest<TelemetryAuthResponse>({
+    target,
+    hubId: params.hubId,
+    token: params.token,
+    settings: params.settings,
+  });
+
+  if (!authResp.ok) {
+    return authResp;
+  }
+
   return connectToSocket({
-    ...params,
-    token,
-    target: links
-      .containers()
-      .instances()
-      .telemetry()
-      .resourcesStream(params.id, params.containerId),
+    target: "",
+    token: authResp.value.data.token,
+    settings: {
+      url: `${authResp.value.data.address}`,
+      noVersion: true,
+    },
     onMessage: params.onMessage,
+    noJsonDecode: true,
   });
 }
