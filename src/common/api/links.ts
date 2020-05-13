@@ -85,6 +85,12 @@ export const links = {
         `/containers/${container}/instances/${id}/volumes`,
       tasks: (id: ResourceId, container: ResourceId) =>
         `/containers/${container}/instances/${id}/tasks`,
+      telemetry: () => ({
+        resourcesReport: (id: ResourceId, container: ResourceId) =>
+          `/containers/${container}/instances/${id}/telemetry/resources/report`,
+        resourcesStream: (id: ResourceId, container: ResourceId) =>
+          `/containers/${container}/instances/${id}/telemetry/resources/stream`,
+      }),
     }),
     volumes: () => ({
       accounts: (container: ResourceId) =>

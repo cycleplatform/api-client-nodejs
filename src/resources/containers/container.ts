@@ -54,6 +54,8 @@ export interface Container extends Resource<ContainerMetas> {
   volumes?: VolumeSummary[];
   role: ContainerRole | null;
   stateful: boolean;
+  requirements?: string[];
+  annotations: Record<string, any>;
   state: State<ContainerState> & {
     desired: ContainerState | "";
   };
