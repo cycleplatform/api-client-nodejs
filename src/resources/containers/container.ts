@@ -140,6 +140,7 @@ export interface CreateParams {
   image_id: ResourceId;
   stateful: boolean;
   config: Config;
+  annotations?: Record<string, any>;
   volumes: Volumes.Volume[];
 }
 
@@ -155,7 +156,7 @@ export async function create(
 export async function update(
   params: StandardParams<ContainerQuery> & {
     id: ResourceId;
-    value: Pick<CreateParams, "name">;
+    value: Pick<CreateParams, "name" | "annotations">;
   },
 ) {
   return Request.patchRequest<Single>({
