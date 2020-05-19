@@ -114,6 +114,5 @@ export async function getInstanceResourceTelemetryStream(
       noVersion: true,
     },
     onMessage: params.onMessage,
-    noJsonDecode: true,
   });
 }

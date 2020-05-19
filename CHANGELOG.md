@@ -22,6 +22,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Query filter type definition now supports nested object
 - Fixed structure of provider server features, which was one level too high
 - Added missing `new` state to DNS Zones
+- Websocket onMessage handlers will no longer throw a `unable to decode payload` error if the user function throws
 
 ### Changed
 
