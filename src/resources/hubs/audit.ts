@@ -36,6 +36,6 @@ export interface Component {
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<CollectionDoc<AuditLog>>({
     ...params,
-    target: links.hubs().audit().collection(),
+    target: links.hubs().audit(),
   });
 }
