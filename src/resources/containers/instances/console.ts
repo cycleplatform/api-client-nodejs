@@ -10,7 +10,7 @@ export interface ConsolePipelineParams extends StandardParams {
   onMessage?: (v: string) => void;
 }
 
-export interface ConsolePipelineResponse {
+export interface ConsoleAuthResponse {
   data: {
     token: string;
     address: string;
@@ -23,22 +23,22 @@ export async function connectToConsole(params: ConsolePipelineParams) {
     .instances()
     .console(params.id, params.containerId);
 
-  const secretResp = await Request.getRequest<ConsolePipelineResponse>({
+  const authResp = await Request.getRequest<ConsoleAuthResponse>({
     target,
     hubId: params.hubId,
     token: params.token,
     settings: params.settings,
   });
 
-  if (!secretResp.ok) {
-    return secretResp;
+  if (!authResp.ok) {
+    return authResp;
   }
 
   return connectToSocket({
     target: "",
-    token: secretResp.value.data.token,
+    token: authResp.value.data.token,
     settings: {
-      url: `${secretResp.value.data.address}`,
+      url: `${authResp.value.data.address}`,
       noVersion: true,
     },
     onMessage: params.onMessage,

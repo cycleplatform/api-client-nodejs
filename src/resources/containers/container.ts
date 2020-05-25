@@ -54,6 +54,8 @@ export interface Container extends Resource<ContainerMetas> {
   volumes?: VolumeSummary[];
   role: ContainerRole | null;
   stateful: boolean;
+  requirements?: string[];
+  annotations: Record<string, any>;
   state: State<ContainerState> & {
     desired: ContainerState | "";
   };
@@ -138,6 +140,7 @@ export interface CreateParams {
   image_id: ResourceId;
   stateful: boolean;
   config: Config;
+  annotations?: Record<string, any>;
   volumes: Volumes.Volume[];
 }
 
@@ -153,7 +156,7 @@ export async function create(
 export async function update(
   params: StandardParams<ContainerQuery> & {
     id: ResourceId;
-    value: Pick<CreateParams, "name">;
+    value: Pick<CreateParams, "name" | "annotations">;
   },
 ) {
   return Request.patchRequest<Single>({

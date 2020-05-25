@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - `manual` and `ephemeral` are now valid container deployment type
 - `Containers.Servers.usable()` call to get servers that this container COULD be deployed to
 - `Containers.Instances.create()` and `Containers.Instances.remove()` for containers with deployment strategy of `manual`
+- Added instance resource telemetry structures and calls
 
 ### Fixed
 
@@ -21,6 +22,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Query filter type definition now supports nested object
 - Fixed structure of provider server features, which was one level too high
 - Added missing `new` state to DNS Zones
+- Websocket onMessage handlers will no longer throw a `unable to decode payload` error if the user function throws
 
 ### Changed
 

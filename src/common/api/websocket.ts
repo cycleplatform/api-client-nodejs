@@ -17,22 +17,9 @@ export async function connectToSocket<T>({
   onMessage,
   noJsonDecode,
 }: SocketConnectParams<T>): Promise<ApiResult<WebSocket>> {
+  let ws;
   try {
-    const ws = new WS(`${makeUrl(settings, true)}${target}?token=${token}`);
-    if (onMessage) {
-      ws.onmessage = (e: MessageEvent) => {
-        try {
-          const payload: T = noJsonDecode
-            ? e.data
-            : JSON.parse(e.data as string);
-          onMessage(payload);
-        } catch (e) {
-          // tslint:disable-next-line:no-console
-          console.warn("Unable to decode payload");
-        }
-      };
-    }
-    return { ok: true, value: ws as WebSocket };
+    ws = new WS(`${makeUrl(settings, true)}${target}?token=${token}`);
   } catch (e) {
     return {
       ok: false,
@@ -42,4 +29,13 @@ export async function connectToSocket<T>({
       },
     };
   }
+
+  if (onMessage) {
+    ws.onmessage = (e: MessageEvent) => {
+      const payload: T = noJsonDecode ? e.data : JSON.parse(e.data as string);
+      onMessage(payload);
+    };
+  }
+
+  return { ok: true, value: ws as WebSocket };
 }

@@ -83,6 +83,7 @@ export interface Instructions {
 export interface GitInstructions {
   commit: string | null;
   tag: string | null;
+  branch: string | null;
 }
 
 export interface BuildMetas {
@@ -96,10 +97,7 @@ export async function getCollection(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .stacks()
-      .builds(params.stackId)
-      .collection(),
+    target: links.stacks().builds(params.stackId).collection(),
   });
 }
 
@@ -111,10 +109,7 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .stacks()
-      .builds(params.stackId)
-      .single(params.id),
+    target: links.stacks().builds(params.stackId).single(params.id),
   });
 }
 
@@ -130,9 +125,6 @@ export async function create(
 ) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .stacks()
-      .builds(params.stackId)
-      .collection(),
+    target: links.stacks().builds(params.stackId).collection(),
   });
 }
