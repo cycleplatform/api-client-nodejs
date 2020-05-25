@@ -173,7 +173,7 @@ export const links = {
       single: (id: ResourceId) => `/hubs/current/api-keys/${id}`,
     }),
     audit: () => ({
-      collection: () => `/hubs/current/audit/entries`,
+      collection: () => `/audit/entries`,
     }),
   }),
 
