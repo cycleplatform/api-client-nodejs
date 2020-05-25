@@ -1,9 +1,13 @@
 import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
-import { CollectionDoc, ResourceId, Events } from "../../common/structs";
+import {
+  CollectionDoc,
+  ResourceId,
+  Events,
+  OwnerScope,
+} from "../../common/structs";
 import { Token } from "../../auth";
 import { ApiKeys } from "../../resources/hubs";
-import { PublicAccount } from "resources/accounts";
 
 export interface AuditLog {
   id: ResourceId;
@@ -14,7 +18,7 @@ export interface AuditLog {
   component: Component;
   events: Events;
   message: string;
-  user: PublicAccount;
+  user: OwnerScope;
   code: string;
 }
 
@@ -32,9 +36,6 @@ export interface Component {
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<CollectionDoc<AuditLog>>({
     ...params,
-    target: links
-      .hubs()
-      .audit()
-      .collection(),
+    target: links.hubs().audit().collection(),
   });
 }
