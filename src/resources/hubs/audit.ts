@@ -1,13 +1,16 @@
 import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
+import { links, StandardParams, QueryParams } from "../../common/api";
 import {
   CollectionDoc,
   ResourceId,
   Events,
   OwnerScope,
+  OwnerInclude,
 } from "../../common/structs";
 import { Token } from "../../auth";
 import { ApiKeys } from "../../resources/hubs";
+
+export type AuditLogQuery = QueryParams<keyof AuditLogIncludes>;
 
 export interface AuditLog {
   id: ResourceId;
@@ -33,7 +36,11 @@ export interface Component {
   type: string;
 }
 
-export async function getCollection(params: StandardParams) {
+export interface AuditLogIncludes {
+  owners: OwnerInclude;
+}
+
+export async function getCollection(params: StandardParams<AuditLogQuery>) {
   return Request.getRequest<CollectionDoc<AuditLog>>({
     ...params,
     target: links.hubs().audit().collection(),
