@@ -172,6 +172,9 @@ export const links = {
       collection: () => `/hubs/current/api-keys`,
       single: (id: ResourceId) => `/hubs/current/api-keys/${id}`,
     }),
+    audit: () => ({
+      collection: () => `/audit/entries`,
+    }),
   }),
 
   images: () => ({
