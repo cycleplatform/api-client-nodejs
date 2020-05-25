@@ -17,13 +17,15 @@ export interface AuditLog {
   hub_id: ResourceId;
   environment_id: ResourceId;
   session: Session;
-  type: string;
+  type: AuditLogTypes;
   component: Component;
   events: Events;
   message: string;
   user: OwnerScope;
   code: string;
 }
+
+export type AuditLogTypes = "success" | "info" | "warning" | "error";
 
 export interface Session {
   url: string;
@@ -33,6 +35,7 @@ export interface Session {
 }
 
 export interface Component {
+  id: string;
   type: string;
 }
 
