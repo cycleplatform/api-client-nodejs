@@ -47,6 +47,6 @@ export interface AuditLogIncludes {
 export async function getCollection(params: StandardParams<AuditLogQuery>) {
   return Request.getRequest<CollectionDoc<AuditLog>>({
     ...params,
-    target: links.hubs().audit().collection(),
+    target: links.hubs().audit(),
   });
 }

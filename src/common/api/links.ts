@@ -159,6 +159,8 @@ export const links = {
     collection: () => `/hubs`,
     single: () => `/hubs/current`,
     tasks: () => `/hubs/current/tasks`,
+    activity: () => `/hubs/current/activity`,
+    audit: () => `/audit/entries`,
     capabilities: () => `/hubs/capabilities`,
     invites: () => ({
       collection: () => `/hubs/current/invites`,
@@ -171,9 +173,6 @@ export const links = {
     keys: () => ({
       collection: () => `/hubs/current/api-keys`,
       single: (id: ResourceId) => `/hubs/current/api-keys/${id}`,
-    }),
-    audit: () => ({
-      collection: () => `/audit/entries`,
     }),
   }),
 
