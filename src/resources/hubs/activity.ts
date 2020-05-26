@@ -14,11 +14,13 @@ import {
 import { Environment } from "../environments";
 import { Container } from "../containers";
 import { Instance } from "../containers/instances";
+import { Token } from "auth";
 
 export type Collection = CollectionDoc<Activity, ActivityQuery>;
 export type ActivityQuery = QueryParams<keyof ActivityIncludes>;
 
 export interface ActivityIncludes {
+  verbosity?: number;
   environments?: Record<ResourceId, Environment>;
   containers?: Record<ResourceId, Container>;
   instances?: Record<ResourceId, Instance>;
@@ -51,8 +53,12 @@ type EventType =
 export interface Activity extends Resource {
   hub_id: ResourceId;
   user: OwnerScope;
+  verbosity: number;
   scope: Scope;
+  session: Session;
   changes: Change[];
+  component: Component | null;
+  status: ActivityStatusTypes;
   event: EventType;
   time: Time;
 }
@@ -66,6 +72,13 @@ export interface Scope {
   dns?: DNSScope;
 }
 
+export interface Session {
+  url: string;
+  ip: string;
+  token: Token;
+  api_key: ResourceId;
+}
+
 export interface DNSScope {
   zone_id?: ResourceId;
   record_id?: ResourceId;
@@ -76,6 +89,18 @@ export interface Change {
   before?: Detail;
   after?: Detail;
 }
+
+export interface Component {
+  id: string;
+  type: string;
+}
+
+export type ActivityStatusTypes =
+  | "info"
+  | "warn"
+  | "pending"
+  | "success"
+  | "error";
 
 export interface Detail {
   id?: ResourceId;
