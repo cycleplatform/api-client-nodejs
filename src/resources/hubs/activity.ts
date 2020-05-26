@@ -15,7 +15,7 @@ import { Environment } from "../environments";
 import { Container } from "../containers";
 import { Instance } from "../containers/instances";
 
-export type Collection = CollectionDoc<Activity, ActivityQuery>;
+export type Collection = CollectionDoc<Activity, ActivityIncludes>;
 export type ActivityQuery = QueryParams<keyof ActivityIncludes>;
 
 export interface ActivityIncludes {
