@@ -160,7 +160,6 @@ export const links = {
     single: () => `/hubs/current`,
     tasks: () => `/hubs/current/tasks`,
     activity: () => `/hubs/current/activity`,
-    audit: () => `/audit/entries`,
     capabilities: () => `/hubs/capabilities`,
     invites: () => ({
       collection: () => `/hubs/current/invites`,
