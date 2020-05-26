@@ -14,7 +14,6 @@ import {
 import { Environment } from "../environments";
 import { Container } from "../containers";
 import { Instance } from "../containers/instances";
-import { Token } from "auth";
 
 export type Collection = CollectionDoc<Activity, ActivityQuery>;
 export type ActivityQuery = QueryParams<keyof ActivityIncludes>;
@@ -58,7 +57,7 @@ export interface Activity extends Resource {
   session: Session;
   changes: Change[];
   component: Component | null;
-  status: ActivityStatusTypes;
+  status: ActivityStatusType;
   event: EventType;
   time: Time;
 }
@@ -75,7 +74,6 @@ export interface Scope {
 export interface Session {
   url: string;
   ip: string;
-  token: Token;
   api_key: ResourceId;
 }
 
@@ -95,7 +93,7 @@ export interface Component {
   type: string;
 }
 
-export type ActivityStatusTypes =
+export type ActivityStatusType =
   | "info"
   | "warn"
   | "pending"
