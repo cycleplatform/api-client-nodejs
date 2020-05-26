@@ -5,9 +5,24 @@ import {
   Time,
   CollectionDoc,
 } from "../../common/structs";
-import { StandardParams, getRequest, links } from "../../common/api";
+import {
+  StandardParams,
+  getRequest,
+  links,
+  QueryParams,
+} from "../../common/api";
+import { Environment } from "../environments";
+import { Container } from "../containers";
+import { Instance } from "../containers/instances";
 
-export type Collection = CollectionDoc<Activity>;
+export type Collection = CollectionDoc<Activity, ActivityQuery>;
+export type ActivityQuery = QueryParams<keyof ActivityIncludes>;
+
+export interface ActivityIncludes {
+  environments?: Record<ResourceId, Environment>;
+  containers?: Record<ResourceId, Container>;
+  instances?: Record<ResourceId, Instance>;
+}
 
 type EventType =
   // environments
