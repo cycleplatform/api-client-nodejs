@@ -8,7 +8,7 @@ import {
   OwnerInclude,
 } from "../../common/structs";
 import { Token } from "../../auth";
-import { ApiKeys } from "../../resources/hubs";
+import { Environment } from "resources/environments";
 
 export type AuditLogQuery = QueryParams<keyof AuditLogIncludes>;
 
@@ -16,9 +16,9 @@ export interface AuditLog {
   id: ResourceId;
   hub_id: ResourceId;
   environment_id: ResourceId;
-  session: Session;
+  session?: Session;
   type: AuditLogTypes;
-  component: Component;
+  component?: Component;
   events: Events;
   message: string;
   user: OwnerScope;
@@ -31,7 +31,7 @@ export interface Session {
   url: string;
   ip: string;
   token: Token;
-  apiKeyId: ApiKeys.ApiKey;
+  api_key: ResourceId;
 }
 
 export interface Component {
@@ -41,6 +41,7 @@ export interface Component {
 
 export interface AuditLogIncludes {
   owners: OwnerInclude;
+  environments: Record<ResourceId, Environment>;
 }
 
 export async function getCollection(params: StandardParams<AuditLogQuery>) {
