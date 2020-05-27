@@ -88,6 +88,7 @@ export type HubTopic =
   | "hub.updated"
   | "hub.state.changed"
   | "hub.error"
+  | "hub.activity.new"
 
   // hub api keys
   | "hub.api_key.created"

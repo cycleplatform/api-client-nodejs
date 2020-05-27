@@ -169,7 +169,7 @@ export interface Activity extends Resource {
   hub_id: ResourceId;
   user: OwnerScope;
   verbosity: number;
-  scope: Scope;
+  context: Context;
   session: Session;
   changes: Change[];
   annotations: Record<string, any>;
@@ -180,7 +180,7 @@ export interface Activity extends Resource {
   time: Time;
 }
 
-export interface Scope {
+export interface Context {
   environment_id?: ResourceId;
   container_id?: ResourceId;
   instance_id?: ResourceId;
