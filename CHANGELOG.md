@@ -12,6 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - `Containers.Servers.usable()` call to get servers that this container COULD be deployed to
 - `Containers.Instances.create()` and `Containers.Instances.remove()` for containers with deployment strategy of `manual`
 - Added instance resource telemetry structures and calls
+- Hub activity data structs and collection request
+- Email added to public account struct
 
 ### Fixed
 
