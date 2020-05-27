@@ -40,6 +40,11 @@ export interface PublicAccount extends Resource {
     first: string;
     last: string;
   };
+  email: {
+    address: string;
+    added: Time;
+    verified: boolean;
+  };
 }
 
 export interface Name {
