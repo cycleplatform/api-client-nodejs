@@ -62,7 +62,7 @@ export interface ActivityIncludes {
   >;
 }
 
-type EventType =
+export type EventType =
   // hubs
   | "hub.task.delete"
   | "hub.update"
