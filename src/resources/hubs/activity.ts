@@ -103,6 +103,7 @@ export type EventType =
   | "container.task.reconfigure_volumes"
   | "container.reimage"
   | "container.scale"
+  | "container.task.scale"
   | "container.delete"
   | "container.task.delete"
   // instances
@@ -185,7 +186,7 @@ export interface Context {
   container_id?: ResourceId;
   instance_id?: ResourceId;
   server_id?: ResourceId;
-  image_id?: ResourceId;
+  stack_id?: ResourceId;
   dns?: DNSScope;
 }
 
