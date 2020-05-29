@@ -66,7 +66,8 @@ export interface MembershipPermissions {
   environments: MembershipEnvironment[];
 }
 
-export interface MembershipEnvironment extends Resource {
+export interface MembershipEnvironment {
+  id: ResourceId;
   read_only: boolean;
 }
 
@@ -109,8 +110,20 @@ export async function getCurrentMembership(
   });
 }
 
+export async function getHubMember(
+  params: StandardParams<MembershipQuery> & {
+    id: ResourceId;
+  },
+) {
+  return Request.getRequest<Single>({
+    ...params,
+    target: links.hubs().members().single(params.id),
+  });
+}
+
 export interface UpdateParams {
-  role: RoleName;
+  role?: RoleName;
+  permissions?: MembershipPermissions;
 }
 
 export async function update(

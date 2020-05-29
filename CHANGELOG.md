@@ -14,6 +14,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added instance resource telemetry structures and calls
 - Hub activity data structs and collection request
 - Email added to public account struct
+- Email added to hub member struct
+- Added membership permissions
 
 ### Fixed
 
