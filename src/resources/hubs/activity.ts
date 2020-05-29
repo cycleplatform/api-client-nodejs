@@ -104,8 +104,10 @@ export type EventType =
   | "container.task.reconfigure_volumes"
   | "container.reimage"
   | "container.scale"
+  | "container.task.scale"
   | "container.delete"
   | "container.task.delete"
+  | "container.instances.create"
   // instances
   | "container.instance.error"
   | "container.instance.sftp.login"
@@ -132,14 +134,19 @@ export type EventType =
   | "stack.task.prune"
   // stack builds
   | "stack.build.create"
+  | "stack.build.generate"
+  | "stack.build.deploy"
+  | "stack.build.delete"
   | "stack.build.task.generate"
   | "stack.build.task.delete"
   // servers
   | "infrastructure.server.task.delete"
   | "infrastructure.server.task.restart"
-  | "infrastructure.server.task.delete"
-  | "infrastructure.server.update"
   | "infrastructure.server.task.provision"
+  | "infrastructure.server.update"
+  | "infrastructure.server.delete"
+  | "infrastructure.server.restart"
+  | "infrastructure.server.provision"
   // sdn
   | "sdn.network.task.delete"
   | "sdn.network.update"
@@ -186,7 +193,7 @@ export interface Context {
   container_id?: ResourceId;
   instance_id?: ResourceId;
   server_id?: ResourceId;
-  image_id?: ResourceId;
+  stack_id?: ResourceId;
   dns?: DNSScope;
 }
 
