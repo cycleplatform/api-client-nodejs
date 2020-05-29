@@ -9,7 +9,7 @@ import {
   ResourceId,
   Time,
 } from "../../common/structs";
-import { PublicAccount } from "../accounts/account";
+import { PublicAccount, Email } from "../accounts/account";
 import { Hub } from "./hub";
 import { Capability } from "./capability";
 import { Name } from "../accounts";
@@ -86,6 +86,8 @@ export interface Member extends Resource<MembershipMeta> {
   membership_id: ResourceId;
   role: Role;
   joined: Time;
+  events: Events<"updated" | "created" | "deleted" | "last_login">;
+  email: Email;
 }
 
 /**
