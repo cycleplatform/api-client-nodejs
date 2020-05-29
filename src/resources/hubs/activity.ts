@@ -39,6 +39,7 @@ export type ActivityFilter =
   | "container"
   | "instance"
   | "server"
+  | "user"
   | "verbosity";
 
 export interface ActivityIncludes {
