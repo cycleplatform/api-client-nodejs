@@ -45,6 +45,7 @@ export interface Membership extends Resource<MembershipMeta> {
   events: Events<MembershipEvent>;
   state: State<MembershipState>;
   invitation: Invitation;
+  permissions: MembershipPermissions;
 }
 
 export interface MembershipMeta {
@@ -58,6 +59,15 @@ export interface MembershipIncludes {
   hubs: {
     [key: string]: Hub;
   };
+}
+
+export interface MembershipPermissions {
+  all_environments: boolean;
+  environments: MembershipEnvironment[];
+}
+
+export interface MembershipEnvironment extends Resource {
+  read_only: boolean;
 }
 
 export interface Invitation {
@@ -84,10 +94,7 @@ export interface Member extends Resource<MembershipMeta> {
 export async function getCollection(params: StandardParams<MembershipQuery>) {
   return Request.getRequest<CollectionDoc<Member>>({
     ...params,
-    target: links
-      .hubs()
-      .members()
-      .collection(),
+    target: links.hubs().members().collection(),
   });
 }
 
@@ -96,10 +103,7 @@ export async function getCurrentMembership(
 ) {
   return Request.getRequest<SingleDoc<Member>>({
     ...params,
-    target: links
-      .hubs()
-      .members()
-      .membership(),
+    target: links.hubs().members().membership(),
   });
 }
 
@@ -115,10 +119,7 @@ export async function update(
 ) {
   return Request.patchRequest<SingleDoc<Member>>({
     ...params,
-    target: links
-      .hubs()
-      .members()
-      .single(params.id),
+    target: links.hubs().members().single(params.id),
   });
 }
 
@@ -129,9 +130,6 @@ export async function revoke(
 ) {
   return Request.deleteRequest<Single>({
     ...params,
-    target: links
-      .hubs()
-      .members()
-      .single(params.id),
+    target: links.hubs().members().single(params.id),
   });
 }
