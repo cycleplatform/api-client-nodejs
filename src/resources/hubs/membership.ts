@@ -121,6 +121,17 @@ export async function getHubMember(
   });
 }
 
+export async function getHubMemberByAccountId(
+  params: StandardParams<MembershipQuery> & {
+    id: ResourceId;
+  },
+) {
+  return Request.getRequest<Single>({
+    ...params,
+    target: links.hubs().members().account(params.id),
+  });
+}
+
 export interface UpdateParams {
   role?: RoleName;
   permissions?: MembershipPermissions;

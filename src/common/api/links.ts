@@ -168,6 +168,7 @@ export const links = {
       collection: () => `/hubs/current/members`,
       membership: () => `/hubs/current/membership`,
       single: (id: ResourceId) => `/hubs/current/members/${id}`,
+      account: (id: ResourceId) => `/hubs/current/members/${id}`,
     }),
     keys: () => ({
       collection: () => `/hubs/current/api-keys`,
