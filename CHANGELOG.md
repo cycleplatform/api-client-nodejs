@@ -32,6 +32,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - `importBuild()` -> `generate()`
 - Docker Hub image source swaps password for token
+- Removed Member struct in favor of full Membership everywhere
 
 ## [v1.8.2] - 2020-03-30
 

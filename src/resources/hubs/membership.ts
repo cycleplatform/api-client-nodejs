@@ -7,12 +7,10 @@ import {
   Events,
   State,
   ResourceId,
-  Time,
 } from "../../common/structs";
-import { PublicAccount, Email } from "../accounts/account";
+import { PublicAccount } from "../accounts/account";
 import { Hub } from "./hub";
 import { Capability } from "./capability";
-import { Name } from "../accounts";
 import { RoleName } from "./invite";
 
 export type Collection = CollectionDoc<Membership, MembershipIncludes>;
@@ -53,12 +51,9 @@ export interface MembershipMeta {
 }
 
 export interface MembershipIncludes {
-  senders: {
-    [key: string]: PublicAccount;
-  };
-  hubs: {
-    [key: string]: Hub;
-  };
+  senders: Record<ResourceId, PublicAccount>;
+  hubs: Record<ResourceId, Hub>;
+  accounts: Record<ResourceId, PublicAccount>;
 }
 
 export interface MembershipPermissions {
@@ -82,20 +77,11 @@ export interface Invitation {
   events: Events<InvitationEvent>;
 }
 
-export interface Member extends Resource<MembershipMeta> {
-  name: Name;
-  membership_id: ResourceId;
-  role: Role;
-  joined: Time;
-  events: Events<"updated" | "created" | "deleted" | "last_login">;
-  email: Email;
-}
-
 /**
  * Members of this hub
  */
 export async function getCollection(params: StandardParams<MembershipQuery>) {
-  return Request.getRequest<CollectionDoc<Member>>({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.hubs().members().collection(),
   });
@@ -104,7 +90,7 @@ export async function getCollection(params: StandardParams<MembershipQuery>) {
 export async function getCurrentMembership(
   params: StandardParams<MembershipQuery>,
 ) {
-  return Request.getRequest<SingleDoc<Member>>({
+  return Request.getRequest<Single>({
     ...params,
     target: links.hubs().members().membership(),
   });
@@ -143,7 +129,7 @@ export async function update(
     value: UpdateParams;
   },
 ) {
-  return Request.patchRequest<SingleDoc<Member>>({
+  return Request.patchRequest<Single>({
     ...params,
     target: links.hubs().members().single(params.id),
   });
