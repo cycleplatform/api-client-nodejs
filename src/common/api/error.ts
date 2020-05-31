@@ -54,10 +54,10 @@ export type ErrorCode =
 
   // 404
   | "404.hub"
-  | "404.hub_invitation"
+  | "404.hub.invitation"
   | "404.sdn_network"
   | "404.environment"
-  | "404.api_key"
+  | "404.hub.api_key"
   | "404.uri"
   | "404.provider"
   | "404.stack"
@@ -86,7 +86,7 @@ export type ErrorCode =
   | "404.promo_code"
   | "404.tier"
   | "404.payment_method"
-  | "404.hubs_membership"
+  | "404.hub.membership"
   | "404.announcement"
   | "404.ha_service_session"
 

@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Email added to public account struct
 - Email added to hub member struct
 - Added membership permissions
+- Added API calls to get individual memberships and to look up memberships by account id
 
 ### Fixed
 
@@ -33,6 +34,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - `importBuild()` -> `generate()`
 - Docker Hub image source swaps password for token
 - Removed Member struct in favor of full Membership everywhere
+- Standardized some error codes, i.e. 404.api_keys -> 404.hub.api_keys
 
 ## [v1.8.2] - 2020-03-30
 
