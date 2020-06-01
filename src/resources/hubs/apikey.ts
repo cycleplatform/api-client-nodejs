@@ -19,7 +19,8 @@ export interface ApiKey extends Resource {
   owner: OwnerScope;
   hub_id: ResourceId;
   secret?: string;
-  capabilities?: Capability[];
+  permissions: Permissions;
+  capabilities: Capability[];
   ips: string[] | null;
   state: State<ApiKeyState>;
   events: Events;
@@ -27,8 +28,19 @@ export interface ApiKey extends Resource {
 
 export type ApiKeyState = "live" | "deleting" | "deleted";
 
+export interface Permissions {
+  all_environments: boolean;
+  environments: EnvironmentPermission[];
+}
+
+export interface EnvironmentPermission {
+  id: ResourceId;
+  manage: boolean;
+}
+
 export interface CreateParams {
   name: string;
+  permissions?: Permissions;
   capabilities: Capability[];
   ips: string[] | null;
 }
@@ -36,10 +48,7 @@ export interface CreateParams {
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .hubs()
-      .keys()
-      .collection(),
+    target: links.hubs().keys().collection(),
   });
 }
 
@@ -50,20 +59,14 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .hubs()
-      .keys()
-      .single(params.apiKeyId),
+    target: links.hubs().keys().single(params.apiKeyId),
   });
 }
 
 export async function create(params: StandardParams & { value: CreateParams }) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .hubs()
-      .keys()
-      .collection(),
+    target: links.hubs().keys().collection(),
   });
 }
 
@@ -72,10 +75,7 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .hubs()
-      .keys()
-      .single(params.keyId),
+    target: links.hubs().keys().single(params.keyId),
   });
 }
 
@@ -86,9 +86,6 @@ export async function remove(
 ) {
   return Request.deleteRequest<Single>({
     ...params,
-    target: links
-      .hubs()
-      .keys()
-      .single(params.keyId),
+    target: links.hubs().keys().single(params.keyId),
   });
 }

@@ -63,7 +63,7 @@ export interface MembershipPermissions {
 
 export interface MembershipEnvironment {
   id: ResourceId;
-  read_only: boolean;
+  manage: boolean;
 }
 
 export interface Invitation {

@@ -15,8 +15,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hub activity data structs and collection request
 - Email added to public account struct
 - Email added to hub member struct
-- Added membership permissions
+- Added membership permissions to users
 - Added API calls to get individual memberships and to look up memberships by account id
+- Added environment specific permissions to API Keys
 
 ### Fixed
 
