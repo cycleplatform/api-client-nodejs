@@ -36,6 +36,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Docker Hub image source swaps password for token
 - Removed Member struct in favor of full Membership everywhere
 - Standardized some error codes, i.e. 404.api_keys -> 404.hub.api_keys
+- DNS certificates are now generated per record, and not per zone
 
 ## [v1.8.2] - 2020-03-30
 
