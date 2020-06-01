@@ -195,18 +195,13 @@ export interface Context {
   instance_id?: ResourceId;
   server_id?: ResourceId;
   stack_id?: ResourceId;
-  dns?: DNSScope;
+  dns_zone_id?: ResourceId;
 }
 
 export interface Session {
   url: string;
   ip: string;
   api_key: ResourceId;
-}
-
-export interface DNSScope {
-  zone_id?: ResourceId;
-  record_id?: ResourceId;
 }
 
 export interface Change {
