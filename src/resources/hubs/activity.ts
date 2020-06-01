@@ -149,6 +149,7 @@ export type EventType =
   | "infrastructure.server.delete"
   | "infrastructure.server.restart"
   | "infrastructure.server.provision"
+  | "infrastructure.server.live"
   // sdn
   | "sdn.network.task.delete"
   | "sdn.network.update"
