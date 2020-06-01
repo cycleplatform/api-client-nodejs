@@ -124,6 +124,7 @@ export type EventType =
   | "dns.zone.verify"
   | "dns.zone.delete"
   // dns records
+  | "dns.zone.record.cert.generate.auto"
   | "dns.zone.record.delete"
   | "dns.zone.record.cert.generate"
   | "dns.zone.record.task.delete"
