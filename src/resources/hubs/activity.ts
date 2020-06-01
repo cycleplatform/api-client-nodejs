@@ -122,9 +122,10 @@ export type EventType =
   | "dns.zone.update"
   | "dns.zone.create"
   | "dns.zone.certs.generate"
-  | "dns.zone.certs.verify"
+  | "dns.zone.verify"
   | "dns.zone.delete"
   // dns records
+  | "dns.zone.record.delete"
   | "dns.zone.record.task.delete"
   | "dns.zone.record.update"
   | "dns.zone.record.create"
