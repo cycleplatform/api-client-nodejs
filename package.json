@@ -1,6 +1,6 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.8.4-28",
+  "version": "1.8.4-29",
   "description": "Cycle API Client",
   "main": "dist/index.js",
   "umd:main": "dist/node-api-client.umd.production.js",
