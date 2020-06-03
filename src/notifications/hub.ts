@@ -52,6 +52,7 @@ export type HubTopic =
   | "container.instance.state.changed"
   | "container.instance.error"
   | "container.instances.reconfigured"
+  | "container.instance.migration.update"
 
   // dns certificate
   | "dns.certificate.state.changed"

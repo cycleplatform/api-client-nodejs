@@ -26,6 +26,7 @@ import { ApiKey } from "./apikey";
 import { Invoice } from "../billing/invoices";
 import { Method } from "../billing/methods";
 import { Network } from "../sdn/networks";
+import { Membership } from "./membership";
 
 export type Collection = CollectionDoc<Activity, ActivityIncludes>;
 export type ActivityQuery = QueryParams<
@@ -60,6 +61,7 @@ export interface ActivityIncludes {
     | Invoice
     | Method
     | Network
+    | Membership
   >;
 }
 
@@ -124,6 +126,7 @@ export type EventType =
   | "dns.zone.verify"
   | "dns.zone.delete"
   // dns records
+  | "dns.zone.record.cert.generate.auto"
   | "dns.zone.record.delete"
   | "dns.zone.record.cert.generate"
   | "dns.zone.record.task.delete"
@@ -159,14 +162,17 @@ export type EventType =
   | "infrastructure.ips.pool.task.delete"
   // orders
   | "billing.order.task.confirm"
+  | "billing.order.confirm"
   // invoices
   | "billing.invoice.task.void"
   | "billing.invoice.task.credit"
   | "billing.invoice.task.refund"
   | "billing.invoice.task.pay"
+  | "billing.invoice.pay"
   // methods
   | "billing.method.update"
   | "billing.method.create"
+  | "billing.method.delete"
   | "billing.method.task.delete"
   // api keys
   | "hub.apikey.create"
