@@ -20,6 +20,7 @@ export interface ResourceSnapshot {
 
 export interface CPUSnapshot {
   usage: CPUUsage;
+  throttling: CPUThrottling;
 }
 
 export interface CPUUsage {
@@ -32,7 +33,7 @@ export interface CPUUsage {
 export interface CPUThrottling {
   periods?: number;
   throttled_periods?: number;
-  trhottled_time?: number;
+  throttled_time?: number;
 }
 
 export interface MemorySnapshot {
@@ -63,12 +64,17 @@ export interface HugeTLB {
 
 export async function getInstanceResourcesTelemetryReport(
   params: StandardParams & {
+    id: ResourceId;
     containerId: ResourceId;
   },
 ) {
-  return getRequest<ResourceSnapshot>({
+  return getRequest<ResourceSnapshot[]>({
     ...params,
-    target: links.containers().instances().collection(params.containerId),
+    target: links
+      .containers()
+      .instances()
+      .telemetry()
+      .resourcesReport(params.id, params.containerId),
   });
 }
 

@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.8.5]
+
+### Fixed
+
+- Return type and link for resource telemetry report was incorrect
+- Misspelled `threshold` in instance telemetry snapshot
+- Added missing `throttled` field to CPU info on instance telemetry
+
 ## [1.8.4]
 
 ### Added
