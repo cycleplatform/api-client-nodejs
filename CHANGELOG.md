@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.8.4]
+
 ### Added
 
 - Added `image.created` as a valid hub notification
