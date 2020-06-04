@@ -25,8 +25,6 @@ export interface Account extends Resource {
   name: Name;
   /** Email registered to this account */
   email: Email;
-  /** Number of trial hubs this account has made */
-  trials: number;
   /** 2FA information */
   two_factor_auth: TwoFactorAuth | null;
   /** Whether to allow Cycle employees to log in to diagnose support issues */
