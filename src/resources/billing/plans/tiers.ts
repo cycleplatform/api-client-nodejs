@@ -19,7 +19,6 @@ export interface TierPlan extends Resource {
   ram: RAM;
   image_storage: ImageStorage;
   builds: Builds;
-  trial: boolean;
   hidden: boolean;
   description: string;
   default?: true;
@@ -46,9 +45,6 @@ export async function getCollection(params: {
 }) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .plans()
-      .tiers(),
+    target: links.billing().plans().tiers(),
   });
 }

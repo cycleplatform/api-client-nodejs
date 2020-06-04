@@ -6,7 +6,6 @@ import {
   SingleDoc,
   Events,
   State,
-  Time,
   CreatedTask,
 } from "../../common/structs";
 import { Membership } from "./membership";
@@ -47,12 +46,6 @@ export interface BillingProfile {
   term: Term;
   allow_prepaid?: boolean;
   disable?: boolean;
-  trial: Trial | null;
-}
-
-export interface Trial {
-  start: Time;
-  end: Time;
 }
 
 export interface HubMetas {
