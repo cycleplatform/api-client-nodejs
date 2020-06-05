@@ -62,13 +62,24 @@ export interface HugeTLB {
   fail_count?: number;
 }
 
+export interface ReportRequest {
+  instance_id: ResourceId;
+  start: Time;
+  end: Time;
+}
+
+export interface InstanceResourceTelemetryReport {
+  request: ReportRequest;
+  snapshots: ResourceSnapshot[];
+}
+
 export async function getInstanceResourcesTelemetryReport(
   params: StandardParams & {
     id: ResourceId;
     containerId: ResourceId;
   },
 ) {
-  return getRequest<ResourceSnapshot[]>({
+  return getRequest<{ data: InstanceResourceTelemetryReport }>({
     ...params,
     target: links
       .containers()

@@ -5,7 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Remove trials from api client
+### Fixed
+
+- Another update to resource telemetry report return type
 
 ## [1.8.5]
 
