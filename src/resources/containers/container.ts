@@ -55,7 +55,7 @@ export interface Container extends Resource<ContainerMetas> {
   role: ContainerRole | null;
   stateful: boolean;
   requirements?: string[];
-  annotations: Record<string, any>;
+  annotations: Record<string, any> | null;
   state: State<ContainerState> & {
     desired: ContainerState | "";
   };
