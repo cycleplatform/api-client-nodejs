@@ -27,6 +27,7 @@ export interface TierPlan extends Resource {
 export interface RAM {
   included_gb: Gigabytes;
   additional_gb: Amount;
+  hard_cap: boolean;
 }
 
 export interface ImageStorage {

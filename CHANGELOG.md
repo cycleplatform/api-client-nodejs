@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Another update to resource telemetry report return type
 
+### Added
+
+- Billing tiers now have a `hard_cap` boolean for free tiers
+
 ## [1.8.5]
 
 ### Fixed
