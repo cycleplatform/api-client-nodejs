@@ -7,11 +7,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- Another update to resource telemetry report return type
+- Updated resource telemetry report return type
 
 ### Added
 
+- Added `infrastructure.server.services.sftp.lockdown.auto` to activity
 - Billing tiers now have a `hard_cap` boolean for free tiers
+
+### Changed
+
+- Remove trials from api client
 
 ## [1.8.5]
 
