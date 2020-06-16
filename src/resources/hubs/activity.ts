@@ -153,6 +153,7 @@ export type EventType =
   | "infrastructure.server.restart"
   | "infrastructure.server.provision"
   | "infrastructure.server.live"
+  | "infrastructure.server.services.sftp.lockdown.auto"
   // sdn
   | "sdn.network.task.delete"
   | "sdn.network.update"

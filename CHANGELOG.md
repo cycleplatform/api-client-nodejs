@@ -5,7 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
 - Remove trials from api client
+
+### Added
+
+- Added `infrastructure.server.services.sftp.lockdown.auto` to activity
 
 ## [1.8.5]
 
