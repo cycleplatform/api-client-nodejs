@@ -42,6 +42,7 @@ export interface Server extends Resource<ServerMeta> {
   model_id: ResourceId;
   node_id: ResourceId | null;
   cluster: Cluster;
+  features: Features;
   constraints: Constraints;
   state: State<ServerState>;
   events: Events & {
@@ -71,6 +72,10 @@ export interface NodeMetaStats {
   stats: Stats;
   healthy: boolean;
   online: boolean;
+}
+
+export interface Features {
+  sftp: boolean;
 }
 
 export type ServerState =
@@ -108,10 +113,7 @@ export interface ConstraintsAllow {
 export async function getCollection(params: StandardParams<ServerQuery>) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .collection(),
+    target: links.infrastructure().servers().collection(),
   });
 }
 
@@ -122,30 +124,21 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .single(params.id),
+    target: links.infrastructure().servers().single(params.id),
   });
 }
 
 export async function getTags(params: StandardParams) {
   return Request.getRequest<{ data: string[] }>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .tags(),
+    target: links.infrastructure().servers().tags(),
   });
 }
 
 export async function getClusters(params: StandardParams) {
   return Request.getRequest<{ data: string[] }>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .clusters(),
+    target: links.infrastructure().servers().clusters(),
   });
 }
 
@@ -170,10 +163,7 @@ export async function create(
 ) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .collection(),
+    target: links.infrastructure().servers().collection(),
   });
 }
 
@@ -189,10 +179,7 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .single(params.id),
+    target: links.infrastructure().servers().single(params.id),
   });
 }
 
@@ -203,9 +190,6 @@ export async function remove(
 ) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
-    target: links
-      .infrastructure()
-      .servers()
-      .single(params.id),
+    target: links.infrastructure().servers().single(params.id),
   });
 }
