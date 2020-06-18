@@ -154,6 +154,7 @@ export type EventType =
   | "infrastructure.server.provision"
   | "infrastructure.server.live"
   | "infrastructure.server.services.sftp.lockdown.auto"
+  | "infrastructure.server.task.reconfigure_features"
   // sdn
   | "sdn.network.task.delete"
   | "sdn.network.update"
