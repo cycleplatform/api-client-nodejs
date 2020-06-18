@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Added `infrastructure.server.services.sftp.lockdown.auto` to activity
+- Added `infrastructure.server.task.reconfigure_features` to activity
 - Billing tiers now have a `hard_cap` boolean for free tiers
 - Servers now have a features struct
 - Added task for reconfiguring server features
