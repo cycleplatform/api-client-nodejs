@@ -194,6 +194,7 @@ export const links = {
       console: (id: ResourceId) => `/infrastructure/servers/${id}/console`,
       telemetry: (id: ResourceId) => `/infrastructure/servers/${id}/telemetry`,
       instances: (id: ResourceId) => `/infrastructure/servers/${id}/instances`,
+      tasks: (id: ResourceId) => `/infrastructure/servers/${id}/tasks`,
       tags: () => `/infrastructure/servers/tags`,
       clusters: () => `/infrastructure/servers/clusters`,
       usage: () => `/infrastructure/servers/usage`,
