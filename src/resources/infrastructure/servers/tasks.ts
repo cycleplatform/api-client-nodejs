@@ -28,6 +28,6 @@ export async function task<K = {}>(
 ) {
   return Request.postRequest<CreatedTask<ServerAction, K>>({
     ...params,
-    target: links.environments().tasks(params.id),
+    target: links.infrastructure().servers().tasks(params.id),
   });
 }
