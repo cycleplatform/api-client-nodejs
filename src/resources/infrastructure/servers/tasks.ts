@@ -3,7 +3,7 @@ import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 import { Features } from "./server";
 
-export type ServerAction = "reconfigure_features";
+export type ServerAction = "reconfigure.features";
 
 export async function reconfigureFeatures(
   params: StandardParams & {
@@ -14,7 +14,7 @@ export async function reconfigureFeatures(
   return task({
     ...params,
     value: {
-      action: "reconfigure_features",
+      action: "reconfigure.features",
       contents: params.value,
     },
   });

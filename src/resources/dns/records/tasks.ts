@@ -2,7 +2,7 @@ import * as Request from "../../../common/api/request";
 import { links, StandardParams } from "../../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../../common/structs";
 
-export type RecordAction = "generate_cert";
+export type RecordAction = "cert.generate";
 
 export async function generateCert(
   params: StandardParams & {
@@ -13,7 +13,7 @@ export async function generateCert(
   return task({
     ...params,
     value: {
-      action: "generate_cert",
+      action: "cert.generate",
     },
   });
 }
