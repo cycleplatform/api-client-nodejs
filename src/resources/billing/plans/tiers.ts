@@ -12,13 +12,18 @@ import { Builds } from "resources/stacks";
 export type Collection = CollectionDoc<TierPlan>;
 export type Single = SingleDoc<TierPlan>;
 
+export type CapabilititiesLevel = "limited" | "standard" | "advanced";
+
 export interface TierPlan extends Resource {
   name: string;
   code: string;
   price: Amount;
+  max_nodes: number | null;
+  max_daily_api_requests: number | null;
   ram: RAM;
   image_storage: ImageStorage;
   builds: Builds;
+  features: Features;
   hidden: boolean;
   description: string;
   default?: true;
@@ -38,6 +43,44 @@ export interface Builds {
   parallel: number;
   cpu_cores: number;
   ram_gb: Gigabytes;
+}
+
+export interface Features {
+  performance_builds: TierFeature;
+  infrastructure: InfrastructureFeatures;
+  monitoring: MonitoringFeatures;
+  support: SupportFeatures;
+  security: SecurityFeatures;
+  automated_backups: TierFeature;
+  continuous_deployments: TierFeature;
+}
+
+export interface TierFeature {
+  enabled: boolean;
+  limits?: Record<string, number>;
+  capabilities?: CapabilititiesLevel;
+}
+
+export interface InfrastructureFeatures {
+  multi_provider: TierFeature;
+  clustering: TierFeature;
+  dedicated_cluster: TierFeature;
+}
+
+export interface MonitoringFeatures {
+  infrastructure: TierFeature;
+  advanced: TierFeature;
+}
+
+export interface SupportFeatures {
+  live_chat: TierFeature;
+  phone_support: TierFeature;
+  slack_community: TierFeature;
+}
+
+export interface SecurityFeatures {
+  audit_log: TierFeature;
+  two_factor_auth: TierFeature;
 }
 
 export async function getCollection(params: {
