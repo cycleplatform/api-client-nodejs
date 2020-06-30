@@ -23,7 +23,7 @@ export interface TierPlan extends Resource {
   ram: RAM;
   image_storage: ImageStorage;
   builds: Builds;
-  features: PlanFeatures;
+  features: Features;
   hidden: boolean;
   description: string;
   default?: true;
@@ -45,7 +45,7 @@ export interface Builds {
   ram_gb: Gigabytes;
 }
 
-export interface PlanFeatures {
+export interface Features {
   performance_builds: TierFeature;
   infrastructure: InfrastructureFeatures;
   monitoring: MonitoringFeatures;
@@ -58,7 +58,7 @@ export interface PlanFeatures {
 export interface TierFeature {
   enabled: boolean;
   limits?: Record<string, number>;
-  capabilities?: CapabilititiesLevel | null;
+  capabilities?: CapabilititiesLevel;
 }
 
 export interface InfrastructureFeatures {
