@@ -10,7 +10,14 @@ export interface SupportPlan extends Resource {
   name: string;
   price: Amount;
   description: string;
+  features: Features;
   default?: true;
+}
+
+export interface Features {
+  engineering_support: boolean;
+  uptime_sla: boolean;
+  guaranteed_response_time: string;
 }
 
 export async function getCollection(params: {
@@ -19,9 +26,6 @@ export async function getCollection(params: {
 }) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .plans()
-      .support(),
+    target: links.billing().plans().support(),
   });
 }
