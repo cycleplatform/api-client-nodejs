@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Billing tiers now have a `hard_cap` boolean for free tiers
 - Servers now have a features struct
 - Added task for reconfiguring server features
+- Added deprecate boolean to container params
 
 ### Changed
 
