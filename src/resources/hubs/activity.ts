@@ -119,7 +119,6 @@ export type EventType =
   | "container.instance.delete"
   // dns zones
   | "dns.zone.task.verify"
-  | "dns.zone.task.generate_certs"
   | "dns.zone.task.delete"
   | "dns.zone.update"
   | "dns.zone.create"
@@ -154,7 +153,7 @@ export type EventType =
   | "infrastructure.server.provision"
   | "infrastructure.server.live"
   | "infrastructure.server.services.sftp.lockdown.auto"
-  | "infrastructure.server.task.reconfigure_features"
+  | "infrastructure.server.task.reconfigure.features"
   // sdn
   | "sdn.network.task.delete"
   | "sdn.network.update"

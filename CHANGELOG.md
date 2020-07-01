@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Remove trials from api client
+- Converted all tasks and activity headers to be dot notation instead of underscores
 
 ## [1.8.5]
 

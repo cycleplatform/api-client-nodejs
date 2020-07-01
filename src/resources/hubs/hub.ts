@@ -11,6 +11,7 @@ import {
 import { Membership } from "./membership";
 import { Providers } from "./providers";
 import { Term } from "../billing";
+import { Single as SingleTier } from "../billing/plans/tiers";
 
 export type Collection = CollectionDoc<Hub>;
 export type Single = SingleDoc<Hub>;
@@ -71,6 +72,13 @@ export async function getSingle(params: StandardParams<HubQuery>) {
   return Request.getRequest<Single>({
     ...params,
     target: links.hubs().single(),
+  });
+}
+
+export async function getCurrentTier(params: StandardParams) {
+  return Request.getRequest<SingleTier>({
+    ...params,
+    target: links.hubs().tier(),
   });
 }
 
