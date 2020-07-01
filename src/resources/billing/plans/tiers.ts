@@ -19,6 +19,7 @@ export interface TierPlan extends Resource {
   code: string;
   price: Amount;
   max_nodes: number | null;
+  max_members: number | null;
   max_daily_api_requests: number | null;
   ram: RAM;
   image_storage: ImageStorage;
