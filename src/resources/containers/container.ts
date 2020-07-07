@@ -56,7 +56,7 @@ export interface Container extends Resource<ContainerMetas> {
   stateful: boolean;
   requirements?: string[];
   annotations: Record<string, any> | null;
-  deprecate: boolean;
+  deprecate?: boolean;
   state: State<ContainerState> & {
     desired: ContainerState | "";
   };
@@ -143,7 +143,6 @@ export interface CreateParams {
   config: Config;
   annotations?: Record<string, any>;
   volumes: Volumes.Volume[];
-  deprecate: boolean;
 }
 
 export async function create(

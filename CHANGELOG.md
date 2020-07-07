@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Remove trials from api client
+- Removed deprecate from container `CreateParams`
 
 ## [1.8.5]
 
