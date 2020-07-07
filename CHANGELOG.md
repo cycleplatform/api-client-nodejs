@@ -22,6 +22,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Remove trials from api client
 - Converted all tasks and activity headers to be dot notation instead of underscores
+- Removed deprecate from container `CreateParams`
 
 ## [1.8.5]
 

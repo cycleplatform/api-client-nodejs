@@ -143,7 +143,6 @@ export interface CreateParams {
   config: Config;
   annotations?: Record<string, any>;
   volumes: Volumes.Volume[];
-  deprecate: boolean;
 }
 
 export async function create(
