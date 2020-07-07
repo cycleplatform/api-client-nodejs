@@ -10,6 +10,7 @@ export interface Runtime {
   environment_vars?: Record<string, string>;
   namespaces?: Namespaces[];
   sysctl?: Record<string, string>;
+  rlimits?: Record<string, RLimit>;
   privileged: boolean;
   capabilities?: BaseCapabilities[] | PrivilegedCapabilities[];
 }
@@ -17,4 +18,9 @@ export interface Runtime {
 export interface RuntimeCommand {
   path: string;
   args: string;
+}
+
+export interface RLimit {
+  hard: number;
+  soft: number;
 }

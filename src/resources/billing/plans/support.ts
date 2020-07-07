@@ -17,7 +17,7 @@ export interface SupportPlan extends Resource {
 export interface Features {
   engineering_support: boolean;
   uptime_sla: boolean;
-  guaranteed_response_time: string;
+  guaranteed_response_time: string | null;
 }
 
 export async function getCollection(params: {

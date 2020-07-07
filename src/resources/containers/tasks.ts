@@ -10,8 +10,7 @@ export type ContainerAction =
   | "reconfigure"
   | "reimage"
   | "scale"
-  | "reconfigure_volumes"
-  | "reconfigure_domain";
+  | "reconfigure.volumes";
 
 export async function start(
   params: StandardParams & {
@@ -63,7 +62,7 @@ export async function reconfigureVolumes(
   return task({
     ...params,
     value: {
-      action: "reconfigure_volumes",
+      action: "reconfigure.volumes",
       contents: params.value,
     },
   });

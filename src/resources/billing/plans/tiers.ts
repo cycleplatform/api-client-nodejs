@@ -19,6 +19,7 @@ export interface TierPlan extends Resource {
   code: string;
   price: Amount;
   max_nodes: number | null;
+  max_members: number | null;
   max_daily_api_requests: number | null;
   ram: RAM;
   image_storage: ImageStorage;
@@ -43,6 +44,7 @@ export interface Builds {
   parallel: number;
   cpu_cores: number;
   ram_gb: Gigabytes;
+  max_daily_builds: number | null;
 }
 
 export interface Features {
@@ -65,6 +67,7 @@ export interface InfrastructureFeatures {
   multi_provider: TierFeature;
   clustering: TierFeature;
   dedicated_cluster: TierFeature;
+  deployment_strategies: TierFeature;
 }
 
 export interface MonitoringFeatures {
