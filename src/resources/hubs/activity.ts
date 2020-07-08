@@ -188,7 +188,7 @@ export interface Activity extends Resource {
   user: OwnerScope;
   verbosity: number;
   context: Context;
-  session: Session;
+  session: Session | null;
   changes: Change[];
   annotations: Record<string, any>;
   error: ActivityError | null;
@@ -210,7 +210,7 @@ export interface Context {
 export interface Session {
   url: string;
   ip: string;
-  api_key: ResourceId;
+  api_key: ResourceId | null;
 }
 
 export interface Change {
