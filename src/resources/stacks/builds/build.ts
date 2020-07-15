@@ -3,7 +3,7 @@ import {
   QueryParams,
   links,
   StandardParams,
-  PostParams,
+  OptionalPostParam,
 } from "../../../common/api";
 import {
   CollectionDoc,
@@ -119,7 +119,7 @@ export interface CreateParams {
 }
 
 export async function create(
-  params: PostParams<CreateParams> & {
+  params: OptionalPostParam<CreateParams> & {
     stackId: ResourceId;
   },
 ) {

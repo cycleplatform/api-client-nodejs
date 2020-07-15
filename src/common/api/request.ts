@@ -24,6 +24,8 @@ export type PostParams<T = object> = {
   value: T;
 };
 
+export type OptionalPostParam<T = object> = Partial<PostParams<T>>;
+
 /** The result of a successful API call */
 export interface ResultSuccess<T> {
   ok: true;
@@ -170,7 +172,7 @@ export async function postRequest<T>({
   settings,
 }: {
   target: string;
-  value: object;
+  value?: object;
   query?: QueryParams;
   hubId?: ResourceId;
   token?: Token | string;
