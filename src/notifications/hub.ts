@@ -43,7 +43,6 @@ export type HubTopic =
   | "container.created"
   | "container.updated"
   | "container.reconfigured"
-  | "container.event.created"
   | "container.state.changed"
   | "container.desired_state.changed"
   | "container.error"

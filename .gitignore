@@ -1,6 +1,7 @@
 *.log
 .DS_Store
 node_modules
+.rts2
 .rts2_*
 dist
 cycleplatform-cycle-api-*.tgz
