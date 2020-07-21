@@ -67,7 +67,7 @@ export interface InfrastructureFeatures {
   multi_provider: TierFeature;
   clustering: TierFeature;
   dedicated_cluster: TierFeature;
-  deployment_strategies: TierFeature;
+  deployment_strategies: DeploymentStrategiesFeature;
 }
 
 export interface DeploymentStrategiesFeature extends TierFeature {
@@ -80,7 +80,7 @@ export interface MonitoringFeatures {
 }
 
 export interface SupportFeatures {
-  live_chat: TierFeature;
+  live_chat: LiveChatFeature;
   phone_support: TierFeature;
   slack_community: TierFeature;
 }
