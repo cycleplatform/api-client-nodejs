@@ -8,6 +8,7 @@ import {
 } from "../../../common/structs";
 import { Amount } from "../../billing";
 import { Builds } from "resources/stacks";
+import { DeploymentStrategy } from "../../stacks/spec/v1/deploy";
 
 export type Collection = CollectionDoc<TierPlan>;
 export type Single = SingleDoc<TierPlan>;
@@ -59,7 +60,6 @@ export interface Features {
 
 export interface TierFeature {
   enabled: boolean;
-  limits?: Record<string, number>;
   capabilities?: CapabilititiesLevel;
 }
 
@@ -68,6 +68,10 @@ export interface InfrastructureFeatures {
   clustering: TierFeature;
   dedicated_cluster: TierFeature;
   deployment_strategies: TierFeature;
+}
+
+export interface DeploymentStrategiesFeature extends TierFeature {
+  strategies: DeploymentStrategy[];
 }
 
 export interface MonitoringFeatures {
@@ -79,6 +83,10 @@ export interface SupportFeatures {
   live_chat: TierFeature;
   phone_support: TierFeature;
   slack_community: TierFeature;
+}
+
+export interface LiveChatFeature extends TierFeature {
+  days?: number;
 }
 
 export interface SecurityFeatures {
