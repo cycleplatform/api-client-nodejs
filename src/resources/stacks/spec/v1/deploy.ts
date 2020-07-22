@@ -85,6 +85,7 @@ export interface HealthCheck {
 
 export interface Telemetry {
   retention: number;
+  web_hook?: Webhook;
   interval: number;
   disable: boolean;
 }
