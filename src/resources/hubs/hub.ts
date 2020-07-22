@@ -7,10 +7,11 @@ import {
   Events,
   State,
   CreatedTask,
+  ResourceId,
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
-import { Term } from "../billing";
+import { Term, Plans } from "../billing";
 import { Single as SingleTier } from "../billing/plans/tiers";
 
 export type Collection = CollectionDoc<Hub>;
@@ -47,6 +48,12 @@ export interface BillingProfile {
   term: Term;
   allow_prepaid?: boolean;
   disable?: boolean;
+  plans: Plans;
+}
+
+export interface Plans {
+  tier_id: ResourceId;
+  support_id: ResourceId;
 }
 
 export interface HubMetas {
