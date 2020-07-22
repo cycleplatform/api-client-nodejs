@@ -103,6 +103,9 @@ export type ErrorCode =
   | "422.not_compatible"
   | "422.already_exists"
 
+  // 429 API limit
+  | "429.rate_limiting"
+
   // 500
   | "500.database"
   | "500.database_insert"
