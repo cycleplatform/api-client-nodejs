@@ -215,6 +215,7 @@ export const links = {
         ips: (id: ResourceId) => `/infrastructure/ips/pools/${id}/ips`,
       }),
     }),
+    strategies: () => `/infrastructure/deployment-strategies`,
   }),
 
   jobs: () => ({
