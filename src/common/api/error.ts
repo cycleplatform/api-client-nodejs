@@ -51,6 +51,7 @@ export type ErrorCode =
   | "403.2fa_required"
   | "403.2fa_failed"
   | "403.new_application_capabilities"
+  | "403.tier_restricted"
 
   // 404
   | "404.hub"
@@ -84,7 +85,7 @@ export type ErrorCode =
   | "404.cluster"
   | "404.email_verification"
   | "404.promo_code"
-  | "404.tier"
+  | "404.billing.tier"
   | "404.payment_method"
   | "404.hub.membership"
   | "404.announcement"
