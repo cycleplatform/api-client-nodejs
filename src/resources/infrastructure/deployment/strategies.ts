@@ -3,9 +3,20 @@ import { links, StandardParams } from "../../../common/api";
 
 export type Single = { data: DeploymentStrategy };
 
-export interface DeploymentStrategy {
-  [key: string]: string;
-}
+const strategyTypes = [
+  "resource-density",
+  "high-availability",
+  "first-available",
+  "manual",
+  "ephemeral",
+] as const;
+
+type StrategyTypes = typeof strategyTypes[number];
+
+export type DeploymentStrategy = Record<
+  StrategyTypes,
+  { name: string; description: string }
+>;
 
 export async function getSingle(params: StandardParams) {
   return Request.getRequest<Single>({
