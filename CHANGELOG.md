@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Servers now have a features struct
 - Added task for reconfiguring server features
 - Added deprecate boolean to container params
+- Billing tiers now include `sdn`
 
 ### Changed
 
