@@ -66,6 +66,7 @@ export interface TierFeature {
 export interface InfrastructureFeatures {
   multi_provider: TierFeature;
   clustering: TierFeature;
+  sdn: TierFeature;
   dedicated_cluster: TierFeature;
   deployment_strategies: DeploymentStrategiesFeature;
 }
