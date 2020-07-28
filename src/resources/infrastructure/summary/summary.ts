@@ -48,6 +48,7 @@ export interface RAMResources {
   total_mb: Megabytes;
   allocated_mb: Megabytes;
   used_mb: Megabytes;
+  provisioned_mb: Megabytes;
 }
 
 export interface CPUResources {
