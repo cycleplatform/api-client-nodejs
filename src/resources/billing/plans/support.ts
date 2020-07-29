@@ -11,6 +11,7 @@ export interface SupportPlan extends Resource {
   price: Amount;
   description: string;
   features: Features;
+  contract: boolean;
   default?: true;
 }
 
