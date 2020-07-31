@@ -165,6 +165,7 @@ export const links = {
     capabilities: () => `/hubs/capabilities`,
     tier: () => `/hubs/current/tier`,
     invites: () => ({
+      single: (id: ResourceId) => `/hubs/current/invites/${id}`,
       collection: () => `/hubs/current/invites`,
     }),
     members: () => ({
