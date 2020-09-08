@@ -7,22 +7,35 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+### Added
+
+### Changed
+
+## [1.8.6]
+
+### Fixed
+
 - Updated resource telemetry report return type
 
 ### Added
 
 - Ability to delete a hub invite
 - Added `contract` to billing support plans
+- Added RLimits object to container runtime config
+- Added annotations to a container which holds additional information if desired
+- Added call to retrieve a hubs current tier and its features
+- Added features struct to tier and support plans
 - Added `infrastructure.server.services.sftp.lockdown.auto` to activity
 - Added `infrastructure.server.task.reconfigure_features` to activity
-- Billing tiers now have a `hard_cap` boolean for free tiers
 - Servers now have a features struct
 - Added task for reconfiguring server features
 - Added deprecate boolean to container params
 - Billing tiers now include `sdn`
+- Added instance resource telemetry to instance dashboards
 
 ### Changed
 
+- Session object on hub activity possibly null, as well as api_key within the session object
 - Remove trials from api client
 - Converted all tasks and activity headers to be dot notation instead of underscores
 - Removed deprecate from container `CreateParams`
