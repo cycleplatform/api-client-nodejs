@@ -4,7 +4,7 @@ import {
   CollectionDoc,
   Resource,
   Events,
-  OwnerScope,
+  CreatorScope,
   ResourceId,
   SingleDoc,
   IP,
@@ -31,7 +31,7 @@ export interface EntryComponent {
 export interface Entry extends Resource {
   hub_id: ResourceId;
   environment_id: ResourceId;
-  user: OwnerScope;
+  user: CreatorScope;
   session: EntrySession;
   type: EntryType;
   events: Events;

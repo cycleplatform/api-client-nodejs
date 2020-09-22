@@ -11,7 +11,7 @@ import {
   Includes,
   CreatedTask,
   StatefulCounts,
-  OwnerScope,
+  CreatorScope,
   Cluster,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
@@ -35,7 +35,7 @@ export { Telemetry, Stats };
 
 export interface Server extends Resource<ServerMeta> {
   hostname: string;
-  owner: OwnerScope;
+  creator: CreatorScope;
   hub_id: ResourceId;
   provider: ServerProvider;
   location_id: ResourceId;

@@ -2,7 +2,7 @@ import { Service } from "./common";
 import {
   ResourceId,
   Resource,
-  OwnerScope,
+  CreatorScope,
   Events,
   CollectionDoc,
   SingleDoc,
@@ -30,7 +30,7 @@ export interface VPNAuth {
 
 export interface VPNUser extends Resource {
   username: string;
-  owner: OwnerScope;
+  creator: CreatorScope;
   last_login: Time;
   hub_id: ResourceId;
   environment_id: ResourceId;
@@ -68,11 +68,7 @@ export async function getVPNInfo(
 ) {
   return Request.getRequest<{ data: VPNInfo }>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .vpn()
-      .details(params.environmentId),
+    target: links.environments().services().vpn().details(params.environmentId),
   });
 }
 
@@ -83,11 +79,7 @@ export async function getVPNLogins(
 ) {
   return Request.getRequest<VPNLoginsDoc>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .vpn()
-      .logins(params.environmentId),
+    target: links.environments().services().vpn().logins(params.environmentId),
   });
 }
 
@@ -98,11 +90,7 @@ export async function getVPNUsers(
 ) {
   return Request.getRequest<VPNUsersDoc>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .vpn()
-      .users(params.environmentId),
+    target: links.environments().services().vpn().users(params.environmentId),
   });
 }
 
@@ -119,11 +107,7 @@ export async function createVPNUser(
 ) {
   return Request.postRequest<VPNUserDoc>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .vpn()
-      .users(params.environmentId),
+    target: links.environments().services().vpn().users(params.environmentId),
   });
 }
 
@@ -153,11 +137,7 @@ export async function reconfigureVPN(
 ) {
   return Request.postRequest<CreatedTask<VPNAction>>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .vpn()
-      .tasks(params.environmentId),
+    target: links.environments().services().vpn().tasks(params.environmentId),
     value: {
       action: "reconfigure",
       contents: params.value,

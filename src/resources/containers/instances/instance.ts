@@ -18,9 +18,9 @@ import {
   ResourceId,
   State,
   Events,
-  OwnerScope,
+  CreatorScope,
   Includes,
-  OwnerInclude,
+  CreatorIncludes,
   Time,
   CreatedTask,
 } from "../../../common/structs";
@@ -58,7 +58,7 @@ export type InstanceQuery = QueryParams<
 >;
 
 export interface Instance extends Resource<InstanceMetas> {
-  owner: OwnerScope;
+  creator: CreatorScope;
   hub_id: ResourceId;
   container_id: ResourceId;
   location_id: ResourceId;
@@ -119,7 +119,7 @@ export interface MigrationInstance {
 }
 
 export interface InstanceIncludes extends Includes {
-  owner: OwnerInclude;
+  creator: CreatorIncludes;
   servers: Record<ResourceId, Server>;
   locations: Record<ResourceId, Locations.Location>;
   providers: Record<ProviderIdentifier, Provider>;
@@ -136,10 +136,7 @@ export async function getCollection(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .containers()
-      .instances()
-      .collection(params.containerId),
+    target: links.containers().instances().collection(params.containerId),
   });
 }
 
@@ -170,10 +167,7 @@ export async function create(
 ) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
-    target: links
-      .containers()
-      .instances()
-      .collection(params.containerId),
+    target: links.containers().instances().collection(params.containerId),
   });
 }
 

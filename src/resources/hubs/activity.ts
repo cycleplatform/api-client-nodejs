@@ -1,10 +1,10 @@
 import {
   Resource,
   ResourceId,
-  OwnerScope,
+  CreatorScope,
   Time,
   CollectionDoc,
-  OwnerInclude,
+  CreatorIncludes,
 } from "../../common/structs";
 import {
   StandardParams,
@@ -44,7 +44,7 @@ export type ActivityFilter =
   | "verbosity";
 
 export interface ActivityIncludes {
-  users: OwnerInclude;
+  users: CreatorIncludes;
   components?: Record<
     string,
     | Container
@@ -186,7 +186,7 @@ export type EventType =
 
 export interface Activity extends Resource {
   hub_id: ResourceId;
-  user: OwnerScope;
+  user: CreatorScope;
   verbosity: number;
   context: Context;
   session: Session | null;

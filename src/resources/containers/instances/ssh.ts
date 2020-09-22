@@ -1,7 +1,7 @@
 import {
   Resource,
   ResourceId,
-  OwnerScope,
+  CreatorScope,
   Time,
 } from "../../../common/structs";
 import {
@@ -23,7 +23,7 @@ export interface SSHToken extends Resource {
   instance_id: ResourceId;
   container_id: ResourceId;
   hub_id: ResourceId;
-  owner: OwnerScope;
+  creator: CreatorScope;
   events: {
     created: Time;
     used: Time;

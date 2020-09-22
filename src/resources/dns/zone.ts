@@ -5,10 +5,10 @@ import {
   Resource,
   State,
   Events,
-  OwnerScope,
+  CreatorScope,
   ResourceId,
   SingleDoc,
-  OwnerInclude,
+  CreatorIncludes,
   CreatedTask,
 } from "../../common/structs";
 import * as Records from "./records";
@@ -32,7 +32,7 @@ export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
   hub_id: ResourceId;
-  owner: OwnerScope;
+  creator: CreatorScope;
   origin: string;
   hosted: boolean;
   state: State<ZoneState>;
@@ -40,16 +40,13 @@ export interface Zone extends Resource {
 }
 
 export interface ZoneIncludes {
-  owners: OwnerInclude;
+  creators: CreatorIncludes;
 }
 
 export async function getCollection(params: StandardParams<ZoneQuery>) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .collection(),
+    target: links.dns().zones().collection(),
   });
 }
 
@@ -60,10 +57,7 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .single(params.id),
+    target: links.dns().zones().single(params.id),
   });
 }
 
@@ -79,10 +73,7 @@ export async function create(
 ) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .collection(),
+    target: links.dns().zones().collection(),
   });
 }
 
@@ -96,10 +87,7 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .single(params.id),
+    target: links.dns().zones().single(params.id),
   });
 }
 
@@ -110,9 +98,6 @@ export async function remove(
 ) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .single(params.zoneId),
+    target: links.dns().zones().single(params.zoneId),
   });
 }

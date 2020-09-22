@@ -2,7 +2,7 @@ import * as Request from "../../common/api/request";
 import {
   Resource,
   ResourceId,
-  OwnerScope,
+  CreatorScope,
   State,
   CollectionDoc,
   SingleDoc,
@@ -30,14 +30,14 @@ export interface Announcement extends Resource {
   affected_providers: ProviderIdentifier[];
   priority: AnnouncementPriority;
   events: Events<"resolved">;
-  creator: OwnerScope;
+  creator: CreatorScope;
   state: State<AnnouncementState>;
 }
 
 export interface Update {
   id: ResourceId;
   message: string;
-  creator: OwnerScope;
+  creator: CreatorScope;
   time: Time;
 }
 

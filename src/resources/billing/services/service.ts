@@ -2,7 +2,7 @@ import {
   ResourceId,
   Events,
   State,
-  OwnerScope,
+  CreatorScope,
   Mills,
   Resource,
   CollectionDoc,
@@ -23,7 +23,7 @@ export type ServiceEvent = "last_billed";
 export type ServiceState = "active";
 
 export interface Service extends Resource {
-  owner: OwnerScope;
+  creator: CreatorScope;
   hub_id: ResourceId;
   title: string;
   order: Order;
@@ -56,19 +56,13 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .services()
-      .single(params.id),
+    target: links.billing().services().single(params.id),
   });
 }
 
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .services()
-      .collection(),
+    target: links.billing().services().collection(),
   });
 }

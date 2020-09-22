@@ -1,6 +1,6 @@
 import {
   ResourceId,
-  OwnerScope,
+  CreatorScope,
   Events,
   State,
   CollectionDoc,
@@ -19,7 +19,7 @@ export interface Credit {
   id: ResourceId;
   hub_id: ResourceId;
   description: string;
-  owner: OwnerScope;
+  creator: CreatorScope;
   amount: number;
   amount_remaining: number;
   expires: Expires | null;
@@ -39,10 +39,7 @@ export interface Expires {
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .credits()
-      .collection(),
+    target: links.billing().credits().collection(),
   });
 }
 
@@ -53,9 +50,6 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .credits()
-      .single(params.id),
+    target: links.billing().credits().single(params.id),
   });
 }

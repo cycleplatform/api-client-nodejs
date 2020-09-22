@@ -13,8 +13,8 @@ import {
   State,
   Events,
   Bytes,
-  OwnerScope,
-  OwnerInclude,
+  CreatorScope,
+  CreatorIncludes,
 } from "../../common/structs";
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
@@ -45,7 +45,7 @@ export interface Image extends Resource<ImageMetas> {
   tags: string[];
   config: Config;
   source: ImageSource;
-  owner: OwnerScope;
+  creator: CreatorScope;
   hub_id: ResourceId;
   state: State<ImageState>;
   events: Events;
@@ -67,7 +67,7 @@ export interface ImageMetas {
 }
 
 export interface ImageIncludes {
-  owners: OwnerInclude;
+  creators: CreatorIncludes;
   stack_builds: Record<ResourceId, Builds.Build>;
   stacks: Record<ResourceId, Stack>;
 }

@@ -1,9 +1,9 @@
 import { ResourceId } from "./doc";
 
 /**
- * Types of 'owners'
+ * Types of 'creators'
  */
-export type OwnerScopeType =
+export type CreatorScopeT =
   | "account"
   | "employee"
   | "api-key"
@@ -12,10 +12,10 @@ export type OwnerScopeType =
   | "platform";
 
 /**
- * The owner scope is embedded in resource objects
+ * The creator scope is embedded in resource objects
  * to describe who created them
  */
-export interface OwnerScope {
-  type: OwnerScopeType;
+export interface CreatorScope {
+  type: CreatorScopeT;
   id: ResourceId;
 }

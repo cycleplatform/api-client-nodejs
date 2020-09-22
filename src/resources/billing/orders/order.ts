@@ -4,7 +4,7 @@ import {
   SingleDoc,
   Events,
   ResourceId,
-  OwnerScope,
+  CreatorScope,
   Mills,
   State,
 } from "../../../common/structs";
@@ -24,7 +24,7 @@ export type OrderQuery = QueryParams<keyof OrderIncludes, keyof OrderMeta>;
 
 export interface Order extends Resource<OrderMeta> {
   hub_id: ResourceId;
-  owner: OwnerScope;
+  creator: CreatorScope;
   promo_code_id: string | null;
   term: Term;
   approved: boolean;
@@ -66,10 +66,7 @@ export interface Item {
 export async function getCollection(params: StandardParams<OrderQuery>) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .orders()
-      .collection(),
+    target: links.billing().orders().collection(),
   });
 }
 
@@ -80,10 +77,7 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .orders()
-      .single(params.id),
+    target: links.billing().orders().single(params.id),
   });
 }
 
@@ -94,10 +88,7 @@ export async function create(
 ) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .orders()
-      .collection(),
+    target: links.billing().orders().collection(),
   });
 }
 
@@ -109,9 +100,6 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .orders()
-      .single(params.id),
+    target: links.billing().orders().single(params.id),
   });
 }
