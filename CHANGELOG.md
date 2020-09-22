@@ -11,6 +11,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+### Breaking Changes
+
+- Field owner renamed to creator
+- Field owners renamed to creators
+- Interface OwnerScope renamed to CreatorScope
+- Interface OwnerIncludes interface renamed to CreatorIncludes
+
 ## [1.8.6]
 
 ### Fixed
