@@ -25,9 +25,7 @@ export interface Pipeline extends Resource {
 
 export type Stages = {
   name: string;
-  tasks: {
-    [key: string]: Tasks;
-  };
+  tasks: Tasks;
   disabled: boolean;
 };
 
