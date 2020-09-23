@@ -249,4 +249,10 @@ export const links = {
       tasks: (id: ResourceId) => `/stacks/${stack}/hooks/${id}/tasks`,
     }),
   }),
+
+  // TODO: add in pipeline endpoints
+  // pipelines: () => ({
+  //   collection: () => `/pipelines`,
+  //   single: (id: ResourceId) => `/pipelines/${id}`,
+  // }),
 };

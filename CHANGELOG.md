@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Pipeline structures
+
 ### Changed
 
 ### Breaking Changes
