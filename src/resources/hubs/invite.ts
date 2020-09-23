@@ -8,7 +8,7 @@ import {
 } from "../../common/structs";
 import * as Memberships from "./membership";
 
-export type RoleName = "creator" | "admin" | "developer" | "analyst";
+export type RoleName = "owner" | "admin" | "developer" | "analyst";
 
 export interface CreateParams {
   recipient: Email; // Email

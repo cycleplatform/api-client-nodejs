@@ -21,7 +21,7 @@ export type AccountState =
   | "deleted";
 
 export interface Account extends Resource {
-  /** The first and last name of the account creator */
+  /** The first and last name of the account owner */
   name: Name;
   /** Email registered to this account */
   email: Email;
