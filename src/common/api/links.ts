@@ -243,11 +243,6 @@ export const links = {
       tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,
       log: (build: ResourceId) => `/stacks/${stack}/builds/${build}/log`,
     }),
-    hooks: (stack: ResourceId) => ({
-      collection: () => `/stacks/${stack}/hooks`,
-      single: (id: ResourceId) => `/stacks/${stack}/hooks/${id}`,
-      tasks: (id: ResourceId) => `/stacks/${stack}/hooks/${id}/tasks`,
-    }),
   }),
 
   pipelines: () => ({

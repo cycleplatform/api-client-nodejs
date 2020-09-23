@@ -19,6 +19,15 @@ export type Capability =
   | "billing-services-view"
   | "billing-credits-view"
 
+  // sdn
+  | "sdn-networks-view"
+  | "sdn-networks-manage"
+
+  // pipelines
+  | "pipelines-manage"
+  | "pipelines-view"
+  | "pipelines-trigger"
+
   // environments
   | "environments-create"
   | "environments-delete"
@@ -47,7 +56,6 @@ export type Capability =
   | "stacks-delete"
   | "stacks-view"
   | "stacks-builds-manage"
-  | "stacks-hooks-manage"
 
   // images
   | "images-view"
@@ -62,23 +70,21 @@ export type Capability =
   | "api-keys-manage"
 
   // infrastructure
+  | "ips-manage"
+  | "storage-sans-manage"
+  | "storage-sans-view"
   | "servers-provision"
   | "servers-view"
   | "servers-update"
   | "servers-state"
   | "servers-decommission"
-  | "ips-manage"
 
   // usage
   | "usage-view"
 
   // dns
   | "dns-view"
-  | "dns-manage"
-
-  // sdn
-  | "sdn-networks-view"
-  | "sdn-networks-manage";
+  | "dns-manage";
 
 export interface CapabilityDoc {
   data: Capability[];
