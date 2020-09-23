@@ -20,10 +20,10 @@ export type Task = {
 export type BaseTask = {
   id?: ResourceId;
   name?: string;
-  from_task?: FromTask;
+  from_task?: string;
 };
 
-export type FromTask = ResourceId;
+// export type FromTask = ResourceId;
 
 export type Import = {
   image: BaseTask;
