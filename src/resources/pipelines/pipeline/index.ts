@@ -1,5 +1,5 @@
 import * as Request from "../../../common/api/request";
-import { links, QueryParams, StandardParams } from "common/api";
+import { links, QueryParams, StandardParams } from "../../../common/api";
 import {
   CollectionDoc,
   CreatedTask,
@@ -9,7 +9,7 @@ import {
   Resource,
   ResourceId,
   SingleDoc,
-} from "common/structs";
+} from "../../../common/structs";
 import { Tasks } from "../tasks";
 
 export type Collection = CollectionDoc<Pipeline, PipelineIncludes>;

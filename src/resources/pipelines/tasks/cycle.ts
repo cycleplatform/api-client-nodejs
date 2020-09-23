@@ -1,7 +1,7 @@
-import { ResourceId } from "common/structs";
-import { NewContainer } from "resources/containers";
-import { NewEnvironment } from "resources/environments";
-import { NewImage, SpecImage } from "resources/images";
+import { ResourceId } from "../../../common/structs";
+import { NewContainer } from "../../../resources/containers";
+import { NewEnvironment } from "../../../resources/environments";
+import { NewImage, SpecImage } from "../../../resources/images";
 
 export type Tasks = Record<string, Task>;
 
