@@ -1,5 +1,7 @@
 import { ResourceId } from "common/structs";
-import { ImageSource } from "resources/images";
+import { NewContainer } from "resources/containers";
+import { NewEnvironment } from "resources/environments";
+import { NewImage, SpecImage } from "resources/images";
 
 export type Tasks = Record<string, Task>;
 
@@ -18,8 +20,10 @@ export type Task = {
 export type BaseTask = {
   id?: ResourceId;
   name?: string;
-  from_task?: string;
+  from_task?: FromTask;
 };
+
+export type FromTask = ResourceId;
 
 export type Import = {
   image: BaseTask;
@@ -31,13 +35,12 @@ export type Reimage = {
 };
 
 export type Create = {
-  image: ImageSource;
+  image: NewImage;
+  environment: NewEnvironment;
+  container: NewContainer;
 };
 
-export type CreateImage = {
-  name: string;
-  source: ImageSource;
-};
+export interface CreateImage extends SpecImage {}
 
 export type Start = {
   container: BaseTask;
@@ -55,6 +58,7 @@ export type Clone = {
 };
 
 export type Delete = {
+  image: BaseTask;
   container: BaseTask;
   environment: BaseTask;
 };

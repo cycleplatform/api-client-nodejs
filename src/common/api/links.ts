@@ -250,9 +250,8 @@ export const links = {
     }),
   }),
 
-  // TODO: add in pipeline endpoints
-  // pipelines: () => ({
-  //   collection: () => `/pipelines`,
-  //   single: (id: ResourceId) => `/pipelines/${id}`,
-  // }),
+  pipelines: () => ({
+    collection: () => `/pipelines`,
+    single: (id: ResourceId) => `/pipelines/${id}`,
+  }),
 };

@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Pipeline structures
+- Pipeline endpoints
+- Pipeline requests
 
 ### Changed
 

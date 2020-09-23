@@ -34,10 +34,7 @@ export type EnvironmentQuery = QueryParams<
 export interface Environment extends Resource<EnvironmentMeta> {
   name: string;
   cluster: Cluster;
-  about: {
-    description: string;
-    favorite: boolean;
-  };
+  about: About;
   creator: CreatorScope;
   hub_id: ResourceId;
   state: State<EnvironmentState>;
@@ -47,6 +44,19 @@ export interface Environment extends Resource<EnvironmentMeta> {
   services: Services;
   private_network: PrivateNetwork | null;
 }
+
+export type NewEnvironment = {
+  name: string;
+  about: About;
+  cluster: Cluster;
+  stack: StackSummary | null;
+  features: Features;
+};
+
+type About = {
+  description: string;
+  favorite: boolean;
+};
 
 export interface PrivateNetwork {
   vxlan_tag: number;
