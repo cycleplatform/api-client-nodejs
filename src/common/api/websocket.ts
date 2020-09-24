@@ -1,6 +1,6 @@
 import { ApiResult, makeUrl } from "./request";
 import { Settings } from "./settings";
-import WS, { MessageEvent } from "isomorphic-ws";
+import WS from "isomorphic-ws";
 
 export interface SocketConnectParams<T> {
   target: string;
