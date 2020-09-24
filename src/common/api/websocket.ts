@@ -16,7 +16,7 @@ export async function connectToSocket<T>({
   settings,
   onMessage,
   noJsonDecode,
-}: SocketConnectParams<T>): Promise<ApiResult<WS>> {
+}: SocketConnectParams<T>): Promise<ApiResult<WebSocket>> {
   let ws;
   try {
     ws = new WS(`${makeUrl(settings, true)}${target}?token=${token}`);
@@ -37,5 +37,5 @@ export async function connectToSocket<T>({
     };
   }
 
-  return { ok: true, value: ws };
+  return { ok: true, value: ws as WebSocket };
 }
