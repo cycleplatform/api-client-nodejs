@@ -31,7 +31,7 @@ export interface EntryComponent {
 export interface Entry extends Resource {
   hub_id: ResourceId;
   environment_id: ResourceId;
-  user: CreatorScope;
+  creator: CreatorScope;
   session: EntrySession;
   type: EntryType;
   events: Events;
