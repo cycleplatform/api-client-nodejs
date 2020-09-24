@@ -4,10 +4,10 @@ import {
   CollectionDoc,
   Resource,
   Events,
-  CreatorScope,
+  UserScope,
   ResourceId,
   SingleDoc,
-  CreatorIncludes,
+  UserIncludes,
   CreatedTask,
   State,
   ContainerIdentifier,
@@ -23,7 +23,7 @@ export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {
   hub_id: ResourceId;
-  creator: CreatorScope;
+  creator: UserScope;
   zone_id: ResourceId;
   name: string;
   resolved_domain: string;
@@ -122,7 +122,7 @@ export interface RecordValues {
 }
 
 export interface RecordIncludes {
-  creators?: CreatorIncludes;
+  creators?: UserIncludes;
   containers?: {
     [key: string]: Container;
   };

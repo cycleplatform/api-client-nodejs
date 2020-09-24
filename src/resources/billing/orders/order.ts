@@ -4,7 +4,7 @@ import {
   SingleDoc,
   Events,
   ResourceId,
-  CreatorScope,
+  UserScope,
   Mills,
   State,
 } from "../../../common/structs";
@@ -24,7 +24,7 @@ export type OrderQuery = QueryParams<keyof OrderIncludes, keyof OrderMeta>;
 
 export interface Order extends Resource<OrderMeta> {
   hub_id: ResourceId;
-  creator: CreatorScope;
+  creator: UserScope;
   promo_code_id: string | null;
   term: Term;
   approved: boolean;

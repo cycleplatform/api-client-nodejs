@@ -9,7 +9,7 @@ export interface StatefulCounts<K extends string> {
 }
 
 /** A creator is an identity that created a resource. */
-export interface CreatorIncludes {
+export interface UserIncludes {
   accounts?: {
     [key: string]: PublicAccount;
   };

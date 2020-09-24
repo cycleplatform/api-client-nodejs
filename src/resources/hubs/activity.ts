@@ -1,10 +1,10 @@
 import {
   Resource,
   ResourceId,
-  CreatorScope,
+  UserScope,
   Time,
   CollectionDoc,
-  CreatorIncludes,
+  UserIncludes,
 } from "../../common/structs";
 import {
   StandardParams,
@@ -45,7 +45,7 @@ export type ActivityFilter =
 
 export interface ActivityIncludes {
   // TODO: change to creators when updated on api
-  users: CreatorIncludes;
+  users: UserIncludes;
   components?: Record<
     string,
     | Container
@@ -188,7 +188,7 @@ export type EventType =
 export interface Activity extends Resource {
   hub_id: ResourceId;
   // TODO: change to creator when updated on api
-  user: CreatorScope;
+  user: UserScope;
   verbosity: number;
   context: Context;
   session: Session | null;

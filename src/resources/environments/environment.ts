@@ -7,9 +7,9 @@ import {
   ResourceId,
   State,
   Events,
-  CreatorScope,
+  UserScope,
   StatefulCounts,
-  CreatorIncludes,
+  UserIncludes,
   IP,
   Cluster,
 } from "../../common/structs";
@@ -38,7 +38,7 @@ export interface Environment extends Resource<EnvironmentMeta> {
     description: string;
     favorite: boolean;
   };
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   state: State<EnvironmentState>;
   events: Events;
@@ -76,7 +76,7 @@ export interface Services {
 }
 
 export interface EnvironmentIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
   stacks: Record<ResourceId, Stack>;
 }
 

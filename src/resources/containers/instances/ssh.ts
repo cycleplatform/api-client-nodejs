@@ -1,9 +1,4 @@
-import {
-  Resource,
-  ResourceId,
-  CreatorScope,
-  Time,
-} from "../../../common/structs";
+import { Resource, ResourceId, UserScope, Time } from "../../../common/structs";
 import {
   links,
   getRequest,
@@ -23,7 +18,7 @@ export interface SSHToken extends Resource {
   instance_id: ResourceId;
   container_id: ResourceId;
   hub_id: ResourceId;
-  creator: CreatorScope;
+  creator: UserScope;
   events: {
     created: Time;
     used: Time;

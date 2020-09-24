@@ -5,7 +5,7 @@ import {
   State,
   CollectionDoc,
   SingleDoc,
-  CreatorIncludes,
+  UserIncludes,
   CreatedTask,
 } from "../../../common/structs";
 import { Kind } from "./kind";
@@ -68,7 +68,7 @@ export interface PoolProvider {
 }
 
 export interface PoolIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
   servers: Record<ResourceId, Server>;
   providers: Record<ResourceId, Provider>;
   locations: Record<ResourceId, Location>;

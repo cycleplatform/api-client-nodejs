@@ -13,8 +13,8 @@ import {
   State,
   Events,
   Bytes,
-  CreatorScope,
-  CreatorIncludes,
+  UserScope,
+  UserIncludes,
 } from "../../common/structs";
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
@@ -45,7 +45,7 @@ export interface Image extends Resource<ImageMetas> {
   tags: string[];
   config: Config;
   source: ImageSource;
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   state: State<ImageState>;
   events: Events;
@@ -67,7 +67,7 @@ export interface ImageMetas {
 }
 
 export interface ImageIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
   stack_builds: Record<ResourceId, Builds.Build>;
   stacks: Record<ResourceId, Stack>;
 }

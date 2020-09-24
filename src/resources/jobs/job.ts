@@ -8,8 +8,8 @@ import {
   CollectionDoc,
   SingleDoc,
   ResourceId,
-  CreatorScope,
-  CreatorIncludes,
+  UserScope,
+  UserIncludes,
 } from "../../common/structs";
 
 export type Collection = CollectionDoc<Job, JobIncludes>;
@@ -33,7 +33,7 @@ export interface Job extends Resource {
   tasks: JobTask[];
   hash: string;
   limit_duplicates: boolean;
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   state: State<JobState>;
 }
@@ -68,7 +68,7 @@ export interface TaskStep {
 }
 
 export interface JobIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
 }
 
 export async function getCollection(params: StandardParams) {

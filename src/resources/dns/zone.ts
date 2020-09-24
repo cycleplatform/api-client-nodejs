@@ -5,10 +5,10 @@ import {
   Resource,
   State,
   Events,
-  CreatorScope,
+  UserScope,
   ResourceId,
   SingleDoc,
-  CreatorIncludes,
+  UserIncludes,
   CreatedTask,
 } from "../../common/structs";
 import * as Records from "./records";
@@ -32,7 +32,7 @@ export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
 export interface Zone extends Resource {
   hub_id: ResourceId;
-  creator: CreatorScope;
+  creator: UserScope;
   origin: string;
   hosted: boolean;
   state: State<ZoneState>;
@@ -40,7 +40,7 @@ export interface Zone extends Resource {
 }
 
 export interface ZoneIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
 }
 
 export async function getCollection(params: StandardParams<ZoneQuery>) {

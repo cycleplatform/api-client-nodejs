@@ -18,9 +18,9 @@ import {
   ResourceId,
   State,
   Events,
-  CreatorScope,
+  UserScope,
   Includes,
-  CreatorIncludes,
+  UserIncludes,
   Time,
   CreatedTask,
 } from "../../../common/structs";
@@ -58,7 +58,7 @@ export type InstanceQuery = QueryParams<
 >;
 
 export interface Instance extends Resource<InstanceMetas> {
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   container_id: ResourceId;
   location_id: ResourceId;
@@ -119,7 +119,7 @@ export interface MigrationInstance {
 }
 
 export interface InstanceIncludes extends Includes {
-  creator: CreatorIncludes;
+  creator: UserIncludes;
   servers: Record<ResourceId, Server>;
   locations: Record<ResourceId, Locations.Location>;
   providers: Record<ProviderIdentifier, Provider>;

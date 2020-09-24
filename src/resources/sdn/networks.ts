@@ -7,8 +7,8 @@ import {
   ResourceId,
   State,
   Events,
-  CreatorScope,
-  CreatorIncludes,
+  UserScope,
+  UserIncludes,
   Time,
   CreatedTask,
 } from "../../common/structs";
@@ -25,7 +25,7 @@ export interface Network extends Resource {
   name: string;
   identifier: string;
   cluster: string;
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   state: State<NetworkState>;
   private_network: PrivateNetwork;
@@ -49,7 +49,7 @@ export interface NetworkEnvironment {
 }
 
 export interface NetworkIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
   environments: Record<ResourceId, Environment>;
 }
 
