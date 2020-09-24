@@ -10,7 +10,7 @@ export type Task = {
   import?: Import;
   start?: Start;
   stop?: Stop;
-  delete: Delete;
+  delete?: Delete;
   clone?: Clone;
   reimage?: Reimage;
   disable?: boolean;
@@ -30,35 +30,35 @@ export type Import = {
 };
 
 export type Reimage = {
-  image: BaseTask;
-  container: BaseTask;
+  image?: BaseTask;
+  container?: BaseTask;
 };
 
 export type Create = {
-  image: NewImage;
-  environment: NewEnvironment;
-  container: NewContainer;
+  image?: NewImage;
+  environment?: NewEnvironment;
+  container?: NewContainer;
 };
 
 export interface CreateImage extends SpecImage {}
 
 export type Start = {
-  container: BaseTask;
-  environment: BaseTask;
+  container?: BaseTask;
+  environment?: BaseTask;
 };
 
 export type Stop = {
-  container: BaseTask;
-  environment: BaseTask;
+  container?: BaseTask;
+  environment?: BaseTask;
 };
 
 export type Clone = {
-  container: BaseTask;
-  environment: BaseTask;
+  container?: BaseTask;
+  environment?: BaseTask;
 };
 
 export type Delete = {
-  image: BaseTask;
-  container: BaseTask;
-  environment: BaseTask;
+  image?: BaseTask;
+  container?: BaseTask;
+  environment?: BaseTask;
 };
