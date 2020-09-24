@@ -44,6 +44,7 @@ export type ActivityFilter =
   | "verbosity";
 
 export interface ActivityIncludes {
+  // TODO: change to creators when updated on api
   users: CreatorIncludes;
   components?: Record<
     string,
@@ -186,6 +187,7 @@ export type EventType =
 
 export interface Activity extends Resource {
   hub_id: ResourceId;
+  // TODO: change to creator when updated on api
   user: CreatorScope;
   verbosity: number;
   context: Context;
