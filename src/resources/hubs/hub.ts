@@ -18,6 +18,12 @@ export type Collection = CollectionDoc<Hub>;
 export type Single = SingleDoc<Hub>;
 
 export type HubQuery = QueryParams<"", keyof HubMetas>;
+export type HubEvents =
+  | "first_provider"
+  | "first_server"
+  | "first_environment"
+  | "first_image"
+  | "first_container";
 
 export type HubState =
   | "new"
@@ -29,7 +35,7 @@ export type HubState =
 
 export interface Hub extends Resource<HubMetas> {
   name: string;
-  events: Events;
+  events: Events<HubEvents>;
   state: State<HubState>;
   integrations: Integrations;
   providers: Providers;
