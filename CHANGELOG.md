@@ -9,6 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Survey structures
+- Survey link(s)
+
 ### Changed
 
 ### Breaking Changes
