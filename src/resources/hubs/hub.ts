@@ -8,6 +8,7 @@ import {
   State,
   CreatedTask,
   ResourceId,
+  UserScope,
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
@@ -35,6 +36,7 @@ export type HubState =
 
 export interface Hub extends Resource<HubMetas> {
   name: string;
+  creator: UserScope;
   events: Events<HubEvents>;
   state: State<HubState>;
   integrations: Integrations;
