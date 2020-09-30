@@ -39,6 +39,3 @@ export async function getSingle(
     target: links.surveys().single(params.id),
   });
 }
-
-// server.Router.Get("/v1/survey/{id:[a-f0-9]{24}}", getSurvey)
-// server.Router.Post("/v1/survey/{id:[a-f0-9]{24}}", postSurvey)

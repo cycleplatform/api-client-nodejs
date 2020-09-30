@@ -267,6 +267,6 @@ export const links = {
 
   // Surveys
   surveys: () => ({
-    single: (id: ResourceId) => `survey/${id}`,
+    single: (id: ResourceId) => `/survey/${id}`,
   }),
 };
