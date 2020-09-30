@@ -155,15 +155,17 @@ export async function getSingle(
   });
 }
 
-export interface CreateParams {
-  server_id: ResourceId;
-  new_instances: number;
-}
+export type CreateParams = [
+  {
+    server_id: ResourceId;
+    new_instances: number;
+  },
+];
 
 export async function create(
   params: StandardParams<InstanceQuery> & {
     containerId: ResourceId;
-  } & PostParams<CreateParams[]>,
+  } & PostParams<CreateParams>,
 ) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
