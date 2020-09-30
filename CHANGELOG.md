@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Survey structures
 - Survey link(s)
+- Initialize task action for environments
 
 ### Changed
 
