@@ -163,7 +163,7 @@ export interface CreateParams {
 export async function create(
   params: StandardParams<InstanceQuery> & {
     containerId: ResourceId;
-  } & PostParams<CreateParams>,
+  } & PostParams<CreateParams[]>,
 ) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
