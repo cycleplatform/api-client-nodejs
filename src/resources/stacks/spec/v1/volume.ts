@@ -9,6 +9,7 @@ export interface Volume {
 
 export interface LocalVolume {
   max_size: DataSize;
+  performance?: boolean;
 }
 
 export interface VolumeRemoteAccess {
