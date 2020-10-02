@@ -187,3 +187,15 @@ export async function remove(
       .single(params.id, params.containerId),
   });
 }
+
+export async function removeMultiple(
+  params: StandardParams<InstanceQuery> & {
+    instances_ids: ResourceId[];
+    containerId: ResourceId;
+  },
+) {
+  return Request.deleteRequest<CreatedTask<any>>({
+    ...params,
+    target: links.containers().instances().collection(params.containerId),
+  });
+}
