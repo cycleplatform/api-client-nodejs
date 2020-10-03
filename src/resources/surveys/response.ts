@@ -10,7 +10,16 @@ export interface Response extends Resource {
   responses: Responses;
 }
 
-export type Responses = Record<string, Record<string, Record<string, string>>>;
+export type Responses = Record<string, ResponseSection>;
+
+export type ResponseSection = {
+  answers: Record<string, ResponseAnswer>;
+};
+
+export type ResponseAnswer = {
+  value: string;
+  extra: Record<string, string>;
+};
 
 export type postResponseParams = {
   survey_id: string;
