@@ -4,7 +4,7 @@ import {
   SingleDoc,
   Events,
   State,
-  OwnerScope,
+  UserScope,
   ResourceId,
 } from "../../../common/structs";
 import * as Request from "../../../common/api/request";
@@ -18,7 +18,7 @@ export interface Method extends Resource {
   name: string;
   primary: boolean;
   address: Address;
-  owner: OwnerScope;
+  creator: UserScope;
   credit_card: CreditCard;
   state: State<MethodState>;
   events: Events;
@@ -42,10 +42,7 @@ export interface CreditCard {
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .methods()
-      .collection(),
+    target: links.billing().methods().collection(),
   });
 }
 
@@ -56,10 +53,7 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .methods()
-      .single(params.id),
+    target: links.billing().methods().single(params.id),
   });
 }
 
@@ -85,10 +79,7 @@ export async function create(
 ) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .methods()
-      .collection(),
+    target: links.billing().methods().collection(),
   });
 }
 
@@ -106,9 +97,6 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .methods()
-      .single(params.id),
+    target: links.billing().methods().single(params.id),
   });
 }

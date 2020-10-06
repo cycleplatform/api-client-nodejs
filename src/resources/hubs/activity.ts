@@ -1,10 +1,10 @@
 import {
   Resource,
   ResourceId,
-  OwnerScope,
+  UserScope,
   Time,
   CollectionDoc,
-  OwnerInclude,
+  UserIncludes,
 } from "../../common/structs";
 import {
   StandardParams,
@@ -44,7 +44,8 @@ export type ActivityFilter =
   | "verbosity";
 
 export interface ActivityIncludes {
-  users: OwnerInclude;
+  // TODO: change to creators when updated on api
+  users: UserIncludes;
   components?: Record<
     string,
     | Container
@@ -78,6 +79,7 @@ export type EventType =
   | "environment.stop"
   | "environment.task.start"
   | "environment.task.stop"
+  | "environment.task.initialize"
   | "environment.delete"
   | "environment.task.delete"
   | "environment.update"
@@ -186,7 +188,8 @@ export type EventType =
 
 export interface Activity extends Resource {
   hub_id: ResourceId;
-  user: OwnerScope;
+  // TODO: change to creator when updated on api
+  user: UserScope;
   verbosity: number;
   context: Context;
   session: Session | null;

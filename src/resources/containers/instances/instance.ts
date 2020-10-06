@@ -18,9 +18,9 @@ import {
   ResourceId,
   State,
   Events,
-  OwnerScope,
+  UserScope,
   Includes,
-  OwnerInclude,
+  UserIncludes,
   Time,
   CreatedTask,
 } from "../../../common/structs";
@@ -58,7 +58,7 @@ export type InstanceQuery = QueryParams<
 >;
 
 export interface Instance extends Resource<InstanceMetas> {
-  owner: OwnerScope;
+  creator: UserScope;
   hub_id: ResourceId;
   container_id: ResourceId;
   location_id: ResourceId;
@@ -119,7 +119,7 @@ export interface MigrationInstance {
 }
 
 export interface InstanceIncludes extends Includes {
-  owner: OwnerInclude;
+  creator: UserIncludes;
   servers: Record<ResourceId, Server>;
   locations: Record<ResourceId, Locations.Location>;
   providers: Record<ProviderIdentifier, Provider>;
@@ -136,10 +136,7 @@ export async function getCollection(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .containers()
-      .instances()
-      .collection(params.containerId),
+    target: links.containers().instances().collection(params.containerId),
   });
 }
 
@@ -158,10 +155,12 @@ export async function getSingle(
   });
 }
 
-export interface CreateParams {
-  server_id: ResourceId;
-  new_instances: number;
-}
+export type CreateParams = [
+  {
+    server_id: ResourceId;
+    new_instances: number;
+  },
+];
 
 export async function create(
   params: StandardParams<InstanceQuery> & {
@@ -170,10 +169,7 @@ export async function create(
 ) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
-    target: links
-      .containers()
-      .instances()
-      .collection(params.containerId),
+    target: links.containers().instances().collection(params.containerId),
   });
 }
 
@@ -189,5 +185,17 @@ export async function remove(
       .containers()
       .instances()
       .single(params.id, params.containerId),
+  });
+}
+
+export async function removeMultiple(
+  params: StandardParams<InstanceQuery> & {
+    instances_ids: ResourceId[];
+    containerId: ResourceId;
+  },
+) {
+  return Request.deleteRequest<CreatedTask<any>>({
+    ...params,
+    target: links.containers().instances().collection(params.containerId),
   });
 }

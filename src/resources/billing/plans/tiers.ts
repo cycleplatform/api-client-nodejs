@@ -55,7 +55,7 @@ export interface Features {
   support: SupportFeatures;
   security: SecurityFeatures;
   automated_backups: TierFeature;
-  continuous_deployments: TierFeature;
+  deployment_pipelines: TierFeature;
 }
 
 export interface TierFeature {
