@@ -1,5 +1,5 @@
 export interface Config {
-  user: string;
+  creator: string;
   ports: Port[];
   env: Record<string, string>;
   labels: Record<string, string>;

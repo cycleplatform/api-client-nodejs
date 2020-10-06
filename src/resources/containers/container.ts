@@ -10,8 +10,8 @@ import {
   ResourceId,
   State,
   Events,
-  OwnerScope,
-  OwnerInclude,
+  UserScope,
+  UserIncludes,
   StatefulCounts,
   ContainerIdentifier,
 } from "../../common/structs";
@@ -44,7 +44,7 @@ export type ContainerQuery = QueryParams<
 export interface Container extends Resource<ContainerMetas> {
   name: string;
   identifier: ContainerIdentifier;
-  owner: OwnerScope;
+  creator: UserScope;
   environment: EnvironmentSummary;
   hub_id: ResourceId;
   image: ImageSummary;
@@ -64,7 +64,7 @@ export interface Container extends Resource<ContainerMetas> {
 }
 
 export interface ContainerIncludes {
-  owners?: OwnerInclude;
+  creators?: UserIncludes;
   images?: {
     [key: string]: Image;
   };

@@ -1,6 +1,6 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.8.7",
+  "version": "1.9.1-19",
   "description": "Cycle API Client",
   "main": "dist/index.js",
   "umd:main": "dist/node-api-client.umd.production.js",
@@ -10,13 +10,15 @@
     "dist"
   ],
   "publishConfig": {
+    "registry": "http://npm-registry.internal.cycle.io:4873",
     "access": "public"
   },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
     "prepublishOnly": "npm run build",
-    "test": "tsdx test"
+    "test": "tsdx test",
+    "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch"
   },
   "peerDependencies": {},
   "husky": {

@@ -7,8 +7,8 @@ import {
   ResourceId,
   State,
   Events,
-  OwnerScope,
-  OwnerInclude,
+  UserScope,
+  UserIncludes,
   Time,
   CreatedTask,
 } from "../../common/structs";
@@ -25,7 +25,7 @@ export interface Network extends Resource {
   name: string;
   identifier: string;
   cluster: string;
-  owner: OwnerScope;
+  creator: UserScope;
   hub_id: ResourceId;
   state: State<NetworkState>;
   private_network: PrivateNetwork;
@@ -49,17 +49,14 @@ export interface NetworkEnvironment {
 }
 
 export interface NetworkIncludes {
-  owners: OwnerInclude;
+  creators: UserIncludes;
   environments: Record<ResourceId, Environment>;
 }
 
 export async function getCollection(params: StandardParams<NetworkQuery>) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .sdn()
-      .networks()
-      .collection(),
+    target: links.sdn().networks().collection(),
   });
 }
 
@@ -70,10 +67,7 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .sdn()
-      .networks()
-      .single(params.id),
+    target: links.sdn().networks().single(params.id),
   });
 }
 
@@ -91,10 +85,7 @@ export async function create(
 ) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .sdn()
-      .networks()
-      .collection(),
+    target: links.sdn().networks().collection(),
   });
 }
 
@@ -111,10 +102,7 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .sdn()
-      .networks()
-      .single(params.id),
+    target: links.sdn().networks().single(params.id),
   });
 }
 
@@ -125,9 +113,6 @@ export async function remove(
 ) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
-    target: links
-      .sdn()
-      .networks()
-      .single(params.id),
+    target: links.sdn().networks().single(params.id),
   });
 }

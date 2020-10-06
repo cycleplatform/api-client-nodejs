@@ -4,10 +4,10 @@ import {
   CollectionDoc,
   Resource,
   Events,
-  OwnerScope,
+  UserScope,
   ResourceId,
   SingleDoc,
-  OwnerInclude,
+  UserIncludes,
   CreatedTask,
   State,
   ContainerIdentifier,
@@ -23,7 +23,7 @@ export type RecordQuery = QueryParams<keyof RecordIncludes>;
 
 export interface Record extends Resource {
   hub_id: ResourceId;
-  owner: OwnerScope;
+  creator: UserScope;
   zone_id: ResourceId;
   name: string;
   resolved_domain: string;
@@ -122,7 +122,7 @@ export interface RecordValues {
 }
 
 export interface RecordIncludes {
-  owners?: OwnerInclude;
+  creators?: UserIncludes;
   containers?: {
     [key: string]: Container;
   };
@@ -135,10 +135,7 @@ export async function getCollection(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .records(params.zoneId),
+    target: links.dns().zones().records(params.zoneId),
   });
 }
 
@@ -155,10 +152,7 @@ export async function create(
 ) {
   return Request.postRequest<Single>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .records(params.zoneId),
+    target: links.dns().zones().records(params.zoneId),
   });
 }
 
@@ -171,10 +165,7 @@ export async function update(
 ) {
   return Request.patchRequest<Single>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .record(params.zoneId, params.recordId),
+    target: links.dns().zones().record(params.zoneId, params.recordId),
   });
 }
 
@@ -186,9 +177,6 @@ export async function remove(
 ) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
-    target: links
-      .dns()
-      .zones()
-      .record(params.zoneId, params.recordId),
+    target: links.dns().zones().record(params.zoneId, params.recordId),
   });
 }

@@ -6,7 +6,7 @@ import {
   ResourceId,
   Events,
   State,
-  OwnerScope,
+  UserScope,
   SingleDoc,
 } from "../../common/structs";
 import { Capability } from "./capability";
@@ -16,7 +16,7 @@ export type Single = SingleDoc<ApiKey>;
 
 export interface ApiKey extends Resource {
   name: string;
-  owner: OwnerScope;
+  creator: UserScope;
   hub_id: ResourceId;
   secret?: string;
   permissions: Permissions;

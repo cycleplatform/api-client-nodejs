@@ -5,7 +5,7 @@ import {
   State,
   CollectionDoc,
   SingleDoc,
-  OwnerInclude,
+  UserIncludes,
   CreatedTask,
 } from "../../../common/structs";
 import { Kind } from "./kind";
@@ -68,7 +68,7 @@ export interface PoolProvider {
 }
 
 export interface PoolIncludes {
-  owners: OwnerInclude;
+  creators: UserIncludes;
   servers: Record<ResourceId, Server>;
   providers: Record<ResourceId, Provider>;
   locations: Record<ResourceId, Location>;
@@ -77,11 +77,7 @@ export interface PoolIncludes {
 export async function getCollection(params: StandardParams<PoolQuery>) {
   return getRequest<Collection>({
     ...params,
-    target: links
-      .infrastructure()
-      .ips()
-      .pools()
-      .collection(),
+    target: links.infrastructure().ips().pools().collection(),
   });
 }
 
@@ -92,11 +88,7 @@ export async function getSingle(
 ) {
   return getRequest<Single>({
     ...params,
-    target: links
-      .infrastructure()
-      .ips()
-      .pools()
-      .single(params.id),
+    target: links.infrastructure().ips().pools().single(params.id),
   });
 }
 
@@ -107,11 +99,7 @@ export async function remove(
 ) {
   return deleteRequest<CreatedTask<"delete">>({
     ...params,
-    target: links
-      .infrastructure()
-      .ips()
-      .pools()
-      .single(params.id),
+    target: links.infrastructure().ips().pools().single(params.id),
   });
 }
 
@@ -122,10 +110,6 @@ export async function getPoolIPs(
 ) {
   return getRequest<CollectionDoc<IP>>({
     ...params,
-    target: links
-      .infrastructure()
-      .ips()
-      .pools()
-      .ips(params.id),
+    target: links.infrastructure().ips().pools().ips(params.id),
   });
 }

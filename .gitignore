@@ -5,3 +5,4 @@ node_modules
 .rts2_*
 dist
 cycleplatform-cycle-api-*.tgz
+docs/**/*
