@@ -79,6 +79,7 @@ export type EventType =
   | "environment.stop"
   | "environment.task.start"
   | "environment.task.stop"
+  | "environment.task.initialize"
   | "environment.delete"
   | "environment.task.delete"
   | "environment.update"
