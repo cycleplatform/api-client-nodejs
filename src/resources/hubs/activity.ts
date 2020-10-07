@@ -119,6 +119,8 @@ export type EventType =
   | "container.instance.migration.start"
   | "container.instance.migration.revert"
   | "container.instance.delete"
+  | "container.instances.delete"
+
   // dns zones
   | "dns.zone.task.verify"
   | "dns.zone.task.delete"

@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- `container.instances.delete` activity
+
 ### Changed
 
 - `containerId` => `container_id` for `removeMultiple` instances
