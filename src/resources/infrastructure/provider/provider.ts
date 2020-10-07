@@ -13,7 +13,7 @@ export interface Provider extends Resource<ProviderMetas> {
   features: string[];
 }
 
-export type ProviderIdentifier = "packet" | "vultr" | "aws";
+export type ProviderIdentifier = "equinix_metal" | "vultr" | "aws";
 
 export interface RequiredField {
   caption: string;
@@ -30,9 +30,6 @@ export async function getCollection(params: {
 }) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .infrastructure()
-      .providers()
-      .collection(),
+    target: links.infrastructure().providers().collection(),
   });
 }
