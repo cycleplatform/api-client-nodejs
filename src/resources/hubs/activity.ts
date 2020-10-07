@@ -95,6 +95,7 @@ export type EventType =
   | "image.create"
   | "image.delete"
   | "image.task.delete"
+
   // containers
   | "container.create"
   | "container.start"
@@ -112,7 +113,6 @@ export type EventType =
   | "container.task.scale"
   | "container.delete"
   | "container.task.delete"
-  | "container.instances.create"
   // instances
   | "container.instance.error"
   | "container.instance.sftp.login"
@@ -120,6 +120,7 @@ export type EventType =
   | "container.instance.migration.revert"
   | "container.instance.delete"
   | "container.instances.delete"
+  | "container.instances.create"
 
   // dns zones
   | "dns.zone.task.verify"

@@ -190,7 +190,7 @@ export async function remove(
 
 export async function removeMultiple(
   params: StandardParams<InstanceQuery> & {
-    container_id: ResourceId;
+    containerId: ResourceId;
     value: {
       instances_ids: ResourceId[];
     };
@@ -198,6 +198,6 @@ export async function removeMultiple(
 ) {
   return Request.deleteRequest<CreatedTask<any>>({
     ...params,
-    target: links.containers().instances().collection(params.container_id),
+    target: links.containers().instances().collection(params.containerId),
   });
 }
