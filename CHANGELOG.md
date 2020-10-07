@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- `containerId` => `container_id` for `removeMultiple` instances
+
 ### Breaking Changes
 
 - Packet provider changes to Equinix Metal

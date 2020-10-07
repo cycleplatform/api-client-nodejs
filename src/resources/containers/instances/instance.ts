@@ -191,11 +191,11 @@ export async function remove(
 export async function removeMultiple(
   params: StandardParams<InstanceQuery> & {
     instances_ids: ResourceId[];
-    containerId: ResourceId;
+    container_id: ResourceId;
   },
 ) {
   return Request.deleteRequest<CreatedTask<any>>({
     ...params,
-    target: links.containers().instances().collection(params.containerId),
+    target: links.containers().instances().collection(params.container_id),
   });
 }
