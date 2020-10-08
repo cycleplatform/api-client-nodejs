@@ -13,7 +13,7 @@ export interface Provider extends Resource<ProviderMetas> {
   features: string[];
 }
 
-export type ProviderIdentifier = "equinix_metal" | "vultr" | "aws";
+export type ProviderIdentifier = "equinix-metal" | "vultr" | "aws";
 
 export interface RequiredField {
   caption: string;
