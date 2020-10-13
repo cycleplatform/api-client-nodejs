@@ -51,7 +51,7 @@ export type InstanceState =
  */
 export type ReadyState = "active" | "purge" | "hibernate";
 
-export type InstanceEvent = "first_boot" | "started";
+export type InstanceEvent = "first_started";
 export type InstanceQuery = QueryParams<
   keyof InstanceIncludes,
   keyof InstanceMetas
