@@ -1,7 +1,7 @@
 import * as Request from "../../common/api/request";
 // import { Resource, SingleDoc } from "../../common/structs";
 import { links, StandardParams } from "../../common/api";
-import { Resource, SingleDoc } from "common/structs";
+import { Resource, ResourceId, SingleDoc } from "common/structs";
 export type Single = SingleDoc<Response>;
 
 export interface Response extends Resource {
@@ -35,5 +35,16 @@ export async function postResponse(
   return Request.postRequest<Response>({
     ...params,
     target: links.surveys().single(params.value.survey_id),
+  });
+}
+
+export async function getResponse(
+  params: StandardParams & {
+    survey_id: ResourceId;
+  },
+) {
+  return Request.getRequest<Response>({
+    ...params,
+    target: links.surveys().response(params.survey_id),
   });
 }
