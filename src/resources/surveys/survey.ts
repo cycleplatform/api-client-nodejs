@@ -7,6 +7,7 @@ export type SurveySingle = SingleDoc<Survey>;
 export type SendResponseParams = Response;
 
 export interface Survey extends Resource {
+  hub_scoped: ResourceId;
   identifier: string;
   active: boolean;
   title: string;
