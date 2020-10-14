@@ -11,6 +11,7 @@ export interface Survey extends Resource {
   identifier: string;
   active: boolean;
   title: string;
+  reward?: Reward;
   sections: Section[];
 }
 
@@ -28,6 +29,10 @@ export interface Question {
   dropdown?: Record<string, string>;
   required?: boolean;
   conditional_questions?: Record<string, Question[]>;
+}
+
+export interface Reward {
+  credit?: number;
 }
 
 export async function getSingle(
