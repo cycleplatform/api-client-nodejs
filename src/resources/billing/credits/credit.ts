@@ -20,6 +20,7 @@ export interface Credit {
   hub_id: ResourceId;
   description: string;
   creator: UserScope;
+  account_id: ResourceId;
   amount: number;
   amount_remaining: number;
   expires: Expires | null;
