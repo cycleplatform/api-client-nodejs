@@ -268,5 +268,6 @@ export const links = {
   // Surveys
   surveys: () => ({
     single: (id: ResourceId) => `/survey/${id}`,
+    response: (id: ResourceId) => `/survey/${id}/response`,
   }),
 };
