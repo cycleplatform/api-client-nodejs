@@ -3,8 +3,8 @@ import { links, QueryParams, StandardParams } from "../../../common/api";
 import {
   CollectionDoc,
   CreatedTask,
-  CreatorIncludes,
-  CreatorScope,
+  UserIncludes,
+  UserScope,
   Events,
   Resource,
   ResourceId,
@@ -17,7 +17,7 @@ export type Single = SingleDoc<Pipeline, PipelineIncludes>;
 export type PipelineQuery = QueryParams<keyof PipelineIncludes>;
 export interface Pipeline extends Resource {
   name: string;
-  creator: CreatorScope;
+  creator: UserScope;
   hubId: ResourceId;
   stages: Stages[];
   events: Events;
@@ -31,7 +31,7 @@ export type Stages = {
 
 export type PipelineIncludes = {
   name: string;
-  creators: CreatorIncludes;
+  creators: UserIncludes;
 };
 
 export async function getCollection(params: StandardParams) {
