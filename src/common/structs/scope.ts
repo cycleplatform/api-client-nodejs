@@ -3,7 +3,7 @@ import { ResourceId } from "./doc";
 /**
  * Types of 'creators'
  */
-export type CreatorScopeT =
+export type UserScopeT =
   | "account"
   | "employee"
   | "api-key"
@@ -15,7 +15,7 @@ export type CreatorScopeT =
  * The creator scope is embedded in resource objects
  * to describe who created them
  */
-export interface CreatorScope {
-  type: CreatorScopeT;
+export interface UserScope {
+  type: UserScopeT;
   id: ResourceId;
 }

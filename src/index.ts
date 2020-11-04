@@ -22,6 +22,7 @@ import * as Stacks from "./resources/stacks";
 import * as Structs from "./common/structs";
 import * as Notifications from "./notifications";
 import * as Websocket from "./common/api/websocket";
+import * as Surveys from "./resources/surveys";
 import * as Pipelines from "./resources/pipelines";
 
 export { Capability } from "./resources/hubs";
@@ -50,5 +51,6 @@ export {
   Stacks,
   Structs,
   Websocket,
+  Surveys,
   Pipelines,
 };

@@ -4,6 +4,7 @@ import { ResourceId } from "../structs";
  * All possible endpoints of Cycle's API
  */
 export const links = {
+  // Account
   account: () => ({
     single: () => `/account`,
     invites: () => ({
@@ -14,14 +15,17 @@ export const links = {
     logins: () => `/account/logins`,
   }),
 
+  // Announcements
   announcements: () => ({
     collection: () => `/announcements`,
   }),
 
+  // Audit
   audit: () => ({
     entries: () => `/audit/entries`,
   }),
 
+  // Billing
   billing: () => ({
     orders: () => ({
       collection: () => `/billing/orders`,
@@ -52,15 +56,18 @@ export const links = {
     }),
   }),
 
+  // Changelog
   changelog: () => ({
     collection: () => "/changelog",
   }),
 
+  // Notification Channels
   channels: () => ({
     account: () => "/account/notifications",
     hub: () => "/hubs/current/notifications",
   }),
 
+  // Containers
   containers: () => ({
     collection: () => `/containers`,
     single: (id: ResourceId) => `/containers/${id}`,
@@ -103,6 +110,7 @@ export const links = {
     }),
   }),
 
+  // DNS
   dns: () => ({
     zones: () => ({
       collection: () => `/dns/zones`,
@@ -122,6 +130,7 @@ export const links = {
     }),
   }),
 
+  // Environments
   environments: () => ({
     collection: () => `/environments`,
     single: (id: ResourceId) => `/environments/${id}`,
@@ -157,6 +166,7 @@ export const links = {
     }),
   }),
 
+  // Hubs
   hubs: () => ({
     collection: () => `/hubs`,
     single: () => `/hubs/current`,
@@ -180,6 +190,7 @@ export const links = {
     }),
   }),
 
+  // Images
   images: () => ({
     collection: () => `/images`,
     single: (id: ResourceId) => `/images/${id}`,
@@ -188,6 +199,7 @@ export const links = {
     imageTasks: (id: ResourceId) => `/images/${id}/tasks`,
   }),
 
+  // Infrastructure
   infrastructure: () => ({
     summary: () => `/infrastructure/summary`,
     servers: () => ({
@@ -219,12 +231,14 @@ export const links = {
     strategies: () => `/infrastructure/deployment-strategies`,
   }),
 
+  // Jobs
   jobs: () => ({
     collection: () => `/jobs`,
     single: (id: ResourceId) => `/jobs/${id}`,
     latest: () => `/jobs/latest`,
   }),
 
+  // SDN
   sdn: () => ({
     networks: () => ({
       collection: () => `/sdn/networks`,
@@ -233,6 +247,7 @@ export const links = {
     }),
   }),
 
+  // Stacks
   stacks: () => ({
     collection: () => `/stacks`,
     single: (id: ResourceId) => `/stacks/${id}`,
@@ -248,5 +263,11 @@ export const links = {
   pipelines: () => ({
     collection: () => `/pipelines`,
     single: (id: ResourceId) => `/pipelines/${id}`,
+  }),
+
+  // Surveys
+  surveys: () => ({
+    single: (id: ResourceId) => `/survey/${id}`,
+    response: (id: ResourceId) => `/survey/${id}/response`,
   }),
 };

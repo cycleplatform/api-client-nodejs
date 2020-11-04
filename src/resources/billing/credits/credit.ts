@@ -1,6 +1,6 @@
 import {
   ResourceId,
-  CreatorScope,
+  UserScope,
   Events,
   State,
   CollectionDoc,
@@ -19,7 +19,8 @@ export interface Credit {
   id: ResourceId;
   hub_id: ResourceId;
   description: string;
-  creator: CreatorScope;
+  creator: UserScope;
+  account_id: ResourceId;
   amount: number;
   amount_remaining: number;
   expires: Expires | null;

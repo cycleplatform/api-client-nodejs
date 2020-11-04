@@ -7,7 +7,7 @@ import {
   ResourceId,
   State,
   Events,
-  CreatorScope,
+  UserScope,
 } from "../../common/structs";
 import { Spec } from "./spec";
 
@@ -17,7 +17,7 @@ export type StackState = "live" | "deleting" | "deleted";
 
 export interface Stack extends Resource<StackMetas> {
   name: string;
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   source: Source;
   state: State<StackState>;

@@ -1,10 +1,10 @@
 import {
   Resource,
   ResourceId,
-  CreatorScope,
+  UserScope,
   Time,
   CollectionDoc,
-  CreatorIncludes,
+  UserIncludes,
 } from "../../common/structs";
 import {
   StandardParams,
@@ -44,7 +44,8 @@ export type ActivityFilter =
   | "verbosity";
 
 export interface ActivityIncludes {
-  users: CreatorIncludes;
+  // TODO: change to creators when updated on api
+  users: UserIncludes;
   components?: Record<
     string,
     | Container
@@ -78,6 +79,7 @@ export type EventType =
   | "environment.stop"
   | "environment.task.start"
   | "environment.task.stop"
+  | "environment.task.initialize"
   | "environment.delete"
   | "environment.task.delete"
   | "environment.update"
@@ -93,6 +95,7 @@ export type EventType =
   | "image.create"
   | "image.delete"
   | "image.task.delete"
+
   // containers
   | "container.create"
   | "container.start"
@@ -110,13 +113,15 @@ export type EventType =
   | "container.task.scale"
   | "container.delete"
   | "container.task.delete"
-  | "container.instances.create"
   // instances
   | "container.instance.error"
   | "container.instance.sftp.login"
   | "container.instance.migration.start"
   | "container.instance.migration.revert"
   | "container.instance.delete"
+  | "container.instances.delete"
+  | "container.instances.create"
+
   // dns zones
   | "dns.zone.task.verify"
   | "dns.zone.task.delete"
@@ -186,7 +191,8 @@ export type EventType =
 
 export interface Activity extends Resource {
   hub_id: ResourceId;
-  user: CreatorScope;
+  // TODO: change to creator when updated on api
+  user: UserScope;
   verbosity: number;
   context: Context;
   session: Session | null;

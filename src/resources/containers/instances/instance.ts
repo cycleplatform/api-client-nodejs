@@ -18,9 +18,9 @@ import {
   ResourceId,
   State,
   Events,
-  CreatorScope,
+  UserScope,
   Includes,
-  CreatorIncludes,
+  UserIncludes,
   Time,
   CreatedTask,
 } from "../../../common/structs";
@@ -51,14 +51,14 @@ export type InstanceState =
  */
 export type ReadyState = "active" | "purge" | "hibernate";
 
-export type InstanceEvent = "first_boot" | "started";
+export type InstanceEvent = "first_started";
 export type InstanceQuery = QueryParams<
   keyof InstanceIncludes,
   keyof InstanceMetas
 >;
 
 export interface Instance extends Resource<InstanceMetas> {
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   container_id: ResourceId;
   location_id: ResourceId;
@@ -119,7 +119,7 @@ export interface MigrationInstance {
 }
 
 export interface InstanceIncludes extends Includes {
-  creator: CreatorIncludes;
+  creator: UserIncludes;
   servers: Record<ResourceId, Server>;
   locations: Record<ResourceId, Locations.Location>;
   providers: Record<ProviderIdentifier, Provider>;
@@ -155,10 +155,12 @@ export async function getSingle(
   });
 }
 
-export interface CreateParams {
-  server_id: ResourceId;
-  new_instances: number;
-}
+export type CreateParams = [
+  {
+    server_id: ResourceId;
+    new_instances: number;
+  },
+];
 
 export async function create(
   params: StandardParams<InstanceQuery> & {
@@ -183,5 +185,19 @@ export async function remove(
       .containers()
       .instances()
       .single(params.id, params.containerId),
+  });
+}
+
+export async function removeMultiple(
+  params: StandardParams<InstanceQuery> & {
+    containerId: ResourceId;
+    value: {
+      instances_ids: ResourceId[];
+    };
+  },
+) {
+  return Request.deleteRequest<CreatedTask<any>>({
+    ...params,
+    target: links.containers().instances().collection(params.containerId),
   });
 }

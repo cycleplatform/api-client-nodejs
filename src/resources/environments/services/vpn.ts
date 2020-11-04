@@ -2,7 +2,7 @@ import { Service } from "./common";
 import {
   ResourceId,
   Resource,
-  CreatorScope,
+  UserScope,
   Events,
   CollectionDoc,
   SingleDoc,
@@ -30,7 +30,7 @@ export interface VPNAuth {
 
 export interface VPNUser extends Resource {
   username: string;
-  creator: CreatorScope;
+  creator: UserScope;
   last_login: Time;
   hub_id: ResourceId;
   environment_id: ResourceId;

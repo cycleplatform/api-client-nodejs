@@ -7,9 +7,9 @@ import {
   ResourceId,
   State,
   Events,
-  CreatorScope,
+  UserScope,
   StatefulCounts,
-  CreatorIncludes,
+  UserIncludes,
   IP,
   Cluster,
 } from "../../common/structs";
@@ -34,8 +34,11 @@ export type EnvironmentQuery = QueryParams<
 export interface Environment extends Resource<EnvironmentMeta> {
   name: string;
   cluster: Cluster;
-  about: About;
-  creator: CreatorScope;
+  about: {
+    description: string;
+    favorite: boolean;
+  };
+  creator: UserScope;
   hub_id: ResourceId;
   state: State<EnvironmentState>;
   events: Events;
@@ -86,7 +89,7 @@ export interface Services {
 }
 
 export interface EnvironmentIncludes {
-  creators: CreatorIncludes;
+  creators: UserIncludes;
   stacks: Record<ResourceId, Stack>;
 }
 

@@ -2,7 +2,7 @@ import {
   ResourceId,
   Events,
   State,
-  CreatorScope,
+  UserScope,
   Mills,
   Resource,
   CollectionDoc,
@@ -23,7 +23,7 @@ export type ServiceEvent = "last_billed";
 export type ServiceState = "active";
 
 export interface Service extends Resource {
-  creator: CreatorScope;
+  creator: UserScope;
   hub_id: ResourceId;
   title: string;
   order: Order;

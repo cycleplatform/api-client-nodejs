@@ -2,7 +2,7 @@ import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
 import { ResourceId, Task, CreatedTask } from "../../common/structs";
 
-export type EnvironmentAction = "start" | "stop";
+export type EnvironmentAction = "start" | "stop" | "initialize";
 
 export async function start(
   params: StandardParams & {
@@ -26,6 +26,19 @@ export async function stop(
     ...params,
     value: {
       action: "stop",
+    },
+  });
+}
+
+export async function initialize(
+  params: StandardParams & {
+    id: ResourceId;
+  },
+) {
+  return task({
+    ...params,
+    value: {
+      action: "initialize",
     },
   });
 }
