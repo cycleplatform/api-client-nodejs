@@ -7,29 +7,43 @@ import { StandardParams, links } from "../../common/api";
 import * as Request from "../../common/api/request";
 
 export type EnvironmentSummaryDoc = SingleDoc<EnvironmentSummary>;
-
+/**
+ * An extended resource that contains a higher level environment summary
+ */
 export interface EnvironmentSummary extends Resource {
   state: EnvironmentState;
   services: Record<string, ServiceSummary>;
   stats: Stats;
 }
 
+/** An extended service that contains information about the state of a service */
 export interface ServiceSummary extends Service {
   state: State<ContainerState>;
 }
 
+/** Statistics for containers and instances */
 export interface Stats {
   containers: ContainerStats;
   instances: InstanceStats;
 }
 
+/**
+ * Statistics for a container
+ */
 export interface ContainerStats {
+  /** The amount of times the container has been in each state */
   state: { [key: string]: number };
+  /** The total of all states combined */
   total: number;
+  // todo I dont exactly know what this is because of key: string above -- THis applies to instance as well might as well be right before i do them
   available: number;
 }
 
+/**
+ * Statistics for an instance
+ */
 export interface InstanceStats {
+  /** Geographical statistics for the instance */
   geo:
     | {
         datacenter_id: ResourceId;

@@ -1,6 +1,9 @@
 import * as Request from "../../common/api/request";
 import { QueryParams, links, Settings } from "../../common/api";
 
+/**
+ * All capabilities available
+ */
 export type Capability =
   // hubs
   | "hubs-update"
@@ -80,6 +83,9 @@ export type Capability =
   | "sdn-networks-view"
   | "sdn-networks-manage";
 
+/**
+ * Information including a collection of capabilities
+ */
 export interface CapabilityDoc {
   data: Capability[];
 }

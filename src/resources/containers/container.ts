@@ -25,6 +25,10 @@ import { Environment } from "../environments";
 
 export type Collection = CollectionDoc<Container, ContainerIncludes>;
 export type Single = SingleDoc<Container, ContainerIncludes>;
+
+/**
+ * Possible states the container can be in
+ */
 export type ContainerState =
   | "new"
   | "starting"
@@ -34,15 +38,24 @@ export type ContainerState =
   | "reimaging"
   | "deleting"
   | "deleted";
+/**
+ * Possible container events
+ */
 export type ContainerEvent = "started";
+
+// todo am i doing querys
 export type ContainerQuery = QueryParams<
   keyof ContainerIncludes,
   keyof ContainerMetas,
   "image" | "environment" | "state"
 >;
-
+/**
+ * Container resource information
+ */
 export interface Container extends Resource<ContainerMetas> {
+  /** The name of the container */
   name: string;
+
   identifier: ContainerIdentifier;
   creator: UserScope;
   environment: EnvironmentSummary;
@@ -50,19 +63,25 @@ export interface Container extends Resource<ContainerMetas> {
   image: ImageSummary;
   stack?: StackSummary;
   config: Config;
+  /** The number of instances of this container */
+
   instances: number;
   volumes?: VolumeSummary[];
   role: ContainerRole | null;
+  /** A boolean where true represents the container is stateful */
   stateful: boolean;
+  // todo
   requirements?: string[];
+  /** Annotation notes for this contianer */
   annotations: Record<string, any> | null;
+  /** A boolean where true means the container is marked deprecated */
   deprecate?: boolean;
   state: State<ContainerState> & {
     desired: ContainerState | "";
   };
   events: Events<ContainerEvent>;
 }
-
+// todo am I doing includes?
 export interface ContainerIncludes {
   creators?: UserIncludes;
   images?: {
@@ -77,6 +96,7 @@ export interface ContainerIncludes {
   environments?: Record<ResourceId, Environment>;
 }
 
+// todo am i doing metas
 export interface ContainerMetas {
   instance_counts?: StatefulCounts<InstanceState>;
   domain?: string;
@@ -84,35 +104,52 @@ export interface ContainerMetas {
   ips?: IP[];
 }
 
+/**
+ * Information about the stack
+ */
 export interface StackSummary {
   id: ResourceId;
+  // todo not sure what this is
   image: {
     id: ResourceId;
   };
   build_id: ResourceId;
   identifier: string;
 }
-
+/**
+ * Information about the image used for the container
+ */
 export interface ImageSummary {
   id?: ResourceId;
   service: Service | null;
 }
 
+/** Information about the environment this container is deployed to  */
 export interface EnvironmentSummary {
   id: ResourceId;
+  /** The cluster this environment has access to resources from */
   cluster: string;
+  /** The subnet used for this container */
   container_subnet: string | null;
   ipv6: IPNet | null;
   legacy: Legacy | null;
 }
 
+/**
+ * Legacy networking informaiton
+ */
 export interface Legacy {
   subnet: number;
   ipv4: IPNet | null;
 }
 
+/**
+ * A summary of information about a volume
+ */
 export interface VolumeSummary {
+  // todo - why isnt this resource ID
   id: string;
+  // todo - what is this
   hash: string;
   config: Volumes.Volume;
 }

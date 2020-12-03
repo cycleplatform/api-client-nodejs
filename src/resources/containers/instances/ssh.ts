@@ -8,22 +8,32 @@ import {
 
 export type SSHConnectionDoc = { data: SSHConnectionResponse };
 
+/**
+ * SSH connection response information
+ */
 export interface SSHConnectionResponse {
   token: SSHToken;
+  /** SSH connection response secret */
   secret: string;
+  /** SSH connection response address */
   address: string;
 }
 
+/**
+ * SSH token resource
+ */
 export interface SSHToken extends Resource {
   instance_id: ResourceId;
   container_id: ResourceId;
   hub_id: ResourceId;
   creator: UserScope;
+  /** specific ssh connection events */
   events: {
     created: Time;
     used: Time;
     expires: Time;
   };
+  /** A boolean where true represents the token being valid */
   valid: boolean;
 }
 

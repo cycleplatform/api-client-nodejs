@@ -14,11 +14,16 @@ export type ServerInstancesQuery = QueryParams<
   string,
   keyof ServerInstancesMeta
 >;
-
+/**
+ * Information about the instances on a server
+ */
 export interface ServerInstances extends Resource<ServerInstancesMeta> {
   instances: StatefulCounts<InstanceState>;
+  /** the server hostname */
   hostname: string;
+  // todo double check hostname is correct
 }
+//  todo am i marking metas
 
 export interface ServerInstancesMeta {
   primary_ip: IP;
@@ -31,10 +36,7 @@ export async function getCollection(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .containers()
-      .servers(params.containerId)
-      .list(),
+    target: links.containers().servers(params.containerId).list(),
   });
 }
 
@@ -45,9 +47,6 @@ export async function usable(
 ) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .containers()
-      .servers(params.containerId)
-      .usable(),
+    target: links.containers().servers(params.containerId).usable(),
   });
 }
