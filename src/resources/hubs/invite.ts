@@ -7,9 +7,13 @@ import {
   ResourceId,
 } from "../../common/structs";
 import * as Memberships from "./membership";
-
+/**
+ * Information on the accounts role
+ */
 export type RoleName = "owner" | "admin" | "developer" | "analyst";
-
+/**
+ * Hub invite information used fro creating an invite
+ */
 export interface CreateParams {
   recipient: Email; // Email
   role: RoleName;
