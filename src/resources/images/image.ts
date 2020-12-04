@@ -24,6 +24,9 @@ import { ContainerIdentifier } from "../../common/structs";
 export type Collection = CollectionDoc<Image, ImageIncludes>;
 export type Single = SingleDoc<Image, ImageIncludes>;
 export type ImageQuery = QueryParams<keyof ImageIncludes, keyof ImageMetas>;
+/**
+ * Information on the image state
+ */
 export type ImageState =
   | "new"
   | "downloading"
@@ -34,14 +37,22 @@ export type ImageState =
   | "deleting"
   | "deleted";
 
+/**
+ * An extended resource including information about images
+ */
 export interface Image extends Resource<ImageMetas> {
+  /** The name of the image */
   name: string;
   stack: StackSummary | null;
   size: Bytes;
+  /** Optional information about the image */
   about?: {
+    /** A description of the image */
     description: string | null;
   };
+
   backend: ImageBackend;
+  /** An array of tags for the image */
   tags: string[];
   config: Config;
   source: ImageSource;
@@ -50,15 +61,21 @@ export interface Image extends Resource<ImageMetas> {
   state: State<ImageState>;
   events: Events;
 }
-
+/**
+ * Information about where the image is hosted
+ */
 export interface ImageBackend {
+  /** The provider hosting the image  */
   provider: string;
   size: Bytes;
 }
-
+/**
+ * High level stack information
+ */
 export interface StackSummary {
   id: ResourceId;
   build_id: ResourceId;
+  /** An array of container identifiers */
   containers: ContainerIdentifier[];
 }
 
