@@ -17,13 +17,21 @@ import { Environment } from "../environments";
 export type Collection = CollectionDoc<Network, NetworkIncludes>;
 export type Single = SingleDoc<Network, NetworkIncludes>;
 export type NetworkQuery = QueryParams<keyof NetworkIncludes>;
+/**
+ * Types of states a network can be in
+ */
 export type NetworkState = "live" | "deleting" | "deleted";
 
 export * from "./tasks";
-
+/**
+ * An extended resource including information about a network
+ */
 export interface Network extends Resource {
+  /** The name of the network */
   name: string;
+  /** The network identifier */
   identifier: string;
+  /** The cluster this network will accept environment candidates from */
   cluster: string;
   creator: UserScope;
   hub_id: ResourceId;
@@ -33,16 +41,28 @@ export interface Network extends Resource {
   events: Events;
 }
 
+/**
+ * Private network information for the network
+ */
 export interface PrivateNetwork {
+  /** A tag used to ensure proper routing */
   vxlan_tag: number;
+  /** The subnet of the private network */
   subnet: string;
+  /** A number used to ensure a MAC address exists for each network */
   mac_addr_suffix: number;
+  /** Network IPv6 information */
   ipv6: {
+    /** The networks IPv6 base */
     ip: string;
+    /** The private network CIDR */
     cidr: string;
   };
 }
 
+/**
+ * Information about the ID of an environment and the time it was added to the network
+ */
 export interface NetworkEnvironment {
   id: ResourceId;
   added: Time;

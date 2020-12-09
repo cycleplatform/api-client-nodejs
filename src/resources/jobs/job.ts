@@ -79,17 +79,26 @@ export interface JobTask {
   /** An array of job task steps */
   steps: TaskStep[];
   state: State<TaskState>;
+  /** A boolean, where true indicates the job is failable */
   failable: boolean;
   input: { [key: string]: any };
   output: { [key: string]: any };
+  /** An error object that either holds a message or is null */
   error: {
+    /** An error message */
     message: string;
   } | null;
 }
 
+/**
+ * Information about a step of a task
+ */
 export interface TaskStep {
+  /** A short description of the step */
   caption: string;
+  /** A more verbose description of the step */
   description: string;
+
   started: Time;
   completed: Time;
 }
