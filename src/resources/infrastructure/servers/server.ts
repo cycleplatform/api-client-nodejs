@@ -61,10 +61,8 @@ export interface ServerIncludes extends Includes {
 }
 
 export interface ServerMeta {
-  node: NodeMetaStats;
-  counts?: {
-    instances: StatefulCounts<InstanceState>;
-  };
+  node?: NodeMetaStats;
+  instances_count?: StatefulCounts<InstanceState>;
 }
 
 export interface NodeMetaStats {
