@@ -139,86 +139,93 @@ All failed API requests follow the same error response format. To view more deta
 }
 ```
 
+**Error Response Codes:**
+
 <details>
-<summary>List of all possible response codes</summary>
-- Cycle Specific Errors
-  - 0.network_error
-  - 0.parse_error
-- 400 Errors
-  - 400.invalid_syntax
-  - 401.auth_invalid
-  - 401.auth_expired
-  - 401.no_cookie
-  - 401.unauthorized_application
-  - 403.mismatch
-  - 403.not_ready
-  - 403.expired
-  - 403.restricted_portal
-  - 403.permissions
-  - 403.invalid_ip
-  - 403.invalid_state
-  - 403.not_approved
-  - 403.not_allowed
-  - 403.2fa_required
-  - 403.2fa_failed
-  - 403.new_application_capabilities
-  - 403.tier_restricted
-  - 404.hub
-  - 404.hub.invitation
-  - 404.sdn_network
-  - 404.environment
-  - 404.hub.api_key
-  - 404.uri
-  - 404.provider
-  - 404.stack
-  - 404.notification
-  - 404.stack_build
-  - 404.stack_hook
-  - 404.image
-  - 404.job
-  - 404.order
-  - 404.billing_service
-  - 404.billing_credit
-  - 404.invoice
-  - 404.node
-  - 404.infrastructure_location
-  - 404.infrastructure_ip
-  - 404.infrastructure_server
-  - 404.infrastructure_model
-  - 404.account
-  - 404.container
-  - 404.vpn_account
-  - 404.instance
-  - 404.dns_zone
-  - 404.dns_record
-  - 404.cluster
-  - 404.email_verification
-  - 404.promo_code
-  - 404.billing.tier
-  - 404.payment_method
-  - 404.hub.membership
-  - 404.announcement
-  - 404.ha_service_session
-  - 409.duplicate_found
-  - 415.invalid_content_type
-  - 422.missing_argument
-  - 422.invalid_argument
-  - 422.invalid_input
-  - 422.not_compatible
-  - 422.already_exists
-  - 429.rate_limiting
-- 500 Errors
-  - 500.database
-  - 500.database_insert
-  - 500.database_update
-  - 500.database_remove
-  - 500.jobd
-  - 500.unknown
-  - 500.email
-  - 500.payment_gateway
-  - 503.not_ready
-  - 503.not_enabled
-  - 503.dependency_not_enabled
+<summary>Cycle Specific Network Errors — 0's</summary>
++ 0.network_error
++ 0.parse_error
+</details>
+
+<details>
+<summary>Client Error Responses — 400's</summary>
++ 400.invalid_syntax
++ 401.auth_invalid
++ 401.auth_expired
++ 401.no_cookie
++ 401.unauthorized_application
++ 403.mismatch
++ 403.not_ready
++ 403.expired
++ 403.restricted_portal
++ 403.permissions
++ 403.invalid_ip
++ 403.invalid_state
++ 403.not_approved
++ 403.not_allowed
++ 403.2fa_required
++ 403.2fa_failed
++ 403.new_application_capabilities
++ 403.tier_restricted
++ 404.hub
++ 404.hub.invitation
++ 404.sdn_network
++ 404.environment
++ 404.hub.api_key
++ 404.uri
++ 404.provider
++ 404.stack
++ 404.notification
++ 404.stack_build
++ 404.stack_hook
++ 404.image
++ 404.job
++ 404.order
++ 404.billing_service
++ 404.billing_credit
++ 404.invoice
++ 404.node
++ 404.infrastructure_location
++ 404.infrastructure_ip
++ 404.infrastructure_server
++ 404.infrastructure_model
++ 404.account
++ 404.container
++ 404.vpn_account
++ 404.instance
++ 404.dns_zone
++ 404.dns_record
++ 404.cluster
++ 404.email_verification
++ 404.promo_code
++ 404.billing.tier
++ 404.payment_method
++ 404.hub.membership
++ 404.announcement
++ 404.ha_service_session
++ 409.duplicate_found
++ 415.invalid_content_type
++ 422.missing_argument
++ 422.invalid_argument
++ 422.invalid_input
++ 422.not_compatible
++ 422.already_exists
++ 429.rate_limiting
+</details>
+
+<details>
+<summary>Internal Error Responses — 500's</summary>
++ 500.database
++ 500.database_insert
++ 500.database_update
++ 500.database_remove
++ 500.jobd
++ 500.unknown
++ 500.email
++ 500.payment_gateway
++ 503.not_ready
++ 503.not_enabled
++ 503.dependency_not_enabled
 </details>
 
 ## Contributing

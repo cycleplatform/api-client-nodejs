@@ -3,17 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.9.5]
 
 ### Fixed
 
 ### Added
 
 - Added `uncollectible` as a new invoice state
-
-* `base_volume_gb` to server features to increase the base volume size
-
+- `base_volume_gb` to server features to increase the base volume size
 - `container.instances.delete` activity
+- Added `flags` to notification response
 
 ### Changed
 
@@ -24,6 +23,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Packet provider changes to Equinix Metal
 - `PacketProvider` -> `EquinixMetalProvider`
 - `ProviderIdentifier = "packet" | ...` -> `ProviderIdentifier = "equinix_metal" | ...`
+- all `counts` metas is not split into `instances_count` and `containers_count`
 
 ## [1.9.2]
 
