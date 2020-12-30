@@ -29,7 +29,8 @@ export type InvoiceState =
   | "crediting"
   | "credited"
   | "voiding"
-  | "voided";
+  | "voided"
+  | "uncollectible";
 export type InvoiceEvent =
   | "billed"
   | "paid"
@@ -58,10 +59,7 @@ export interface InvoiceMeta {
 export async function getCollection(params: StandardParams<InvoiceQuery>) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links
-      .billing()
-      .invoices()
-      .collection(),
+    target: links.billing().invoices().collection(),
   });
 }
 
@@ -72,9 +70,6 @@ export async function getSingle(
 ) {
   return Request.getRequest<Single>({
     ...params,
-    target: links
-      .billing()
-      .invoices()
-      .single(params.id),
+    target: links.billing().invoices().single(params.id),
   });
 }

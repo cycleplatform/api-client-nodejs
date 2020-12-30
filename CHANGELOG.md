@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added `uncollectible` as a new invoice state
+
+* `base_volume_gb` to server features to increase the base volume size
+
 - `container.instances.delete` activity
 
 ### Changed

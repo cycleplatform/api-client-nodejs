@@ -64,10 +64,10 @@ export type HubTopic =
   | "dns.zone.verified"
   | "dns.zone.reconfigured"
   | "dns.zone.records.reconfigured"
+  | "dns.zone.certificate.ready"
 
   // dns zone record
   | "dns.zone.record.state.changed"
-  | "dns.zone.record.certificate.ready"
 
   // employees
   | "employee.state.changed"
