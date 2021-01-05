@@ -100,14 +100,6 @@ export interface EnvironmentMeta {
       legacy: Legacy | null;
     };
   }[];
-  ips?: {
-    kind: Kind;
-    ip: IPNet;
-    gateway: IP;
-    netmask: IP;
-    network: IP;
-    state: State<IPState>;
-  }[];
 }
 
 export interface CreateParams {
