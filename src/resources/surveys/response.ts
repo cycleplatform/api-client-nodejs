@@ -1,7 +1,6 @@
 import * as Request from "../../common/api/request";
-// import { Resource, SingleDoc } from "../../common/structs";
 import { links, StandardParams } from "../../common/api";
-import { Resource, ResourceId, SingleDoc } from "common/structs";
+import { Resource, ResourceId, SingleDoc } from "../../common/structs";
 export type Single = SingleDoc<Response>;
 
 export interface Response extends Resource {

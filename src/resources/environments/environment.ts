@@ -94,10 +94,8 @@ export interface EnvironmentIncludes {
 }
 
 export interface EnvironmentMeta {
-  counts?: {
-    containers: StatefulCounts<ContainerState>;
-    instances: StatefulCounts<Instances.InstanceState>;
-  };
+  container_count?: StatefulCounts<ContainerState>;
+  instances_count?: StatefulCounts<Instances.InstanceState>;
   containers?: {
     id: ResourceId;
     name: string;
@@ -114,14 +112,6 @@ export interface EnvironmentMeta {
       ipv6?: IPNet;
       legacy: Legacy | null;
     };
-  }[];
-  ips?: {
-    kind: Kind;
-    ip: IPNet;
-    gateway: IP;
-    netmask: IP;
-    network: IP;
-    state: State<IPState>;
   }[];
 }
 

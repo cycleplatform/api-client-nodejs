@@ -13,6 +13,7 @@ import {
   StatefulCounts,
   UserScope,
   Cluster,
+  Gigabytes,
 } from "../../../common/structs";
 import { Stats, Telemetry } from "../stats";
 import {
@@ -60,10 +61,8 @@ export interface ServerIncludes extends Includes {
 }
 
 export interface ServerMeta {
-  node: NodeMetaStats;
-  counts?: {
-    instances: StatefulCounts<InstanceState>;
-  };
+  node?: NodeMetaStats;
+  instances_count?: StatefulCounts<InstanceState>;
 }
 
 export interface NodeMetaStats {
@@ -76,6 +75,7 @@ export interface NodeMetaStats {
 
 export interface Features {
   sftp: boolean;
+  base_volume_gb: Gigabytes | null;
 }
 
 export type ServerState =

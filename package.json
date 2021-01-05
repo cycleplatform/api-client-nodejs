@@ -10,7 +10,6 @@
     "dist"
   ],
   "publishConfig": {
-    "registry": "http://npm-registry.internal.cycle.io:4873",
     "access": "public"
   },
   "scripts": {

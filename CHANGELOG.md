@@ -1,15 +1,23 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to Semantic Versioning(http://semver.org/).
 
-## [Unreleased — 1.9.X-X]
+## 1.9.6 — 2020-12-30
 
-### Fixed
+### Changed
+
+- Updated ReadMe formatting
+- Removed unnecessary headings in changelog
+
+## 1.9.5 — 2020-12-29
 
 ### Added
 
+- Added `uncollectible` as a new invoice state
+- `base_volume_gb` to server features to increase the base volume size
 - `container.instances.delete` activity
+- Added `flags` to notification response
 
 - Pipeline structures
 - Pipeline endpoints
@@ -24,18 +32,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Packet provider changes to Equinix Metal
 - `PacketProvider` -> `EquinixMetalProvider`
 - `ProviderIdentifier = "packet" | ...` -> `ProviderIdentifier = "equinix_metal" | ...`
+- all `counts` metas is not split into `instances_count` and `containers_count`
 
-## [1.9.2]
-
-### Fixed
+## 1.9.2
 
 ### Added
 
 - Survey structures
 - Survey link(s)
 - Initialize task action for environments
-
-### Changed
 
 ### Breaking Changes
 
@@ -44,7 +49,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Interface OwnerScope renamed to CreatorScope
 - Interface OwnerIncludes interface renamed to CreatorIncludes
 
-## [1.8.6]
+## 1.8.6
 
 ### Fixed
 
@@ -73,7 +78,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Converted all tasks and activity headers to be dot notation instead of underscores
 - Removed deprecate from container `CreateParams`
 
-## [1.8.5]
+## 1.8.5
 
 ### Fixed
 
@@ -81,7 +86,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Misspelled `threshold` in instance telemetry snapshot
 - Added missing `throttled` field to CPU info on instance telemetry
 
-## [1.8.4]
+## 1.8.4
 
 ### Added
 
@@ -116,7 +121,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Standardized some error codes, i.e. 404.api_keys -> 404.hub.api_keys
 - DNS certificates are now generated per record, and not per zone
 
-## [v1.8.2] - 2020-03-30
+## 1.8.2 - 2020-03-30
 
 ### Added
 
@@ -129,7 +134,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Images now require two steps to import - Create, then import. This puts it in line with all other processes
 - Capability: `images-build` changed to `images-import`
 
-## [v1.8.1] - 2020-03-26
+## 1.8.1 - 2020-03-26
 
 ### Added
 
@@ -141,7 +146,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Removed stack build task in favor of above
 
-## [v1.8.0] - 2020-03-25
+## 1.8.0 - 2020-03-25
 
 ### Changed
 
@@ -151,25 +156,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added job lookup call
 
-## [v1.7.49] - 2020-03-21
+## 1.7.49 - 2020-03-21
 
 ### Added
 
 - Added AWS definition to hub provider object
 
-## [v1.7.44] - 2020-03-18
+## 1.7.44 - 2020-03-18
 
 ### Fixed
 
 - Fixed type definitions for websocket requests
 
-## [v1.7.43] - 2020-03-18
+## 1.7.43 - 2020-03-18
 
 ### Fixed
 
 - Updated all modules to match platform
 - Fix websocket definition to import from isomorphic-ws to support node clients
 
-## [v1.3.1] - 2019-06-18
+## 1.3.1 - 2019-06-18
 
 First Major Public Release
