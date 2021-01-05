@@ -10,11 +10,10 @@ import {
   UserScope,
   StatefulCounts,
   UserIncludes,
-  IP,
   Cluster,
 } from "../../common/structs";
 import { ContainerState, Instances, Service } from "../containers";
-import { IPNet, Kind, IPState } from "../infrastructure/ips";
+import { IPNet } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
 import { Stack } from "../stacks";
 
