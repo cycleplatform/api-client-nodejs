@@ -21,10 +21,19 @@ export type PipelineQuery = QueryParams<keyof PipelineIncludes>;
 export type Events = BaseEvents & {
   last_run: Time;
 };
+
+export type PipelineState =
+  | "new"
+  | "ready"
+  | "running"
+  | "deleting"
+  | "deleted";
+
 export type Pipeline = Resource & {
   name: string;
   creator: UserScope;
-  hubId: ResourceId;
+  hub_id: ResourceId;
+  disable: boolean;
   stages: Stages[];
   events: Events;
   state: State;
