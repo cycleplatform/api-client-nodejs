@@ -34,12 +34,12 @@ export type Pipeline = Resource & {
   creator: UserScope;
   hub_id: ResourceId;
   disable: boolean;
-  stages: Stages[];
+  stages: Stage[];
   events: Events;
   state: State;
 };
 
-export type Stages = {
+export type Stage = {
   name: string;
   tasks: Tasks;
   disabled: boolean;
@@ -83,12 +83,13 @@ export async function create(
 
 export interface UpdateParams {
   name: string;
+  stages: Stage[];
 }
 
 export async function update(
   params: StandardParams<PipelineQuery> & {
     id: ResourceId;
-    value: UpdateParams;
+    value: Partial<UpdateParams>;
   },
 ) {
   return Request.patchRequest<Single>({
