@@ -1,1 +1,1 @@
-export * from "./cycle";
+export * as Cycle from "./cycle";

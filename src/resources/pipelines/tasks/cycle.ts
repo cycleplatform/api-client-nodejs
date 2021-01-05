@@ -3,9 +3,7 @@ import { NewContainer } from "../../../resources/containers";
 import { NewEnvironment } from "../../../resources/environments";
 import { NewImage, SpecImage } from "../../../resources/images";
 
-export type Tasks = Record<string, Task>;
-
-export type Task = {
+export type AllTasks = {
   create?: Create;
   import?: Import;
   start?: Start;

@@ -1,2 +1,2 @@
-export * from "./tasks";
+export * as Tasks from "./tasks";
 export * from "./pipeline";
