@@ -23,8 +23,6 @@ export type BaseTask = {
   from_task?: string;
 };
 
-// export type FromTask = ResourceId;
-
 export type Import = {
   image: BaseTask;
 };

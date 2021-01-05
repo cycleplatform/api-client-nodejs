@@ -93,7 +93,7 @@ export interface EnvironmentIncludes {
 }
 
 export interface EnvironmentMeta {
-  container_count?: StatefulCounts<ContainerState>;
+  containers_count?: StatefulCounts<ContainerState>;
   instances_count?: StatefulCounts<Instances.InstanceState>;
   containers?: {
     id: ResourceId;

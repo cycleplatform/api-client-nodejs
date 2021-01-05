@@ -263,6 +263,10 @@ export const links = {
   pipelines: () => ({
     collection: () => `/pipelines`,
     single: (id: ResourceId) => `/pipelines/${id}`,
+    keys: (pipeline: ResourceId) => ({
+      collection: () => `pipelines/${pipeline}/keys`,
+      single: (key: ResourceId) => `pipelines/${pipeline}/keys/${key}`,
+    }),
   }),
 
   // Surveys
