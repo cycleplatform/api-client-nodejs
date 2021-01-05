@@ -84,6 +84,7 @@ export async function create(
 export interface UpdateParams {
   name: string;
   stages: Stage[];
+  disable: boolean;
 }
 
 export async function update(
