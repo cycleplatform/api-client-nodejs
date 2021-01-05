@@ -11,14 +11,18 @@ export type AllTasks = {
   delete?: Delete;
   clone?: Clone;
   reimage?: Reimage;
-  disable?: boolean;
-  comment?: string;
 };
 
 export type BaseTask = {
   id?: ResourceId;
   name?: string;
   from_task?: string;
+  comment?: string;
+  options?: TaskOptions;
+};
+
+export type TaskOptions = {
+  disable?: boolean;
 };
 
 export type Import = {
@@ -36,7 +40,7 @@ export type Create = {
   container?: NewContainer;
 };
 
-export interface CreateImage extends SpecImage {}
+export type CreateImage = SpecImage;
 
 export type Start = {
   container?: BaseTask;
