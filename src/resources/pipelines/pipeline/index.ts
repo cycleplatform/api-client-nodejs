@@ -5,23 +5,30 @@ import {
   CreatedTask,
   UserIncludes,
   UserScope,
-  Events,
+  Events as BaseEvents,
   Resource,
   ResourceId,
   SingleDoc,
+  Time,
+  State,
 } from "../../../common/structs";
 import { Tasks } from "../tasks";
 
 export type Collection = CollectionDoc<Pipeline, PipelineIncludes>;
 export type Single = SingleDoc<Pipeline, PipelineIncludes>;
 export type PipelineQuery = QueryParams<keyof PipelineIncludes>;
-export interface Pipeline extends Resource {
+
+export type Events = BaseEvents & {
+  last_run: Time;
+};
+export type Pipeline = Resource & {
   name: string;
   creator: UserScope;
   hubId: ResourceId;
   stages: Stages[];
   events: Events;
-}
+  state: State;
+};
 
 export type Stages = {
   name: string;
