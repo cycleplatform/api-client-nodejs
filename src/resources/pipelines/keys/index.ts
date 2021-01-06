@@ -1,5 +1,4 @@
-import { links, StandardParams } from "common/api";
-import { CreateParams } from "resources/containers/instances";
+import { links, StandardParams } from "../../../common/api";
 import { Request } from "../../..";
 import {
   CollectionDoc,
