@@ -151,7 +151,16 @@ export type HubTopic =
   | "stack.build.created"
   | "stack.build.state.changed"
   | "stack.build.error"
-  | "stack.build.deployed";
+  | "stack.build.deployed"
+
+  // pipelines
+  | "pipeline.state.changed"
+  | "pipeline.error"
+  | "pipeline.updated"
+  | "pipeline.created"
+  | "pipeline.key.state.changed"
+  | "pipeline.error"
+  | "pipeline.updated";
 
 export type HubNotification = Notification<HubTopic>;
 

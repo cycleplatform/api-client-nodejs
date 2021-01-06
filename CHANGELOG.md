@@ -19,6 +19,10 @@ This project adheres to Semantic Versioning(http://semver.org/).
 - `container.instances.delete` activity
 - Added `flags` to notification response
 
+- Pipeline structures
+- Pipeline endpoints
+- Pipeline requests
+
 ### Changed
 
 - `containerId` => `container_id` for `removeMultiple` instances

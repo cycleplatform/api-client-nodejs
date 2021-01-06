@@ -51,6 +51,11 @@ export interface Image extends Resource<ImageMetas> {
   events: Events;
 }
 
+export type NewImage = {
+  name: string;
+  source: ImageSource;
+};
+
 export interface ImageBackend {
   provider: string;
   size: Bytes;
