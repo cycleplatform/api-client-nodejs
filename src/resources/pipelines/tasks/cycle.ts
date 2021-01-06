@@ -3,22 +3,25 @@ import { NewContainer } from "../../../resources/containers";
 import { NewEnvironment } from "../../../resources/environments";
 import { NewImage, SpecImage } from "../../../resources/images";
 
+export type Task<T extends keyof AllTasks> = Pick<AllTasks, T> & {
+  comment?: string;
+  options?: TaskOptions;
+};
+
 export type AllTasks = {
-  create?: Create;
-  import?: Import;
-  start?: Start;
-  stop?: Stop;
-  delete?: Delete;
-  clone?: Clone;
-  reimage?: Reimage;
+  create: Create;
+  import: Import;
+  start: Start;
+  stop: Stop;
+  delete: Delete;
+  clone: Clone;
+  reimage: Reimage;
 };
 
 export type BaseTask = {
   id?: ResourceId;
   name?: string;
   from_task?: string;
-  comment?: string;
-  options?: TaskOptions;
 };
 
 export type TaskOptions = {
