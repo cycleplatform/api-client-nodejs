@@ -41,8 +41,8 @@ export type Pipeline = Resource & {
 
 export type Stage = {
   name: string;
-  tasks: AllTasks;
   disabled: boolean;
+  tasks: Partial<AllTasks>;
 };
 
 export type PipelineIncludes = {
