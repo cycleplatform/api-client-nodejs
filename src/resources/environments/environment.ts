@@ -98,6 +98,7 @@ export interface EnvironmentMeta {
   containers?: {
     id: ResourceId;
     name: string;
+    cluster: string;
     state: State<ContainerState> & {
       desired: ContainerState;
     };

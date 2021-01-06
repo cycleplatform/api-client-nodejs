@@ -62,6 +62,7 @@ export type Capability =
   | "images-import"
   | "images-update"
   | "images-delete"
+  | "images-build"
 
   // jobs
   | "jobs-view"
@@ -71,11 +72,10 @@ export type Capability =
 
   // infrastructure
   | "ips-manage"
-  | "storage-sans-manage"
-  | "storage-sans-view"
   | "servers-provision"
   | "servers-view"
   | "servers-update"
+  | "servers-login"
   | "servers-state"
   | "servers-decommission"
 
