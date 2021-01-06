@@ -1,1 +1,5 @@
-export * as Cycle from "./cycle";
+import * as Cycle from "./cycle";
+
+export type AllTasks = Cycle.Tasks;
+
+export { Cycle };

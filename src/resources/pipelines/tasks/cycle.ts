@@ -3,12 +3,12 @@ import { NewContainer } from "../../../resources/containers";
 import { NewEnvironment } from "../../../resources/environments";
 import { NewImage, SpecImage } from "../../../resources/images";
 
-export type Task<T extends keyof AllTasks> = Pick<AllTasks, T> & {
+export type Task<T extends keyof Tasks> = Pick<Tasks, T> & {
   comment?: string;
   options?: TaskOptions;
 };
 
-export type AllTasks = {
+export type Tasks = {
   create: Create;
   import: Import;
   start: Start;
