@@ -10,10 +10,10 @@ import {
   UserScope,
 } from "../../../common/structs";
 
-export type Collection = CollectionDoc<PipelineKey>;
-export type Single = SingleDoc<PipelineKey>;
+export type Collection = CollectionDoc<TriggerKey>;
+export type Single = SingleDoc<TriggerKey>;
 
-export type PipelineKey = Resource & {
+export type TriggerKey = Resource & {
   name: string;
   secret: string;
   creator: UserScope;
@@ -24,12 +24,12 @@ export type PipelineKey = Resource & {
   ips: string[];
 };
 
-export type PipelineKeyState = "live" | "deleting" | "deleted";
+export type TriggerKeyState = "live" | "deleting" | "deleted";
 
 /**
  * params to be used for the getCollection function of pipeline keys
  */
-export type PipelineKeyGetCollectionParams = StandardParams & {
+export type TriggerKeyGetCollectionParams = StandardParams & {
   pipelineId: ResourceId;
 };
 /** Get pipeline keys as a collection
@@ -38,52 +38,52 @@ export type PipelineKeyGetCollectionParams = StandardParams & {
  *
  * @param params object containing the target pipelineId to fetch keys for
  */
-export async function getCollection(params: PipelineKeyGetCollectionParams) {
+export async function getCollection(params: TriggerKeyGetCollectionParams) {
   return Request.getRequest({
     ...params,
     target: links.pipelines().keys(params.pipelineId).collection(),
   });
 }
 
-export type PipelineKeyGetSingleParams = StandardParams & {
+export type TriggerKeyGetSingleParams = StandardParams & {
   pipelineId: ResourceId;
   keyId: ResourceId;
 };
-export async function getSingle(params: PipelineKeyGetSingleParams) {
+export async function getSingle(params: TriggerKeyGetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
     target: links.pipelines().keys(params.pipelineId).single(params.keyId),
   });
 }
 
-export type PipelineKeyCreateValues = {
+export type TriggerKeyCreateValues = {
   name: string;
   ips: string[] | null;
 };
 
 // Create new pipeline
-export type PipelineKeyCreateParams = PipelineKeyGetCollectionParams & {
-  value: PipelineKeyCreateValues;
+export type TriggerKeyCreateParams = TriggerKeyGetCollectionParams & {
+  value: TriggerKeyCreateValues;
 };
-export async function create(params: PipelineKeyCreateParams) {
+export async function create(params: TriggerKeyCreateParams) {
   return Request.postRequest<Single>({
     ...params,
     target: links.pipelines().keys(params.pipelineId).collection(),
   });
 }
 
-export type PipelineKeysUpdateParams = PipelineKeyGetSingleParams & {
-  value: Partial<PipelineKeyCreateValues>;
+export type TriggerKeysUpdateParams = TriggerKeyGetSingleParams & {
+  value: Partial<TriggerKeyCreateValues>;
 };
-export async function update(params: PipelineKeysUpdateParams) {
+export async function update(params: TriggerKeysUpdateParams) {
   return Request.patchRequest<Single>({
     ...params,
     target: links.pipelines().keys(params.pipelineId).single(params.keyId),
   });
 }
 
-export type PipelineKeyRemoveParams = PipelineKeyGetSingleParams;
-export async function remove(params: PipelineKeyRemoveParams) {
+export type TriggerKeyRemoveParams = TriggerKeyGetSingleParams;
+export async function remove(params: TriggerKeyRemoveParams) {
   return Request.deleteRequest<Single>({
     ...params,
     target: links.pipelines().keys(params.pipelineId).single(params.keyId),
