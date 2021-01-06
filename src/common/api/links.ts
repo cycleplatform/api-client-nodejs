@@ -264,8 +264,8 @@ export const links = {
     collection: () => `/pipelines`,
     single: (id: ResourceId) => `/pipelines/${id}`,
     keys: (pipeline: ResourceId) => ({
-      collection: () => `pipelines/${pipeline}/keys`,
-      single: (key: ResourceId) => `pipelines/${pipeline}/keys/${key}`,
+      collection: () => `/pipelines/${pipeline}/keys`,
+      single: (key: ResourceId) => `/pipelines/${pipeline}/keys/${key}`,
     }),
   }),
 
