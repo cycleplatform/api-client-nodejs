@@ -1,9 +1,9 @@
-import { BaseTask } from "./index";
+import { BaseAction } from "./index";
 import { NewContainer } from "../../../resources/containers";
 import { NewEnvironment } from "../../../resources/environments";
 import { NewImage, SpecImage } from "../../../resources/images";
 
-export type Tasks = {
+export type Actions = {
   create: Create;
   import: Import;
   start: Start;
@@ -14,12 +14,12 @@ export type Tasks = {
 };
 
 export type Import = {
-  image: BaseTask;
+  image: BaseAction;
 };
 
 export type Reimage = {
-  image?: BaseTask;
-  container?: BaseTask;
+  image?: BaseAction;
+  container?: BaseAction;
 };
 
 export type Create = {
@@ -31,22 +31,22 @@ export type Create = {
 export type CreateImage = SpecImage;
 
 export type Start = {
-  container?: BaseTask;
-  environment?: BaseTask;
+  container?: BaseAction;
+  environment?: BaseAction;
 };
 
 export type Stop = {
-  container?: BaseTask;
-  environment?: BaseTask;
+  container?: BaseAction;
+  environment?: BaseAction;
 };
 
 export type Clone = {
-  container?: BaseTask;
-  environment?: BaseTask;
+  container?: BaseAction;
+  environment?: BaseAction;
 };
 
 export type Delete = {
-  image?: BaseTask;
-  container?: BaseTask;
-  environment?: BaseTask;
+  image?: BaseAction;
+  container?: BaseAction;
+  environment?: BaseAction;
 };
