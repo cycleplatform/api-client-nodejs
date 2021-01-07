@@ -19,7 +19,7 @@ export type TriggerKey = Resource & {
   creator: UserScope;
   hub_id: ResourceId;
   pipeline_id: ResourceId;
-  state: State;
+  state: State<TriggerKeyState>;
   events: Events;
   ips: string[];
 };
