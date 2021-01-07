@@ -24,6 +24,7 @@ import * as Notifications from "./notifications";
 import * as Websocket from "./common/api/websocket";
 import * as Surveys from "./resources/surveys";
 import * as Pipelines from "./resources/pipelines";
+import * as Endpoints from "./common/api/links";
 
 export { Capability } from "./resources/hubs";
 
@@ -53,4 +54,5 @@ export {
   Websocket,
   Surveys,
   Pipelines,
+  Endpoints,
 };
