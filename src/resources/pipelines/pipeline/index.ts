@@ -38,7 +38,7 @@ export type Pipeline = Resource & {
   disable: boolean;
   stages: Stage[];
   events: Events;
-  state: State;
+  state: State<PipelineState>;
 };
 
 export type Stage = {
