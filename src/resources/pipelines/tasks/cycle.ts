@@ -1,12 +1,7 @@
-import { ResourceId } from "../../../common/structs";
+import { BaseTask } from "./index";
 import { NewContainer } from "../../../resources/containers";
 import { NewEnvironment } from "../../../resources/environments";
 import { NewImage, SpecImage } from "../../../resources/images";
-
-export type Task<T extends keyof Tasks> = Pick<Tasks, T> & {
-  comment?: string;
-  options?: TaskOptions;
-};
 
 export type Tasks = {
   create: Create;
@@ -16,16 +11,6 @@ export type Tasks = {
   delete: Delete;
   clone: Clone;
   reimage: Reimage;
-};
-
-export type BaseTask = {
-  id?: ResourceId;
-  name?: string;
-  from_task?: string;
-};
-
-export type TaskOptions = {
-  disable?: boolean;
 };
 
 export type Import = {

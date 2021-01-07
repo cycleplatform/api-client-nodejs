@@ -12,7 +12,7 @@ import {
   Time,
   State,
 } from "../../../common/structs";
-import { AllTasks } from "../tasks";
+import { Task } from "../tasks";
 
 export type Collection = CollectionDoc<Pipeline, PipelineIncludes>;
 export type Single = SingleDoc<Pipeline, PipelineIncludes>;
@@ -44,7 +44,7 @@ export type Pipeline = Resource & {
 export type Stage = {
   name: string;
   disabled: boolean;
-  tasks: Partial<AllTasks>;
+  tasks: Record<string, Task>;
 };
 
 export type PipelineIncludes = {
