@@ -1,14 +1,13 @@
-import { ResourceId } from "common/structs";
-import * as Cycle from "./cycle";
+import { ResourceId } from "../../../common/structs";
+import * as CycleTasks from "./cycle";
 
-export type AllActions = Cycle.Actions;
+export { CycleTasks };
 
-export { Cycle };
+export type AllTasks = CycleTasks.Tasks;
 
-export type Task = Partial<AllActions> & TaskBase;
+export type Task = Partial<AllTasks> & TaskBase;
 
-export type TaskSelect<T extends keyof AllActions> = Pick<AllActions, T> &
-  TaskBase;
+export type TaskSelect<T extends keyof AllTasks> = Pick<AllTasks, T> & TaskBase;
 
 export type TaskBase = {
   comment?: string;
@@ -19,7 +18,7 @@ export type TaskOptions = {
   disable?: boolean;
 };
 
-export type BaseAction = {
+export type ActionBase = {
   id?: ResourceId;
   name?: string;
   from_task?: FromTask;
