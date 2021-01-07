@@ -160,7 +160,10 @@ export type HubTopic =
   | "pipeline.created"
   | "pipeline.key.state.changed"
   | "pipeline.error"
-  | "pipeline.updated";
+  | "pipeline.updated"
+  | "pipeline.run.error"
+  | "pipeline.run.updated"
+  | "pipeline.run.created";
 
 export type HubNotification = Notification<HubTopic>;
 

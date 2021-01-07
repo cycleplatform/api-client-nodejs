@@ -22,10 +22,12 @@ export type Events = BaseEvents & {
   last_run: Time;
 };
 
-export type PipelineState =
-  | "new"
+export type PipelineState = "new" | "deleting" | "deleted";
+
+export type PipelineRunsState =
   | "ready"
   | "running"
+  | "complete"
   | "deleting"
   | "deleted";
 
