@@ -24,13 +24,6 @@ export type Events = BaseEvents & {
 
 export type PipelineState = "new" | "deleting" | "deleted";
 
-export type PipelineRunsState =
-  | "ready"
-  | "running"
-  | "complete"
-  | "deleting"
-  | "deleted";
-
 export type Pipeline = Resource & {
   name: string;
   creator: UserScope;
@@ -52,60 +45,56 @@ export type PipelineIncludes = {
   creators: UserIncludes;
 };
 
-export async function getCollection(params: StandardParams) {
+type BaseCollectionParams = StandardParams;
+type BaseSingleDocParams = StandardParams<PipelineQuery> & {
+  id: ResourceId;
+};
+
+export type GetCollectionParams = BaseCollectionParams;
+export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.pipelines().collection(),
   });
 }
 
-export async function getSingle(
-  params: StandardParams & {
-    id: ResourceId;
-  },
-) {
+export type GetSingleParams = BaseSingleDocParams;
+export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
     target: links.pipelines().single(params.id),
   });
 }
 
-export interface CreateParams {
+export type CreateValues = {
   name: string;
-}
-
-export async function create(
-  params: StandardParams<PipelineQuery> & Request.PostParams<CreateParams>,
-) {
+};
+export type CreateParams = BaseCollectionParams &
+  Request.PostParams<CreateValues>;
+export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
     target: links.pipelines().collection(),
   });
 }
 
-export interface UpdateParams {
+export type UpdateValues = {
   name: string;
   stages: Stage[];
   disable: boolean;
-}
-
-export async function update(
-  params: StandardParams<PipelineQuery> & {
-    id: ResourceId;
-    value: Partial<UpdateParams>;
-  },
-) {
+};
+export type UpdateParams = BaseSingleDocParams & {
+  value: Partial<UpdateParams>;
+};
+export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
     ...params,
     target: links.pipelines().single(params.id),
   });
 }
 
-export async function remove(
-  params: StandardParams<PipelineQuery> & {
-    id: ResourceId;
-  },
-) {
+export type RemoveParams = BaseSingleDocParams;
+export async function remove(params: RemoveParams) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.pipelines().single(params.id),

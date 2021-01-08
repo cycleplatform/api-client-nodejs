@@ -26,12 +26,18 @@ export type TriggerKey = Resource & {
 
 export type TriggerKeyState = "live" | "deleting" | "deleted";
 
+type BaseSingleDocParams = StandardParams & {
+  pipelineId: ResourceId;
+  keyId: ResourceId;
+};
+
+type BaseCollectionParams = StandardParams & {
+  pipelineId: ResourceId;
+};
 /**
  * params to be used for the getCollection function of pipeline keys
  */
-export type TriggerKeyGetCollectionParams = StandardParams & {
-  pipelineId: ResourceId;
-};
+export type TriggerKeyGetCollectionParams = BaseCollectionParams;
 /** Get pipeline keys as a collection
  *
  * @summary get a collection of keys in a given pipeline
@@ -45,10 +51,7 @@ export async function getCollection(params: TriggerKeyGetCollectionParams) {
   });
 }
 
-export type TriggerKeyGetSingleParams = StandardParams & {
-  pipelineId: ResourceId;
-  keyId: ResourceId;
-};
+export type TriggerKeyGetSingleParams = BaseSingleDocParams;
 export async function getSingle(params: TriggerKeyGetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
@@ -62,7 +65,7 @@ export type TriggerKeyCreateValues = {
 };
 
 // Create new pipeline
-export type TriggerKeyCreateParams = TriggerKeyGetCollectionParams & {
+export type TriggerKeyCreateParams = BaseCollectionParams & {
   value: TriggerKeyCreateValues;
 };
 export async function create(params: TriggerKeyCreateParams) {
@@ -72,7 +75,7 @@ export async function create(params: TriggerKeyCreateParams) {
   });
 }
 
-export type TriggerKeysUpdateParams = TriggerKeyGetSingleParams & {
+export type TriggerKeysUpdateParams = BaseSingleDocParams & {
   value: Partial<TriggerKeyCreateValues>;
 };
 export async function update(params: TriggerKeysUpdateParams) {
@@ -82,7 +85,7 @@ export async function update(params: TriggerKeysUpdateParams) {
   });
 }
 
-export type TriggerKeyRemoveParams = TriggerKeyGetSingleParams;
+export type TriggerKeyRemoveParams = BaseSingleDocParams;
 export async function remove(params: TriggerKeyRemoveParams) {
   return Request.deleteRequest<Single>({
     ...params,

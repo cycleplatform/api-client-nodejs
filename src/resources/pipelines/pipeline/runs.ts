@@ -46,11 +46,12 @@ export type PipelineRunTasks = {
   error?: ErrorResource;
 };
 
-export async function getRunCollection(
-  params: StandardParams & {
-    pipelineId: ResourceId;
-  },
-) {
+type BaseCollectionParams = StandardParams & {
+  pipelineId: ResourceId;
+};
+
+export type GetRunCollectionParams = BaseCollectionParams;
+export async function getRunCollection(params: GetRunCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.pipelines().runs(params.pipelineId),
