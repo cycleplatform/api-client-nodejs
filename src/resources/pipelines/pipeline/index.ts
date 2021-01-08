@@ -84,7 +84,7 @@ export type UpdateValues = {
   disable: boolean;
 };
 export type UpdateParams = BaseSingleDocParams & {
-  value: Partial<UpdateParams>;
+  value: Partial<UpdateValues>;
 };
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
