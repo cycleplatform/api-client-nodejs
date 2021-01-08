@@ -1,5 +1,5 @@
-import * as Request from "../../../common/api/request";
-import { links, QueryParams, StandardParams } from "../../../common/api";
+import * as Request from "../../common/api/request";
+import { links, QueryParams, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   CreatedTask,
@@ -11,8 +11,8 @@ import {
   SingleDoc,
   Time,
   State,
-} from "../../../common/structs";
-import { Task } from "../tasks";
+} from "../../common/structs";
+import { Task } from "./tasks";
 
 export type Collection = CollectionDoc<Pipeline, PipelineIncludes>;
 export type Single = SingleDoc<Pipeline, PipelineIncludes>;

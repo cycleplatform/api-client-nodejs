@@ -1,5 +1,5 @@
-import { links, StandardParams } from "../../../common/api";
-import { Request } from "../../..";
+import { links, StandardParams } from "../../common/api";
+import { Request } from "../../";
 import {
   CollectionDoc,
   Events,
@@ -8,7 +8,7 @@ import {
   SingleDoc,
   State,
   UserScope,
-} from "../../../common/structs";
+} from "../../common/structs";
 
 export type Collection = CollectionDoc<TriggerKey>;
 export type Single = SingleDoc<TriggerKey>;
