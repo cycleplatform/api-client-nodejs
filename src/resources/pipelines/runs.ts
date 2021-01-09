@@ -24,7 +24,7 @@ export type PipelineRun = Resource & {
 
 export type PipelineRunState =
   | "new"
-  | "ready"
+  | "queued"
   | "running"
   | "deleting"
   | "deleted";
@@ -37,7 +37,7 @@ export type PipelineRunStages = {
 
 export type PipelineRunTimingEvents = {
   started: Time;
-  ended: Time;
+  finished: Time;
 };
 
 export type PipelineRunTasks = {

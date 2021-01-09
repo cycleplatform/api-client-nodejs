@@ -10,14 +10,7 @@ import { ResourceId, CreatedTask } from "../../../../common/structs";
 export interface LoadBalancerService extends Service {
   config: LoadBalancer | null;
 }
-
-export type LoadBalanceDeploymentStrategy =
-  | "single"
-  | "per-provider"
-  | "per-location";
-
 export interface LoadBalancer {
-  deploy: LoadBalanceDeploymentStrategy;
   haproxy: HAProxyConfig | null;
   ipv4: boolean | null;
   ipv6: boolean | null;
@@ -79,11 +72,7 @@ export async function getLoadBalancerInfo(
 ) {
   return getRequest<{ data: LoadBalancerInfoReturn }>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .lb()
-      .info(params.environmentId),
+    target: links.environments().services().lb().info(params.environmentId),
   });
 }
 
@@ -102,11 +91,7 @@ export async function reconfigureLoadBalancer(
 ) {
   return postRequest<CreatedTask<LoadBalancerAction>>({
     ...params,
-    target: links
-      .environments()
-      .services()
-      .lb()
-      .tasks(params.environmentId),
+    target: links.environments().services().lb().tasks(params.environmentId),
     value: {
       action: "reconfigure",
       contents: params.value,
