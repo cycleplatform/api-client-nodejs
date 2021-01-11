@@ -16,6 +16,12 @@ export type LoadBalanceDeploymentStrategy =
   | "per-provider"
   | "per-location";
 
+/**
+ * If null is passed to any og these keys, the platform default will
+ *  be used and current settings will be overwritten. To keep current
+ *  config, submit null for the entire config, rather than individual
+ *  items with the config
+ */
 export interface LoadBalancer {
   haproxy: HAProxyConfig | null;
   ipv4: boolean | null;
@@ -89,11 +95,43 @@ export interface LoadBalancerReconfig {
 
 export type LoadBalancerAction = "reconfigure";
 
+export type ReconfigureLoadBalancerParams = StandardParams & {
+  environmentId: ResourceId;
+  value: LoadBalancerReconfig;
+};
+/**
+ *
+ * ### IMPORTANT NOTES
+ * - Please refer to `params.value.config` before submitting any values
+ *  to make sure you are not resetting values to platform defaults which
+ *  you do not intend too
+ *
+ * ___
+ *
+ * @param params is an object containing standard necessary params to
+ *  reconfigure the desired lb
+ *
+ * @param params.environmentId is the environment id of in which the lb you
+ *  want to reconfigure lives
+ *
+ * @param params.value is is an object containing the possible values with
+ *  which you can reconfigure the desired lb
+ *
+ * @param params.value.config __IMPORTANT__ to keep the current settings with
+ *  the config object, leave config as null: `config: null`. If you mark
+ *  an individual item within config as null, the platform will set that
+ *  items values to the defaults
+ *
+ * @param params.value.high_availability mark this item as true or false to
+ *  to set the desired lb to be put into HA mode (`true`) or not (`false`)
+ *
+ * ___
+ *
+ *
+ * Last Updated: 2021.01.11 — Grady S
+ */
 export async function reconfigureLoadBalancer(
-  params: StandardParams & {
-    environmentId: ResourceId;
-    value: LoadBalancerReconfig;
-  },
+  params: ReconfigureLoadBalancerParams,
 ) {
   return postRequest<CreatedTask<LoadBalancerAction>>({
     ...params,
