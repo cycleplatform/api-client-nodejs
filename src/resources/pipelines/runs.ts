@@ -3,9 +3,9 @@ import {
   UserScope,
   ResourceId,
   State,
-  Events,
   Time,
   CollectionDoc,
+  CustomEvents,
 } from "../../common/structs";
 import { ErrorResource, StandardParams, links } from "../../common/api";
 import { AllStageTasks } from "./stage-tasks";
@@ -19,8 +19,10 @@ export type PipelineRun = Resource & {
   pipelineId: ResourceId;
   stages: PipelineRunStages[];
   state: State<PipelineRunState>;
-  events: Events;
+  events: CustomEvents<PipelineRunEvents>;
 };
+
+export type PipelineRunEvents = "started" | "queued" | "finished";
 
 export type PipelineRunState =
   | "new"

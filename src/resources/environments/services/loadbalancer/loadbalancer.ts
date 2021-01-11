@@ -10,6 +10,12 @@ import { ResourceId, CreatedTask } from "../../../../common/structs";
 export interface LoadBalancerService extends Service {
   config: LoadBalancer | null;
 }
+
+export type LoadBalanceDeploymentStrategy =
+  | "single"
+  | "per-provider"
+  | "per-location";
+
 export interface LoadBalancer {
   haproxy: HAProxyConfig | null;
   ipv4: boolean | null;
