@@ -101,12 +101,14 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
 };
 /**
  *
- * ### IMPORTANT NOTES
+ * ### Important Notes
  * - Please refer to `params.value.config` before submitting any values
  *  to make sure you are not resetting values to platform defaults which
  *  you do not intend too
  *
- * ___
+ * ---
+ *
+ * ## Params
  *
  * @param params is an object containing standard necessary params to
  *  reconfigure the desired lb
@@ -117,7 +119,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  * @param params.value is is an object containing the possible values with
  *  which you can reconfigure the desired lb
  *
- * @param params.value.config __IMPORTANT__ to keep the current settings with
+ * @param params.value.config __IMPORTANT:__ to keep the current settings with
  *  the config object, leave config as null: `config: null`. If you mark
  *  an individual item within config as null, the platform will set that
  *  items values to the defaults
@@ -125,8 +127,40 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  * @param params.value.high_availability mark this item as true or false to
  *  to set the desired lb to be put into HA mode (`true`) or not (`false`)
  *
- * ___
+ * ---
  *
+ * ## Usage
+ * @example
+ * ```ts
+ *  const reconfigParams: Environments.Services.ReconfigureLoadBalancerParams = {
+ *    ...YOUR_BASE_PARAMS,
+ *    environmentId: `SOME_ENV_ID`,
+ *    values: {
+ *      // NOTE: leave the config object out if you do not want the platform to
+ *      //  potential reset to the default values. Refer to the params declaration
+ *      //  above for more info.
+ *      config: {
+ *        haproxy: { ... },
+ *        ipv4: false,
+ *        ipv6: true
+ *      },
+ *      high_availability: true
+ *    }
+ *  }
+ *
+ *  async function() {
+ *    const job = await Environments.Services.reconfigureLoadBalancer(reconfigParams);
+ *
+ *    try {
+ *      // use our future helper lib job tracker here
+ *      const jobData = await jobTrack(job);
+ *    } catch(e) {
+ *      // do something if job errors
+ *     console.error(e);
+ *    }
+ *  }
+ * ```
+ * ---
  *
  * Last Updated: 2021.01.11 — Grady S
  */
