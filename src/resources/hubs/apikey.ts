@@ -20,10 +20,15 @@ export interface ApiKey extends Resource {
   hub_id: ResourceId;
   secret?: string;
   permissions: Permissions;
-  capabilities: Capability[];
+  capabilities: ApiKeyCapabilities;
   ips: string[] | null;
   state: State<ApiKeyState>;
   events: Events;
+}
+
+export interface ApiKeyCapabilities {
+  all: boolean;
+  specific: Capability[];
 }
 
 export type ApiKeyState = "live" | "deleting" | "deleted";
@@ -41,7 +46,7 @@ export interface EnvironmentPermission {
 export interface CreateParams {
   name: string;
   permissions?: Permissions;
-  capabilities: Capability[];
+  capabilities: ApiKeyCapabilities;
   ips: string[] | null;
 }
 
