@@ -131,7 +131,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *
  * ## Usage
  * @example
- * ```ts
+ *  ```ts
  *  const reconfigParams: Environments.Services.ReconfigureLoadBalancerParams = {
  *    ...YOUR_BASE_PARAMS,
  *    environmentId: `SOME_ENV_ID`,
@@ -159,7 +159,20 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *     console.error(e);
  *    }
  *  }
- * ```
+ *  ```
+ *
+ * ---
+ *
+ * ## Cycle Info
+ *
+ * __Something doesn't look right or work as intended?__ \
+ * Help us make a better Node API Interface by submitting a PR on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ *
+ * ### Websites
+ * - [__Docs__](https://docs.cycle.io)
+ * - [__Main Website__](https://cycle.io)
+ *
  * ---
  *
  * Last Updated: 2021.01.11 — Grady S
