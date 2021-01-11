@@ -12,7 +12,7 @@ import {
   Time,
   State,
 } from "../../common/structs";
-import { Task } from "./tasks";
+import { StageTask } from "./stage-tasks";
 
 export type Collection = CollectionDoc<Pipeline, PipelineIncludes>;
 export type Single = SingleDoc<Pipeline, PipelineIncludes>;
@@ -37,7 +37,7 @@ export type Pipeline = Resource & {
 export type Stage = {
   name: string;
   disabled: boolean;
-  tasks: Record<string, Task>;
+  tasks: Record<string, StageTask>;
 };
 
 export type PipelineIncludes = {
@@ -101,7 +101,9 @@ export async function remove(params: RemoveParams) {
   });
 }
 
-export type TriggerParams = BaseSingleDocParams;
+export type TriggerParams = BaseSingleDocParams & {
+  secret: string;
+};
 export async function trigger(params: TriggerParams) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,

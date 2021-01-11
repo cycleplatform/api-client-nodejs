@@ -8,7 +8,7 @@ import {
   CollectionDoc,
 } from "../../common/structs";
 import { ErrorResource, StandardParams, links } from "../../common/api";
-import { AllTasks } from "./tasks";
+import { AllTasks } from "./stage-tasks";
 import * as Request from "../../common/api/request";
 
 export type Collection = CollectionDoc<PipelineRun>;
