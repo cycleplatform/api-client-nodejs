@@ -46,8 +46,7 @@ export interface EnvironmentPermission {
 export interface CreateParams {
   name: string;
   permissions?: Permissions;
-  all: boolean;
-  capabilities: Capability[];
+  capabilities: ApiKeyCapabilities;
   ips: string[] | null;
 }
 
