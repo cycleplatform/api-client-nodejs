@@ -265,6 +265,7 @@ export const links = {
     collection: () => `/pipelines`,
     single: (id: ResourceId) => `/pipelines/${id}`,
     runs: (id: ResourceId) => `/pipelines/${id}/runs`,
+    trigger: (id: ResourceId) => `/pipelines/${id}/trigger`,
     keys: (pipeline: ResourceId) => ({
       collection: () => `/pipelines/${pipeline}/keys`,
       single: (key: ResourceId) => `/pipelines/${pipeline}/keys/${key}`,

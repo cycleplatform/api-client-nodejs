@@ -100,3 +100,11 @@ export async function remove(params: RemoveParams) {
     target: links.pipelines().single(params.id),
   });
 }
+
+export type TriggerParams = BaseSingleDocParams;
+export async function trigger(params: TriggerParams) {
+  return Request.postRequest<CreatedTask<any>>({
+    ...params,
+    target: links.pipelines().trigger(params.id),
+  });
+}
