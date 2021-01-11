@@ -99,17 +99,18 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
   environmentId: ResourceId;
   value: LoadBalancerReconfig;
 };
-/**
+/** ### `reconfigureLoadBalancer()`
  *
- * ### Important Notes
+ * ---
+ *
+ * ## Important Notes:
  * - Please refer to `params.value.config` before submitting any values
  *  to make sure you are not resetting values to platform defaults which
  *  you do not intend too
  *
  * ---
  *
- * ## Params
- *
+ * ## Params:
  * @param params is an object containing standard necessary params to
  *  reconfigure the desired lb
  *
@@ -129,7 +130,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *
  * ---
  *
- * ## Usage
+ * ## Usage:
  * @example
  *  ```ts
  *  const reconfigParams: Environments.Services.ReconfigureLoadBalancerParams = {
