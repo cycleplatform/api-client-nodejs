@@ -8,7 +8,7 @@ import {
   CollectionDoc,
 } from "../../common/structs";
 import { ErrorResource, StandardParams, links } from "../../common/api";
-import { AllTasks } from "./stage-tasks";
+import { AllStageTasks } from "./stage-tasks";
 import * as Request from "../../common/api/request";
 
 export type Collection = CollectionDoc<PipelineRun>;
@@ -32,7 +32,7 @@ export type PipelineRunState =
 export type PipelineRunStages = {
   name: string;
   events: PipelineRunTimingEvents;
-  tasks: Partial<AllTasks>;
+  tasks: Partial<AllStageTasks>;
 };
 
 export type PipelineRunTimingEvents = {
