@@ -11,6 +11,7 @@ import {
   SingleDoc,
   Time,
   State,
+  Task,
 } from "../../common/structs";
 import { StageTask } from "./stage-tasks";
 
@@ -101,10 +102,50 @@ export async function remove(params: RemoveParams) {
   });
 }
 
-export type TriggerParams = BaseSingleDocParams & {
+/**
+ * trigger params for triggerWithSecret function
+ */
+export type TriggerWithSecretParams = BaseSingleDocParams & {
   secret: string;
 };
-export async function trigger(params: TriggerParams) {
+/**
+ * @description used to trigger a pipeline with a secret created
+ *  from generating a trigger key. This function does not require
+ *  authentication
+ *
+ * ---
+ *
+ * @param params is an object of base params for a single pipeline
+ *  as well as a secret. The secret is your trigger key secret.
+ *
+ * ---
+ *
+ * @example
+ * ```ts
+ * async function() {
+ *   const job = await Pipelines.triggerWithSecret({
+ *     ...base_api_param,
+ *     secret: 'YOUR_TRIGGER_KEY_SECRET',
+ *   });
+ *
+ *   try {
+ *    // use our future helper lib job tracker here
+ *     await jobTrack(job);
+ *   } catch(e) {
+ *     // do something if job errors
+ *     console.error(e);
+ *   }
+ * }
+ *
+ * ```
+ *
+ * For more information on what a tasks returns refer to
+ *  [tasks descriptor in Cycle Docs](https://docs.cycle.io/api/jobs/task-descriptor/) for more
+ *  information on tasks and how to handle them
+ *
+ * Last Updated: 2021.01.11 — Grady
+ */
+export async function triggerWithSecret(params: TriggerWithSecretParams) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
     target: links.pipelines().trigger(params.id),
