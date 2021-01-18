@@ -17,7 +17,7 @@ export type Step =
   | StepBase<"container.stop">
   | StepBase<"image.create">
   | StepBase<"image.import">
-  | StepBase<"image.prune">
+  | StepBase<"images.prune">
   | StepBase<"sleep">;
 
 export interface StepBase<T extends AllActionKeys> {
@@ -41,7 +41,7 @@ export type AllActionsMap = {
   // Images
   "image.create": ImageCreate;
   "image.import": ImageImport;
-  "image.prune": ImagePrune;
+  "images.prune": ImagePrune;
 
   // Containers
   "container.reimage": ContainerReimage;
