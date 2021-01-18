@@ -35,6 +35,7 @@ export type Pipeline = Resource & {
 };
 
 export type Stage = {
+  identifier?: string;
   name: string;
   disabled: boolean;
   steps: Step[];
