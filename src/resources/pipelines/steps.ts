@@ -1,5 +1,5 @@
-import { ResourceId } from "common/structs";
-import { ImageSource } from "resources/images";
+import { ResourceId } from "../../common/structs";
+import { ImageSource } from "../../resources/images";
 
 /**
  * We need to setup the steps this way due to the unpredictability of the k:v inside
