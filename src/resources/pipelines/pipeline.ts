@@ -12,7 +12,7 @@ import {
   Time,
   State,
 } from "../../common/structs";
-import { StageTask } from "./stage-tasks";
+import { Step } from "./steps";
 
 export type Collection = CollectionDoc<Pipeline, PipelineIncludes>;
 export type Single = SingleDoc<Pipeline, PipelineIncludes>;
@@ -37,7 +37,7 @@ export type Pipeline = Resource & {
 export type Stage = {
   name: string;
   disabled: boolean;
-  tasks: Record<string, StageTask>;
+  steps: Step[];
 };
 
 export type PipelineIncludes = {
@@ -104,45 +104,79 @@ export async function remove(params: RemoveParams) {
 /**
  * trigger params for triggerWithSecret function
  */
-export type TriggerWithSecretParams = BaseSingleDocParams & {
+export type TriggerWithSecretParams = {
+  id: ResourceId;
   secret: string;
 };
-/**
- * @description used to trigger a pipeline with a secret created
+
+/** ### `triggerWithSecret()` 🚀
+ *
+ * Used to trigger a pipeline with a secret created
  *  from generating a trigger key. This function does not require
  *  authentication
  *
  * ---
  *
- * @param params is an object of base params for a single pipeline
- *  as well as a secret. The secret is your trigger key secret.
+ * ##  Important Notes
+ * - 🚀 Use the cycle job tracker helper function with this function to help
+ * you track jobs easier. Basic usage shown in example below
  *
  * ---
  *
+ * ## Params:
+ * @param params is an object for which to put necessary parameters
+ *  for triggering a pipeline go
+ *
+ * @param id id of the pipeline to trigger. This can be found on
+ *  the settings page of pipelines
+ *
+ * @param params.secret the secret from a trigger key. If you have not
+ *  yet created a trigger, this can be done easily though the
+ *  [Cycle portal](https://portal.cycle.io) or via our api using the
+ *  create trigger key function (`Pipelines.TriggerKeys.create()`)
+ *
+ * ---
+ *
+ * ## Usage:
  * @example
- * ```ts
- * async function() {
- *   const job = await Pipelines.triggerWithSecret({
- *     ...base_api_param,
- *     secret: 'YOUR_TRIGGER_KEY_SECRET',
- *   });
+ *  ```ts
+ *  const params: Pipelines.TriggerWithSecretParams = {
+ *    ...YOUR_BASE_PARAMS,
+ *    secret: YOUR_TRIGGER_KEY_SECRET
+ *  }
  *
- *   try {
- *    // use our future helper lib job tracker here
- *     await jobTrack(job);
- *   } catch(e) {
- *     // do something if job errors
- *     console.error(e);
- *   }
- * }
+ *  async function() {
+ *    const job = await Pipelines.triggerWithSecret(params);
  *
- * ```
- *
+ *    try {
+ *     // use our future helper lib job tracker here
+ *      await jobTracker(job);
+ *    } catch(e) {
+ *      // do something if job errors
+ *      console.error(e);
+ *    }
+ *  }
+ *  ```
  * For more information on what a tasks returns refer to
  *  [tasks descriptor in Cycle Docs](https://docs.cycle.io/api/jobs/task-descriptor/) for more
  *  information on tasks and how to handle them
+ * ---
  *
- * Last Updated: 2021.01.11 — Grady
+ * ## Cycle Info
+ *
+ * __Something doesn't look right or work as intended?__ \
+ * Help us make a better Node API Interface by submitting a PR on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ *
+ * ### Websites
+ * - [__General Docs__](https://docs.cycle.io)
+ * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
+ * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
+ * - [__Cycle's Website__](https://cycle.io)
+ *
+ * ---
+ *
+ * Last Updated: 2021.01.11 — Grady S
  */
 export async function triggerWithSecret(params: TriggerWithSecretParams) {
   return Request.postRequest<CreatedTask<any>>({

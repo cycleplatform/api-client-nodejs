@@ -99,11 +99,14 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
   environmentId: ResourceId;
   value: LoadBalancerReconfig;
 };
-/** ### `reconfigureLoadBalancer()`
+/** ### `reconfigureLoadBalancer()` 🚀
  *
  * ---
  *
  * ## Important Notes:
+ * - 🚀 Use the cycle job tracker helper function with this function to help
+ * you track jobs easier. Basic usage shown in example below
+ *
  * - Please refer to `params.value.config` before submitting any values
  *  to make sure you are not resetting values to platform defaults which
  *  you do not intend too
@@ -133,9 +136,9 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  * ## Usage:
  * @example
  *  ```ts
- *  const reconfigParams: Environments.Services.ReconfigureLoadBalancerParams = {
+ *  const params: Environments.Services.ReconfigureLoadBalancerParams = {
  *    ...YOUR_BASE_PARAMS,
- *    environmentId: `SOME_ENV_ID`,
+ *    environmentId: SOME_ENV_ID,
  *    values: {
  *      // NOTE: leave the config object out if you do not want the platform to
  *      //  potential reset to the default values. Refer to the params declaration
@@ -150,7 +153,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *  }
  *
  *  async function() {
- *    const job = await Environments.Services.reconfigureLoadBalancer(reconfigParams);
+ *    const job = await Environments.Services.reconfigureLoadBalancer(params);
  *
  *    try {
  *      // use our future helper lib job tracker here
@@ -171,8 +174,10 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
  *
  * ### Websites
- * - [__Docs__](https://docs.cycle.io)
- * - [__Main Website__](https://cycle.io)
+ * - [__General Docs__](https://docs.cycle.io)
+ * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
+ * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
+ * - [__Cycle's Website__](https://cycle.io)
  *
  * ---
  *
