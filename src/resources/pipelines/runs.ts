@@ -33,7 +33,6 @@ export type PipelineRunState =
 
 export type PipelineRunStages = {
   name: string;
-  action: AllActionKeys;
   events: PipelineRunTimingEvents;
   steps: PipelineRunStep[];
 };
@@ -44,7 +43,9 @@ export type PipelineRunTimingEvents = {
 };
 
 export type PipelineRunStep = {
+  identifier?: string;
   events: PipelineRunTimingEvents;
+  action: AllActionKeys;
   success: boolean;
   error?: ErrorResource;
 };
