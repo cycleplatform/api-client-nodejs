@@ -148,6 +148,7 @@ export interface EnvironmentCreate {
   about: {
     description: string;
   };
+  cluster: Cluster;
   features: {
     legacy_networking: boolean;
   };
