@@ -8,7 +8,7 @@ import {
   CustomEvents,
 } from "../../common/structs";
 import { ErrorResource, StandardParams, links } from "../../common/api";
-import { Step } from "./steps";
+import { AllActionKeys } from "./steps";
 import * as Request from "../../common/api/request";
 
 export type Collection = CollectionDoc<PipelineRun>;
@@ -33,8 +33,9 @@ export type PipelineRunState =
 
 export type PipelineRunStages = {
   name: string;
+  action: AllActionKeys;
   events: PipelineRunTimingEvents;
-  steps: Step[];
+  steps: PipelineRunStep[];
 };
 
 export type PipelineRunTimingEvents = {
@@ -42,7 +43,7 @@ export type PipelineRunTimingEvents = {
   finished: Time;
 };
 
-export type PipelineRunTasks = {
+export type PipelineRunStep = {
   events: PipelineRunTimingEvents;
   success: boolean;
   error?: ErrorResource;
