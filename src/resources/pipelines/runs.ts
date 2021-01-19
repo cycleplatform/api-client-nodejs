@@ -32,6 +32,7 @@ export type PipelineRunState =
   | "deleted";
 
 export type PipelineRunStages = {
+  identifier?: string;
   name: string;
   events: PipelineRunTimingEvents;
   steps: PipelineRunStep[];
