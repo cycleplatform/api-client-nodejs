@@ -9,6 +9,7 @@ import {
   CreatedTask,
   ResourceId,
   UserScope,
+  Webhook,
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
@@ -41,6 +42,7 @@ export interface Hub extends Resource<HubMetas> {
   state: State<HubState>;
   integrations: Integrations;
   providers: Providers;
+  webhooks: HubWebhook;
   billing: BillingProfile | null;
 }
 
@@ -63,6 +65,10 @@ export interface Plans {
   tier_id: ResourceId;
   support_id: ResourceId;
 }
+
+export type HubWebhook = {
+  server_deployed: Webhook | null;
+};
 
 export interface HubMetas {
   membership?: Membership;

@@ -156,9 +156,33 @@ export interface CreateParams {
   cluster: Cluster;
 }
 
+export type ServerCreateWithAdvanced = {
+  advanced: Advanced[];
+} & ServerCreate;
+
+export type Advanced = {
+  provision_options?: ProvisionOptions;
+};
+
+export type ProvisionOptions = {
+  aws_ebs_size?: number;
+  reservation_id?: string;
+};
+
 export async function create(
   params: StandardParams<ServerQuery> & {
     value: CreateParams;
+  },
+) {
+  return Request.postRequest<CreatedTask<any>>({
+    ...params,
+    target: links.infrastructure().servers().collection(),
+  });
+}
+
+export async function advancedCreate(
+  params: StandardParams<ServerQuery> & {
+    value: ServerCreateWithAdvanced;
   },
 ) {
   return Request.postRequest<CreatedTask<any>>({
