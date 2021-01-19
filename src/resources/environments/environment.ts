@@ -55,7 +55,7 @@ export type NewEnvironment = {
   features: Features;
 };
 
-type About = {
+export type About = {
   description: string;
   favorite: boolean;
 };

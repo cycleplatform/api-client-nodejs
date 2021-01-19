@@ -1,5 +1,7 @@
-import { ResourceId } from "../../common/structs";
+import { ResourceId, Cluster } from "../../common/structs";
 import { ImageSource } from "../../resources/images";
+import { Config } from "../containers/config";
+import { VolumeSummary } from "../containers";
 
 /**
  * We need to setup the steps this way due to the unpredictability of the k:v inside
@@ -11,14 +13,26 @@ import { ImageSource } from "../../resources/images";
  *  infer the data inside the object AFTER action has been supplied in the step object
  */
 export type Step =
+  // Shared
+  | StepBase<"sleep">
+  | StepBase<"webhook.post">
+
+  // Container
+  | StepBase<"container.create">
   | StepBase<"container.reimage">
   | StepBase<"container.restart">
   | StepBase<"container.start">
   | StepBase<"container.stop">
+
+  // Image
   | StepBase<"image.create">
   | StepBase<"image.import">
   | StepBase<"images.prune">
-  | StepBase<"sleep">;
+
+  // Environment
+  | StepBase<"environment.create">
+  | StepBase<"environment.start">
+  | StepBase<"environment.stop">;
 
 export interface StepBase<T extends AllActionKeys> {
   /**
@@ -37,17 +51,24 @@ export interface StepOptions {
 export type AllActionsMap = {
   // Shared
   sleep: Sleep;
+  "webhook.post": WebhookPost;
+
+  // Containers
+  "container.create": ContainerCreate;
+  "container.reimage": ContainerReimage;
+  "container.restart": ContainerRestart;
+  "container.start": ContainerStart;
+  "container.stop": ContainerStop;
 
   // Images
   "image.create": ImageCreate;
   "image.import": ImageImport;
   "images.prune": ImagePrune;
 
-  // Containers
-  "container.reimage": ContainerReimage;
-  "container.restart": ContainerRestart;
-  "container.start": ContainerStart;
-  "container.stop": ContainerStop;
+  // Environments
+  "environment.create": EnvironmentCreate;
+  "environment.start": EnvironmentStart;
+  "environment.stop": EnvironmentStop;
 };
 
 export type AllActionKeys = keyof AllActionsMap;
@@ -85,6 +106,11 @@ export interface Sleep {
   seconds: number;
 }
 
+export interface WebhookPost {
+  url: string;
+  from: FromStep;
+}
+
 // Images
 export interface ImageCreate {
   name: string;
@@ -96,6 +122,16 @@ export type ImageImport = ExistingResource;
 export interface ImagePrune {}
 
 // Containers
+export interface ContainerCreate {
+  name: string;
+  environment: ExistingResource;
+  image: ExistingResource;
+  stateful: boolean;
+  annotations: Record<string, any>;
+  config: Config;
+  volumes?: VolumeSummary[];
+}
+
 export type ContainerStart = ExistingResource;
 
 export type ContainerStop = ExistingResource;
@@ -105,3 +141,19 @@ export type ContainerRestart = ExistingResource;
 export type ContainerReimage = ExistingResource & {
   image: ExistingResource;
 };
+
+// Environments
+export interface EnvironmentCreate {
+  name: string;
+  about: {
+    description: string;
+  };
+  features: {
+    legacy_networking: boolean;
+  };
+  stack_build: ExistingResource;
+}
+
+export type EnvironmentStart = ExistingResource;
+
+export type EnvironmentStop = ExistingResource;
