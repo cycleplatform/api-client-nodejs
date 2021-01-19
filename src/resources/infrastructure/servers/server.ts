@@ -34,7 +34,7 @@ export type ServerQuery = QueryParams<keyof ServerIncludes, keyof ServerMeta>;
 
 export { Telemetry, Stats };
 
-export interface Server extends Resource<ServerMeta> {
+export type Server = Resource<ServerMeta> & {
   hostname: string;
   creator: UserScope;
   hub_id: ResourceId;
@@ -52,31 +52,31 @@ export interface Server extends Resource<ServerMeta> {
       completed: Time;
     };
   };
-}
+};
 
-export interface ServerIncludes extends Includes {
+export type ServerIncludes = Includes & {
   locations: Record<ResourceId, Locations.Location>;
   models: Record<ResourceId, ProviderServers.Server>;
   providers: Record<ResourceId, Provider>;
-}
+};
 
-export interface ServerMeta {
+export type ServerMeta = {
   node?: NodeMetaStats;
   instances_count?: StatefulCounts<InstanceState>;
-}
+};
 
-export interface NodeMetaStats {
+export type NodeMetaStats = {
   last_checkin: Time;
   state: State<ServerState>;
   stats: Stats;
   healthy: boolean;
   online: boolean;
-}
+};
 
-export interface Features {
+export type Features = {
   sftp: boolean;
   base_volume_gb: Gigabytes | null;
-}
+};
 
 export type ServerState =
   | "new"
@@ -86,7 +86,7 @@ export type ServerState =
   | "deleting"
   | "deleted";
 
-export interface ServerProvider {
+export type ServerProvider = {
   identifier: ProviderIdentifier;
   model: string;
   location: string;
@@ -94,73 +94,145 @@ export interface ServerProvider {
   init_ips?: string[];
   mac_addr?: string;
   extra?: object;
-}
+};
 
-export interface Constraints {
+export type Constraints = {
   tags: string[];
   allow: ConstraintsAllow;
-}
+};
 
-export interface ConstraintsAllow {
+export type ConstraintsAllow = {
   /** Allow pooled containers? */
   pool: boolean;
   /** Allow services? */
   services: boolean;
   /** Allow 2x overcommit? */
   overcommit: boolean;
-}
+};
 
-export async function getCollection(params: StandardParams<ServerQuery>) {
+type BaseCollectionParams = StandardParams<ServerQuery>;
+type BaseSingleDocParams = StandardParams<ServerQuery> & {
+  id: ResourceId;
+};
+
+type GetCollectionParams = BaseCollectionParams;
+export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.infrastructure().servers().collection(),
   });
 }
 
-export async function getSingle(
-  params: StandardParams<ServerQuery> & {
-    id: ResourceId;
-  },
-) {
+type GetSingleParams = BaseSingleDocParams;
+export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
     target: links.infrastructure().servers().single(params.id),
   });
 }
 
-export async function getTags(params: StandardParams) {
+type GetTagParams = StandardParams;
+export async function getTags(params: GetTagParams) {
   return Request.getRequest<{ data: string[] }>({
     ...params,
     target: links.infrastructure().servers().tags(),
   });
 }
 
-export async function getClusters(params: StandardParams) {
+type GetClusterParams = StandardParams;
+export async function getClusters(params: GetClusterParams) {
   return Request.getRequest<{ data: string[] }>({
     ...params,
     target: links.infrastructure().servers().clusters(),
   });
 }
 
-export interface ServerCreate {
+/**
+ * @param provider "equinix-metal" | "vultr" | "aws"
+ * @param model_id of the desired server
+ * @param location_id location of the desired server
+ * @param quantity number of desired servers
+ * @param hostnames must have equal number of hostnames as quantity
+ */
+export type ServerCreate = {
   provider: ProviderIdentifier;
   model_id: string;
   location_id: string;
+  /** number of desired servers of this model id at location_id */
   quantity: number;
   /** must have equal number of hostnames as quantity */
   hostnames?: string[];
-}
+};
 
-export interface CreateParams {
+export type CreateParams = {
   servers: ServerCreate[];
   cluster: Cluster;
+};
+
+/**
+ * @param advanced an array of provision options
+ * @param provider "equinix-metal" | "vultr" | "aws"
+ * @param model_id of the desired server
+ * @param location_id location of the desired server
+ * @param quantity number of desired servers
+ * @param hostnames must have equal number of hostnames as quantity
+ */
+export type AdvancedServerCreate = {
+  advanced: Advanced[];
+} & ServerCreate;
+
+export type Advanced = {
+  provision_options?: ProvisionOptions;
+};
+
+/**
+ * @param aws_ebs_size an int in GB
+ * @param reservation_id string
+ */
+export type ProvisionOptions = {
+  aws_ebs_size?: number;
+  reservation_id?: string;
+};
+
+type StandardCreateParams = BaseCollectionParams & { value: CreateParams };
+export async function create(params: StandardCreateParams) {
+  return Request.postRequest<CreatedTask<any>>({
+    ...params,
+    target: links.infrastructure().servers().collection(),
+  });
 }
 
-export async function create(
-  params: StandardParams<ServerQuery> & {
-    value: CreateParams;
-  },
-) {
+type AdvancedCreateParams = BaseCollectionParams & {
+  value: AdvancedServerCreate;
+};
+/**
+ * Advanced server create allows you to specify reservation ids or if deploying to AWS
+ * allows you to specify EBS volume size under the advanced object
+ *
+ * @see AdvancedServerCreate struct <br/>
+ *
+ * Example:
+ * ```ts
+ * servers: [
+ *  {
+ *    provider: "aws",
+ *    model_id: "<resource_id>",
+ *    location_id: "<resource_id>",
+ *    quantity: 2,
+ *    advanced: [
+ *      {
+ *        provision_options: {
+ *          aws_ebs_size: 90,
+ *          reservation_id: "<resource_id>",
+ *        }
+ *      }
+ *    ]
+ *  }
+ * ],
+ * cluster: "advanced"
+ * ```
+ */
+export async function advancedCreate(params: AdvancedCreateParams) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
     target: links.infrastructure().servers().collection(),
@@ -171,23 +243,16 @@ export interface UpdateParams {
   constraints: Constraints;
 }
 
-export async function update(
-  params: StandardParams<ServerQuery> & {
-    id: ResourceId;
-    value: UpdateParams;
-  },
-) {
+type UpdateServerParams = BaseSingleDocParams & { value: UpdateParams };
+export async function update(params: UpdateServerParams) {
   return Request.patchRequest<Single>({
     ...params,
     target: links.infrastructure().servers().single(params.id),
   });
 }
 
-export async function remove(
-  params: StandardParams<ServerQuery> & {
-    id: ResourceId;
-  },
-) {
+type RemoveServerParams = BaseSingleDocParams;
+export async function remove(params: RemoveServerParams) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.infrastructure().servers().single(params.id),
