@@ -9,6 +9,7 @@ import {
   CreatedTask,
   ResourceId,
   UserScope,
+  Webhook,
 } from "../../common/structs";
 import { Membership } from "./membership";
 import { Providers } from "./providers";
@@ -41,6 +42,7 @@ export interface Hub extends Resource<HubMetas> {
   state: State<HubState>;
   integrations: Integrations;
   providers: Providers;
+  webhooks: HubWebhook;
   billing: BillingProfile | null;
 }
 
@@ -64,6 +66,10 @@ export interface Plans {
   support_id: ResourceId;
 }
 
+export type HubWebhook = {
+  server_deployed: Webhook | null;
+};
+
 export interface HubMetas {
   membership?: Membership;
 }
@@ -76,50 +82,59 @@ export interface CreateParams {
 
 export type UpdateParams = Partial<CreateParams>;
 
-export async function getCollection(params: StandardParams<HubQuery>) {
+type BaseCollectionParams = StandardParams<HubQuery>;
+type BaseSingleDocParams = StandardParams<HubQuery>;
+
+type GetCollectionParams = BaseCollectionParams;
+export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.hubs().collection(),
   });
 }
 
-export async function getSingle(params: StandardParams<HubQuery>) {
+type GetSingleDocParams = BaseSingleDocParams;
+export async function getSingle(params: GetSingleDocParams) {
   return Request.getRequest<Single>({
     ...params,
     target: links.hubs().single(),
   });
 }
 
-export async function getCurrentTier(params: StandardParams) {
+type GetCurrentHubTierParams = StandardParams;
+export async function getCurrentTier(params: GetCurrentHubTierParams) {
   return Request.getRequest<SingleTier>({
     ...params,
     target: links.hubs().tier(),
   });
 }
 
-export async function create(
-  params: StandardParams<HubQuery> & {
-    value: CreateParams;
-  },
-) {
+type CreateHubParams = BaseSingleDocParams & { value: CreateParams };
+export async function create(params: CreateHubParams) {
   return Request.postRequest<Single>({
     ...params,
     target: links.hubs().collection(),
   });
 }
 
-export async function update(
-  params: StandardParams<HubQuery> & {
-    value: UpdateParams;
-  },
-) {
+type UpdateHubParams = BaseSingleDocParams & { value: UpdateParams };
+export async function update(params: UpdateHubParams) {
   return Request.patchRequest<Single>({
     ...params,
     target: links.hubs().single(),
   });
 }
 
-export async function remove(params: StandardParams<HubQuery>) {
+type UpdateWithWebhookParams = BaseSingleDocParams & { value: HubWebhook };
+export async function updateHubWithWebhook(params: UpdateWithWebhookParams) {
+  return Request.patchRequest<Single>({
+    ...params,
+    target: links.hubs().single(),
+  });
+}
+
+type RemoveHubParams = BaseSingleDocParams;
+export async function remove(params: RemoveHubParams) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
     target: links.hubs().single(),

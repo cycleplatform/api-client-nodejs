@@ -16,7 +16,7 @@ export interface Notification<T extends string> {
   topic: T;
   object: Object;
   context: Context;
-  flags: Flags[];
+  flags?: Flags[];
 }
 
 export interface Object {
