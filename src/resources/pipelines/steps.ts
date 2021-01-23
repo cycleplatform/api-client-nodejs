@@ -2,6 +2,7 @@ import { ResourceId, Cluster } from "../../common/structs";
 import { ImageSource } from "../../resources/images";
 import { Config } from "../containers/config";
 import { VolumeSummary } from "../containers";
+import { Instructions, About } from "resources/stacks/builds";
 
 /**
  * We need to setup the steps this way due to the unpredictability of the k:v inside
@@ -145,7 +146,7 @@ export type ContainerReimage = ExistingResource & {
 // Environments
 export interface EnvironmentCreate {
   name: string;
-  about: {
+  about?: {
     description: string;
   };
   cluster: Cluster;
@@ -158,3 +159,13 @@ export interface EnvironmentCreate {
 export type EnvironmentStart = ExistingResource;
 
 export type EnvironmentStop = ExistingResource;
+
+// Stacks
+
+export interface StackBuildCreate {
+  stack: ExistingResource;
+  instructions: Instructions;
+  about?: About;
+}
+
+export type StackBuildGenerate = ExistingResource;
