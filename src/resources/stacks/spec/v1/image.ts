@@ -6,19 +6,17 @@ import {
   UserScope,
 } from "../../../../common/structs";
 
-export type SpecImageSource = Omit<ImageSource, "origin"> & {
-  origin: StackImageOrigin;
-};
-
 export interface SpecImage {
   name: string;
-  source: SpecImageSource;
+  source: ImageSource<StackImageOrigin>;
 }
 
-export interface ImageSource extends Resource {
+export interface ImageSource<
+  T extends ImageOrigin | StackImageOrigin = ImageOrigin
+> extends Resource {
   name: string;
   about?: AboutImage;
-  origin: ImageOrigin;
+  origin: T;
   creator: UserScope;
   hub_id: ResourceId;
   state: State;
