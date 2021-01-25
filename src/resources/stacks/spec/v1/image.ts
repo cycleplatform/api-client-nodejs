@@ -11,9 +11,9 @@ export interface SpecImage {
   source: ImageSource<StackImageOrigin>;
 }
 
-export interface ImageSource<
-  T extends ImageOrigin | StackImageOrigin = ImageOrigin
-> extends Resource {
+export type Origin = ImageOrigin | StackImageOrigin;
+
+export interface ImageSource<T extends Origin = ImageOrigin> extends Resource {
   name: string;
   about?: AboutImage;
   origin: T;
