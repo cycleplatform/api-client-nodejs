@@ -1,14 +1,35 @@
+import {
+  Events,
+  Resource,
+  ResourceId,
+  State,
+  UserScope,
+} from "../../../../common/structs";
+
 export interface SpecImage {
   name: string;
   source: ImageSource;
 }
 
-export interface ImageSource {
+export interface ImageSource extends Resource {
+  name: string;
+  about?: AboutImage;
+  origin: ImageOrigin | StackImageOrigin;
+  creator: UserScope;
+  hub_id: ResourceId;
+  state: State;
+  events: Events;
+}
+
+export interface ImageOrigin {
   docker_hub?: DockerHubSource;
   docker_registry?: DockerRegistrySource;
   docker_file?: LocalSource;
   repo?: RepoSource;
+  cycle?: CycleImageSource;
 }
+
+export type StackImageOrigin = Omit<ImageOrigin, "cycle">;
 
 /** Describes an image imported from the official Docker Hub registry */
 export interface DockerHubSource {
@@ -46,4 +67,12 @@ export interface Repo {
 
 export interface RepoSource extends LocalSource, Repo {
   tag?: string;
+}
+
+export interface CycleImageSource {
+  source_id?: ResourceId;
+}
+
+export interface AboutImage {
+  description: string | null;
 }

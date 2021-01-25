@@ -54,6 +54,8 @@ export type Capability =
   | "images-import"
   | "images-update"
   | "images-delete"
+  | "images-sources-view"
+  | "images-sources-manage"
 
   // jobs
   | "jobs-view"
