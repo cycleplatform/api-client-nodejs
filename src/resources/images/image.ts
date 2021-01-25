@@ -153,10 +153,16 @@ export async function getSources(params: GetSourcesParams) {
   });
 }
 
-type CreateSourceParams = StandardParams & {
+type BaseSourceSingleDocParams = StandardParams & {
+  sourceId: ResourceId;
+};
+
+type CreateValues = {
   name: string | null;
   origin: ImageSource["origin"];
 };
+
+type CreateSourceParams = StandardParams & Request.PostParams<CreateValues>;
 export async function createSource(params: CreateSourceParams) {
   return Request.postRequest<Single>({
     ...params,
@@ -164,36 +170,33 @@ export async function createSource(params: CreateSourceParams) {
   });
 }
 
-type SourceParams = StandardParams<ImageQuery> & {
-  sourceId: ResourceId;
-};
+type SourceParams = BaseSourceSingleDocParams;
 export async function getSource(params: SourceParams) {
   return Request.getRequest<Single>({
     ...params,
-    target: links.images().sources().source(params.sourceId),
+    target: links.images().sources().single(params.sourceId),
   });
 }
 
-type UpdateSourceParams = StandardParams & {
-  sourceId: ResourceId;
-  value: {
-    name: string | null;
-    origin: ImageSource["origin"];
-  };
+type UpdateSourceValues = {
+  name: string | null;
+  origin: ImageSource["origin"];
+};
+
+type UpdateSourceParams = BaseSourceSingleDocParams & {
+  value: Partial<UpdateSourceValues>;
 };
 export async function updateSource(params: UpdateSourceParams) {
   return Request.patchRequest({
     ...params,
-    target: links.images().sources().source(params.sourceId),
+    target: links.images().sources().single(params.sourceId),
   });
 }
 
-type DeleteSourceParams = StandardParams & {
-  sourceId: ResourceId;
-};
+type DeleteSourceParams = BaseSourceSingleDocParams;
 export async function deleteSource(params: DeleteSourceParams) {
   return Request.deleteRequest({
     ...params,
-    target: links.images().sources().source(params.sourceId),
+    target: links.images().sources().single(params.sourceId),
   });
 }
