@@ -28,10 +28,11 @@ export interface ImageOrigin {
   docker_registry?: DockerRegistrySource;
   docker_file?: LocalSource;
   repo?: RepoSource;
-  cycle?: CycleImageSource;
 }
 
-export type StackImageOrigin = Omit<ImageOrigin, "cycle">;
+export type StackImageOrigin = ImageOrigin & {
+  cycle?: CycleImageSource;
+};
 
 /** Describes an image imported from the official Docker Hub registry */
 export interface DockerHubSource {
