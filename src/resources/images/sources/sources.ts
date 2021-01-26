@@ -61,11 +61,3 @@ export async function update(params: UpdateParams) {
     target: links.images().sources().single(params.sourceId),
   });
 }
-
-type RemoveParams = BaseSingleDocParams;
-export async function remove(params: RemoveParams) {
-  return Request.deleteRequest({
-    ...params,
-    target: links.images().sources().single(params.sourceId),
-  });
-}
