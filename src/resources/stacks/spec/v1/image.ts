@@ -20,9 +20,11 @@ export interface ImageSource<M = {}, T extends Origin = ImageOrigin>
   origin: T;
   creator: UserScope;
   hub_id: ResourceId;
-  state: State;
+  state: State<ImageSourceState>;
   events: Events;
 }
+
+export type ImageSourceState = "live" | "deleting" | "deleted";
 
 export interface ImageOrigin {
   docker_hub?: DockerHubSource;
