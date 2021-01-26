@@ -1,7 +1,6 @@
 import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
 import { ResourceId, CreatedTask, Task } from "../../common/structs";
-import { Structs } from "../..";
 
 export type CollectionTaskAction = "prune";
 export type ImageTaskAction = "import";
