@@ -18,10 +18,7 @@ import {
 } from "../../common/structs";
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
-import { ImageSource } from "../stacks/spec/v1/image";
 import { ContainerIdentifier } from "../../common/structs";
-
-export type SourcesCollection = CollectionDoc<ImageSource>;
 
 export type Collection = CollectionDoc<Image, ImageIncludes>;
 export type Single = SingleDoc<Image, ImageIncludes>;
@@ -143,61 +140,5 @@ export async function update(
   return Request.patchRequest<Single>({
     ...params,
     target: links.images().single(params.id),
-  });
-}
-
-type GetSourcesParams = StandardParams;
-export async function getSources(params: GetSourcesParams) {
-  return Request.getRequest<SourcesCollection>({
-    ...params,
-    target: links.images().sources().collection(),
-  });
-}
-
-type BaseSourceSingleDocParams = StandardParams & {
-  sourceId: ResourceId;
-};
-
-type CreateValues = {
-  name: string | null;
-  origin: ImageSource["origin"];
-};
-
-type CreateSourceParams = StandardParams & Request.PostParams<CreateValues>;
-export async function createSource(params: CreateSourceParams) {
-  return Request.postRequest<Single>({
-    ...params,
-    target: links.images().sources().collection(),
-  });
-}
-
-type SourceParams = BaseSourceSingleDocParams;
-export async function getSource(params: SourceParams) {
-  return Request.getRequest<Single>({
-    ...params,
-    target: links.images().sources().single(params.sourceId),
-  });
-}
-
-type UpdateSourceValues = {
-  name: string | null;
-  origin: ImageSource["origin"];
-};
-
-type UpdateSourceParams = BaseSourceSingleDocParams & {
-  value: Partial<UpdateSourceValues>;
-};
-export async function updateSource(params: UpdateSourceParams) {
-  return Request.patchRequest({
-    ...params,
-    target: links.images().sources().single(params.sourceId),
-  });
-}
-
-type DeleteSourceParams = BaseSourceSingleDocParams;
-export async function deleteSource(params: DeleteSourceParams) {
-  return Request.deleteRequest({
-    ...params,
-    target: links.images().sources().single(params.sourceId),
   });
 }

@@ -8,12 +8,13 @@ import {
 
 export interface SpecImage {
   name: string;
-  source: ImageSource<StackImageOrigin>;
+  source: ImageSource<{}, StackImageOrigin>;
 }
 
 export type Origin = ImageOrigin | StackImageOrigin;
 
-export interface ImageSource<T extends Origin = ImageOrigin> extends Resource {
+export interface ImageSource<M = {}, T extends Origin = ImageOrigin>
+  extends Resource<M> {
   name: string;
   about?: AboutImage;
   origin: T;

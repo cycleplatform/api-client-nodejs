@@ -1,6 +1,7 @@
 import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
 import { ResourceId, CreatedTask, Task } from "../../common/structs";
+import { Structs } from "../..";
 
 export type CollectionTaskAction = "prune";
 export type ImageTaskAction = "import";
@@ -18,11 +19,19 @@ export async function importImage(
   });
 }
 
-export async function pruneUnused(params: StandardParams) {
-  return collectionTask({
+type PruneUnusedValue = {
+  source_ids: ResourceId[];
+};
+
+type PruneUnusedParams = StandardParams & PruneUnusedValue;
+export async function pruneUnused(params: PruneUnusedParams) {
+  return collectionTask<PruneUnusedValue>({
     ...params,
     value: {
       action: "prune",
+      contents: {
+        source_ids: params.source_ids,
+      },
     },
   });
 }
