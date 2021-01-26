@@ -105,8 +105,9 @@ export async function getSingle(
   });
 }
 
+// Takes the sourceId to create the image
 export interface CreateParams {
-  source: ImageSource;
+  source: ResourceId;
 }
 
 /**
