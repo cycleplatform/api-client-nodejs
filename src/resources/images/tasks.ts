@@ -18,11 +18,19 @@ export async function importImage(
   });
 }
 
-export async function pruneUnused(params: StandardParams) {
-  return collectionTask({
+type PruneUnusedValue = {
+  source_ids: ResourceId[];
+};
+
+type PruneUnusedParams = StandardParams & PruneUnusedValue;
+export async function pruneUnused(params: PruneUnusedParams) {
+  return collectionTask<PruneUnusedValue>({
     ...params,
     value: {
       action: "prune",
+      contents: {
+        source_ids: params.source_ids,
+      },
     },
   });
 }
