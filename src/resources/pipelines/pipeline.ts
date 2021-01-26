@@ -117,7 +117,7 @@ export type TriggerWithSecretParams = {
  *
  * ---
  *
- * ##  Important Notes
+ * ## Important Notes:
  * - 🚀 Use the cycle job tracker helper function with this function to help
  * you track jobs easier. Basic usage shown in example below
  *
@@ -165,7 +165,7 @@ export type TriggerWithSecretParams = {
  * ## Cycle Info
  *
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better Node API Interface by submitting a PR on
+ * Help us make a better TypeScript Platform Interface by submitting a PR on
  * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
  *
  * ### Websites

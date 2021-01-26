@@ -170,7 +170,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  * ## Cycle Info
  *
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better Node API Interface by submitting a PR on
+ * Help us make a better TypeScript Platform Interface by submitting a PR on
  * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
  *
  * ### Websites
