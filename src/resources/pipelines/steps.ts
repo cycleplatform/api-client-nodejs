@@ -60,6 +60,7 @@ export type AllActionsMap = {
   "container.restart": ContainerRestart;
   "container.start": ContainerStart;
   "container.stop": ContainerStop;
+  "container.delete": ContainerDelete;
 
   // Images
   "image.create": ImageCreate;
@@ -70,6 +71,11 @@ export type AllActionsMap = {
   "environment.create": EnvironmentCreate;
   "environment.start": EnvironmentStart;
   "environment.stop": EnvironmentStop;
+  "environment.delete": EnvironmentDelete;
+
+  // Stacks
+  "stack.build.create": StackBuildCreate;
+  "stack.build.generate": StackBuildGenerate;
 };
 
 export type AllActionKeys = keyof AllActionsMap;
@@ -143,6 +149,8 @@ export type ContainerReimage = ExistingResource & {
   image: ExistingResource;
 };
 
+export type ContainerDelete = ExistingResource;
+
 // Environments
 export interface EnvironmentCreate {
   name: string;
@@ -160,8 +168,9 @@ export type EnvironmentStart = ExistingResource;
 
 export type EnvironmentStop = ExistingResource;
 
-// Stacks
+export type EnvironmentDelete = ExistingResource;
 
+// Stacks
 export interface StackBuildCreate {
   stack: ExistingResource;
   instructions: Instructions;
