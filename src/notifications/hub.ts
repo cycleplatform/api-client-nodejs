@@ -107,6 +107,12 @@ export type HubTopic =
   | "image.updated"
   | "image.error"
 
+  // image-sources
+  | "image.source.state.changed"
+  | "image.source.error"
+  | "image.source.updated"
+  | "image.source.created"
+
   // infrastructure ips assignment
   | "infrastructure.ips.assignment.state.changed"
   | "infrastructure.ips.assignment.error"
