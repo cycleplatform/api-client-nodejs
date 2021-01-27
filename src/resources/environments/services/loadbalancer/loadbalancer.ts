@@ -113,7 +113,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *
  * ---
  *
- * ## Params:
+ * ### Params
  * @param params is an object containing standard necessary params to
  *  reconfigure the desired lb
  *
@@ -133,7 +133,7 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *
  * ---
  *
- * ## Usage:
+ * ### Usage
  * @example
  *  ```ts
  *  const params: Environments.Services.ReconfigureLoadBalancerParams = {
@@ -167,17 +167,18 @@ export type ReconfigureLoadBalancerParams = StandardParams & {
  *
  * ---
  *
- * ## Cycle Info
+ * ### Cycle Info
  *
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * ### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *

@@ -8,7 +8,7 @@ import { Instructions, About } from "../../resources/stacks/builds";
  * Used to create the typing for any step object.
  *
  * ---
- * ### Dev Notes:
+ * ### Dev Notes
  *
  * We need to setup the steps this way due to the unpredictability of the k:v inside
  *  the details details object.
@@ -22,14 +22,15 @@ import { Instructions, About } from "../../resources/stacks/builds";
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -55,7 +56,12 @@ export type Step =
   // Environment
   | StepBase<"environment.create">
   | StepBase<"environment.start">
-  | StepBase<"environment.stop">;
+  | StepBase<"environment.stop">
+  | StepBase<"environment.delete">
+
+  // Stacks
+  | StepBase<"stack.build.create">
+  | StepBase<"stack.build.generate">;
 
 /** ### `interface StepBase<T>`
  * The base interface all steps are built on top of.
@@ -64,14 +70,15 @@ export type Step =
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -104,14 +111,15 @@ export interface StepBase<T extends AllActionKeys> {
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -119,10 +127,9 @@ export interface StepBase<T extends AllActionKeys> {
  */
 export interface StepOptions {
   /**
-   * If skip is set to true, the current step will be skipped on any subsequent
+   * If skip is set to true the current step will be skipped on any subsequent
    * runs after enabling until skip is either removed from the options object, or
-   * is explicitly set to false. We recommend omitting the skip key entirely
-   * instead of setting to false.
+   * is explicitly set to false.
    */
   skip?: boolean;
 }
@@ -134,7 +141,7 @@ export interface StepOptions {
  *
  * ---
  *
- * ### Dev Notes:
+ * ### Dev Notes
  * This type is largely used internally, and necessary to infer the correct
  * details typing when creating a step with the `Step` type.
  *
@@ -142,14 +149,15 @@ export interface StepOptions {
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -193,14 +201,15 @@ export type AllActionsMap = {
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -215,14 +224,15 @@ export type AllActionKeys = keyof AllActionsMap;
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -235,9 +245,8 @@ export interface FromStep {
    *
    * ---
    *
-   * ### Important Notes:
-   * If stage is left out, the current stage is assumed to be the stage
-   * you the step you are referencing lives inside of
+   * ### Important Notes
+   * If `stage` is left out, the step is assumed to be inside the current stage
    *
    */
   stage?: string;
@@ -281,14 +290,15 @@ interface DetailsFrom {
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting a PR on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs/pulls)
+ * Help us make a better TypeScript Platform Interface by submitting an issue on
+ * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
+ * forking our repo and submitting a
+ * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
  *
- * #### Websites
- * - [__General Docs__](https://docs.cycle.io)
- * - [__Public API Docs__](https://docs.cycle.io/api/introduction)
- * - [__Internal API Docs__](https://docs.cycle.io/internal-api/introduction)
- * - [__Cycle's Website__](https://cycle.io)
+ * [General Docs](https://docs.cycle.io) /
+ * [Public API Docs](https://docs.cycle.io/api/introduction) /
+ * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
+ * [Cycle's Website](https://cycle.io)
  *
  * ---
  *
@@ -311,9 +321,8 @@ export interface Sleep {
 }
 
 /** ### `interface WebhookPost`
- * Used to creat the typing for a webhook post step. This step can be used
- * to send data from a previous step to a post endpoint. The data will be
- * sent with `Content-Type: application/json`.
+ * Used to send data from a previous step to a post endpoint. The data will be
+ * sent as `Content-Type: application/json`.
  */
 export interface WebhookPost {
   /**
