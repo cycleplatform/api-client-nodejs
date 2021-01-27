@@ -48,7 +48,7 @@ export async function getSingle(params: GetSingleParams) {
   });
 }
 
-export type UpdateSourceValues = CreateValues;
+export type UpdateSourceValues = Partial<CreateValues>;
 type UpdateParams = BaseSingleDocParams & {
   value: Partial<UpdateSourceValues>;
 };
