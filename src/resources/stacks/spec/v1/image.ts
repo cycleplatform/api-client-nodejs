@@ -8,7 +8,7 @@ import {
 
 export interface SpecImage {
   name: string;
-  source: ImageSource<{}, StackImageOrigin>;
+  source: StackImageOrigin;
 }
 
 export type Origin = ImageOrigin | StackImageOrigin;
