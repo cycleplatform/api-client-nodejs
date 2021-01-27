@@ -1,7 +1,7 @@
 import * as Request from "../../../common/api/request";
 import { links, QueryParams, StandardParams } from "../../../common/api";
 import { CollectionDoc, ResourceId, SingleDoc } from "../../../common/structs";
-import { ImageSource, ImageOrigin } from "../source";
+import { ImageSource, ImageOrigin, AboutImage } from "../source";
 
 export type Single = SingleDoc<ImageSource>;
 export type Collection = CollectionDoc<ImageSource>;
@@ -17,9 +17,10 @@ type BaseSingleDocParams = StandardParams<SourcesQuery> & {
   sourceId: ResourceId;
 };
 
-type CreateValues = {
+export type CreateValues = {
   name: string | null;
   origin: ImageSource["origin"];
+  about?: AboutImage;
 };
 
 type GetCollectionParams = StandardParams<SourcesQuery>;
@@ -47,11 +48,7 @@ export async function getSingle(params: GetSingleParams) {
   });
 }
 
-type UpdateSourceValues = {
-  name: string | null;
-  origin: ImageSource["origin"];
-};
-
+export type UpdateSourceValues = Partial<CreateValues>;
 type UpdateParams = BaseSingleDocParams & {
   value: Partial<UpdateSourceValues>;
 };
