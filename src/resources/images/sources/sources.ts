@@ -8,8 +8,8 @@ import {
 } from "../../../common/structs";
 import { ImageSource, ImageOrigin, AboutImage } from "../source";
 
-export type Single = SingleDoc<ImageSource>;
-export type Collection = CollectionDoc<ImageSource>;
+export type Single = SingleDoc<ImageSource, SourcesIncludes>;
+export type Collection = CollectionDoc<ImageSource, SourcesIncludes>;
 export type SourcesQuery = QueryParams<
   keyof SourcesIncludes,
   keyof SourcesMetas
