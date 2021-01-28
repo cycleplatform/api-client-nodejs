@@ -7,7 +7,7 @@ export type Single = SingleDoc<ImageSource>;
 export type Collection = CollectionDoc<ImageSource>;
 export type SourcesQuery = QueryParams<"", keyof SourcesMetas>;
 
-export type Source = ImageSource<SourcesMetas, ImageOrigin>;
+export type Source = ImageSource<SourcesMetas>;
 
 export type SourcesMetas = {
   image_counts?: number;
@@ -19,7 +19,7 @@ type BaseSingleDocParams = StandardParams<SourcesQuery> & {
 
 export type CreateValues = {
   name: string | null;
-  origin: ImageSource["origin"];
+  origin: ImageOrigin;
   about?: AboutImage;
 };
 
