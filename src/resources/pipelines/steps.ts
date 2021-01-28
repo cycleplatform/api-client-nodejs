@@ -47,6 +47,7 @@ export type Step =
   | StepBase<"container.restart">
   | StepBase<"container.start">
   | StepBase<"container.stop">
+  | StepBase<"container.delete">
 
   // Image
   | StepBase<"image.create">
