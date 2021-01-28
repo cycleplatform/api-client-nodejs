@@ -1,5 +1,12 @@
 export interface Config {
-  creator: string;
+  /**
+   * the linux user to be used. Examples would be:
+   * - `nginx`
+   * - `apache`
+   * - `root`
+   * - etc...
+   */
+  user: string;
   ports: Port[];
   env: Record<string, string>;
   labels: Record<string, string>;
