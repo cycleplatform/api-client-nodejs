@@ -1,17 +1,29 @@
 import * as Request from "../../../common/api/request";
 import { links, QueryParams, StandardParams } from "../../../common/api";
-import { CollectionDoc, ResourceId, SingleDoc } from "../../../common/structs";
+import {
+  CollectionDoc,
+  ResourceId,
+  SingleDoc,
+  UserIncludes,
+} from "../../../common/structs";
 import { ImageSource, ImageOrigin, AboutImage } from "../source";
 
 export type Single = SingleDoc<ImageSource>;
 export type Collection = CollectionDoc<ImageSource>;
-export type SourcesQuery = QueryParams<"", keyof SourcesMetas>;
+export type SourcesQuery = QueryParams<
+  keyof SourcesIncludes,
+  keyof SourcesMetas
+>;
 
 export type Source = ImageSource<SourcesMetas>;
 
 export type SourcesMetas = {
   image_counts?: number;
 };
+
+export interface SourcesIncludes {
+  creators: UserIncludes;
+}
 
 type BaseSingleDocParams = StandardParams<SourcesQuery> & {
   sourceId: ResourceId;
