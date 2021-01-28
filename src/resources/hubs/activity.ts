@@ -95,6 +95,10 @@ export type EventType =
   | "image.create"
   | "image.delete"
   | "image.task.delete"
+  // image sources
+  | "image.source.create"
+  | "image.source.update"
+  | "image.source.task.delete"
 
   // containers
   | "container.create"
