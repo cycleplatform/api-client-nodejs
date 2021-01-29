@@ -1,7 +1,7 @@
 import { Token } from "../../auth";
 import { ErrorResource } from "./error";
 import { formatParams, QueryParams } from "./query";
-import { CreatedTask, ResourceId } from "../structs";
+import { CreatedTask, ResourceId, Task } from "../structs";
 import { Settings } from "./settings";
 import { VERSION } from "./version";
 
@@ -24,7 +24,15 @@ export type PostParams<T = object> = {
   value: T;
 };
 
+export type PatchParams<T = object> = {
+  value: T;
+};
+
 export type OptionalPostParam<T = object> = Partial<PostParams<T>>;
+
+export type TaskParams<A extends string, T = {}> = {
+  value: Task<A, T>;
+};
 
 /** The result of a successful API call */
 export interface ResultSuccess<T> {

@@ -26,22 +26,35 @@ export type TriggerKey = Resource & {
 
 export type TriggerKeyState = "live" | "deleting" | "deleted";
 
-type BaseSingleDocParams = StandardParams & {
+/** Base Collection Params */
+type BSP = StandardParams & {
   pipelineId: ResourceId;
   keyId: ResourceId;
 };
 
-type BaseCollectionParams = StandardParams & {
+/** Base Single Params */
+type BCP = StandardParams & {
   pipelineId: ResourceId;
 };
-/**
- * params to be used for the getCollection function of pipeline keys
- */
-export type TriggerKeyGetCollectionParams = BaseCollectionParams;
+
+// Params
+export type TriggerKeyGetCollectionParams = BCP;
+export type TriggerKeyCreateParams = BCP & Request.PostParams<CreateValues>;
+export type TriggerKeysUpdateParams = BSP & Request.PatchParams<UpdateValues>;
+export type TriggerKeyRemoveParams = BSP;
+export type TriggerKeyGetSingleParams = BSP;
+
+// Values
+export type CreateValues = {
+  name: string;
+  ips: string[] | null;
+};
+export type UpdateValues = Partial<CreateValues>;
+
+// Functions
+
 /** Get pipeline keys as a collection
- *
  * @summary get a collection of keys in a given pipeline
- *
  * @param params object containing the target pipelineId to fetch keys for
  */
 export async function getCollection(params: TriggerKeyGetCollectionParams) {
@@ -51,7 +64,6 @@ export async function getCollection(params: TriggerKeyGetCollectionParams) {
   });
 }
 
-export type TriggerKeyGetSingleParams = BaseSingleDocParams;
 export async function getSingle(params: TriggerKeyGetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
@@ -59,15 +71,6 @@ export async function getSingle(params: TriggerKeyGetSingleParams) {
   });
 }
 
-export type TriggerKeyCreateValues = {
-  name: string;
-  ips: string[] | null;
-};
-
-// Create new pipeline
-export type TriggerKeyCreateParams = BaseCollectionParams & {
-  value: TriggerKeyCreateValues;
-};
 export async function create(params: TriggerKeyCreateParams) {
   return Request.postRequest<Single>({
     ...params,
@@ -75,9 +78,6 @@ export async function create(params: TriggerKeyCreateParams) {
   });
 }
 
-export type TriggerKeysUpdateParams = BaseSingleDocParams & {
-  value: Partial<TriggerKeyCreateValues>;
-};
 export async function update(params: TriggerKeysUpdateParams) {
   return Request.patchRequest<Single>({
     ...params,
@@ -85,7 +85,6 @@ export async function update(params: TriggerKeysUpdateParams) {
   });
 }
 
-export type TriggerKeyRemoveParams = BaseSingleDocParams;
 export async function remove(params: TriggerKeyRemoveParams) {
   return Request.deleteRequest<Single>({
     ...params,

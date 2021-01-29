@@ -1,5 +1,5 @@
 import { ResourceId, Cluster } from "../../common/structs";
-import { ImageSource, Origin } from "../../resources/images";
+import { ImageSource, ImageOrigin } from "../../resources/images";
 import { Config } from "../containers/config";
 import { VolumeSummary } from "../containers";
 import { Instructions, About } from "../../resources/stacks/builds";
@@ -86,22 +86,16 @@ export type Step =
  * Last Updated: 2021.01.26 — Grady S
  */
 export interface StepBase<T extends AllActionKeys> {
-  /**
-   * Unique identifier used identify this step in a future steps from object
-   */
+  /** Unique identifier used identify this step in a future steps from object */
   identifier?: string;
   /**
    * The action this step this step should be. Can be any of the the possible
    * actions returned from @type AllActionKeys
    */
   action: T;
-  /**
-   * Details for the the given action which is set for the action key
-   */
+  /** Details for the the given action which is set for the action key */
   details: AllActionsMap[T];
-  /**
-   * Options associated with a given step
-   */
+  /** Options associated with a given step */
   options?: StepOptions;
 }
 
@@ -251,9 +245,7 @@ export interface FromStep {
    *
    */
   stage?: string;
-  /**
-   * The identifier of the step being referenced
-   */
+  /** The identifier of the step being referenced */
   step: string;
 }
 
@@ -272,7 +264,7 @@ interface DetailsId {
 
 /** `interface DetailsFrom`
  * Need to set id to optional and never so if an id is supplied, then TS will throw
- *  an error saying both from and id cannot be supplied
+ * an error saying both from and id cannot be supplied
  */
 interface DetailsFrom {
   id?: never;
@@ -326,13 +318,9 @@ export interface Sleep {
  * sent as `Content-Type: application/json`.
  */
 export interface WebhookPost {
-  /**
-   * Post endpoint to hit
-   */
+  /** Post endpoint to hit */
   url: string;
-  /**
-   * The previous step to pull data from and send to the url endpoint
-   */
+  /** The previous step to pull data from and send to the url endpoint */
   from: FromStep;
 }
 
@@ -343,7 +331,7 @@ export interface ImageCreate {
 
 export interface ImageCreateSource {
   name: string;
-  origin: Origin;
+  origin: ImageOrigin;
 }
 
 export type ImageImport = ExistingResource;
