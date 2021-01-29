@@ -198,8 +198,9 @@ export const links = {
     collectionTasks: () => `/images/tasks`,
     imageTasks: (id: ResourceId) => `/images/${id}/tasks`,
     sources: () => ({
-      collection: () => `/images/sources`,
+      collection: () => `/images/sources/direct`,
       single: (id: ResourceId) => `/images/sources/${id}`,
+      tasks: (id: ResourceId) => `/images/sources/${id}/tasks`,
     }),
   }),
 
