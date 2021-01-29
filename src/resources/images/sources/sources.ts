@@ -9,47 +9,46 @@ import {
 import { ImageSource, ImageOrigin, AboutImage } from "../source";
 import { ImageSourceType } from "../image";
 
+export interface SourcesIncludes {
+  creators: UserIncludes;
+}
 export type Single = SingleDoc<ImageSource, SourcesIncludes>;
 export type Collection = CollectionDoc<ImageSource, SourcesIncludes>;
+
+export type SourcesMetas = {
+  image_counts?: number;
+};
+export type Source = ImageSource<SourcesMetas>;
+
+// Query
+export type SourcesQuery = QueryParams<
+  keyof SourcesIncludes,
+  keyof SourcesMetas
+>;
 
 /** Base Single Params */
 type BSP = StandardParams<SourcesQuery> & {
   sourceId: ResourceId;
 };
+/** Base Collection Params */
+type BCP = StandardParams<SourcesQuery>;
 
-type GetCollectionParams = StandardParams<SourcesQuery>;
+// Params
+type GetCollectionParams = BCP;
+type GetSingleParams = BSP;
+type CreateParams = BCP & Request.PostParams<CreateValues>;
+type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
+// Values
 export type CreateValues = {
   name?: string;
   type: ImageSourceType;
   origin: ImageOrigin;
   about?: AboutImage;
 };
-type CreateParams = StandardParams<SourcesQuery> &
-  Request.PostParams<CreateValues>;
+export type UpdateValues = Partial<CreateValues>;
 
-type GetSingleParams = BSP;
-
-export type UpdateSourceValues = Partial<CreateValues>;
-type UpdateParams = BSP & {
-  value: Partial<UpdateSourceValues>;
-};
-
-export type SourcesQuery = QueryParams<
-  keyof SourcesIncludes,
-  keyof SourcesMetas
->;
-
-export type Source = ImageSource<SourcesMetas>;
-
-export type SourcesMetas = {
-  image_counts?: number;
-};
-
-export interface SourcesIncludes {
-  creators: UserIncludes;
-}
-
+// Functions
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
