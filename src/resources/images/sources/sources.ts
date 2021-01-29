@@ -7,9 +7,34 @@ import {
   UserIncludes,
 } from "../../../common/structs";
 import { ImageSource, ImageOrigin, AboutImage } from "../source";
+import { ImageSourceType } from "../image";
 
 export type Single = SingleDoc<ImageSource, SourcesIncludes>;
 export type Collection = CollectionDoc<ImageSource, SourcesIncludes>;
+
+/** Base Single Params */
+type BSP = StandardParams<SourcesQuery> & {
+  sourceId: ResourceId;
+};
+
+type GetCollectionParams = StandardParams<SourcesQuery>;
+
+export type CreateValues = {
+  name?: string;
+  type: ImageSourceType;
+  origin: ImageOrigin;
+  about?: AboutImage;
+};
+type CreateParams = StandardParams<SourcesQuery> &
+  Request.PostParams<CreateValues>;
+
+type GetSingleParams = BSP;
+
+export type UpdateSourceValues = Partial<CreateValues>;
+type UpdateParams = BSP & {
+  value: Partial<UpdateSourceValues>;
+};
+
 export type SourcesQuery = QueryParams<
   keyof SourcesIncludes,
   keyof SourcesMetas
@@ -25,17 +50,6 @@ export interface SourcesIncludes {
   creators: UserIncludes;
 }
 
-type BaseSingleDocParams = StandardParams<SourcesQuery> & {
-  sourceId: ResourceId;
-};
-
-export type CreateValues = {
-  name: string | null;
-  origin: ImageOrigin;
-  about?: AboutImage;
-};
-
-type GetCollectionParams = StandardParams<SourcesQuery>;
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
@@ -43,8 +57,6 @@ export async function getCollection(params: GetCollectionParams) {
   });
 }
 
-type CreateParams = StandardParams<SourcesQuery> &
-  Request.PostParams<CreateValues>;
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
@@ -52,7 +64,6 @@ export async function create(params: CreateParams) {
   });
 }
 
-type GetSingleParams = BaseSingleDocParams;
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
@@ -60,10 +71,6 @@ export async function getSingle(params: GetSingleParams) {
   });
 }
 
-export type UpdateSourceValues = Partial<CreateValues>;
-type UpdateParams = BaseSingleDocParams & {
-  value: Partial<UpdateSourceValues>;
-};
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
     ...params,

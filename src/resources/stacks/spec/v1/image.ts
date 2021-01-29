@@ -20,7 +20,7 @@ export type ImageOrigin =
   | OriginBase<"git-repo">;
 
 /** ### `interface OriginBase`
- * This interface is only for none stack related image origins. Stacks will
+ * This interface is only for non-stack related image origins. Stacks will
  * eventually move to this style of `type` and `details` to describe the
  * origin.
  *
@@ -67,7 +67,7 @@ export type AllOriginsKeys = keyof AllOriginsMap;
  * Image source object for a stack
  *
  * ### Important Notes
- * This image source object type will __ONLY__ work not work with stacks.
+ * This image source object type will __ONLY__ work with images.
  * If you are looking for the image sources for a stack
  * use the `StackImageSource` interface exported from this same file.
  *
@@ -85,7 +85,7 @@ export type AllOriginsKeys = keyof AllOriginsMap;
  *
  * ---
  *
- * Last Updated: 2021.01.28 — Grady S
+ * Last Updated: 2021.01.29 — Kevin C
  */
 export interface ImageSource<M = {}> extends Resource<M> {
   name: string;
@@ -133,7 +133,7 @@ export interface StackImageSource<M = {}> extends Resource<M> {
 
 /** ### `type ImageSourceState`
  * Shared image source state.
- * Possible states can be the follow:
+ * Possible states can be the following:
  * - `live`
  * - `deleting`
  * - `deleted`
@@ -154,7 +154,7 @@ export interface StackImageSource<M = {}> extends Resource<M> {
  *
  * ---
  *
- * Last Updated: 2021.01.28 — Grady S
+ * Last Updated: 2021.01.29 — Kevin C
  */
 export type ImageSourceState = "live" | "deleting" | "deleted";
 

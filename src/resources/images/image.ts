@@ -19,6 +19,7 @@ import {
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
 import { ContainerIdentifier } from "../../common/structs";
+import { ImageOrigin } from "resources/stacks/spec/v1";
 
 export type Collection = CollectionDoc<Image, ImageIncludes>;
 export type Single = SingleDoc<Image, ImageIncludes>;
@@ -43,11 +44,21 @@ export interface Image extends Resource<ImageMetas> {
   backend: ImageBackend;
   tags: string[];
   config: Config;
-  source_id: ResourceId;
+  source: ImageSource;
   creator: UserScope;
   hub_id: ResourceId;
   state: State<ImageState>;
   events: Events;
+}
+
+export type ImageSourceType = "stack-build" | "direct";
+
+export interface ImageSource {
+  type: ImageSourceType;
+  source: {
+    id: ResourceId;
+    origin: ImageOrigin;
+  };
 }
 
 export interface ImageBackend {
@@ -99,7 +110,7 @@ export async function getSingle(
 
 // Takes the sourceId to create the image
 export interface CreateParams {
-  source: ResourceId;
+  source_id: ResourceId;
 }
 
 /**
