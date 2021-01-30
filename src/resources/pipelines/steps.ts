@@ -361,7 +361,7 @@ export type ContainerReimage = ExistingResource & {
 
 export type ContainerDelete = ExistingResource;
 
-/**************************** Containers ****************************/
+/**************************** Environments ****************************/
 export interface EnvironmentCreate {
   name: string;
   about?: {

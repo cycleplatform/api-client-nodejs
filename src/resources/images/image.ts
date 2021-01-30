@@ -70,7 +70,7 @@ export interface ImageStackSummary {
   containers: ContainerIdentifier[];
 }
 
-/****************************** Metas, Includes, Docs ******************************/
+/****************************** Metas, Includes, Docs, Query ******************************/
 
 export interface ImageMetas {
   containers_count?: number;

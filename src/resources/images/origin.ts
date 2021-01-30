@@ -1,8 +1,8 @@
 export type Origin =
   | OriginBase<"docker-file">
   | OriginBase<"docker-hub">
-  | OriginBase<"docker-registry">
-  | OriginBase<"git-repo">;
+  | OriginBase<"docker-registry">;
+// | OriginBase<"git-repo">;
 
 /** ### `interface ImageOriginBase`
  * This interface is only for non-stack related image origins. Stacks will
@@ -40,10 +40,10 @@ export interface OriginBase<T extends AllOriginsKeys> {
 }
 
 export interface AllOrigins {
-  "docker-hub": DockerHubSource;
-  "docker-registry": DockerRegistrySource;
-  "git-repo": RepoSource;
-  "docker-file": LocalSource;
+  "docker-hub": DockerHub;
+  "docker-registry": DockerRegistry;
+  // "git-repo": Repo;
+  "docker-file": DockerFile;
 }
 
 export type AllOriginsKeys = keyof AllOrigins;
@@ -51,7 +51,7 @@ export type AllOriginsKeys = keyof AllOrigins;
 /****************************** Sources ******************************/
 
 /** Describes an image imported from the official Docker Hub registry */
-export interface DockerHubSource {
+export interface DockerHub {
   /** The image and tag, formatted like `image:tag` */
   target: string;
   /** Username for Docker Hub */
@@ -61,26 +61,35 @@ export interface DockerHubSource {
 }
 
 /** Describes an image imported from a private registry */
-export interface DockerRegistrySource extends DockerHubSource {
+export interface DockerRegistry extends DockerHub {
   /** URL to the private registry */
   url: string;
   /** Password to the private registry */
   password?: string;
 }
 
-export interface RepoSource extends LocalSource, Repo {
-  tag?: string;
-}
-export type RepoProtocol = "http" | "https" | "ssh";
+// NOTE: UNSURE ABOUT THIS
 export interface Repo {
   url: string;
   protocol: RepoProtocol;
   private_key?: string;
   private_key_url?: string;
+  // NOTE: UNSURE ABOUT THIS
+  // tag?: string;
 }
+export type RepoProtocol = "http" | "https" | "ssh";
+
+// NOTE: UNSURE ABOUT THIS
+
+// export interface Repo {
+//   url: string;
+//   protocol: RepoProtocol;
+//   private_key?: string;
+//   private_key_url?: string;
+// }
 
 /** Describes an image to be built off local code (inside a repo) */
-export interface LocalSource {
+export interface DockerFile extends Repo {
   /** Path the Dockerfile is located in */
   dir?: string;
   /** Equivalent of docker-compose context. Use this Dockerfile to build the path. */
