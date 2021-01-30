@@ -112,7 +112,8 @@ export interface UpdateValues {
 
 /** ### `getCollection(params: GetCollectionParams)`
  * Fetch a list of images
- * @capability images-view
+ *
+ * __Capability:__ `images-view`
  */
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
@@ -122,7 +123,8 @@ export async function getCollection(params: GetCollectionParams) {
 }
 
 /** ### `getSingle(params: GetSingleParams)`
- * @capability images-view
+ * Fetch a single image
+ * __Capability:__ `images-view`
  */
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
@@ -132,8 +134,12 @@ export async function getSingle(params: GetSingleParams) {
 }
 
 /** ### `create(params: CreateParams)`
- * Creates an image object. This DOES NOT import it, you'll need to call
- * @capability images-import
+ * Creates an image object.
+ * __Capability:__ `images-import`
+ *
+ * ### Important Notes
+ * Calling the `create()` function does not import an image. To
+ * import an image call @see {importImage()}.
  */
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
@@ -144,7 +150,7 @@ export async function create(params: CreateParams) {
 
 /** ### `update(params: UpdateParams)`
  * Update basic image properties
- * @capability images-update
+ * __Capability:__ `images-update`
  */
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
