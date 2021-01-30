@@ -11,7 +11,7 @@ import {
   UserScope,
 } from "../../../common/structs";
 import { ImageAbout, ImageSourceType } from "../image";
-import { Origin } from "../origins";
+import { Origin } from "../origin";
 
 /****************************** Image Source Struct ******************************/
 

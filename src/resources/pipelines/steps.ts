@@ -1,5 +1,5 @@
 import { ResourceId, Cluster } from "../../common/structs";
-import { ImageSource, ImageOrigin } from "../../resources/images";
+import { ImageSource, Origin } from "../../resources/images";
 import { Config } from "../containers/config";
 import { VolumeSummary } from "../containers";
 import { Instructions, About } from "../../resources/stacks/builds";
@@ -331,7 +331,7 @@ export interface ImageCreate {
 
 export interface ImageCreateSource {
   name: string;
-  origin: ImageOrigin;
+  origin: Origin;
 }
 
 export type ImageImport = ExistingResource;

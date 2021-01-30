@@ -14,7 +14,7 @@ import {
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
 import { ContainerIdentifier } from "../../common/structs";
-import { Origin } from "./origins";
+import { Origin } from "./origin";
 
 /****************************** Image Struct ******************************/
 export interface Image extends Resource<ImageMetas> {
