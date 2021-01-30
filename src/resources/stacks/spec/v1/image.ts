@@ -1,100 +1,8 @@
-import {
-  Events,
-  Resource,
-  ResourceId,
-  State,
-  UserScope,
-} from "../../../../common/structs";
+import { ResourceId } from "../../../../common/structs";
 
-export interface SpecImage {
+export interface Image {
   name: string;
-  source: StackImageOrigin;
-}
-
-// export type Origin = ImageOrigin | StackImageOrigin;
-
-export type ImageOrigin =
-  | OriginBase<"docker-file">
-  | OriginBase<"docker-hub">
-  | OriginBase<"docker-registry">
-  | OriginBase<"git-repo">;
-
-/** ### `interface OriginBase`
- * This interface is only for non-stack related image origins. Stacks will
- * eventually move to this style of `type` and `details` to describe the
- * origin.
- *
- * ---
- *
- * ### Cycle Info
- * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting an issue on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
- * forking our repo and submitting a
- * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
- *
- * [General Docs](https://docs.cycle.io) /
- * [Public API Docs](https://docs.cycle.io/api/introduction) /
- * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
- * [Cycle's Website](https://cycle.io)
- *
- * ---
- *
- * Last Updated: 2021.01.28 — Grady S
- */
-export interface OriginBase<T extends AllOriginsKeys> {
-  /**
-   * Key of the origin. Can be any of the following:
-   * - `docker-hub`
-   * - `docker-registry`
-   * - `git-repo`
-   * - `docker-file`
-   */
-  type: T;
-  details: AllOriginsMap[T];
-}
-
-export interface AllOriginsMap {
-  "docker-hub": DockerHubSource;
-  "docker-registry": DockerRegistrySource;
-  "git-repo": RepoSource;
-  "docker-file": LocalSource;
-}
-
-export type AllOriginsKeys = keyof AllOriginsMap;
-
-/** ### `interface ImageSource`
- * Image source object for a stack
- *
- * ### Important Notes
- * This image source object type will __ONLY__ work with images.
- * If you are looking for the image sources for a stack
- * use the `StackImageSource` interface exported from this same file.
- *
- * ### Cycle Info
- * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting an issue on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
- * forking our repo and submitting a
- * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
- *
- * [General Docs](https://docs.cycle.io) /
- * [Public API Docs](https://docs.cycle.io/api/introduction) /
- * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
- * [Cycle's Website](https://cycle.io)
- *
- * ---
- *
- * Last Updated: 2021.01.29 — Kevin C
- */
-export interface ImageSource<M = {}> extends Resource<M> {
-  name: string;
-  about?: AboutImage;
-  origin: ImageOrigin;
-  creator: UserScope;
-  hub_id: ResourceId;
-  state: State<ImageSourceState>;
-  events: Events;
+  source: ImageSource;
 }
 
 /** ### `interface StackImageSource`
@@ -121,42 +29,15 @@ export interface ImageSource<M = {}> extends Resource<M> {
  *
  * Last Updated: 2021.01.28 — Grady S
  */
-export interface StackImageSource<M = {}> extends Resource<M> {
-  name: string;
-  about?: AboutImage;
-  origin: StackImageOrigin;
-  creator: UserScope;
-  hub_id: ResourceId;
-  state: State<ImageSourceState>;
-  events: Events;
-}
-
-/** ### `type ImageSourceState`
- * Shared image source state.
- * Possible states can be the following:
- * - `live`
- * - `deleting`
- * - `deleted`
- *
- * ---
- *
- * ### Cycle Info
- * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting an issue on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
- * forking our repo and submitting a
- * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
- *
- * [General Docs](https://docs.cycle.io) /
- * [Public API Docs](https://docs.cycle.io/api/introduction) /
- * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
- * [Cycle's Website](https://cycle.io)
- *
- * ---
- *
- * Last Updated: 2021.01.29 — Kevin C
- */
-export type ImageSourceState = "live" | "deleting" | "deleted";
+// export interface StackImageSource<M = {}> extends Resource<M> {
+//   name: string;
+//   about?: AboutImage;
+//   origin: StackImageOrigin;
+//   creator: UserScope;
+//   hub_id: ResourceId;
+//   state: State<ImageSourceState>;
+//   events: Events;
+// }
 
 /** ### `interface StackImageOrigin`
  * Available image origins for a stack
@@ -186,7 +67,7 @@ export type ImageSourceState = "live" | "deleting" | "deleted";
  *
  * Last Updated: 2021.01.28 — Grady S
  */
-export interface StackImageOrigin {
+export interface ImageSource {
   docker_hub?: DockerHubSource;
   docker_registry?: DockerRegistrySource;
   docker_file?: LocalSource;
@@ -212,6 +93,10 @@ export interface DockerRegistrySource extends DockerHubSource {
   password?: string;
 }
 
+export interface RepoSource extends LocalSource, Repo {
+  tag?: string;
+}
+
 /** Describes an image to be built off local code (inside a repo) */
 export interface LocalSource {
   /** Path the Dockerfile is located in */
@@ -227,15 +112,6 @@ export interface Repo {
   private_key?: string;
   private_key_url?: string;
 }
-
-export interface RepoSource extends LocalSource, Repo {
-  tag?: string;
-}
-
 export interface CycleImageSource {
   source_id?: ResourceId;
-}
-
-export interface AboutImage {
-  description: string | null;
 }
