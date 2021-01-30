@@ -1,5 +1,5 @@
 import { links, StandardParams } from "../../common/api";
-import { Request } from "../../";
+import * as Request from "../../common/api/request";
 import {
   CollectionDoc,
   Events,

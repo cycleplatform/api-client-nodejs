@@ -1,4 +1,3 @@
-import "isomorphic-fetch";
 import * as Account from "./resources/accounts";
 import * as Announcements from "./resources/announcements";
 import * as Audit from "./resources/audits";

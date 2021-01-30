@@ -49,6 +49,8 @@ export interface Source extends Resource<SourceMetas> {
   events: Events;
 }
 
+/****************************** Image Source Struct Sub Types ******************************/
+
 /** ### `type ImageSourceState`
  * Shared image source state.
  * Possible states can be the following:
@@ -74,30 +76,26 @@ export interface Source extends Resource<SourceMetas> {
  *
  * Last Updated: 2021.01.29 — Kevin C
  */
-
-/****************************** Image Source Struct Sub Types ******************************/
-
 export type SourceState = State<SourceStates>;
 
 type SourceStates = "live" | "deleting" | "deleted";
 
 /****************************** Metas, Includes, Query, Docs ******************************/
 
-export interface SourcesIncludes {
-  creators: UserIncludes;
-}
-
-export type Single = SingleDoc<Source, SourcesIncludes>;
-export type Collection = CollectionDoc<Source, SourcesIncludes>;
-
 export type SourceMetas = {
   image_counts?: number;
 };
+export interface SourcesIncludes {
+  creators: UserIncludes;
+}
 
 export type SourcesQuery = QueryParams<
   keyof SourcesIncludes,
   keyof SourceMetas
 >;
+
+export type Single = SingleDoc<Source, SourcesIncludes>;
+export type Collection = CollectionDoc<Source, SourcesIncludes>;
 
 /****************************** Params ******************************/
 /** Base Single Params */
