@@ -16,12 +16,7 @@ import { Origin } from "../origin";
 /****************************** Image Source Struct ******************************/
 
 /** ### `interface ImageSource`
- * Image source object for a stack
- *
- * ### Important Notes
- * This image source object type will __ONLY__ work with images.
- * If you are looking for the image sources for a stack
- * use the `StackImageSource` interface exported from this same file.
+ * A direct source for a given image.
  *
  * ### Cycle Info
  * __Something doesn't look right or work as intended?__ \
@@ -37,7 +32,7 @@ import { Origin } from "../origin";
  *
  * ---
  *
- * Last Updated: 2021.01.29 — Kevin C
+ * Last Updated: 2021.01.29 — Grady S
  */
 export interface Source extends Resource<SourceMetas> {
   name: string;
@@ -50,6 +45,8 @@ export interface Source extends Resource<SourceMetas> {
 }
 
 /****************************** Image Source Struct Sub Types ******************************/
+
+export type SourceState = State<SourceStates>;
 
 /** ### `type ImageSourceState`
  * Shared image source state.
@@ -74,11 +71,9 @@ export interface Source extends Resource<SourceMetas> {
  *
  * ---
  *
- * Last Updated: 2021.01.29 — Kevin C
+ * Last Updated: 2021.01.29 — Grady S
  */
-export type SourceState = State<SourceStates>;
-
-type SourceStates = "live" | "deleting" | "deleted";
+export type SourceStates = "live" | "deleting" | "deleted";
 
 /****************************** Metas, Includes, Query, Docs ******************************/
 
