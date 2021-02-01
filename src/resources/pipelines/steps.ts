@@ -1,8 +1,11 @@
 import { ResourceId, Cluster } from "../../common/structs";
-import { ImageSource, Origin } from "../../resources/images";
+import { Source, Origin, About as ImageAbout } from "../images";
 import { Config } from "../containers/config";
 import { VolumeSummary } from "../containers";
-import { Instructions, About } from "../../resources/stacks/builds";
+import {
+  Instructions,
+  About as BuildAbout,
+} from "../../resources/stacks/builds";
 
 /** ### `type Step`
  * Used to create the typing for any step object.
@@ -326,17 +329,21 @@ export interface WebhookPost {
 
 /**************************** Images ****************************/
 export interface ImageCreate {
-  source: ImageSource;
+  name?: string;
+  source: Source;
 }
 
 export interface ImageCreateSource {
   name: string;
+  about?: ImageAbout;
   origin: Origin;
 }
 
 export type ImageImport = ExistingResource;
 
-export interface ImagePrune {}
+export interface ImagePrune {
+  source_ids: ResourceId[];
+}
 
 /**************************** Containers ****************************/
 export interface ContainerCreate {
@@ -384,7 +391,7 @@ export type EnvironmentDelete = ExistingResource;
 export interface StackBuildCreate {
   stack: ExistingResource;
   instructions: Instructions;
-  about?: About;
+  about?: BuildAbout;
 }
 
 export type StackBuildGenerate = ExistingResource;
