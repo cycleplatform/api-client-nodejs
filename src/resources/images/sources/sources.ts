@@ -10,7 +10,7 @@ import {
   UserIncludes,
   UserScope,
 } from "../../../common/structs";
-import { ImageAbout, ImageSourceType } from "../image";
+import { About, SourceType } from "../image";
 import { Origin } from "../origin";
 
 /****************************** Image Source Struct ******************************/
@@ -36,7 +36,7 @@ import { Origin } from "../origin";
  */
 export interface Source extends Resource<SourceMetas> {
   name: string;
-  about?: ImageAbout;
+  about?: About;
   origin: Origin;
   creator: UserScope;
   hub_id: ResourceId;
@@ -109,9 +109,9 @@ type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
 export type CreateValues = {
   name?: string;
-  type: ImageSourceType;
+  type: SourceType;
   origin: Origin;
-  about?: ImageAbout;
+  about?: About;
 };
 
 export type UpdateValues = Partial<CreateValues>;

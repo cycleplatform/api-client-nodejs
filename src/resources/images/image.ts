@@ -5,7 +5,7 @@ import {
   Resource,
   SingleDoc,
   ResourceId,
-  State,
+  State as StateBase,
   Events,
   Bytes,
   UserScope,
@@ -17,27 +17,27 @@ import { ContainerIdentifier } from "../../common/structs";
 import { Origin } from "./origin";
 
 /****************************** Image Struct ******************************/
-export interface Image extends Resource<ImageMetas> {
+export interface Image extends Resource<Metas> {
   name: string;
-  stack: ImageStackSummary | null;
+  stack: StackSummary | null;
   size: Bytes;
-  about?: ImageAbout;
-  backend: ImageBackend;
+  about?: About;
+  backend: Backend;
   tags: string[];
   config: Config;
-  source: ImageSource;
+  source: Source;
   creator: UserScope;
   hub_id: ResourceId;
-  state: ImageState;
+  state: State;
   events: Events;
 }
 
 /****************************** Image Struct Sub Types ******************************/
-export interface ImageAbout {
+export interface About {
   description: string | null;
 }
 
-export type ImageStates =
+export type States =
   | "new"
   | "downloading"
   | "building"
@@ -47,24 +47,24 @@ export type ImageStates =
   | "deleting"
   | "deleted";
 
-export type ImageState = State<ImageStates>;
-export interface ImageBackend {
+export type State = StateBase<States>;
+export interface Backend {
   provider: string;
   size: Bytes;
 }
-export interface ImageSource {
-  type: ImageSourceType;
-  details: ImageSourceDetails;
+export interface Source {
+  type: SourceType;
+  details: SourceDetails;
 }
 
-export type ImageSourceType = "stack-build" | "direct";
+export type SourceType = "stack-build" | "direct";
 
-export interface ImageSourceDetails {
+export interface SourceDetails {
   id: ResourceId;
   origin: Origin;
 }
 
-export interface ImageStackSummary {
+export interface StackSummary {
   id: ResourceId;
   build_id: ResourceId;
   containers: ContainerIdentifier[];
@@ -72,27 +72,27 @@ export interface ImageStackSummary {
 
 /****************************** Metas, Includes, Docs, Query ******************************/
 
-export interface ImageMetas {
+export interface Metas {
   containers_count?: number;
 }
 
-export interface ImageIncludes {
+export interface Includes {
   creators: UserIncludes;
   stack_builds: Record<ResourceId, Builds.Build>;
   stacks: Record<ResourceId, Stack>;
 }
 
-export type Collection = CollectionDoc<Image, ImageIncludes>;
-export type Single = SingleDoc<Image, ImageIncludes>;
-export type ImageQuery = QueryParams<keyof ImageIncludes, keyof ImageMetas>;
+export type Collection = CollectionDoc<Image, Includes>;
+export type Single = SingleDoc<Image, Includes>;
+export type Query = QueryParams<keyof Includes, keyof Metas>;
 
 /****************************** Params ******************************/
 /** Base Single Params */
-type BSP = StandardParams<ImageQuery> & {
+type BSP = StandardParams<Query> & {
   id: ResourceId;
 };
 /** Base Collection Params */
-type BCP = StandardParams<ImageQuery>;
+type BCP = StandardParams<Query>;
 
 export type GetCollectionParams = BCP;
 export type GetSingleParams = BSP;
