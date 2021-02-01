@@ -3,7 +3,7 @@ import { links, StandardParams } from "../../common/api";
 import { ResourceId, CreatedTask, Task } from "../../common/structs";
 
 export type CollectionTaskAction = "prune";
-export type ImageTaskAction = "import";
+export type TaskAction = "import";
 
 export async function importImage(
   params: StandardParams & {
@@ -60,10 +60,10 @@ export async function collectionTask<K = {}>(
 export async function imageTask<K = {}>(
   params: StandardParams & {
     id: ResourceId;
-    value: Task<ImageTaskAction, K>;
+    value: Task<TaskAction, K>;
   },
 ) {
-  return Request.postRequest<CreatedTask<ImageTaskAction, K>>({
+  return Request.postRequest<CreatedTask<TaskAction, K>>({
     ...params,
     target: links.images().imageTasks(params.id),
   });
