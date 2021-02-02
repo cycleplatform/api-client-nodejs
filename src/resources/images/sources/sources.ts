@@ -6,7 +6,7 @@ import {
   Resource,
   ResourceId,
   SingleDoc,
-  State,
+  State as StateBase,
   UserIncludes,
   UserScope,
 } from "../../../common/structs";
@@ -34,21 +34,20 @@ import { Origin } from "../origin";
  *
  * Last Updated: 2021.01.29 — Grady S
  */
-export interface Source extends Resource<SourceMetas> {
+export interface Source extends Resource<Metas> {
   name: string;
   about?: About;
   origin: Origin;
   creator: UserScope;
   hub_id: ResourceId;
-  state: SourceState;
+  state: State;
   events: Events;
 }
 
 /****************************** Image Source Struct Sub Types ******************************/
+export type State = StateBase<States>;
 
-export type SourceState = State<SourceStates>;
-
-/** ### `type ImageSourceState`
+/** ### `type States`
  * Shared image source state.
  * Possible states can be the following:
  * - `live`
@@ -73,32 +72,29 @@ export type SourceState = State<SourceStates>;
  *
  * Last Updated: 2021.01.29 — Grady S
  */
-export type SourceStates = "live" | "deleting" | "deleted";
+export type States = "live" | "deleting" | "deleted";
 
 /****************************** Metas, Includes, Query, Docs ******************************/
 
-export type SourceMetas = {
+export type Metas = {
   image_counts?: number;
 };
-export interface SourcesIncludes {
+export interface Includes {
   creators: UserIncludes;
 }
 
-export type SourcesQuery = QueryParams<
-  keyof SourcesIncludes,
-  keyof SourceMetas
->;
+export type Query = QueryParams<keyof Includes, keyof Metas>;
 
-export type Single = SingleDoc<Source, SourcesIncludes>;
-export type Collection = CollectionDoc<Source, SourcesIncludes>;
+export type Single = SingleDoc<Source, Includes>;
+export type Collection = CollectionDoc<Source, Includes>;
 
 /****************************** Params ******************************/
 /** Base Single Params */
-type BSP = StandardParams<SourcesQuery> & {
+type BSP = StandardParams<Query> & {
   sourceId: ResourceId;
 };
 /** Base Collection Params */
-type BCP = StandardParams<SourcesQuery>;
+type BCP = StandardParams<Query>;
 
 type GetCollectionParams = BCP;
 type GetSingleParams = BSP;
