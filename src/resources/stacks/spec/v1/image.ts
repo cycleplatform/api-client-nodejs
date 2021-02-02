@@ -218,45 +218,14 @@ export interface LocalSource {
   dir?: string;
   /** Equivalent of docker-compose context. Use this Dockerfile to build the path. */
   build_file: string;
-  /** Information for your repo to pull the dockerfile from */
-  repo?: Repo;
 }
 
 export type RepoProtocol = "http" | "https" | "ssh";
 export interface Repo {
   url: string;
-  auth: RepoAuth | null;
-  ref: Ref | null;
-}
-
-export type RepoAuth = RepoAuthBase<"http"> | RepoAuthBase<"ssh">;
-
-export interface RepoAuthBase<T extends AllAuthTypeKeys> {
-  type: T;
-  details: AllAuthTypesMap[T];
-}
-
-export interface AllAuthTypesMap {
-  http: HTTPAuth;
-  ssh: SSHAuth;
-}
-
-export type AllAuthTypeKeys = keyof AllAuthTypesMap;
-
-export interface HTTPAuth {
-  username: string;
-  password: string;
-}
-
-export interface SSHAuth {
-  username: string;
-  passphrase: string;
-  private_key: string;
-}
-
-export interface Ref {
-  type: "hash" | "tag";
-  value: string;
+  protocol: RepoProtocol;
+  private_key?: string;
+  private_key_url?: string;
 }
 
 export interface RepoSource extends LocalSource, Repo {
