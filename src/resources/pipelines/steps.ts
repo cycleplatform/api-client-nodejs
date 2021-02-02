@@ -378,7 +378,7 @@ export interface EnvironmentCreate {
   features: {
     legacy_networking: boolean;
   };
-  stack_build: ExistingResource;
+  stack_build?: ExistingResource;
 }
 
 export type EnvironmentStart = ExistingResource;
