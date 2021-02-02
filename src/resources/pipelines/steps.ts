@@ -177,7 +177,7 @@ export type AllActionsMap = {
   // Images
   "image.create": ImageCreate;
   "image.import": ImageImport;
-  "images.prune": ImagePrune;
+  "images.prune": ImagesPrune;
 
   // Environments
   "environment.create": EnvironmentCreate;
