@@ -341,7 +341,7 @@ export interface ImageCreateSource {
 
 export type ImageImport = ExistingResource;
 
-export interface ImagePrune {
+export interface ImagesPrune {
   source_ids: ResourceId[];
 }
 
