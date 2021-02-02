@@ -60,12 +60,10 @@ export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 // Values
 export type CreateValues = {
   name: string;
-};
-export type UpdateValues = Partial<{
-  name: string;
   stages: Stage[];
-  disable: boolean;
-}>;
+  disable?: boolean;
+};
+export type UpdateValues = Partial<CreateValues>;
 
 // functions
 export async function getCollection(params: GetCollectionParams) {
