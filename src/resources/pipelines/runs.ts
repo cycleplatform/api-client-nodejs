@@ -16,7 +16,7 @@ export type Collection = CollectionDoc<PipelineRun>;
 export type PipelineRun = Resource & {
   creator: UserScope;
   hubId: ResourceId;
-  pipelineId: ResourceId;
+  pipeline_id: ResourceId;
   stages: PipelineRunStages[];
   state: State<PipelineRunState>;
   events: CustomEvents<PipelineRunEvents>;
@@ -32,8 +32,7 @@ export type PipelineRunState =
   | "deleted";
 
 export type PipelineRunStages = {
-  identifier?: string;
-  name: string;
+  identifier: string;
   events: PipelineRunTimingEvents;
   steps: PipelineRunStep[];
 };
