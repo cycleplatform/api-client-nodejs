@@ -1,12 +1,8 @@
-import { ResourceId, Cluster } from "../../common/structs";
-import { Source, Origin, About as ImageAbout } from "../images";
-import { Config } from "../containers/config";
-import { VolumeSummary } from "../containers";
-import {
-  Instructions,
-  About as BuildAbout,
-} from "../../resources/stacks/builds";
-
+import * as Other from "./other";
+import * as Container from "./container";
+import * as Image from "./image";
+import * as Stack from "./stack";
+import * as Environment from "./environment";
 /** ### `type Step`
  * Used to create the typing for any step object.
  *
@@ -163,33 +159,33 @@ export interface StepOptions {
  * Last Updated: 2021.01.26 — Grady S
  */
 export type AllActionsMap = {
-  // Shared
-  sleep: Sleep;
-  "webhook.post": WebhookPost;
+  // Other
+  sleep: Other.Sleep;
+  "webhook.post": Other.WebhookPost;
 
   // Containers
-  "container.create": ContainerCreate;
-  "container.reimage": ContainerReimage;
-  "container.restart": ContainerRestart;
-  "container.start": ContainerStart;
-  "container.stop": ContainerStop;
-  "container.delete": ContainerDelete;
+  "container.create": Container.Create;
+  "container.reimage": Container.Reimage;
+  "container.restart": Container.Restart;
+  "container.start": Container.Start;
+  "container.stop": Container.Stop;
+  "container.delete": Container.Delete;
 
   // Images
-  "image.source.create": ImageSourceCreate;
-  "image.create": ImageCreate;
-  "image.import": ImageImport;
-  "images.prune": ImagesPrune;
+  "image.source.create": Image.Source.Create;
+  "image.create": Image.Create;
+  "image.import": Image.Import;
+  "images.prune": Image.Prune;
 
   // Environments
-  "environment.create": EnvironmentCreate;
-  "environment.start": EnvironmentStart;
-  "environment.stop": EnvironmentStop;
-  "environment.delete": EnvironmentDelete;
+  "environment.create": Environment.Create;
+  "environment.start": Environment.Start;
+  "environment.stop": Environment.Stop;
+  "environment.delete": Environment.Delete;
 
   // Stacks
-  "stack.build.create": StackBuildCreate;
-  "stack.build.generate": StackBuildGenerate;
+  "stack.build.create": Stack.Build.Create;
+  "stack.build.generate": Stack.Build.Generate;
 };
 
 /** ### `type AllActionKeys`
@@ -216,184 +212,3 @@ export type AllActionsMap = {
  * Last Updated: 2021.01.26 — Grady S
  */
 export type AllActionKeys = keyof AllActionsMap;
-
-/** ### `interface FromStep`
- * The interface used to create the from object used inside of different
- * steps and the `ExistingResource` type.
- * ---
- *
- * ### Cycle Info
- * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting an issue on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
- * forking our repo and submitting a
- * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
- *
- * [General Docs](https://docs.cycle.io) /
- * [Public API Docs](https://docs.cycle.io/api/introduction) /
- * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
- * [Cycle's Website](https://cycle.io)
- *
- * ---
- *
- * Last Updated: 2021.01.26 — Grady S
- */
-export interface FromStep {
-  /**
-   * The identifier of the stage which the step you want to reference
-   * is inside of.
-   *
-   * ---
-   *
-   * ### Important Notes
-   * If `stage` is left out, the step is assumed to be inside the current stage
-   *
-   */
-  stage?: string;
-  /** The identifier of the step being referenced */
-  step: string;
-}
-
-/** `interface DetailsId`
- * Need to set from to optional and never so if an id is supplied, then TS will throw
- * an error saying both from and id cannot be supplied.
- */
-interface DetailsId {
-  /**
-   * The id of an existing resource. This means the resource exists on the hub
-   * before the pipeline has run.
-   */
-  id: ResourceId;
-  from?: never;
-}
-
-/** `interface DetailsFrom`
- * Need to set id to optional and never so if an id is supplied, then TS will throw
- * an error saying both from and id cannot be supplied
- */
-interface DetailsFrom {
-  id?: never;
-  /**
-   * When wanting to reference a resource created with any previous step use the
-   * the from object.
-   */
-  from: FromStep;
-}
-
-/** ### `type ExistingResource`
- * Meshed existing resource type which will allow for the id of a resource
- * or the from object to be supplied, but not both
- *
- * ---
- *
- * ### Cycle Info
- * __Something doesn't look right or work as intended?__ \
- * Help us make a better TypeScript Platform Interface by submitting an issue on
- * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
- * forking our repo and submitting a
- * [Pull Request](https://github.com/cycleplatform/api-client-nodejs/pulls).
- *
- * [General Docs](https://docs.cycle.io) /
- * [Public API Docs](https://docs.cycle.io/api/introduction) /
- * [Internal API Docs](https://docs.cycle.io/internal-api/introduction) /
- * [Cycle's Website](https://cycle.io)
- *
- * ---
- *
- * Last Updated: 2021.01.26 — Grady S
- */
-export type ExistingResource = DetailsId | DetailsFrom;
-
-/**************************** Non Cycle Resource ****************************/
-
-/** ### `interface Sleep`
- * Used to create the typing for a sleep step. A sleep step allows for
- * what could also be considered a delay duration between other steps.
- */
-export interface Sleep {
-  /**
-   * Total duration (seconds) to run this step for, before moving on to the
-   * next step
-   */
-  seconds: number;
-}
-
-/** ### `interface WebhookPost`
- * Used to send data from a previous step to a post endpoint. The data will be
- * sent as `Content-Type: application/json`.
- */
-export interface WebhookPost {
-  /** Post endpoint to hit */
-  url: string;
-  /** The previous step to pull data from and send to the url endpoint */
-  from: FromStep;
-}
-
-/**************************** Images ****************************/
-export interface ImageCreate {
-  name?: string;
-  source: Source;
-}
-
-export interface ImageSourceCreate {
-  name: string;
-  about?: ImageAbout;
-  origin: Origin;
-}
-
-export type ImageImport = ExistingResource;
-
-export interface ImagesPrune {
-  source_ids: ResourceId[];
-}
-
-/**************************** Containers ****************************/
-export interface ContainerCreate {
-  name: string;
-  environment: ExistingResource;
-  image: ExistingResource;
-  stateful: boolean;
-  annotations: Record<string, any>;
-  config: Config;
-  volumes?: VolumeSummary[];
-}
-
-export type ContainerStart = ExistingResource;
-
-export type ContainerStop = ExistingResource;
-
-export type ContainerRestart = ExistingResource;
-
-export type ContainerReimage = ExistingResource & {
-  image: ExistingResource;
-};
-
-export type ContainerDelete = ExistingResource;
-
-/**************************** Environments ****************************/
-export interface EnvironmentCreate {
-  name: string;
-  about?: {
-    description: string;
-  };
-  cluster: Cluster;
-  features: {
-    legacy_networking: boolean;
-  };
-  stack_build?: ExistingResource;
-}
-
-export type EnvironmentStart = ExistingResource;
-
-export type EnvironmentStop = ExistingResource;
-
-export type EnvironmentDelete = ExistingResource;
-
-/**************************** Stacks ****************************/
-export interface StackBuildCreate {
-  stack: ExistingResource;
-  instructions: Instructions;
-  about?: BuildAbout;
-}
-
-export type StackBuildGenerate = ExistingResource;
