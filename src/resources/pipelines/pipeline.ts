@@ -36,7 +36,7 @@ export type Pipeline = Resource & {
 export interface Stage {
   identifier: string;
   steps: Step[];
-  option?: Options;
+  options?: Options;
 }
 
 export interface Options {
