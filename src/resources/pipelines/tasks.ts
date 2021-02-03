@@ -1,37 +1,31 @@
 import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
+import { links } from "../../common/api";
 import { ResourceId, CreatedTask } from "../../common/structs";
-import { PipelineQuery } from "./pipeline";
+import { PipelineQuery, BSP } from "./pipeline";
 
-export type PipelineActions = "trigger" | "delete";
+/****************************** Actions ******************************/
 
-type BTP = StandardParams & {
-  id: ResourceId;
-};
+export type TaskActions = "trigger" | "delete";
 
-// Params
-export type TaskParams<T = {}> = BTP & Request.TaskParams<PipelineActions, T>;
-export type TriggerPipelineParams = BTP;
-export type RemoveParams = BTP;
+/****************************** Params ******************************/
+
+export type TaskParams<T = {}> = BSP & Request.TaskParams<TaskActions, T>;
+
+export type TriggerParams = BSP;
+export type RemoveParams = BSP;
 export type TriggerWithSecretParams = Request.BaseParams<PipelineQuery> & {
   id: ResourceId;
   secret: string;
 };
 
-// Functions
-export async function triggerPipeline(params: TriggerPipelineParams) {
+/****************************** Functions ******************************/
+
+export async function trigger(params: TriggerParams) {
   return task({
     ...params,
     value: {
       action: "trigger",
     },
-  });
-}
-
-export async function task<T = {}>(params: TaskParams<T>) {
-  return Request.postRequest<CreatedTask<PipelineActions, T>>({
-    ...params,
-    target: links.pipelines().tasks(params.id),
   });
 }
 
@@ -112,8 +106,15 @@ export async function triggerWithSecret(params: TriggerWithSecretParams) {
 }
 
 export async function remove(params: RemoveParams) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return Request.deleteRequest({
     ...params,
     target: links.pipelines().single(params.id),
+  });
+}
+
+export async function task<T = {}>(params: TaskParams<T>) {
+  return Request.postRequest<CreatedTask<TaskActions, T>>({
+    ...params,
+    target: links.pipelines().tasks(params.id),
   });
 }

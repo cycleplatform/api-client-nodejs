@@ -43,6 +43,7 @@ export type TimingEvents = {
   started: Time;
   finished: Time;
 };
+
 /**
  * This is step struct is specific to runs. If you are looking for
  * the step for a step within a pipeline stage, use `Pipelines.Step`
@@ -65,11 +66,11 @@ type BCP = StandardParams & {
   pipeline_id: ResourceId;
 };
 
-export type GetRunCollectionParams = BCP;
+export type GetCollectionParams = BCP;
 
 /****************************** Functions ******************************/
 
-export async function getRunCollection(params: GetRunCollectionParams) {
+export async function geCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.pipelines().runs(params.pipeline_id),

@@ -49,9 +49,9 @@ export interface PipelineIncludes {
 }
 
 /** Base Collection Params */
-type BCP = StandardParams;
+export type BCP = StandardParams;
 /** Base Single Params */
-type BSP = StandardParams<PipelineQuery> & {
+export type BSP = StandardParams<PipelineQuery> & {
   id: ResourceId;
 };
 

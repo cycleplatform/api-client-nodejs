@@ -33,12 +33,12 @@ export type Collection = CollectionDoc<TriggerKey>;
 export type Single = SingleDoc<TriggerKey>;
 
 /****************************** Params ******************************/
-/** Base Collection Params */
-type BSP = StandardParams & {
+/** Base Single Params */
+export type BSP = StandardParams & {
   pipelineId: ResourceId;
   keyId: ResourceId;
 };
-/** Base Single Params */
+/** Base Collection Params */
 type BCP = StandardParams & {
   pipelineId: ResourceId;
 };
@@ -46,7 +46,6 @@ type BCP = StandardParams & {
 export type GetCollectionParams = BCP;
 export type CreateParams = BCP & Request.PostParams<CreateValues>;
 export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
-export type RemoveParams = BSP;
 export type GetSingleParams = BSP;
 
 /****************************** Values ******************************/
@@ -84,13 +83,6 @@ export async function create(params: CreateParams) {
 
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
-    ...params,
-    target: links.pipelines().keys(params.pipelineId).single(params.keyId),
-  });
-}
-
-export async function remove(params: RemoveParams) {
-  return Request.deleteRequest<Single>({
     ...params,
     target: links.pipelines().keys(params.pipelineId).single(params.keyId),
   });
