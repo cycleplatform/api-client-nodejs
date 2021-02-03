@@ -15,7 +15,7 @@ export type Collection = CollectionDoc<PipelineRun>;
 
 export type PipelineRun = Resource & {
   creator: UserScope;
-  hubId: ResourceId;
+  hub_id: ResourceId;
   pipeline_id: ResourceId;
   stages: PipelineRunStages[];
   state: State<PipelineRunState>;
