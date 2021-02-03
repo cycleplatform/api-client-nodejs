@@ -53,6 +53,7 @@ export type Step =
   | StepBase<"container.delete">
 
   // Image
+  | StepBase<"image.source.create">
   | StepBase<"image.create">
   | StepBase<"image.import">
   | StepBase<"images.prune">
@@ -175,6 +176,7 @@ export type AllActionsMap = {
   "container.delete": ContainerDelete;
 
   // Images
+  "image.source.create": ImageSourceCreate;
   "image.create": ImageCreate;
   "image.import": ImageImport;
   "images.prune": ImagesPrune;
@@ -333,7 +335,7 @@ export interface ImageCreate {
   source: Source;
 }
 
-export interface ImageCreateSource {
+export interface ImageSourceCreate {
   name: string;
   about?: ImageAbout;
   origin: Origin;
