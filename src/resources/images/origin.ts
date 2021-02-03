@@ -68,30 +68,48 @@ export interface DockerRegistry extends DockerHub {
   password?: string;
 }
 
-// NOTE: UNSURE ABOUT THIS
+export interface DockerFile {
+  repo: Repo | null;
+
+  /** Directory of where the Dockerfile is located */
+  dir?: string;
+
+  /** Path to the Dockerfile, must begin with a '/' */
+  path: string;
+}
+
 export interface Repo {
   url: string;
-  protocol: RepoProtocol;
-  private_key?: string;
-  private_key_url?: string;
-  // NOTE: UNSURE ABOUT THIS
-  // tag?: string;
+  auth: RepoAuth | null;
+  ref: Ref | null;
 }
-export type RepoProtocol = "http" | "https" | "ssh";
 
-// NOTE: UNSURE ABOUT THIS
+export type RepoAuth = RepoAuthBase<"http"> | RepoAuthBase<"ssh">;
 
-// export interface Repo {
-//   url: string;
-//   protocol: RepoProtocol;
-//   private_key?: string;
-//   private_key_url?: string;
-// }
+export interface RepoAuthBase<T extends AllAuthTypeKeys> {
+  type: T;
+  details: AllAuthTypesMap[T];
+}
 
-/** Describes an image to be built off local code (inside a repo) */
-export interface DockerFile extends Repo {
-  /** Path the Dockerfile is located in */
-  dir?: string;
-  /** Equivalent of docker-compose context. Use this Dockerfile to build the path. */
-  build_file: string;
+export interface AllAuthTypesMap {
+  http: HTTPAuth;
+  ssh: SSHAuth;
+}
+
+export type AllAuthTypeKeys = keyof AllAuthTypesMap;
+
+export interface HTTPAuth {
+  username: string;
+  password: string;
+}
+
+export interface SSHAuth {
+  username: string;
+  passphrase: string;
+  private_key: string;
+}
+
+export interface Ref {
+  type: "hash" | "tag";
+  value: string;
 }

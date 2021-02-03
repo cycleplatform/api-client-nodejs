@@ -1,13 +1,13 @@
 import { links, StandardParams } from "common/api";
-import { SourcesQuery } from "./sources";
+import { Query } from "./sources";
 import * as Request from "../../../common/api/request";
 import { ResourceId } from "common/structs";
 
-type BaseSingleDocParams = StandardParams<SourcesQuery> & {
+type BSP = StandardParams<Query> & {
   sourceId: ResourceId;
 };
 
-type RemoveParams = BaseSingleDocParams;
+type RemoveParams = BSP;
 export async function remove(params: RemoveParams) {
   return Request.deleteRequest({
     ...params,
