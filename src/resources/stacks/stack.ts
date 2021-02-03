@@ -10,10 +10,17 @@ import {
   UserScope,
 } from "../../common/structs";
 import { Spec } from "./spec";
+import { Repo } from "../images/origin";
 
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
 export type StackState = "live" | "deleting" | "deleted";
+
+type BSP = StandardParams & { id: ResourceId };
+export interface StackCreateParams {
+  name: string;
+  source: Source;
+}
 
 export interface Stack extends Resource<StackMetas> {
   name: string;
@@ -29,16 +36,27 @@ export interface StackMetas {
   builds_count?: number;
 }
 
-export interface Source {
-  repo?: Repo;
-  raw?: Spec;
+export type Source = SourceBase<"git-repo"> | SourceBase<"raw">;
+
+export interface SourceBase<T extends AllSourcesKeys> {
+  /**
+   * Key of the origin. Can be any of the following:
+   * - `git-repo`
+   * - `raw`
+   */
+  type: T;
+  details: AllSourcesMap[T];
 }
 
-export interface Repo {
-  url: string;
-  private_key?: string; // used for creating
-  private_key_url?: string;
+export interface AllSourcesMap {
+  /**
+   * @see /resources/images/origin.ts for the Repo interface
+   */
+  "git-repo": Repo;
+  raw: Spec;
 }
+
+export type AllSourcesKeys = keyof AllSourcesMap;
 
 export async function getCollection(params: StandardParams) {
   return Request.getRequest<Collection>({
@@ -47,20 +65,11 @@ export async function getCollection(params: StandardParams) {
   });
 }
 
-export async function getSingle(
-  params: StandardParams & {
-    id: ResourceId;
-  },
-) {
+export async function getSingle(params: BSP) {
   return Request.getRequest<Single>({
     ...params,
     target: links.stacks().single(params.id),
   });
-}
-
-export interface StackCreateParams {
-  name: string;
-  source: Source;
 }
 
 export async function create(
