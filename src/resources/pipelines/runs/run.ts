@@ -63,16 +63,16 @@ export type Collection = CollectionDoc<Run>;
 /****************************** Params ******************************/
 /** Base Collection Params */
 type BCP = StandardParams & {
-  pipeline_id: ResourceId;
+  pipelineId: ResourceId;
 };
 
 export type GetCollectionParams = BCP;
 
 /****************************** Functions ******************************/
 
-export async function geCollection(params: GetCollectionParams) {
+export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.pipelines().runs(params.pipeline_id),
+    target: links.pipelines().runs(params.pipelineId),
   });
 }
