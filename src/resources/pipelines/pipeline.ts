@@ -33,16 +33,20 @@ export type Pipeline = Resource & {
   state: State<PipelineState>;
 };
 
-export type Stage = {
+export interface Stage {
   identifier: string;
-  skip: boolean;
   steps: Step[];
-};
+  option?: Options;
+}
 
-export type PipelineIncludes = {
+export interface Options {
+  skip?: boolean;
+}
+
+export interface PipelineIncludes {
   name: string;
   creators: UserIncludes;
-};
+}
 
 /** Base Collection Params */
 type BCP = StandardParams;
@@ -58,11 +62,11 @@ export type CreateParams = BCP & Request.PostParams<CreateValues>;
 export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
 // Values
-export type CreateValues = {
+export interface CreateValues {
   name: string;
   stages: Stage[];
   disable?: boolean;
-};
+}
 export type UpdateValues = Partial<CreateValues>;
 
 // functions
