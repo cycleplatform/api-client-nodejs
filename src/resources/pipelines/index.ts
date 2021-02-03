@@ -1,7 +1,7 @@
 export * from "./pipeline";
+export * from "./steps";
+export * from "./tasks";
 import * as Runs from "./runs";
-import * as Steps from "./steps";
-import * as Tasks from "./tasks";
-import * as TriggerKeys from "./keys";
+import * as TriggerKeys from "./trigger-keys";
 
-export { Runs, Steps, Tasks, TriggerKeys };
+export { Runs, TriggerKeys };
