@@ -37,34 +37,34 @@ import * as Environment from "./environment";
  */
 export type Step =
   // Shared
-  | StepBase<"sleep">
-  | StepBase<"webhook.post">
+  | Base<"sleep">
+  | Base<"webhook.post">
 
   // Container
-  | StepBase<"container.create">
-  | StepBase<"container.reimage">
-  | StepBase<"container.restart">
-  | StepBase<"container.start">
-  | StepBase<"container.stop">
-  | StepBase<"container.delete">
+  | Base<"container.create">
+  | Base<"container.reimage">
+  | Base<"container.restart">
+  | Base<"container.start">
+  | Base<"container.stop">
+  | Base<"container.delete">
 
   // Image
-  | StepBase<"image.source.create">
-  | StepBase<"image.create">
-  | StepBase<"image.import">
-  | StepBase<"images.prune">
+  | Base<"image.source.create">
+  | Base<"image.create">
+  | Base<"image.import">
+  | Base<"images.prune">
 
   // Environment
-  | StepBase<"environment.create">
-  | StepBase<"environment.start">
-  | StepBase<"environment.stop">
-  | StepBase<"environment.delete">
+  | Base<"environment.create">
+  | Base<"environment.start">
+  | Base<"environment.stop">
+  | Base<"environment.delete">
 
   // Stacks
-  | StepBase<"stack.build.create">
-  | StepBase<"stack.build.generate">;
+  | Base<"stack.build.create">
+  | Base<"stack.build.generate">;
 
-/** ### `interface StepBase<T>`
+/** ### `interface Base<T>`
  * The base interface all steps are built on top of.
  *
  * ---
@@ -85,7 +85,7 @@ export type Step =
  *
  * Last Updated: 2021.01.26 — Grady S
  */
-export interface StepBase<T extends AllActionKeys> {
+export interface Base<T extends AllActionKeys> {
   /** Unique identifier used identify this step in a future steps from object */
   identifier?: string;
   /**
@@ -96,10 +96,10 @@ export interface StepBase<T extends AllActionKeys> {
   /** Details for the the given action which is set for the action key */
   details: AllActionsMap[T];
   /** Options associated with a given step */
-  options?: StepOptions;
+  options?: Options;
 }
 
-/** ### `interface StepOptions`
+/** ### `interface Options`
  * Typing for the options object type within the `StepBase<T>` interface
  *
  * ---
@@ -120,7 +120,7 @@ export interface StepBase<T extends AllActionKeys> {
  *
  * Last Updated: 2021.01.26 — Grady S
  */
-export interface StepOptions {
+export interface Options {
   /**
    * If skip is set to true the current step will be skipped on any subsequent
    * runs after enabling until skip is either removed from the options object, or
