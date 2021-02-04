@@ -160,13 +160,18 @@ export type HubTopic =
   | "stack.build.deployed"
 
   // pipelines
+  // pipeline
   | "pipeline.state.changed"
   | "pipeline.error"
   | "pipeline.updated"
   | "pipeline.created"
+  // key
   | "pipeline.key.state.changed"
-  | "pipeline.error"
-  | "pipeline.updated"
+  | "pipeline.key.error"
+  | "pipeline.key.updated"
+  | "pipeline.key.created"
+  // run
+  | "pipeline.run.state.changed"
   | "pipeline.run.error"
   | "pipeline.run.updated"
   | "pipeline.run.created";
