@@ -198,8 +198,10 @@ export type EventType =
   // pipelines
   | "pipeline.update"
   | "pipeline.task.delete"
+  | "pipeline.delete"
   | "pipeline.create"
   | "pipeline.task.trigger"
+  | "pipeline.trigger"
   // pipeline trigger keys
   | "pipeline.key.update"
   | "pipeline.key.delete"
