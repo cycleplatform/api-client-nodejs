@@ -191,7 +191,16 @@ export type EventType =
   | "hub.apikey.delete"
   // hub membership
   | "hub.membership.create"
-  | "hub.membership.delete";
+  | "hub.membership.delete"
+  // pipelines
+  | "pipeline.update"
+  | "pipeline.task.delete"
+  | "pipeline.create"
+  | "pipeline.task.trigger"
+  // pipeline trigger keys
+  | "pipeline.key.update"
+  | "pipeline.key.delete"
+  | "pipeline.key.create";
 
 export interface Activity extends Resource {
   hub_id: ResourceId;
