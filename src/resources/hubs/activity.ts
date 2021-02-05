@@ -27,6 +27,7 @@ import { Invoice } from "../billing/invoices";
 import { Method } from "../billing/methods";
 import { Network } from "../sdn/networks";
 import { Membership } from "./membership";
+import { Pipeline, TriggerKeys } from "../pipelines";
 
 export type Collection = CollectionDoc<Activity, ActivityIncludes>;
 export type ActivityQuery = QueryParams<
@@ -63,6 +64,8 @@ export interface ActivityIncludes {
     | Method
     | Network
     | Membership
+    | Pipeline
+    | TriggerKeys.TriggerKey
   >;
 }
 
