@@ -1,5 +1,10 @@
 import * as Request from "../../common/api/request";
 import { links, QueryParams, StandardParams } from "../../common/api";
+import { Environment } from "../environments";
+import { Container } from "../containers";
+import { Stack } from "../stacks";
+import { Build } from "../stacks/builds";
+import { Image } from "../images";
 import {
   CollectionDoc,
   UserIncludes,
@@ -46,6 +51,7 @@ export interface Options {
 export interface PipelineIncludes {
   name: string;
   creators: UserIncludes;
+  components: Record<string, Container | Environment | Stack | Build | Image>;
 }
 
 /** Base Collection Params */
