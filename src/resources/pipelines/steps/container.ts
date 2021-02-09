@@ -1,5 +1,4 @@
-import { Config } from "../../containers/config";
-import { VolumeSummary } from "../../containers";
+import { Config, Volumes } from "../../containers/config";
 import { ResourceLocation } from "./shared-types";
 
 export interface Create {
@@ -9,7 +8,7 @@ export interface Create {
   stateful: boolean;
   annotations: Record<string, any>;
   config: Config;
-  volumes?: VolumeSummary[];
+  volumes?: Volumes.Volume[];
 }
 
 export type Start = ResourceLocation;
