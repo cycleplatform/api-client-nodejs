@@ -62,6 +62,8 @@ export type SourceType = "stack-build" | "direct";
 export interface SourceDetails {
   id: ResourceId;
   origin: Origin;
+  stack_id: ResourceId;
+  containers: ResourceId[];
 }
 
 export interface StackSummary {

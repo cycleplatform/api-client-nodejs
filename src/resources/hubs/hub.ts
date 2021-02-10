@@ -27,10 +27,19 @@ export type HubEvents =
   | "first_image"
   | "first_container";
 
+/** ### `type HubState`
+ * Possible states for a hub:
+ * - `new`: @todo Hub order succeeded, but no servers have been brought online to the hub yet
+ * - `configuring`: Order is being place and hub created on platform
+ * - `live`: At least one server is currently online
+ * - `inactive`: @todo
+ * - `deleting`: Hub is currently in the process of being deleted
+ * - `deleted`: Hub has been deleted and is no longer active
+ */
 export type HubState =
   | "new"
-  | "configuring" // placing an order
-  | "live" // at least 1 server online
+  | "configuring"
+  | "live"
   | "inactive"
   | "deleting"
   | "deleted";

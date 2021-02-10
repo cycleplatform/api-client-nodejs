@@ -263,10 +263,18 @@ export const links = {
       tasks: (id: ResourceId) => `/stacks/${stack}/builds/${id}/tasks`,
       log: (build: ResourceId) => `/stacks/${stack}/builds/${build}/log`,
     }),
-    hooks: (stack: ResourceId) => ({
-      collection: () => `/stacks/${stack}/hooks`,
-      single: (id: ResourceId) => `/stacks/${stack}/hooks/${id}`,
-      tasks: (id: ResourceId) => `/stacks/${stack}/hooks/${id}/tasks`,
+  }),
+
+  // Pipelines
+  pipelines: () => ({
+    collection: () => `/pipelines`,
+    single: (id: ResourceId) => `/pipelines/${id}`,
+    runs: (id: ResourceId) => `/pipelines/${id}/runs`,
+    tasks: (id: ResourceId) => `/pipelines/${id}/tasks`,
+    trigger: (id: ResourceId) => `/pipelines/${id}/trigger`,
+    keys: (pipeline: ResourceId) => ({
+      collection: () => `/pipelines/${pipeline}/keys`,
+      single: (key: ResourceId) => `/pipelines/${pipeline}/keys/${key}`,
     }),
   }),
 

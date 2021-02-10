@@ -85,7 +85,7 @@ export interface Instructions {
 }
 
 export interface BuildMetas {
-  container_counts: StatefulCounts<ContainerState>;
+  containers_count: StatefulCounts<ContainerState>;
 }
 
 export async function getCollection(

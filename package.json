@@ -1,6 +1,6 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.9.8-23",
+  "version": "1.10.0-98",
   "description": "Cycle API Client",
   "main": "dist/index.js",
   "umd:main": "dist/node-api-client.umd.production.js",
@@ -10,7 +10,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "http://npm-registry.internal.cycle.io:4873"
   },
   "scripts": {
     "start": "tsdx watch",
