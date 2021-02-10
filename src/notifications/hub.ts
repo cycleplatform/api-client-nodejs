@@ -107,6 +107,12 @@ export type HubTopic =
   | "image.updated"
   | "image.error"
 
+  // image-sources
+  | "image.source.state.changed"
+  | "image.source.error"
+  | "image.source.updated"
+  | "image.source.created"
+
   // infrastructure ips assignment
   | "infrastructure.ips.assignment.state.changed"
   | "infrastructure.ips.assignment.error"
@@ -151,7 +157,23 @@ export type HubTopic =
   | "stack.build.created"
   | "stack.build.state.changed"
   | "stack.build.error"
-  | "stack.build.deployed";
+  | "stack.build.deployed"
+
+  // pipelines
+  // pipeline
+  | "pipeline.state.changed"
+  | "pipeline.error"
+  | "pipeline.updated"
+  | "pipeline.created"
+  // key
+  | "pipeline.key.state.changed"
+  | "pipeline.key.error"
+  | "pipeline.key.updated"
+  | "pipeline.key.created"
+  // run
+  | "pipeline.run.state.changed"
+  | "pipeline.run.error"
+  | "pipeline.run.created";
 
 export type HubNotification = Notification<HubTopic>;
 

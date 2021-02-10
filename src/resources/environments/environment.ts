@@ -10,11 +10,10 @@ import {
   UserScope,
   StatefulCounts,
   UserIncludes,
-  IP,
   Cluster,
 } from "../../common/structs";
 import { ContainerState, Instances, Service } from "../containers";
-import { IPNet, Kind, IPState } from "../infrastructure/ips";
+import { IPNet } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
 import { Stack } from "../stacks";
 
@@ -47,6 +46,19 @@ export interface Environment extends Resource<EnvironmentMeta> {
   services: Services;
   private_network: PrivateNetwork | null;
 }
+
+export type NewEnvironment = {
+  name: string;
+  about: About;
+  cluster: Cluster;
+  stack: StackSummary | null;
+  features: Features;
+};
+
+export type About = {
+  description: string;
+  favorite: boolean;
+};
 
 export interface PrivateNetwork {
   vxlan_tag: number;
@@ -81,7 +93,7 @@ export interface EnvironmentIncludes {
 }
 
 export interface EnvironmentMeta {
-  container_count?: StatefulCounts<ContainerState>;
+  containers_count?: StatefulCounts<ContainerState>;
   instances_count?: StatefulCounts<Instances.InstanceState>;
   containers?: {
     id: ResourceId;
@@ -95,18 +107,11 @@ export interface EnvironmentMeta {
     };
     environment: {
       id: ResourceId;
+      cluster: string;
       container_subnet?: string;
       ipv6?: IPNet;
       legacy: Legacy | null;
     };
-  }[];
-  ips?: {
-    kind: Kind;
-    ip: IPNet;
-    gateway: IP;
-    netmask: IP;
-    network: IP;
-    state: State<IPState>;
   }[];
 }
 

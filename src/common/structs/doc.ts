@@ -85,6 +85,10 @@ export interface StandardEvents {
 export type Events<T extends string = "created"> = StandardEvents &
   { [P in T]?: Time };
 
+export type CustomEvents<T extends string> = {
+  [P in T]?: Time;
+};
+
 /**
  * Most Cycle resources contain a state field
  * describing what the object is doing,

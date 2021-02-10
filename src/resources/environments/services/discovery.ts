@@ -2,11 +2,11 @@ import { Service } from "./common";
 import { StandardParams, links, postRequest } from "../../../common/api";
 import { ResourceId, CreatedTask } from "../../../common/structs";
 
-export interface DiscoveryService extends Service {
+export type DiscoveryService = Service & {
   config: DiscoveryConfig | null;
-}
+};
 
-// tslint:disable-next-line:no-empty-interface
+// // tslint:disable-next-line:no-empty-interface
 export interface DiscoveryConfig {}
 
 export interface DiscoveryReconfig {
@@ -15,11 +15,12 @@ export interface DiscoveryReconfig {
 
 export type DiscoveryAction = "reconfigure";
 
+export type ServicesReconfigureDiscoveryParams = StandardParams & {
+  environmentId: ResourceId;
+  value: DiscoveryReconfig;
+};
 export async function reconfigureDiscovery(
-  params: StandardParams & {
-    environmentId: ResourceId;
-    value: DiscoveryReconfig;
-  },
+  params: ServicesReconfigureDiscoveryParams,
 ) {
   return postRequest<CreatedTask<DiscoveryAction>>({
     ...params,
