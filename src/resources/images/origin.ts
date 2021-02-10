@@ -69,7 +69,7 @@ export interface DockerRegistry extends DockerHub {
 }
 
 export interface DockerFile {
-  repo: Repo | null;
+  repo?: Repo;
 
   /** Directory of where the Dockerfile is located */
   dir?: string;
@@ -80,8 +80,8 @@ export interface DockerFile {
 
 export interface Repo {
   url: string;
-  auth: RepoAuth | null;
-  ref: Ref | null;
+  auth?: RepoAuth;
+  ref?: Ref;
 }
 
 export type RepoAuth = RepoAuthBase<"http"> | RepoAuthBase<"ssh">;
