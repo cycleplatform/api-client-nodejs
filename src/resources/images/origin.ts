@@ -88,7 +88,7 @@ export type RepoAuth = RepoAuthBase<"http"> | RepoAuthBase<"ssh">;
 
 export interface RepoAuthBase<T extends AllAuthTypeKeys> {
   type: T;
-  details: AllAuthTypesMap[T];
+  credentials: AllAuthTypesMap[T];
 }
 
 export interface AllAuthTypesMap {
