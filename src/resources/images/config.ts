@@ -11,7 +11,6 @@ export interface Config {
   env: Record<string, string>;
   labels: Record<string, string>;
   command: string[];
-  onbuild: string[];
   entrypoint: string[];
   volumes: Volume[];
   workdir: string;
