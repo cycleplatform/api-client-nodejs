@@ -50,6 +50,8 @@ export type States =
 export type State = StateBase<States>;
 export interface Backend {
   provider: string;
+  file_name: string;
+  file_id: string;
   size: Bytes;
 }
 export interface Source {
@@ -62,8 +64,10 @@ export type SourceType = "stack-build" | "direct";
 export interface SourceDetails {
   id: ResourceId;
   origin: Origin;
-  stack_id: ResourceId;
-  containers: ResourceId[];
+  /** Will container the stack id used to create this source, if it was created via a stack*/
+  stack_id?: ResourceId;
+  /** Any container id's currently using this source will be available here */
+  containers?: ResourceId[];
 }
 
 export interface StackSummary {

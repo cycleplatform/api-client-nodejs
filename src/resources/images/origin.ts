@@ -80,8 +80,8 @@ export interface DockerFile {
 
 export interface Repo {
   url: string;
-  auth: RepoAuth | null;
-  ref: Ref | null;
+  auth?: RepoAuth;
+  ref?: Ref;
 }
 
 export type RepoAuth = RepoAuthBase<"http"> | RepoAuthBase<"ssh">;

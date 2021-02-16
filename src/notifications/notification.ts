@@ -5,11 +5,8 @@ import { ResourceId } from "../common/structs";
  * either channel.
  *
  * @param topic Either a hub or account topic which can be seen in ./account.ts or ./hub.ts
- *
  * @param object an object containing the resource id of the corresponding topic, its state, and any errors
- *
  * @param context an object containing several different contexts, which hub or account the notification corresponds to, environment, etc.
- *
  * @param flags Internal usage.
  */
 export interface Notification<T extends string> {
