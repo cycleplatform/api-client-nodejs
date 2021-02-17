@@ -15,19 +15,31 @@ import { RoleName } from "./invite";
 
 export type Collection = CollectionDoc<Membership, MembershipIncludes>;
 export type Single = SingleDoc<Membership, MembershipIncludes>;
+/**
+ * Possible states of a membership
+ */
 export type MembershipState =
   | "pending"
   | "accepted"
   | "declined"
   | "revoked"
   | "deleted";
+/**
+ * Notable membership events
+ */
 export type MembershipEvent = "joined";
+/**
+ * Notable invitation events
+ */
 export type InvitationEvent = "accepted" | "declined" | "revoked";
 export type MembershipQuery = QueryParams<
   keyof MembershipIncludes,
   keyof MembershipMeta
 >;
 
+/**
+ * Membership role information
+ */
 export enum Role {
   OWNER = 1 << 0,
   ADMIN = 1 << 1,
@@ -36,6 +48,9 @@ export enum Role {
   DEFAULT = 0,
 }
 
+/**
+ * An extended resource including information on a hub membership
+ */
 export interface Membership extends Resource<MembershipMeta> {
   account_id: ResourceId;
   hub_id: ResourceId;
@@ -56,30 +71,43 @@ export interface MembershipIncludes {
   accounts: Record<ResourceId, PublicAccount>;
 }
 
+/**
+ * Information on the memberships access to the hubs environments
+ */
 export interface MembershipPermissions {
+  /** A boolean, where true indicates that the membership has access to all environments in the hub */
   all_environments: boolean;
+  /** An array of membership environment configurations */
   environments: MembershipEnvironment[];
 }
 
+/**
+ * Per environment information describing the memberships access level
+ */
 export interface MembershipEnvironment {
   id: ResourceId;
+  /** A boolean, where true indicates this environment can be managed by the membership */
   manage: boolean;
 }
 
+/**
+ * Information for a hub membership invitation
+ */
 export interface Invitation {
+  /** The sending accounts ID and type */
   sender: {
     id: ResourceId;
+    /** The account type */
     type: string;
   };
+  /** The receiving account of the invitation */
   recipient: {
+    /** The receiving accounts email */
     email: string;
   };
   events: Events<InvitationEvent>;
 }
 
-/**
- * Members of this hub
- */
 export async function getCollection(params: StandardParams<MembershipQuery>) {
   return Request.getRequest<Collection>({
     ...params,

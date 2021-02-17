@@ -78,6 +78,7 @@ export interface SourceOverride {
 export interface StackSummary {
   id: ResourceId;
   build_id: ResourceId;
+  /** An array of container identifiers */
   containers: ContainerIdentifier[];
 }
 
