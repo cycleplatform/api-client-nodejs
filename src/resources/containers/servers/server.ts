@@ -8,12 +8,15 @@ import {
   IP,
 } from "../../../common/structs";
 import { InstanceState } from "../../containers/instances";
+import { Server } from "../../infrastructure/servers";
 
-export type Collection = CollectionDoc<ServerInstances>;
 export type ServerInstancesQuery = QueryParams<
   string,
   keyof ServerInstancesMeta
 >;
+
+type BaseCollectionParams = StandardParams & { containerId: ResourceId };
+
 /**
  * Information about the instances on a server
  */
@@ -29,23 +32,17 @@ export interface ServerInstancesMeta {
   primary_ip: IP;
 }
 
-export async function getCollection(
-  params: StandardParams & {
-    containerId: ResourceId;
-  },
-) {
+export type Collection = CollectionDoc<ServerInstances>;
+export async function getCollection(params: BaseCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.containers().servers(params.containerId).list(),
   });
 }
 
-export async function usable(
-  params: StandardParams & {
-    containerId: ResourceId;
-  },
-) {
-  return Request.getRequest<Collection>({
+type UsableServerCollection = CollectionDoc<Server>;
+export async function usable(params: BaseCollectionParams) {
+  return Request.getRequest<UsableServerCollection>({
     ...params,
     target: links.containers().servers(params.containerId).usable(),
   });

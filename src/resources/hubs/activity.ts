@@ -27,6 +27,7 @@ import { Invoice } from "../billing/invoices";
 import { Method } from "../billing/methods";
 import { Network } from "../sdn/networks";
 import { Membership } from "./membership";
+import { Pipeline, TriggerKeys } from "../pipelines";
 
 export type Collection = CollectionDoc<Activity, ActivityIncludes>;
 export type ActivityQuery = QueryParams<
@@ -63,6 +64,8 @@ export interface ActivityIncludes {
     | Method
     | Network
     | Membership
+    | Pipeline
+    | TriggerKeys.TriggerKey
   >;
 }
 
@@ -95,6 +98,10 @@ export type EventType =
   | "image.create"
   | "image.delete"
   | "image.task.delete"
+  // image sources
+  | "image.source.create"
+  | "image.source.update"
+  | "image.source.task.delete"
 
   // containers
   | "container.create"
@@ -187,7 +194,18 @@ export type EventType =
   | "hub.apikey.delete"
   // hub membership
   | "hub.membership.create"
-  | "hub.membership.delete";
+  | "hub.membership.delete"
+  // pipelines
+  | "pipeline.update"
+  | "pipeline.task.delete"
+  | "pipeline.delete"
+  | "pipeline.create"
+  | "pipeline.task.trigger"
+  | "pipeline.trigger"
+  // pipeline trigger keys
+  | "pipeline.key.update"
+  | "pipeline.key.delete"
+  | "pipeline.key.create";
 
 /**
  * An extended resource which includes information on hub activity

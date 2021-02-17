@@ -3,6 +3,14 @@
  */
 
 export interface Config {
+  /**
+   * the linux user to be used. Examples would be:
+   * - `nginx`
+   * - `apache`
+   * - `root`
+   * - etc...
+   */
+  user: string;
   /** The creator of the image */
   creator: string;
   ports: Port[];
@@ -12,9 +20,6 @@ export interface Config {
   labels: Record<string, string>;
   /** The startup command for the image */
   command: string[];
-  /** Onbuild commands for the image */
-  onbuild: string[];
-  /** The image entrypoint */
   entrypoint: string[];
   /** An array of volume resources */
   volumes: Volume[];

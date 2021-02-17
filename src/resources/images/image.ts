@@ -1,16 +1,11 @@
 import * as Request from "../../common/api/request";
-import {
-  QueryParams,
-  links,
-  StandardParams,
-  PostParams,
-} from "../../common/api";
+import { QueryParams, links, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
   SingleDoc,
   ResourceId,
-  State,
+  State as StateBase,
   Events,
   Bytes,
   UserScope,
@@ -18,16 +13,31 @@ import {
 } from "../../common/structs";
 import { Config } from "./config";
 import { Builds, Stack } from "../stacks";
-import { ImageSource } from "../stacks/spec/v1/image";
 import { ContainerIdentifier } from "../../common/structs";
+import { Origin } from "./origin";
 
-export type Collection = CollectionDoc<Image, ImageIncludes>;
-export type Single = SingleDoc<Image, ImageIncludes>;
-export type ImageQuery = QueryParams<keyof ImageIncludes, keyof ImageMetas>;
-/**
- * Information on the image state
- */
-export type ImageState =
+/****************************** Image Struct ******************************/
+export interface Image extends Resource<Metas> {
+  name: string;
+  stack: StackSummary | null;
+  size: Bytes;
+  about?: About;
+  backend: Backend;
+  tags: string[];
+  config: Config;
+  source: Source;
+  creator: UserScope;
+  hub_id: ResourceId;
+  state: State;
+  events: Events;
+}
+
+/****************************** Image Struct Sub Types ******************************/
+export interface About {
+  description: string | null;
+}
+
+export type States =
   | "new"
   | "downloading"
   | "building"
@@ -37,41 +47,34 @@ export type ImageState =
   | "deleting"
   | "deleted";
 
-/**
- * An extended resource including information about images
- */
-export interface Image extends Resource<ImageMetas> {
-  /** The name of the image */
-  name: string;
-  stack: StackSummary | null;
-  size: Bytes;
-  /** Optional information about the image */
-  about?: {
-    /** A description of the image */
-    description: string | null;
-  };
-
-  backend: ImageBackend;
-  /** An array of tags for the image */
-  tags: string[];
-  config: Config;
-  source: ImageSource;
-  creator: UserScope;
-  hub_id: ResourceId;
-  state: State<ImageState>;
-  events: Events;
-}
-/**
- * Information about where the image is hosted
- */
-export interface ImageBackend {
-  /** The provider hosting the image  */
+export type State = StateBase<States>;
+export interface Backend {
   provider: string;
+  file_name: string;
+  file_id: string;
   size: Bytes;
 }
-/**
- * High level stack information
- */
+export interface Source {
+  type: SourceType;
+  details: SourceDetails;
+  override?: SourceOverride;
+}
+
+export type SourceType = "stack-build" | "direct";
+
+export interface SourceDetails {
+  id: ResourceId;
+  origin: Origin;
+  /** Will container the stack id used to create this source, if it was created via a stack*/
+  stack_id?: ResourceId;
+  /** Any container id's currently using this source will be available here */
+  containers?: ResourceId[];
+}
+
+export interface SourceOverride {
+  target: string;
+}
+
 export interface StackSummary {
   id: ResourceId;
   build_id: ResourceId;
@@ -79,81 +82,91 @@ export interface StackSummary {
   containers: ContainerIdentifier[];
 }
 
-export interface ImageMetas {
+/****************************** Metas, Includes, Docs, Query ******************************/
+
+export interface Metas {
   containers_count?: number;
 }
 
-export interface ImageIncludes {
+export interface Includes {
   creators: UserIncludes;
   stack_builds: Record<ResourceId, Builds.Build>;
   stacks: Record<ResourceId, Stack>;
 }
 
-/**
+export type Collection = CollectionDoc<Image, Includes>;
+export type Single = SingleDoc<Image, Includes>;
+export type Query = QueryParams<keyof Includes, keyof Metas>;
+
+/****************************** Params ******************************/
+/** Base Single Params */
+type BSP = StandardParams<Query> & {
+  id: ResourceId;
+};
+/** Base Collection Params */
+type BCP = StandardParams<Query>;
+
+export type GetCollectionParams = BCP;
+export type GetSingleParams = BSP;
+export type CreateParams = BSP & Request.PostParams<CreateValues>;
+export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
+
+/****************************** Values ******************************/
+export interface CreateValues {
+  name?: string;
+  source_id: ResourceId;
+  override?: SourceOverride;
+}
+export interface UpdateValues {
+  /** The new name for the image */
+  name: string;
+}
+
+/****************************** Functions ******************************/
+
+/** ### `getCollection(params: GetCollectionParams)`
  * Fetch a list of images
- * @capability images-view
+ *
+ * __Capability:__ `images-view`
  */
-export async function getCollection(params: StandardParams<ImageQuery>) {
+export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
     target: links.images().collection(),
   });
 }
 
-/**
+/** ### `getSingle(params: GetSingleParams)`
  * Fetch a single image
- * @capability images-view
+ * __Capability:__ `images-view`
  */
-export async function getSingle(
-  params: StandardParams<ImageQuery> & {
-    id: ResourceId;
-  },
-) {
+export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
     target: links.images().single(params.id),
   });
 }
 
-export interface CreateParams {
-  source: ImageSource;
-}
-
-/**
- * Creates an image object. This DOES NOT import it, you'll need to call
- * importImage() with the id of this to be able to use it.
- * @param params standard params, and image source value
- * @capability images-import
+/** ### `create(params: CreateParams)`
+ * Creates an image object.
+ * __Capability:__ `images-import`
+ *
+ * ### Important Notes
+ * Calling the `create()` function does not import an image. To
+ * import an image call @see {importImage()}.
  */
-export async function create(
-  params: StandardParams<ImageQuery> & PostParams<CreateParams>,
-) {
+export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
     target: links.images().collection(),
   });
 }
 
-/**
- * Parameters for updating an image
- */
-export interface UpdateParams {
-  /** The new name for the image */
-  name: string;
-}
-
-/**
+/** ### `update(params: UpdateParams)`
  * Update basic image properties
- * @param params.id - Image ID
- * @param params.value.name - The name we want to set for this image
- * @capability images-update
+ * __Capability:__ `images-update`
  */
-export async function update(
-  params: StandardParams<ImageQuery> & {
-    id: ResourceId;
-    value: UpdateParams;
-  },
-) {
+export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
     ...params,
     target: links.images().single(params.id),

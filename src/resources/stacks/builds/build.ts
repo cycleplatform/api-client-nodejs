@@ -17,6 +17,7 @@ import {
 } from "../../../common/structs";
 import { Spec } from "../spec";
 import { ContainerState } from "../../containers";
+import { Ref } from "../../images/origin";
 
 export * from "./tasks/build";
 
@@ -77,17 +78,14 @@ export interface GitCommit {
 }
 
 export interface Instructions {
-  git?: GitInstructions;
-}
-
-export interface GitInstructions {
-  commit: string | null;
-  tag: string | null;
-  branch: string | null;
+  /**
+   * @see /resources/images/origin.ts for the Ref interface
+   */
+  git?: Ref;
 }
 
 export interface BuildMetas {
-  container_counts: StatefulCounts<ContainerState>;
+  containers_count: StatefulCounts<ContainerState>;
 }
 
 export async function getCollection(

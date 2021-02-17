@@ -81,7 +81,17 @@ export interface Container extends Resource<ContainerMetas> {
   };
   events: Events<ContainerEvent>;
 }
-// todo am I doing includes?
+
+export type NewContainer = {
+  name: string;
+  environment_id: ResourceId;
+  image_id: ResourceId;
+  stateful: boolean;
+  annotations: Record<string, any> | null;
+  config: Config;
+  volumes?: VolumeSummary[];
+};
+
 export interface ContainerIncludes {
   creators?: UserIncludes;
   images?: {

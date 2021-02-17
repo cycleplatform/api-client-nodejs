@@ -26,12 +26,17 @@ export interface ApiKey extends Resource {
   /** The API key secret */
   secret?: string;
   permissions: Permissions;
-  capabilities: Capability[];
-  /** An array of approved IP address from which this API key is authorized to be used */
+  capabilities: ApiKeyCapabilities;
   ips: string[] | null;
   state: State<ApiKeyState>;
   events: Events;
 }
+
+export interface ApiKeyCapabilities {
+  all: boolean;
+  specific: Capability[];
+}
+
 /**
  * The different states an API key can be in
  */
@@ -61,8 +66,7 @@ export interface CreateParams {
   /** The name of the API key */
   name: string;
   permissions?: Permissions;
-  capabilities: Capability[];
-  /** IPs approved to make requests using this key */
+  capabilities: ApiKeyCapabilities;
   ips: string[] | null;
 }
 
