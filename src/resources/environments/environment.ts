@@ -54,18 +54,10 @@ export interface Environment extends Resource<EnvironmentMeta> {
   private_network: PrivateNetwork | null;
 }
 
-export type NewEnvironment = {
-  name: string;
-  about: About;
-  cluster: Cluster;
-  stack: StackSummary | null;
-  features: Features;
-};
-
-export type About = {
+export interface About {
   description: string;
   favorite: boolean;
-};
+}
 
 /**
  * Information about a private network
