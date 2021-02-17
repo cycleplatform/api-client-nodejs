@@ -57,6 +57,7 @@ export interface Backend {
 export interface Source {
   type: SourceType;
   details: SourceDetails;
+  override?: SourceOverride;
 }
 
 export type SourceType = "stack-build" | "direct";
@@ -68,6 +69,10 @@ export interface SourceDetails {
   stack_id?: ResourceId;
   /** Any container id's currently using this source will be available here */
   containers?: ResourceId[];
+}
+
+export interface SourceOverride {
+  target: string;
 }
 
 export interface StackSummary {
@@ -108,6 +113,7 @@ export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 /****************************** Values ******************************/
 export interface CreateValues {
   source_id: ResourceId;
+  override?: SourceOverride;
 }
 export interface UpdateValues {
   /** The new name for the image */

@@ -1,10 +1,3 @@
-/**
- * @chris
- * this file is new, there are no metas or includes
- * so that is why i put this in it's own file. same reason
- * for containers being in their own file
- */
-
 import * as Request from "../../common/api/request";
 import { links, StandardParams } from "../../common/api";
 import { Resource, SingleDoc, ResourceId, Events } from "../../common/structs";
