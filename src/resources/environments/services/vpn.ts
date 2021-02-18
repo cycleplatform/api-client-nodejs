@@ -75,8 +75,6 @@ export interface VPNReconfigureDetails {
   enable?: boolean;
   /** A partial configuration file for a VPN -- see VPN */
   config?: Partial<VPN>;
-  /** @deprecated */
-  high_availability?: boolean;
 }
 
 export type VPNUsersDoc = CollectionDoc<VPNUser>;

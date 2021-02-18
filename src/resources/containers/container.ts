@@ -43,7 +43,6 @@ export type ContainerState =
  */
 export type ContainerEvent = "started";
 
-// todo am i doing querys
 export type ContainerQuery = QueryParams<
   keyof ContainerIncludes,
   keyof ContainerMetas,
@@ -69,7 +68,6 @@ export interface Container extends Resource<ContainerMetas> {
   role: ContainerRole | null;
   /** A boolean where true represents the container is stateful */
   stateful: boolean;
-  // todo
   requirements?: string[];
   /** Annotation notes for this contianer */
   annotations: Record<string, any> | null;
@@ -95,7 +93,6 @@ export interface ContainerIncludes {
   environments?: Record<ResourceId, Environment>;
 }
 
-// todo am i doing metas
 export interface ContainerMetas {
   instance_counts?: StatefulCounts<InstanceState>;
   domain?: string;
@@ -108,7 +105,6 @@ export interface ContainerMetas {
  */
 export interface StackSummary {
   id: ResourceId;
-  // todo not sure what this is
   image: {
     id: ResourceId;
   };
@@ -146,9 +142,7 @@ export interface Legacy {
  * A summary of information about a volume
  */
 export interface VolumeSummary {
-  // todo - why isnt this resource ID
   id: string;
-  // todo - what is this
   hash: string;
   config: Volumes.Volume;
 }

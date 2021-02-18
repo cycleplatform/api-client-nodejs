@@ -3,7 +3,7 @@ import { StandardParams, links } from "../../../common/api";
 import { InstanceState } from "../../containers/instances";
 import * as Request from "../../../common/api/request";
 
-// todo instances in telemetry point needs to be more specific not sure what that is
+// TODO: instances in telemetry point needs to be more specific not sure what that is
 /**
  * Information including a collection of telemetry data points
  */

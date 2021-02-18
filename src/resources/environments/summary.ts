@@ -35,7 +35,7 @@ export interface ContainerStats {
   state: { [key: string]: number };
   /** The total of all states combined */
   total: number;
-  // todo I dont exactly know what this is because of key: string above -- THis applies to instance as well might as well be right before i do them
+  // TODO need to investigate
   available: number;
 }
 

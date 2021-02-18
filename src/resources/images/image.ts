@@ -119,7 +119,7 @@ export interface CreateValues {
 }
 export interface UpdateValues {
   /** The new name for the image */
-  name: string;
+  name?: string;
 }
 
 /****************************** Functions ******************************/

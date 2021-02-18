@@ -10,7 +10,7 @@ export type Collection = {
 /** A single telemetry point for an instance */
 export interface TelemetryPoint {
   time: Time;
-  // todo what is this
+  // TODO: Need to figure out details
   instances: Record<InstanceState, number>;
 }
 

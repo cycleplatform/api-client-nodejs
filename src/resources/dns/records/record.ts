@@ -148,16 +148,10 @@ export interface TypeCAA {
 export interface TypeLinked {
   /** The container ID this record is associated with  */
   container_id?: ResourceId;
-  /** @deprecated */
-  project?: ProjectLink;
 
   features: LinkFeatures;
 }
-/** @deprecated */
-export interface ProjectLink {
-  project_id: ResourceId;
-  container: ContainerIdentifier;
-}
+
 /**
  * Information about advanced features
  */

@@ -133,8 +133,6 @@ export async function getInstanceResourcesTelemetryReport(
   });
 }
 
-// todo
-
 export interface TelemetryStreamParams extends StandardParams {
   id: ResourceId;
   containerId: ResourceId;
