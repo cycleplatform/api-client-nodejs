@@ -70,7 +70,7 @@ export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 // Values
 export interface CreateValues {
   name: string;
-  stages: Stage[];
+  stages?: Stage[];
   disable?: boolean;
 }
 export type UpdateValues = Partial<CreateValues>;
