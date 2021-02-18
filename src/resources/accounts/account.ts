@@ -11,13 +11,11 @@ import {
 
 export type Collection = CollectionDoc<Account>;
 export type Single = SingleDoc<Account>;
-/**
- * Information about the last login for the account.
- */
+
+/** Information about the last login for the account. */
 export type AccountEvent = "last_login";
-/**
- * The different states an account can be in.
- */
+
+/** The different states an account can be in. */
 export type AccountState =
   | "new"
   | "live"
@@ -36,9 +34,7 @@ export interface Account extends Resource {
 }
 
 // TODO: check if we still implement this struct
-/**
- * Publicly available information about the account
- */
+/** Publicly available information about the account */
 export interface PublicAccount extends Resource {
   name: {
     first: string;
@@ -50,22 +46,16 @@ export interface PublicAccount extends Resource {
     verified: boolean;
   };
 }
-/**
- * The first and last name of the account owner
- */
+
+/** The first and last name of the account owner */
 export interface Name {
-  /**
-   * The first name of the account owner
-   */
+  /** The first name of the account owner */
   first: string;
-  /**
-   * The last name of the account owner
-   */
+  /** The last name of the account owner */
   last: string;
 }
-/**
- * Email information for the account
- */
+
+/** Email information for the account */
 export interface Email {
   /** The email address */
   address: string;
@@ -74,13 +64,10 @@ export interface Email {
   /** A Time resource showing when the email was added */
   added: Time;
 }
-/**
- * Two factor auth verification information
- */
+
+/** Two factor auth verification information */
 export interface TwoFactorAuth {
-  /**
-   * A boolean representing if the account has verified with TwoFA
-   */
+  /** A boolean representing if the account has verified with TwoFA */
   verified: boolean;
 }
 
