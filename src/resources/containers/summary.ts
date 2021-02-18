@@ -47,9 +47,7 @@ export interface ContainerSummaryInstances {
 export interface ContainerSummaryGeo {
   location: Location;
   datacenter_id: ResourceId;
-  /** todo - waht is this (double check other places) */
   available: number;
-  /** todo - same ^ */
   total: number;
 }
 

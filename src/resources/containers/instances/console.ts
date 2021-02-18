@@ -21,7 +21,6 @@ export interface ConsoleAuthResponse {
   data: {
     /** An auth token for the console authentication */
     token: string;
-    /** An address TODO  */
     address: string;
   };
 }

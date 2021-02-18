@@ -26,18 +26,15 @@ export interface BaseLogin extends Resource {
   success: boolean;
 }
 
-// todo
 export interface PasswordLogin extends BaseLogin {
   type: "password";
 }
 
-// todo
 export interface EmployeeLogin extends BaseLogin {
   type: "employee";
   employee: PublicAccount;
 }
 
-// todo
 export type Login = PasswordLogin | EmployeeLogin;
 
 /**
@@ -50,7 +47,6 @@ export interface AccountInfo {
   ip: string;
 }
 
-// todo
 export interface LoginIncludes {
   accounts: {
     [key: string]: PublicAccount;

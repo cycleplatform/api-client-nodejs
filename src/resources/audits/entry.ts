@@ -10,7 +10,6 @@ import {
   IP,
 } from "../../common/structs";
 
-// todo
 export interface EntrySession {
   ip: IP;
   scope: string[];

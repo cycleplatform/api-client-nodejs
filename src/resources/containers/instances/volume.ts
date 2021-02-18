@@ -23,9 +23,7 @@ export interface InstanceVolume extends Resource {
   sftp: SFTP | null;
 }
 
-/**
- * todo (whats the diff between instance and deployed?)
- */
+// TODO: (whats the diff between instance and deployed?)
 export interface DeployedVolume {
   server_id: ResourceId | null;
   container_id: ResourceId;

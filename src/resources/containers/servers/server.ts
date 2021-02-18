@@ -24,9 +24,7 @@ export interface ServerInstances extends Resource<ServerInstancesMeta> {
   instances: StatefulCounts<InstanceState>;
   /** the server hostname */
   hostname: string;
-  // todo double check hostname is correct
 }
-//  todo am i marking metas
 
 export interface ServerInstancesMeta {
   primary_ip: IP;

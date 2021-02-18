@@ -35,10 +35,10 @@ export interface Account extends Resource {
   state: State<AccountState>;
 }
 
+// TODO: check if we still implement this struct
 /**
  * Publicly available information about the account
  */
-// todo - do we use this?
 export interface PublicAccount extends Resource {
   name: {
     first: string;

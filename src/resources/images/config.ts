@@ -25,13 +25,12 @@ export interface Config {
   volumes: Volume[];
   /** The working directory for the image */
   workdir: string;
-  /** todo */
   signal_stop?: string;
 }
 
 /** Port information  */
 export interface Port {
-  // no clue what this is todo
+  // TODO: Figure out what this is for
   type: string;
   /** The port number for the host side of the pair */
   host: number;
