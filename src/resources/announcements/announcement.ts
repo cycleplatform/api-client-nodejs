@@ -14,7 +14,13 @@ import { ProviderIdentifier } from "../infrastructure/provider";
 
 export type Collection = CollectionDoc<Announcement>;
 export type Single = SingleDoc<Announcement>;
+/**
+ * The announcement state
+ */
 export type AnnouncementState = "live" | "deleted";
+/**
+ * The announcement priority
+ */
 export type AnnouncementPriority =
   | "notice"
   | "low"
@@ -22,6 +28,9 @@ export type AnnouncementPriority =
   | "high"
   | "severe";
 
+/**
+ * The announcement resource
+ */
 export interface Announcement extends Resource {
   id: ResourceId;
   title: string;
@@ -34,6 +43,9 @@ export interface Announcement extends Resource {
   state: State<AnnouncementState>;
 }
 
+/**
+ * Information about an update made to the announcement
+ */
 export interface Update {
   id: ResourceId;
   message: string;

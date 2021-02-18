@@ -29,7 +29,7 @@ export type HubEvents =
 
 /** ### `type HubState`
  * Possible states for a hub:
- * - `new`: @todo Hub order succeeded, but no servers have been brought online to the hub yet
+ * - `new`: Hub order succeeded, but no servers have been brought online to the hub yet
  * - `configuring`: Order is being place and hub created on platform
  * - `live`: At least one server is currently online
  * - `inactive`: @todo

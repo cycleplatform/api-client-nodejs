@@ -14,6 +14,9 @@ import {
 
 export type Collection = CollectionDoc<Job, JobIncludes>;
 export type Single = SingleDoc<Job, JobIncludes>;
+/**
+ * A Job state
+ */
 export type JobState =
   | "new"
   | "queued"
@@ -22,47 +25,80 @@ export type JobState =
   | "expired"
   | "running"
   | "completed";
+
+/**
+ * A Job event
+ */
 export type JobEvent = "queued" | "completed" | "started";
 
+/**
+ * An extended resource including information about a job
+ */
 export interface Job extends Resource {
+  /**
+   * A dash separated string showing the environment-ID where the job is taking place
+   */
   queue: string;
+  /** A short description of the job */
   caption: string;
+
   events: Events<JobEvent>;
   schedule: Time;
   expires: Time;
   tasks: JobTask[];
+  /** A combination of the individual task details and job details */
   hash: string;
+  /** A boolean, where true indicates that the job is set to prevent duplicate jobs quickly */
   limit_duplicates: boolean;
   creator: UserScope;
   hub_id: ResourceId;
   state: State<JobState>;
 }
 
+/**
+ * A tasks state
+ */
 export type TaskState = "pending" | "error" | "running" | "completed";
 
+/** Information about a job task */
 export interface JobTask {
+  /** The ID of the job task */
   id: string;
+  /** A short description of the job task */
   caption: string;
+  /** The API function called */
   header: string;
+  /**  The action being handled by the job */
   action: string;
+  /** An event object for the job task */
   events: {
     queued: Time;
     started: Time;
     completed: Time;
   };
+  /** An array of job task steps */
   steps: TaskStep[];
   state: State<TaskState>;
+  /** A boolean, where true indicates the job is failable */
   failable: boolean;
   input: { [key: string]: any };
   output: { [key: string]: any };
+  /** An error object that either holds a message or is null */
   error: {
+    /** An error message */
     message: string;
   } | null;
 }
 
+/**
+ * Information about a step of a task
+ */
 export interface TaskStep {
+  /** A short description of the step */
   caption: string;
+  /** A more verbose description of the step */
   description: string;
+
   started: Time;
   completed: Time;
 }

@@ -11,7 +11,13 @@ import {
 
 export type Collection = CollectionDoc<Account>;
 export type Single = SingleDoc<Account>;
+/**
+ * Information about the last login for the account.
+ */
 export type AccountEvent = "last_login";
+/**
+ * The different states an account can be in.
+ */
 export type AccountState =
   | "new"
   | "live"
@@ -21,18 +27,18 @@ export type AccountState =
   | "deleted";
 
 export interface Account extends Resource {
-  /** The first and last name of the account owner */
   name: Name;
-  /** Email registered to this account */
   email: Email;
-  /** 2FA information */
   two_factor_auth: TwoFactorAuth | null;
-  /** Whether to allow Cycle employees to log in to diagnose support issues */
   allow_support_login: boolean;
   events: Events<AccountEvent>;
   state: State<AccountState>;
 }
 
+// TODO: check if we still implement this struct
+/**
+ * Publicly available information about the account
+ */
 export interface PublicAccount extends Resource {
   name: {
     first: string;
@@ -44,19 +50,37 @@ export interface PublicAccount extends Resource {
     verified: boolean;
   };
 }
-
+/**
+ * The first and last name of the account owner
+ */
 export interface Name {
+  /**
+   * The first name of the account owner
+   */
   first: string;
+  /**
+   * The last name of the account owner
+   */
   last: string;
 }
-
+/**
+ * Email information for the account
+ */
 export interface Email {
+  /** The email address */
   address: string;
+  /** A boolean representing if the email has been verified */
   verified: boolean;
+  /** A Time resource showing when the email was added */
   added: Time;
 }
-
+/**
+ * Two factor auth verification information
+ */
 export interface TwoFactorAuth {
+  /**
+   * A boolean representing if the account has verified with TwoFA
+   */
   verified: boolean;
 }
 

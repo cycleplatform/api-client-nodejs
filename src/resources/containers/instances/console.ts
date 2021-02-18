@@ -3,6 +3,9 @@ import { links, StandardParams } from "../../../common/api";
 import { ResourceId } from "../../../common/structs";
 import { connectToSocket } from "../../../common/api/websocket";
 
+/**
+ * Parameters needed to connect to the console
+ */
 export interface ConsolePipelineParams extends StandardParams {
   id: ResourceId;
   containerId: ResourceId;
@@ -10,8 +13,13 @@ export interface ConsolePipelineParams extends StandardParams {
   onMessage?: (v: string) => void;
 }
 
+/**
+ * An auth response from console authentication
+ */
 export interface ConsoleAuthResponse {
+  /** Data - including a auth token and address */
   data: {
+    /** An auth token for the console authentication */
     token: string;
     address: string;
   };

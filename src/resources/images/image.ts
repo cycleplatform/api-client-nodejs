@@ -50,11 +50,14 @@ export type States =
 export type State = StateBase<States>;
 export interface Backend {
   provider: string;
+  file_name: string;
+  file_id: string;
   size: Bytes;
 }
 export interface Source {
   type: SourceType;
   details: SourceDetails;
+  override?: SourceOverride;
 }
 
 export type SourceType = "stack-build" | "direct";
@@ -62,13 +65,20 @@ export type SourceType = "stack-build" | "direct";
 export interface SourceDetails {
   id: ResourceId;
   origin: Origin;
-  stack_id: ResourceId;
-  containers: ResourceId[];
+  /** Will container the stack id used to create this source, if it was created via a stack*/
+  stack_id?: ResourceId;
+  /** Any container id's currently using this source will be available here */
+  containers?: ResourceId[];
+}
+
+export interface SourceOverride {
+  target: string;
 }
 
 export interface StackSummary {
   id: ResourceId;
   build_id: ResourceId;
+  /** An array of container identifiers */
   containers: ContainerIdentifier[];
 }
 
@@ -103,11 +113,13 @@ export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
 /****************************** Values ******************************/
 export interface CreateValues {
+  name?: string;
   source_id: ResourceId;
+  override?: SourceOverride;
 }
 export interface UpdateValues {
   /** The new name for the image */
-  name: string;
+  name?: string;
 }
 
 /****************************** Functions ******************************/

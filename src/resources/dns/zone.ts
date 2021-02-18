@@ -18,7 +18,9 @@ export { Records };
 
 export type Collection = CollectionDoc<Zone, ZoneIncludes>;
 export type Single = SingleDoc<Zone, ZoneIncludes>;
-
+/**
+ * The possible states a DNS zone can have
+ */
 export type ZoneState =
   | "new"
   | "pending"
@@ -27,13 +29,22 @@ export type ZoneState =
   | "disabled"
   | "deleting"
   | "deleted";
+
+/**
+ * DNS Zone event types
+ */
 export type ZoneEvent = "last_verification" | "verified";
 export type ZoneQuery = QueryParams<keyof ZoneIncludes>;
 
+/**
+ * Information about a DNS Zone
+ */
 export interface Zone extends Resource {
   hub_id: ResourceId;
   creator: UserScope;
+  /** The origin for this DNS Zone */
   origin: string;
+  /** A boolean, where true means this DNS Zone is set to use Cycle nameservers */
   hosted: boolean;
   state: State<ZoneState>;
   events: Events<ZoneEvent>;

@@ -1,4 +1,4 @@
-import { ResourceId } from "common/structs";
+import { ResourceId } from "../../../../common/structs";
 import { ResourceLocation } from "../shared-types";
 
 export interface Create {

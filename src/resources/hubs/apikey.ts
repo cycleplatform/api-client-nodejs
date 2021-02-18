@@ -14,10 +14,16 @@ import { Capability } from "./capability";
 export type Collection = CollectionDoc<ApiKey>;
 export type Single = SingleDoc<ApiKey>;
 
+/**
+ * An extended resource that has information on a Cycle hub API key
+ */
+
 export interface ApiKey extends Resource {
+  /** The name of the API key  */
   name: string;
   creator: UserScope;
   hub_id: ResourceId;
+  /** The API key secret */
   secret?: string;
   permissions: Permissions;
   capabilities: ApiKeyCapabilities;
@@ -31,19 +37,33 @@ export interface ApiKeyCapabilities {
   specific: Capability[];
 }
 
+/**
+ * The different states an API key can be in
+ */
 export type ApiKeyState = "live" | "deleting" | "deleted";
 
+/**
+ * Permissions information for an API Key
+ */
 export interface Permissions {
+  /** A boolean, where true represents this API key is authorized to make requests that involve all of a hubs environments */
   all_environments: boolean;
+  /** An array of environment permission configurations */
   environments: EnvironmentPermission[];
 }
-
+/**
+ * An environment ID and a boolean representing management configuration for an API key
+ */
 export interface EnvironmentPermission {
   id: ResourceId;
+  /** A boolean, where true represents the API keys ability to make changes to the environment components */
   manage: boolean;
 }
-
+/**
+ * Create information used for an API key
+ */
 export interface CreateParams {
+  /** The name of the API key */
   name: string;
   permissions?: Permissions;
   capabilities: ApiKeyCapabilities;

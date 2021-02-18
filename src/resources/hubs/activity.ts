@@ -207,14 +207,20 @@ export type EventType =
   | "pipeline.key.delete"
   | "pipeline.key.create";
 
+/**
+ * An extended resource which includes information on hub activity
+ */
+
 export interface Activity extends Resource {
   hub_id: ResourceId;
   // TODO: change to creator when updated on api
   user: UserScope;
+  /** A number that represents how verbose the Activity reporting should be */
   verbosity: number;
   context: Context;
   session: Session | null;
   changes: Change[];
+  /** Additional annotations for the activity */
   annotations: Record<string, any>;
   error: ActivityError | null;
   component: Component | null;
@@ -223,6 +229,9 @@ export interface Activity extends Resource {
   time: Time;
 }
 
+/**
+ * Information for an activity that adds additional context
+ */
 export interface Context {
   environment_id?: ResourceId;
   container_id?: ResourceId;
@@ -232,27 +241,48 @@ export interface Context {
   dns_zone_id?: ResourceId;
 }
 
+/**
+ * Information on a session - used for activity reporting
+ */
 export interface Session {
+  /** URL endpoint associated with the activity - does not include domain */
   url: string;
+  /** IP of the account associated with the session */
   ip: string;
   api_key: ResourceId | null;
 }
 
+/**
+ * Change information - used for activity reporting
+ */
 export interface Change {
+  /** A description of the thing that was changed */
   component: string;
   before?: Detail;
   after?: Detail;
 }
 
+/**
+ * Information about a component, such as an instance or container - used for activity reporting
+ */
 export interface Component {
+  /** The ID of the component */
   id: string;
+  /** The type of component */
   type: string;
 }
 
+/**
+ * Information on an error that has occurred - used for activity reporting
+ */
 export type ActivityError = {
+  /** A message describing the error */
   message: string;
 };
 
+/**
+ * Information on the possible statuses of an activity
+ */
 export type ActivityStatusType =
   | "info"
   | "warning"
@@ -260,9 +290,15 @@ export type ActivityStatusType =
   | "success"
   | "error";
 
+/**
+ * Extraneous detail information used for activity reporting on changes
+ */
+
 export interface Detail {
   id?: ResourceId;
+  /** A number representing the amount of the component that exists */
   number?: number;
+  /** Additional information  */
   string?: string;
 }
 
