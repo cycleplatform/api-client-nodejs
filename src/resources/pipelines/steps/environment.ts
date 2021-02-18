@@ -1,4 +1,4 @@
-import { Cluster } from "common/structs";
+import { Cluster } from "../../../common/structs";
 import { ResourceLocation } from "./shared-types";
 
 export interface Create {
