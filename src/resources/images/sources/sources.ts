@@ -77,7 +77,7 @@ export type States = "live" | "deleting" | "deleted";
 /****************************** Metas, Includes, Query, Docs ******************************/
 
 export type Metas = {
-  image_counts?: number;
+  images_count?: number;
 };
 export interface Includes {
   creators: UserIncludes;

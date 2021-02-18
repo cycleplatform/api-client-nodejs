@@ -49,9 +49,8 @@ export type ContainerQuery = QueryParams<
   keyof ContainerMetas,
   "image" | "environment" | "state"
 >;
-/**
- * Container resource information
- */
+
+/** Container resource information */
 export interface Container extends Resource<ContainerMetas> {
   /** The name of the container */
   name: string;
