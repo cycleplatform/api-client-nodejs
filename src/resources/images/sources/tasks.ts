@@ -1,9 +1,8 @@
 import { links, StandardParams } from "../../../common/api";
-import { Query } from "./sources";
 import * as Request from "../../../common/api/request";
 import { ResourceId } from "../../../common/structs";
 
-type BSP = StandardParams<Query> & {
+type BSP = StandardParams & {
   sourceId: ResourceId;
 };
 
