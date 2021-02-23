@@ -61,7 +61,7 @@ export type UpdateValues = Partial<CreateValues>;
  * @param params object containing the target pipelineId to fetch keys for
  */
 export async function getCollection(params: GetCollectionParams) {
-  return Request.getRequest({
+  return Request.getRequest<Collection>({
     ...params,
     target: links.pipelines().keys(params.pipelineId).collection(),
   });
