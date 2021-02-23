@@ -82,6 +82,7 @@ export interface Repo {
   url: string;
   auth?: RepoAuth;
   ref?: Ref;
+  branch?: string;
 }
 
 export type RepoAuth = RepoAuthBase<"http"> | RepoAuthBase<"ssh">;
