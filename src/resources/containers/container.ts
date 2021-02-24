@@ -94,7 +94,7 @@ export interface ContainerIncludes {
 }
 
 export interface ContainerMetas {
-  instance_counts?: StatefulCounts<InstanceState>;
+  instances_count?: StatefulCounts<InstanceState>;
   domain?: string;
   domains?: { fqdn: string; record: Zones.Records.Record | null }[];
   ips?: IP[];
