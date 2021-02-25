@@ -1,5 +1,5 @@
 import * as Request from "../../common/api/request";
-import { links, StandardParams } from "../../common/api";
+import { links, QueryParams, StandardParams } from "../../common/api";
 import {
   CollectionDoc,
   Resource,
@@ -8,6 +8,7 @@ import {
   State,
   Events,
   UserScope,
+  UserIncludes,
 } from "../../common/structs";
 import { Spec } from "./spec";
 import { Repo } from "../images/origin";
@@ -15,6 +16,7 @@ import { Repo } from "../images/origin";
 export type Collection = CollectionDoc<Stack>;
 export type Single = SingleDoc<Stack>;
 export type StackState = "live" | "deleting" | "deleted";
+export type Query = QueryParams<keyof Includes, keyof StackMetas>;
 
 type BSP = StandardParams & { id: ResourceId };
 export interface StackCreateParams {
@@ -46,6 +48,10 @@ export interface SourceBase<T extends AllSourcesKeys> {
    */
   type: T;
   details: AllSourcesMap[T];
+}
+
+export interface Includes {
+  creators: UserIncludes;
 }
 
 export interface AllSourcesMap {
