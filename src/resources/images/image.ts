@@ -108,7 +108,7 @@ type BCP = StandardParams<Query>;
 
 export type GetCollectionParams = BCP;
 export type GetSingleParams = BSP;
-export type CreateParams = BSP & Request.PostParams<CreateValues>;
+export type CreateParams = BCP & Request.PostParams<CreateValues>;
 export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
 /****************************** Values ******************************/
