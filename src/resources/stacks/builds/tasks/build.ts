@@ -5,8 +5,46 @@ import { ResourceId, Task, CreatedTask } from "../../../../common/structs";
 export type BuildAction = "deploy" | "delete" | "generate";
 
 export interface DeployContents {
+  /** The id of the environment to update with the stack build */
   environment_id: ResourceId;
-  update_configs: boolean;
+  /**
+   * Optional update object used to specify specific params to update from
+   * the stack build.
+   */
+  update?: DeployContentsUpdate;
+}
+
+/**
+ * The update interface used for the `update` key inside
+ * of the `DeployContents` interface
+ */
+export interface DeployContentsUpdate {
+  /**
+   * This is a map of the container names to update within the
+   * environment. The map follows the format of:
+   * ```
+   *  {
+   *    container_name: {
+   *      reimage: true,
+   *      reconfigure: true,
+   *    }
+   *  }
+   * ```
+   */
+  containers: Record<string, DeployUpdateContainers>;
+}
+
+export interface DeployUpdateContainers {
+  /**
+   * If set to true the container will be reimaged with the image specified in
+   * the stack build
+   */
+  reimage: boolean;
+  /**
+   * If set to true the container will use the new `config` settings specified in
+   * the stack build
+   */
+  reconfigure: boolean;
 }
 
 export async function deploy(
