@@ -4,22 +4,24 @@ import { ResourceId, Task, CreatedTask } from "../../../../common/structs";
 
 export type BuildAction = "deploy" | "delete" | "generate";
 
-export interface DeployParams {
+export interface DeployContents {
   environment_id: ResourceId;
   update_configs: boolean;
-  redeploy: boolean;
 }
 
-export async function deployBuild(
+export async function deploy(
   params: StandardParams & {
     id: ResourceId;
     stackId: ResourceId;
-    value: DeployParams;
+    contents: DeployContents;
   },
 ) {
-  return task<DeployParams>({
+  return task<DeployContents>({
     ...params,
-    value: { action: "deploy", contents: params.value },
+    value: {
+      action: "deploy",
+      contents: params.contents,
+    },
   });
 }
 
@@ -29,7 +31,7 @@ export async function generate(
     stackId: ResourceId;
   },
 ) {
-  return task<DeployParams>({
+  return task({
     ...params,
     value: { action: "generate" },
   });
@@ -43,10 +45,7 @@ export async function remove(
 ) {
   return Request.deleteRequest<CreatedTask<"delete">>({
     ...params,
-    target: links
-      .stacks()
-      .builds(params.stackId)
-      .single(params.id),
+    target: links.stacks().builds(params.stackId).single(params.id),
   });
 }
 
@@ -59,9 +58,6 @@ export async function task<K = {}>(
 ) {
   return Request.postRequest<CreatedTask<BuildAction, K>>({
     ...params,
-    target: links
-      .stacks()
-      .builds(params.stackId)
-      .tasks(params.id),
+    target: links.stacks().builds(params.stackId).tasks(params.id),
   });
 }
