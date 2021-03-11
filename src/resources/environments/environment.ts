@@ -44,7 +44,6 @@ export interface Environment extends Resource<EnvironmentMeta> {
   state: State<EnvironmentState>;
   events: Events;
   features: Features;
-  stack: StackSummary | null;
   services: Services;
   private_network: PrivateNetwork | null;
 }
@@ -79,12 +78,6 @@ export interface Legacy {
 export interface Features {
   /** A boolean, where true represents that legacy networking has been enabled */
   legacy_networking: boolean;
-}
-
-/** Information summary for a stack used when deploying the environment */
-export interface StackSummary {
-  id: ResourceId;
-  build_id: ResourceId;
 }
 
 /** Information about the service containers of the environment */
