@@ -15,7 +15,6 @@ import {
 import { ContainerState, Instances, Service } from "../containers";
 import { IPNet } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
-import { Stack } from "../stacks";
 
 export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment, EnvironmentIncludes>;
@@ -89,7 +88,6 @@ export interface Services {
 
 export interface EnvironmentIncludes {
   creators: UserIncludes;
-  stacks: Record<ResourceId, Stack>;
 }
 
 export interface EnvironmentMeta {
