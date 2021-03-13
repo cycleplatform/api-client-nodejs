@@ -10,3 +10,4 @@ export interface Providers {
 
 export * from "./equinix-metal";
 export * from "./vultr";
+export * from "./aws";
