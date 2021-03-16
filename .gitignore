@@ -6,3 +6,4 @@ node_modules
 dist
 cycleplatform-cycle-api-*.tgz
 docs/**/*
+.idea/**/**
