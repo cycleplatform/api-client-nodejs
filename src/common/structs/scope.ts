@@ -5,11 +5,12 @@ import { ResourceId } from "./doc";
  */
 export type UserScopeT =
   | "account"
+  | "environment"
+  | "platform"
+  | "platform-pipeline"
   | "employee"
   | "api-key"
-  | "environment"
-  | "visitor"
-  | "platform";
+  | "visitor";
 
 /**
  * The creator scope is embedded in resource objects
