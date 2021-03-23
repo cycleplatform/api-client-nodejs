@@ -1,6 +1,5 @@
 import * as Request from "../common/api/request";
-import { links, StandardParams } from "../common/api";
-import { connectToSocket } from "../common/api/websocket";
+import { links, StandardParams, connectToSocket } from "../common/api";
 import { Notification } from "./notification";
 
 /**
@@ -63,11 +62,11 @@ export type HubTopic =
   | "dns.zone.created"
   | "dns.zone.verified"
   | "dns.zone.reconfigured"
-  | "dns.zone.records.reconfigured"
   | "dns.zone.certificate.ready"
 
   // dns zone record
   | "dns.zone.record.state.changed"
+  | "dns.zone.records.reconfigured"
 
   // employees
   | "employee.state.changed"
@@ -130,7 +129,6 @@ export type HubTopic =
   // jobs
   | "job.created"
   | "job.state.changed"
-  | "job.created"
 
   // sdn
   | "sdn.network.created"
@@ -146,11 +144,7 @@ export type HubTopic =
   // stack
   | "stack.state.changed"
   | "stack.error"
-
-  // stack
   | "stack.created"
-  | "stack.error"
-  | "stack.state.changed"
   | "stack.updated"
 
   // builds
