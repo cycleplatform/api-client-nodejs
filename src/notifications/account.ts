@@ -1,7 +1,6 @@
 import { Token } from "../auth";
 import * as Request from "../common/api/request";
-import { links, Settings } from "../common/api";
-import { connectToSocket } from "../common/api/websocket";
+import { links, Settings, connectToSocket } from "../common/api";
 import { Notification } from "./notification";
 
 /**
@@ -26,7 +25,11 @@ export type AccountTopic =
   // announcements
   | "announcement.created"
   | "announcement.updated"
-  | "announcement.state.changed";
+  | "announcement.state.changed"
+
+  // jobs
+  | "job.created"
+  | "job.state.changed";
 
 export type AccountNotification = Notification<AccountTopic>;
 
