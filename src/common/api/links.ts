@@ -58,7 +58,8 @@ export const links = {
 
   // Changelog
   changelog: () => ({
-    collection: () => "/changelog",
+    single: (id: ResourceId) => `/changelogs/${id}`,
+    collection: () => "/changelogs",
   }),
 
   // Notification Channels
