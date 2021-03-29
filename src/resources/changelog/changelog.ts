@@ -67,10 +67,10 @@ export type CodebaseType =
   | "api-node-client";
 
 /** ### `type States`
- * Shared image source state.
+ * Possible changelog release states.
  * Possible states can be the following:
- * - `live`
- * - `deleting`
+ * - `hidden`
+ * - `published`
  * - `deleted`
  *
  *
