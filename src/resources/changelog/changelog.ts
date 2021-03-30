@@ -41,7 +41,7 @@ export interface Hero {
   image_alt: string;
 }
 
-interface Change {
+export interface Change {
   title: string;
   description: string;
   notes: string[];
@@ -85,12 +85,15 @@ export type Single = SingleDoc<Release>;
 export type Collection = CollectionDoc<Release>;
 
 /****************************** Params ******************************/
+/** Changelog exists outside of the context of the portal, no hubid needed  */
+type StandardParamsNoHubId = Omit<StandardParams, "hubId">;
+
 /** Base Single Params */
-type BSP = StandardParams & {
+type BSP = StandardParamsNoHubId & {
   id: ResourceId;
 };
 /** Base Collection Params */
-type BCP = StandardParams;
+type BCP = StandardParamsNoHubId;
 
 type GetSingleParams = BSP;
 type GetCollectionParams = BCP;
