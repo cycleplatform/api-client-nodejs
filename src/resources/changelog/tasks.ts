@@ -18,7 +18,7 @@ type RemoveParams = BSP;
 export async function remove(params: RemoveParams) {
   return Request.deleteRequest({
     ...params,
-    settings: changelogSettings,
+    settings: { ...params.settings, ...changelogSettings },
     target: links.changelog().single(params.id),
   });
 }
