@@ -116,7 +116,7 @@ export type UpdateValues = Partial<CreateValues>;
 
 /** Helper to change the url as this lives on a diff url */
 const changelogSettings: Settings = {
-  url: "api.marketing.internal.cycle.io",
+  url: "marketing-api.internal.cycle.io",
 };
 
 export async function getCollection(params: GetCollectionParams) {
