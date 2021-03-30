@@ -122,7 +122,7 @@ const changelogSettings: Settings = {
 export async function getCollection(params: GetCollectionParams) {
   return getRequest<Collection>({
     ...params,
-    settings: changelogSettings,
+    settings: { ...params.settings, ...changelogSettings },
     target: links.changelog().collection(),
   });
 }
@@ -130,7 +130,7 @@ export async function getCollection(params: GetCollectionParams) {
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
-    settings: changelogSettings,
+    settings: { ...params.settings, ...changelogSettings },
     target: links.changelog().collection(),
   });
 }
@@ -138,7 +138,7 @@ export async function create(params: CreateParams) {
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
-    settings: changelogSettings,
+    settings: { ...params.settings, ...changelogSettings },
     target: links.changelog().single(params.id),
   });
 }
@@ -146,7 +146,7 @@ export async function getSingle(params: GetSingleParams) {
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
     ...params,
-    settings: changelogSettings,
+    settings: { ...params.settings, ...changelogSettings },
     target: links.changelog().single(params.id),
   });
 }
