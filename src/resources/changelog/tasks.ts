@@ -1,14 +1,12 @@
 /**
  * @internal
  */
-import { links, Settings, StandardParams } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import { ResourceId } from "../../common/structs";
 import * as Request from "../../common/api/request";
 
 /** Helper to change the url as this lives on a diff url */
-const changelogSettings: Settings = {
-  url: "api.marketing.internal.cycle.io",
-};
+const externalURL = "marketing-api.internal.cycle.io";
 
 type BSP = StandardParams & {
   id: ResourceId;
@@ -18,7 +16,10 @@ type RemoveParams = BSP;
 export async function remove(params: RemoveParams) {
   return Request.deleteRequest({
     ...params,
-    settings: { ...params.settings, ...changelogSettings },
+    settings: {
+      url: params.settings?.url ?? externalURL,
+      ...params.settings,
+    },
     target: links.changelog().single(params.id),
   });
 }
