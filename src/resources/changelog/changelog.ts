@@ -2,14 +2,13 @@
  * @internal
  */
 import * as Request from "../../common/api/request";
-import { getRequest } from "../../common/api/request";
 import {
   Resource,
   CollectionDoc,
   SingleDoc,
   ResourceId,
 } from "../../common/structs";
-import { links, Settings, StandardParams } from "../../common/api";
+import { links, StandardParams } from "../../common/api";
 import { State as StateBase } from "../../common/structs";
 
 /** ### `interface Release`
@@ -115,14 +114,15 @@ export type UpdateValues = Partial<CreateValues>;
 /****************************** Functions ******************************/
 
 /** Helper to change the url as this lives on a diff url */
-const changelogSettings: Settings = {
-  url: "marketing-api.internal.cycle.io",
-};
+const externalURL = "marketing-api.internal.cycle.io";
 
 export async function getCollection(params: GetCollectionParams) {
-  return getRequest<Collection>({
+  return Request.getRequest<Collection>({
     ...params,
-    settings: { ...params.settings, ...changelogSettings },
+    settings: {
+      url: params.settings?.url ?? externalURL,
+      ...params.settings,
+    },
     target: links.changelog().collection(),
   });
 }
@@ -130,7 +130,10 @@ export async function getCollection(params: GetCollectionParams) {
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
-    settings: { ...params.settings, ...changelogSettings },
+    settings: {
+      url: params.settings?.url ?? externalURL,
+      ...params.settings,
+    },
     target: links.changelog().collection(),
   });
 }
@@ -138,7 +141,10 @@ export async function create(params: CreateParams) {
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
-    settings: { ...params.settings, ...changelogSettings },
+    settings: {
+      url: params.settings?.url ?? externalURL,
+      ...params.settings,
+    },
     target: links.changelog().single(params.id),
   });
 }
@@ -146,7 +152,10 @@ export async function getSingle(params: GetSingleParams) {
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
     ...params,
-    settings: { ...params.settings, ...changelogSettings },
+    settings: {
+      url: params.settings?.url ?? externalURL,
+      ...params.settings,
+    },
     target: links.changelog().single(params.id),
   });
 }
