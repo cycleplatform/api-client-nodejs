@@ -10,7 +10,6 @@ const externalURL = "marketing-api.internal.cycle.io";
 
 export type ChangelogActions = "prepublish" | "publish" | "hide";
 
-//
 interface BSP extends StandardParams {
   id: ResourceId;
 }
