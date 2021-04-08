@@ -75,7 +75,7 @@ export interface DockerFile {
   dir?: string;
 
   /** Path to the Dockerfile, must begin with a '/' */
-  path?: string;
+  path: string;
 }
 
 export interface Repo {
