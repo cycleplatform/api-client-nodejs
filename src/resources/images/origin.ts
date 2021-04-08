@@ -70,7 +70,7 @@ export interface DockerRegistry extends DockerHub {
 
 export interface DockerFile {
   repo: Repo | null;
-
+  targz_url: string | null;
   /** Directory of where the Dockerfile is located */
   dir?: string;
 
