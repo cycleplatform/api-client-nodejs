@@ -75,7 +75,7 @@ export type CodebaseType =
  *
  * Last Updated: 2021.03.29 — Kevin C
  */
-export type States = "hidden" | "published" | "deleted" | "publish-ready";
+export type States = "hidden" | "published" | "deleted";
 
 export type State = StateBase<States>;
 

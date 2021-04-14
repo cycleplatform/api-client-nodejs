@@ -8,19 +8,27 @@ import * as Request from "../../common/api/request";
 /** Helper to change the url as this lives on a diff url */
 const externalURL = "marketing-api.internal.cycle.io";
 
-export type ChangelogActions = "prepublish" | "publish" | "hide";
+export type ChangelogActions = "send-email" | "publish" | "hide";
 
 interface BSP extends StandardParams {
   id: ResourceId;
 }
 
-interface BTP extends StandardParams {
+type BTP<T = {}> = StandardParams & {
   id: ResourceId;
-  value?: any;
+  value?: T;
+};
+
+export type SendEmailContentType = "internal" | "external" | "single";
+
+export interface SendEmailContent {
+  type: SendEmailContentType;
+  /** Address will only be used to send test emails to a cycle email address */
+  address?: string;
 }
 
 export interface RemoveParams extends BSP {}
-export interface PrepublishParams extends BTP {}
+export interface SendEmailParams extends BTP<SendEmailContent> {}
 export interface PublishParams extends BTP {}
 export interface HideParams extends BTP {}
 
@@ -35,21 +43,6 @@ export async function remove(params: RemoveParams) {
   });
 }
 
-export async function prepublish(params: PrepublishParams) {
-  return Request.postRequest({
-    ...params,
-    settings: {
-      url: params.settings?.url ?? externalURL,
-      ...params.settings,
-    },
-    value: {
-      action: "prepublish",
-      ...params.value,
-    },
-    target: links.changelog().tasks(params.id),
-  });
-}
-
 export async function publish(params: PublishParams) {
   return Request.postRequest({
     ...params,
@@ -59,6 +52,21 @@ export async function publish(params: PublishParams) {
     },
     value: {
       action: "publish",
+      ...params.value,
+    },
+    target: links.changelog().tasks(params.id),
+  });
+}
+
+export async function sendEmail(params: SendEmailParams) {
+  return Request.postRequest({
+    ...params,
+    settings: {
+      url: params.settings?.url ?? externalURL,
+      ...params.settings,
+    },
+    value: {
+      action: "send-email",
       ...params.value,
     },
     target: links.changelog().tasks(params.id),
