@@ -30,6 +30,7 @@ export interface Release extends Resource {
   hero?: Hero;
   changes: Change[];
   state: State;
+  email_state?: EmailState;
 }
 
 /****************************** Changelog Struct Sub Types ******************************/
@@ -76,8 +77,10 @@ export type CodebaseType =
  * Last Updated: 2021.03.29 — Kevin C
  */
 export type States = "hidden" | "published" | "deleted";
-
 export type State = StateBase<States>;
+
+export type EmailStates = "not-sent" | "sent-internal" | "sent-external";
+export type EmailState = StateBase<EmailStates>;
 
 /****************************** Metas, Includes, Query, Docs ******************************/
 export type Single = SingleDoc<Release>;
