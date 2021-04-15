@@ -24,14 +24,14 @@ export interface DeployContentsUpdate {
    * environment. The map follows the format of:
    * ```
    *  {
-   *    container_name: {
+   *    container_id: {
    *      reimage: true,
    *      reconfigure: true,
    *    }
    *  }
    * ```
    */
-  containers: Record<string, DeployUpdateContainers>;
+  containers: Record<ResourceId, DeployUpdateContainers>;
 }
 
 export interface DeployUpdateContainers {
