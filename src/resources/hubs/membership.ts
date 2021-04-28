@@ -59,6 +59,29 @@ export interface Membership extends Resource<MembershipMeta> {
   state: State<MembershipState>;
   invitation: Invitation;
   permissions: MembershipPermissions;
+  preferences: Preferences;
+  cycle?: Cycle;
+  agency?: Agency;
+}
+
+export interface MembershipMeta {
+  capabilities: Capability[];
+}
+
+export interface Preferences {
+  notifications: NotificationPreferences;
+}
+
+export interface NotificationPreferences {
+  api_keys: boolean;
+}
+
+export interface Cycle {
+  employee_id: ResourceId;
+}
+
+export interface Agency {
+  id: ResourceId;
 }
 
 export interface MembershipMeta {
