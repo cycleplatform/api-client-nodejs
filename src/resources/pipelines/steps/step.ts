@@ -62,7 +62,8 @@ export type Step =
 
   // Stacks
   | Base<"stack.build.create">
-  | Base<"stack.build.generate">;
+  | Base<"stack.build.generate">
+  | Base<"stack.build.deploy">;
 
 /** ### `interface Base<T>`
  * The base interface all steps are built on top of.
@@ -186,6 +187,7 @@ export type AllActionsMap = {
   // Stacks
   "stack.build.create": Stack.Build.Create;
   "stack.build.generate": Stack.Build.Generate;
+  "stack.build.deploy": Stack.Build.Deploy;
 };
 
 /** ### `type AllActionKeys`
