@@ -1,5 +1,5 @@
 import { ResourceLocation } from "../shared-types";
-import { Instructions, About } from "../../../../resources/stacks/builds";
+import { Instructions, About, DeployContentsUpdate } from "../../../../resources/stacks/builds";
 
 export type CreateType = "direct";
 export interface Create {
@@ -13,4 +13,5 @@ export type Generate = ResourceLocation;
 
 export type Deploy = ResourceLocation & {
   environment: ResourceLocation;
+  update?: DeployContentsUpdate;
 };
