@@ -10,3 +10,7 @@ export interface Create {
 }
 
 export type Generate = ResourceLocation;
+
+export type Deploy = ResourceLocation & {
+  environment: ResourceLocation;
+};
