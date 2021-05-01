@@ -39,10 +39,21 @@ export interface QueryParams<
    * Pagination. Specify number of resources for the 'page' and which
    * page number you wish to return.
    */
-  page?: {
-    number: number;
-    size: number;
-  };
+  page?: Page;
+}
+
+type Page = pageWithSize | pageWithOffset;
+
+interface pageWithSize {
+  number: number;
+  size: number;
+  offset?: never;
+}
+
+interface pageWithOffset {
+  number: number;
+  size?: never;
+  offset: number;
 }
 
 /**
@@ -78,7 +89,8 @@ export function formatParams(q: QueryParams | undefined) {
 
   return Object.keys(result)
     .map(
-      k => `${encodeURIComponent(k)}=${encodeURIComponent((result as any)[k])}`,
+      (k) =>
+        `${encodeURIComponent(k)}=${encodeURIComponent((result as any)[k])}`,
     )
     .join("&");
 }
