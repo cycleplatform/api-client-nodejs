@@ -69,8 +69,8 @@ export interface DockerRegistry extends DockerHub {
 }
 
 export interface DockerFile {
-  repo: Repo | null;
-  targz_url: string | null;
+  repo?: Repo;
+  targz_url?: string;
   /** Directory of where the BuildFile is located */
   context_dir?: string;
   /** Name of the BuildFile */
