@@ -68,8 +68,25 @@ export interface DockerRegistry extends DockerHub {
   password?: string;
 }
 
-export interface DockerFile {
+export type DockerFile = DockerfileWithRepo | DockerfileWithTar;
+// repo?: Repo;
+// targz_url?: string;
+// /** Directory of where the BuildFile is located */
+// context_dir?: string;
+// /** Name of the BuildFile */
+// build_file?: string;
+
+export interface DockerfileWithRepo {
   repo?: Repo;
+  targz_url?: never;
+  /** Directory of where the BuildFile is located */
+  context_dir?: string;
+  /** Name of the BuildFile */
+  build_file?: string;
+}
+
+export interface DockerfileWithTar {
+  repo?: never;
   targz_url?: string;
   /** Directory of where the BuildFile is located */
   context_dir?: string;
