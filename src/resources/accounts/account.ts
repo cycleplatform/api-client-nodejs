@@ -35,21 +35,25 @@ export interface Account extends Resource {
   state: State<AccountState>;
 }
 
-// TODO: check if we still implement this struct
 /**
  * Publicly available information about the account
  */
 export interface PublicAccount extends Resource {
-  name: {
-    first: string;
-    last: string;
-  };
-  email: {
-    address: string;
-    added: Time;
-    verified: boolean;
-  };
+  name: Name;
+  email: Email;
+  events: PublicAccountEvents;
 }
+
+/**
+ * All combined events for public account
+ */
+export type PublicAccountEvents = Events<PublicAccountEvent>;
+
+/**
+ * Additional events for a Public account which extend on top of default events
+ */
+export type PublicAccountEvent = "last_login";
+
 /**
  * The first and last name of the account owner
  */

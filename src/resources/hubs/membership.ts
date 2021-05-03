@@ -121,11 +121,8 @@ export interface Invitation {
     /** The account type */
     type: string;
   };
-  /** The receiving account of the invitation */
-  recipient: {
-    /** The receiving accounts email */
-    email: string;
-  };
+  /** The receiving account email of the invitation */
+  recipient: string;
   events: Events<InvitationEvent>;
 }
 
