@@ -46,7 +46,7 @@ type Page = pageWithSize | pageWithOffset;
 
 interface pageWithSize {
   number: number;
-  size: number;
+  size?: number;
   offset?: never;
 }
 
