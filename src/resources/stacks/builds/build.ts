@@ -99,16 +99,27 @@ export async function getCollection(
   });
 }
 
+/**
+ * If a stack id is not know it can be omitted, however this behavior is not
+ * recommended unless absolutely necessary.
+ */
 export async function getSingle(
   params: StandardParams<BuildsQuery> & {
     id: ResourceId;
-    stackId: ResourceId;
+    stackId?: ResourceId;
   },
 ) {
-  return Request.getRequest<Single>({
-    ...params,
-    target: links.stacks().builds(params.stackId).single(params.id),
-  });
+  if (!params.stackId) {
+    return Request.getRequest<Single>({
+      ...params,
+      target: links.stacks().buildLookup(params.id),
+    });
+  } else {
+    return Request.getRequest<Single>({
+      ...params,
+      target: links.stacks().builds(params.stackId).single(params.id),
+    });
+  }
 }
 
 export interface CreateParams {

@@ -260,6 +260,7 @@ export const links = {
     collection: () => `/stacks`,
     single: (id: ResourceId) => `/stacks/${id}`,
     tasks: (id: ResourceId) => `/stacks/${id}/tasks`,
+    buildLookup: (build: ResourceId) => `/stacks/builds/${build}`,
     builds: (stack: ResourceId) => ({
       collection: () => `/stacks/${stack}/builds`,
       single: (id: ResourceId) => `/stacks/${stack}/builds/${id}`,
