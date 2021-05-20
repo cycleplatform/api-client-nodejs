@@ -21,11 +21,6 @@
     "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch"
   },
   "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cycleplatform/api-client-nodejs"
@@ -33,18 +28,27 @@
   "author": "Petrichor, Inc.",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@types/jest": "^24.0.13",
     "babel-plugin-module-resolver": "^4.0.0",
-    "husky": "^4.2.5",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8",
     "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1",
+    "pretty-quick": "^3.1.0",
     "tsdx": "^0.13.2",
-    "tslib": "^1.12.0",
+    "tslib": "^2.2.0",
     "typescript": "^3.9.2"
   },
   "dependencies": {
     "isomorphic-fetch": "2.2.1",
     "isomorphic-ws": "4.0.1",
     "ws": "^7.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
