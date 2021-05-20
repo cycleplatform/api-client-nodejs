@@ -18,7 +18,8 @@
     "build": "tsdx build",
     "prepublishOnly": "npm run build",
     "test": "tsdx test",
-    "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch"
+    "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG_generated.md -s"
   },
   "peerDependencies": {},
   "repository": {
@@ -33,6 +34,7 @@
     "@types/jest": "^24.0.13",
     "babel-plugin-module-resolver": "^4.0.0",
     "commitizen": "^4.2.4",
+    "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.3.8",
     "prettier": "^2.0.5",
