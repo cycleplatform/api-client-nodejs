@@ -19,7 +19,7 @@
     "prepublishOnly": "npm run build",
     "test": "tsdx test",
     "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG_generated.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "peerDependencies": {},
   "repository": {
