@@ -1,7 +1,13 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-This project adheres to Semantic Versioning(http://semver.org/).
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.10.6-29](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-28...v1.10.6-29) (2021-05-21)
+
+
+### Features
+
+* **resources/images/origin:** add in new registry credentials struct to Dockerfile struct ([96fb105](https://github.com/cycleplatform/api-client-nodejs/commit/96fb105ab249030a57cedcede996087c056afde5))
 
 ## 1.9.6 — 2020-12-30
 
