@@ -43,7 +43,7 @@ export interface AllOrigins {
   "docker-hub": DockerHub;
   "docker-registry": DockerRegistry;
   // "git-repo": Repo;
-  "docker-file": DockerFile;
+  "docker-file": Dockerfile;
 }
 
 export type AllOriginsKeys = keyof AllOrigins;
