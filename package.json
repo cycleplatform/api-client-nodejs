@@ -20,16 +20,8 @@
     "test": "tsdx test",
     "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "release": "np --yolo --any-branch"
+    "release": "standard-version"
   },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true",
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "npx --no-install commitlint --edit "
-    }
-  },
-  "peerDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/cycleplatform/api-client-nodejs"
