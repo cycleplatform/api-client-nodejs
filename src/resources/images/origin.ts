@@ -70,7 +70,8 @@ export interface DockerRegistry extends DockerHub {
 
 export type Dockerfile = DockerfileWithRepo | DockerfileWithTar;
 
-export interface DockerfileRegistryCredentials {
+export interface DockerfileRegistryCredential {
+  url?: string;
   username?: string;
   token?: string;
 }
@@ -80,7 +81,7 @@ interface BaseDockerfile {
   context_dir?: string;
   /** Name of the BuildFile */
   build_file?: string;
-  credentials?: DockerfileRegistryCredentials;
+  credentials?: DockerfileRegistryCredential[];
 }
 
 export interface DockerfileWithRepo extends BaseDockerfile {
