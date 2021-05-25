@@ -12,13 +12,16 @@ export type AccountTopic =
   | "account.state.changed"
   | "account.error"
 
+  // employees
+  | "employee.state.changed"
+  | "employee.error"
+
   // hub
   | "hub.created"
-  | "hub.state.changed"
-  | "hub.error"
 
   // hub memberships
-  | "hub.membership.new"
+  | "hub.membership.state.changed"
+  | "hub.membership.error"
   | "hub.membership.updated"
   | "hub.invite.new"
 

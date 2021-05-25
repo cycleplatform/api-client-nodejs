@@ -68,10 +68,6 @@ export type HubTopic =
   | "dns.zone.record.state.changed"
   | "dns.zone.records.reconfigured"
 
-  // employees
-  | "employee.state.changed"
-  | "employee.error"
-
   // environments
   | "environment.started"
   | "environment.stopped"
@@ -84,10 +80,10 @@ export type HubTopic =
   | "environment.services.lb.ip.acquired"
 
   // hub
-  | "hub.updated"
+  | "hub.activity.new"
   | "hub.state.changed"
   | "hub.error"
-  | "hub.activity.new"
+  | "hub.updated"
 
   // hub api keys
   | "hub.api_key.created"
@@ -99,6 +95,7 @@ export type HubTopic =
   | "hub.membership.state.changed"
   | "hub.membership.error"
   | "hub.membership.updated"
+  | "hub.membership.new"
 
   // images
   | "image.created"
@@ -117,8 +114,8 @@ export type HubTopic =
   | "infrastructure.ips.assignment.error"
 
   // infrastructure ips pool
-  | "infrastructure.ips.pool.state.changed"
-  | "infrastructure.ips.pool.error"
+  | "ips_pool.state.changed"
+  | "ips_pool.error"
 
   // infrastructure server
   | "infrastructure.server.state.changed"
@@ -129,6 +126,23 @@ export type HubTopic =
   // jobs
   | "job.created"
   | "job.state.changed"
+
+  // pipeline
+  | "pipeline.state.changed"
+  | "pipeline.error"
+  | "pipeline.updated"
+  | "pipeline.created"
+
+  // pipeline key
+  | "pipeline.key.state.changed"
+  | "pipeline.key.error"
+  | "pipeline.key.updated"
+  | "pipeline.key.created"
+
+  // pipeline run
+  | "pipeline.run.state.changed"
+  | "pipeline.run.error"
+  | "pipeline.run.created"
 
   // sdn
   | "sdn.network.created"
@@ -147,27 +161,11 @@ export type HubTopic =
   | "stack.created"
   | "stack.updated"
 
-  // builds
+  // stack builds
   | "stack.build.created"
   | "stack.build.state.changed"
   | "stack.build.error"
-  | "stack.build.deployed"
-
-  // pipelines
-  // pipeline
-  | "pipeline.state.changed"
-  | "pipeline.error"
-  | "pipeline.updated"
-  | "pipeline.created"
-  // key
-  | "pipeline.key.state.changed"
-  | "pipeline.key.error"
-  | "pipeline.key.updated"
-  | "pipeline.key.created"
-  // run
-  | "pipeline.run.state.changed"
-  | "pipeline.run.error"
-  | "pipeline.run.created";
+  | "stack.build.deployed";
 
 export type HubNotification = Notification<HubTopic>;
 
