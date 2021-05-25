@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.6-32](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-31...v1.10.6-32) (2021-05-25)
+
+
+### Bug Fixes
+
+* **hub and account notifications:** types now align with api notification pipelines correctly ([c42db2b](https://github.com/cycleplatform/api-client-nodejs/commit/c42db2b67c3b43a0b283fd02d143e548c654657e))
+
 ### [1.10.6-31](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-30...v1.10.6-31) (2021-05-25)
 
 
