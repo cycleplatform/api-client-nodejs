@@ -166,6 +166,10 @@ export const links = {
     telemetry: () => ({
       instances: (id: ResourceId) => `/environments/${id}/telemetry/instances`,
     }),
+    secrets: () => ({
+      collection: (environment: ResourceId) => `/environments/${environment}/secrets`,
+      single: (environment: ResourceId, secret: ResourceId) => `/environments/${environment}/secrets/${secret}`,
+    })
   }),
 
   // Hubs
