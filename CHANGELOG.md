@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.6-31](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-30...v1.10.6-31) (2021-05-25)
+
+
+### Features
+
+* **environment secrets:** initial build out of environment secrets ([f4b931b](https://github.com/cycleplatform/api-client-nodejs/commit/f4b931b5444a24b0d6c3fadc84c6c0d38ba76ada))
+
 ### [1.10.6-30](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-29...v1.10.6-30) (2021-05-24)
 
 
