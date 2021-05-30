@@ -18,7 +18,9 @@
     "build": "tsdx build",
     "prepublishOnly": "npm run build",
     "test": "tsdx test",
-    "publish": "export HUSKY=0 && npm i && np --preview --yolo --any-branch && export HUSKY=1",
+    "np": "np",
+    "publish": "export HUSKY=0 && npm i && npm run np --yolo --any-branch && export HUSKY=1",
+    "publish:preview": "export HUSKY=0 && npm i && npm run np --preview --yolo --any-branch && export HUSKY=1",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
