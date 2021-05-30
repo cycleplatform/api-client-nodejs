@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.6-34](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-33...v1.10.6-34) (2021-05-30)
+
+
+### Bug Fixes
+
+* **stack:** removed accidental tmp code and comments ([ab20634](https://github.com/cycleplatform/api-client-nodejs/commit/ab20634627eb814a622c95a421c0c953c30b242a))
+
 ### [1.10.6-33](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-32...v1.10.6-33) (2021-05-30)
 
 
