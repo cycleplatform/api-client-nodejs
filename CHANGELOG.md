@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.6-33](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-32...v1.10.6-33) (2021-05-30)
+
+
+### Bug Fixes
+
+* **stack spec-v1:** bring image source structure inline with api ([645496b](https://github.com/cycleplatform/api-client-nodejs/commit/645496ba1903c2738e3245c18a2493a8a2b73789))
+
 ### [1.10.6-32](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-31...v1.10.6-32) (2021-05-25)
 
 
