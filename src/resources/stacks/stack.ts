@@ -77,6 +77,11 @@ export type GetSingleParams = BSP;
 export type CreateParams = BCP & Request.PostParams<StackCreateParams>;
 export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
+const tmp: UpdateValues = {
+
+  }
+}
+
 /****************************** Values ******************************/
 
 // TODO: change to CreateValues in v2
@@ -116,3 +121,10 @@ export async function update(params: UpdateParams) {
     target: links.stacks().single(params.id),
   });
 }
+
+curl https://api.dev.cycle.io/v1/stacks/$STACK_ID \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "X-Hub-Id: $HUB_ID" \
+  -H 'Content-Type: application/json' \
+  -d '{"source":{"type": "git-repo", "details": { "branch": $BRANCH_NAME }}}' \
+  -X PATCH

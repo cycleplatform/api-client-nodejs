@@ -1,13 +1,14 @@
-import { Config } from "./config";
-import { SpecImage } from "./image";
+import { Image } from "./image";
+import { Runtime } from "./runtime";
+import { Resources } from "./resources";
 
 export interface TestContainer {
   name: string;
-  image: SpecImage;
+  image: Image;
   config: TestConfig;
 }
 
 interface TestConfig {
-  runtime: Config["runtime"];
-  resources: Config["resources"];
+  runtime: Runtime;
+  resources: Resources;
 }
