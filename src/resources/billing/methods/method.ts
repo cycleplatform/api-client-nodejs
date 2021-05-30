@@ -64,7 +64,7 @@ export interface CreateParams {
   credit_card: {
     name: string;
     number: string;
-    cvv2: string;
+    cvv: string;
     expiration: {
       month: number;
       year: number;

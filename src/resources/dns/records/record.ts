@@ -42,13 +42,16 @@ export interface Record extends Resource {
 export interface RecordFeatures {
   certificate: Certificate | null;
 }
+
 /**
  * TLS certificate information
  */
 export interface Certificate {
   id: ResourceId;
   generated: Time;
+  wildcard_child: boolean;
 }
+
 /**
  * Information about the types of records
  */

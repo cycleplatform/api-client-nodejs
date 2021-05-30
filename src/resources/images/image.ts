@@ -10,10 +10,11 @@ import {
   Bytes,
   UserScope,
   UserIncludes,
+  ContainerIdentifier,
 } from "../../common/structs";
 import { Config } from "./config";
+import { Source as IncludeSource } from "./sources";
 import { Builds, Stack } from "../stacks";
-import { ContainerIdentifier } from "../../common/structs";
 import { Origin } from "./origin";
 
 /****************************** Image Struct ******************************/
@@ -92,6 +93,7 @@ export interface Includes {
   creators: UserIncludes;
   stack_builds: Record<ResourceId, Builds.Build>;
   stacks: Record<ResourceId, Stack>;
+  sources: Record<ResourceId, IncludeSource>;
 }
 
 export type Collection = CollectionDoc<Image, Includes>;

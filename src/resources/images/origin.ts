@@ -43,7 +43,7 @@ export interface AllOrigins {
   "docker-hub": DockerHub;
   "docker-registry": DockerRegistry;
   // "git-repo": Repo;
-  "docker-file": DockerFile;
+  "docker-file": Dockerfile;
 }
 
 export type AllOriginsKeys = keyof AllOrigins;
@@ -68,14 +68,30 @@ export interface DockerRegistry extends DockerHub {
   password?: string;
 }
 
-export interface DockerFile {
-  repo: Repo | null;
+export type Dockerfile = DockerfileWithRepo | DockerfileWithTar;
 
-  /** Directory of where the Dockerfile is located */
-  dir?: string;
+export interface DockerfileRegistryCredential {
+  url?: string;
+  username?: string;
+  token?: string;
+}
 
-  /** Path to the Dockerfile, must begin with a '/' */
-  path: string;
+interface BaseDockerfile {
+  /** Directory of where the BuildFile is located */
+  context_dir?: string;
+  /** Name of the BuildFile */
+  build_file?: string;
+  credentials?: DockerfileRegistryCredential[];
+}
+
+export interface DockerfileWithRepo extends BaseDockerfile {
+  repo?: Repo;
+  targz_url?: never;
+}
+
+export interface DockerfileWithTar extends BaseDockerfile {
+  repo?: never;
+  targz_url?: string;
 }
 
 export interface Repo {

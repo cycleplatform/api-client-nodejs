@@ -15,7 +15,6 @@ import {
 import { ContainerState, Instances, Service } from "../containers";
 import { IPNet } from "../infrastructure/ips";
 import { LoadBalancerService, VPNService, DiscoveryService } from "./services";
-import { Stack } from "../stacks";
 
 export type Collection = CollectionDoc<Environment, EnvironmentIncludes>;
 export type Single = SingleDoc<Environment, EnvironmentIncludes>;
@@ -44,7 +43,6 @@ export interface Environment extends Resource<EnvironmentMeta> {
   state: State<EnvironmentState>;
   events: Events;
   features: Features;
-  stack: StackSummary | null;
   services: Services;
   private_network: PrivateNetwork | null;
 }
@@ -81,12 +79,6 @@ export interface Features {
   legacy_networking: boolean;
 }
 
-/** Information summary for a stack used when deploying the environment */
-export interface StackSummary {
-  id: ResourceId;
-  build_id: ResourceId;
-}
-
 /** Information about the service containers of the environment */
 export interface Services {
   discovery: DiscoveryService | null;
@@ -96,7 +88,6 @@ export interface Services {
 
 export interface EnvironmentIncludes {
   creators: UserIncludes;
-  stacks: Record<ResourceId, Stack>;
 }
 
 export interface EnvironmentMeta {

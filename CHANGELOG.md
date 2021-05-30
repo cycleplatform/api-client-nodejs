@@ -1,7 +1,48 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-This project adheres to Semantic Versioning(http://semver.org/).
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.10.6-34](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-33...v1.10.6-34) (2021-05-30)
+
+
+### Bug Fixes
+
+* **stack:** removed accidental tmp code and comments ([ab20634](https://github.com/cycleplatform/api-client-nodejs/commit/ab20634627eb814a622c95a421c0c953c30b242a))
+
+### [1.10.6-33](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-32...v1.10.6-33) (2021-05-30)
+
+
+### Bug Fixes
+
+* **stack spec-v1:** bring image source structure inline with api ([645496b](https://github.com/cycleplatform/api-client-nodejs/commit/645496ba1903c2738e3245c18a2493a8a2b73789))
+
+### [1.10.6-32](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-31...v1.10.6-32) (2021-05-25)
+
+
+### Bug Fixes
+
+* **hub and account notifications:** types now align with api notification pipelines correctly ([c42db2b](https://github.com/cycleplatform/api-client-nodejs/commit/c42db2b67c3b43a0b283fd02d143e548c654657e))
+
+### [1.10.6-31](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-30...v1.10.6-31) (2021-05-25)
+
+
+### Features
+
+* **environment secrets:** initial build out of environment secrets ([f4b931b](https://github.com/cycleplatform/api-client-nodejs/commit/f4b931b5444a24b0d6c3fadc84c6c0d38ba76ada))
+
+### [1.10.6-30](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-29...v1.10.6-30) (2021-05-24)
+
+
+### Bug Fixes
+
+* **images/origin:** update dockerfile credentials struct ([6f3c680](https://github.com/cycleplatform/api-client-nodejs/commit/6f3c6805eb51614fb4975319b64e6297c48d5035))
+
+### [1.10.6-29](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-28...v1.10.6-29) (2021-05-21)
+
+
+### Features
+
+* **resources/images/origin:** add in new registry credentials struct to Dockerfile struct ([96fb105](https://github.com/cycleplatform/api-client-nodejs/commit/96fb105ab249030a57cedcede996087c056afde5))
 
 ## 1.9.6 — 2020-12-30
 

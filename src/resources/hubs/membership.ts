@@ -59,10 +59,29 @@ export interface Membership extends Resource<MembershipMeta> {
   state: State<MembershipState>;
   invitation: Invitation;
   permissions: MembershipPermissions;
+  preferences: Preferences;
+  cycle?: Cycle;
+  agency?: Agency;
 }
 
 export interface MembershipMeta {
   capabilities: Capability[];
+}
+
+export interface Preferences {
+  notifications: NotificationPreferences;
+}
+
+export interface NotificationPreferences {
+  api_keys: boolean;
+}
+
+export interface Cycle {
+  employee_id: ResourceId;
+}
+
+export interface Agency {
+  id: ResourceId;
 }
 
 export interface MembershipIncludes {
@@ -70,6 +89,8 @@ export interface MembershipIncludes {
   hubs: Record<ResourceId, Hub>;
   accounts: Record<ResourceId, PublicAccount>;
 }
+
+export interface Cycle {}
 
 /**
  * Information on the memberships access to the hubs environments
@@ -100,11 +121,8 @@ export interface Invitation {
     /** The account type */
     type: string;
   };
-  /** The receiving account of the invitation */
-  recipient: {
-    /** The receiving accounts email */
-    email: string;
-  };
+  /** The receiving account email of the invitation */
+  recipient: string;
   events: Events<InvitationEvent>;
 }
 

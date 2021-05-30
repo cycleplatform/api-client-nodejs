@@ -58,7 +58,9 @@ export const links = {
 
   // Changelog
   changelog: () => ({
-    collection: () => "/changelog",
+    single: (id: ResourceId) => `/changelogs/${id}`,
+    collection: () => "/changelogs",
+    tasks: (id: ResourceId) => `/changelogs/${id}/tasks`,
   }),
 
   // Notification Channels
@@ -164,6 +166,10 @@ export const links = {
     telemetry: () => ({
       instances: (id: ResourceId) => `/environments/${id}/telemetry/instances`,
     }),
+    secrets: () => ({
+      collection: (environment: ResourceId) => `/environments/${environment}/secrets`,
+      single: (environment: ResourceId, secret: ResourceId) => `/environments/${environment}/secrets/${secret}`,
+    })
   }),
 
   // Hubs
@@ -258,6 +264,7 @@ export const links = {
     collection: () => `/stacks`,
     single: (id: ResourceId) => `/stacks/${id}`,
     tasks: (id: ResourceId) => `/stacks/${id}/tasks`,
+    buildLookup: (build: ResourceId) => `/stacks/builds/${build}`,
     builds: (stack: ResourceId) => ({
       collection: () => `/stacks/${stack}/builds`,
       single: (id: ResourceId) => `/stacks/${stack}/builds/${id}`,

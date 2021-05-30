@@ -255,6 +255,8 @@ export async function deleteRequest<T = CreatedTask<"delete">>({
       ...{
         method: "DELETE",
         body: value ? JSON.stringify(value) : undefined,
+        credentials:
+          settings && settings.credentials ? settings.credentials : undefined,
       },
     },
   );

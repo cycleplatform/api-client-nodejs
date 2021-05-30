@@ -1,7 +1,6 @@
 import { Token } from "../auth";
 import * as Request from "../common/api/request";
-import { links, Settings } from "../common/api";
-import { connectToSocket } from "../common/api/websocket";
+import { links, Settings, connectToSocket } from "../common/api";
 import { Notification } from "./notification";
 
 /**
@@ -13,20 +12,27 @@ export type AccountTopic =
   | "account.state.changed"
   | "account.error"
 
+  // employees
+  | "employee.state.changed"
+  | "employee.error"
+
   // hub
   | "hub.created"
-  | "hub.state.changed"
-  | "hub.error"
 
   // hub memberships
-  | "hub.membership.new"
+  | "hub.membership.state.changed"
+  | "hub.membership.error"
   | "hub.membership.updated"
   | "hub.invite.new"
 
   // announcements
   | "announcement.created"
   | "announcement.updated"
-  | "announcement.state.changed";
+  | "announcement.state.changed"
+
+  // jobs
+  | "job.created"
+  | "job.state.changed";
 
 export type AccountNotification = Notification<AccountTopic>;
 

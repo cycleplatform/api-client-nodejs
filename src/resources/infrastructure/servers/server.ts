@@ -114,8 +114,61 @@ type BaseCollectionParams = StandardParams<ServerQuery>;
 type BaseSingleDocParams = StandardParams<ServerQuery> & {
   id: ResourceId;
 };
-
 type GetCollectionParams = BaseCollectionParams;
+type GetSingleParams = BaseSingleDocParams;
+type GetTagParams = StandardParams;
+type GetClusterParams = StandardParams;
+type StandardCreateParams = BaseCollectionParams & { value: CreateParams };
+type AdvancedCreateParams = BaseCollectionParams & {
+  value: AdvancedServerCreateValue;
+};
+type UpdateServerParams = BaseSingleDocParams & { value: UpdateParams };
+type RemoveServerParams = BaseSingleDocParams;
+export interface UpdateParams {
+  constraints: Constraints;
+}
+
+export interface ServerCreate {
+  /** "equinix-metal" | "vultr" | "aws" */
+  provider: ProviderIdentifier;
+  /** id of the desired server */
+  model_id: string;
+  /** location id of the desired server */
+  location_id: string;
+  /** number of desired servers of this `model_id` at `location_id` */
+  quantity: number;
+  /** must have equal number of hostnames as quantity */
+  hostnames?: string[];
+}
+
+export interface CreateParams {
+  servers: ServerCreate[];
+  cluster: Cluster;
+}
+
+export interface AdvancedServerCreateValue {
+  servers: AdvancedServerCreate[];
+  cluster: Cluster;
+}
+
+/** */
+export interface AdvancedServerCreate extends ServerCreate {
+  /** an array of provision options */
+  advanced: Advanced[];
+}
+
+export interface Advanced {
+  provision_options?: ProvisionOptions;
+}
+
+/** */
+export interface ProvisionOptions {
+  /** Specific to AWS. Refers the ebs size in GB as an int*/
+  aws_ebs_size?: number;
+  /** If the provider you deploying servers to have a reservation id */
+  reservation_id?: string;
+}
+
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
@@ -123,7 +176,6 @@ export async function getCollection(params: GetCollectionParams) {
   });
 }
 
-type GetSingleParams = BaseSingleDocParams;
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
@@ -131,7 +183,6 @@ export async function getSingle(params: GetSingleParams) {
   });
 }
 
-type GetTagParams = StandardParams;
 export async function getTags(params: GetTagParams) {
   return Request.getRequest<{ data: string[] }>({
     ...params,
@@ -139,7 +190,6 @@ export async function getTags(params: GetTagParams) {
   });
 }
 
-type GetClusterParams = StandardParams;
 export async function getClusters(params: GetClusterParams) {
   return Request.getRequest<{ data: string[] }>({
     ...params,
@@ -147,54 +197,6 @@ export async function getClusters(params: GetClusterParams) {
   });
 }
 
-/**
- * @param provider "equinix-metal" | "vultr" | "aws"
- * @param model_id of the desired server
- * @param location_id location of the desired server
- * @param quantity number of desired servers
- * @param hostnames must have equal number of hostnames as quantity
- */
-export type ServerCreate = {
-  provider: ProviderIdentifier;
-  model_id: string;
-  location_id: string;
-  /** number of desired servers of this model id at location_id */
-  quantity: number;
-  /** must have equal number of hostnames as quantity */
-  hostnames?: string[];
-};
-
-export type CreateParams = {
-  servers: ServerCreate[];
-  cluster: Cluster;
-};
-
-/**
- * @param advanced an array of provision options
- * @param provider "equinix-metal" | "vultr" | "aws"
- * @param model_id of the desired server
- * @param location_id location of the desired server
- * @param quantity number of desired servers
- * @param hostnames must have equal number of hostnames as quantity
- */
-export type AdvancedServerCreate = {
-  advanced: Advanced[];
-} & ServerCreate;
-
-export type Advanced = {
-  provision_options?: ProvisionOptions;
-};
-
-/**
- * @param aws_ebs_size an int in GB
- * @param reservation_id string
- */
-export type ProvisionOptions = {
-  aws_ebs_size?: number;
-  reservation_id?: string;
-};
-
-type StandardCreateParams = BaseCollectionParams & { value: CreateParams };
 export async function create(params: StandardCreateParams) {
   return Request.postRequest<CreatedTask<any>>({
     ...params,
@@ -202,16 +204,13 @@ export async function create(params: StandardCreateParams) {
   });
 }
 
-type AdvancedCreateParams = BaseCollectionParams & {
-  value: AdvancedServerCreate;
-};
 /**
  * Advanced server create allows you to specify reservation ids or if deploying to AWS
  * allows you to specify EBS volume size under the advanced object
  *
  * @see AdvancedServerCreate struct <br/>
  *
- * Example:
+ * @example
  * ```ts
  * servers: [
  *  {
@@ -239,11 +238,6 @@ export async function advancedCreate(params: AdvancedCreateParams) {
   });
 }
 
-export interface UpdateParams {
-  constraints: Constraints;
-}
-
-type UpdateServerParams = BaseSingleDocParams & { value: UpdateParams };
 export async function update(params: UpdateServerParams) {
   return Request.patchRequest<Single>({
     ...params,
@@ -251,9 +245,8 @@ export async function update(params: UpdateServerParams) {
   });
 }
 
-type RemoveServerParams = BaseSingleDocParams;
 export async function remove(params: RemoveServerParams) {
-  return Request.deleteRequest<CreatedTask<"delete">>({
+  return Request.deleteRequest({
     ...params,
     target: links.infrastructure().servers().single(params.id),
   });
