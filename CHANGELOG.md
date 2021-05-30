@@ -2,6 +2,18 @@
 
 ## [1.11.0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-34...v1.11.0) (2021-05-30)
 
+### Bug Fixes
+
+* **images/origin:** update dockerfile credentials struct ([6f3c680](https://github.com/cycleplatform/api-client-nodejs/commit/6f3c6805eb51614fb4975319b64e6297c48d5035))
+* **hub and account notifications:** types now align with api notification pipelines correctly ([c42db2b](https://github.com/cycleplatform/api-client-nodejs/commit/c42db2b67c3b43a0b283fd02d143e548c654657e))
+* **stack spec-v1:** bring image source structure inline with api ([645496b](https://github.com/cycleplatform/api-client-nodejs/commit/645496ba1903c2738e3245c18a2493a8a2b73789))
+* **stack:** removed accidental tmp code and comments ([ab20634](https://github.com/cycleplatform/api-client-nodejs/commit/ab20634627eb814a622c95a421c0c953c30b242a))
+
+### Features
+
+* **resources/images/origin:** add in new registry credentials struct to Dockerfile struct ([96fb105](https://github.com/cycleplatform/api-client-nodejs/commit/96fb105ab249030a57cedcede996087c056afde5))
+* **environment secrets:** initial build out of environment secrets ([f4b931b](https://github.com/cycleplatform/api-client-nodejs/commit/f4b931b5444a24b0d6c3fadc84c6c0d38ba76ada))
+
 ### [1.10.6-34](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-33...v1.10.6-34) (2021-05-30)
 
 ### Bug Fixes
