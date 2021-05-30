@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-34...v1.11.0) (2021-05-30)
+
 ### [1.10.6-34](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-33...v1.10.6-34) (2021-05-30)
 
 
