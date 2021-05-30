@@ -20,8 +20,8 @@
     "test": "tsdx test",
     "np": "np",
     "version": "npm run changelog && git add CHANGELOG.md",
-    "publish": "export HUSKY=0 && npm run np -- --yolo --any-branch && export HUSKY=1",
-    "publish:preview": "export HUSKY=0 && npm run np -- --preview --yolo --any-branch && export HUSKY=1",
+    "pub": "export HUSKY=0 && npm run np -- --yolo --any-branch && export HUSKY=1",
+    "pub:preview": "export HUSKY=0 && npm run np -- --preview --yolo --any-branch && export HUSKY=1",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
