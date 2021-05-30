@@ -1,3 +1,7 @@
+## [1.11.1-0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.0...v1.11.1-0) (2021-05-30)
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
