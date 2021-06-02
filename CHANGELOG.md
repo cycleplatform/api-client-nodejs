@@ -1,3 +1,12 @@
+## [1.11.1-1](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-0...v1.11.1-1) (2021-06-02)
+
+
+### Features
+
+* **stack deploy:** add stack deploy ([e9fb203](https://github.com/cycleplatform/api-client-nodejs/commit/e9fb203e6be2567d4021dbcb9ed34ec17d2ccd00))
+
+
+
 ## [1.11.1-0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.0...v1.11.1-0) (2021-05-30)
 
 ## [1.11.0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-34...v1.11.0) (2021-05-30)
