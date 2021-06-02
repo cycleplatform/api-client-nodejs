@@ -7,7 +7,7 @@ import {
   CollectionDoc,
   CustomEvents, UserIncludes
 } from "../../../common/structs";
-import { ErrorResource, StandardParams, links } from "../../../common/api";
+import { ErrorResource, StandardParams, links, QueryParams } from "../../../common/api";
 import { AllActionKeys } from "../steps";
 import * as Request from "../../../common/api/request";
 import { TriggerKey } from "../trigger-keys";
@@ -58,9 +58,8 @@ export type Step = {
 };
 
 /****************************** Metas, Includes, Docs, Query ******************************/
-
+export type PipelineRunQuery = QueryParams<keyof PipelineRunIncludes>;
 export type Collection = CollectionDoc<Run>;
-
 export interface PipelineRunIncludes {
   creators: UserIncludes;
   keys: Record<ResourceId, TriggerKey>
@@ -68,7 +67,7 @@ export interface PipelineRunIncludes {
 
 /****************************** Params ******************************/
 /** Base Collection Params */
-type BCP = StandardParams & {
+type BCP = StandardParams<PipelineRunQuery> & {
   pipelineId: ResourceId;
 };
 
