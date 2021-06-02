@@ -29,6 +29,7 @@ export type State = StateBase<States>;
 export type States = "live" | "deleting" | "deleted";
 
 /****************************** Metas, Includes, Docs, Query ******************************/
+
 export type Collection = CollectionDoc<TriggerKey>;
 export type Single = SingleDoc<TriggerKey>;
 
