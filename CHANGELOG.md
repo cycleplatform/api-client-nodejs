@@ -1,3 +1,12 @@
+## [1.11.1-3](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-2...v1.11.1-3) (2021-06-02)
+
+
+### Features
+
+* **pipeline run:** add query and update params ([0ed73ef](https://github.com/cycleplatform/api-client-nodejs/commit/0ed73ef2192f673a172854f538549da0ab30c67f))
+
+
+
 ## [1.11.1-2](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-1...v1.11.1-2) (2021-06-02)
 
 
