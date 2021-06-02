@@ -1,3 +1,12 @@
+## [1.11.1-2](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-1...v1.11.1-2) (2021-06-02)
+
+
+### Features
+
+* **pipeline runs:** added creators and keys to `pipeline/<id>/runs` includes ([c19145d](https://github.com/cycleplatform/api-client-nodejs/commit/c19145d9f602fe9b2c8db90f0247dba88d431936))
+
+
+
 ## [1.11.1-1](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-0...v1.11.1-1) (2021-06-02)
 
 
