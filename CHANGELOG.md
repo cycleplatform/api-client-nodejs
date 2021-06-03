@@ -1,3 +1,13 @@
+## [1.11.1-5](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-4...v1.11.1-5) (2021-06-03)
+
+
+### Features
+
+* **environment secrets:** add in upadte and remove functions ([be540db](https://github.com/cycleplatform/api-client-nodejs/commit/be540dba590c78a25bafe5a1f23b7169bcee11fb))
+* **environment secrets:** add in update and remove functions ([abed44c](https://github.com/cycleplatform/api-client-nodejs/commit/abed44cf7b97cf738cbf164551e6e30822a7f577))
+
+
+
 ## [1.11.1-4](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-3...v1.11.1-4) (2021-06-03)
 
 
