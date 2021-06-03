@@ -1,3 +1,12 @@
+## [1.11.1-7](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-6...v1.11.1-7) (2021-06-03)
+
+
+### Features
+
+* **notifications/hubs.ts:** add environment secret notifications ([cb39525](https://github.com/cycleplatform/api-client-nodejs/commit/cb395256a24792045b7e2f8547b038a529baa068))
+
+
+
 ## [1.11.1-6](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-5...v1.11.1-6) (2021-06-03)
 
 
