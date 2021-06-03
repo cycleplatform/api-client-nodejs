@@ -1,3 +1,12 @@
+## [1.11.1-6](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-5...v1.11.1-6) (2021-06-03)
+
+
+### Bug Fixes
+
+* **resources/environments/index.ts:** update exports ([79e2ee2](https://github.com/cycleplatform/api-client-nodejs/commit/79e2ee2c7fe8869a77af5a8e42fd64dd7487e99e))
+
+
+
 ## [1.11.1-5](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-4...v1.11.1-5) (2021-06-03)
 
 
