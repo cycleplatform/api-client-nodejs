@@ -59,7 +59,7 @@ export type Step = {
 
 /****************************** Metas, Includes, Docs, Query ******************************/
 export type PipelineRunQuery = QueryParams<keyof PipelineRunIncludes>;
-export type Collection = CollectionDoc<Run>;
+export type Collection = CollectionDoc<Run, PipelineRunIncludes>;
 export interface PipelineRunIncludes {
   creators: UserIncludes;
   keys: Record<ResourceId, TriggerKey>
