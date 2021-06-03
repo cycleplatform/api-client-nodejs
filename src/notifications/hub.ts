@@ -78,6 +78,9 @@ export type HubTopic =
   | "environment.services.reconfigured"
   | "environment.services.vpn.users.updated"
   | "environment.services.lb.ip.acquired"
+  | "environment.secret.created"
+  | "environment.secret.updated"
+  | "environment.secret.state.changed"
 
   // hub
   | "hub.activity.new"
