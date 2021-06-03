@@ -1,3 +1,12 @@
+## [1.11.1-4](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-3...v1.11.1-4) (2021-06-03)
+
+
+### Bug Fixes
+
+* **pipeline run:** update collection document with includes ([02e93d2](https://github.com/cycleplatform/api-client-nodejs/commit/02e93d2642c619717c60dab536973e6b97b3e252))
+
+
+
 ## [1.11.1-3](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-2...v1.11.1-3) (2021-06-02)
 
 
