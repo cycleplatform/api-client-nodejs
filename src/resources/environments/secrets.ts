@@ -89,16 +89,22 @@ interface BCP extends StandardParams<Query> {
 
 export interface GetCollectionParams extends BCP {}
 export interface GetSingleParams extends BSP {}
+
 export type CreateParams = BCP & Request.PostParams<CreateValues>;
+export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
+export interface RemoveParams extends BSP {}
 
 /****************************** Values ******************************/
+
 export interface CreateValues {
   identifier: string;
   scope: Scope;
   source: Source;
 }
 
-/****************************** Functions ******************************/
+export type UpdateValues = Partial<CreateValues>;
+
+/****************************** Regular Functions ******************************/
 
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
@@ -118,5 +124,21 @@ export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
     target: links.environments().secrets().collection(params.environmentId)
+  })
+}
+
+export async function update(params: UpdateParams) {
+  return Request.patchRequest<Single>({
+      ...params,
+      target: links.environments().secrets().single(params.environmentId, params.id),
+  })
+}
+
+/****************************** Task Functions ******************************/
+
+export async function remove(params: RemoveParams) {
+  return Request.deleteRequest({
+    ...params,
+    target: links.environments().secrets().single(params.environmentId, params.id),
   })
 }
