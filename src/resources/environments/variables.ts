@@ -17,7 +17,7 @@ export interface Variable extends Resource {
   hub_id: ResourceId;
   environment_id: ResourceId;
   identifier: string;
-  secret: boolean;
+  secret?: Secret;
   scope: Scope;
   source: Source;
   state: State;
@@ -106,7 +106,7 @@ export interface CreateValues {
   identifier: string;
   scope: Scope;
   source: Source;
-  secret: boolean;
+  secret?: Secret;
 }
 
 export type UpdateValues = Partial<CreateValues>;
