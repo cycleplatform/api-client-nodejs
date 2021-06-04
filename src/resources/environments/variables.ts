@@ -10,20 +10,21 @@ import {
 import { links, QueryParams, StandardParams } from "../../common/api";
 import * as Request from "../../common/api/request";
 
-/****************************** Secret Struct ******************************/
+/****************************** Variable Struct ******************************/
 
-export interface Secret extends Resource {
+export interface Variable extends Resource {
   creator: UserScope;
   hub_id: ResourceId;
   environment_id: ResourceId;
   identifier: string;
-  source: Source;
+  secret: boolean;
   scope: Scope;
+  source: Source;
   state: State;
   events: Events;
 }
 
-/****************************** Secret Struct Sub Types ******************************/
+/****************************** Variable Struct Sub Types ******************************/
 
 export interface State extends BaseState<States> {}
 
@@ -54,6 +55,11 @@ export interface URLSource {
   url: string;
 }
 
+export interface Secret {
+  encrypted: boolean;
+  hint: string;
+}
+
 export interface Scope {
   access: ScopeAccess;
   containers: ScopeContainers;
@@ -72,8 +78,8 @@ export interface ScopeContainers {
 
 /****************************** Metas, Includes, Docs, Query ******************************/
 
-export type Collection = CollectionDoc<Secret>;
-export type Single = SingleDoc<Secret>;
+export type Collection = CollectionDoc<Variable>;
+export type Single = SingleDoc<Variable>;
 export type Query = QueryParams;
 
 /****************************** Params ******************************/
@@ -100,6 +106,7 @@ export interface CreateValues {
   identifier: string;
   scope: Scope;
   source: Source;
+  secret: boolean;
 }
 
 export type UpdateValues = Partial<CreateValues>;
@@ -109,28 +116,28 @@ export type UpdateValues = Partial<CreateValues>;
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.environments().secrets().collection(params.environmentId)
+    target: links.environments().variables().collection(params.environmentId)
   })
 }
 
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
-    target: links.environments().secrets().single(params.environmentId, params.id)
+    target: links.environments().variables().single(params.environmentId, params.id)
   })
 }
 
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
-    target: links.environments().secrets().collection(params.environmentId)
+    target: links.environments().variables().collection(params.environmentId)
   })
 }
 
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
       ...params,
-      target: links.environments().secrets().single(params.environmentId, params.id),
+      target: links.environments().variables().single(params.environmentId, params.id),
   })
 }
 
@@ -139,6 +146,6 @@ export async function update(params: UpdateParams) {
 export async function remove(params: RemoveParams) {
   return Request.deleteRequest({
     ...params,
-    target: links.environments().secrets().single(params.environmentId, params.id),
+    target: links.environments().variables().single(params.environmentId, params.id),
   })
 }
