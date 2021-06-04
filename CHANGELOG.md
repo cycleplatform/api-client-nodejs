@@ -1,3 +1,12 @@
+## [1.11.1-10](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-9...v1.11.1-10) (2021-06-04)
+
+
+### Bug Fixes
+
+* **resources/environments/variables.ts:** use secrets struct inside of variable and create structs ([549dbe6](https://github.com/cycleplatform/api-client-nodejs/commit/549dbe6e653686ad989730df9d6c80d08e7ef1da))
+
+
+
 ## [1.11.1-9](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-8...v1.11.1-9) (2021-06-04)
 
 
