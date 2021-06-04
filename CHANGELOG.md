@@ -1,3 +1,7 @@
+## [1.11.1-9](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-8...v1.11.1-9) (2021-06-04)
+
+
+
 ## [1.11.1-8](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-7...v1.11.1-8) (2021-06-04)
 
 
