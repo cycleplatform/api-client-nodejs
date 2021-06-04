@@ -75,12 +75,16 @@ export type HubTopic =
   | "environment.updated"
   | "environment.error"
   | "environment.state.changed"
+
+  // environment services
   | "environment.services.reconfigured"
   | "environment.services.vpn.users.updated"
   | "environment.services.lb.ip.acquired"
-  | "environment.secret.created"
-  | "environment.secret.updated"
-  | "environment.secret.state.changed"
+
+  // environment variables
+  | "environment.variable.created"
+  | "environment.variable.updated"
+  | "environment.variable.state.changed"
 
   // hub
   | "hub.activity.new"
