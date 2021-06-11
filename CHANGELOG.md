@@ -1,3 +1,12 @@
+## [1.11.1-11](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-10...v1.11.1-11) (2021-06-11)
+
+
+### Features
+
+* **resources/containers/instances/instance.ts:** export state interface ([a4f74ce](https://github.com/cycleplatform/api-client-nodejs/commit/a4f74ce0a6edeb0d3dbac0626d0078b1446f82c9))
+
+
+
 ## [1.11.1-10](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-9...v1.11.1-10) (2021-06-04)
 
 
