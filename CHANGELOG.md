@@ -1,3 +1,12 @@
+## [1.11.1-12](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-11...v1.11.1-12) (2021-06-12)
+
+
+### Features
+
+* **src/resources/environments/environment.ts:** added export of containers meta ([592813f](https://github.com/cycleplatform/api-client-nodejs/commit/592813f71de3ec69287d66054d2625ba2ecd40b8))
+
+
+
 ## [1.11.1-11](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-10...v1.11.1-11) (2021-06-11)
 
 
