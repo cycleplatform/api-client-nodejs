@@ -1,3 +1,12 @@
+## [1.11.1-13](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-12...v1.11.1-13) (2021-06-15)
+
+
+### Features
+
+* **src/resources/hubs/activity.ts:** add container health check notification ([1f69130](https://github.com/cycleplatform/api-client-nodejs/commit/1f69130a3b7f87d7875f72f97ca351adaf7f9da6))
+
+
+
 ## [1.11.1-12](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-11...v1.11.1-12) (2021-06-12)
 
 
