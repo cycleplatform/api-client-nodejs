@@ -1,3 +1,12 @@
+## [1.11.1-14](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-13...v1.11.1-14) (2021-06-17)
+
+
+### Features
+
+* **src/common/api/error.ts:** added `403.wrong_hub` to `ErrorCode` type ([7dea51d](https://github.com/cycleplatform/api-client-nodejs/commit/7dea51d188de5b11f0cbc78aab93e6c5198a20f8))
+
+
+
 ## [1.11.1-13](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-12...v1.11.1-13) (2021-06-15)
 
 
