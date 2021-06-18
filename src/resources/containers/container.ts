@@ -81,15 +81,9 @@ export interface Container extends Resource<ContainerMetas> {
 
 export interface ContainerIncludes {
   creators?: UserIncludes;
-  images?: {
-    [key: string]: Image;
-  };
-  stack_builds?: {
-    [key: string]: Builds.Build;
-  };
-  stacks?: {
-    [key: string]: Stack;
-  };
+  images?: Record<ResourceId, Image>
+  stack_builds?: Record<ResourceId, Builds.BuildInclude>;
+  stacks?: Record<ResourceId, Stack>
   environments?: Record<ResourceId, Environment>;
 }
 

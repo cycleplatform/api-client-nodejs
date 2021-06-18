@@ -91,7 +91,7 @@ export interface Metas {
 
 export interface Includes {
   creators: UserIncludes;
-  stack_builds: Record<ResourceId, Builds.Build>;
+  stack_builds: Record<ResourceId, Builds.BuildInclude>;
   stacks: Record<ResourceId, Stack>;
   sources: Record<ResourceId, IncludeSource>;
 }
