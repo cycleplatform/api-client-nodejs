@@ -1,3 +1,13 @@
+## [1.11.1-15](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-14...v1.11.1-15) (2021-06-18)
+
+
+### Features
+
+* **src/resources/hubs/capability.ts:** update and add stack capabilities ([3e72c6c](https://github.com/cycleplatform/api-client-nodejs/commit/3e72c6cdd24578d5076db31ca9559bfeecb87a0e))
+* **src/resources/stacks/builds/build.ts:** add new struct for build includes ([2ac5c15](https://github.com/cycleplatform/api-client-nodejs/commit/2ac5c15dcc5c9fb912482fa0e1fd5dbfc8b980d4))
+
+
+
 ## [1.11.1-14](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-13...v1.11.1-14) (2021-06-17)
 
 
