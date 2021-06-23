@@ -1,3 +1,12 @@
+## [1.11.1-16](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-15...v1.11.1-16) (2021-06-23)
+
+
+### Bug Fixes
+
+* **resources/stacks/builds/build.ts:** incorrect struct for `git_commit` ([1ea6118](https://github.com/cycleplatform/api-client-nodejs/commit/1ea61189bdaa9416c4db28e9da6d07e63e0935cf))
+
+
+
 ## [1.11.1-15](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-14...v1.11.1-15) (2021-06-18)
 
 
