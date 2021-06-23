@@ -75,17 +75,15 @@ export interface RepoVersion {
 }
 
 export interface GitCommit {
-  id: string;
+  hash: string;
   message: string;
-  timestamp: Time;
-  url: string;
-  author: {
-    name: string;
-    email: string;
-  };
-  added: string[];
-  modified: string[];
-  removed: string[];
+  time: Time;
+  author: GitCommitAuthor;
+}
+
+export interface GitCommitAuthor {
+  name: string;
+  email: string;
 }
 
 export interface Instructions {
