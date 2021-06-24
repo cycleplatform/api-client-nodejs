@@ -145,11 +145,12 @@ export type EventType =
 
   // dns records
   | "dns.zone.record.cert.generate.auto"
-  | "dns.zone.record.delete"
   | "dns.zone.record.cert.generate"
-  | "dns.zone.record.task.delete"
+  | "dns.zone.record.delete"
   | "dns.zone.record.update"
   | "dns.zone.record.create"
+  | "dns.zone.record.task.delete"
+  | "dns.zone.record.task.cert.generate"
 
   // stacks
   | "stack.task.delete"
