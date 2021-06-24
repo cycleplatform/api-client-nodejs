@@ -54,9 +54,7 @@ export type Capability =
   | "containers-instances-migrate"
 
   // stacks
-  | "stacks-create"
-  | "stacks-update"
-  | "stacks-delete"
+  | "stacks-manage"
   | "stacks-view"
   | "stacks-builds-manage"
 
