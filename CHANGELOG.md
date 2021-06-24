@@ -1,3 +1,12 @@
+## [1.11.1-17](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-16...v1.11.1-17) (2021-06-24)
+
+
+### Features
+
+* **src/resources/hubs/activity.ts:** add activity item `dns.zone.record.task.cert.generate` ([b55f5de](https://github.com/cycleplatform/api-client-nodejs/commit/b55f5de5eae0f69d17b61c248c8645469794c1a1))
+
+
+
 ## [1.11.1-16](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-15...v1.11.1-16) (2021-06-23)
 
 
