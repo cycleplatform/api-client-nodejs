@@ -51,7 +51,7 @@ export interface Hub extends Resource<HubMetas> {
   state: State<HubState>;
   integrations: Integrations;
   providers: Providers;
-  webhooks: HubWebhook;
+  webhooks: HubWebhooks;
   billing: BillingProfile | null;
 }
 
@@ -75,7 +75,7 @@ export interface Plans {
   support_id: ResourceId;
 }
 
-export type HubWebhook = {
+export interface HubWebhooks {
   server_deployed: Webhook | null;
 };
 
@@ -85,8 +85,9 @@ export interface HubMetas {
 
 export interface CreateParams {
   name: string;
-  integrations?: Hub["integrations"];
+  integrations?: Integrations;
   providers: Partial<Providers>;
+  webhooks?: HubWebhooks
 }
 
 export type UpdateParams = Partial<CreateParams>;
@@ -128,14 +129,6 @@ export async function create(params: CreateHubParams) {
 
 type UpdateHubParams = BaseSingleDocParams & { value: UpdateParams };
 export async function update(params: UpdateHubParams) {
-  return Request.patchRequest<Single>({
-    ...params,
-    target: links.hubs().single(),
-  });
-}
-
-type UpdateWithWebhookParams = BaseSingleDocParams & { value: HubWebhook };
-export async function updateHubWithWebhook(params: UpdateWithWebhookParams) {
   return Request.patchRequest<Single>({
     ...params,
     target: links.hubs().single(),
