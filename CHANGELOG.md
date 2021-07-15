@@ -1,3 +1,12 @@
+## [1.11.1-19](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-18...v1.11.1-19) (2021-07-15)
+
+
+### Bug Fixes
+
+* **src/resources/hubs/hub.ts:** webhooks now can be updated via standard patch req ([3612785](https://github.com/cycleplatform/api-client-nodejs/commit/3612785521420edbd06123ac45ed3cba27604ecc))
+
+
+
 ## [1.11.1-18](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-17...v1.11.1-18) (2021-07-01)
 
 
