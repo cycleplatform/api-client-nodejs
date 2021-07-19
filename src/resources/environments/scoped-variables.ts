@@ -10,9 +10,9 @@ import {
 import { links, QueryParams, StandardParams } from "../../common/api";
 import * as Request from "../../common/api/request";
 
-/****************************** Variable Struct ******************************/
+/****************************** Scoped Variable Struct ******************************/
 
-export interface Variable extends Resource {
+export interface ScopedVariable extends Resource {
   creator: UserScope;
   hub_id: ResourceId;
   environment_id: ResourceId;
@@ -78,8 +78,8 @@ export interface ScopeContainers {
 
 /****************************** Metas, Includes, Docs, Query ******************************/
 
-export type Collection = CollectionDoc<Variable>;
-export type Single = SingleDoc<Variable>;
+export type Collection = CollectionDoc<ScopedVariable>;
+export type Single = SingleDoc<ScopedVariable>;
 export type Query = QueryParams;
 
 /****************************** Params ******************************/
@@ -116,28 +116,28 @@ export type UpdateValues = Partial<CreateValues>;
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.environments().variables().collection(params.environmentId)
+    target: links.environments().variables(params.environmentId).collection()
   })
 }
 
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
-    target: links.environments().variables().single(params.environmentId, params.id)
+    target: links.environments().variables(params.environmentId).single(params.id)
   })
 }
 
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
-    target: links.environments().variables().collection(params.environmentId)
+    target: links.environments().variables(params.environmentId).collection()
   })
 }
 
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
       ...params,
-      target: links.environments().variables().single(params.environmentId, params.id),
+      target: links.environments().variables(params.environmentId).single(params.id),
   })
 }
 
@@ -146,6 +146,6 @@ export async function update(params: UpdateParams) {
 export async function remove(params: RemoveParams) {
   return Request.deleteRequest({
     ...params,
-    target: links.environments().variables().single(params.environmentId, params.id),
+    target: links.environments().variables(params.environmentId).single(params.id),
   })
 }
