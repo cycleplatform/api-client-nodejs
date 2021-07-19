@@ -1,3 +1,12 @@
+## [1.11.1-20](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-19...v1.11.1-20) (2021-07-19)
+
+
+### Bug Fixes
+
+* **environment variables name change:** environment variables has changed to scoped varibales ([a55f719](https://github.com/cycleplatform/api-client-nodejs/commit/a55f71955dcdee9f4191c45383ff90d73fdfc37b))
+
+
+
 ## [1.11.1-19](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-18...v1.11.1-19) (2021-07-15)
 
 
