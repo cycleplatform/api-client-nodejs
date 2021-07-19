@@ -82,10 +82,10 @@ export type HubTopic =
   | "environment.services.vpn.users.updated"
   | "environment.services.lb.ip.acquired"
 
-  // environment variables
-  | "environment.variable.created"
-  | "environment.variable.updated"
-  | "environment.variable.state.changed"
+  // environment scoped variables
+  | "environment.scoped-variable.created"
+  | "environment.scoped-variable.updated"
+  | "environment.scoped-variable.state.changed"
 
   // hub
   | "hub.activity.new"
