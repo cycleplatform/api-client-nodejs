@@ -1,3 +1,12 @@
+## [1.11.1-21](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-20...v1.11.1-21) (2021-07-19)
+
+
+### Bug Fixes
+
+* **src/notifications/hub.ts:** `environment.variable.*` -> `environment.scoped-variable.*` ([23d15fd](https://github.com/cycleplatform/api-client-nodejs/commit/23d15fd054f8145bd7727e0a506ad084b88658fc))
+
+
+
 ## [1.11.1-20](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-19...v1.11.1-20) (2021-07-19)
 
 
