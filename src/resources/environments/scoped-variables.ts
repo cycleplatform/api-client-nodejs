@@ -17,7 +17,7 @@ export interface ScopedVariable extends Resource {
   hub_id: ResourceId;
   environment_id: ResourceId;
   identifier: string;
-  secret?: Secret;
+  secret: Secret | null;
   scope: Scope;
   source: Source;
   state: State;
@@ -57,7 +57,7 @@ export interface URLSource {
 
 export interface Secret {
   encrypted: boolean;
-  hint: string;
+  hint?: string;
 }
 
 export interface Scope {
