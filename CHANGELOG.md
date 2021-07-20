@@ -1,3 +1,12 @@
+## [1.11.1-24](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-23...v1.11.1-24) (2021-07-20)
+
+
+### Bug Fixes
+
+* **src/resources/environments/scoped-variables.ts:** bring scoped variables struct into spec ([588d5ca](https://github.com/cycleplatform/api-client-nodejs/commit/588d5cae195604fcf9599edc954e640c392261b2))
+
+
+
 ## [1.11.1-23](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-22...v1.11.1-23) (2021-07-20)
 
 
