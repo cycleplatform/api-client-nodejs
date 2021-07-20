@@ -116,28 +116,28 @@ export type UpdateValues = Partial<CreateValues>;
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.environments().variables(params.environmentId).collection()
+    target: links.environments().scopedVariables(params.environmentId).collection()
   })
 }
 
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
-    target: links.environments().variables(params.environmentId).single(params.id)
+    target: links.environments().scopedVariables(params.environmentId).single(params.id)
   })
 }
 
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
-    target: links.environments().variables(params.environmentId).collection()
+    target: links.environments().scopedVariables(params.environmentId).collection()
   })
 }
 
 export async function update(params: UpdateParams) {
   return Request.patchRequest<Single>({
       ...params,
-      target: links.environments().variables(params.environmentId).single(params.id),
+      target: links.environments().scopedVariables(params.environmentId).single(params.id),
   })
 }
 
@@ -146,6 +146,6 @@ export async function update(params: UpdateParams) {
 export async function remove(params: RemoveParams) {
   return Request.deleteRequest({
     ...params,
-    target: links.environments().variables(params.environmentId).single(params.id),
+    target: links.environments().scopedVariables(params.environmentId).single(params.id),
   })
 }
