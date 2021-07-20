@@ -1,3 +1,12 @@
+## [1.11.1-22](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-21...v1.11.1-22) (2021-07-20)
+
+
+### Bug Fixes
+
+* **src/common/api/links.ts:** update scoped variables routes ([43afc40](https://github.com/cycleplatform/api-client-nodejs/commit/43afc4040a173b398a53008a889e7b4feb09bb2f))
+
+
+
 ## [1.11.1-21](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-20...v1.11.1-21) (2021-07-19)
 
 
