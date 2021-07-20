@@ -1,3 +1,12 @@
+## [1.11.1-23](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-22...v1.11.1-23) (2021-07-20)
+
+
+### Bug Fixes
+
+* **src/resourcex/envurionments/scoped-variables.ts:** links fix ([7c5dc42](https://github.com/cycleplatform/api-client-nodejs/commit/7c5dc4257db8c2dad80e265d86b176a9be4ace6f))
+
+
+
 ## [1.11.1-22](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-21...v1.11.1-22) (2021-07-20)
 
 
