@@ -13,6 +13,11 @@ export interface Runtime {
   rlimits?: Record<string, RLimit>;
   privileged: boolean;
   capabilities?: BaseCapabilities[] | PrivilegedCapabilities[];
+  rootfs?: RootFS;
+}
+
+export interface RootFS {
+  readonly: boolean;
 }
 
 export interface RuntimeCommand {
