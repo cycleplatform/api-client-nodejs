@@ -1,3 +1,12 @@
+## [1.11.1-25](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-24...v1.11.1-25) (2021-07-26)
+
+
+### Features
+
+* **src/resources/stacks/spec/v1/runtime.ts:** add rootfs options to runtime struct ([b0d8fd0](https://github.com/cycleplatform/api-client-nodejs/commit/b0d8fd02cfcd64f5abe246d6db1170034c774fc1))
+
+
+
 ## [1.11.1-24](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-23...v1.11.1-24) (2021-07-20)
 
 
