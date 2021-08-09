@@ -17,6 +17,7 @@ export interface LetsEncrypt {
 
 export interface Webhooks {
   events: Events;
+  config: string;
 }
 
 export interface Events {
