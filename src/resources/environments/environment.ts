@@ -93,24 +93,26 @@ export interface EnvironmentIncludes {
 export interface EnvironmentMeta {
   containers_count?: StatefulCounts<ContainerState>;
   instances_count?: StatefulCounts<Instances.InstanceState>;
-  containers?: {
+  containers?: EnvironmentContainerMeta[];
+}
+
+export interface EnvironmentContainerMeta {
+  id: ResourceId;
+  name: string;
+  state: State<ContainerState> & {
+    desired: ContainerState;
+  };
+  image: {
     id: ResourceId;
-    name: string;
-    state: State<ContainerState> & {
-      desired: ContainerState;
-    };
-    image: {
-      id: ResourceId;
-      service: Service | null;
-    };
-    environment: {
-      id: ResourceId;
-      cluster: string;
-      container_subnet?: string;
-      ipv6?: IPNet;
-      legacy: Legacy | null;
-    };
-  }[];
+    service: Service | null;
+  };
+  environment: {
+    id: ResourceId;
+    cluster: string;
+    container_subnet?: string;
+    ipv6?: IPNet;
+    legacy: Legacy | null;
+  };
 }
 
 /** Information for creating an environment */

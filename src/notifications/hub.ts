@@ -51,6 +51,7 @@ export type HubTopic =
   | "container.instance.error"
   | "container.instances.reconfigured"
   | "container.instance.migration.update"
+  | "container.instance.health.status.changed"
 
   // dns certificate
   | "dns.certificate.state.changed"
@@ -75,9 +76,16 @@ export type HubTopic =
   | "environment.updated"
   | "environment.error"
   | "environment.state.changed"
+
+  // environment services
   | "environment.services.reconfigured"
   | "environment.services.vpn.users.updated"
   | "environment.services.lb.ip.acquired"
+
+  // environment scoped variables
+  | "environment.scoped-variable.created"
+  | "environment.scoped-variable.updated"
+  | "environment.scoped-variable.state.changed"
 
   // hub
   | "hub.activity.new"

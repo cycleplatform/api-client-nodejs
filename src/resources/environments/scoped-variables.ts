@@ -10,20 +10,21 @@ import {
 import { links, QueryParams, StandardParams } from "../../common/api";
 import * as Request from "../../common/api/request";
 
-/****************************** Secret Struct ******************************/
+/****************************** Scoped Variable Struct ******************************/
 
-export interface Secret extends Resource {
+export interface ScopedVariable extends Resource {
   creator: UserScope;
   hub_id: ResourceId;
   environment_id: ResourceId;
   identifier: string;
-  source: Source;
+  secret: Secret | null;
   scope: Scope;
+  source: Source;
   state: State;
   events: Events;
 }
 
-/****************************** Secret Struct Sub Types ******************************/
+/****************************** Variable Struct Sub Types ******************************/
 
 export interface State extends BaseState<States> {}
 
@@ -54,6 +55,11 @@ export interface URLSource {
   url: string;
 }
 
+export interface Secret {
+  encrypted: boolean;
+  hint?: string;
+}
+
 export interface Scope {
   access: ScopeAccess;
   containers: ScopeContainers;
@@ -72,8 +78,8 @@ export interface ScopeContainers {
 
 /****************************** Metas, Includes, Docs, Query ******************************/
 
-export type Collection = CollectionDoc<Secret>;
-export type Single = SingleDoc<Secret>;
+export type Collection = CollectionDoc<ScopedVariable>;
+export type Single = SingleDoc<ScopedVariable>;
 export type Query = QueryParams;
 
 /****************************** Params ******************************/
@@ -89,34 +95,57 @@ interface BCP extends StandardParams<Query> {
 
 export interface GetCollectionParams extends BCP {}
 export interface GetSingleParams extends BSP {}
+
 export type CreateParams = BCP & Request.PostParams<CreateValues>;
+export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
+export interface RemoveParams extends BSP {}
 
 /****************************** Values ******************************/
+
 export interface CreateValues {
   identifier: string;
   scope: Scope;
   source: Source;
+  secret?: Secret;
 }
 
-/****************************** Functions ******************************/
+export type UpdateValues = Partial<CreateValues>;
+
+/****************************** Regular Functions ******************************/
 
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
     ...params,
-    target: links.environments().secrets().collection(params.environmentId)
+    target: links.environments().scopedVariables(params.environmentId).collection()
   })
 }
 
 export async function getSingle(params: GetSingleParams) {
   return Request.getRequest<Single>({
     ...params,
-    target: links.environments().secrets().single(params.environmentId, params.id)
+    target: links.environments().scopedVariables(params.environmentId).single(params.id)
   })
 }
 
 export async function create(params: CreateParams) {
   return Request.postRequest<Single>({
     ...params,
-    target: links.environments().secrets().collection(params.environmentId)
+    target: links.environments().scopedVariables(params.environmentId).collection()
+  })
+}
+
+export async function update(params: UpdateParams) {
+  return Request.patchRequest<Single>({
+      ...params,
+      target: links.environments().scopedVariables(params.environmentId).single(params.id),
+  })
+}
+
+/****************************** Task Functions ******************************/
+
+export async function remove(params: RemoveParams) {
+  return Request.deleteRequest({
+    ...params,
+    target: links.environments().scopedVariables(params.environmentId).single(params.id),
   })
 }

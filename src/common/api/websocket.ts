@@ -31,11 +31,13 @@ export async function connectToSocket<T>({
   }
 
   if (onMessage) {
+    // @ts-ignore
     ws.onmessage = (e: MessageEvent) => {
       const payload: T = noJsonDecode ? e.data : JSON.parse(e.data as string);
       onMessage(payload);
     };
   }
 
+  // @ts-ignore
   return { ok: true, value: ws as WebSocket };
 }

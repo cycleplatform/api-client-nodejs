@@ -46,6 +46,17 @@ export interface Build extends Resource<BuildMetas> {
   state: State<BuildState>;
 }
 
+// Includes for builds do not have the build spec
+export interface BuildInclude extends Resource<BuildMetas> {
+  stack_id: ResourceId;
+  hub_id: ResourceId;
+  about: About;
+  instructions: Instructions;
+  events: StandardEvents;
+  state: State<BuildState>;
+}
+
+
 export interface About {
   version: string;
   description: string;
@@ -64,17 +75,15 @@ export interface RepoVersion {
 }
 
 export interface GitCommit {
-  id: string;
+  hash: string;
   message: string;
-  timestamp: Time;
-  url: string;
-  author: {
-    name: string;
-    email: string;
-  };
-  added: string[];
-  modified: string[];
-  removed: string[];
+  time: Time;
+  author: GitCommitAuthor;
+}
+
+export interface GitCommitAuthor {
+  name: string;
+  email: string;
 }
 
 export interface Instructions {

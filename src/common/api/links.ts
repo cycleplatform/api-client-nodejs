@@ -166,9 +166,9 @@ export const links = {
     telemetry: () => ({
       instances: (id: ResourceId) => `/environments/${id}/telemetry/instances`,
     }),
-    secrets: () => ({
-      collection: (environment: ResourceId) => `/environments/${environment}/secrets`,
-      single: (environment: ResourceId, secret: ResourceId) => `/environments/${environment}/secrets/${secret}`,
+    scopedVariables: (environment: ResourceId) => ({
+      collection: () => `/environments/${environment}/scoped-variables`,
+      single: (scopedVariableId: ResourceId) => `/environments/${environment}/scoped-variables/${scopedVariableId}`,
     })
   }),
 

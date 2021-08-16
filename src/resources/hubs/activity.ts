@@ -76,6 +76,7 @@ export type EventType =
   | "hub.create"
   | "hub.images.prune"
   | "hub.task.images.prune"
+
   // environments
   | "environment.initialize"
   | "environment.start"
@@ -87,10 +88,12 @@ export type EventType =
   | "environment.task.delete"
   | "environment.update"
   | "environment.create"
+
   // environment services
   | "environment.services.discovery.task.reconfigure"
   | "environment.services.lb.task.reconfigure"
   | "environment.services.vpn.task.reconfigure"
+
   // images
   | "image.import"
   | "image.task.import"
@@ -98,6 +101,7 @@ export type EventType =
   | "image.create"
   | "image.delete"
   | "image.task.delete"
+
   // image sources
   | "image.source.create"
   | "image.source.update"
@@ -120,6 +124,7 @@ export type EventType =
   | "container.task.scale"
   | "container.delete"
   | "container.task.delete"
+
   // instances
   | "container.instance.error"
   | "container.instance.sftp.login"
@@ -128,6 +133,7 @@ export type EventType =
   | "container.instance.delete"
   | "container.instances.delete"
   | "container.instances.create"
+  | "container.instance.healthcheck.restarted"
 
   // dns zones
   | "dns.zone.task.verify"
@@ -136,18 +142,22 @@ export type EventType =
   | "dns.zone.create"
   | "dns.zone.verify"
   | "dns.zone.delete"
+
   // dns records
   | "dns.zone.record.cert.generate.auto"
-  | "dns.zone.record.delete"
   | "dns.zone.record.cert.generate"
-  | "dns.zone.record.task.delete"
+  | "dns.zone.record.delete"
   | "dns.zone.record.update"
   | "dns.zone.record.create"
+  | "dns.zone.record.task.delete"
+  | "dns.zone.record.task.cert.generate"
+
   // stacks
   | "stack.task.delete"
   | "stack.update"
   | "stack.create"
   | "stack.task.prune"
+
   // stack builds
   | "stack.build.create"
   | "stack.build.generate"
@@ -155,6 +165,7 @@ export type EventType =
   | "stack.build.delete"
   | "stack.build.task.generate"
   | "stack.build.task.delete"
+
   // servers
   | "infrastructure.server.task.delete"
   | "infrastructure.server.task.restart"
@@ -167,34 +178,42 @@ export type EventType =
   | "infrastructure.server.services.sftp.lockdown.auto"
   | "infrastructure.server.reconfigure.features"
   | "infrastructure.server.task.reconfigure.features"
+
   // sdn
   | "sdn.network.task.delete"
   | "sdn.network.update"
   | "sdn.network.create"
   | "sdn.network.task.reconfigure"
+
   // ip pools
   | "infrastructure.ips.pool.task.delete"
+
   // orders
   | "billing.order.task.confirm"
   | "billing.order.confirm"
+
   // invoices
   | "billing.invoice.task.void"
   | "billing.invoice.task.credit"
   | "billing.invoice.task.refund"
   | "billing.invoice.task.pay"
   | "billing.invoice.pay"
+
   // methods
   | "billing.method.update"
   | "billing.method.create"
   | "billing.method.delete"
   | "billing.method.task.delete"
+
   // api keys
   | "hub.apikey.create"
   | "hub.apikey.update"
   | "hub.apikey.delete"
+
   // hub membership
   | "hub.membership.create"
   | "hub.membership.delete"
+
   // pipelines
   | "pipeline.update"
   | "pipeline.task.delete"
@@ -202,6 +221,7 @@ export type EventType =
   | "pipeline.create"
   | "pipeline.task.trigger"
   | "pipeline.trigger"
+
   // pipeline trigger keys
   | "pipeline.key.update"
   | "pipeline.key.delete"

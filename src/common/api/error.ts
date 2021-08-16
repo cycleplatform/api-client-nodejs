@@ -52,6 +52,7 @@ export type ErrorCode =
   | "403.2fa_failed"
   | "403.new_application_capabilities"
   | "403.tier_restricted"
+  | "403.wrong_hub"
 
   // 404
   | "404.hub"

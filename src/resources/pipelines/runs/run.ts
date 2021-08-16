@@ -5,11 +5,12 @@ import {
   State as StateBase,
   Time,
   CollectionDoc,
-  CustomEvents,
+  CustomEvents, UserIncludes
 } from "../../../common/structs";
-import { ErrorResource, StandardParams, links } from "../../../common/api";
+import { ErrorResource, StandardParams, links, QueryParams } from "../../../common/api";
 import { AllActionKeys } from "../steps";
 import * as Request from "../../../common/api/request";
+import { TriggerKey } from "../trigger-keys";
 
 /****************************** Run Struct ******************************/
 export type Run = Resource & {
@@ -57,12 +58,16 @@ export type Step = {
 };
 
 /****************************** Metas, Includes, Docs, Query ******************************/
-
-export type Collection = CollectionDoc<Run>;
+export type PipelineRunQuery = QueryParams<keyof PipelineRunIncludes>;
+export type Collection = CollectionDoc<Run, PipelineRunIncludes>;
+export interface PipelineRunIncludes {
+  creators: UserIncludes;
+  keys: Record<ResourceId, TriggerKey>
+}
 
 /****************************** Params ******************************/
 /** Base Collection Params */
-type BCP = StandardParams & {
+type BCP = StandardParams<PipelineRunQuery> & {
   pipelineId: ResourceId;
 };
 

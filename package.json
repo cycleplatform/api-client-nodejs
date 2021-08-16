@@ -1,13 +1,19 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.11.0",
+  "version": "1.11.1-26",
   "description": "Cycle API Client",
+  "author": "Petrichor, Inc.",
+  "license": "Apache-2.0",
   "main": "dist/index.js",
   "umd:main": "dist/node-api-client.umd.production.js",
   "module": "dist/node-api-client.es.production.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "cycleplatform",
+    "cycle"
   ],
   "publishConfig": {
     "access": "public",
@@ -18,21 +24,22 @@
     "build": "tsdx build",
     "prepublishOnly": "npm run build",
     "test": "tsdx test",
-    "np-pub": "rm -rf node_modules && npm i && np --yolo --any-branch",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "release": "standard-version"
+    "np": "np",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "pub": "export HUSKY=0 && npm run np -- --yolo --any-branch && export HUSKY=1",
+    "pub:test": "export HUSKY=0 && npm run np -- --preview --yolo --any-branch && export HUSKY=1",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/cycleplatform/api-client-nodejs"
   },
-  "author": "Petrichor, Inc.",
-  "license": "Apache-2.0",
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@types/jest": "^24.0.13",
-    "babel-plugin-module-resolver": "^4.0.0",
+    "@types/jest": "^26.0.23",
+    "@types/ws": "^7.4.4",
+    "babel-plugin-module-resolver": "^4.1.0",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
@@ -40,9 +47,9 @@
     "np": "^7.5.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^3.1.0",
-    "tsdx": "^0.13.2",
+    "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
-    "typescript": "^3.9.2"
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "isomorphic-fetch": "2.2.1",

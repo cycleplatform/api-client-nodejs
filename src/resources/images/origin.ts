@@ -122,7 +122,7 @@ export interface HTTPAuth {
 
 export interface SSHAuth {
   username: string;
-  passphrase: string;
+  passphrase?: string;
   private_key: string;
 }
 

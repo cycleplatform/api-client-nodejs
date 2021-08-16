@@ -16,7 +16,7 @@ import {
   Resource,
   SingleDoc,
   ResourceId,
-  State,
+  State as BaseState,
   Events,
   UserScope,
   Includes,
@@ -88,15 +88,16 @@ export interface Instance extends Resource<InstanceMetas> {
   migration: Migration | null;
   purge_time?: Time;
   service: Service | null;
-  state: State<InstanceState> & {
-    /** Information about the health of the instance */
-    health: {
-      /** A boolean where true means the instance appears healthy */
-      healthy: boolean;
-      updated: Time;
-    } | null;
-  };
+  state: State;
   events: Events<InstanceEvent>;
+}
+
+export interface State extends BaseState<InstanceState> {
+  health?: {
+    /** A boolean where true means the instance appears healthy */
+    healthy: boolean;
+    updated: Time;
+  }
 }
 
 /**

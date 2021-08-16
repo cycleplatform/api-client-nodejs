@@ -1,7 +1,7 @@
 import { Webhook } from "../../../../common/structs";
 
 export interface Integrations {
-  events?: Events;
+  webhooks?: Webhooks;
   lets_encrypt?: LetsEncrypt;
   files?: File[];
 }
@@ -13,6 +13,11 @@ export interface LetsEncrypt {
   key_path?: string;
   bundle_path?: string;
   additional_certs_path?: string;
+}
+
+export interface Webhooks {
+  events?: Events;
+  config?: Webhook;
 }
 
 export interface Events {

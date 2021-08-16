@@ -1,11 +1,236 @@
-# Changelog
+## [1.11.1-26](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-25...v1.11.1-26) (2021-08-16)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+
+## [1.11.1-25](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-24...v1.11.1-25) (2021-07-26)
+
+
+### Features
+
+* **src/resources/stacks/spec/v1/runtime.ts:** add rootfs options to runtime struct ([b0d8fd0](https://github.com/cycleplatform/api-client-nodejs/commit/b0d8fd02cfcd64f5abe246d6db1170034c774fc1))
+
+
+
+## [1.11.1-24](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-23...v1.11.1-24) (2021-07-20)
+
+
+### Bug Fixes
+
+* **src/resources/environments/scoped-variables.ts:** bring scoped variables struct into spec ([588d5ca](https://github.com/cycleplatform/api-client-nodejs/commit/588d5cae195604fcf9599edc954e640c392261b2))
+
+
+
+## [1.11.1-23](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-22...v1.11.1-23) (2021-07-20)
+
+
+### Bug Fixes
+
+* **src/resourcex/envurionments/scoped-variables.ts:** links fix ([7c5dc42](https://github.com/cycleplatform/api-client-nodejs/commit/7c5dc4257db8c2dad80e265d86b176a9be4ace6f))
+
+
+
+## [1.11.1-22](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-21...v1.11.1-22) (2021-07-20)
+
+
+### Bug Fixes
+
+* **src/common/api/links.ts:** update scoped variables routes ([43afc40](https://github.com/cycleplatform/api-client-nodejs/commit/43afc4040a173b398a53008a889e7b4feb09bb2f))
+
+
+
+## [1.11.1-21](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-20...v1.11.1-21) (2021-07-19)
+
+
+### Bug Fixes
+
+* **src/notifications/hub.ts:** `environment.variable.*` -> `environment.scoped-variable.*` ([23d15fd](https://github.com/cycleplatform/api-client-nodejs/commit/23d15fd054f8145bd7727e0a506ad084b88658fc))
+
+
+
+## [1.11.1-20](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-19...v1.11.1-20) (2021-07-19)
+
+
+### Bug Fixes
+
+* **environment variables name change:** environment variables has changed to scoped varibales ([a55f719](https://github.com/cycleplatform/api-client-nodejs/commit/a55f71955dcdee9f4191c45383ff90d73fdfc37b))
+
+
+
+## [1.11.1-19](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-18...v1.11.1-19) (2021-07-15)
+
+
+### Bug Fixes
+
+* **src/resources/hubs/hub.ts:** webhooks now can be updated via standard patch req ([3612785](https://github.com/cycleplatform/api-client-nodejs/commit/3612785521420edbd06123ac45ed3cba27604ecc))
+
+
+
+## [1.11.1-18](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-17...v1.11.1-18) (2021-07-01)
+
+
+
+## [1.11.1-17](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-16...v1.11.1-17) (2021-06-24)
+
+
+### Features
+
+* **src/resources/hubs/activity.ts:** add activity item `dns.zone.record.task.cert.generate` ([b55f5de](https://github.com/cycleplatform/api-client-nodejs/commit/b55f5de5eae0f69d17b61c248c8645469794c1a1))
+
+
+
+## [1.11.1-16](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-15...v1.11.1-16) (2021-06-23)
+
+
+### Bug Fixes
+
+* **resources/stacks/builds/build.ts:** incorrect struct for `git_commit` ([1ea6118](https://github.com/cycleplatform/api-client-nodejs/commit/1ea61189bdaa9416c4db28e9da6d07e63e0935cf))
+
+
+
+## [1.11.1-15](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-14...v1.11.1-15) (2021-06-18)
+
+
+### Features
+
+* **src/resources/hubs/capability.ts:** update and add stack capabilities ([3e72c6c](https://github.com/cycleplatform/api-client-nodejs/commit/3e72c6cdd24578d5076db31ca9559bfeecb87a0e))
+* **src/resources/stacks/builds/build.ts:** add new struct for build includes ([2ac5c15](https://github.com/cycleplatform/api-client-nodejs/commit/2ac5c15dcc5c9fb912482fa0e1fd5dbfc8b980d4))
+
+
+
+## [1.11.1-14](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-13...v1.11.1-14) (2021-06-17)
+
+
+### Features
+
+* **src/common/api/error.ts:** added `403.wrong_hub` to `ErrorCode` type ([7dea51d](https://github.com/cycleplatform/api-client-nodejs/commit/7dea51d188de5b11f0cbc78aab93e6c5198a20f8))
+
+
+
+## [1.11.1-13](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-12...v1.11.1-13) (2021-06-15)
+
+
+### Features
+
+* **src/resources/hubs/activity.ts:** add container health check notification ([1f69130](https://github.com/cycleplatform/api-client-nodejs/commit/1f69130a3b7f87d7875f72f97ca351adaf7f9da6))
+
+
+
+## [1.11.1-12](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-11...v1.11.1-12) (2021-06-12)
+
+
+### Features
+
+* **src/resources/environments/environment.ts:** added export of containers meta ([592813f](https://github.com/cycleplatform/api-client-nodejs/commit/592813f71de3ec69287d66054d2625ba2ecd40b8))
+
+
+
+## [1.11.1-11](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-10...v1.11.1-11) (2021-06-11)
+
+
+### Features
+
+* **resources/containers/instances/instance.ts:** export state interface ([a4f74ce](https://github.com/cycleplatform/api-client-nodejs/commit/a4f74ce0a6edeb0d3dbac0626d0078b1446f82c9))
+
+
+
+## [1.11.1-10](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-9...v1.11.1-10) (2021-06-04)
+
+
+### Bug Fixes
+
+* **resources/environments/variables.ts:** use secrets struct inside of variable and create structs ([549dbe6](https://github.com/cycleplatform/api-client-nodejs/commit/549dbe6e653686ad989730df9d6c80d08e7ef1da))
+
+
+
+## [1.11.1-9](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-8...v1.11.1-9) (2021-06-04)
+
+
+
+## [1.11.1-8](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-7...v1.11.1-8) (2021-06-04)
+
+
+
+## [1.11.1-7](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-6...v1.11.1-7) (2021-06-03)
+
+
+### Features
+
+* **notifications/hubs.ts:** add environment secret notifications ([cb39525](https://github.com/cycleplatform/api-client-nodejs/commit/cb395256a24792045b7e2f8547b038a529baa068))
+
+
+
+## [1.11.1-6](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-5...v1.11.1-6) (2021-06-03)
+
+
+### Bug Fixes
+
+* **resources/environments/index.ts:** update exports ([79e2ee2](https://github.com/cycleplatform/api-client-nodejs/commit/79e2ee2c7fe8869a77af5a8e42fd64dd7487e99e))
+
+
+
+## [1.11.1-5](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-4...v1.11.1-5) (2021-06-03)
+
+
+### Features
+
+* **environment secrets:** add in upadte and remove functions ([be540db](https://github.com/cycleplatform/api-client-nodejs/commit/be540dba590c78a25bafe5a1f23b7169bcee11fb))
+* **environment secrets:** add in update and remove functions ([abed44c](https://github.com/cycleplatform/api-client-nodejs/commit/abed44cf7b97cf738cbf164551e6e30822a7f577))
+
+
+
+## [1.11.1-4](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-3...v1.11.1-4) (2021-06-03)
+
+
+### Bug Fixes
+
+* **pipeline run:** update collection document with includes ([02e93d2](https://github.com/cycleplatform/api-client-nodejs/commit/02e93d2642c619717c60dab536973e6b97b3e252))
+
+
+
+## [1.11.1-3](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-2...v1.11.1-3) (2021-06-02)
+
+
+### Features
+
+* **pipeline run:** add query and update params ([0ed73ef](https://github.com/cycleplatform/api-client-nodejs/commit/0ed73ef2192f673a172854f538549da0ab30c67f))
+
+
+
+## [1.11.1-2](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-1...v1.11.1-2) (2021-06-02)
+
+
+### Features
+
+* **pipeline runs:** added creators and keys to `pipeline/<id>/runs` includes ([c19145d](https://github.com/cycleplatform/api-client-nodejs/commit/c19145d9f602fe9b2c8db90f0247dba88d431936))
+
+
+
+## [1.11.1-1](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-0...v1.11.1-1) (2021-06-02)
+
+
+### Features
+
+* **stack deploy:** add stack deploy ([e9fb203](https://github.com/cycleplatform/api-client-nodejs/commit/e9fb203e6be2567d4021dbcb9ed34ec17d2ccd00))
+
+
+
+## [1.11.1-0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.0...v1.11.1-0) (2021-05-30)
 
 ## [1.11.0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-34...v1.11.0) (2021-05-30)
 
-### [1.10.6-34](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-33...v1.10.6-34) (2021-05-30)
+### Bug Fixes
 
+* **images/origin:** update dockerfile credentials struct ([6f3c680](https://github.com/cycleplatform/api-client-nodejs/commit/6f3c6805eb51614fb4975319b64e6297c48d5035))
+* **hub and account notifications:** types now align with api notification pipelines correctly ([c42db2b](https://github.com/cycleplatform/api-client-nodejs/commit/c42db2b67c3b43a0b283fd02d143e548c654657e))
+* **stack spec-v1:** bring image source structure inline with api ([645496b](https://github.com/cycleplatform/api-client-nodejs/commit/645496ba1903c2738e3245c18a2493a8a2b73789))
+* **stack:** removed accidental tmp code and comments ([ab20634](https://github.com/cycleplatform/api-client-nodejs/commit/ab20634627eb814a622c95a421c0c953c30b242a))
+
+### Features
+
+* **resources/images/origin:** add in new registry credentials struct to Dockerfile struct ([96fb105](https://github.com/cycleplatform/api-client-nodejs/commit/96fb105ab249030a57cedcede996087c056afde5))
+* **environment secrets:** initial build out of environment secrets ([f4b931b](https://github.com/cycleplatform/api-client-nodejs/commit/f4b931b5444a24b0d6c3fadc84c6c0d38ba76ada))
+
+### [1.10.6-34](https://github.com/cycleplatform/api-client-nodejs/compare/v1.10.6-33...v1.10.6-34) (2021-05-30)
 
 ### Bug Fixes
 
