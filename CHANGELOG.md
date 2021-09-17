@@ -1,3 +1,12 @@
+## [1.11.2-0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1...v1.11.2-0) (2021-09-17)
+
+
+### Features
+
+* **integrations:** add backblaze b2 integration ([f74f9ab](https://github.com/cycleplatform/api-client-nodejs/commit/f74f9abb2cafa00ed68d5e2485619533508a3733))
+
+
+
 ## [1.11.1](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1-26...v1.11.1) (2021-08-16)
 
 
