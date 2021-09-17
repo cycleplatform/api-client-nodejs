@@ -57,10 +57,16 @@ export interface Hub extends Resource<HubMetas> {
 
 export interface Integrations {
   letsencrypt: LetsEncryptIntegration | null;
+  backblaze_b2: BackplaneB2Integration | null;
 }
 
 export interface LetsEncryptIntegration {
   email: string;
+}
+
+export interface BackplaneB2Integration {
+  key_id: string;
+  key: string;
 }
 
 export interface BillingProfile {
