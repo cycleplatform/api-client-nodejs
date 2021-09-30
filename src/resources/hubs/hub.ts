@@ -65,6 +65,7 @@ export interface LetsEncryptIntegration {
 }
 
 export interface BackplaneB2Integration {
+  bucket: string;
   key_id: string;
   key: string;
 }
