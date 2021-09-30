@@ -1,3 +1,12 @@
+## [1.11.2-2](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-1...v1.11.2-2) (2021-09-30)
+
+
+### Bug Fixes
+
+* **container integrations:** backup and restore structs change ([13eb8bb](https://github.com/cycleplatform/api-client-nodejs/commit/13eb8bb31756604ffd99ea191e994ececb6e38ee))
+
+
+
 ## [1.11.2-1](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-0...v1.11.2-1) (2021-09-30)
 
 
