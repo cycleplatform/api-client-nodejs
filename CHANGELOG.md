@@ -1,3 +1,12 @@
+## [1.11.2-3](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-2...v1.11.2-3) (2021-09-30)
+
+
+### Bug Fixes
+
+* **hub integrations:** add bucket to Backblaze B2 integration ([42b572d](https://github.com/cycleplatform/api-client-nodejs/commit/42b572df4f0e500f4f1e0934a8c9fbde17ce87a1))
+
+
+
 ## [1.11.2-2](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-1...v1.11.2-2) (2021-09-30)
 
 
