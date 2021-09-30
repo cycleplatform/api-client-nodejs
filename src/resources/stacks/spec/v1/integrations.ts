@@ -33,10 +33,12 @@ export interface File {
 }
 
 export interface Backups {
-  source: string;
+  source: BackupSource;
   backup: Backup;
   restore: Restore | null;
 }
+
+export type BackupSource = "backblaze-b2";
 
 export interface Backup {
   command: string;
