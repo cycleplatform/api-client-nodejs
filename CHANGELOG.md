@@ -1,3 +1,12 @@
+## [1.11.2-1](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-0...v1.11.2-1) (2021-09-30)
+
+
+### Features
+
+* **container backups integration:** add backup source type ([ac66bbe](https://github.com/cycleplatform/api-client-nodejs/commit/ac66bbe8f2b5feb3d6b0d00736f3d1fb11afa708))
+
+
+
 ## [1.11.2-0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.1...v1.11.2-0) (2021-09-17)
 
 
