@@ -42,11 +42,11 @@ export type BackupSource = "backblaze-b2";
 
 export interface Backup {
   command: string;
-  dir: string | null;
+  timeout: number | null;
   cron_string: string | null;
 }
 
 export interface Restore {
   command: string;
-  dir: string | null;
+  timeout: number | null;
 }
