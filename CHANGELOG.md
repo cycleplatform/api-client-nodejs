@@ -1,3 +1,12 @@
+## [1.11.2-4](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-3...v1.11.2-4) (2021-10-05)
+
+
+### Features
+
+* **container backups:** endpoint and structs for viewing previous backups ([583417b](https://github.com/cycleplatform/api-client-nodejs/commit/583417bb735801876eee4f4dfa60ec433d3b35f4))
+
+
+
 ## [1.11.2-3](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-2...v1.11.2-3) (2021-09-30)
 
 
