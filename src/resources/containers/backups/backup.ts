@@ -4,10 +4,10 @@ import {
   State as BaseState,
   Events as BaseEvents,
   CollectionDoc,
-} from "../../common/structs";
-import { BackupSource } from "../stacks/spec/v1/integrations";
-import { StandardParams, links } from "../../common/api";
-import * as Request from "../../common/api/request";
+} from "../../../common/structs";
+import { BackupSource } from "../../stacks/spec/v1/integrations";
+import { StandardParams, links } from "../../../common/api";
+import * as Request from "../../../common/api/request";
 
 /****************************** Backup Struct ******************************/
 
