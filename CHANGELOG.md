@@ -1,3 +1,12 @@
+## [1.11.2-5](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-4...v1.11.2-5) (2021-10-06)
+
+
+### Bug Fixes
+
+* **container export:** backups now correctly exports ([1dcff3e](https://github.com/cycleplatform/api-client-nodejs/commit/1dcff3e6e1ae1a530fd2ea45b78c09f49592748f))
+
+
+
 ## [1.11.2-4](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-3...v1.11.2-4) (2021-10-05)
 
 
