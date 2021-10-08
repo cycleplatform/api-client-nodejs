@@ -45,6 +45,9 @@ export type HubTopic =
   | "container.state.changed"
   | "container.desired_state.changed"
   | "container.error"
+  | "container.backup.created"
+  | "container.backup.error"
+  | "container.backup.state.changed"
 
   // container instance
   | "container.instance.state.changed"
@@ -52,8 +55,6 @@ export type HubTopic =
   | "container.instances.reconfigured"
   | "container.instance.migration.update"
   | "container.instance.health.status.changed"
-  | "container.instance.backup.create"
-  | "container.instance.backup.error"
 
   // dns certificate
   | "dns.certificate.state.changed"
