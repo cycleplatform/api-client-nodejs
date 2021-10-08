@@ -52,6 +52,8 @@ export type Capability =
   | "containers-volumes-manage"
   | "containers-volumes-view"
   | "containers-instances-migrate"
+  | "containers-backups-manage"
+  | "containers-backups-view"
 
   // stacks
   | "stacks-manage"
