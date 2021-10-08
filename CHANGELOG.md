@@ -1,3 +1,13 @@
+## [1.11.2-6](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-5...v1.11.2-6) (2021-10-08)
+
+
+### Bug Fixes
+
+* **backup integration:** key name change from `source` -> `destination` ([9501020](https://github.com/cycleplatform/api-client-nodejs/commit/95010206f4e3b88efe80a5eb59815ddea724fa47))
+* **backups integration:** broken import due to name change ([83afa27](https://github.com/cycleplatform/api-client-nodejs/commit/83afa2734c942b44639ee0d5e9343a30c57a365e))
+
+
+
 ## [1.11.2-5](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-4...v1.11.2-5) (2021-10-06)
 
 
