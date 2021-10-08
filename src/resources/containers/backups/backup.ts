@@ -5,7 +5,7 @@ import {
   Events as BaseEvents,
   CollectionDoc,
 } from "../../../common/structs";
-import { BackupSource } from "../../stacks/spec/v1/integrations";
+import { BackupDestination } from "../../stacks/spec/v1/integrations";
 import { StandardParams, links } from "../../../common/api";
 import * as Request from "../../../common/api/request";
 
@@ -29,7 +29,7 @@ export type States = "saving" | "live" | "deleting" | "deleted";
 export type Events = BaseEvents;
 
 export interface Target {
-  destination: BackupSource;
+  destination: BackupDestination;
   path: string;
   size: number;
 }
