@@ -29,7 +29,7 @@ export type States = "saving" | "live" | "deleting" | "deleted";
 export type Events = BaseEvents;
 
 export interface Target {
-  source: BackupSource;
+  destination: BackupSource;
   path: string;
   size: number;
 }
