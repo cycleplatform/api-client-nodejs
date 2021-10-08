@@ -1,3 +1,12 @@
+## [1.11.2-7](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-6...v1.11.2-7) (2021-10-08)
+
+
+### Features
+
+* **notifications and capabilities:** add backup integration ([379c3cd](https://github.com/cycleplatform/api-client-nodejs/commit/379c3cd13aa910c88b34f757da4e18d54a1a5f2c))
+
+
+
 ## [1.11.2-6](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-5...v1.11.2-6) (2021-10-08)
 
 
