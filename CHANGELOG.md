@@ -1,3 +1,12 @@
+## [1.11.2-8](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-7...v1.11.2-8) (2021-10-08)
+
+
+### Bug Fixes
+
+* **hub notifications:** update backups to be at container notification level ([5cea267](https://github.com/cycleplatform/api-client-nodejs/commit/5cea267a03f8836a0ef847cda1f31c76ac2fad2d))
+
+
+
 ## [1.11.2-7](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-6...v1.11.2-7) (2021-10-08)
 
 
