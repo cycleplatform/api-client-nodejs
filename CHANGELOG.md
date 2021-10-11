@@ -1,3 +1,12 @@
+## [1.11.2-13](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-12...v1.11.2-13) (2021-10-11)
+
+
+### Bug Fixes
+
+* **activity event:** changed `container.backup.created` to `container.backup.create` ([36801c0](https://github.com/cycleplatform/api-client-nodejs/commit/36801c09544341f8dd644b0d216453398ba6e1ae))
+
+
+
 ## [1.11.2-12](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-11...v1.11.2-12) (2021-10-11)
 
 
