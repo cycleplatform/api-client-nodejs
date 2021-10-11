@@ -116,6 +116,8 @@ export const links = {
         `/containers/${container}/backups/${id}`,
       tasks: (id: ResourceId, container: ResourceId) =>
         `/containers/${container}/backups/${id}/tasks`,
+      logs: (id: ResourceId, container: ResourceId) =>
+        `/containers/${container}/backups/${id}/logs`,
     }),
   }),
 

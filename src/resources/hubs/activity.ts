@@ -144,6 +144,10 @@ export type EventType =
 
   // container backups
   | "container.backup.create"
+  | "container.backup.restore"
+  | "container.backup.task.restore"
+  | "container.backup.delete"
+  | "container.backup.task.delete"
 
   // dns zones
   | "dns.zone.task.verify"
