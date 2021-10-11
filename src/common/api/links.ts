@@ -111,8 +111,9 @@ export const links = {
       instances: (id: ResourceId) => `/containers/${id}/telemetry/instances`,
     }),
     backups: () => ({
-      collection: (container: ResourceId) =>
-        `/containers/${container}/backups`,
+      collection: (container: ResourceId) => `/containers/${container}/backups`,
+      tasks: (id: ResourceId, container: ResourceId) =>
+        `/containers/${container}/backups/${id}/tasks`,
     }),
   }),
 
