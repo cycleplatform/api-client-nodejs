@@ -1,3 +1,12 @@
+## [1.11.2-10](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-9...v1.11.2-10) (2021-10-11)
+
+
+### Features
+
+* **container backups:** add remove functionality ([541e22a](https://github.com/cycleplatform/api-client-nodejs/commit/541e22a690c455e06cfbe9dec600b4ca53e2a704))
+
+
+
 ## [1.11.2-9](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-8...v1.11.2-9) (2021-10-11)
 
 
