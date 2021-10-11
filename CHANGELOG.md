@@ -1,3 +1,12 @@
+## [1.11.2-11](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-10...v1.11.2-11) (2021-10-11)
+
+
+### Bug Fixes
+
+* **backups task content:** params fix ([21b9395](https://github.com/cycleplatform/api-client-nodejs/commit/21b9395f7e372926e364007a6e61fdc0cf14a8ea))
+
+
+
 ## [1.11.2-10](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-9...v1.11.2-10) (2021-10-11)
 
 
