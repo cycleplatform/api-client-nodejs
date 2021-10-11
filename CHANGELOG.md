@@ -1,3 +1,12 @@
+## [1.11.2-12](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-11...v1.11.2-12) (2021-10-11)
+
+
+### Features
+
+* **activity item:** add container backup activity ([b121b6c](https://github.com/cycleplatform/api-client-nodejs/commit/b121b6c42aa288288f68964bb5b6ed91d8958e47))
+
+
+
 ## [1.11.2-11](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-10...v1.11.2-11) (2021-10-11)
 
 
