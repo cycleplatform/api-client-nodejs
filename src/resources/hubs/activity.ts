@@ -109,23 +109,30 @@ export type EventType =
 
   // containers
   | "container.create"
+  | "container.update"
+  // start
   | "container.start"
   | "container.task.start"
+  // stop
   | "container.stop"
   | "container.task.stop"
-  | "container.update"
+  // reconfigure
   | "container.reconfigure"
   | "container.task.reconfigure"
+  // volumes
   | "container.reconfigure.volumes"
   | "container.task.reconfigure.volumes"
+  // reimage
   | "container.reimage"
   | "container.task.reimage"
+  // scale
   | "container.scale"
   | "container.task.scale"
+  // delete
   | "container.delete"
   | "container.task.delete"
 
-  // instances
+  // container instances
   | "container.instance.error"
   | "container.instance.sftp.login"
   | "container.instance.migration.start"
@@ -134,6 +141,9 @@ export type EventType =
   | "container.instances.delete"
   | "container.instances.create"
   | "container.instance.healthcheck.restarted"
+
+  // container backups
+  | "container.backup.created"
 
   // dns zones
   | "dns.zone.task.verify"
