@@ -18,6 +18,18 @@ export async function restore(
   });
 }
 
+export async function remove(
+  params: StandardParams & {
+    id: ResourceId;
+    containerId: ResourceId;
+  },
+) {
+  return Request.deleteRequest<CreatedTask<"delete">>({
+    ...params,
+    target: links.containers().backups().single(params.id, params.containerId),
+  });
+}
+
 export async function task<K = {}>(
   params: StandardParams & {
     id: ResourceId;
