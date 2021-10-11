@@ -143,7 +143,7 @@ export type EventType =
   | "container.instance.healthcheck.restarted"
 
   // container backups
-  | "container.backup.created"
+  | "container.backup.create"
 
   // dns zones
   | "dns.zone.task.verify"
