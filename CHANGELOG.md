@@ -1,3 +1,12 @@
+## [1.11.2-9](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-8...v1.11.2-9) (2021-10-11)
+
+
+### Features
+
+* **container backups:** add container tasks functionality ([042c671](https://github.com/cycleplatform/api-client-nodejs/commit/042c67180d5eb613258ca80a9462323f5909437f))
+
+
+
 ## [1.11.2-8](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-7...v1.11.2-8) (2021-10-08)
 
 
