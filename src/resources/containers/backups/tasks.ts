@@ -7,6 +7,7 @@ export type BackupAction = "restore";
 export async function restore(
   params: StandardParams & {
     id: ResourceId;
+    instanceId: ResourceId;
     containerId: ResourceId;
   },
 ) {
@@ -14,6 +15,7 @@ export async function restore(
     ...params,
     value: {
       action: "restore",
+      contents: params.instanceId,
     },
   });
 }
