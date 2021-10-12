@@ -1,3 +1,12 @@
+## [1.11.2-15](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-14...v1.11.2-15) (2021-10-12)
+
+
+### Bug Fixes
+
+* **container backups:** restore task ([f93eb76](https://github.com/cycleplatform/api-client-nodejs/commit/f93eb766be019f5fffb700ff57050098f2fbf3dc))
+
+
+
 ## [1.11.2-14](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-13...v1.11.2-14) (2021-10-11)
 
 
