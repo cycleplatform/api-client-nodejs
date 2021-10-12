@@ -15,7 +15,9 @@ export async function restore(
     ...params,
     value: {
       action: "restore",
-      contents: params.instanceId,
+      contents: {
+        instanceId: params.instanceId,
+      },
     },
   });
 }
