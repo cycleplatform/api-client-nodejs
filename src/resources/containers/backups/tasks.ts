@@ -16,7 +16,7 @@ export async function restore(
     value: {
       action: "restore",
       contents: {
-        instanceId: params.instanceId,
+        instance_id: params.instanceId,
       },
     },
   });
