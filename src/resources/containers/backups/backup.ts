@@ -4,6 +4,7 @@ import {
   State as BaseState,
   Events as BaseEvents,
   CollectionDoc,
+  SingleDoc,
 } from "../../../common/structs";
 import { BackupDestination } from "../../stacks/spec/v1/integrations";
 import { StandardParams, links } from "../../../common/api";
@@ -37,6 +38,7 @@ export interface Target {
 /****************************** Metas, Includes, Docs, Query ******************************/
 
 export type Collection = CollectionDoc<Backup>;
+export type Single = SingleDoc<Backup>;
 
 /****************************** Params ******************************/
 
@@ -45,10 +47,22 @@ interface BCP extends StandardParams {
   containerId: ResourceId;
 }
 
+interface BSP extends BCP {
+  id: ResourceId;
+}
+
 /**
  * getCollection function params
  */
 export type GetCollectionParams = BCP;
+export type GetSingleParams = BSP;
+
+export async function getSingle(params: GetSingleParams) {
+  return Request.getRequest<Single>({
+    ...params,
+    target: links.containers().backups().single(params.id, params.containerId),
+  });
+}
 
 export async function getCollection(params: GetCollectionParams) {
   return Request.getRequest<Collection>({
@@ -56,4 +70,3 @@ export async function getCollection(params: GetCollectionParams) {
     target: links.containers().backups().collection(params.containerId),
   });
 }
-
