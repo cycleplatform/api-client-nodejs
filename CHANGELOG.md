@@ -1,3 +1,12 @@
+## [1.11.2-17](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-16...v1.11.2-17) (2021-10-15)
+
+
+### Features
+
+* **container backups:** add getSingle function ([7b89ad6](https://github.com/cycleplatform/api-client-nodejs/commit/7b89ad695855ee11b109a7c19e192574aff00e7d))
+
+
+
 ## [1.11.2-16](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-15...v1.11.2-16) (2021-10-12)
 
 
