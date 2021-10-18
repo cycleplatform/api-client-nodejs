@@ -1,3 +1,12 @@
+## [1.11.2-18](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-17...v1.11.2-18) (2021-10-18)
+
+
+### Features
+
+* **billing tier:** remove features from billing tier plans ([84cd325](https://github.com/cycleplatform/api-client-nodejs/commit/84cd325fe2e9a3d771c965504432426ea680af27))
+
+
+
 ## [1.11.2-17](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-16...v1.11.2-17) (2021-10-15)
 
 
