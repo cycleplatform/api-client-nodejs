@@ -1,3 +1,12 @@
+## [1.11.2-21](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-20...v1.11.2-21) (2021-12-16)
+
+
+### Bug Fixes
+
+* **hub notification:** environment services lb notification ([12a17f2](https://github.com/cycleplatform/api-client-nodejs/commit/12a17f2faf023eacd2513e5a5cb36bc50ff213ad))
+
+
+
 ## [1.11.2-20](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-19...v1.11.2-20) (2021-12-16)
 
 
