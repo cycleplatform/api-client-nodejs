@@ -24,6 +24,7 @@ export interface Image extends Resource<Metas> {
   size: Bytes;
   about?: About;
   backend: Backend;
+  requires: Requires;
   tags: string[];
   config: Config;
   source: Source;
@@ -49,12 +50,18 @@ export type States =
   | "deleted";
 
 export type State = StateBase<States>;
+
 export interface Backend {
   provider: string;
   file_name: string;
   file_id: string;
   size: Bytes;
 }
+
+export interface Requires {
+  nvidia_gpu: boolean | null;
+}
+
 export interface Source {
   type: SourceType;
   details: SourceDetails;

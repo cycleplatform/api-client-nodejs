@@ -1,3 +1,12 @@
+## [1.11.2-19](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-18...v1.11.2-19) (2021-12-09)
+
+
+### Features
+
+* **image struct:** gpu support inside new requires image field ([a388276](https://github.com/cycleplatform/api-client-nodejs/commit/a388276dff5ad3f1caddb395576f91ef27546617))
+
+
+
 ## [1.11.2-18](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-17...v1.11.2-18) (2021-10-18)
 
 
