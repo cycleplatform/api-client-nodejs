@@ -83,7 +83,7 @@ export type HubTopic =
   // environment services
   | "environment.services.reconfigured"
   | "environment.services.vpn.users.updated"
-  | "environment.services.lb.ip.acquired"
+  | "environment.services.lb.ips.modified"
 
   // environment scoped variables
   | "environment.scoped-variable.created"
