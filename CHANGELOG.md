@@ -1,3 +1,12 @@
+## [1.11.2-22](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-21...v1.11.2-22) (2021-12-20)
+
+
+### Bug Fixes
+
+* **stack specs:** ability to access details inside v1 works correctly now ([eff589e](https://github.com/cycleplatform/api-client-nodejs/commit/eff589e66de922bb7c05b1ae6fbd387c137a1d0c))
+
+
+
 ## [1.11.2-21](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-20...v1.11.2-21) (2021-12-16)
 
 
