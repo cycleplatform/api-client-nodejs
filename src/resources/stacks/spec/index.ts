@@ -1,5 +1,5 @@
-import { Spec as SpecV1 } from "./v1";
+import * as V1 from "./v1";
 
-export type Spec = SpecV1; // SpecV1 | SpecV2
+export type Spec = V1.Spec;
 
-export { SpecV1 };
+export { V1 };
