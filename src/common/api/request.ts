@@ -105,6 +105,10 @@ async function makeRequest<T>(
     req.headers.append("X-Hub-Id", hubId);
   }
 
+  if (settings?.url) {
+    req.headers.set("Access-Control-Allow-Origin", settings.url);
+  }
+
   try {
     const resp = await fetch(req, {
       signal: settings && settings.signal,
