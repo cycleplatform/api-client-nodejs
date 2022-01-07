@@ -1,3 +1,12 @@
+## [1.11.2-23](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-22...v1.11.2-23) (2022-01-07)
+
+
+### Bug Fixes
+
+* **api requests:** programatically set access control header ([d02d589](https://github.com/cycleplatform/api-client-nodejs/commit/d02d589576b9029e0a59c1803ef58b8d7fafe1b7))
+
+
+
 ## [1.11.2-22](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-21...v1.11.2-22) (2021-12-20)
 
 
