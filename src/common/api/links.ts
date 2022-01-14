@@ -241,7 +241,6 @@ export const links = {
         `/infrastructure/providers/${provider}/servers`,
       locations: (provider: ResourceId) =>
         `/infrastructure/providers/${provider}/locations`,
-      features: () => `/infrastructure/locations/features`,
     }),
     ips: () => ({
       pools: () => ({

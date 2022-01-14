@@ -52,16 +52,3 @@ export async function getCollection(params: {
       .locations(params.provider),
   });
 }
-
-export async function getFeatures(params: {
-  query?: QueryParams;
-  settings?: Settings;
-}) {
-  return Request.getRequest<{ data: { features: string[] } }>({
-    ...params,
-    target: links
-      .infrastructure()
-      .providers()
-      .features(),
-  });
-}
