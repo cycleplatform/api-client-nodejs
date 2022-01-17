@@ -1,3 +1,12 @@
+## [1.11.2-25](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-24...v1.11.2-25) (2022-01-17)
+
+
+### Bug Fixes
+
+* **requests:** access control issues fixed ([4b45eb7](https://github.com/cycleplatform/api-client-nodejs/commit/4b45eb75de713344890ba9c803be44951f77facf))
+
+
+
 ## [1.11.2-24](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-23...v1.11.2-24) (2022-01-14)
 
 
