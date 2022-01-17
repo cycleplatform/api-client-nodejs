@@ -105,7 +105,7 @@ async function makeRequest<T>(
     req.headers.append("X-Hub-Id", hubId);
   }
 
-  if (settings?.url) {
+  if (settings?.url && settings.setAccessControl) {
     req.headers.set("Access-Control-Allow-Origin", settings.url);
   }
 
