@@ -1,3 +1,12 @@
+## [1.11.2-27](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-26...v1.11.2-27) (2022-02-01)
+
+
+### Bug Fixes
+
+* **infrastructure:** remove options struct ([3cb9d20](https://github.com/cycleplatform/api-client-nodejs/commit/3cb9d20ea783cd5b5ce8c00a4d5ed236e89560c3))
+
+
+
 ## [1.11.2-26](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-25...v1.11.2-26) (2022-02-01)
 
 
