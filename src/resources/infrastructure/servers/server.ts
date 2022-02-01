@@ -123,7 +123,9 @@ type AdvancedCreateParams = BaseCollectionParams & {
   value: AdvancedServerCreateValue;
 };
 type UpdateServerParams = BaseSingleDocParams & { value: UpdateParams };
-type RemoveServerParams = BaseSingleDocParams;
+interface RemoveServerParams extends BaseSingleDocParams {
+  value?: RemoveServerValue;
+}
 export interface UpdateParams {
   constraints: Constraints;
 }
@@ -149,6 +151,10 @@ export interface CreateParams {
 export interface AdvancedServerCreateValue {
   servers: AdvancedServerCreate[];
   cluster: Cluster;
+}
+
+export interface RemoveServerValue {
+  force: boolean;
 }
 
 /** */
