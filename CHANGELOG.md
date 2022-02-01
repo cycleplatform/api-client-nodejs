@@ -1,3 +1,12 @@
+## [1.11.2-26](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-25...v1.11.2-26) (2022-02-01)
+
+
+### Features
+
+* **infrastructure:** add force option to remove ([ec319da](https://github.com/cycleplatform/api-client-nodejs/commit/ec319daaab6b12c821f50dbd71bc23e41d7076ef))
+
+
+
 ## [1.11.2-25](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-24...v1.11.2-25) (2022-01-17)
 
 
