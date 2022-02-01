@@ -154,7 +154,9 @@ export interface AdvancedServerCreateValue {
 }
 
 export interface RemoveServerValue {
-  force: boolean;
+  options: {
+    force: boolean;
+  };
 }
 
 /** */
