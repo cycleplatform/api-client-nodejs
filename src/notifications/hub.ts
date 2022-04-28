@@ -45,6 +45,9 @@ export type HubTopic =
   | "container.state.changed"
   | "container.desired_state.changed"
   | "container.error"
+  | "container.backup.created"
+  | "container.backup.error"
+  | "container.backup.state.changed"
 
   // container instance
   | "container.instance.state.changed"
@@ -80,7 +83,7 @@ export type HubTopic =
   // environment services
   | "environment.services.reconfigured"
   | "environment.services.vpn.users.updated"
-  | "environment.services.lb.ip.acquired"
+  | "environment.services.lb.ips.modified"
 
   // environment scoped variables
   | "environment.scoped-variable.created"

@@ -1,3 +1,4 @@
+import { Environments } from "../..";
 import { PublicAccount } from "../../resources/accounts";
 import { ApiKeys } from "../../resources/hubs";
 
@@ -21,5 +22,8 @@ export interface UserIncludes {
   };
   visitors?: {
     [key: string]: PublicAccount;
+  };
+  environments?: {
+    [key: string]: Environments.Environment;
   };
 }

@@ -8,12 +8,9 @@ import {
 } from "../../../common/structs";
 import { Amount } from "../../billing";
 import { Builds } from "resources/stacks";
-import { DeploymentStrategy } from "../../stacks/spec/v1/deploy";
 
 export type Collection = CollectionDoc<TierPlan>;
 export type Single = SingleDoc<TierPlan>;
-
-export type CapabilititiesLevel = "limited" | "standard" | "advanced";
 
 export interface TierPlan extends Resource {
   name: string;
@@ -25,7 +22,6 @@ export interface TierPlan extends Resource {
   ram: RAM;
   image_storage: ImageStorage;
   builds: Builds;
-  features: Features;
   hidden: boolean;
   description: string;
   default?: true;
@@ -46,53 +42,6 @@ export interface Builds {
   cpu_cores: number;
   ram_gb: Gigabytes;
   max_daily_builds: number | null;
-}
-
-export interface Features {
-  performance_builds: TierFeature;
-  infrastructure: InfrastructureFeatures;
-  monitoring: MonitoringFeatures;
-  support: SupportFeatures;
-  security: SecurityFeatures;
-  automated_backups: TierFeature;
-  deployment_pipelines: TierFeature;
-}
-
-export interface TierFeature {
-  enabled: boolean;
-  capabilities?: CapabilititiesLevel;
-}
-
-export interface InfrastructureFeatures {
-  multi_provider: TierFeature;
-  clustering: TierFeature;
-  sdn: TierFeature;
-  dedicated_cluster: TierFeature;
-  deployment_strategies: DeploymentStrategiesFeature;
-}
-
-export interface DeploymentStrategiesFeature extends TierFeature {
-  strategies: DeploymentStrategy[];
-}
-
-export interface MonitoringFeatures {
-  infrastructure: TierFeature;
-  advanced: TierFeature;
-}
-
-export interface SupportFeatures {
-  live_chat: LiveChatFeature;
-  phone_support: TierFeature;
-  slack_community: TierFeature;
-}
-
-export interface LiveChatFeature extends TierFeature {
-  days?: number;
-}
-
-export interface SecurityFeatures {
-  audit_log: TierFeature;
-  two_factor_auth: TierFeature;
 }
 
 export async function getCollection(params: {

@@ -57,7 +57,7 @@ export type State = StateBase<States>;
  * ---
  *
  * ### Cycle Info
- * __Something doesn't look right or work as intended?__ \
+ * __Something doesn't look right or work as intended?__
  * Help us make a better TypeScript Platform Interface by submitting an issue on
  * [Cycles Github](https://github.com/cycleplatform/api-client-nodejs) or
  * forking our repo and submitting a
@@ -96,10 +96,10 @@ type BSP = StandardParams<Query> & {
 /** Base Collection Params */
 type BCP = StandardParams<Query>;
 
-type GetCollectionParams = BCP;
-type GetSingleParams = BSP;
-type CreateParams = BCP & Request.PostParams<CreateValues>;
-type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
+export type GetCollectionParams = BCP;
+export type GetSingleParams = BSP;
+export type CreateParams = BCP & Request.PostParams<CreateValues>;
+export type UpdateParams = BSP & Request.PatchParams<UpdateValues>;
 
 /****************************** Values ******************************/
 

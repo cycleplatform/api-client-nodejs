@@ -14,4 +14,6 @@ export interface Settings {
 
   /** Apply credentials to request */
   credentials?: RequestCredentials;
+
+  setAccessControl?: boolean;
 }

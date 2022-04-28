@@ -1,6 +1,6 @@
 {
   "name": "@cycleplatform/cycle-api",
-  "version": "1.11.1",
+  "version": "1.11.2-27",
   "description": "Cycle API Client",
   "author": "Petrichor, Inc.",
   "license": "Apache-2.0",
@@ -28,7 +28,8 @@
     "version": "npm run changelog && git add CHANGELOG.md",
     "pub": "export HUSKY=0 && npm run np -- --yolo --any-branch && export HUSKY=1",
     "pub:test": "export HUSKY=0 && npm run np -- --preview --yolo --any-branch && export HUSKY=1",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,7 @@
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^4.3.8",
+    "husky": "^7.0.0",
     "np": "^7.5.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^3.1.0",

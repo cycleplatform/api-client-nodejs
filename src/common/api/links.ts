@@ -110,6 +110,15 @@ export const links = {
     telemetry: () => ({
       instances: (id: ResourceId) => `/containers/${id}/telemetry/instances`,
     }),
+    backups: () => ({
+      collection: (container: ResourceId) => `/containers/${container}/backups`,
+      single: (id: ResourceId, container: ResourceId) =>
+        `/containers/${container}/backups/${id}`,
+      tasks: (id: ResourceId, container: ResourceId) =>
+        `/containers/${container}/backups/${id}/tasks`,
+      logs: (id: ResourceId, container: ResourceId) =>
+        `/containers/${container}/backups/${id}/logs`,
+    }),
   }),
 
   // DNS
@@ -168,8 +177,9 @@ export const links = {
     }),
     scopedVariables: (environment: ResourceId) => ({
       collection: () => `/environments/${environment}/scoped-variables`,
-      single: (scopedVariableId: ResourceId) => `/environments/${environment}/scoped-variables/${scopedVariableId}`,
-    })
+      single: (scopedVariableId: ResourceId) =>
+        `/environments/${environment}/scoped-variables/${scopedVariableId}`,
+    }),
   }),
 
   // Hubs
@@ -231,7 +241,6 @@ export const links = {
         `/infrastructure/providers/${provider}/servers`,
       locations: (provider: ResourceId) =>
         `/infrastructure/providers/${provider}/locations`,
-      features: () => `/infrastructure/locations/features`,
     }),
     ips: () => ({
       pools: () => ({
