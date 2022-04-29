@@ -1,3 +1,43 @@
+## [1.11.2-28](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-20...v1.11.2-28) (2022-04-29)
+
+
+### Bug Fixes
+
+* **activity event:** changed `container.backup.created` to `container.backup.create` ([36801c0](https://github.com/cycleplatform/api-client-nodejs/commit/36801c09544341f8dd644b0d216453398ba6e1ae))
+* **api requests:** programatically set access control header ([d02d589](https://github.com/cycleplatform/api-client-nodejs/commit/d02d589576b9029e0a59c1803ef58b8d7fafe1b7))
+* **backup integration:** key name change from `source` -> `destination` ([9501020](https://github.com/cycleplatform/api-client-nodejs/commit/95010206f4e3b88efe80a5eb59815ddea724fa47))
+* **backups integration:** broken import due to name change ([83afa27](https://github.com/cycleplatform/api-client-nodejs/commit/83afa2734c942b44639ee0d5e9343a30c57a365e))
+* **backups task content:** params fix ([21b9395](https://github.com/cycleplatform/api-client-nodejs/commit/21b9395f7e372926e364007a6e61fdc0cf14a8ea))
+* **container backups:** restore task ([f93eb76](https://github.com/cycleplatform/api-client-nodejs/commit/f93eb766be019f5fffb700ff57050098f2fbf3dc))
+* **container backups:** task contents ([0e61a63](https://github.com/cycleplatform/api-client-nodejs/commit/0e61a63dd33f55baa9e02f141878ec825d32f4b7))
+* **container export:** backups now correctly exports ([1dcff3e](https://github.com/cycleplatform/api-client-nodejs/commit/1dcff3e6e1ae1a530fd2ea45b78c09f49592748f))
+* **container integrations:** backup and restore structs change ([13eb8bb](https://github.com/cycleplatform/api-client-nodejs/commit/13eb8bb31756604ffd99ea191e994ececb6e38ee))
+* **hub integrations:** add bucket to Backblaze B2 integration ([42b572d](https://github.com/cycleplatform/api-client-nodejs/commit/42b572df4f0e500f4f1e0934a8c9fbde17ce87a1))
+* **hub notification:** environment services lb notification ([12a17f2](https://github.com/cycleplatform/api-client-nodejs/commit/12a17f2faf023eacd2513e5a5cb36bc50ff213ad))
+* **hub notifications:** update backups to be at container notification level ([5cea267](https://github.com/cycleplatform/api-client-nodejs/commit/5cea267a03f8836a0ef847cda1f31c76ac2fad2d))
+* **infrastructure:** remove options struct ([3cb9d20](https://github.com/cycleplatform/api-client-nodejs/commit/3cb9d20ea783cd5b5ce8c00a4d5ed236e89560c3))
+* **requests:** access control issues fixed ([4b45eb7](https://github.com/cycleplatform/api-client-nodejs/commit/4b45eb75de713344890ba9c803be44951f77facf))
+* **stack specs:** ability to access details inside v1 works correctly now ([eff589e](https://github.com/cycleplatform/api-client-nodejs/commit/eff589e66de922bb7c05b1ae6fbd387c137a1d0c))
+
+
+### Features
+
+* update userIncludes with environments ([a256550](https://github.com/cycleplatform/api-client-nodejs/commit/a256550c60ca0899133d4303a1617a4313c6d3d1))
+* **activity item:** add container backup activity ([b121b6c](https://github.com/cycleplatform/api-client-nodejs/commit/b121b6c42aa288288f68964bb5b6ed91d8958e47))
+* **billing tier:** remove features from billing tier plans ([84cd325](https://github.com/cycleplatform/api-client-nodejs/commit/84cd325fe2e9a3d771c965504432426ea680af27))
+* **container backup logs:** struct and endpoint for backup logs ([06ba791](https://github.com/cycleplatform/api-client-nodejs/commit/06ba791de7db1748dad5f111d0b615c0ff95176a))
+* **container backups:** add container tasks functionality ([042c671](https://github.com/cycleplatform/api-client-nodejs/commit/042c67180d5eb613258ca80a9462323f5909437f))
+* **container backups:** add getSingle function ([7b89ad6](https://github.com/cycleplatform/api-client-nodejs/commit/7b89ad695855ee11b109a7c19e192574aff00e7d))
+* **container backups:** add remove functionality ([541e22a](https://github.com/cycleplatform/api-client-nodejs/commit/541e22a690c455e06cfbe9dec600b4ca53e2a704))
+* **container backups:** endpoint and structs for viewing previous backups ([583417b](https://github.com/cycleplatform/api-client-nodejs/commit/583417bb735801876eee4f4dfa60ec433d3b35f4))
+* **container backups integration:** add backup source type ([ac66bbe](https://github.com/cycleplatform/api-client-nodejs/commit/ac66bbe8f2b5feb3d6b0d00736f3d1fb11afa708))
+* **image struct:** gpu support inside new requires image field ([a388276](https://github.com/cycleplatform/api-client-nodejs/commit/a388276dff5ad3f1caddb395576f91ef27546617))
+* **infrastructure:** add force option to remove ([ec319da](https://github.com/cycleplatform/api-client-nodejs/commit/ec319daaab6b12c821f50dbd71bc23e41d7076ef))
+* **integrations:** add backblaze b2 integration ([f74f9ab](https://github.com/cycleplatform/api-client-nodejs/commit/f74f9abb2cafa00ed68d5e2485619533508a3733))
+* **notifications and capabilities:** add backup integration ([379c3cd](https://github.com/cycleplatform/api-client-nodejs/commit/379c3cd13aa910c88b34f757da4e18d54a1a5f2c))
+
+
+
 ## [1.11.2-27](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-26...v1.11.2-27) (2022-02-01)
 
 
