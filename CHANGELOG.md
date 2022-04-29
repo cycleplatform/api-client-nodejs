@@ -1,3 +1,7 @@
+## [1.12.1-0](http://gitlab.petrichor.io/cycle/node-api-client/compare/v1.12.0...v1.12.1-0) (2022-04-29)
+
+
+
 # [1.12.0](https://github.com/cycleplatform/api-client-nodejs/compare/v1.11.2-28...v1.12.0) (2022-04-29)
 
 
